@@ -205,6 +205,10 @@
             gap: var(--space-1);
             justify-content: center;
             align-items: center;
+            /* Ensure navigation is always visible */
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden; /* Prevent any overflow issues */
         }
 
         /* Remove scrollbar styling - no longer needed */
@@ -4698,11 +4702,40 @@
         
         /* Mobile First - Base styles above are mobile optimized */
         
-        /* Small Devices (Phones, up to 768px) */
-        @media (max-width: 767px) {
+        /* Extra Small Devices (Very small phones, up to 480px) */
+        @media (max-width: 480px) {
             .container {
-                margin: var(--space-2);
+                margin: 0;
+                border-radius: 0;
+                width: 100%;
+                max-width: 100vw;
+            }
+            
+            .nav-tabs {
+                padding: var(--space-1);
+                gap: var(--space-1);
+                margin: 0;
+            }
+            
+            .tab-button {
+                font-size: 10px;
+                padding: var(--space-1) var(--space-2);
+                margin: 2px;
+                min-width: 70px;
+                max-width: 100px;
+                flex: 0 1 calc(50% - 4px); /* 2 tabs per row on very small screens */
+                min-height: 44px;
+            }
+        }
+
+        /* Small Devices (Phones, up to 768px) */
+        @media (min-width: 481px) and (max-width: 767px) {
+            .container {
+                margin: var(--space-1);
                 border-radius: var(--radius-md);
+                /* Ensure container doesn't overflow viewport */
+                max-width: calc(100vw - 2 * var(--space-1));
+                width: calc(100% - 2 * var(--space-1));
             }
             
             .header {
@@ -4726,18 +4759,33 @@
             
             /* Navigation adjustments for mobile */
             .nav-tabs {
-                padding: var(--space-1);
+                padding: var(--space-2);
                 gap: var(--space-1);
+                /* Ensure tabs wrap properly on mobile */
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: stretch;
             }
             
             .tab-button {
                 font-size: var(--text-xs);
                 padding: var(--space-2) var(--space-3);
-                margin: var(--space-1) 0;
-                /* Allow more flexible sizing on mobile */
-                min-width: auto;
-                flex: 1 1 auto;
-                max-width: 150px;
+                margin: var(--space-1);
+                /* Fixed sizing for mobile - ensure visibility */
+                min-width: 80px;
+                max-width: 120px;
+                flex: 0 1 calc(33.333% - var(--space-2)); /* 3 tabs per row */
+                /* Ensure buttons are visible */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                /* Force minimum height */
+                min-height: 48px;
+                box-sizing: border-box;
             }
             
             /* Grid adjustments */
