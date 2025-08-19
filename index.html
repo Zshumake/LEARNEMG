@@ -3875,6 +3875,64 @@
             100% { transform: scale(1); }
         }
 
+        /* Home Page Tool Cards */
+        .home-tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .home-tool-card:active {
+            transform: translateY(-4px);
+        }
+
+        .home-welcome {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-welcome::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .home-welcome:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .tool-section h3 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tool-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .tool-section:hover h3::after {
+            width: 100%;
+        }
+
         /* Mobile responsive */
         @media (max-width: 768px) {
             .filter-chips {
@@ -4119,7 +4177,7 @@
         </header>
 
         <nav class="nav-tabs" role="tablist">
-            <button class="tab-button active" onclick="NCSApp.showTab(0)" role="tab" aria-selected="true" id="tab-0-btn">📍 Pathway Explorer</button>
+            <button class="tab-button active" onclick="NCSApp.showTab(0)" role="tab" aria-selected="true" id="tab-0-btn">🏠 Home</button>
             <button class="tab-button" onclick="NCSApp.showTab(1)" role="tab" aria-selected="false" id="tab-1-btn">🎯 Quiz Mode</button>
             <button class="tab-button" onclick="NCSApp.showTab(2)" role="tab" aria-selected="false" id="tab-2-btn">📹 NCS Videos</button>
             <button class="tab-button" onclick="NCSApp.showTab(3)" role="tab" aria-selected="false" id="tab-3-btn">⚡ EMG/NCS Terms</button>
@@ -4133,76 +4191,142 @@
             <button class="tab-button" onclick="NCSApp.showTab(11)" role="tab" aria-selected="false" id="tab-11-btn">📚 EMG Flashcards</button>
             <button class="tab-button" onclick="NCSApp.showTab(12)" role="tab" aria-selected="false" id="tab-12-btn">🎯 EMG Muscle Quiz</button>
             <button class="tab-button" onclick="NCSApp.showTab(13)" role="tab" aria-selected="false" id="tab-13-btn">🔄 Nerve Anastomoses</button>
+            <button class="tab-button" onclick="NCSApp.showTab(14)" role="tab" aria-selected="false" id="tab-14-btn">📍 Pathway Explorer</button>
         </nav>
 
         <main class="content">
             <!-- Tab 0: Pathway Explorer -->
             <section id="tab-0" class="tab-content active">
-                <div class="nerve-selector" id="nerve-selector">
-                    <h3>🧠 Choose a nerve to explore:</h3>
-                    <div class="nerve-buttons">
-                        <div class="nerve-group">
-                            <h4>💪 Upper Extremity</h4>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('median')">🖐️ Median Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('ulnar')">🤏 Ulnar Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('radial')">👍 Radial Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('musculocutaneous')">💪 Musculocutaneous Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('axillary')">🤲 Axillary Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('suprascapular')">🏔️ Suprascapular Nerve</button>
+                <!-- Welcome Section -->
+                <div class="home-welcome" style="text-align: center; margin-bottom: 40px; padding: 30px; background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%); border-radius: 15px; border: 2px solid #007bff;">
+                    <h2 style="color: #007bff; margin-bottom: 15px; font-size: 2.2em;">🧠 Welcome to Your EMG/NCS Study Center</h2>
+                    <p style="font-size: 1.2em; color: #495057; margin: 0;">Choose your learning path and master neuromuscular medicine</p>
+                </div>
+
+                <!-- Quiz & Testing Tools Section -->
+                <div class="tool-section" style="margin-bottom: 40px;">
+                    <h3 style="color: #28a745; margin-bottom: 20px; font-size: 1.6em; border-bottom: 3px solid #28a745; padding-bottom: 10px;">🎯 Quiz & Testing Tools</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        
+                        <!-- Quiz Mode Card -->
+                        <div class="home-tool-card" style="border: 2px solid #007bff; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #e7f3ff 0%, #f8f9ff 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);" onclick="NCSApp.showTab(1)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">🎯</div>
+                                <h4 style="color: #007bff; margin: 15px 0; font-size: 1.4em;">Quiz Mode</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Test your nerve anatomy knowledge with targeted regional quizzes covering upper and lower extremities.</p>
+                                <div style="background: #007bff; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Start Testing →</div>
+                            </div>
                         </div>
-                        <div class="nerve-group">
-                            <h4>🦵 Lower Extremity</h4>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('femoral')">🦵 Femoral Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('tibial')">🦶 Tibial Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('peroneal')">🚶 Peroneal Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('sciatic')">🦴 Sciatic Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('obturator')">🔀 Obturator Nerve</button>
+                        
+                        <!-- Muscle Anatomy Card -->
+                        <div class="home-tool-card" style="border: 2px solid #e83e8c; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(232, 62, 140, 0.1);" onclick="NCSApp.showTab(5)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">💪</div>
+                                <h4 style="color: #e83e8c; margin: 15px 0; font-size: 1.4em;">Muscle Anatomy</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Continuous muscle quiz system with unlimited questions and immediate feedback for comprehensive learning.</p>
+                                <div style="background: #e83e8c; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Practice Now →</div>
+                            </div>
                         </div>
-                        <div class="nerve-group">
-                            <h4>🫁 Thoracic/Respiratory</h4>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('long_thoracic')">🫁 Long Thoracic Nerve</button>
-                            <button class="nerve-btn" onclick="NCSApp.selectNerve('phrenic')">🫁 Phrenic Nerve</button>
+                        
+                        <!-- EMG Flashcards Card -->
+                        <div class="home-tool-card" style="border: 2px solid #6f42c1; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(111, 66, 193, 0.1);" onclick="NCSApp.showTab(11)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">📚</div>
+                                <h4 style="color: #6f42c1; margin: 15px 0; font-size: 1.4em;">EMG Flashcards</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">434 comprehensive flashcards with smart filtering, progress tracking, and personalized study sessions.</p>
+                                <div style="background: #6f42c1; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Study Cards →</div>
+                            </div>
+                        </div>
+                        
+                        <!-- EMG Muscle Quiz Card -->
+                        <div class="home-tool-card" style="border: 2px solid #fd7e14; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(253, 126, 20, 0.1);" onclick="NCSApp.showTab(12)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">🧪</div>
+                                <h4 style="color: #fd7e14; margin: 15px 0; font-size: 1.4em;">EMG Muscle Quiz</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Specialized muscle localization quizzes with pattern recognition and clinical correlation challenges.</p>
+                                <div style="background: #fd7e14; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Take Quiz →</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pathway-container">
-                    <div class="pathway-layout">
-                        <div class="pathway-steps">
-                            <h3>🗺️ Nerve Pathway</h3>
-                            <div id="pathway-steps" onclick="NCSApp.nextStep()" style="cursor: pointer;"></div>
-                            <div class="pathway-controls">
-                                <button class="btn" onclick="NCSApp.previousStep()" id="prev-btn" disabled>← Previous</button>
-                                <button class="btn" onclick="NCSApp.nextStep()" id="next-btn" disabled>Next →</button>
-                                <button class="btn" onclick="NCSApp.resetPathway()">🔄 Reset</button>
-                            </div>
-                        </div>
+                <!-- NCS Technique Videos Section -->
+                <div class="tool-section" style="margin-bottom: 40px;">
+                    <h3 style="color: #dc3545; margin-bottom: 20px; font-size: 1.6em; border-bottom: 3px solid #dc3545; padding-bottom: 10px;">📹 NCS Technique Videos</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                         
-                        <div class="pathway-image-section">
-                            <h3>🖼️ Anatomical Diagram</h3>
-                            <div id="nerve-pathway-image" class="nerve-image-container">
-                                <div class="image-placeholder">
-                                    <p>🧠 Select a nerve to view anatomical pathway</p>
-                                </div>
+                        <!-- NCS Videos Card -->
+                        <div class="home-tool-card" style="border: 2px solid #dc3545; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #f8d7da 0%, #fff5f5 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.1);" onclick="NCSApp.showTab(2)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">📹</div>
+                                <h4 style="color: #dc3545; margin: 15px 0; font-size: 1.4em;">Proper NCS Techniques</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Essential video library covering electrode placement, stimulation techniques, and proper study protocols.</p>
+                                <div style="background: #dc3545; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Watch Videos →</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                    <div class="story-section">
-                        <h3>📖 Memory Story</h3>
-                        <div id="story-text">Select a nerve to begin the journey through your anatomical adventure!</div>
+                <!-- Learning & Reference Tools Section -->
+                <div class="tool-section" style="margin-bottom: 40px;">
+                    <h3 style="color: #17a2b8; margin-bottom: 20px; font-size: 1.6em; border-bottom: 3px solid #17a2b8; padding-bottom: 10px;">📖 Learning & Reference Tools</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                         
-                        <div class="nerve-diagram" id="nerve-diagram" style="text-align: center; margin: 20px 0; padding: 20px; border: 2px dashed #ccc; border-radius: 8px; display: none;">
-                            <p style="color: #666; font-style: italic;">🖼️ Nerve Pathway Diagram</p>
-                            <p style="font-size: 0.9em; color: #888;" id="nerve-diagram-caption">Visual representation of the selected nerve pathway</p>
-                            <!-- 
-                            TO ADD NERVE IMAGES: Add conditional display based on selected nerve:
-                            Example for median nerve:
-                            <img src="data:image/png;base64,[MEDIAN_NERVE_BASE64]" 
-                                 alt="Median Nerve Pathway" 
-                                 style="max-width: 100%; height: auto; border-radius: 8px;">
-                            -->
+                        <!-- Pathway Explorer Card -->
+                        <div class="home-tool-card" style="border: 2px solid #20c997; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #d4edda 0%, #f0fff4 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(32, 201, 151, 0.1);" onclick="NCSApp.showTab(14)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">🗺️</div>
+                                <h4 style="color: #20c997; margin: 15px 0; font-size: 1.4em;">Pathway Explorer</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Interactive nerve pathway visualization with step-by-step anatomical journey and clinical correlations.</p>
+                                <div style="background: #20c997; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Explore Pathways →</div>
+                            </div>
+                        </div>
+                        
+                        <!-- EMG Terminology Card -->
+                        <div class="home-tool-card" style="border: 2px solid #6c757d; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #e2e3e5 0%, #f8f9fa 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(108, 117, 125, 0.1);" onclick="NCSApp.showTab(3)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">⚡</div>
+                                <h4 style="color: #6c757d; margin: 15px 0; font-size: 1.4em;">EMG/NCS Terminology</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Comprehensive glossary of technical terms, clinical significance, and standard values for reference.</p>
+                                <div style="background: #6c757d; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Browse Terms →</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Reference Card -->
+                        <div class="home-tool-card" style="border: 2px solid #28a745; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #d1ecf1 0%, #e8f4f8 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.1);" onclick="NCSApp.showTab(4)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">📋</div>
+                                <h4 style="color: #28a745; margin: 15px 0; font-size: 1.4em;">Quick Reference</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Normal values tables, late responses, clinical patterns, and essential reference materials.</p>
+                                <div style="background: #28a745; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">View Reference →</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinical Resources Section -->
+                <div class="tool-section">
+                    <h3 style="color: #6f42c1; margin-bottom: 20px; font-size: 1.6em; border-bottom: 3px solid #6f42c1; padding-bottom: 10px;">🏥 Clinical Resources</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        
+                        <!-- Clinical Guide Card -->
+                        <div class="home-tool-card" style="border: 2px solid #ffc107; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #fff3cd 0%, #fffbf0 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.1);" onclick="NCSApp.showTab(6)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">🩺</div>
+                                <h4 style="color: #ffc107; margin: 15px 0; font-size: 1.4em;">Clinical Guides</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Radiculopathy evaluation, nerve injury classifications, brachial plexus anatomy, and pathophysiology.</p>
+                                <div style="background: #ffc107; color: black; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Clinical Tools →</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Specialized Studies Card -->
+                        <div class="home-tool-card" style="border: 2px solid #e83e8c; border-radius: 15px; padding: 25px; background: linear-gradient(135deg, #f8d7da 0%, #fff0f3 100%); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(232, 62, 140, 0.1);" onclick="NCSApp.showTab(7)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5em; margin-bottom: 15px;">👁️</div>
+                                <h4 style="color: #e83e8c; margin: 15px 0; font-size: 1.4em;">Specialized Studies</h4>
+                                <p style="margin: 10px 0; color: #495057; line-height: 1.6;">Blink reflex studies, nerve anastomoses, and advanced electrophysiological techniques.</p>
+                                <div style="background: #e83e8c; color: white; padding: 10px 20px; border-radius: 8px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1em;">Advanced Studies →</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -6674,6 +6798,80 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 14: Pathway Explorer -->
+            <section id="tab-14" class="tab-content">
+                <div class="nerve-selector" id="nerve-selector">
+                    <h2>📍 Interactive Pathway Explorer</h2>
+                    <p style="margin-bottom: 30px; color: #6c757d; font-size: 1.1em;">Explore detailed nerve pathways with step-by-step anatomical journey and clinical correlations</p>
+                    
+                    <h3>🧠 Choose a nerve to explore:</h3>
+                    <div class="nerve-buttons">
+                        <div class="nerve-group">
+                            <h4>💪 Upper Extremity</h4>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('median')">🖐️ Median Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('ulnar')">🤏 Ulnar Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('radial')">👍 Radial Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('musculocutaneous')">💪 Musculocutaneous Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('axillary')">🤲 Axillary Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('suprascapular')">🏔️ Suprascapular Nerve</button>
+                        </div>
+                        <div class="nerve-group">
+                            <h4>🦵 Lower Extremity</h4>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('femoral')">🦵 Femoral Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('tibial')">🦶 Tibial Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('peroneal')">🚶 Peroneal Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('sciatic')">🦴 Sciatic Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('obturator')">🔀 Obturator Nerve</button>
+                        </div>
+                        <div class="nerve-group">
+                            <h4>🫁 Thoracic/Respiratory</h4>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('long_thoracic')">🫁 Long Thoracic Nerve</button>
+                            <button class="nerve-btn" onclick="NCSApp.selectNerve('phrenic')">🫁 Phrenic Nerve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pathway-container">
+                    <div class="pathway-layout">
+                        <div class="pathway-steps">
+                            <h3>🗺️ Nerve Pathway</h3>
+                            <div id="pathway-steps" onclick="NCSApp.nextStep()" style="cursor: pointer;"></div>
+                            <div class="pathway-controls">
+                                <button class="btn" onclick="NCSApp.previousStep()" id="prev-btn" disabled>← Previous</button>
+                                <button class="btn" onclick="NCSApp.nextStep()" id="next-btn" disabled>Next →</button>
+                                <button class="btn" onclick="NCSApp.resetPathway()">🔄 Reset</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pathway-image-section">
+                            <h3>🖼️ Anatomical Diagram</h3>
+                            <div id="nerve-pathway-image" class="nerve-image-container">
+                                <div class="image-placeholder">
+                                    <p>🧠 Select a nerve to view anatomical pathway</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h3>📖 Memory Story</h3>
+                    <div id="story-text">Select a nerve to begin the journey through your anatomical adventure!</div>
+                    
+                    <div class="nerve-diagram" id="nerve-diagram" style="text-align: center; margin: 20px 0; padding: 20px; border: 2px dashed #ccc; border-radius: 8px; display: none;">
+                        <p style="color: #666; font-style: italic;">🖼️ Nerve Pathway Diagram</p>
+                        <p style="font-size: 0.9em; color: #888;" id="nerve-diagram-caption">Visual representation of the selected nerve pathway</p>
+                        <!-- 
+                        TO ADD NERVE IMAGES: Add conditional display based on selected nerve:
+                        Example for median nerve:
+                        <img src="data:image/png;base64,[MEDIAN_NERVE_BASE64]" 
+                             alt="Median Nerve Pathway" 
+                             style="max-width: 100%; height: auto; border-radius: 8px;">
+                        -->
                     </div>
                 </div>
             </section>
