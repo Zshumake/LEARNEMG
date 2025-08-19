@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Functionality Test</title>
+    <style>
+        :root {
+            --primary-color: #00a19b;
+            --secondary-color: #0d7377;
+            --accent-color: #41b6bb;
+            --white: #ffffff;
+            --light-bg: #f0f8f8;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #00a19b 0%, #0d7377 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            background: var(--light-bg);
+            border: 2px solid var(--primary-color);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button:hover, .tab-button.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 12px;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .nerve-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 20px;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nerve-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .nerve-btn.selected {
+            background: #28a745;
+            border-color: #28a745;
+            color: var(--white);
+        }
+        
+        #test-output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4f4;
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+        }
+        
+        .quiz-container {
+            background: #e8f4f4;
+            border-radius: 10px;
+            padding: 25px;
+            border: 2px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Minimal Functionality Test</h1>
+        
+        <div class="nav-tabs">
+            <button class="tab-button active" onclick="showTab(0)">📍 Nerve Test</button>
+            <button class="tab-button" onclick="showTab(1)">🎯 Quiz Test</button>
+            <button class="tab-button" onclick="showTab(2)">💪 Muscle Test</button>
+        </div>
+        
+        <!-- Tab 0: Nerve Test -->
+        <div id="tab-0" class="tab-content active">
+            <h2>🧠 Nerve Selection Test</h2>
+            <p>Click a nerve button to test selection functionality:</p>
+            <div>
+                <button class="nerve-btn" onclick="selectNerve('median')">🖐️ Median Nerve</button>
+                <button class="nerve-btn" onclick="selectNerve('ulnar')">🤏 Ulnar Nerve</button>
+                <button class="nerve-btn" onclick="selectNerve('radial')">👍 Radial Nerve</button>
+            </div>
+            <div id="nerve-output"></div>
+        </div>
+        
+        <!-- Tab 1: Quiz Test -->
+        <div id="tab-1" class="tab-content">
+            <h2>🎯 Quiz Functionality Test</h2>
+            <div class="quiz-container">
+                <button onclick="startQuiz()" style="padding: 15px 30px; font-size: 16px; cursor: pointer;">Start Test Quiz</button>
+                <div id="quiz-output"></div>
+            </div>
+        </div>
+        
+        <!-- Tab 2: Muscle Test -->
+        <div id="tab-2" class="tab-content">
+            <h2>💪 Muscle Anatomy Test</h2>
+            <div>
+                <button class="nerve-btn" onclick="switchMuscles('upper')">💪 Upper Extremity</button>
+                <button class="nerve-btn" onclick="switchMuscles('lower')">🦵 Lower Extremity</button>
+            </div>
+            <div id="muscle-output"></div>
+        </div>
+        
+        <div id="test-output">
+            <strong>🔍 Test Results:</strong><br>
+            JavaScript is working! Functions are ready to test.
+        </div>
+    </div>
+    
+    <script>
+        console.log('🚀 Minimal test script loading...');
+        
+        let currentTab = 0;
+        let testResults = [];
+        
+        function log(message) {
+            console.log(message);
+            testResults.push(new Date().toLocaleTimeString() + ': ' + message);
+            updateOutput();
+        }
+        
+        function updateOutput() {
+            document.getElementById('test-output').innerHTML = 
+                '<strong>🔍 Test Results:</strong><br>' + 
+                testResults.join('<br>');
+        }
+        
+        function showTab(index) {
+            log(`📑 Switching to tab ${index}`);
+            
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(`tab-${index}`).classList.add('active');
+            document.querySelectorAll('.tab-button')[index].classList.add('active');
+            
+            currentTab = index;
+            log(`✅ Tab ${index} activated successfully`);
+        }
+        
+        function selectNerve(nerve) {
+            log(`🧠 Nerve selected: ${nerve}`);
+            
+            // Clear previous selections
+            document.querySelectorAll('.nerve-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Highlight selected nerve
+            event.target.classList.add('selected');
+            
+            // Show nerve info
+            document.getElementById('nerve-output').innerHTML = `
+                <div style="margin-top: 15px; padding: 15px; background: #d4edda; border-radius: 8px;">
+                    <strong>✅ Selected: ${nerve.charAt(0).toUpperCase() + nerve.slice(1)} Nerve</strong><br>
+                    This would normally load pathway information and enable navigation controls.
+                </div>
+            `;
+            
+            log(`✅ ${nerve} nerve selection completed`);
+        }
+        
+        function startQuiz() {
+            log('🎯 Starting quiz test...');
+            
+            const questions = [
+                {
+                    question: "Which nerve passes through the carpal tunnel?",
+                    options: ["Median", "Ulnar", "Radial", "All of them"],
+                    correct: 0
+                }
+            ];
+            
+            const quizOutput = document.getElementById('quiz-output');
+            const q = questions[0];
+            
+            let html = `
+                <div style="margin-top: 20px;">
+                    <h3>Question 1 of 1</h3>
+                    <p><strong>${q.question}</strong></p>
+            `;
+            
+            q.options.forEach((option, index) => {
+                html += `
+                    <div style="margin: 10px 0;">
+                        <button onclick="selectAnswer(${index})" 
+                                style="padding: 10px; margin-right: 10px; cursor: pointer;">
+                            ${option}
+                        </button>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            quizOutput.innerHTML = html;
+            
+            log('✅ Quiz question displayed successfully');
+        }
+        
+        function selectAnswer(index) {
+            log(`📝 Answer selected: ${index}`);
+            
+            const correct = index === 0;
+            const message = correct ? 
+                '🎉 Correct! The median nerve passes through the carpal tunnel.' :
+                '❌ Incorrect. The correct answer is the median nerve.';
+            
+            document.getElementById('quiz-output').innerHTML += `
+                <div style="margin-top: 15px; padding: 15px; background: ${correct ? '#d4edda' : '#f8d7da'}; border-radius: 8px;">
+                    ${message}
+                </div>
+            `;
+            
+            log(`✅ Quiz answer processed: ${correct ? 'correct' : 'incorrect'}`);
+        }
+        
+        function switchMuscles(type) {
+            log(`💪 Switching to ${type} extremity muscles`);
+            
+            const muscles = {
+                upper: ['Deltoid', 'Biceps', 'Triceps', 'Flexor carpi radialis'],
+                lower: ['Gluteus maximus', 'Quadriceps', 'Hamstrings', 'Gastrocnemius']
+            };
+            
+            let html = `
+                <div style="margin-top: 15px;">
+                    <h3>${type.charAt(0).toUpperCase() + type.slice(1)} Extremity Muscles</h3>
+            `;
+            
+            muscles[type].forEach(muscle => {
+                html += `
+                    <div style="margin: 10px; padding: 15px; background: #e8f4f4; border-radius: 8px; border: 1px solid #41b6bb;">
+                        <strong>${muscle}</strong><br>
+                        <small>Sample muscle for ${type} extremity</small>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            document.getElementById('muscle-output').innerHTML = html;
+            
+            log(`✅ ${type} extremity muscles displayed`);
+        }
+        
+        // Initialize
+        log('🚀 Minimal test application loaded successfully');
+        log('🎯 All functions are working. Try clicking the buttons above!');
+        
+        // Test that everything loaded
+        setTimeout(() => {
+            log('⏰ 1-second delay test: Timer functions working');
+        }, 1000);
+    </script>
+</body>
+</html>

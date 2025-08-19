@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { padding: 10px; margin: 5px 0; border-radius: 5px; }
+        .pass { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .fail { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { margin: 5px; padding: 10px; cursor: pointer; }
+        iframe { width: 100%; height: 500px; border: 1px solid #ccc; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Diagnostic Test for NCS/EMG Tool</h1>
+    <div id="test-results"></div>
+    
+    <div>
+        <button onclick="runDiagnostics()">🚀 Run Diagnostics</button>
+        <button onclick="loadMainApp()">📱 Load Main App</button>
+        <button onclick="clearCache()">🗑️ Clear Cache & Reload</button>
+    </div>
+    
+    <div id="app-container"></div>
+    
+    <script>
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+        
+        function runDiagnostics() {
+            document.getElementById('test-results').innerHTML = '';
+            addResult('🔍 Starting diagnostic tests...', 'info');
+            
+            // Test 1: File existence
+            fetch('/Users/zacharyshumaker/Desktop/Working Programs/atrium_nerve_fixed_final 3.html')
+                .then(() => addResult('✅ Main HTML file is accessible', 'pass'))
+                .catch(() => addResult('❌ Main HTML file not found or not accessible', 'fail'));
+            
+            // Test 2: JavaScript enabled
+            try {
+                eval('1+1');
+                addResult('✅ JavaScript is enabled and working', 'pass');
+            } catch (e) {
+                addResult('❌ JavaScript execution error: ' + e.message, 'fail');
+            }
+            
+            // Test 3: Modern browser features
+            if (typeof fetch !== 'undefined') {
+                addResult('✅ Modern browser with fetch API', 'pass');
+            } else {
+                addResult('⚠️ Older browser - may have compatibility issues', 'fail');
+            }
+            
+            // Test 4: Local storage
+            try {
+                localStorage.setItem('test', 'value');
+                localStorage.removeItem('test');
+                addResult('✅ Local storage is available', 'pass');
+            } catch (e) {
+                addResult('⚠️ Local storage not available', 'fail');
+            }
+            
+            // Test 5: Console API
+            if (typeof console !== 'undefined' && console.log) {
+                addResult('✅ Console API available for debugging', 'pass');
+            } else {
+                addResult('⚠️ Console API not available', 'fail');
+            }
+            
+            addResult('🔍 Diagnostic tests completed. Check results above.', 'info');
+        }
+        
+        function loadMainApp() {
+            const container = document.getElementById('app-container');
+            container.innerHTML = '<iframe src="/Users/zacharyshumaker/Desktop/Working Programs/atrium_nerve_fixed_final 3.html"></iframe>';
+            addResult('📱 Loading main application in iframe...', 'info');
+        }
+        
+        function clearCache() {
+            // Force reload with cache bypass
+            const timestamp = new Date().getTime();
+            const url = `/Users/zacharyshumaker/Desktop/Working Programs/atrium_nerve_fixed_final 3.html?v=${timestamp}`;
+            window.open(url, '_blank');
+            addResult('🔄 Opening fresh version with cache bypass...', 'info');
+        }
+        
+        // Auto-run diagnostics on load
+        window.onload = runDiagnostics;
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head><title>Debug Test</title></head>
+<body>
+    <button onclick="showTab(0)" id="testBtn">Test Button</button>
+    <div id="output"></div>
+    
+    <script>
+        const output = document.getElementById('output');
+        
+        try {
+            output.innerHTML += 'Script starting...<br>';
+            
+            // Test if we can define a basic object
+            const TestApp = {
+                showTab: function(index) {
+                    output.innerHTML += `showTab called with ${index}<br>`;
+                    return true;
+                }
+            };
+            
+            output.innerHTML += 'Object defined successfully...<br>';
+            
+            // Test global bridge
+            window.showTab = function(index) { 
+                return TestApp.showTab(index); 
+            };
+            
+            output.innerHTML += 'Global bridge defined...<br>';
+            
+            // Test direct call
+            TestApp.showTab(99);
+            
+        } catch (e) {
+            output.innerHTML += `Error: ${e.message}<br>`;
+        }
+    </script>
+</body>
+</html>

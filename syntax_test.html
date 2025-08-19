@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syntax Test</title>
+</head>
+<body>
+    <button onclick="showTab(0)">Test Button</button>
+    <script>
+        // Copy just the essential parts to test
+        const NerveStudyApp = {
+            showTab: function(index) {
+                console.log('showTab called with index:', index);
+            }
+        };
+        
+        // Global bridge
+        window.showTab = function(index) { 
+            NerveStudyApp.showTab(index); 
+        };
+        
+        console.log('Script loaded successfully');
+    </script>
+</body>
+</html>
