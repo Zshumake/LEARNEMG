@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Comprehensive NCS/EMG and Muscle Anatomy Study Tool - Educational resource by Atrium Health">
-    <title>NCS/EMG & Muscle Anatomy Study Tool - Atrium Health</title>
+    <meta name="description" content="Comprehensive NCS/EMG and Muscle Anatomy Study Tool - Educational resource for medical professionals">
+    <title>NCS/EMG & Muscle Anatomy Study Tool</title>
     
     <!-- Cache busting -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -582,18 +582,6 @@
             border-radius: 12px;
         }
 
-        /* Notification Animation */
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
         /* Muscle Test Modal Styles */
         .muscle-test-modal {
             position: fixed;
@@ -693,26 +681,48 @@
         }
 
         .answer-choice {
-            padding: 15px 20px;
-            border: 2px solid #e9ecef;
-            border-radius: var(--border-radius);
+            padding: 18px 24px;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
             cursor: pointer;
-            transition: var(--transition);
-            background: var(--white);
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-choice::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
         }
 
         .answer-choice:hover {
             border-color: var(--primary-color);
-            background: var(--light-bg);
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 155, 0.15);
+        }
+
+        .answer-choice:hover::before {
+            left: 100%;
         }
 
         .answer-choice.selected {
             border-color: var(--primary-color);
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: var(--white);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(0, 123, 155, 0.3);
         }
 
         .answer-choice.correct {
@@ -729,22 +739,32 @@
 
         .choice-letter {
             font-weight: bold;
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background: #6c757d;
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
             color: var(--white);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9em;
+            font-size: 1em;
             flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .answer-choice:hover .choice-letter {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transform: scale(1.1);
         }
 
         .answer-choice.selected .choice-letter,
         .answer-choice.correct .choice-letter,
         .answer-choice.incorrect .choice-letter {
-            background: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            color: var(--primary-color);
+            font-weight: 900;
+            transform: scale(1.05);
         }
 
         .test-controls {
@@ -763,13 +783,35 @@
         }
 
         #next-question-btn, #finish-test-btn {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: var(--white);
+            font-size: 1.05em;
+            padding: 14px 28px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0, 123, 155, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #next-question-btn::before, #finish-test-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
         }
 
         #next-question-btn:hover, #finish-test-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 155, 0.4);
+        }
+
+        #next-question-btn:hover::before, #finish-test-btn:hover::before {
+            left: 100%;
         }
 
         #next-question-btn:disabled {
@@ -830,6 +872,1116 @@
             cursor: pointer;
             font-weight: bold;
             transition: var(--transition);
+        }
+
+        .test-actions button:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Continuous Quiz Styles */
+        .test-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .test-stats span {
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+        }
+
+        /* Enhanced Feedback Styles */
+        .answer-feedback {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            animation: feedbackSlideIn 0.5s ease-out;
+        }
+
+        @keyframes feedbackSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback-content {
+            margin-bottom: 25px;
+        }
+
+        .feedback-correct {
+            color: var(--success-color);
+            font-size: 1.4em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-correct::before {
+            content: '🎉';
+            font-size: 1.2em;
+        }
+
+        .feedback-incorrect {
+            color: var(--danger-color);
+            font-size: 1.4em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-incorrect::before {
+            content: '💡';
+            font-size: 1.2em;
+        }
+
+        .feedback-correction {
+            background: linear-gradient(135deg, #fff3cd 0%, #fef7e0 100%);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(255, 193, 7, 0.15);
+        }
+
+        .muscle-details {
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 123, 155, 0.1);
+        }
+
+        .muscle-details h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .muscle-details ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .muscle-details li {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .muscle-details li strong {
+            color: var(--primary-color);
+            min-width: 120px;
+        }
+
+        /* Missed Questions Summary */
+        .missed-questions-summary {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .missed-questions-summary h4 {
+            color: var(--danger-color);
+            margin-bottom: 15px;
+        }
+
+        .missed-question {
+            background: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .missed-question:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile Responsiveness for Continuous Quiz */
+        @media (max-width: 768px) {
+            .muscle-test-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            .muscle-test-header h3 {
+                text-align: center;
+            }
+
+            .test-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .close-test-btn {
+                align-self: flex-end;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+
+            .score-display {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .score-details {
+                text-align: center;
+            }
+
+            .test-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .test-actions button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Nerve Anastomoses Styles */
+        .anastomoses-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-intro {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .anastomoses-overview {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .modern-table thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .modern-table th,
+        .modern-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .modern-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .frequency-badge {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .frequency-badge.high {
+            background: var(--success-color);
+        }
+
+        .frequency-badge.moderate {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .frequency-badge.low {
+            background: var(--danger-color);
+        }
+
+        .anastomoses-detailed {
+            margin-bottom: 30px;
+        }
+
+        .anastomosis-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .anastomosis-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .anastomosis-card.featured {
+            border-left: 5px solid var(--primary-color);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .anastomosis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .frequency-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .frequency-label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .connection-flow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #e7f3ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            flex-wrap: wrap;
+        }
+
+        .nerve-source, .nerve-target {
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .flow-arrow {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .location-tag {
+            padding: 4px 10px;
+            background: #ffc107;
+            color: #333;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .clinical-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .clinical-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .finding-list, .impact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .finding-item, .impact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #e9ecef;
+        }
+
+        .impact-item.positive {
+            border-left-color: var(--success-color);
+            background: #eafaea;
+        }
+
+        .impact-item.caution {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+
+        .impact-item.important {
+            border-left-color: var(--primary-color);
+            background: #e7f3ff;
+        }
+
+        .finding-icon, .impact-icon {
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .anastomoses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .connection-simple {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .nerve-simple {
+            padding: 6px 12px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .connection-symbol {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .key-point {
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.95em;
+        }
+
+        .testing-guide {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .testing-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .testing-card {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .testing-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .red-flags {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .flag-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #ffeaea;
+            border-radius: 6px;
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .flag-icon {
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+
+        .technique-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .technique-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .technique-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .technique-desc {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Mobile Responsiveness for Anastomoses */
+        @media (max-width: 768px) {
+            .clinical-grid,
+            .testing-sections,
+            .anastomoses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .connection-flow {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .anastomosis-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .connection-simple {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        /* Plexopathy Sections Styles */
+        .plexus-section {
+            margin-bottom: 30px;
+        }
+
+        .nerve-contributions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .nerve-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nerve-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 155, 0.15);
+        }
+
+        .nerve-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .nerve-header h5 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+
+        .roots-badge {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #28a745 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .muscle-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .muscle-tag {
+            background: #e7f3ff;
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+            border: 1px solid rgba(0, 123, 155, 0.2);
+        }
+
+        .clinical-nerves-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .clinical-nerve-item {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .nerve-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .nerve-info h6 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        .nerve-roots {
+            background: var(--accent-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .nerve-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .target-muscle {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .clinical-sign {
+            font-size: 0.9em;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Plexopathy Classifications Styles */
+        .plexopathy-modern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .plexopathy-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plexopathy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .plexopathy-card.upper-trunk {
+            border-left: 5px solid #007bff;
+        }
+
+        .plexopathy-card.lower-trunk {
+            border-left: 5px solid #dc3545;
+        }
+
+        .plexopathy-card.neuralgic {
+            border-left: 5px solid #ffc107;
+        }
+
+        .plexopathy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .plexopathy-header h4 {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.2em;
+        }
+
+        .condition-badge {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .condition-badge.upper {
+            background: #007bff;
+        }
+
+        .condition-badge.lower {
+            background: #dc3545;
+        }
+
+        .condition-badge.neuralgic {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .anatomy-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .roots-affected {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .classic-sign {
+            background: #fff3cd;
+            color: #856404;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .etiology, .frequency {
+            background: #e7f3ff;
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .weakness-pattern h5 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .weakness-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .weakness-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #dee2e6;
+        }
+
+        .weakness-item.special {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+
+        .weakness-item .muscle {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .weakness-item .function {
+            font-size: 0.9em;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .preserved-function {
+            background: #eafaea;
+            color: var(--success-color);
+            padding: 10px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--success-color);
+            font-size: 0.9em;
+        }
+
+        .edx-findings {
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.95em;
+            margin-top: 15px;
+        }
+
+        .clinical-course h5 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .timeline-item .phase {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .timeline-item .description {
+            font-size: 0.9em;
+            color: var(--text-dark);
+        }
+
+        .common-patterns {
+            margin-top: 15px;
+        }
+
+        .pattern-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .pattern-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        /* Radiation vs Tumor Comparison Styles */
+        .comparison-modern {
+            margin-top: 20px;
+        }
+
+        .comparison-intro {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .plexopathy-comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 30px;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .comparison-card.radiation {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .comparison-card.tumor {
+            border-left: 5px solid #dc3545;
+        }
+
+        .comparison-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .comparison-header h4 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .etiology-badge {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .etiology-badge.radiation {
+            background: #17a2b8;
+        }
+
+        .etiology-badge.tumor {
+            background: #dc3545;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9em;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .detail-value.upper {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .detail-value.lower {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .detail-value.special {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .detail-value.neutral {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .detail-value.painful {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .mechanism {
+            margin-top: 15px;
+            padding: 12px;
+            background: #e7f3ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .mechanism-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .mechanism-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vs-text {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .key-differences {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .key-differences h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .differences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .difference-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .diff-icon {
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .diff-text {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Mobile Responsiveness for Plexopathy Sections */
+        @media (max-width: 768px) {
+            .nerve-contributions-grid,
+            .clinical-nerves-grid,
+            .plexopathy-modern-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plexopathy-comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .vs-divider {
+                order: 2;
+                margin: 15px 0;
+            }
+
+            .comparison-card.radiation {
+                order: 1;
+            }
+
+            .comparison-card.tumor {
+                order: 3;
+            }
+
+            .differences-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .anatomy-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nerve-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
         }
 
         .test-actions button:first-child {
@@ -1298,60 +2450,25 @@
                 margin: 10px;
                 border-radius: 10px;
             }
-            
-            /* Enhanced Table Responsiveness */
-            .table-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin: 15px 0;
-                border-radius: 8px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-            
-            .data-table {
-                min-width: 600px;
-                font-size: 0.85em;
-            }
-            
-            .radiculopathy-table table, .info-table table, .timeline-table table, .clinical-table {
+                
+            .radiculopathy-table table, .info-table table, .timeline-table table {
                 font-size: 0.8em;
-                min-width: 500px;
             }
             
-            /* Navigation improvements */
             .nav-tabs {
-                flex-wrap: wrap;
-                gap: 5px;
-                padding: 10px;
+                flex-direction: column;
             }
             
             .tab-button {
                 min-width: auto;
-                padding: 10px 8px;
-                font-size: 0.8em;
-                flex: 1;
-                text-align: center;
             }
             
             .content {
-                padding: 15px;
+                padding: 20px;
             }
             
-            /* Chart responsiveness */
-            .chart-container {
-                padding: 15px;
-                overflow-x: auto;
-            }
-            
-            .chart-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            /* Nerve pathway improvements */
             .nerve-buttons {
                 grid-template-columns: 1fr;
-                gap: 10px;
             }
             
             .pathway-layout {
@@ -1365,140 +2482,69 @@
             
             .pathway-controls {
                 flex-direction: column;
-                gap: 10px;
             }
             
-            /* CRITICAL: Enhanced anatomy controls for mobile */
             .anatomy-controls {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            /* Fix anatomy buttons layout */
-            .anatomy-btn {
-                width: 100% !important;
-                margin-bottom: 10px;
-                padding: 15px !important;
-                font-size: 16px !important;
-                white-space: nowrap;
-                text-align: center;
-                display: block !important;
-            }
-            
-            /* Ensure Muscle Test button is highly visible */
-            .anatomy-btn[onclick*="startMuscleTest"] {
-                background: #007bff !important;
-                color: white !important;
-                font-weight: bold !important;
-                border: 2px solid #0056b3 !important;
-                box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3) !important;
-                order: 3; /* Move to bottom */
-            }
-            
-            .anatomy-actions {
-                margin-left: 0;
-                width: 100%;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 15px;
-            }
-            
-            /* Reference cards optimization */
-            .reference-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .reference-card {
-                padding: 15px;
-                margin: 10px 0;
-            }
-            
-            /* Quiz improvements */
-            .quiz-container {
-                padding: 15px;
-            }
-            
-            .quiz-controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .quiz-region-buttons {
-                grid-template-columns: 1fr;
-                gap: 10px;
             }
         }
 
         @media (max-width: 480px) {
             .header h1 {
-                font-size: 1.6em;
-                padding: 15px;
+                font-size: 1.8em;
             }
             
-            .container {
-                margin: 5px;
-            }
-            
-            .content {
-                padding: 10px;
-            }
-            
-            /* Ultra-compact navigation */
-            .nav-tabs {
-                padding: 5px;
-            }
-            
-            .tab-button {
-                padding: 8px 6px;
-                font-size: 0.75em;
-            }
-            
-            /* Grid layouts */
             .reference-grid,
             .video-grid,
             .muscle-grid {
                 grid-template-columns: 1fr;
-                gap: 10px;
             }
             
-            /* Compact anatomy controls */
-            .anatomy-controls {
-                padding: 10px;
-                gap: 10px;
+            /* Mobile quiz improvements */
+            .quiz-button {
+                padding: 15px 20px;
+                font-size: 1.1em;
+                min-height: 50px;
+                touch-action: manipulation;
             }
             
-            .anatomy-btn {
-                padding: 12px !important;
-                font-size: 14px !important;
+            .answer-option {
+                padding: 15px;
+                font-size: 1em;
+                line-height: 1.4;
+                min-height: 44px;
+                touch-action: manipulation;
             }
             
-            /* Chart containers */
-            .chart-container {
-                padding: 10px;
-            }
-            
-            .data-table {
-                font-size: 0.75em;
-                min-width: 400px;
-            }
-            
-            /* Reference cards */
-            .reference-card {
+            .muscle-list li {
                 padding: 12px;
+                font-size: 1em;
             }
             
-            /* Quiz optimizations */
-            .quiz-container {
-                padding: 10px;
+            .quiz-section h3 {
+                font-size: 1.3em;
             }
             
-            .muscle-test-modal .muscle-test-content {
-                margin: 10px;
-                max-width: calc(100vw - 20px);
+            .quiz-section h4 {
+                font-size: 1.1em;
+            }
+            
+            .quiz-section p {
+                font-size: 1em;
+                line-height: 1.5;
+            }
+            
+            .reference-card {
+                padding: 15px;
+            }
+            
+            .quiz-controls {
+                gap: 15px;
+            }
+            
+            .answer-grid {
+                gap: 10px;
             }
         }
 
@@ -3069,7 +4115,7 @@
     <div class="container">
         <header class="header">
             <h1>🧠 NCS/EMG & Muscle Anatomy Study Tool</h1>
-            <p>Comprehensive neuromuscular educational resource - Atrium Health Edition</p>
+            <p>Comprehensive neuromuscular educational resource for medical professionals</p>
         </header>
 
         <nav class="nav-tabs" role="tablist">
@@ -3286,18 +4332,15 @@
                 <div id="muscle-test-modal" class="muscle-test-modal" style="display: none;">
                     <div class="muscle-test-content">
                         <div class="muscle-test-header">
-                            <h3>🧪 Comprehensive Muscle Anatomy Quiz</h3>
-                            <button class="close-test-btn" onclick="NCSApp.closeMuscleTest()">✕</button>
+                            <h3>🧪 Muscle Anatomy Continuous Quiz</h3>
+                            <div class="test-stats">
+                                <span id="questions-answered">Questions: 0</span>
+                                <span id="current-accuracy">Accuracy: 0%</span>
+                            </div>
+                            <button class="close-test-btn" onclick="NCSApp.stopMuscleTest()">🛑 Stop Quiz</button>
                         </div>
                         
                         <div class="muscle-test-body">
-                            <div class="test-progress">
-                                <div class="progress-bar">
-                                    <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
-                                </div>
-                                <span id="question-counter">Question 1 of 5</span>
-                            </div>
-                            
                             <div class="test-question">
                                 <h4 id="question-text">Loading question...</h4>
                                 <div id="answer-choices" class="answer-choices">
@@ -3305,25 +4348,36 @@
                                 </div>
                             </div>
                             
-                            <div class="test-controls">
-                                <button id="stop-quiz-btn" onclick="NCSApp.stopMuscleQuiz()" style="background: #dc3545;">🛑 Stop Quiz</button>
-                                <button id="review-missed-btn" onclick="NCSApp.showMissedQuestions()" style="background: #ffc107; color: #212529;" disabled>📝 Review Missed</button>
+                            <div id="answer-feedback" class="answer-feedback" style="display: none;">
+                                <div class="feedback-content">
+                                    <div id="feedback-result"></div>
+                                    <div id="feedback-explanation"></div>
+                                </div>
+                                <button id="next-question-btn" onclick="NCSApp.nextContinuousQuestion()">Next Question →</button>
                             </div>
                         </div>
                         
                         <div id="test-results" class="test-results" style="display: none;">
-                            <h3>🎯 Test Results</h3>
+                            <h3>🎯 Quiz Complete!</h3>
                             <div class="score-display">
                                 <div class="score-circle">
                                     <span id="score-percentage">0%</span>
                                 </div>
                                 <div class="score-details">
-                                    <p><strong>Score:</strong> <span id="correct-answers">0</span> out of <span id="total-questions">5</span></p>
-                                    <p><strong>Grade:</strong> <span id="letter-grade">F</span></p>
+                                    <p><strong>Questions Answered:</strong> <span id="total-answered">0</span></p>
+                                    <p><strong>Correct:</strong> <span id="correct-count">0</span></p>
+                                    <p><strong>Accuracy:</strong> <span id="final-accuracy">0%</span></p>
                                 </div>
                             </div>
+                            
+                            <div id="missed-questions-summary" class="missed-questions-summary">
+                                <h4>📝 Review Missed Questions:</h4>
+                                <div id="missed-list"></div>
+                            </div>
+                            
                             <div class="test-actions">
-                                <button onclick="NCSApp.retakeTest()">Take Again</button>
+                                <button onclick="NCSApp.startMuscleTest()">Start New Quiz</button>
+                                <button onclick="NCSApp.reviewMissedQuestions()" id="review-missed-btn">📝 Review Missed</button>
                                 <button onclick="NCSApp.closeMuscleTest()">Close</button>
                             </div>
                         </div>
@@ -4561,70 +5615,244 @@
                         </div>
                         
                         <div class="plexus-breakdown">
-                            <h4>📍 Root Contributions by Nerve</h4>
-                            <div class="info-table">
-                                <table>
-                                    <tr><th>Nerve</th><th>Root Levels</th><th>Primary Muscles</th></tr>
-                                    <tr><td><strong>Musculocutaneous</strong></td><td>C5-C7</td><td>Biceps, Brachialis, Coracobrachialis</td></tr>
-                                    <tr><td><strong>Axillary</strong></td><td>C5-C6</td><td>Deltoid, Teres minor</td></tr>
-                                    <tr><td><strong>Radial</strong></td><td>C5-T1</td><td>Triceps, Wrist/finger extensors</td></tr>
-                                    <tr><td><strong>Median</strong></td><td>C6-T1</td><td>Pronators, FCR, APB, LOAF muscles</td></tr>
-                                    <tr><td><strong>Ulnar</strong></td><td>C8-T1</td><td>FCU, FDP (4th/5th), Hand intrinsics</td></tr>
-                                </table>
+                            <div class="plexus-section">
+                                <h4>📍 Root Contributions by Nerve</h4>
+                                <div class="nerve-contributions-grid">
+                                    <div class="nerve-card">
+                                        <div class="nerve-header">
+                                            <h5>Musculocutaneous</h5>
+                                            <span class="roots-badge">C5-C7</span>
+                                        </div>
+                                        <div class="muscle-list">
+                                            <span class="muscle-tag">Biceps</span>
+                                            <span class="muscle-tag">Brachialis</span>
+                                            <span class="muscle-tag">Coracobrachialis</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="nerve-card">
+                                        <div class="nerve-header">
+                                            <h5>Axillary</h5>
+                                            <span class="roots-badge">C5-C6</span>
+                                        </div>
+                                        <div class="muscle-list">
+                                            <span class="muscle-tag">Deltoid</span>
+                                            <span class="muscle-tag">Teres minor</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="nerve-card">
+                                        <div class="nerve-header">
+                                            <h5>Radial</h5>
+                                            <span class="roots-badge">C5-T1</span>
+                                        </div>
+                                        <div class="muscle-list">
+                                            <span class="muscle-tag">Triceps</span>
+                                            <span class="muscle-tag">Wrist Extensors</span>
+                                            <span class="muscle-tag">Finger Extensors</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="nerve-card">
+                                        <div class="nerve-header">
+                                            <h5>Median</h5>
+                                            <span class="roots-badge">C6-T1</span>
+                                        </div>
+                                        <div class="muscle-list">
+                                            <span class="muscle-tag">Pronators</span>
+                                            <span class="muscle-tag">FCR</span>
+                                            <span class="muscle-tag">APB</span>
+                                            <span class="muscle-tag">LOAF muscles</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="nerve-card">
+                                        <div class="nerve-header">
+                                            <h5>Ulnar</h5>
+                                            <span class="roots-badge">C8-T1</span>
+                                        </div>
+                                        <div class="muscle-list">
+                                            <span class="muscle-tag">FCU</span>
+                                            <span class="muscle-tag">FDP (4th/5th)</span>
+                                            <span class="muscle-tag">Hand Intrinsics</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <h4>🎯 Key Clinical Points</h4>
-                            <ul>
-                                <li><strong>Long Thoracic Nerve (C5-C7):</strong> Serratus anterior - causes winged scapula</li>
-                                <li><strong>Suprascapular Nerve (C5-C6):</strong> Supraspinatus, Infraspinatus - rotator cuff function</li>
-                                <li><strong>Thoracodorsal Nerve (C6-C8):</strong> Latissimus dorsi - "swimmer's muscle"</li>
-                                <li><strong>Medial/Lateral Pectoral (C5-T1):</strong> Pectoralis major/minor</li>
-                            </ul>
+                            <div class="plexus-section">
+                                <h4>🎯 Key Clinical Nerves</h4>
+                                <div class="clinical-nerves-grid">
+                                    <div class="clinical-nerve-item">
+                                        <div class="nerve-info">
+                                            <h6>Long Thoracic</h6>
+                                            <span class="nerve-roots">C5-C7</span>
+                                        </div>
+                                        <div class="nerve-details">
+                                            <span class="target-muscle">Serratus anterior</span>
+                                            <span class="clinical-sign">→ Winged scapula</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="clinical-nerve-item">
+                                        <div class="nerve-info">
+                                            <h6>Suprascapular</h6>
+                                            <span class="nerve-roots">C5-C6</span>
+                                        </div>
+                                        <div class="nerve-details">
+                                            <span class="target-muscle">Rotator cuff</span>
+                                            <span class="clinical-sign">→ External rotation weakness</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="clinical-nerve-item">
+                                        <div class="nerve-info">
+                                            <h6>Thoracodorsal</h6>
+                                            <span class="nerve-roots">C6-C8</span>
+                                        </div>
+                                        <div class="nerve-details">
+                                            <span class="target-muscle">Latissimus dorsi</span>
+                                            <span class="clinical-sign">→ "Swimmer's muscle"</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="clinical-nerve-item">
+                                        <div class="nerve-info">
+                                            <h6>Pectoral Nerves</h6>
+                                            <span class="nerve-roots">C5-T1</span>
+                                        </div>
+                                        <div class="nerve-details">
+                                            <span class="target-muscle">Pectoralis major/minor</span>
+                                            <span class="clinical-sign">→ Adduction weakness</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="reference-card">
                         <h3>🏥 Plexopathy Classifications</h3>
                         
-                        <div class="plexopathy-grid">
-                            <div class="plexopathy-item">
-                                <h4>Upper Trunk Plexopathy (Erb's Palsy)</h4>
-                                <p><strong>Roots:</strong> C5-C6</p>
-                                <p><strong>Classic Presentation:</strong> "Waiter's tip" position</p>
-                                <ul>
-                                    <li>Deltoid weakness (shoulder abduction)</li>
-                                    <li>Biceps weakness (elbow flexion)</li>
-                                    <li>Supraspinatus/Infraspinatus weakness</li>
-                                    <li>Wrist extensors preserved</li>
-                                </ul>
-                                <p><strong>EDX:</strong> Stimulate C6 at Erb's point</p>
+                        <div class="plexopathy-modern-grid">
+                            <!-- Erb's Palsy -->
+                            <div class="plexopathy-card upper-trunk">
+                                <div class="plexopathy-header">
+                                    <h4>Upper Trunk Plexopathy</h4>
+                                    <span class="condition-badge upper">Erb's Palsy</span>
+                                </div>
+                                
+                                <div class="plexopathy-details">
+                                    <div class="anatomy-info">
+                                        <span class="roots-affected">C5-C6</span>
+                                        <span class="classic-sign">"Waiter's tip"</span>
+                                    </div>
+                                    
+                                    <div class="weakness-pattern">
+                                        <h5>🎯 Weakness Pattern</h5>
+                                        <div class="weakness-list">
+                                            <div class="weakness-item">
+                                                <span class="muscle">Deltoid</span>
+                                                <span class="function">shoulder abduction</span>
+                                            </div>
+                                            <div class="weakness-item">
+                                                <span class="muscle">Biceps</span>
+                                                <span class="function">elbow flexion</span>
+                                            </div>
+                                            <div class="weakness-item">
+                                                <span class="muscle">Rotator cuff</span>
+                                                <span class="function">external rotation</span>
+                                            </div>
+                                        </div>
+                                        <div class="preserved-function">
+                                            ✅ <strong>Preserved:</strong> Wrist extensors
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="edx-findings">
+                                        <strong>⚡ EDX:</strong> Stimulate C6 at Erb's point
+                                    </div>
+                                </div>
                             </div>
-                            
-                            <div class="plexopathy-item">
-                                <h4>Lower Trunk Plexopathy (Klumpke's Palsy)</h4>
-                                <p><strong>Roots:</strong> C8-T1</p>
-                                <p><strong>Classic Presentation:</strong> "Claw hand" deformity</p>
-                                <ul>
-                                    <li>Small hand muscle wasting</li>
-                                    <li>Finger flexor weakness (FDP 4th/5th digits)</li>
-                                    <li>Intrinsic hand muscle weakness</li>
-                                    <li>May have Horner's syndrome (T1 involvement)</li>
-                                </ul>
-                                <p><strong>EDX:</strong> Ulnar SNAP may be preserved (nerve root lesion)</p>
+
+                            <!-- Klumpke's Palsy -->
+                            <div class="plexopathy-card lower-trunk">
+                                <div class="plexopathy-header">
+                                    <h4>Lower Trunk Plexopathy</h4>
+                                    <span class="condition-badge lower">Klumpke's Palsy</span>
+                                </div>
+                                
+                                <div class="plexopathy-details">
+                                    <div class="anatomy-info">
+                                        <span class="roots-affected">C8-T1</span>
+                                        <span class="classic-sign">"Claw hand"</span>
+                                    </div>
+                                    
+                                    <div class="weakness-pattern">
+                                        <h5>🎯 Weakness Pattern</h5>
+                                        <div class="weakness-list">
+                                            <div class="weakness-item">
+                                                <span class="muscle">Hand intrinsics</span>
+                                                <span class="function">small muscle wasting</span>
+                                            </div>
+                                            <div class="weakness-item">
+                                                <span class="muscle">FDP (4th/5th)</span>
+                                                <span class="function">finger flexion</span>
+                                            </div>
+                                            <div class="weakness-item special">
+                                                <span class="muscle">T1 involvement</span>
+                                                <span class="function">Horner's syndrome</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="edx-findings">
+                                        <strong>⚡ EDX:</strong> Ulnar SNAP may be preserved (root lesion)
+                                    </div>
+                                </div>
                             </div>
-                            
-                            <div class="plexopathy-item">
-                                <h4>Neuralgic Amyotrophy</h4>
-                                <p><strong>Other Names:</strong> Parsonage-Turner syndrome, Brachial neuritis</p>
-                                <p><strong>Etiology:</strong> Idiopathic, inflammatory, immune-mediated</p>
-                                <p><strong>Presentation:</strong></p>
-                                <ul>
-                                    <li>Sudden severe shoulder/arm pain</li>
-                                    <li>Pain improves in 2-3 weeks</li>
-                                    <li>Patchy weakness develops</li>
-                                    <li>Bilateral in ~1/3 of cases</li>
-                                </ul>
-                                <p><strong>Common Patterns:</strong> Suprascapular, long thoracic, axillary, AIN involvement</p>
+
+                            <!-- Neuralgic Amyotrophy -->
+                            <div class="plexopathy-card neuralgic">
+                                <div class="plexopathy-header">
+                                    <h4>Neuralgic Amyotrophy</h4>
+                                    <span class="condition-badge neuralgic">Parsonage-Turner</span>
+                                </div>
+                                
+                                <div class="plexopathy-details">
+                                    <div class="anatomy-info">
+                                        <span class="etiology">Inflammatory</span>
+                                        <span class="frequency">~1/3 bilateral</span>
+                                    </div>
+                                    
+                                    <div class="clinical-course">
+                                        <h5>📈 Clinical Course</h5>
+                                        <div class="timeline">
+                                            <div class="timeline-item">
+                                                <span class="phase">Phase 1</span>
+                                                <span class="description">Sudden severe shoulder/arm pain</span>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <span class="phase">2-3 weeks</span>
+                                                <span class="description">Pain improves</span>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <span class="phase">Following</span>
+                                                <span class="description">Patchy weakness develops</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="common-patterns">
+                                        <strong>🎯 Common Patterns:</strong>
+                                        <div class="pattern-tags">
+                                            <span class="pattern-tag">Suprascapular</span>
+                                            <span class="pattern-tag">Long thoracic</span>
+                                            <span class="pattern-tag">Axillary</span>
+                                            <span class="pattern-tag">AIN</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -4632,39 +5860,116 @@
                     <div class="reference-card">
                         <h3>🧪 Radiation vs Tumor Plexopathy</h3>
                         
-                        <div class="comparison-table">
-                            <table>
-                                <tr>
-                                    <th>Characteristic</th>
-                                    <th>Radiation</th>
-                                    <th>Tumor</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>Site of injury</strong></td>
-                                    <td>Upper trunk</td>
-                                    <td>Lower trunk</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Clinical presentations</strong></td>
-                                    <td>Myokymia on EMG</td>
-                                    <td>Horner's syndrome</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Sensation</strong></td>
-                                    <td>Painless</td>
-                                    <td>Painful</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Timing</strong></td>
-                                    <td>Months to years post-radiation</td>
-                                    <td>Variable, progressive</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Mechanism</strong></td>
-                                    <td>Fibrosis, vascular damage</td>
-                                    <td>Direct compression/invasion</td>
-                                </tr>
-                            </table>
+                        <div class="comparison-modern">
+                            <div class="comparison-intro">
+                                <p>Critical distinction in plexopathy etiology with different clinical patterns and prognosis</p>
+                            </div>
+
+                            <div class="plexopathy-comparison-grid">
+                                <!-- Radiation Plexopathy -->
+                                <div class="comparison-card radiation">
+                                    <div class="comparison-header">
+                                        <h4>☢️ Radiation Plexopathy</h4>
+                                        <span class="etiology-badge radiation">Post-treatment</span>
+                                    </div>
+                                    
+                                    <div class="comparison-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">📍 Site</span>
+                                            <span class="detail-value upper">Upper trunk</span>
+                                        </div>
+                                        
+                                        <div class="detail-item">
+                                            <span class="detail-label">⚡ EMG Finding</span>
+                                            <span class="detail-value special">Myokymia</span>
+                                        </div>
+                                        
+                                        <div class="detail-item">
+                                            <span class="detail-label">🔄 Sensation</span>
+                                            <span class="detail-value neutral">Painless</span>
+                                        </div>
+                                        
+                                        <div class="detail-item">
+                                            <span class="detail-label">⏰ Timing</span>
+                                            <span class="detail-value">Months to years post-radiation</span>
+                                        </div>
+                                        
+                                        <div class="mechanism">
+                                            <strong>🔬 Mechanism:</strong>
+                                            <div class="mechanism-tags">
+                                                <span class="mechanism-tag">Fibrosis</span>
+                                                <span class="mechanism-tag">Vascular damage</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- VS Divider -->
+                                <div class="vs-divider">
+                                    <span class="vs-text">VS</span>
+                                </div>
+
+                                <!-- Tumor Plexopathy -->
+                                <div class="comparison-card tumor">
+                                    <div class="comparison-header">
+                                        <h4>🎯 Tumor Plexopathy</h4>
+                                        <span class="etiology-badge tumor">Malignant</span>
+                                    </div>
+                                    
+                                    <div class="comparison-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">📍 Site</span>
+                                            <span class="detail-value lower">Lower trunk</span>
+                                        </div>
+                                        
+                                        <div class="detail-item">
+                                            <span class="detail-label">👁️ Clinical Sign</span>
+                                            <span class="detail-value special">Horner's syndrome</span>
+                                        </div>
+                                        
+                                        <div class="detail-item">
+                                            <span class="detail-label">😰 Sensation</span>
+                                            <span class="detail-value painful">Painful</span>
+                                        </div>
+                                        
+                                        <div class="detail-item">
+                                            <span class="detail-label">📈 Timing</span>
+                                            <span class="detail-value">Variable, progressive</span>
+                                        </div>
+                                        
+                                        <div class="mechanism">
+                                            <strong>🔬 Mechanism:</strong>
+                                            <div class="mechanism-tags">
+                                                <span class="mechanism-tag">Direct compression</span>
+                                                <span class="mechanism-tag">Invasion</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Key Differentiating Points -->
+                            <div class="key-differences">
+                                <h4>🔑 Key Differentiating Points</h4>
+                                <div class="differences-grid">
+                                    <div class="difference-item">
+                                        <span class="diff-icon">⚡</span>
+                                        <span class="diff-text"><strong>Myokymia</strong> strongly suggests radiation etiology</span>
+                                    </div>
+                                    <div class="difference-item">
+                                        <span class="diff-icon">😰</span>
+                                        <span class="diff-text"><strong>Pain</strong> more common in tumor plexopathy</span>
+                                    </div>
+                                    <div class="difference-item">
+                                        <span class="diff-icon">📍</span>
+                                        <span class="diff-text"><strong>Location:</strong> Radiation (upper) vs Tumor (lower)</span>
+                                    </div>
+                                    <div class="difference-item">
+                                        <span class="diff-icon">👁️</span>
+                                        <span class="diff-text"><strong>Horner's syndrome</strong> suggests lower trunk/tumor</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -5160,84 +6465,215 @@
 
             <!-- Tab 13: Nerve Anastomoses -->
             <section id="tab-13" class="tab-content">
-                <h2>🔄 Nerve Anastomoses</h2>
-                
-                <div class="reference-grid">
-                    <div class="reference-card">
-                        <h3>🤝 Martin Gruber Anastomosis</h3>
-                        
-                        <div class="clinical-note">
-                            <h4>📋 Definition</h4>
-                            <p>The Martin Gruber anastomosis is a nerve communication between the median nerve (usually the anterior interosseous nerve) and the ulnar nerve in the forearm. This variant occurs in approximately <strong>15-31%</strong> of the population.</p>
+                <div class="anastomoses-header">
+                    <h2>🔄 Nerve Anastomoses</h2>
+                    <p class="section-intro">Anatomical nerve connections that can significantly impact electrodiagnostic findings and clinical interpretation.</p>
+                </div>
+
+                <!-- Quick Overview Chart -->
+                <div class="anastomoses-overview">
+                    <h3>📊 Anastomoses at a Glance</h3>
+                    <div class="anastomoses-table">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Anastomosis</th>
+                                    <th>Location</th>
+                                    <th>Frequency</th>
+                                    <th>Key Clinical Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Martin Gruber</strong></td>
+                                    <td>Forearm</td>
+                                    <td><span class="frequency-badge moderate">15-31%</span></td>
+                                    <td>Masks median nerve severity</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Riche-Cannieu</strong></td>
+                                    <td>Hand</td>
+                                    <td><span class="frequency-badge high">~77%</span></td>
+                                    <td>Preserves thenar in ulnar lesions</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Berrettini</strong></td>
+                                    <td>Hand</td>
+                                    <td><span class="frequency-badge high">~80%</span></td>
+                                    <td>Alters 4th/5th digit sensation</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Accessory Deep Peroneal</strong></td>
+                                    <td>Lower leg</td>
+                                    <td><span class="frequency-badge moderate">~28%</span></td>
+                                    <td>EDB preservation in foot drop</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detailed Anastomoses -->
+                <div class="anastomoses-detailed">
+                    
+                    <!-- Martin Gruber -->
+                    <div class="anastomosis-card featured">
+                        <div class="anastomosis-header">
+                            <h3>🤝 Martin Gruber Anastomosis</h3>
+                            <div class="frequency-indicator">
+                                <span class="frequency-badge moderate">15-31%</span>
+                                <span class="frequency-label">Population</span>
+                            </div>
                         </div>
                         
-                        <h4>⚡ Electrodiagnostic Findings</h4>
-                        <ul>
-                            <li><strong>Ulnar motor study stimulating at elbow:</strong> May show paradoxical improvement in CMAP amplitude compared to wrist stimulation</li>
-                            <li><strong>Median nerve injury:</strong> May preserve some ulnar-innervated hand function</li>
-                            <li><strong>Detection method:</strong> Compare ulnar CMAP amplitudes stimulating at wrist vs. elbow</li>
-                            <li><strong>Confirmatory test:</strong> Collision technique - stimulate median nerve at elbow while recording ulnar muscles</li>
-                        </ul>
-                        
-                        <h4>🔍 Clinical Significance</h4>
-                        <ul>
-                            <li>Can mask severity of median nerve injuries</li>
-                            <li>May explain preserved thenar function in carpal tunnel syndrome</li>
-                            <li>Important for surgical planning in nerve transfers</li>
-                            <li>Can cause confusion in electrodiagnostic interpretation</li>
-                        </ul>
-                    </div>
-
-                    <div class="reference-card">
-                        <h3>🔄 Other Common Nerve Anastomoses</h3>
-                        
-                        <div class="anastomosis-grid">
-                            <div class="anastomosis-item">
-                                <h4>Riche-Cannieu Anastomosis</h4>
-                                <p><strong>Location:</strong> Hand</p>
-                                <p><strong>Connection:</strong> Deep branch of ulnar nerve ↔ Recurrent branch of median nerve</p>
-                                <p><strong>Clinical:</strong> May preserve thenar function in ulnar nerve lesions</p>
-                                <p><strong>Frequency:</strong> ~77% of population</p>
+                        <div class="anastomosis-content">
+                            <div class="anatomy-section">
+                                <h4>🔗 Connection</h4>
+                                <div class="connection-flow">
+                                    <span class="nerve-source">Median Nerve (AIN)</span>
+                                    <span class="flow-arrow">→</span>
+                                    <span class="nerve-target">Ulnar Nerve</span>
+                                    <span class="location-tag">Forearm</span>
+                                </div>
                             </div>
                             
-                            <div class="anastomosis-item">
-                                <h4>Berrettini Anastomosis</h4>
-                                <p><strong>Location:</strong> Hand</p>
-                                <p><strong>Connection:</strong> Superficial branch of ulnar nerve ↔ Median nerve digital branches</p>
-                                <p><strong>Clinical:</strong> Affects sensory distribution in 4th/5th digits</p>
-                                <p><strong>Frequency:</strong> ~80% of population</p>
-                            </div>
-                            
-                            <div class="anastomosis-item">
-                                <h4>Accessory Deep Peroneal Nerve</h4>
-                                <p><strong>Location:</strong> Lower leg</p>
-                                <p><strong>Connection:</strong> Superficial peroneal nerve → Deep peroneal nerve territory</p>
-                                <p><strong>Clinical:</strong> May innervate EDB when deep peroneal is injured</p>
-                                <p><strong>Frequency:</strong> ~28% of population</p>
+                            <div class="clinical-grid">
+                                <div class="clinical-section">
+                                    <h4>⚡ EDX Findings</h4>
+                                    <div class="finding-list">
+                                        <div class="finding-item">
+                                            <span class="finding-icon">📈</span>
+                                            <span>Ulnar CMAP amplitude higher at elbow vs wrist</span>
+                                        </div>
+                                        <div class="finding-item">
+                                            <span class="finding-icon">🎯</span>
+                                            <span>Collision technique confirms crossover</span>
+                                        </div>
+                                        <div class="finding-item">
+                                            <span class="finding-icon">⚠️</span>
+                                            <span>May mask median nerve injury severity</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="clinical-section">
+                                    <h4>🏥 Clinical Impact</h4>
+                                    <div class="impact-list">
+                                        <div class="impact-item positive">
+                                            <span class="impact-icon">✅</span>
+                                            <span>Preserves hand function in median injuries</span>
+                                        </div>
+                                        <div class="impact-item caution">
+                                            <span class="impact-icon">⚠️</span>
+                                            <span>Can confuse carpal tunnel diagnosis</span>
+                                        </div>
+                                        <div class="impact-item important">
+                                            <span class="impact-icon">🔍</span>
+                                            <span>Critical for surgical planning</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="reference-card">
-                        <h3>⚠️ Clinical Testing Considerations</h3>
-                        
-                        <div class="clinical-note">
-                            <h4>🎯 When to Suspect Anatomical Variants</h4>
-                            <ul>
-                                <li><strong>Discrepant findings:</strong> Clinical symptoms don't match EDX findings</li>
-                                <li><strong>Preserved function:</strong> Unexpected muscle preservation in nerve injury</li>
-                                <li><strong>Amplitude differences:</strong> Significant CMAP differences between stimulation sites</li>
-                                <li><strong>Unusual distributions:</strong> Atypical sensory or motor patterns</li>
-                            </ul>
+                    <!-- Other Anastomoses -->
+                    <div class="anastomoses-grid">
+                        <div class="anastomosis-card">
+                            <div class="anastomosis-header">
+                                <h4>Riche-Cannieu</h4>
+                                <span class="frequency-badge high">77%</span>
+                            </div>
+                            <div class="connection-simple">
+                                <span class="nerve-simple">Deep Ulnar</span>
+                                <span class="connection-symbol">↔</span>
+                                <span class="nerve-simple">Median (Thenar)</span>
+                            </div>
+                            <div class="key-point">
+                                <strong>Key Point:</strong> Preserves thenar function in ulnar nerve lesions
+                            </div>
                         </div>
-                        
-                        <h4>🔬 Special Testing Techniques</h4>
-                        <ul>
-                            <li><strong>Collision Studies:</strong> Stimulate both nerves simultaneously to detect crossover</li>
-                            <li><strong>Incremental Stimulation:</strong> Gradually increase stimulus intensity</li>
-                            <li><strong>Inching Technique:</strong> Short segment stimulation to localize anatomy</li>
-                            <li><strong>Volume Conduction Assessment:</strong> Multiple recording sites</li>
-                        </ul>
+
+                        <div class="anastomosis-card">
+                            <div class="anastomosis-header">
+                                <h4>Berrettini</h4>
+                                <span class="frequency-badge high">80%</span>
+                            </div>
+                            <div class="connection-simple">
+                                <span class="nerve-simple">Superficial Ulnar</span>
+                                <span class="connection-symbol">↔</span>
+                                <span class="nerve-simple">Median Digital</span>
+                            </div>
+                            <div class="key-point">
+                                <strong>Key Point:</strong> Alters sensory patterns in 4th & 5th digits
+                            </div>
+                        </div>
+
+                        <div class="anastomosis-card">
+                            <div class="anastomosis-header">
+                                <h4>Accessory Deep Peroneal</h4>
+                                <span class="frequency-badge moderate">28%</span>
+                            </div>
+                            <div class="connection-simple">
+                                <span class="nerve-simple">Superficial Peroneal</span>
+                                <span class="connection-symbol">→</span>
+                                <span class="nerve-simple">Deep Peroneal Territory</span>
+                            </div>
+                            <div class="key-point">
+                                <strong>Key Point:</strong> May innervate EDB in foot drop cases
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinical Testing Guide -->
+                <div class="testing-guide">
+                    <h3>🔬 Clinical Testing Strategy</h3>
+                    
+                    <div class="testing-sections">
+                        <div class="testing-card">
+                            <h4>🚨 Red Flags (When to Suspect Variants)</h4>
+                            <div class="red-flags">
+                                <div class="flag-item">
+                                    <span class="flag-icon">🔍</span>
+                                    <span>Clinical findings don't match EDX results</span>
+                                </div>
+                                <div class="flag-item">
+                                    <span class="flag-icon">💪</span>
+                                    <span>Unexpected muscle preservation in nerve injury</span>
+                                </div>
+                                <div class="flag-item">
+                                    <span class="flag-icon">📊</span>
+                                    <span>Significant CMAP amplitude differences between sites</span>
+                                </div>
+                                <div class="flag-item">
+                                    <span class="flag-icon">🗺️</span>
+                                    <span>Atypical sensory or motor distribution patterns</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testing-card">
+                            <h4>🔬 Specialized Testing Techniques</h4>
+                            <div class="technique-list">
+                                <div class="technique-item">
+                                    <div class="technique-name">Collision Studies</div>
+                                    <div class="technique-desc">Stimulate both nerves simultaneously to detect crossover</div>
+                                </div>
+                                <div class="technique-item">
+                                    <div class="technique-name">Incremental Stimulation</div>
+                                    <div class="technique-desc">Gradually increase stimulus intensity to unmask connections</div>
+                                </div>
+                                <div class="technique-item">
+                                    <div class="technique-name">Inching Technique</div>
+                                    <div class="technique-desc">Short segment stimulation to precisely localize anatomy</div>
+                                </div>
+                                <div class="technique-item">
+                                    <div class="technique-name">Volume Conduction Assessment</div>
+                                    <div class="technique-desc">Multiple recording sites to differentiate true vs artifact</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -11491,8 +12927,7 @@
             const html = `
                 <div class="chart-container">
                     <h3 class="chart-title">🎯 Upper Extremity Motor NCS Normal Values</h3>
-                    <div class="table-container">
-                        <table class="data-table">
+                    <table class="data-table">
                         <thead>
                             <tr>
                                 <th>Nerve</th>
@@ -12270,11 +13705,23 @@
             startQuiz(region) {
                 console.log(`🎯 Starting ${region} extremity muscle quiz...`);
                 
+                // Validate region input
+                if (!region || (region !== 'upper' && region !== 'lower')) {
+                    console.error('Invalid region specified:', region);
+                    alert('Invalid region specified. Please select Upper or Lower extremity.');
+                    return;
+                }
+                
                 // Since we removed the difficulty selector, use a default difficulty
                 const difficulty = 'intermediate'; // Default to intermediate difficulty
                 
-                this.generateDynamicQuiz(difficulty, region);
-                this.showQuizSection('quiz-active');
+                try {
+                    this.generateDynamicQuiz(difficulty, region);
+                    this.showQuizSection('quiz-active');
+                } catch (error) {
+                    console.error('Error generating quiz:', error);
+                    alert(`Error starting quiz: ${error.message}\n\nPlease check console for details.`);
+                }
             },
             
             generateDynamicQuiz(difficulty, region) {
@@ -12536,11 +13983,13 @@
                 
                 // Show pattern explanation if this is a limited muscle lesion
                 const scenarioText = document.getElementById('scenario-text');
-                const baseText = "A 45-year-old patient presents with weakness and numbness. EMG needle examination reveals the following findings:";
-                if (quiz.actualPattern) {
-                    scenarioText.innerHTML = `${baseText}<br><br><div style="background: #f0f8f8; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.9em;">${quiz.actualPattern}</div>`;
-                } else {
-                    scenarioText.textContent = baseText;
+                if (scenarioText) {
+                    const baseText = "A 45-year-old patient presents with weakness and numbness. EMG needle examination reveals the following findings:";
+                    if (quiz.actualPattern) {
+                        scenarioText.innerHTML = `${baseText}<br><br><div style="background: #f0f8f8; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.9em;">${quiz.actualPattern}</div>`;
+                    } else {
+                        scenarioText.textContent = baseText;
+                    }
                 }
                 
                 // Generate answer options
@@ -12708,7 +14157,64 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
         // Export for global access
         window.MuscleQuiz = MuscleQuiz;
         
+        // Add diagnostic function
+        window.testMuscleQuiz = function() {
+            console.log('=== Muscle Quiz Diagnostic ===');
+            console.log('MuscleQuiz object:', window.MuscleQuiz);
+            console.log('startQuiz function:', typeof window.MuscleQuiz?.startQuiz);
+            console.log('muscleDatabase keys:', window.MuscleQuiz?.muscleDatabase ? Object.keys(window.MuscleQuiz.muscleDatabase).length : 'Not available');
+            
+            if (window.MuscleQuiz?.muscleDatabase) {
+                // Test UE muscles
+                const ueMuscles = Object.keys(window.MuscleQuiz.muscleDatabase).filter(muscle => 
+                    window.MuscleQuiz.muscleDatabase[muscle].region === 'UE'
+                );
+                console.log('UE muscles found:', ueMuscles.length, ueMuscles.slice(0, 5));
+                
+                // Test LE muscles  
+                const leMuscles = Object.keys(window.MuscleQuiz.muscleDatabase).filter(muscle => 
+                    window.MuscleQuiz.muscleDatabase[muscle].region === 'LE'
+                );
+                console.log('LE muscles found:', leMuscles.length, leMuscles.slice(0, 5));
+            } else {
+                console.log('MuscleQuiz database not available');
+            }
+            
+            console.log('DOM elements check:');
+            console.log('- abnormal-muscles:', !!document.getElementById('abnormal-muscles'));
+            console.log('- normal-muscles:', !!document.getElementById('normal-muscles'));
+            console.log('- scenario-text:', !!document.getElementById('scenario-text'));
+            console.log('- answer-options:', !!document.getElementById('answer-options'));
+            
+            return 'Diagnostic complete - check console for details';
+        };
+        
         console.log('🎯 EMG Muscle Quiz loaded successfully!');
+        console.log('💡 Run testMuscleQuiz() in console to diagnose issues');
+        
+        // Test muscle test functionality
+        window.testMuscleTest = function() {
+            console.log('=== Muscle Test Diagnostic ===');
+            console.log('NCSApp object:', typeof NCSApp);
+            console.log('startMuscleTest function:', typeof NCSApp.startMuscleTest);
+            console.log('generateTestQuestions function:', typeof NCSApp.generateTestQuestions);
+            console.log('MuscleQuiz availability:', !!window.MuscleQuiz);
+            console.log('MuscleQuiz.shuffleArray:', typeof window.MuscleQuiz?.shuffleArray);
+            
+            if (window.MuscleQuiz?.muscleDatabase) {
+                console.log('Database available with', Object.keys(window.MuscleQuiz.muscleDatabase).length, 'muscles');
+                try {
+                    const testQuestions = NCSApp.generateTestQuestions(2);
+                    console.log('Generated', testQuestions.length, 'test questions successfully');
+                    return 'All systems working correctly!';
+                } catch (error) {
+                    console.error('Error generating test questions:', error);
+                    return 'Error: ' + error.message;
+                }
+            } else {
+                return 'MuscleQuiz database not available';
+            }
+        };
     </script>
     
     <!-- Cache busting script -->
@@ -19159,87 +20665,180 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
         // Muscle Test System
         NCSApp.muscleTestData = {
             currentQuestion: null,
-            score: 0,
-            totalAnswered: 0,
-            isActive: false,
+            questionsAnswered: 0,
+            correctAnswers: 0,
             missedQuestions: [],
-            questionTypes: ['nerve', 'roots', 'peripheralNerve', 'region'],
-            sessionStartTime: null
+            usedMuscles: new Set(),
+            isActive: false,
+            questionTypes: ['nerve', 'roots', 'peripheralNerve']
         };
 
         // Start Muscle Test
         NCSApp.startMuscleTest = function() {
-            console.log('🧪 Starting comprehensive muscle anatomy quiz...');
+            console.log('🧪 Starting continuous muscle anatomy quiz...');
             
-            // Initialize quiz session
-            NCSApp.muscleTestData.score = 0;
-            NCSApp.muscleTestData.totalAnswered = 0;
-            NCSApp.muscleTestData.isActive = true;
-            NCSApp.muscleTestData.sessionStartTime = new Date();
+            // Check if MuscleQuiz is available
+            if (!window.MuscleQuiz || !window.MuscleQuiz.muscleDatabase) {
+                alert('Muscle database not loaded yet. Please try again in a moment.');
+                return;
+            }
+            
+            // Reset data for new quiz
+            NCSApp.muscleTestData.questionsAnswered = 0;
+            NCSApp.muscleTestData.correctAnswers = 0;
             NCSApp.muscleTestData.missedQuestions = [];
+            NCSApp.muscleTestData.usedMuscles = new Set();
+            NCSApp.muscleTestData.isActive = true;
             
-            // Show modal and first question
+            // Show modal and setup UI
             document.getElementById('muscle-test-modal').style.display = 'flex';
             document.getElementById('test-results').style.display = 'none';
             document.querySelector('.muscle-test-body').style.display = 'block';
+            document.getElementById('answer-feedback').style.display = 'none';
+            
+            // Update stats display
+            NCSApp.updateStatsDisplay();
             
             // Generate and display first question
             NCSApp.generateNextQuestion();
         };
 
-        // Generate Next Question
-        NCSApp.generateNextQuestion = function() {
-            // Get all muscles from database (no filtering)
+        // Generate Test Questions
+        NCSApp.generateTestQuestions = function(count) {
+            const questions = [];
+            
+            // Safety check
+            if (!MuscleQuiz || !MuscleQuiz.muscleDatabase) {
+                console.error('MuscleQuiz database not available');
+                return [];
+            }
+            
             const muscles = Object.keys(MuscleQuiz.muscleDatabase);
-            const muscle = muscles[Math.floor(Math.random() * muscles.length)];
+            const usedMuscles = new Set();
+            
+            for (let i = 0; i < count; i++) {
+                let muscle;
+                do {
+                    muscle = muscles[Math.floor(Math.random() * muscles.length)];
+                } while (usedMuscles.has(muscle) && usedMuscles.size < muscles.length);
+                
+                usedMuscles.add(muscle);
+                const muscleData = MuscleQuiz.muscleDatabase[muscle];
+                
+                // Randomly choose question type (nerve, roots, or peripheral nerve)
+                const questionTypes = ['nerve', 'roots', 'peripheralNerve'];
+                const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+                
+                let question, correctAnswer, options;
+                
+                switch (questionType) {
+                    case 'nerve':
+                        question = `What nerve innervates the ${muscle}?`;
+                        correctAnswer = muscleData.nerve;
+                        options = NCSApp.generateNerveOptions(muscleData.nerve);
+                        break;
+                    case 'roots':
+                        question = `What nerve roots innervate the ${muscle}?`;
+                        correctAnswer = muscleData.roots.join(', ');
+                        options = NCSApp.generateRootOptions(muscleData.roots);
+                        break;
+                    case 'peripheralNerve':
+                        question = `What peripheral nerve innervates the ${muscle}?`;
+                        correctAnswer = muscleData.peripheralNerve;
+                        options = NCSApp.generatePeripheralNerveOptions(muscleData.peripheralNerve);
+                        break;
+                }
+                
+                questions.push({
+                    muscle,
+                    question,
+                    correctAnswer,
+                    options,
+                    type: questionType
+                });
+            }
+            
+            return questions;
+        };
+
+        // Generate Next Question (for continuous quiz)
+        NCSApp.generateNextQuestion = function() {
+            // Safety check
+            if (!MuscleQuiz || !MuscleQuiz.muscleDatabase) {
+                console.error('MuscleQuiz database not available');
+                return;
+            }
+            
+            const muscles = Object.keys(MuscleQuiz.muscleDatabase);
+            let muscle;
+            
+            // Find an unused muscle, or reset if all used
+            const availableMuscles = muscles.filter(m => !NCSApp.muscleTestData.usedMuscles.has(m));
+            if (availableMuscles.length === 0) {
+                // Reset used muscles if we've gone through all
+                NCSApp.muscleTestData.usedMuscles.clear();
+                muscle = muscles[Math.floor(Math.random() * muscles.length)];
+            } else {
+                muscle = availableMuscles[Math.floor(Math.random() * availableMuscles.length)];
+            }
+            
+            NCSApp.muscleTestData.usedMuscles.add(muscle);
             const muscleData = MuscleQuiz.muscleDatabase[muscle];
             
             // Randomly choose question type
-            const questionTypes = NCSApp.muscleTestData.questionTypes;
-            const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+            const questionType = NCSApp.muscleTestData.questionTypes[
+                Math.floor(Math.random() * NCSApp.muscleTestData.questionTypes.length)
+            ];
             
             let question, correctAnswer, options;
             
             switch (questionType) {
                 case 'nerve':
-                    question = `What nerve innervates the ${muscle}?`;
+                    question = `What nerve innervates the <strong>${muscle}</strong>?`;
                     correctAnswer = muscleData.nerve;
                     options = NCSApp.generateNerveOptions(muscleData.nerve);
                     break;
                 case 'roots':
-                    question = `What nerve roots innervate the ${muscle}?`;
+                    question = `What nerve roots innervate the <strong>${muscle}</strong>?`;
                     correctAnswer = muscleData.roots.join(', ');
                     options = NCSApp.generateRootOptions(muscleData.roots);
                     break;
                 case 'peripheralNerve':
-                    question = `What peripheral nerve innervates the ${muscle}?`;
+                    question = `What peripheral nerve innervates the <strong>${muscle}</strong>?`;
                     correctAnswer = muscleData.peripheralNerve;
                     options = NCSApp.generatePeripheralNerveOptions(muscleData.peripheralNerve);
-                    break;
-                case 'region':
-                    question = `What region does the ${muscle} belong to?`;
-                    correctAnswer = muscleData.region === 'UE' ? 'Upper Extremity' : 'Lower Extremity';
-                    options = NCSApp.generateRegionOptions(correctAnswer);
                     break;
             }
             
             NCSApp.muscleTestData.currentQuestion = {
-                muscle,
-                question,
-                correctAnswer,
-                options,
+                muscle: muscle,
+                question: question,
+                correctAnswer: correctAnswer,
+                options: options,
                 type: questionType,
-                timestamp: new Date()
+                muscleData: muscleData
             };
             
             NCSApp.displayCurrentQuestion();
         };
+        
+        // Update Stats Display
+        NCSApp.updateStatsDisplay = function() {
+            document.getElementById('questions-answered').textContent = 
+                `Questions: ${NCSApp.muscleTestData.questionsAnswered}`;
+            
+            const accuracy = NCSApp.muscleTestData.questionsAnswered > 0 ? 
+                Math.round((NCSApp.muscleTestData.correctAnswers / NCSApp.muscleTestData.questionsAnswered) * 100) : 0;
+            document.getElementById('current-accuracy').textContent = `Accuracy: ${accuracy}%`;
+        };
 
         // Generate nerve options for multiple choice
         NCSApp.generateNerveOptions = function(correctNerve) {
-            // Get all unique nerves from entire database
-            const allNerves = [...new Set(Object.values(MuscleQuiz.muscleDatabase)
-                .map(m => m.nerve))];
+            if (!MuscleQuiz || !MuscleQuiz.muscleDatabase) {
+                return [correctNerve, 'Median', 'Ulnar', 'Radial']; // Fallback options
+            }
+            
+            const allNerves = [...new Set(Object.values(MuscleQuiz.muscleDatabase).map(m => m.nerve))];
             const options = [correctNerve];
             
             while (options.length < 4) {
@@ -19249,7 +20848,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 }
             }
             
-            return NCSApp.shuffleArray(options);
+            return MuscleQuiz?.shuffleArray ? MuscleQuiz.shuffleArray(options) : options;
         };
 
         // Generate root options for multiple choice
@@ -19277,14 +20876,16 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 }
             }
             
-            return NCSApp.shuffleArray(options);
+            return MuscleQuiz?.shuffleArray ? MuscleQuiz.shuffleArray(options) : options;
         };
 
         // Generate peripheral nerve options for multiple choice
         NCSApp.generatePeripheralNerveOptions = function(correctNerve) {
-            // Get all unique peripheral nerves from entire database
-            const allPeripheralNerves = [...new Set(Object.values(MuscleQuiz.muscleDatabase)
-                .map(m => m.peripheralNerve))];
+            if (!MuscleQuiz || !MuscleQuiz.muscleDatabase) {
+                return [correctNerve, 'Median', 'Ulnar', 'Radial']; // Fallback options
+            }
+            
+            const allPeripheralNerves = [...new Set(Object.values(MuscleQuiz.muscleDatabase).map(m => m.peripheralNerve))];
             const options = [correctNerve];
             
             while (options.length < 4) {
@@ -19294,84 +20895,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 }
             }
             
-            return NCSApp.shuffleArray(options);
-        };
-
-        // Generate region options for multiple choice
-        NCSApp.generateRegionOptions = function(correctAnswer) {
-            const regions = ['Upper Extremity', 'Lower Extremity'];
-            const options = [correctAnswer];
-            
-            regions.forEach(region => {
-                if (!options.includes(region)) {
-                    options.push(region);
-                }
-            });
-            
-            // Add some additional anatomical regions for variety
-            const extraOptions = ['Axial Skeleton', 'Trunk', 'Cervical Region', 'Thoracic Region'];
-            while (options.length < 4) {
-                const randomOption = extraOptions[Math.floor(Math.random() * extraOptions.length)];
-                if (!options.includes(randomOption)) {
-                    options.push(randomOption);
-                }
-            }
-            
-            return NCSApp.shuffleArray(options);
-        };
-
-        // Shuffle array utility function
-        NCSApp.shuffleArray = function(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        };
-
-        // Show notification
-        NCSApp.showNotification = function(message, type = 'info') {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `muscle-quiz-notification ${type}`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 20px;
-                border-radius: 8px;
-                font-weight: bold;
-                z-index: 10000;
-                max-width: 400px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                animation: slideInRight 0.3s ease-out;
-            `;
-            
-            // Set colors based on type
-            if (type === 'success') {
-                notification.style.backgroundColor = '#d4edda';
-                notification.style.color = '#155724';
-                notification.style.border = '1px solid #c3e6cb';
-            } else if (type === 'error') {
-                notification.style.backgroundColor = '#f8d7da';
-                notification.style.color = '#721c24';
-                notification.style.border = '1px solid #f5c6cb';
-            } else {
-                notification.style.backgroundColor = '#d1ecf1';
-                notification.style.color = '#0c5460';
-                notification.style.border = '1px solid #bee5eb';
-            }
-            
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 3000);
+            return MuscleQuiz?.shuffleArray ? MuscleQuiz.shuffleArray(options) : options;
         };
 
         // Display current question
@@ -19379,14 +20903,8 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             const question = NCSApp.muscleTestData.currentQuestion;
             if (!question) return;
             
-            const questionNumber = NCSApp.muscleTestData.totalAnswered + 1;
-            
-            // Update progress (continuous mode - no percentage, just question count)
-            document.getElementById('progress-fill').style.width = '100%'; // Always full for continuous mode
-            document.getElementById('question-counter').textContent = `Question ${questionNumber} | Score: ${NCSApp.muscleTestData.score}/${NCSApp.muscleTestData.totalAnswered}`;
-            
             // Update question text
-            document.getElementById('question-text').textContent = question.question;
+            document.getElementById('question-text').innerHTML = question.question;
             
             // Generate answer choices
             const choicesContainer = document.getElementById('answer-choices');
@@ -19396,8 +20914,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 const choiceElement = document.createElement('div');
                 choiceElement.className = 'answer-choice';
                 choiceElement.setAttribute('data-answer', option);
-                choiceElement.style.pointerEvents = 'auto'; // Reset pointer events
-                choiceElement.onclick = () => NCSApp.selectAnswer(option);
+                choiceElement.onclick = () => NCSApp.selectContinuousAnswer(option);
                 
                 const letterElement = document.createElement('div');
                 letterElement.className = 'choice-letter';
@@ -19410,55 +20927,200 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 choiceElement.appendChild(textElement);
                 choicesContainer.appendChild(choiceElement);
             });
+            
+            // Hide feedback section
+            document.getElementById('answer-feedback').style.display = 'none';
         };
 
         // Select an answer
         NCSApp.selectAnswer = function(selectedAnswer) {
-            const currentQuestion = NCSApp.muscleTestData.currentQuestion;
-            if (!currentQuestion) return;
-            
-            // Mark all choices as disabled after selection
+            // Remove previous selections
             document.querySelectorAll('.answer-choice').forEach(choice => {
-                choice.style.pointerEvents = 'none';
                 choice.classList.remove('selected');
             });
             
             // Mark selected choice
-            const selectedElement = document.querySelector(`[data-answer="${selectedAnswer}"]`);
-            selectedElement.classList.add('selected');
+            document.querySelector(`[data-answer="${selectedAnswer}"]`).classList.add('selected');
             
-            // Check if answer is correct
-            const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
-            NCSApp.muscleTestData.totalAnswered++;
+            // Store answer
+            NCSApp.muscleTestData.selectedAnswers[NCSApp.muscleTestData.currentQuestionIndex] = selectedAnswer;
             
-            if (isCorrect) {
-                NCSApp.muscleTestData.score++;
-                selectedElement.classList.add('correct');
-                NCSApp.showNotification('✅ Correct!', 'success');
+            // Enable next/finish button
+            const questionNumber = NCSApp.muscleTestData.currentQuestionIndex + 1;
+            const totalQuestions = NCSApp.muscleTestData.currentQuestions.length;
+            
+            if (questionNumber < totalQuestions) {
+                document.getElementById('next-question-btn').disabled = false;
             } else {
-                selectedElement.classList.add('incorrect');
-                // Show correct answer
-                document.querySelector(`[data-answer="${currentQuestion.correctAnswer}"]`).classList.add('correct');
-                
-                // Add to missed questions repository
+                document.getElementById('finish-test-btn').disabled = false;
+            }
+        };
+
+        // Select answer for continuous quiz (with immediate feedback)
+        NCSApp.selectContinuousAnswer = function(selectedAnswer) {
+            const question = NCSApp.muscleTestData.currentQuestion;
+            if (!question) return;
+            
+            // Mark selected choice
+            document.querySelectorAll('.answer-choice').forEach(choice => {
+                choice.classList.remove('selected');
+                choice.onclick = null; // Disable further clicking
+            });
+            document.querySelector(`[data-answer="${selectedAnswer}"]`).classList.add('selected');
+            
+            // Check if correct
+            const isCorrect = selectedAnswer === question.correctAnswer;
+            
+            // Update statistics
+            NCSApp.muscleTestData.questionsAnswered++;
+            if (isCorrect) {
+                NCSApp.muscleTestData.correctAnswers++;
+            } else {
+                // Store missed question
                 NCSApp.muscleTestData.missedQuestions.push({
-                    ...currentQuestion,
-                    selectedAnswer: selectedAnswer,
-                    timestamp: new Date()
+                    muscle: question.muscle,
+                    question: question.question,
+                    userAnswer: selectedAnswer,
+                    correctAnswer: question.correctAnswer,
+                    type: question.type,
+                    muscleData: question.muscleData
                 });
-                
-                // Enable review button if there are missed questions
-                if (NCSApp.muscleTestData.missedQuestions.length > 0) {
-                    document.getElementById('review-missed-btn').disabled = false;
-                }
-                
-                NCSApp.showNotification(`❌ Incorrect! Correct answer: ${currentQuestion.correctAnswer}`, 'error');
             }
             
-            // Auto-advance to next question after 2 seconds
-            setTimeout(() => {
-                NCSApp.generateNextQuestion();
-            }, 2000);
+            // Show immediate feedback
+            NCSApp.showImmediateFeedback(isCorrect, question, selectedAnswer);
+            
+            // Update stats display
+            NCSApp.updateStatsDisplay();
+        };
+
+        // Show immediate feedback
+        NCSApp.showImmediateFeedback = function(isCorrect, question, selectedAnswer) {
+            const feedbackDiv = document.getElementById('answer-feedback');
+            const resultDiv = document.getElementById('feedback-result');
+            const explanationDiv = document.getElementById('feedback-explanation');
+            
+            // Show result
+            if (isCorrect) {
+                resultDiv.innerHTML = '<div class="feedback-correct">✅ Correct!</div>';
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="feedback-incorrect">❌ Incorrect</div>
+                    <div class="feedback-correction">
+                        <strong>Your answer:</strong> ${selectedAnswer}<br>
+                        <strong>Correct answer:</strong> ${question.correctAnswer}
+                    </div>
+                `;
+            }
+            
+            // Show detailed explanation
+            const muscleData = question.muscleData;
+            explanationDiv.innerHTML = `
+                <div class="muscle-details">
+                    <h4>📖 ${question.muscle} Details:</h4>
+                    <ul>
+                        <li><strong>Nerve:</strong> ${muscleData.nerve}</li>
+                        <li><strong>Nerve Roots:</strong> ${muscleData.roots.join(', ')}</li>
+                        <li><strong>Peripheral Nerve:</strong> ${muscleData.peripheralNerve}</li>
+                        <li><strong>Region:</strong> ${muscleData.region === 'UE' ? 'Upper Extremity' : 'Lower Extremity'}</li>
+                    </ul>
+                </div>
+            `;
+            
+            feedbackDiv.style.display = 'block';
+        };
+
+        // Next continuous question
+        NCSApp.nextContinuousQuestion = function() {
+            // Generate next question
+            NCSApp.generateNextQuestion();
+        };
+
+        // Stop muscle test
+        NCSApp.stopMuscleTest = function() {
+            if (NCSApp.muscleTestData.questionsAnswered === 0) {
+                // No questions answered, just close
+                NCSApp.closeMuscleTest();
+                return;
+            }
+            
+            // Show final results
+            NCSApp.showContinuousResults();
+        };
+
+        // Show continuous quiz results
+        NCSApp.showContinuousResults = function() {
+            const data = NCSApp.muscleTestData;
+            const percentage = data.questionsAnswered > 0 ? 
+                Math.round((data.correctAnswers / data.questionsAnswered) * 100) : 0;
+            
+            // Hide test body, show results
+            document.querySelector('.muscle-test-body').style.display = 'none';
+            document.getElementById('test-results').style.display = 'block';
+            
+            // Update score display
+            document.getElementById('score-percentage').textContent = percentage + '%';
+            document.getElementById('total-answered').textContent = data.questionsAnswered;
+            document.getElementById('correct-count').textContent = data.correctAnswers;
+            document.getElementById('final-accuracy').textContent = percentage + '%';
+            
+            // Show missed questions summary
+            const missedDiv = document.getElementById('missed-list');
+            if (data.missedQuestions.length > 0) {
+                missedDiv.innerHTML = data.missedQuestions.map((q, i) => 
+                    `<div class="missed-question">
+                        <strong>${i + 1}. ${q.muscle}</strong><br>
+                        <small>Your answer: ${q.userAnswer} | Correct: ${q.correctAnswer}</small>
+                    </div>`
+                ).join('');
+                document.getElementById('review-missed-btn').style.display = 'inline-block';
+            } else {
+                missedDiv.innerHTML = '<p>🎉 Perfect! No missed questions!</p>';
+                document.getElementById('review-missed-btn').style.display = 'none';
+            }
+        };
+
+        // Review missed questions
+        NCSApp.reviewMissedQuestions = function() {
+            const missed = NCSApp.muscleTestData.missedQuestions;
+            if (missed.length === 0) return;
+            
+            let reviewHTML = '<h3>📝 Review Missed Questions</h3>';
+            missed.forEach((q, i) => {
+                reviewHTML += `
+                    <div class="missed-review-item">
+                        <h4>${i + 1}. ${q.muscle}</h4>
+                        <p><strong>Question:</strong> ${q.question.replace('<strong>', '').replace('</strong>', '')}</p>
+                        <p><strong>Your Answer:</strong> <span class="wrong-answer">${q.userAnswer}</span></p>
+                        <p><strong>Correct Answer:</strong> <span class="correct-answer">${q.correctAnswer}</span></p>
+                        <div class="muscle-review-details">
+                            <p><strong>Complete Details:</strong></p>
+                            <ul>
+                                <li>Nerve: ${q.muscleData.nerve}</li>
+                                <li>Roots: ${q.muscleData.roots.join(', ')}</li>
+                                <li>Peripheral Nerve: ${q.muscleData.peripheralNerve}</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Show in a simple alert for now (could be enhanced with a modal)
+            const reviewWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes');
+            reviewWindow.document.write(`
+                <html>
+                <head><title>Missed Questions Review</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    .missed-review-item { margin-bottom: 30px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+                    .wrong-answer { color: #dc3545; font-weight: bold; }
+                    .correct-answer { color: #28a745; font-weight: bold; }
+                    .muscle-review-details { background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
+                </style>
+                </head>
+                <body>${reviewHTML}</body>
+                </html>
+            `);
         };
 
         // Next question
@@ -19546,66 +21208,6 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
         // Retake test
         NCSApp.retakeTest = function() {
             NCSApp.startMuscleTest();
-        };
-
-        // Stop muscle quiz
-        NCSApp.stopMuscleQuiz = function() {
-            NCSApp.muscleTestData.isActive = false;
-            const sessionTime = Math.round((new Date() - NCSApp.muscleTestData.sessionStartTime) / 1000);
-            const accuracy = NCSApp.muscleTestData.totalAnswered > 0 ? 
-                Math.round((NCSApp.muscleTestData.score / NCSApp.muscleTestData.totalAnswered) * 100) : 0;
-            
-            NCSApp.showNotification(
-                `🏁 Quiz Complete! Answered: ${NCSApp.muscleTestData.totalAnswered} | Score: ${NCSApp.muscleTestData.score} (${accuracy}%) | Time: ${sessionTime}s | Missed: ${NCSApp.muscleTestData.missedQuestions.length}`,
-                'info'
-            );
-            
-            document.getElementById('muscle-test-modal').style.display = 'none';
-        };
-
-        // Show missed questions
-        NCSApp.showMissedQuestions = function() {
-            if (NCSApp.muscleTestData.missedQuestions.length === 0) {
-                NCSApp.showNotification('🎉 No missed questions yet!', 'success');
-                return;
-            }
-            
-            let reviewHTML = `
-                <div style="max-height: 400px; overflow-y: auto; padding: 20px; background: white; border-radius: 8px;">
-                    <h3 style="color: #dc3545; margin-bottom: 20px;">📝 Missed Questions Review (${NCSApp.muscleTestData.missedQuestions.length})</h3>
-            `;
-            
-            NCSApp.muscleTestData.missedQuestions.forEach((q, index) => {
-                reviewHTML += `
-                    <div style="border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin-bottom: 15px; background: #f8f9fa;">
-                        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
-                        <p style="color: #dc3545;"><strong>Your Answer:</strong> ${q.selectedAnswer}</p>
-                        <p style="color: #28a745;"><strong>Correct Answer:</strong> ${q.correctAnswer}</p>
-                        <p style="color: #6c757d; font-size: 0.9em;"><strong>Muscle:</strong> ${q.muscle} | <strong>Type:</strong> ${q.type}</p>
-                    </div>
-                `;
-            });
-            
-            reviewHTML += `
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button onclick="document.body.removeChild(document.querySelector('.missed-questions-overlay'))" 
-                                style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                            Close Review
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            // Create overlay
-            const overlay = document.createElement('div');
-            overlay.className = 'missed-questions-overlay';
-            overlay.style.cssText = `
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                background: rgba(0,0,0,0.8); z-index: 10000; display: flex; 
-                justify-content: center; align-items: center; padding: 20px;
-            `;
-            overlay.innerHTML = reviewHTML;
-            document.body.appendChild(overlay);
         };
 
         // Close muscle test
