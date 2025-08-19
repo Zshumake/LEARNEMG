@@ -7737,7 +7737,7 @@
                 
                 // Check essential DOM elements
                 const requiredElements = [
-                    'tab-0', 'tab-1', 'tab-2', 'tab-3', 'tab-4', 'tab-5', 'tab-6',
+                    'tab-0', 'tab-1', 'tab-2', 'tab-3', 'tab-4', 'tab-5', 'tab-6', 'tab-7', 'tab-8', 'tab-9', 'tab-10', 'tab-11', 'tab-12', 'tab-13', 'tab-14',
                     'nerve-selector', 'pathway-steps', 'story-text',
                     'quiz-container', 'video-grid', 'terms-grid', 
                     'reference-grid', 'anatomy-content'
@@ -7954,12 +7954,12 @@
             
             try {
                 // Validate index
-                if (index < 0 || index > 13) {
+                if (index < 0 || index > 14) {
                     throw new Error(`Invalid tab index: ${index}`);
                 }
                 
                 // Hide all tabs
-                for (let i = 0; i <= 13; i++) {
+                for (let i = 0; i <= 14; i++) {
                     const tab = document.getElementById(`tab-${i}`);
                     const btn = document.getElementById(`tab-${i}-btn`);
                     
