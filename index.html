@@ -3906,8 +3906,251 @@
             100% { transform: scale(1); }
         }
 
+        /* New Category-Based Navigation */
+        .nav-container {
+            position: relative;
+        }
+        
+        .desktop-nav {
+            display: flex;
+            background: var(--light-bg);
+            padding: 0;
+            border-bottom: 3px solid var(--accent-color);
+            flex-wrap: wrap;
+        }
+        
+        .nav-category {
+            flex: 1;
+            min-width: 200px;
+            border-right: 1px solid #ddd;
+        }
+        
+        .nav-category:last-child {
+            border-right: none;
+        }
+        
+        .category-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .category-tabs {
+            display: flex;
+            flex-direction: column;
+            background: var(--light-bg);
+        }
+        
+        .category-tabs .tab-button {
+            flex: 1;
+            min-width: unset;
+            background: var(--light-bg);
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 12px 10px;
+            cursor: pointer;
+            color: #6c757d;
+            font-weight: bold;
+            font-size: 0.85em;
+            transition: var(--transition);
+            text-align: left;
+        }
+        
+        .category-tabs .tab-button:last-child {
+            border-bottom: none;
+        }
+        
+        .category-tabs .tab-button:hover {
+            background: #e8f4f4;
+            color: var(--primary-color);
+        }
+        
+        .category-tabs .tab-button.active {
+            background: var(--white);
+            color: var(--primary-color);
+            border-left: 3px solid var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            background: var(--light-bg);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            margin-right: 15px;
+        }
+        
+        .hamburger-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-btn.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-btn.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .current-tab-name {
+            flex: 1;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-left: 15px;
+        }
+        
+        .search-input {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 0.9em;
+            width: 150px;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+            background: var(--light-bg);
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu {
+            background: var(--white);
+            border-bottom: 1px solid #ddd;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .mobile-category {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-category-header {
+            padding: 15px 20px;
+            background: var(--light-bg);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1em;
+        }
+        
+        .mobile-category-header:hover {
+            background: #e8f4f4;
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .mobile-category.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-category-content {
+            display: none;
+            background: var(--white);
+        }
+        
+        .mobile-category.expanded .mobile-category-content {
+            display: block;
+        }
+        
+        .mobile-tab-button {
+            display: block;
+            width: 100%;
+            padding: 12px 30px;
+            border: none;
+            background: var(--white);
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-tab-button:hover {
+            background: var(--light-bg);
+            color: var(--primary-color);
+        }
+        
+        .mobile-tab-button.active {
+            background: var(--accent-color);
+            color: var(--white);
+            font-weight: bold;
+        }
+        
         /* Mobile responsive */
         @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
             .filter-chips {
                 justify-content: flex-start;
             }
@@ -4190,51 +4433,6 @@
                 font-size: 1.8em;
             }
             
-            /* Mobile Large Grid Navigation */
-            .nav-tabs {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 6px;
-                padding: 10px;
-                background: var(--light-bg);
-                border-bottom: 3px solid var(--accent-color);
-                overflow: hidden;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            
-            .tab-button {
-                min-width: unset;
-                width: 100%;
-                padding: 10px 6px;
-                font-size: 0.8em;
-                text-align: center;
-                border-radius: 8px;
-                line-height: 1.3;
-                min-height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0;
-                border: 1px solid #ddd;
-                background: var(--white);
-                color: var(--text-dark);
-                transition: all 0.3s ease;
-            }
-            
-            .tab-button.active {
-                background: var(--primary-color);
-                color: var(--white);
-                border-color: var(--primary-color);
-                font-weight: bold;
-            }
-            
-            .tab-button:hover {
-                background: var(--accent-color);
-                color: var(--white);
-                border-color: var(--accent-color);
-            }
-            
             .content {
                 padding: 15px;
             }
@@ -4285,51 +4483,6 @@
             
             .header p {
                 font-size: 0.9em;
-            }
-            
-            /* Mobile Grid Navigation */
-            .nav-tabs {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 4px;
-                padding: 8px;
-                background: var(--light-bg);
-                border-bottom: 3px solid var(--accent-color);
-                overflow: hidden;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            
-            .tab-button {
-                min-width: unset;
-                width: 100%;
-                padding: 12px 4px;
-                font-size: 0.75em;
-                text-align: center;
-                border-radius: 8px;
-                line-height: 1.2;
-                min-height: 48px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0;
-                border: 1px solid #ddd;
-                background: var(--white);
-                color: var(--text-dark);
-                transition: all 0.3s ease;
-            }
-            
-            .tab-button.active {
-                background: var(--primary-color);
-                color: var(--white);
-                border-color: var(--primary-color);
-                font-weight: bold;
-            }
-            
-            .tab-button:hover {
-                background: var(--accent-color);
-                color: var(--white);
-                border-color: var(--accent-color);
             }
             
             .content {
@@ -4463,21 +4616,119 @@
             <p>Comprehensive neuromuscular educational resource for medical professionals</p>
         </header>
 
-        <nav class="nav-tabs" role="tablist">
-            <button class="tab-button active" onclick="NCSApp.showTab(0)" role="tab" aria-selected="true" id="tab-0-btn">📍 Pathway Explorer</button>
-            <button class="tab-button" onclick="NCSApp.showTab(1)" role="tab" aria-selected="false" id="tab-1-btn">🎯 Quiz Mode</button>
-            <button class="tab-button" onclick="NCSApp.showTab(2)" role="tab" aria-selected="false" id="tab-2-btn">📹 NCS Videos</button>
-            <button class="tab-button" onclick="NCSApp.showTab(3)" role="tab" aria-selected="false" id="tab-3-btn">⚡ EMG/NCS Terms</button>
-            <button class="tab-button" onclick="NCSApp.showTab(4)" role="tab" aria-selected="false" id="tab-4-btn">📋 Quick Reference</button>
-            <button class="tab-button" onclick="NCSApp.showTab(5)" role="tab" aria-selected="false" id="tab-5-btn">💪 Muscle Anatomy</button>
-            <button class="tab-button" onclick="NCSApp.showTab(6)" role="tab" aria-selected="false" id="tab-6-btn">👁️ Blink Reflex Studies</button>
-            <button class="tab-button" onclick="NCSApp.showTab(7)" role="tab" aria-selected="false" id="tab-7-btn">📊 Clinical EMG Patterns</button>
-            <button class="tab-button" onclick="NCSApp.showTab(8)" role="tab" aria-selected="false" id="tab-8-btn">🗂️ Nerve Injury Classifications</button>
-            <button class="tab-button" onclick="NCSApp.showTab(9)" role="tab" aria-selected="false" id="tab-9-btn">🏥 Radiculopathy Clinical Guide</button>
-            <button class="tab-button" onclick="NCSApp.showTab(10)" role="tab" aria-selected="false" id="tab-10-btn">🧬 Brachial Plexus</button>
-            <button class="tab-button" onclick="NCSApp.showTab(11)" role="tab" aria-selected="false" id="tab-11-btn">📚 EMG Flashcards</button>
-            <button class="tab-button" onclick="NCSApp.showTab(12)" role="tab" aria-selected="false" id="tab-12-btn">🎯 EMG Muscle Quiz</button>
-            <button class="tab-button" onclick="NCSApp.showTab(13)" role="tab" aria-selected="false" id="tab-13-btn">🔄 Nerve Anastomoses</button>
+        <nav class="nav-container" role="navigation">
+            <!-- Desktop Navigation -->
+            <div class="nav-tabs desktop-nav" role="tablist">
+                <!-- Learn Category -->
+                <div class="nav-category">
+                    <div class="category-header">🎓 Learn</div>
+                    <div class="category-tabs">
+                        <button class="tab-button active" onclick="NCSApp.showTab(0)" role="tab" aria-selected="true" id="tab-0-btn">📍 Pathway Explorer</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(3)" role="tab" aria-selected="false" id="tab-3-btn">⚡ EMG/NCS Terms</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(4)" role="tab" aria-selected="false" id="tab-4-btn">📋 Quick Reference</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(2)" role="tab" aria-selected="false" id="tab-2-btn">📹 NCS Videos</button>
+                    </div>
+                </div>
+                
+                <!-- Practice Category -->
+                <div class="nav-category">
+                    <div class="category-header">🧪 Practice</div>
+                    <div class="category-tabs">
+                        <button class="tab-button" onclick="NCSApp.showTab(1)" role="tab" aria-selected="false" id="tab-1-btn">🎯 Quiz Mode</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(5)" role="tab" aria-selected="false" id="tab-5-btn">💪 Muscle Anatomy</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(12)" role="tab" aria-selected="false" id="tab-12-btn">🎯 EMG Muscle Quiz</button>
+                    </div>
+                </div>
+                
+                <!-- Study Category -->
+                <div class="nav-category">
+                    <div class="category-header">📚 Study</div>
+                    <div class="category-tabs">
+                        <button class="tab-button" onclick="NCSApp.showTab(11)" role="tab" aria-selected="false" id="tab-11-btn">📚 EMG Flashcards</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(7)" role="tab" aria-selected="false" id="tab-7-btn">📊 Clinical EMG Patterns</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(6)" role="tab" aria-selected="false" id="tab-6-btn">👁️ Blink Reflex Studies</button>
+                    </div>
+                </div>
+                
+                <!-- Reference Category -->
+                <div class="nav-category">
+                    <div class="category-header">🏥 Reference</div>
+                    <div class="category-tabs">
+                        <button class="tab-button" onclick="NCSApp.showTab(9)" role="tab" aria-selected="false" id="tab-9-btn">🏥 Radiculopathy Clinical Guide</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(10)" role="tab" aria-selected="false" id="tab-10-btn">🧬 Brachial Plexus</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(13)" role="tab" aria-selected="false" id="tab-13-btn">🔄 Nerve Anastomoses</button>
+                        <button class="tab-button" onclick="NCSApp.showTab(8)" role="tab" aria-selected="false" id="tab-8-btn">🗂️ Nerve Injury Classifications</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" style="display: none;">
+                <div class="mobile-nav-header">
+                    <button class="hamburger-btn" onclick="NCSApp.toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="current-tab-name">📍 Pathway Explorer</div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search..." onkeyup="NCSApp.search(this.value)">
+                        <div class="search-results" id="search-results"></div>
+                    </div>
+                </div>
+                
+                <div class="mobile-menu" id="mobile-menu" style="display: none;">
+                    <div class="mobile-category" data-category="learn">
+                        <div class="mobile-category-header" onclick="NCSApp.toggleCategory('learn')">
+                            <span>🎓 Learn</span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="mobile-category-content" id="category-learn">
+                            <button class="mobile-tab-button active" onclick="NCSApp.showTab(0); NCSApp.closeMobileMenu();">📍 Pathway Explorer</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(3); NCSApp.closeMobileMenu();">⚡ EMG/NCS Terms</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(4); NCSApp.closeMobileMenu();">📋 Quick Reference</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(2); NCSApp.closeMobileMenu();">📹 NCS Videos</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-category" data-category="practice">
+                        <div class="mobile-category-header" onclick="NCSApp.toggleCategory('practice')">
+                            <span>🧪 Practice</span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="mobile-category-content" id="category-practice">
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(1); NCSApp.closeMobileMenu();">🎯 Quiz Mode</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(5); NCSApp.closeMobileMenu();">💪 Muscle Anatomy</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(12); NCSApp.closeMobileMenu();">🎯 EMG Muscle Quiz</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-category" data-category="study">
+                        <div class="mobile-category-header" onclick="NCSApp.toggleCategory('study')">
+                            <span>📚 Study</span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="mobile-category-content" id="category-study">
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(11); NCSApp.closeMobileMenu();">📚 EMG Flashcards</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(7); NCSApp.closeMobileMenu();">📊 Clinical EMG Patterns</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(6); NCSApp.closeMobileMenu();">👁️ Blink Reflex Studies</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-category" data-category="reference">
+                        <div class="mobile-category-header" onclick="NCSApp.toggleCategory('reference')">
+                            <span>🏥 Reference</span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="mobile-category-content" id="category-reference">
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(9); NCSApp.closeMobileMenu();">🏥 Radiculopathy Clinical Guide</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(10); NCSApp.closeMobileMenu();">🧬 Brachial Plexus</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(13); NCSApp.closeMobileMenu();">🔄 Nerve Anastomoses</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showTab(8); NCSApp.closeMobileMenu();">🗂️ Nerve Injury Classifications</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
 
         <main class="content">
@@ -13887,6 +14138,110 @@
                     welcomeDiv.parentNode.removeChild(welcomeDiv);
                 }
             }, 3000);
+        };
+
+        // Mobile Navigation Functions
+        NCSApp.toggleMobileMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger-btn');
+            
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+                hamburger.classList.add('open');
+            } else {
+                menu.style.display = 'none';
+                hamburger.classList.remove('open');
+            }
+        };
+        
+        NCSApp.closeMobileMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger-btn');
+            
+            menu.style.display = 'none';
+            hamburger.classList.remove('open');
+        };
+        
+        NCSApp.toggleCategory = function(categoryName) {
+            const category = document.querySelector(`[data-category="${categoryName}"]`);
+            if (category) {
+                category.classList.toggle('expanded');
+            }
+        };
+        
+        NCSApp.updateCurrentTabName = function(tabIndex) {
+            const tabNames = {
+                0: '📍 Pathway Explorer',
+                1: '🎯 Quiz Mode', 
+                2: '📹 NCS Videos',
+                3: '⚡ EMG/NCS Terms',
+                4: '📋 Quick Reference',
+                5: '💪 Muscle Anatomy',
+                6: '👁️ Blink Reflex Studies',
+                7: '📊 Clinical EMG Patterns',
+                8: '🗂️ Nerve Injury Classifications',
+                9: '🏥 Radiculopathy Clinical Guide',
+                10: '🧬 Brachial Plexus',
+                11: '📚 EMG Flashcards',
+                12: '🎯 EMG Muscle Quiz',
+                13: '🔄 Nerve Anastomoses'
+            };
+            
+            const currentTabName = document.querySelector('.current-tab-name');
+            if (currentTabName && tabNames[tabIndex]) {
+                currentTabName.textContent = tabNames[tabIndex];
+            }
+            
+            // Update active states in mobile menu
+            document.querySelectorAll('.mobile-tab-button').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`[onclick*="showTab(${tabIndex})"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        };
+        
+        // Simple search functionality for reference materials
+        NCSApp.search = function(query) {
+            const resultsContainer = document.getElementById('search-results');
+            
+            if (!query || query.length < 2) {
+                resultsContainer.style.display = 'none';
+                return;
+            }
+            
+            const searchableContent = [
+                {title: 'EMG/NCS Terms', tab: 3, type: 'reference'},
+                {title: 'Quick Reference', tab: 4, type: 'reference'},
+                {title: 'Radiculopathy Clinical Guide', tab: 9, type: 'reference'},
+                {title: 'Brachial Plexus', tab: 10, type: 'reference'},
+                {title: 'Nerve Anastomoses', tab: 13, type: 'reference'},
+                {title: 'Nerve Injury Classifications', tab: 8, type: 'reference'},
+                {title: 'Clinical EMG Patterns', tab: 7, type: 'reference'},
+                {title: 'Blink Reflex Studies', tab: 6, type: 'reference'}
+            ];
+            
+            const matches = searchableContent.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (matches.length > 0) {
+                resultsContainer.innerHTML = matches.map(match => 
+                    `<div class="search-result-item" onclick="NCSApp.showTab(${match.tab}); NCSApp.closeMobileMenu();">
+                        ${match.title}
+                    </div>`
+                ).join('');
+                resultsContainer.style.display = 'block';
+            } else {
+                resultsContainer.innerHTML = '<div class="search-result-item">No results found</div>';
+                resultsContainer.style.display = 'block';
+            }
+        };
+        
+        // Override showTab to update mobile navigation
+        const originalShowTab = NCSApp.showTab;
+        NCSApp.showTab = function(index) {
+            originalShowTab.call(this, index);
+            this.updateCurrentTabName(index);
         };
 
         // Initialize application when DOM is ready
