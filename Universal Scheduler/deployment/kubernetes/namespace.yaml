@@ -1,0 +1,8 @@
+# Universal Medical Residency Scheduler - Kubernetes Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: medical-scheduler
+  labels:
+    name: medical-scheduler
+    app: universal-medical-scheduler

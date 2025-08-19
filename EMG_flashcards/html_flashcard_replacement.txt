@@ -1,0 +1,228 @@
+        // Complete Muscle Flashcard Database - 28 Complete Cards
+        // Extracted and cleaned from original Anki database
+        NCSApp.flashcardData = [
+            {
+                muscle: "Abductor pollicis brevis",
+                nerve: "Median nerve",
+                roots: "C8, T1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Adductor pollicis",
+                nerve: "Ulnar nerve",
+                roots: "C8, T1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Biceps brachii and Brachialis",
+                nerve: "Musculocutaneous. \"70% have dual radial n. (brachialis)\"",
+                roots: "C5, C6",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Brachioradialis",
+                nerve: "Radial",
+                roots: "C5, C6",
+                notes: "Final Position: Examiner forces the forearm into extension. The examiner judges force of BR contraction by comparing the right to the left muscle bulk and tone.",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Deltoid",
+                nerve: "Axillary",
+                roots: "C5, C6",
+                notes: "Final Position: Examiner pushes arm out of abduction with elbow flexed.",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Extensor carpi radialis",
+                nerve: "Radial",
+                roots: "C6, C7",
+                notes: "Final Position: Examiner forces wrist into flexion and ulnar deviation supporting forearm just above wrist",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Extensor digitorum, Extensor indicis, and Extensor digiti minimi",
+                nerve: "Radial (Posterior interosseous branch)",
+                roots: "C7, C8",
+                notes: "Initial Position: Patient extends proximal phalanx. Examiner forces proximal phalanx into flexion.Trunks: Middle & LowerDivisions: Posterior Cords: Posterior",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Extensor hallucis longus",
+                nerve: "Deep peroneal",
+                roots: "L5, S1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Fibularis (Peroneus) longus and Fibularis (Peroneus) brevis",
+                nerve: "Superficial peroneal",
+                roots: "L5, S1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Flexor carpi radialis",
+                nerve: "Median",
+                roots: "C6, C7",
+                notes: "Final Position: Examiner forces wrist into extension and ulnar deviation supporting forearm just above wrist with one hand",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Flexor digitorum superficialis",
+                nerve: "Median",
+                roots: "C7, C8, T1",
+                notes: "Final Position: Examiner holds all the fingers, except for the finger being tested, in firm extension (at the MP, PIP and DIP joints). Pt unable to flex the DIP joint. Examiner forces the PIP joint into extension. reliabe only on the 3rd and 4rth digits.",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Flexor hallucis longus",
+                nerve: "Tibial",
+                roots: "L5, S1, S2",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Flexor pollicis longus",
+                nerve: "Ant. interosseous of median nerve.",
+                roots: "C8, T1",
+                notes: "Final Position: Examiner holds proximal phalanx with the index and thumb of one hand and forces distal phalanx of the thumb into extension with the other hand. Patient flexes 1st distal phalanx",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Gastrocnemius and Soleus",
+                nerve: "Tibial",
+                roots: "S1, S2",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Gluteus maximus",
+                nerve: "Inferior gluteal",
+                roots: "L5, S1, S2",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Gluteus medius, Gluteus minimus, and Tensor fasciae latae",
+                nerve: "Superior gluteal",
+                roots: "L4, L5, S1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Iliacus",
+                nerve: "Femoral",
+                roots: "L2, L3",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Latissimus dorsi",
+                nerve: "Thoracodorsal",
+                roots: "C6, C7, C8",
+                notes: "Initial Position: Patient extends armMuscle Test - - Final Position: Examiner forces arm in an anterior direction.",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Opponens pollicis",
+                nerve: "Median nerve",
+                roots: "C8, T1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Pectoralis major and Pectoralis minor",
+                nerve: "Lateral pectoral; Medial pectoral",
+                roots: "C5, C6, C7, C8, T1",
+                notes: "Initial Position: Patient sitting or supine, and flexes arm.Muscle Test - - Final Position: Examiner forces the flexed arm into horizontal abduction. (pull it backwards)",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Pronator teres",
+                nerve: "Median",
+                roots: "C6, C7",
+                notes: "Final Position: Examiner grasps distal forearm at wrist and forces forearm into supination.",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Quadriceps",
+                nerve: "Femoral",
+                roots: "L2, L3, L4",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Rhomboid major and Rhomboid minor",
+                nerve: "Dorsal scapular",
+                roots: "C5",
+                notes: "Initial Position: Patient prone, lifts hand away from buttocks. (off butt toward celing)Muscle Test - - Final Position: Examiner forces arm into an anterior direction. (humerus down toward the bed)",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Serratus anterior",
+                nerve: "Long thoracic",
+                roots: "C5, C6, C7",
+                notes: "Initial Position: Patient flexes the arm and elbow. Muscle Test - - Final Position: Examiner places one hand on opposite scapula and pulls the shoulder posterior and inferior obeserve for medial winging of scapula",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Supraspinatus, Infraspinatus, and Teres minor",
+                nerve: "Suprascapular, Suprascapular, Axillary",
+                roots: "C5, C6",
+                notes: "Final Position: Examiner forces arm into internal rotation by holding the elbow at the side with one hand and pushing in on the wrist with the other.",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Tibialis posterior, S1",
+                nerve: "Tibial",
+                roots: "L5, S1",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Trapezius",
+                nerve: "Spinal accessory",
+                roots: "C3, C4",
+                notes: "Initial Position: Patient sitting, and shrugs and retracts the shoulders.Muscle Test - - Final Position: Examiner forcefully depresses the shoulders. SCI pt's can Nod!",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            },
+            {
+                muscle: "Triceps",
+                nerve: "Radial",
+                roots: "C6, C7, C8",
+                notes: "Muscle innervation flashcard",
+                category: "Muscle Anatomy",
+                type: "muscle_flashcard"
+            }
+        ];

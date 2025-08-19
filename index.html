@@ -3898,6 +3898,362 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
         }
+        
+        .action-chip.bookmarked {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: #000;
+            border-color: #ffc107;
+        }
+        
+        /* Completion badges */
+        .completion-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .completion-badge.completed {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+        
+        .completion-badge.visited {
+            background: linear-gradient(135deg, #007bff 0%, #17a2b8 100%);
+            color: white;
+        }
+        
+        .tab-progress-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .tab-progress-indicator.completed {
+            background: #28a745;
+        }
+        
+        .tab-progress-indicator.visited {
+            background: #17a2b8;
+        }
+        
+        /* Tab Description Styling */
+        .tab-description {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0 30px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-description p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+            font-size: 1.05em;
+        }
+        
+        /* Preview Modal Styles */
+        .preview-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .preview-modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 0;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .preview-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .preview-header h3 {
+            margin: 0;
+            font-size: 1.4em;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .preview-body {
+            padding: 25px;
+        }
+        
+        .preview-description {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .preview-features h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .preview-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .preview-features li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .preview-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .preview-time {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .time-badge {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .preview-actions {
+            display: flex;
+            gap: 15px;
+            padding: 0 25px 25px 25px;
+        }
+        
+        .preview-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .preview-btn.secondary {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 2px solid #dee2e6;
+        }
+        
+        .preview-btn.secondary:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .preview-btn.primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+        }
+        
+        .preview-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 155, 0.3);
+        }
+        
+        /* Related Content Suggestions */
+        .related-suggestions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 350px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--accent-color);
+            z-index: 999;
+            animation: slideInRight 0.5s ease-out;
+        }
+        
+        .suggestions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .suggestions-header h4 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+        
+        .close-suggestions {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: #999;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-suggestions:hover {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .suggestions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .suggestion-item {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .suggestion-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .suggestion-item.visited {
+            background: #e8f5e8;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .suggestion-item.visited:hover {
+            background: #28a745;
+            color: white;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .related-suggestions {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+        
+        /* Quiz Placeholder Styles */
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+        }
+        
+        .quiz-placeholder {
+            background: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-placeholder h4 {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-placeholder ul {
+            text-align: left;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        .quiz-placeholder li {
+            margin-bottom: 8px;
+        }
+        
+        .quiz-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
         /* Pulse animation for active chips */
         @keyframes pulse {
@@ -4141,6 +4497,234 @@
             font-weight: bold;
         }
         
+        /* Learning Dashboard Styles */
+        .learning-dashboard {
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .dashboard-header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        
+        .progress-overview {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .continue-section, .recent-section, .bookmarks-section {
+            margin-bottom: 30px;
+        }
+        
+        .continue-section h3, .recent-section h3, .bookmarks-section h3, .learning-paths h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .continue-card {
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            border: 2px solid #007bff;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .continue-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.2);
+        }
+        
+        .continue-icon {
+            font-size: 2.5em;
+            margin-right: 20px;
+        }
+        
+        .continue-content {
+            flex: 1;
+        }
+        
+        .continue-title {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .continue-time {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .continue-arrow {
+            font-size: 2em;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .recent-items, .bookmark-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .recent-item, .bookmark-item {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .recent-item:hover, .bookmark-item:hover {
+            background: var(--light-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .learning-paths {
+            margin-bottom: 30px;
+        }
+        
+        .path-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .path-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .path-card.beginner {
+            border-color: #28a745;
+        }
+        
+        .path-card.beginner:hover {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%);
+        }
+        
+        .path-card.intermediate {
+            border-color: #ffc107;
+        }
+        
+        .path-card.intermediate:hover {
+            background: linear-gradient(135deg, #fff3cd 0%, #fffbf0 100%);
+        }
+        
+        .path-card.advanced {
+            border-color: #dc3545;
+        }
+        
+        .path-card.advanced:hover {
+            background: linear-gradient(135deg, #f8d7da 0%, #fff5f5 100%);
+        }
+        
+        .path-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .path-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .path-content p {
+            color: #6c757d;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .path-progress {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            font-size: 0.9em;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
         /* Mobile responsive */
         @media (max-width: 768px) {
             .desktop-nav {
@@ -4153,6 +4737,33 @@
             
             .filter-chips {
                 justify-content: flex-start;
+            }
+            
+            .progress-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .path-cards {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 15px 10px;
+            }
+            
+            .stat-number {
+                font-size: 2em;
+            }
+            
+            .continue-card {
+                padding: 15px;
+            }
+            
+            .continue-icon {
+                font-size: 2em;
+                margin-right: 15px;
             }
             
             .filter-chip, .action-chip {
@@ -4671,6 +5282,7 @@
                         <span></span>
                     </button>
                     <div class="current-tab-name">📍 Pathway Explorer</div>
+                    <button id="bookmark-btn" class="action-chip" onclick="NCSApp.toggleBookmark(NCSApp.currentTab)" style="margin: 0 10px; padding: 6px 10px; font-size: 0.8em;">📌 Bookmark</button>
                     <div class="search-container">
                         <input type="text" class="search-input" placeholder="Search..." onkeyup="NCSApp.search(this.value)">
                         <div class="search-results" id="search-results"></div>
@@ -4697,9 +5309,9 @@
                             <span class="expand-icon">▼</span>
                         </div>
                         <div class="mobile-category-content" id="category-practice">
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(1); NCSApp.closeMobileMenu();">🎯 Quiz Mode</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(5); NCSApp.closeMobileMenu();">💪 Muscle Anatomy</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(12); NCSApp.closeMobileMenu();">🎯 EMG Muscle Quiz</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(1); NCSApp.closeMobileMenu();">🎯 Quiz Mode</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(5); NCSApp.closeMobileMenu();">💪 Muscle Anatomy</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(12); NCSApp.closeMobileMenu();">🎯 EMG Muscle Quiz</button>
                         </div>
                     </div>
                     
@@ -4709,9 +5321,9 @@
                             <span class="expand-icon">▼</span>
                         </div>
                         <div class="mobile-category-content" id="category-study">
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(11); NCSApp.closeMobileMenu();">📚 EMG Flashcards</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(7); NCSApp.closeMobileMenu();">📊 Clinical EMG Patterns</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(6); NCSApp.closeMobileMenu();">👁️ Blink Reflex Studies</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(11); NCSApp.closeMobileMenu();">📚 EMG Flashcards</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(7); NCSApp.closeMobileMenu();">📊 Clinical EMG Patterns</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(6); NCSApp.closeMobileMenu();">👁️ Blink Reflex Studies</button>
                         </div>
                     </div>
                     
@@ -4721,10 +5333,10 @@
                             <span class="expand-icon">▼</span>
                         </div>
                         <div class="mobile-category-content" id="category-reference">
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(9); NCSApp.closeMobileMenu();">🏥 Radiculopathy Clinical Guide</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(10); NCSApp.closeMobileMenu();">🧬 Brachial Plexus</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(13); NCSApp.closeMobileMenu();">🔄 Nerve Anastomoses</button>
-                            <button class="mobile-tab-button" onclick="NCSApp.showTab(8); NCSApp.closeMobileMenu();">🗂️ Nerve Injury Classifications</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(9); NCSApp.closeMobileMenu();">🏥 Radiculopathy Clinical Guide</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(10); NCSApp.closeMobileMenu();">🧬 Brachial Plexus</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(13); NCSApp.closeMobileMenu();">🔄 Nerve Anastomoses</button>
+                            <button class="mobile-tab-button" onclick="NCSApp.showContentPreview(8); NCSApp.closeMobileMenu();">🗂️ Nerve Injury Classifications</button>
                         </div>
                     </div>
                 </div>
@@ -4734,6 +5346,11 @@
         <main class="content">
             <!-- Tab 0: Pathway Explorer -->
             <section id="tab-0" class="tab-content active">
+                <h2>📍 Nerve Pathway Explorer</h2>
+                <div class="tab-description">
+                    <p>Master nerve anatomy through interactive pathway visualization that guides you step-by-step through complex neuroanatomical structures. This immersive learning experience helps you understand how nerves travel from their origins to their target muscles, building the foundational knowledge essential for EMG interpretation. Each pathway is presented with clinical correlations that connect anatomical knowledge to real-world EMG findings, making abstract concepts tangible and memorable.</p>
+                </div>
+                
                 <div class="nerve-selector" id="nerve-selector">
                     <h3>🧠 Choose a nerve to explore:</h3>
                     <div class="nerve-buttons">
@@ -4807,47 +5424,90 @@
             <!-- Tab 1: Quiz Mode -->
             <section id="tab-1" class="tab-content">
                 <h2>🎯 Nerve Knowledge Quiz</h2>
+                <div class="tab-description">
+                    <p>Challenge your knowledge with 8 specialized quiz modules, each containing 20 carefully crafted questions that test different aspects of EMG/NCS understanding. These quizzes are designed using spaced repetition principles to reinforce learning and identify knowledge gaps. The immediate feedback system helps you learn from mistakes in real-time, while the variety of question types (multiple choice, clinical scenarios, pattern recognition) mirrors the complexity of real EMG interpretation. Use these quizzes to assess your readiness for board exams or to maintain clinical proficiency.</p>
+                </div>
                 <div id="quiz-container" class="quiz-container">
                     <!-- Quiz Options Grid -->
-                    <div class="quiz-options-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div class="quiz-options-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0;">
                         
-                        <!-- Upper Extremity Quiz -->
-                        <div class="quiz-option-card" style="border: 2px solid #007bff; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startRegionalQuiz('upper')">
+                        <!-- Quiz 1: Upper Extremity Anatomy -->
+                        <div class="quiz-option-card" style="border: 2px solid #007bff; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(1)">
                             <div style="text-align: center;">
-                                <div style="font-size: 3em; margin-bottom: 10px;">💪</div>
-                                <h3 style="color: #007bff; margin: 10px 0;">Upper Extremity</h3>
-                                <p style="margin: 10px 0; color: #495057;">Test your knowledge of upper extremity nerve anatomy, muscle innervation, and clinical correlations.</p>
-                                <div style="background-color: #007bff; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold;">Start Quiz →</div>
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">💪</div>
+                                <h3 style="color: #007bff; margin: 10px 0;">Upper Extremity Anatomy</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Test muscle innervation, nerve roots, and peripheral nerve pathways for the upper extremity.</p>
+                                <div style="background-color: #007bff; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
                             </div>
                         </div>
                         
-                        <!-- Lower Extremity Quiz -->
-                        <div class="quiz-option-card" style="border: 2px solid #28a745; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startRegionalQuiz('lower')">
+                        <!-- Quiz 2: Lower Extremity Anatomy -->
+                        <div class="quiz-option-card" style="border: 2px solid #28a745; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(2)">
                             <div style="text-align: center;">
-                                <div style="font-size: 3em; margin-bottom: 10px;">🦵</div>
-                                <h3 style="color: #28a745; margin: 10px 0;">Lower Extremity</h3>
-                                <p style="margin: 10px 0; color: #495057;">Explore lower extremity nerve pathways, muscle groups, and clinical examination techniques.</p>
-                                <div style="background-color: #28a745; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold;">Start Quiz →</div>
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🦵</div>
+                                <h3 style="color: #28a745; margin: 10px 0;">Lower Extremity Anatomy</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Explore lower extremity nerve pathways, muscle groups, and lumbosacral anatomy.</p>
+                                <div style="background-color: #28a745; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
                             </div>
                         </div>
                         
-                        <!-- Mixed/General Quiz -->
-                        <div class="quiz-option-card" style="border: 2px solid #ffc107; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fff8e1 0%, #fffef7 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startGeneralQuiz()">
+                        <!-- Quiz 3: EMG Patterns -->
+                        <div class="quiz-option-card" style="border: 2px solid #ffc107; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fff8e1 0%, #fffef7 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(3)">
                             <div style="text-align: center;">
-                                <div style="font-size: 3em; margin-bottom: 10px;">🧠</div>
-                                <h3 style="color: #ffc107; margin: 10px 0;">Mixed/General</h3>
-                                <p style="margin: 10px 0; color: #495057;">Comprehensive quiz covering general neurophysiology, EMG principles, and clinical correlations.</p>
-                                <div style="background-color: #ffc107; color: #212529; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold;">Start Quiz →</div>
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">📊</div>
+                                <h3 style="color: #e6a300; margin: 10px 0;">EMG Patterns</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Pattern recognition for myopathic vs neurogenic changes and spontaneous activity.</p>
+                                <div style="background-color: #ffc107; color: #212529; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
                             </div>
                         </div>
-                        
-                        <!-- Cranial Nerves Quiz -->
-                        <div class="quiz-option-card" style="border: 2px solid #dc3545; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #f8d7da 0%, #fff5f5 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startCranialQuiz()">
+
+                        <!-- Quiz 4: Cranial Nerves -->
+                        <div class="quiz-option-card" style="border: 2px solid #dc3545; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #f8d7da 0%, #fff5f5 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(4)">
                             <div style="text-align: center;">
-                                <div style="font-size: 3em; margin-bottom: 10px;">👁️</div>
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">👁️</div>
                                 <h3 style="color: #dc3545; margin: 10px 0;">Cranial Nerves</h3>
-                                <p style="margin: 10px 0; color: #495057;">Focus on cranial nerve anatomy, blink reflexes, and facial nerve pathophysiology.</p>
-                                <div style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold;">Start Quiz →</div>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Facial nerve anatomy, blink reflexes, and cranial nerve pathophysiology.</p>
+                                <div style="background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz 5: Nerve Conduction Studies -->
+                        <div class="quiz-option-card" style="border: 2px solid #6f42c1; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #e8e1f7 0%, #f4f0ff 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(5)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">⚡</div>
+                                <h3 style="color: #6f42c1; margin: 10px 0;">Nerve Conduction Studies</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">NCS parameters, normal values, and interpretation of conduction abnormalities.</p>
+                                <div style="background-color: #6f42c1; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz 6: Radiculopathy -->
+                        <div class="quiz-option-card" style="border: 2px solid #fd7e14; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fee1d0 0%, #fff7f0 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(6)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🏥</div>
+                                <h3 style="color: #fd7e14; margin: 10px 0;">Radiculopathy</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Cervical and lumbosacral radiculopathy patterns and EMG findings.</p>
+                                <div style="background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz 7: Brachial Plexus -->
+                        <div class="quiz-option-card" style="border: 2px solid #20c997; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #d1f2eb 0%, #f0fff4 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(7)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🧬</div>
+                                <h3 style="color: #20c997; margin: 10px 0;">Brachial Plexus</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Complex plexus anatomy, injury patterns, and lesion localization.</p>
+                                <div style="background-color: #20c997; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz 8: Clinical Applications -->
+                        <div class="quiz-option-card" style="border: 2px solid #6c757d; border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #e8eaed 0%, #f8f9fa 100%); cursor: pointer; transition: transform 0.2s;" onclick="NCSApp.startQuiz(8)">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🔬</div>
+                                <h3 style="color: #6c757d; margin: 10px 0;">Clinical Applications</h3>
+                                <p style="margin: 10px 0; color: #495057; font-size: 0.9em;">Case-based scenarios, differential diagnosis, and clinical correlations.</p>
+                                <div style="background-color: #6c757d; color: white; padding: 8px 16px; border-radius: 5px; display: inline-block; margin-top: 10px; font-weight: bold; font-size: 0.9em;">20 Questions →</div>
                             </div>
                         </div>
                         
@@ -4878,6 +5538,9 @@
             <!-- Tab 3: EMG/NCS Terms -->
             <section id="tab-3" class="tab-content">
                 <h2>⚡ EMG/NCS Terminology</h2>
+                <div class="tab-description">
+                    <p>Build your professional vocabulary with this comprehensive glossary of EMG and nerve conduction terminology. Understanding precise medical terminology is crucial for effective communication with colleagues, accurate report writing, and professional development. Each term includes not just definitions but also clinical context, helping you understand when and how to use specific terminology. This reference serves as your quick lookup tool during clinical practice and study sessions.</p>
+                </div>
                 <div id="terms-grid">
                     <!-- Terms will be populated here -->
                 </div>
@@ -4886,6 +5549,9 @@
             <!-- Tab 4: Quick Reference -->
             <section id="tab-4" class="tab-content">
                 <h2>📋 Quick Reference Guide</h2>
+                <div class="tab-description">
+                    <p>Access essential reference tables and normal values that every EMG/NCS practitioner needs at their fingertips. This section consolidates critical information like normal nerve conduction velocities, amplitude ranges, and late response values into easily searchable tables. Whether you're interpreting studies in real-time or double-checking values during report writing, these references ensure accuracy and confidence in your clinical decisions.</p>
+                </div>
                 <div class="reference-grid" id="reference-grid">
                     <!-- Reference cards will be populated here -->
                 </div>
@@ -4894,6 +5560,9 @@
             <!-- Tab 5: Muscle Anatomy -->
             <section id="tab-5" class="tab-content">
                 <h2>💪 Muscle Anatomy Explorer</h2>
+                <div class="tab-description">
+                    <p>Master muscle anatomy through unlimited, dynamically generated questions that test your knowledge of muscle innervation, nerve roots, and peripheral nerve supply. This adaptive learning system tracks your progress and focuses on areas where you need improvement, making your study time maximally efficient. The continuous quiz format allows for both quick review sessions and extended study periods. Use the missed questions feature to create targeted review sessions that address your specific knowledge gaps. This is the perfect tool for memorizing the hundreds of muscle-nerve relationships essential for EMG interpretation.</p>
+                </div>
                 <div class="anatomy-controls">
                     <button class="anatomy-btn active" data-type="lower" onclick="NCSApp.switchAnatomy('lower')">🦵 Lower Extremity</button>
                     <button class="anatomy-btn" data-type="upper" onclick="NCSApp.switchAnatomy('upper')">💪 Upper Extremity</button>
@@ -4984,6 +5653,9 @@
             <!-- Tab 6: Blink Reflex Studies -->
             <section id="tab-6" class="tab-content">
                 <h2>👁️ Blink Reflex Studies</h2>
+                <div class="tab-description">
+                    <p>Understand the complex neuroanatomy and clinical applications of blink reflex testing. This specialized area of EMG requires detailed knowledge of cranial nerve pathways, brainstem anatomy, and reflex arcs. Learn how blink reflex studies help diagnose facial nerve disorders, brainstem lesions, and other neurological conditions. The content covers both the technical aspects of performing these studies and the clinical interpretation of results.</p>
+                </div>
                 
                 <div class="reference-grid">
                     <div class="reference-card wide">
@@ -5387,6 +6059,9 @@
             <!-- Tab 7: Clinical EMG Patterns -->
             <section id="tab-7" class="tab-content">
                 <h2>📊 Clinical EMG Patterns</h2>
+                <div class="tab-description">
+                    <p>Develop pattern recognition skills essential for accurate EMG interpretation. This section presents common and uncommon EMG findings with detailed explanations of their clinical significance. Learn to distinguish between myopathic and neurogenic patterns, understand the implications of different spontaneous activity types, and correlate EMG findings with clinical presentations. The case-based approach helps you think like an experienced electrodiagnostician.</p>
+                </div>
                 
                 <div class="reference-grid">
                     <div class="reference-card">
@@ -5987,6 +6662,9 @@
             <!-- Tab 9: Radiculopathy Clinical Guide -->
             <section id="tab-9" class="tab-content">
                 <h2>🏥 Radiculopathy Clinical Guide</h2>
+                <div class="tab-description">
+                    <p>Develop systematic approaches to radiculopathy evaluation using EMG/NCS. This comprehensive guide covers the clinical presentation, anatomical basis, and electrodiagnostic findings for cervical and lumbosacral radiculopathies. Learn which muscles to test for each nerve root, how to interpret findings, and how to differentiate radiculopathy from other conditions. The systematic approach ensures you don't miss important diagnostic clues.</p>
+                </div>
                 
                 <div class="reference-grid wide-layout">
                     <div class="reference-card wide">
@@ -6196,6 +6874,9 @@
             <!-- Tab 10: Brachial Plexus -->
             <section id="tab-10" class="tab-content">
                 <h2>🧬 Brachial Plexus</h2>
+                <div class="tab-description">
+                    <p>Navigate the complex anatomy of the brachial plexus with detailed anatomical maps and clinical correlations. Understanding plexus anatomy is crucial for localizing lesions and planning appropriate EMG studies. This section breaks down the intimidating complexity of the plexus into manageable segments, with clear explanations of how different injury patterns affect EMG findings. Learn to differentiate between preganglionic and postganglionic lesions and understand their clinical implications.</p>
+                </div>
                 
                 <div class="reference-grid">
                     <div class="reference-card wide">
@@ -6575,6 +7256,9 @@
             <!-- Tab 11: EMG Flashcards -->
             <section id="tab-11" class="tab-content">
                 <h2>🧠 Advanced EMG Study Cards</h2>
+                <div class="tab-description">
+                    <p>Reinforce your learning with 434+ interactive flashcards covering every aspect of EMG/NCS knowledge. This sophisticated spaced repetition system adapts to your learning pace, presenting cards at optimal intervals for long-term retention. Rate each card as easy, good, or difficult to customize your learning experience. The smart filtering system lets you focus on specific topics or difficulty levels, making this tool perfect for both comprehensive review and targeted study sessions. Use this for daily review to maintain and expand your EMG knowledge base.</p>
+                </div>
                 
                 <!-- Study Session Dashboard -->
                 <div class="study-dashboard">
@@ -6949,7 +7633,9 @@
                 <div class="reference-container">
                     <div class="reference-header">
                         <h2>🎯 EMG Muscle Innervation Quiz</h2>
-                        <p>Simulate EMG findings and test your nerve localization skills based on muscle denervation patterns</p>
+                        <div class="tab-description">
+                            <p>Sharpen your muscle localization skills with this advanced quiz system that presents dynamic, contextual questions about EMG findings and muscle anatomy. Unlike static quizzes, this system generates questions based on your performance and focuses on challenging areas. The regional focus options let you concentrate on upper or lower extremity muscles, perfect for preparing for specific clinical rotations or addressing knowledge gaps. Performance analytics help you track improvement over time and identify patterns in your learning.</p>
+                        </div>
                     </div>
 
                     <div id="muscle-quiz-container">
@@ -7603,6 +8289,58 @@
             } catch (error) {
                 debugLog(`❌ Tab switching failed: ${error.message}`, 'error');
                 this.showError(`Failed to switch to tab: ${error.message}`);
+            }
+        };
+
+        // Start Muscle Test (defined early to ensure availability)
+        NCSApp.startMuscleTest = function() {
+            console.log('🧪 Starting continuous muscle anatomy quiz...');
+            
+            // Check if MuscleQuiz is available
+            if (!window.MuscleQuiz || !window.MuscleQuiz.muscleDatabase) {
+                alert('Muscle database not loaded yet. Please try again in a moment.');
+                return;
+            }
+            
+            // Check if muscle test data is available
+            if (!NCSApp.muscleTestData) {
+                console.log('⚠️ Muscle test data not yet initialized, trying again...');
+                setTimeout(() => NCSApp.startMuscleTest(), 1000);
+                return;
+            }
+            
+            // Reset data for new quiz
+            NCSApp.muscleTestData.questionsAnswered = 0;
+            NCSApp.muscleTestData.correctAnswers = 0;
+            NCSApp.muscleTestData.missedQuestions = [];
+            NCSApp.muscleTestData.usedMuscles = new Set();
+            NCSApp.muscleTestData.isActive = true;
+            
+            // Show modal and setup UI
+            const modal = document.getElementById('muscle-test-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.getElementById('test-results').style.display = 'none';
+                
+                const testBody = document.querySelector('.muscle-test-body');
+                if (testBody) testBody.style.display = 'block';
+                
+                const feedback = document.getElementById('answer-feedback');
+                if (feedback) feedback.style.display = 'none';
+                
+                // Update stats display
+                if (NCSApp.updateStatsDisplay) {
+                    NCSApp.updateStatsDisplay();
+                }
+                
+                // Generate and display first question
+                if (NCSApp.generateNextQuestion) {
+                    NCSApp.generateNextQuestion();
+                } else {
+                    console.log('⚠️ generateNextQuestion function not yet available');
+                }
+            } else {
+                console.error('❌ Muscle test modal not found');
             }
         };
 
@@ -14189,11 +14927,39 @@
             
             const currentTabName = document.querySelector('.current-tab-name');
             if (currentTabName && tabNames[tabIndex]) {
-                currentTabName.textContent = tabNames[tabIndex];
+                let nameWithBadge = tabNames[tabIndex];
+                
+                // Add completion badge
+                if (this.progressData.sectionsVisited.has(tabIndex)) {
+                    nameWithBadge += '<span class="completion-badge visited">Visited</span>';
+                }
+                
+                if (this.progressData.bookmarks.has(tabIndex)) {
+                    nameWithBadge += '<span class="completion-badge" style="background: #ffc107; color: #000;">Bookmarked</span>';
+                }
+                
+                currentTabName.innerHTML = nameWithBadge;
             }
             
-            // Update active states in mobile menu
-            document.querySelectorAll('.mobile-tab-button').forEach(btn => btn.classList.remove('active'));
+            // Update active states in mobile menu and add badges
+            document.querySelectorAll('.mobile-tab-button').forEach(btn => {
+                btn.classList.remove('active');
+                // Extract tab index from onclick attribute
+                const match = btn.getAttribute('onclick').match(/showTab\((\d+)\)/);
+                if (match) {
+                    const btnTabIndex = parseInt(match[1]);
+                    let originalText = btn.textContent.replace(/\s*(Visited|Bookmarked)$/g, '');
+                    
+                    if (this.progressData.sectionsVisited.has(btnTabIndex)) {
+                        originalText += ' ✓';
+                    }
+                    if (this.progressData.bookmarks.has(btnTabIndex)) {
+                        originalText += ' 🔖';
+                    }
+                    btn.textContent = originalText;
+                }
+            });
+            
             const activeBtn = document.querySelector(`[onclick*="showTab(${tabIndex})"]`);
             if (activeBtn) {
                 activeBtn.classList.add('active');
@@ -14237,11 +15003,500 @@
             }
         };
         
-        // Override showTab to update mobile navigation
+        // Progress Tracking System
+        NCSApp.progressData = {
+            sectionsVisited: new Set(),
+            quizAttempts: 0,
+            studyStreak: 0,
+            totalStudyTime: 0,
+            lastSession: null,
+            recentlyViewed: [],
+            bookmarks: new Set(),
+            learningPaths: {
+                beginner: { completed: [], progress: 0 },
+                intermediate: { completed: [], progress: 0 },
+                advanced: { completed: [], progress: 0 }
+            }
+        };
+        
+        NCSApp.learningPathSteps = {
+            beginner: [
+                { tab: 3, name: 'EMG/NCS Terms', category: 'learn' },
+                { tab: 4, name: 'Quick Reference', category: 'learn' },
+                { tab: 1, name: 'Quiz Mode', category: 'practice' },
+                { tab: 5, name: 'Muscle Anatomy', category: 'practice' }
+            ],
+            intermediate: [
+                { tab: 5, name: 'Muscle Anatomy', category: 'practice' },
+                { tab: 7, name: 'Clinical EMG Patterns', category: 'study' },
+                { tab: 9, name: 'Radiculopathy Clinical Guide', category: 'reference' },
+                { tab: 12, name: 'EMG Muscle Quiz', category: 'practice' }
+            ],
+            advanced: [
+                { tab: 10, name: 'Brachial Plexus', category: 'reference' },
+                { tab: 6, name: 'Blink Reflex Studies', category: 'study' },
+                { tab: 13, name: 'Nerve Anastomoses', category: 'reference' },
+                { tab: 8, name: 'Nerve Injury Classifications', category: 'reference' }
+            ]
+        };
+        
+        // Initialize progress data from localStorage
+        NCSApp.loadProgress = function() {
+            try {
+                const saved = localStorage.getItem('emgProgressData');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    // Convert Sets back from arrays
+                    this.progressData.sectionsVisited = new Set(data.sectionsVisited || []);
+                    this.progressData.bookmarks = new Set(data.bookmarks || []);
+                    this.progressData.quizAttempts = data.quizAttempts || 0;
+                    this.progressData.studyStreak = data.studyStreak || 0;
+                    this.progressData.totalStudyTime = data.totalStudyTime || 0;
+                    this.progressData.lastSession = data.lastSession;
+                    this.progressData.recentlyViewed = data.recentlyViewed || [];
+                    this.progressData.learningPaths = data.learningPaths || this.progressData.learningPaths;
+                }
+                this.updateProgressDisplay();
+            } catch (error) {
+                console.log('Could not load progress data:', error);
+            }
+        };
+        
+        // Save progress data to localStorage
+        NCSApp.saveProgress = function() {
+            try {
+                const data = {
+                    ...this.progressData,
+                    sectionsVisited: Array.from(this.progressData.sectionsVisited),
+                    bookmarks: Array.from(this.progressData.bookmarks)
+                };
+                localStorage.setItem('emgProgressData', JSON.stringify(data));
+            } catch (error) {
+                console.log('Could not save progress data:', error);
+            }
+        };
+        
+        // Track section visit
+        NCSApp.trackSectionVisit = function(tabIndex) {
+            this.progressData.sectionsVisited.add(tabIndex);
+            this.addToRecentlyViewed(tabIndex);
+            this.updateProgressDisplay();
+            this.saveProgress();
+        };
+        
+        // Add to recently viewed
+        NCSApp.addToRecentlyViewed = function(tabIndex) {
+            const tabNames = {
+                0: '📍 Pathway Explorer', 1: '🎯 Quiz Mode', 2: '📹 NCS Videos',
+                3: '⚡ EMG/NCS Terms', 4: '📋 Quick Reference', 5: '💪 Muscle Anatomy',
+                6: '👁️ Blink Reflex Studies', 7: '📊 Clinical EMG Patterns',
+                8: '🗂️ Nerve Injury Classifications', 9: '🏥 Radiculopathy Clinical Guide',
+                10: '🧬 Brachial Plexus', 11: '📚 EMG Flashcards', 12: '🎯 EMG Muscle Quiz',
+                13: '🔄 Nerve Anastomoses'
+            };
+            
+            const item = {
+                tab: tabIndex,
+                name: tabNames[tabIndex],
+                timestamp: Date.now()
+            };
+            
+            // Remove if already exists
+            this.progressData.recentlyViewed = this.progressData.recentlyViewed.filter(r => r.tab !== tabIndex);
+            // Add to front
+            this.progressData.recentlyViewed.unshift(item);
+            // Keep only last 6 items
+            this.progressData.recentlyViewed = this.progressData.recentlyViewed.slice(0, 6);
+            
+            this.updateRecentlyViewed();
+        };
+        
+        // Update progress display
+        NCSApp.updateProgressDisplay = function() {
+            document.getElementById('sections-completed').textContent = this.progressData.sectionsVisited.size;
+            document.getElementById('quiz-attempts').textContent = this.progressData.quizAttempts;
+            document.getElementById('study-streak').textContent = this.progressData.studyStreak;
+            
+            const hours = Math.floor(this.progressData.totalStudyTime / 60);
+            const minutes = this.progressData.totalStudyTime % 60;
+            document.getElementById('total-time').textContent = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+            
+            this.updateLearningPathProgress();
+            this.updateContinueSection();
+            this.updateBookmarks();
+        };
+        
+        // Update learning path progress
+        NCSApp.updateLearningPathProgress = function() {
+            ['beginner', 'intermediate', 'advanced'].forEach(path => {
+                const steps = this.learningPathSteps[path];
+                const completed = steps.filter(step => this.progressData.sectionsVisited.has(step.tab)).length;
+                const progress = Math.round((completed / steps.length) * 100);
+                
+                this.progressData.learningPaths[path].progress = progress;
+                
+                const progressBar = document.getElementById(`${path}-progress`);
+                const progressText = progressBar ? progressBar.parentElement.querySelector('.progress-text') : null;
+                
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
+                if (progressText) {
+                    progressText.textContent = `${progress}% Complete`;
+                }
+            });
+        };
+        
+        // Update continue section
+        NCSApp.updateContinueSection = function() {
+            const continueSection = document.getElementById('continue-section');
+            if (this.progressData.recentlyViewed.length > 0) {
+                const recent = this.progressData.recentlyViewed[0];
+                document.getElementById('last-section-title').textContent = recent.name;
+                
+                const timeAgo = this.getTimeAgo(recent.timestamp);
+                document.getElementById('last-section-time').textContent = timeAgo;
+                
+                continueSection.style.display = 'block';
+            } else {
+                continueSection.style.display = 'none';
+            }
+        };
+        
+        // Update recently viewed
+        NCSApp.updateRecentlyViewed = function() {
+            const recentSection = document.getElementById('recent-section');
+            const recentItems = document.getElementById('recent-items');
+            
+            if (this.progressData.recentlyViewed.length > 1) {
+                recentItems.innerHTML = this.progressData.recentlyViewed.slice(1).map(item => 
+                    `<div class="recent-item" onclick="NCSApp.showTab(${item.tab})">
+                        <div style="font-weight: bold; margin-bottom: 5px;">${item.name}</div>
+                        <div style="font-size: 0.8em; color: #6c757d;">${this.getTimeAgo(item.timestamp)}</div>
+                    </div>`
+                ).join('');
+                recentSection.style.display = 'block';
+            } else {
+                recentSection.style.display = 'none';
+            }
+        };
+        
+        // Bookmark functionality
+        NCSApp.toggleBookmark = function(tabIndex) {
+            const tabNames = {
+                0: '🎓 Learning Dashboard', 1: '📍 Pathway Explorer', 2: '🎯 Quiz Mode',
+                3: '📹 NCS Videos', 4: '⚡ EMG/NCS Terms', 5: '📋 Quick Reference',
+                6: '💪 Muscle Anatomy', 7: '👁️ Blink Reflex Studies', 
+                8: '📊 Clinical EMG Patterns', 9: '🗂️ Nerve Injury Classifications',
+                10: '🏥 Radiculopathy Clinical Guide', 11: '🧬 Brachial Plexus',
+                12: '📚 EMG Flashcards', 13: '🎯 EMG Muscle Quiz', 14: '🔄 Nerve Anastomoses'
+            };
+            
+            if (this.progressData.bookmarks.has(tabIndex)) {
+                this.progressData.bookmarks.delete(tabIndex);
+            } else {
+                this.progressData.bookmarks.add(tabIndex);
+            }
+            
+            this.updateBookmarks();
+            this.updateBookmarkButton(tabIndex);
+            this.saveProgress();
+        };
+        
+        // Update bookmarks display
+        NCSApp.updateBookmarks = function() {
+            const bookmarksSection = document.getElementById('bookmarks-section');
+            const bookmarkItems = document.getElementById('bookmark-items');
+            
+            const tabNames = {
+                0: '🎓 Learning Dashboard', 1: '📍 Pathway Explorer', 2: '🎯 Quiz Mode',
+                3: '📹 NCS Videos', 4: '⚡ EMG/NCS Terms', 5: '📋 Quick Reference',
+                6: '💪 Muscle Anatomy', 7: '👁️ Blink Reflex Studies', 
+                8: '📊 Clinical EMG Patterns', 9: '🗂️ Nerve Injury Classifications',
+                10: '🏥 Radiculopathy Clinical Guide', 11: '🧬 Brachial Plexus',
+                12: '📚 EMG Flashcards', 13: '🎯 EMG Muscle Quiz', 14: '🔄 Nerve Anastomoses'
+            };
+            
+            if (this.progressData.bookmarks.size > 0) {
+                bookmarkItems.innerHTML = Array.from(this.progressData.bookmarks).map(tabIndex => 
+                    `<div class="bookmark-item" onclick="NCSApp.showTab(${tabIndex})">
+                        <div style="font-weight: bold; margin-bottom: 5px;">${tabNames[tabIndex]}</div>
+                        <div style="font-size: 0.8em; color: #6c757d;">
+                            <span onclick="event.stopPropagation(); NCSApp.toggleBookmark(${tabIndex})" style="cursor: pointer; color: #dc3545;">Remove ×</span>
+                        </div>
+                    </div>`
+                ).join('');
+                bookmarksSection.style.display = 'block';
+            } else {
+                bookmarksSection.style.display = 'none';
+            }
+        };
+        
+        // Update bookmark button in current tab
+        NCSApp.updateBookmarkButton = function(tabIndex) {
+            const bookmarkBtn = document.getElementById('bookmark-btn');
+            if (bookmarkBtn) {
+                const isBookmarked = this.progressData.bookmarks.has(tabIndex);
+                bookmarkBtn.innerHTML = isBookmarked ? '🔖 Bookmarked' : '📌 Bookmark';
+                bookmarkBtn.className = `action-chip ${isBookmarked ? 'bookmarked' : ''}`;
+            }
+        };
+        
+        // Get time ago string
+        NCSApp.getTimeAgo = function(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+            
+            if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+            if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            return 'Just now';
+        };
+        
+        // Continue last section
+        NCSApp.continueLastSection = function() {
+            if (this.progressData.recentlyViewed.length > 0) {
+                const recent = this.progressData.recentlyViewed[0];
+                this.showTab(recent.tab);
+            }
+        };
+        
+        // Start learning path
+        NCSApp.startLearningPath = function(pathType) {
+            const steps = this.learningPathSteps[pathType];
+            const nextStep = steps.find(step => !this.progressData.sectionsVisited.has(step.tab));
+            
+            if (nextStep) {
+                this.showTab(nextStep.tab);
+                // Show learning path guidance
+                this.showLearningPathGuidance(pathType, nextStep);
+            } else {
+                alert(`🎉 Congratulations! You've completed the ${pathType} learning path!`);
+            }
+        };
+        
+        // Show learning path guidance
+        NCSApp.showLearningPathGuidance = function(pathType, currentStep) {
+            // This could be enhanced with a modal or notification
+            console.log(`Learning Path: ${pathType} - Current Step: ${currentStep.name}`);
+        };
+        
+        // Content previews for each section
+        NCSApp.sectionPreviews = {
+            0: {
+                title: '📍 Pathway Explorer',
+                description: 'Master nerve anatomy through interactive pathway visualization that guides you step-by-step through complex neuroanatomical structures. This immersive learning experience helps you understand how nerves travel from their origins to their target muscles, building the foundational knowledge essential for EMG interpretation. Each pathway is presented with clinical correlations that connect anatomical knowledge to real-world EMG findings, making abstract concepts tangible and memorable.',
+                features: ['Visual nerve pathways', 'Clinical correlations', 'Interactive progression', 'Step-by-step anatomy'],
+                timeEstimate: '10-15 minutes per nerve'
+            },
+            1: {
+                title: '🎯 Quiz Mode',
+                description: 'Challenge your knowledge with 8 specialized quiz modules, each containing 20 carefully crafted questions that test different aspects of EMG/NCS understanding. These quizzes are designed using spaced repetition principles to reinforce learning and identify knowledge gaps. The immediate feedback system helps you learn from mistakes in real-time, while the variety of question types (multiple choice, clinical scenarios, pattern recognition) mirrors the complexity of real EMG interpretation. Use these quizzes to assess your readiness for board exams or to maintain clinical proficiency.',
+                features: ['8 specialized quizzes', '20 questions each', 'Immediate feedback', 'Spaced repetition learning'],
+                timeEstimate: '5-10 minutes per quiz'
+            },
+            2: {
+                title: '📹 NCS Videos',
+                description: 'Learn from expert-curated educational videos that demonstrate proper EMG/NCS techniques and interpretation methods. This visual learning approach complements textbook knowledge by showing you exactly how procedures are performed and how findings are interpreted in clinical practice. The video library covers everything from basic electrode placement to advanced interpretation techniques, making it an invaluable resource for both beginners and experienced practitioners seeking to refine their skills.',
+                features: ['Expert technique demonstrations', 'Clinical case studies', 'Interpretation guidance', 'Visual learning'],
+                timeEstimate: '15-30 minutes'
+            },
+            3: {
+                title: '⚡ EMG/NCS Terms',
+                description: 'Build your professional vocabulary with this comprehensive glossary of EMG and nerve conduction terminology. Understanding precise medical terminology is crucial for effective communication with colleagues, accurate report writing, and professional development. Each term includes not just definitions but also clinical context, helping you understand when and how to use specific terminology. This reference serves as your quick lookup tool during clinical practice and study sessions.',
+                features: ['Professional terminology', 'Clinical context', 'Quick reference lookup', 'Report writing aid'],
+                timeEstimate: '20-30 minutes'
+            },
+            4: {
+                title: '📋 Quick Reference',
+                description: 'Access essential reference tables and normal values that every EMG/NCS practitioner needs at their fingertips. This section consolidates critical information like normal nerve conduction velocities, amplitude ranges, and late response values into easily searchable tables. Whether you\'re interpreting studies in real-time or double-checking values during report writing, these references ensure accuracy and confidence in your clinical decisions.',
+                features: ['Normal value tables', 'Late response data', 'Clinical reference charts', 'Quick lookup system'],
+                timeEstimate: '5-15 minutes'
+            },
+            5: {
+                title: '💪 Muscle Anatomy',
+                description: 'Master muscle anatomy through unlimited, dynamically generated questions that test your knowledge of muscle innervation, nerve roots, and peripheral nerve supply. This adaptive learning system tracks your progress and focuses on areas where you need improvement, making your study time maximally efficient. The continuous quiz format allows for both quick review sessions and extended study periods. Use the missed questions feature to create targeted review sessions that address your specific knowledge gaps. This is the perfect tool for memorizing the hundreds of muscle-nerve relationships essential for EMG interpretation.',
+                features: ['Unlimited adaptive questions', 'Progress tracking', 'Missed questions review', 'Targeted learning'],
+                timeEstimate: '15-45 minutes'
+            },
+            6: {
+                title: '👁️ Blink Reflex Studies',
+                description: 'Understand the complex neuroanatomy and clinical applications of blink reflex testing. This specialized area of EMG requires detailed knowledge of cranial nerve pathways, brainstem anatomy, and reflex arcs. Learn how blink reflex studies help diagnose facial nerve disorders, brainstem lesions, and other neurological conditions. The content covers both the technical aspects of performing these studies and the clinical interpretation of results.',
+                features: ['Cranial nerve pathways', 'Brainstem anatomy', 'Clinical interpretation', 'Diagnostic applications'],
+                timeEstimate: '10-20 minutes'
+            },
+            7: {
+                title: '📊 Clinical EMG Patterns',
+                description: 'Develop pattern recognition skills essential for accurate EMG interpretation. This section presents common and uncommon EMG findings with detailed explanations of their clinical significance. Learn to distinguish between myopathic and neurogenic patterns, understand the implications of different spontaneous activity types, and correlate EMG findings with clinical presentations. The case-based approach helps you think like an experienced electrodiagnostician.',
+                features: ['Pattern recognition training', 'Clinical correlations', 'Case-based learning', 'Diagnostic reasoning'],
+                timeEstimate: '20-30 minutes'
+            },
+            8: {
+                title: '🗂️ Nerve Injury Classifications',
+                description: 'Master the Sunderland and Seddon classification systems that form the foundation of peripheral nerve injury understanding. These classification systems are essential for communicating with surgeons, understanding prognosis, and making treatment recommendations. Learn how EMG/NCS findings correlate with different degrees of nerve injury and how this information guides clinical decision-making and patient counseling.',
+                features: ['Sunderland classification', 'Seddon classification', 'Prognostic implications', 'Clinical decision-making'],
+                timeEstimate: '15-25 minutes'
+            },
+            9: {
+                title: '🏥 Radiculopathy Clinical Guide',
+                description: 'Develop systematic approaches to radiculopathy evaluation using EMG/NCS. This comprehensive guide covers the clinical presentation, anatomical basis, and electrodiagnostic findings for cervical and lumbosacral radiculopathies. Learn which muscles to test for each nerve root, how to interpret findings, and how to differentiate radiculopathy from other conditions. The systematic approach ensures you don\'t miss important diagnostic clues.',
+                features: ['Systematic evaluation approach', 'Root-specific muscle testing', 'Differential diagnosis', 'Clinical protocols'],
+                timeEstimate: '20-30 minutes'
+            },
+            10: {
+                title: '🧬 Brachial Plexus',
+                description: 'Navigate the complex anatomy of the brachial plexus with detailed anatomical maps and clinical correlations. Understanding plexus anatomy is crucial for localizing lesions and planning appropriate EMG studies. This section breaks down the intimidating complexity of the plexus into manageable segments, with clear explanations of how different injury patterns affect EMG findings. Learn to differentiate between preganglionic and postganglionic lesions and understand their clinical implications.',
+                features: ['Detailed anatomical maps', 'Lesion localization', 'Injury pattern recognition', 'Clinical correlations'],
+                timeEstimate: '25-35 minutes'
+            },
+            11: {
+                title: '📚 EMG Flashcards',
+                description: 'Reinforce your learning with 434+ interactive flashcards covering every aspect of EMG/NCS knowledge. This sophisticated spaced repetition system adapts to your learning pace, presenting cards at optimal intervals for long-term retention. Rate each card as easy, good, or difficult to customize your learning experience. The smart filtering system lets you focus on specific topics or difficulty levels, making this tool perfect for both comprehensive review and targeted study sessions. Use this for daily review to maintain and expand your EMG knowledge base.',
+                features: ['Spaced repetition system', 'Adaptive learning', 'Smart filtering', 'Progress tracking'],
+                timeEstimate: '15-60 minutes'
+            },
+            12: {
+                title: '🎯 EMG Muscle Quiz',
+                description: 'Sharpen your muscle localization skills with this advanced quiz system that presents dynamic, contextual questions about EMG findings and muscle anatomy. Unlike static quizzes, this system generates questions based on your performance and focuses on challenging areas. The regional focus options let you concentrate on upper or lower extremity muscles, perfect for preparing for specific clinical rotations or addressing knowledge gaps. Performance analytics help you track improvement over time and identify patterns in your learning.',
+                features: ['Dynamic question generation', 'Regional specialization', 'Performance analytics', 'Adaptive difficulty'],
+                timeEstimate: '10-30 minutes'
+            },
+            13: {
+                title: '🔄 Nerve Anastomoses',
+                description: 'Explore the fascinating world of nerve anastomoses and anatomical variations that can significantly impact EMG interpretation. Understanding these connections is crucial for explaining unexpected findings and avoiding diagnostic errors. Learn about common variants like Martin-Gruber anastomosis, Riche-Cannieu anastomosis, and others that can alter standard EMG patterns. This knowledge is essential for advanced EMG interpretation and helps explain cases that don\'t fit typical patterns.',
+                features: ['Anatomical variations', 'Clinical significance', 'Diagnostic implications', 'Advanced interpretation'],
+                timeEstimate: '15-25 minutes'
+            }
+        };
+        
+        // Show content preview modal
+        NCSApp.showContentPreview = function(tabIndex) {
+            const preview = this.sectionPreviews[tabIndex];
+            if (!preview) return;
+            
+            const modal = document.createElement('div');
+            modal.className = 'preview-modal';
+            modal.innerHTML = `
+                <div class="preview-modal-content">
+                    <div class="preview-header">
+                        <h3>${preview.title}</h3>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="close-btn">×</button>
+                    </div>
+                    <div class="preview-body">
+                        <p class="preview-description">${preview.description}</p>
+                        <div class="preview-features">
+                            <h4>What you'll learn:</h4>
+                            <ul>
+                                ${preview.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="preview-time">
+                            <span class="time-badge">⏱️ ${preview.timeEstimate}</span>
+                        </div>
+                    </div>
+                    <div class="preview-actions">
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="preview-btn secondary">Cancel</button>
+                        <button onclick="NCSApp.showTab(${tabIndex}); this.parentElement.parentElement.parentElement.remove();" class="preview-btn primary">Start Learning</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        };
+        
+        // Related content suggestions
+        NCSApp.relatedContent = {
+            0: [3, 4, 6], // Pathway Explorer -> Terms, Reference, Blink Reflex
+            1: [5, 12, 11], // Quiz Mode -> Muscle Anatomy, EMG Quiz, Flashcards
+            2: [1, 11, 7], // Videos -> Quiz, Flashcards, Clinical Patterns
+            3: [4, 7, 8], // Terms -> Reference, Clinical Patterns, Classifications
+            4: [3, 6, 9], // Reference -> Terms, Blink Reflex, Radiculopathy
+            5: [1, 12, 9], // Muscle Anatomy -> Quiz, EMG Quiz, Radiculopathy
+            6: [0, 4, 7], // Blink Reflex -> Pathway, Reference, Clinical Patterns
+            7: [3, 8, 9], // Clinical Patterns -> Terms, Classifications, Radiculopathy
+            8: [7, 9, 10], // Classifications -> Clinical Patterns, Radiculopathy, Plexus
+            9: [5, 8, 10], // Radiculopathy -> Muscle Anatomy, Classifications, Plexus
+            10: [9, 8, 13], // Plexus -> Radiculopathy, Classifications, Anastomoses
+            11: [1, 7, 12], // Flashcards -> Quiz, Clinical Patterns, EMG Quiz
+            12: [5, 1, 11], // EMG Quiz -> Muscle Anatomy, Quiz, Flashcards
+            13: [10, 0, 4] // Anastomoses -> Plexus, Pathway, Reference
+        };
+        
+        // Show related content suggestions
+        NCSApp.showRelatedContent = function(currentTab) {
+            const related = this.relatedContent[currentTab] || [];
+            if (related.length === 0) return;
+            
+            const tabNames = {
+                0: '📍 Pathway Explorer', 1: '🎯 Quiz Mode', 2: '📹 NCS Videos',
+                3: '⚡ EMG/NCS Terms', 4: '📋 Quick Reference', 5: '💪 Muscle Anatomy',
+                6: '👁️ Blink Reflex Studies', 7: '📊 Clinical EMG Patterns',
+                8: '🗂️ Nerve Injury Classifications', 9: '🏥 Radiculopathy Clinical Guide',
+                10: '🧬 Brachial Plexus', 11: '📚 EMG Flashcards', 12: '🎯 EMG Muscle Quiz',
+                13: '🔄 Nerve Anastomoses'
+            };
+            
+            const suggestions = related.map(tabIndex => ({
+                tab: tabIndex,
+                name: tabNames[tabIndex],
+                visited: this.progressData.sectionsVisited.has(tabIndex)
+            }));
+            
+            // Create suggestions UI
+            const existingSuggestions = document.getElementById('related-suggestions');
+            if (existingSuggestions) {
+                existingSuggestions.remove();
+            }
+            
+            const suggestionsDiv = document.createElement('div');
+            suggestionsDiv.id = 'related-suggestions';
+            suggestionsDiv.className = 'related-suggestions';
+            suggestionsDiv.innerHTML = `
+                <div class="suggestions-header">
+                    <h4>🔗 Related Content</h4>
+                    <button onclick="this.parentElement.parentElement.style.display='none'" class="close-suggestions">×</button>
+                </div>
+                <p>You might also be interested in:</p>
+                <div class="suggestions-list">
+                    ${suggestions.map(item => `
+                        <button class="suggestion-item ${item.visited ? 'visited' : ''}" onclick="NCSApp.showContentPreview(${item.tab})">
+                            ${item.name} ${item.visited ? '✓' : ''}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            
+            document.body.appendChild(suggestionsDiv);
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                if (suggestionsDiv.parentElement) {
+                    suggestionsDiv.style.display = 'none';
+                }
+            }, 10000);
+        };
+        
+        // Override showTab to track progress
         const originalShowTab = NCSApp.showTab;
         NCSApp.showTab = function(index) {
             originalShowTab.call(this, index);
             this.updateCurrentTabName(index);
+            this.trackSectionVisit(index);
+            this.updateBookmarkButton(index);
+            
+            // Initialize FlashcardEngine when EMG Flashcards tab (11) is shown
+            if (index === 11) {
+                setTimeout(() => {
+                    if (window.FlashcardEngine) {
+                        FlashcardEngine.init();
+                    }
+                }, 100);
+            }
+            
+            // Related content suggestions removed per user request
         };
 
         // Initialize application when DOM is ready
@@ -14249,6 +15504,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 try {
                     NCSApp.init();
+                    NCSApp.loadProgress();
                 } catch (error) {
                     console.error('Failed to initialize NCS App:', error);
                     document.body.innerHTML = `
@@ -21375,35 +22631,58 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             questionTypes: ['nerve', 'roots', 'peripheralNerve']
         };
 
-        // Start Muscle Test
-        NCSApp.startMuscleTest = function() {
-            console.log('🧪 Starting continuous muscle anatomy quiz...');
+        // Start specific quiz module (1-8)
+        NCSApp.startQuiz = function(quizNumber) {
+            const quizTitles = {
+                1: 'Upper Extremity Anatomy',
+                2: 'Lower Extremity Anatomy', 
+                3: 'EMG Patterns',
+                4: 'Cranial Nerves',
+                5: 'Nerve Conduction Studies',
+                6: 'Radiculopathy',
+                7: 'Brachial Plexus',
+                8: 'Clinical Applications'
+            };
             
-            // Check if MuscleQuiz is available
-            if (!window.MuscleQuiz || !window.MuscleQuiz.muscleDatabase) {
-                alert('Muscle database not loaded yet. Please try again in a moment.');
-                return;
-            }
+            const quizTitle = quizTitles[quizNumber] || 'Quiz';
             
-            // Reset data for new quiz
-            NCSApp.muscleTestData.questionsAnswered = 0;
-            NCSApp.muscleTestData.correctAnswers = 0;
-            NCSApp.muscleTestData.missedQuestions = [];
-            NCSApp.muscleTestData.usedMuscles = new Set();
-            NCSApp.muscleTestData.isActive = true;
+            // Hide quiz selection and show progress area
+            document.querySelector('.quiz-options-grid').style.display = 'none';
+            const progressArea = document.getElementById('quiz-progress-area');
+            progressArea.style.display = 'block';
             
-            // Show modal and setup UI
-            document.getElementById('muscle-test-modal').style.display = 'flex';
-            document.getElementById('test-results').style.display = 'none';
-            document.querySelector('.muscle-test-body').style.display = 'block';
-            document.getElementById('answer-feedback').style.display = 'none';
-            
-            // Update stats display
-            NCSApp.updateStatsDisplay();
-            
-            // Generate and display first question
-            NCSApp.generateNextQuestion();
+            // Create quiz interface
+            progressArea.innerHTML = `
+                <div class="quiz-header">
+                    <h3>🎯 ${quizTitle} Quiz</h3>
+                    <p>20 carefully crafted questions to test your knowledge</p>
+                </div>
+                <div class="quiz-content">
+                    <div class="quiz-placeholder">
+                        <h4>🚧 Quiz Module Coming Soon</h4>
+                        <p>This specialized quiz module is currently being developed with expert-curated questions covering ${quizTitle.toLowerCase()}.</p>
+                        <p>In the meantime, try our other available quiz tools:</p>
+                        <ul>
+                            <li>💪 <strong>Muscle Anatomy Explorer</strong> - Unlimited muscle testing</li>
+                            <li>🧠 <strong>EMG Flashcards</strong> - 434+ interactive study cards</li>
+                            <li>🎯 <strong>EMG Muscle Quiz</strong> - Advanced muscle localization</li>
+                        </ul>
+                    </div>
+                    <div class="quiz-actions">
+                        <button onclick="NCSApp.backToQuizSelection()" class="action-chip">← Back to Quiz Selection</button>
+                        <button onclick="NCSApp.showTab(5)" class="action-chip">Try Muscle Anatomy Quiz</button>
+                    </div>
+                </div>
+            `;
         };
+        
+        // Return to quiz selection
+        NCSApp.backToQuizSelection = function() {
+            document.querySelector('.quiz-options-grid').style.display = 'grid';
+            document.getElementById('quiz-progress-area').style.display = 'none';
+        };
+
+        // startMuscleTest function is now defined earlier in the file
 
         // Generate Test Questions
         NCSApp.generateTestQuestions = function(count) {
@@ -21534,6 +22813,16 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             document.getElementById('current-accuracy').textContent = `Accuracy: ${accuracy}%`;
         };
 
+        // Shuffle array utility function
+        NCSApp.shuffleArray = function(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        };
+
         // Generate nerve options for multiple choice
         NCSApp.generateNerveOptions = function(correctNerve) {
             if (!MuscleQuiz || !MuscleQuiz.muscleDatabase) {
@@ -21550,7 +22839,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 }
             }
             
-            return MuscleQuiz?.shuffleArray ? MuscleQuiz.shuffleArray(options) : options;
+            return window.MuscleQuiz?.shuffleArray ? window.MuscleQuiz.shuffleArray(options) : NCSApp.shuffleArray(options);
         };
 
         // Generate root options for multiple choice
@@ -21578,7 +22867,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 }
             }
             
-            return MuscleQuiz?.shuffleArray ? MuscleQuiz.shuffleArray(options) : options;
+            return window.MuscleQuiz?.shuffleArray ? window.MuscleQuiz.shuffleArray(options) : NCSApp.shuffleArray(options);
         };
 
         // Generate peripheral nerve options for multiple choice
@@ -21597,7 +22886,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
                 }
             }
             
-            return MuscleQuiz?.shuffleArray ? MuscleQuiz.shuffleArray(options) : options;
+            return window.MuscleQuiz?.shuffleArray ? window.MuscleQuiz.shuffleArray(options) : NCSApp.shuffleArray(options);
         };
 
         // Display current question
@@ -22808,6 +24097,9 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             }
         };
 
+        // Export FlashcardEngine to window for global access
+        window.FlashcardEngine = FlashcardEngine;
+
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Only initialize if we're on the flashcard tab
@@ -22816,16 +24108,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             }
         });
 
-        // Also initialize when tab 11 is shown
-        const originalShowTab = NCSApp.showTab;
-        NCSApp.showTab = function(tabIndex) {
-            originalShowTab.call(this, tabIndex);
-            if (tabIndex === 11) {
-                setTimeout(() => {
-                    FlashcardEngine.init();
-                }, 100);
-            }
-        };
+        // Tab 11 initialization is now handled in the main showTab override
 
         console.log('🧠 Modern FlashcardEngine loaded successfully!');
 
@@ -22934,16 +24217,7 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             }
         };
 
-        // Initialize FlashcardEngine when EMG Flashcards tab is shown
-        const originalShowTabForFlashcards = NCSApp.showTab;
-        NCSApp.showTab = function(tabIndex) {
-            originalShowTabForFlashcards.call(this, tabIndex);
-            if (tabIndex === 11) {
-                setTimeout(() => {
-                    FlashcardEngine.init();
-                }, 100);
-            }
-        };
+        // FlashcardEngine initialization is handled in the main showTab override
     </script>
 </body>
 </html>

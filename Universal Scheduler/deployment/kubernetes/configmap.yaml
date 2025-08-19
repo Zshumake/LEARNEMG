@@ -1,0 +1,30 @@
+# Universal Medical Residency Scheduler - ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scheduler-config
+  namespace: medical-scheduler
+data:
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  LOG_FORMAT: "json"
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  API_WORKERS: "4"
+  CORS_ORIGINS: "https://scheduler.yourdomain.com"
+  MAX_SCHEDULING_ITERATIONS: "10000"
+  SCHEDULING_TIMEOUT_MINUTES: "5"
+  ENABLE_SOFT_RULES: "true"
+  RATE_LIMIT_REQUESTS: "100"
+  RATE_LIMIT_WINDOW: "60"
+  UPLOAD_MAX_SIZE: "10485760"
+  ALLOWED_FILE_TYPES: ".csv,.xlsx,.json"
+  PASSWORD_MIN_LENGTH: "8"
+  PASSWORD_REQUIRE_UPPERCASE: "true" 
+  PASSWORD_REQUIRE_LOWERCASE: "true"
+  PASSWORD_REQUIRE_NUMBERS: "true"
+  SESSION_EXPIRE_HOURS: "24"
+  MAX_CONCURRENT_SESSIONS: "5"
+  ENABLE_METRICS: "true"
+  METRICS_PORT: "9090"
+  HEALTH_CHECK_INTERVAL: "30"

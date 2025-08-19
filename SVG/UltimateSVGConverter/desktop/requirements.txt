@@ -1,0 +1,28 @@
+# Ultimate SVG Converter - Desktop Requirements
+# Core image processing
+opencv-python>=4.8.0
+pillow>=10.0.0
+pillow-heif>=0.13.0  # HEIC/HEIF support for iPhone images
+numpy>=1.24.0
+
+# SVG generation
+svgwrite>=1.4.0
+
+# GUI
+tkinterdnd2>=0.3.0  # Optional - for drag and drop support
+
+# AI features (optional but recommended)
+rembg>=2.0.0  # AI background removal - requires significant download
+
+# Additional dependencies for rembg (will be auto-installed)
+# torch>=1.11.0
+# torchvision>=0.12.0
+# onnxruntime>=1.14.0
+
+# Logging and utilities
+pathlib2>=2.3.7  # For older Python versions if needed
+
+# Development and testing (optional)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=4.0.0

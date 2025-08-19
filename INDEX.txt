@@ -1,0 +1,2988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM&R Call Protocols</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+            padding-top: 60px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .accessibility-controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .control-button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .control-button.active {
+            background: rgba(255,255,255,0.4);
+            font-weight: 600;
+        }
+
+        .admin-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .admin-button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3000;
+            display: none;
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #667eea;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Status Messages */
+        .status-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 2000;
+            display: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        .status-message.success {
+            background: #48bb78;
+            display: block;
+        }
+
+        .status-message.error {
+            background: #f56565;
+            display: block;
+        }
+
+        .status-message.info {
+            background: #4299e1;
+            display: block;
+        }
+
+        /* Reminder Alert Styles */
+        .reminder-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fed7d7;
+            border: 2px solid #f56565;
+            border-radius: 8px;
+            padding: 15px 20px;
+            color: #c53030;
+            font-weight: 600;
+            z-index: 2000;
+            display: none;
+            box-shadow: 0 8px 32px rgba(245, 101, 101, 0.3);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+        }
+
+        .reminder-alert.active {
+            display: block;
+        }
+
+        .reminder-alert button {
+            background: #c53030;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .emergency-banner {
+            background: #fed7d7;
+            border: 1px solid #fc8181;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            color: #c53030;
+            font-weight: 500;
+        }
+
+        .search-section {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .light-mode .search-section {
+            background: white;
+            color: #333;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #4a5568;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+            background: #4a5568;
+            color: #e2e8f0;
+        }
+
+        .light-mode .search-box {
+            background: white;
+            color: #333;
+            border-color: #e1e5e9;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .quick-access {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-access-chip {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-access-chip:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .light-mode .category-card {
+            background: white;
+            color: #333;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .light-mode .category-title {
+            color: #2d3748;
+        }
+
+        .category-count {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .category-description {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .protocols-section {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .light-mode .protocols-section {
+            background: white;
+            color: #333;
+        }
+
+        .protocols-section.active {
+            display: block;
+        }
+
+        .back-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .back-button:hover {
+            background: #5a67d8;
+        }
+
+        .protocol-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .protocol-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .protocol-header {
+            background: #4a5568;
+            border-bottom-color: #2d3748;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2d3748;
+        }
+
+        .light-mode .protocol-header {
+            background: #f7fafc;
+            border-bottom-color: #e2e8f0;
+        }
+
+        .protocol-title {
+            font-weight: 600;
+            color: #e2e8f0;
+            flex: 1;
+        }
+
+        .light-mode .protocol-title {
+            color: #2d3748;
+        }
+
+        .expand-icon {
+            color: #667eea;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .protocol-content {
+            padding: 20px;
+            display: none;
+            background: #2d3748;
+        }
+
+        .light-mode .protocol-content {
+            background: white;
+        }
+
+        .protocol-content.active {
+            display: block;
+        }
+
+        .protocol-steps {
+            list-style: none;
+        }
+
+        .protocol-steps li {
+            background: #4a5568;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            font-size: 0.95rem;
+        }
+
+        .light-mode .protocol-steps li {
+            background: #f0f4f8;
+            color: #333;
+        }
+
+        /* Fixed Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 500;
+        }
+
+        .action-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-button {
+            background: #48bb78;
+        }
+
+        .feedback-button {
+            background: #f56565;
+        }
+
+        .reminder-button {
+            background: #ed8936;
+        }
+
+        .action-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+
+        .light-mode .modal {
+            background: white;
+            color: #333;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .close-button {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .light-mode .form-label {
+            color: #2d3748;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4a5568;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #4a5568;
+            color: #e2e8f0;
+        }
+
+        .light-mode .form-input, .light-mode .form-select, .light-mode .form-textarea {
+            background: white;
+            color: #333;
+            border-color: #e2e8f0;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+
+        .btn-primary:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .btn-danger {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .light-mode .tab {
+            color: #333;
+        }
+
+        .tab.active {
+            border-bottom-color: #667eea;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .reminder-form {
+            background: #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .light-mode .reminder-form {
+            background: #f7fafc;
+        }
+
+        .reminder-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .reminder-item {
+            background: #4a5568;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .light-mode .reminder-item {
+            background: white;
+            border-color: #e2e8f0;
+        }
+
+        .reminder-item.urgent {
+            border-color: #f56565;
+            background: #2d3748;
+        }
+
+        .light-mode .reminder-item.urgent {
+            background: #fef5f5;
+        }
+
+        .reminder-time {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-bottom: 5px;
+        }
+
+        .reminder-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .reminder-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .reminder-actions button {
+            padding: 5px 10px;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            background: #4a5568;
+            color: #e2e8f0;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .light-mode .reminder-actions button {
+            background: white;
+            color: #333;
+            border-color: #e2e8f0;
+        }
+
+        .contact-search-container {
+            margin-bottom: 20px;
+        }
+
+        .contact-section {
+            margin-bottom: 25px;
+        }
+
+        .contact-content {
+            /* Default styling for contact content */
+        }
+
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Emergency contact items (always black text) */
+        .contact-item.emergency {
+            color: #2d3748 !important;
+        }
+
+        .contact-item.emergency strong,
+        .contact-item.emergency span,
+        .contact-item.emergency a {
+            color: #2d3748 !important;
+        }
+
+        /* Normal contact items (responsive to theme) */
+        .contact-item:not(.emergency) {
+            color: #e2e8f0;
+        }
+
+        .light-mode .contact-item:not(.emergency) {
+            color: #2d3748;
+        }
+
+        .contact-item:not(.emergency) strong,
+        .contact-item:not(.emergency) span {
+            color: inherit;
+        }
+
+        .contact-item:not(.emergency) a {
+            color: #667eea !important;
+        }
+
+        /* Drag and Drop Styles */
+        .draggable-category {
+            cursor: move;
+            transition: all 0.2s ease;
+        }
+
+        .draggable-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .draggable-category.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .drag-handle {
+            color: #a0aec0;
+            font-size: 1.2rem;
+            margin-right: 10px;
+            cursor: grab;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                padding-top: 80px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .accessibility-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Status Message -->
+    <div class="status-message" id="statusMessage"></div>
+
+    <!-- Reminder Alert -->
+    <div class="reminder-alert" id="reminderAlert">
+        <span id="reminderAlertText">⏰ Reminder: Check head CT results</span>
+        <button onclick="dismissReminder()">Dismiss</button>
+        <button onclick="snoozeReminder()">Snooze 5min</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="accessibility-controls">
+                <button class="control-button" onclick="toggleDarkMode()" id="darkModeBtn">☀️ Light</button>
+            </div>
+            <button class="admin-button" onclick="showAdminLogin()">Admin</button>
+            <h1>🏥 PM&R Call Protocols</h1>
+            <p>Quick reference guide for overnight and weekend calls</p>
+        </div>
+
+        <div class="emergency-banner">
+            ⚠️ For emergencies, always call CHG or attending. These protocols are for guidance only.
+        </div>
+
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="🔍 Search protocols (e.g., 'pain', 'foley', 'DVT', 'anxiety')..." id="searchInput">
+            </div>
+            <div class="quick-access" id="quickAccessChips">
+                <!-- Quick access chips will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="categories" id="categoriesSection">
+            <!-- Categories will be populated from Firebase -->
+        </div>
+
+        <div class="protocols-section" id="protocolsSection">
+            <button class="back-button" onclick="showCategories()">← Back to Categories</button>
+            <h2 id="currentCategoryTitle"></h2>
+            <div id="protocolsList"></div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="action-button reminder-button" onclick="showReminders()" title="Reminders">⏰</button>
+        <button class="action-button contact-button" onclick="showContacts()" title="Contact Directory">📞</button>
+        <button class="action-button feedback-button" onclick="showFeedback()" title="Submit Feedback">💬</button>
+    </div>
+
+    <!-- Reminders Modal -->
+    <div class="modal-overlay" id="reminderOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>⏰ Call Reminders</h2>
+                <button class="close-button" onclick="closeReminders()">×</button>
+            </div>
+
+            <div class="reminder-form">
+                <h3>Add New Reminder</h3>
+                <div class="form-group">
+                    <label class="form-label">Reminder Text:</label>
+                    <input type="text" class="form-input" id="reminderText" placeholder="e.g., Follow up on head CT results">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Reminder Time:</label>
+                    <input type="datetime-local" class="form-input" id="reminderTime">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Priority:</label>
+                    <select class="form-select" id="reminderPriority">
+                        <option value="normal">Normal</option>
+                        <option value="urgent">Urgent (with sound)</option>
+                    </select>
+                </div>
+                <button class="btn-primary" onclick="addReminder()">Add Reminder</button>
+            </div>
+
+            <div class="reminder-list" id="reminderList">
+                <!-- Reminders will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Directory Modal -->
+    <div class="modal-overlay" id="contactOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>📞 Contact Directory</h2>
+                <button class="close-button" onclick="closeContacts()">×</button>
+            </div>
+            <div id="contactContent">
+                <!-- Contact content will be loaded from Firebase -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal-overlay" id="feedbackOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>💬 Submit Feedback</h2>
+                <button class="close-button" onclick="closeFeedback()">×</button>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showFeedbackTab('submit')">Submit Feedback</button>
+                <button class="tab" onclick="showFeedbackTab('view')" id="viewFeedbackTab" style="display: none;">View Comments</button>
+            </div>
+
+            <div id="submitFeedbackTab" class="tab-content active">
+                <div class="form-group">
+                    <label class="form-label">Feedback Type:</label>
+                    <select class="form-select" id="feedbackType">
+                        <option value="protocol-request">Protocol Request</option>
+                        <option value="bug-report">Bug Report</option>
+                        <option value="improvement">Improvement Suggestion</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Priority:</label>
+                    <select class="form-select" id="feedbackPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Details:</label>
+                    <textarea class="form-textarea" id="feedbackDetails" placeholder="Describe your feedback..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Name (optional):</label>
+                    <input type="text" class="form-input" id="feedbackName" placeholder="Dr. Smith, Resident Jones, etc.">
+                </div>
+                <button class="btn-primary" onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+
+            <div id="viewFeedbackTab" class="tab-content">
+                <div id="feedbackList">
+                    <!-- Admin feedback view will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal-overlay" id="adminOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>🔧 Protocol Administration</h2>
+                <div>
+                    <button class="btn-primary" onclick="logoutAdmin()" style="margin-right: 10px;">Logout</button>
+                    <button class="close-button" onclick="closeAdmin()">×</button>
+                </div>
+            </div>
+
+            <div id="adminLogin">
+                <div class="form-group">
+                    <label class="form-label">Administrator Access:</label>
+                    <input type="password" class="form-input" id="adminPassword" placeholder="Enter admin password">
+                </div>
+                <button class="btn-primary" onclick="checkAdminPassword()">Login</button>
+                <div id="loginError" style="display: none; margin-top: 10px;"></div>
+            </div>
+
+            <div id="adminPanel" style="display: none;">
+                <div class="tabs">
+                    <button class="tab active" onclick="showAdminTab('protocols')">Protocols</button>
+                    <button class="tab" onclick="showAdminTab('categories')">Categories</button>
+                    <button class="tab" onclick="showAdminTab('quicksearch')">Quick Search</button>
+                    <button class="tab" onclick="showAdminTab('contacts')">Contacts</button>
+                    <button class="tab" onclick="showAdminTab('contactCategories')">Contact Categories</button>
+                    <button class="tab" onclick="showAdminTab('feedback')">Feedback</button>
+                    <button class="tab" onclick="showAdminTab('analytics')">Analytics</button>
+                </div>
+
+                <div id="protocolsTab" class="tab-content active">
+                    <h3>Protocol Management</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Add New Protocol:</label>
+                        <select class="form-select" id="newProtocolCategory">
+                            <option value="">Select Category...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Protocol Title:</label>
+                        <input type="text" class="form-input" id="newProtocolTitle" placeholder="e.g., Acute agitation management">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Protocol Steps (one per line):</label>
+                        <textarea class="form-textarea" id="newProtocolSteps" placeholder="Enter each step on a new line:
+1. Assess patient safety and immediate environment
+2. Review current medications for interactions
+3. Consider non-pharmacological interventions first
+4. If medication needed, start with lowest effective dose"></textarea>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="addNewProtocol()">Add Protocol</button>
+                    
+                    <hr style="margin: 30px 0;">
+                    
+                    <h4>Existing Protocols:</h4>
+                    <div class="form-group">
+                        <label class="form-label">Select Category to Edit:</label>
+                        <select class="form-select" id="editProtocolCategory" onchange="loadProtocolsForEdit()">
+                            <option value="">Select Category...</option>
+                        </select>
+                    </div>
+                    
+                    <div id="protocolEditList"></div>
+                </div>
+
+                <div id="categoriesTab" class="tab-content">
+                    <h3>Category Management</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Add New Category:</label>
+                        <input type="text" class="form-input" id="newCategoryName" placeholder="Category name">
+                        <input type="text" class="form-input" id="newCategoryDescription" placeholder="Category description" style="margin-top: 10px;">
+                        <button class="btn-primary" onclick="addNewCategory()" style="margin-top: 10px;">Add Category</button>
+                    </div>
+                    
+                    <hr style="margin: 30px 0;">
+                    
+                    <h4>Existing Categories:</h4>
+                    <div id="categoryList"></div>
+                </div>
+
+                <div id="quicksearchTab" class="tab-content">
+                    <h3>Quick Search Chips Management</h3>
+                    <p style="color: #a0aec0; margin-bottom: 20px;">These are the quick search buttons that appear below the search bar. Users can click them for instant searches.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Add New Quick Search Chip:</label>
+                        <input type="text" class="form-input" id="newChipText" placeholder="e.g., Constipation, Nausea, Falls">
+                        <button class="btn-primary" onclick="addQuickSearchChip()" style="margin-top: 10px;">Add Chip</button>
+                    </div>
+                    
+                    <hr style="margin: 30px 0;">
+                    
+                    <h4>Current Quick Search Chips:</h4>
+                    <div id="quickSearchChipsList"></div>
+                </div>
+
+                <div id="contactsTab" class="tab-content">
+                    <h3>Contact Management</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Contact Category:</label>
+                        <select class="form-select" id="contactCategory" onchange="loadContactsForCategory()">
+                            <option value="">Select Category...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Contact Name:</label>
+                        <input type="text" class="form-input" id="newContactName" placeholder="e.g., Dr. Johnson">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Contact Role/Info:</label>
+                        <input type="text" class="form-input" id="newContactInfo" placeholder="e.g., Cardiology attending">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number:</label>
+                        <input type="tel" class="form-input" id="newContactPhone" placeholder="e.g., 555-0123">
+                    </div>
+                    
+                    <button class="btn-primary" onclick="addNewContact()">Add Contact</button>
+                    
+                    <hr style="margin: 30px 0;">
+                    
+                    <h4>Existing Contacts:</h4>
+                    <div id="contactsList">
+                        <p style="color: #a0aec0; text-align: center; padding: 20px;">Select a category above to view and manage contacts.</p>
+                    </div>
+                </div>
+
+                <div id="contactCategoriesTab" class="tab-content">
+                    <h3>Contact Category Management</h3>
+                    <p style="color: #a0aec0; margin-bottom: 20px;">Create and manage contact categories that organize your phone directory.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Add New Contact Category:</label>
+                        <input type="text" class="form-input" id="newContactCategoryKey" placeholder="e.g., consultants" style="margin-bottom: 10px;">
+                        <input type="text" class="form-input" id="newContactCategoryName" placeholder="Category Display Name (e.g., Specialty Consultants)" style="margin-bottom: 10px;">
+                        <input type="text" class="form-input" id="newContactCategoryEmoji" placeholder="Emoji (e.g., 🔬)" style="margin-bottom: 10px;">
+                        <input type="text" class="form-input" id="newContactCategoryDescription" placeholder="Description (e.g., Specialty consultation services)" style="margin-bottom: 10px;">
+                        <div style="margin-bottom: 10px;">
+                            <label style="display: flex; align-items: center; gap: 8px; color: #e2e8f0;">
+                                <input type="checkbox" id="newContactCategoryEmergency" style="margin: 0;">
+                                <span>Mark as Emergency Category (red styling)</span>
+                            </label>
+                        </div>
+                        <button class="btn-primary" onclick="addNewContactCategory()">Add Category</button>
+                    </div>
+                    
+                    <hr style="margin: 30px 0;">
+                    
+                    <h4>Existing Contact Categories:</h4>
+                    <div id="contactCategoriesList"></div>
+                </div>
+
+                <div id="feedbackTab" class="tab-content">
+                    <h3>User Comments & Feedback</h3>
+                    <div id="adminFeedbackList">
+                        <!-- Admin view of all feedback -->
+                    </div>
+                </div>
+
+                <div id="analyticsTab" class="tab-content">
+                    <h3>Usage Analytics</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                        <div style="background: #4a5568; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #667eea;" id="totalProtocols">0</div>
+                            <div style="color: #a0aec0; font-size: 0.9rem;">Total Protocols</div>
+                        </div>
+                        <div style="background: #4a5568; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #667eea;" id="totalCategories">0</div>
+                            <div style="color: #a0aec0; font-size: 0.9rem;">Categories</div>
+                        </div>
+                        <div style="background: #4a5568; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #667eea;" id="totalFeedback">0</div>
+                            <div style="color: #a0aec0; font-size: 0.9rem;">User Feedback</div>
+                        </div>
+                        <div style="background: #4a5568; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #667eea;" id="lastUpdate">--</div>
+                            <div style="color: #a0aec0; font-size: 0.9rem;">Last Update</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-database-compat.min.js"></script>
+    <script>
+        // 🔥 FIREBASE CONFIGURATION
+        const firebaseConfig = {
+            apiKey: "AIzaSyBgKoUMvgcvfKNJoNwFJ6J9YYZvbmzuKGQ",
+            authDomain: "pmr-protocols.firebaseapp.com",
+            databaseURL: "https://pmr-protocols-default-rtdb.firebaseio.com",
+            projectId: "pmr-protocols",
+            storageBucket: "pmr-protocols.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+
+        let firebaseApp = null;
+        let database = null;
+        let firebaseAvailable = false;
+
+        // Initialize Firebase
+        try {
+            firebaseApp = firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            firebaseAvailable = true;
+            console.log('✅ Firebase initialized successfully');
+        } catch (error) {
+            console.warn('⚠️ Firebase not available, using local data:', error);
+            firebaseAvailable = false;
+        }
+
+        // 📊 DATA MANAGEMENT
+        let protocolData = {};
+        let quickSearchChips = ['Pain', 'Foley', 'DVT', 'Fever', 'Anxiety', 'UTI'];
+        let contactCategories = {
+            importantNumbers: { name: "Important Phone Numbers", emoji: "🚨", description: "Emergency and critical contacts", isEmergency: true, order: 1 },
+            crRehabNumbers: { name: "CR Rehab Numbers", emoji: "🏥", description: "PM&R team contacts", isEmergency: false, order: 2 },
+            hospitalLocationNumbers: { name: "Hospital Location Numbers", emoji: "🏢", description: "Hospital services and departments", isEmergency: false, order: 3 },
+            physicianNumbers: { name: "Physician Phone Numbers", emoji: "👨‍⚕️", description: "Specialist physicians", isEmergency: false, order: 4 },
+            paNumbers: { name: "Physician Assistants and Nurse Practitioners", emoji: "🩺", description: "Mid-level practitioners", isEmergency: false, order: 5 },
+            residentFellowNumbers: { name: "Resident and Fellow Phone Numbers", emoji: "🎓", description: "Trainees and fellows", isEmergency: false, order: 6 },
+            hospitalistNumbers: { name: "Hospitalist Phone Numbers", emoji: "🏥", description: "Hospitalist coverage teams", isEmergency: false, order: 7 }
+        };
+        let contactData = {
+            importantNumbers: [
+                { id: 'imp1', name: "Emergency Department", info: "For immediate transfers", phone: "911" },
+                { id: 'imp2', name: "Rapid Response Team", info: "Code Blue activation", phone: "1234" }
+            ],
+            crRehabNumbers: [
+                { id: 'cr1', name: "CHG (Charge Nurse)", info: "Primary overnight support", phone: "555-0101" },
+                { id: 'cr2', name: "Attending on Call", info: "Dr. Smith (This Week)", phone: "555-0102" },
+                { id: 'cr3', name: "Senior Resident", info: "Backup support", phone: "555-0103" }
+            ],
+            hospitalLocationNumbers: [
+                { id: 'hl1', name: "Pharmacy", info: "24/7 medication support", phone: "555-0201" },
+                { id: 'hl2', name: "Laboratory", info: "Stat labs and results", phone: "555-0202" },
+                { id: 'hl3', name: "Radiology", info: "Imaging orders and results", phone: "555-0203" }
+            ],
+            physicianNumbers: [
+                { id: 'ph1', name: "Neurosurgery", info: "On-call neurosurgeon", phone: "555-0301" },
+                { id: 'ph2', name: "Cardiology", info: "Heart-related emergencies", phone: "555-0302" },
+                { id: 'ph3', name: "Urology", info: "Foley issues, urological emergencies", phone: "555-0303" }
+            ],
+            paNumbers: [
+                { id: 'pa1', name: "PA Smith", info: "Orthopedic PA", phone: "555-0401" },
+                { id: 'pa2', name: "NP Johnson", info: "Cardiology NP", phone: "555-0402" },
+                { id: 'pa3', name: "PA Brown", info: "Emergency Medicine PA", phone: "555-0403" }
+            ],
+            residentFellowNumbers: [
+                { id: 'rf1', name: "PGY-1 On Call", info: "First year resident", phone: "555-0501" },
+                { id: 'rf2', name: "Chief Resident", info: "Administrative support", phone: "555-0502" },
+                { id: 'rf3', name: "Pain Fellow", info: "Pain management consultant", phone: "555-0503" }
+            ],
+            hospitalistNumbers: [
+                { id: 'ho1', name: "Hospitalist Day Team", info: "Internal medicine coverage", phone: "555-0601" },
+                { id: 'ho2', name: "Hospitalist Night Team", info: "Overnight internal medicine", phone: "555-0602" },
+                { id: 'ho3', name: "Hospitalist Weekend", info: "Weekend coverage", phone: "555-0603" }
+            ]
+        };
+        let feedbackData = [];
+        let reminderData = [];
+        let currentAdminLevel = null;
+        let reminderInterval = null;
+
+        // 🚀 INITIALIZATION
+        function init() {
+            try {
+                showLoading(true);
+                
+                if (firebaseAvailable) {
+                    loadDataFromFirebase();
+                } else {
+                    useLocalData();
+                }
+                
+                setupSearch();
+                startReminderCheck();
+                
+                console.log('✅ PM&R Protocol App initialized successfully');
+            } catch (error) {
+                console.error('❌ Error initializing app:', error);
+                showStatus('Error initializing app. Using local data.', 'error');
+                useLocalData();
+            }
+        }
+
+        // 🔥 FIREBASE FUNCTIONS
+        function loadDataFromFirebase() {
+            if (!firebaseAvailable) {
+                useLocalData();
+                return;
+            }
+
+            Promise.all([
+                database.ref('protocols').once('value'),
+                database.ref('quickSearchChips').once('value'),
+                database.ref('contacts').once('value'),
+                database.ref('contactCategories').once('value'),
+                database.ref('feedback').once('value'),
+                database.ref('reminders').once('value')
+            ]).then(([protocolsSnapshot, chipsSnapshot, contactsSnapshot, categoriesSnapshot, feedbackSnapshot, remindersSnapshot]) => {
+                
+                // Load protocols
+                const protocolsData = protocolsSnapshot.val();
+                if (protocolsData) {
+                    protocolData = protocolsData;
+                } else {
+                    useLocalProtocolData();
+                }
+
+                // Load quick search chips
+                const chipsData = chipsSnapshot.val();
+                if (chipsData) {
+                    quickSearchChips = chipsData;
+                }
+
+                // Load contacts
+                const contactsData = contactsSnapshot.val();
+                if (contactsData) {
+                    contactData = contactsData;
+                }
+
+                // Load contact categories
+                const categoriesData = categoriesSnapshot.val();
+                if (categoriesData) {
+                    contactCategories = categoriesData;
+                }
+
+                // Load feedback
+                const feedbackDataFromDB = feedbackSnapshot.val();
+                if (feedbackDataFromDB) {
+                    feedbackData = Object.values(feedbackDataFromDB);
+                }
+
+                // Load reminders
+                const reminderDataFromDB = remindersSnapshot.val();
+                if (reminderDataFromDB) {
+                    reminderData = Object.values(reminderDataFromDB);
+                }
+
+                displayCategories();
+                updateQuickSearchChips();
+                showLoading(false);
+                showStatus('Data loaded successfully from Firebase!', 'success');
+            }).catch(error => {
+                console.error('❌ Error loading data from Firebase:', error);
+                showStatus('Error loading data from Firebase. Using local fallback.', 'error');
+                useLocalData();
+            });
+        }
+
+        function saveDataToFirebase() {
+            if (!firebaseAvailable) {
+                console.warn('⚠️ Firebase not available, data not saved');
+                showStatus('Firebase not available - changes saved locally only', 'info');
+                return;
+            }
+
+            try {
+                database.ref('protocols').set(protocolData);
+                database.ref('quickSearchChips').set(quickSearchChips);
+                database.ref('contacts').set(contactData);
+                database.ref('contactCategories').set(contactCategories);
+                database.ref('feedback').set(feedbackData.reduce((acc, item) => {
+                    acc[item.id] = item;
+                    return acc;
+                }, {}));
+                database.ref('reminders').set(reminderData.reduce((acc, item) => {
+                    acc[item.id] = item;
+                    return acc;
+                }, {}));
+                
+                console.log('✅ Data saved to Firebase successfully');
+            } catch (error) {
+                console.error('❌ Error saving data to Firebase:', error);
+                showStatus('Error saving data to Firebase - changes saved locally only', 'error');
+            }
+        }
+
+        function useLocalData() {
+            // Fallback data
+            useLocalProtocolData();
+            displayCategories();
+            updateQuickSearchChips();
+            showLoading(false);
+            showStatus('Using local data (Firebase unavailable)', 'info');
+        }
+
+        function useLocalProtocolData() {
+            protocolData = {
+                "Pain Management": {
+                    description: "Protocols for acute and chronic pain management",
+                    protocols: {
+                        pm1: {
+                            id: 'pm1',
+                            issue: "General pain (back, hip, extremity)",
+                            steps: [
+                                "Assess pain location, severity (0-10), quality, and timing",
+                                "Review current pain medications and last administration time",
+                                "For mild-moderate pain: Trial acetaminophen 650mg q6h or lidocaine patch",
+                                "For severe pain or inadequate response: Consider oxycodone 5mg PRN",
+                                "Avoid opioids if patient confused, fall risk, or respiratory depression",
+                                "Document pain assessment and response to interventions"
+                            ],
+                            createdAt: new Date().toISOString(),
+                            createdBy: 'system'
+                        }
+                    }
+                },
+                "Urinary Issues": {
+                    description: "Bladder dysfunction, UTIs, and catheter management",
+                    protocols: {
+                        ui1: {
+                            id: 'ui1',
+                            issue: "Foley obstruction or no drainage",
+                            steps: [
+                                "Ask RN about last urine output and catheter function",
+                                "Attempt gentle flush with sterile saline",
+                                "Reposition patient and catheter, check for kinks",
+                                "If placed by urology: consult urology for guidance",
+                                "Order foley exchange by RN if recommended by urology"
+                            ],
+                            createdAt: new Date().toISOString(),
+                            createdBy: 'system'
+                        },
+                        ui2: {
+                            id: 'ui2',
+                            issue: "Dysuria or suspected UTI",
+                            steps: [
+                                "Order UA and urine culture immediately",
+                                "Check for fever, flank pain, or systemic symptoms",
+                                "If UA positive: start empiric antibiotics (Macrobid preferred)",
+                                "Review prior UCx for resistance patterns",
+                                "Monitor symptom improvement within 48 hours"
+                            ],
+                            createdAt: new Date().toISOString(),
+                            createdBy: 'system'
+                        }
+                    }
+                },
+                "Infection & Fever": {
+                    description: "Fever workup and antibiotic management",
+                    protocols: {
+                        if1: {
+                            id: 'if1',
+                            issue: "Fever >100.4°F with systemic symptoms",
+                            steps: [
+                                "Order sepsis labs: CBC, CMP, lactate, UA/UCx, BCx x2",
+                                "Assess for source: chest, urine, wound, line",
+                                "Start empiric antibiotics if hemodynamically unstable",
+                                "Consider Zosyn for broad coverage pending cultures",
+                                "Notify CHG if signs of sepsis or hemodynamic instability"
+                            ],
+                            createdAt: new Date().toISOString(),
+                            createdBy: 'system'
+                        }
+                    }
+                }
+            };
+        }
+
+        // 🎨 UI HELPER FUNCTIONS
+        function showLoading(show) {
+            const spinner = document.getElementById('loadingSpinner');
+            if (spinner) {
+                if (show) {
+                    spinner.classList.add('active');
+                } else {
+                    spinner.classList.remove('active');
+                }
+            }
+        }
+
+        function showStatus(message, type = 'info') {
+            const statusEl = document.getElementById('statusMessage');
+            if (statusEl) {
+                statusEl.textContent = message;
+                statusEl.className = `status-message ${type}`;
+                
+                // Auto-hide after 3 seconds
+                setTimeout(() => {
+                    statusEl.classList.remove(type);
+                }, 3000);
+            }
+        }
+
+        // 📋 DISPLAY FUNCTIONS
+        function displayCategories() {
+            const categoriesSection = document.getElementById('categoriesSection');
+            if (!categoriesSection) return;
+            
+            const categoriesHTML = Object.entries(protocolData).map(([category, data]) => {
+                const protocolCount = data.protocols ? Object.keys(data.protocols).length : 0;
+                return `
+                    <div class="category-card" onclick="showProtocols('${category}')">
+                        <div class="category-title">
+                            📋 ${category}
+                            <span class="category-count">${protocolCount}</span>
+                        </div>
+                        <div class="category-description">${data.description}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            categoriesSection.innerHTML = categoriesHTML;
+        }
+
+        function updateQuickSearchChips() {
+            const quickAccessDiv = document.getElementById('quickAccessChips');
+            if (!quickAccessDiv) return;
+            
+            const chipsHTML = quickSearchChips.map(chip => 
+                `<div class="quick-access-chip" onclick="quickSearch('${chip.toLowerCase()}')">${chip}</div>`
+            ).join('');
+            
+            quickAccessDiv.innerHTML = chipsHTML;
+        }
+
+        // 🔍 SEARCH FUNCTIONALITY
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', handleSearch);
+            }
+        }
+
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            const query = searchInput.value.toLowerCase().trim();
+            if (query === '') {
+                showCategories();
+                return;
+            }
+            performSearch(query);
+        }
+
+        function quickSearch(term) {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = term;
+                performSearch(term.toLowerCase());
+            }
+        }
+
+        function performSearch(query) {
+            const results = [];
+            Object.entries(protocolData).forEach(([category, data]) => {
+                if (data.protocols) {
+                    Object.values(data.protocols).forEach(protocol => {
+                        if (protocol.issue.toLowerCase().includes(query) || 
+                            protocol.steps.some(step => step.toLowerCase().includes(query))) {
+                            results.push({...protocol, category});
+                        }
+                    });
+                }
+            });
+
+            const categoriesSection = document.getElementById('categoriesSection');
+            const protocolsSection = document.getElementById('protocolsSection');
+            const currentCategoryTitle = document.getElementById('currentCategoryTitle');
+            const protocolsList = document.getElementById('protocolsList');
+
+            if (!categoriesSection || !protocolsSection || !currentCategoryTitle || !protocolsList) return;
+
+            categoriesSection.style.display = 'none';
+            protocolsSection.classList.add('active');
+            currentCategoryTitle.textContent = `Search Results for "${query}"`;
+            
+            if (results.length > 0) {
+                const resultsHTML = results.map((protocol, index) => `
+                    <div class="protocol-item">
+                        <div class="protocol-header" onclick="toggleProtocol(${index})">
+                            <div class="protocol-title">
+                                ${protocol.issue}
+                                <small style="color: #667eea;"> (${protocol.category})</small>
+                            </div>
+                            <div class="expand-icon" id="icon-${index}">+</div>
+                        </div>
+                        <div class="protocol-content" id="content-${index}">
+                            <ol class="protocol-steps">
+                                ${protocol.steps.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                `).join('');
+                protocolsList.innerHTML = resultsHTML;
+            } else {
+                protocolsList.innerHTML = '<div style="text-align: center; color: #718096; padding: 40px;">No protocols found. Try different keywords.</div>';
+            }
+        }
+
+        // 📋 PROTOCOL DISPLAY FUNCTIONS
+        function showProtocols(category) {
+            const categoriesSection = document.getElementById('categoriesSection');
+            const protocolsSection = document.getElementById('protocolsSection');
+            const currentCategoryTitle = document.getElementById('currentCategoryTitle');
+            const protocolsList = document.getElementById('protocolsList');
+            
+            if (!categoriesSection || !protocolsSection || !currentCategoryTitle || !protocolsList) return;
+            
+            categoriesSection.style.display = 'none';
+            protocolsSection.classList.add('active');
+            currentCategoryTitle.textContent = category;
+            
+            const protocols = protocolData[category].protocols ? Object.values(protocolData[category].protocols) : [];
+            const protocolsHTML = protocols.map((protocol, index) => `
+                <div class="protocol-item">
+                    <div class="protocol-header" onclick="toggleProtocol(${index})">
+                        <div class="protocol-title">${protocol.issue}</div>
+                        <div class="expand-icon" id="icon-${index}">+</div>
+                    </div>
+                    <div class="protocol-content" id="content-${index}">
+                        <ol class="protocol-steps">
+                            ${protocol.steps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                </div>
+            `).join('');
+            
+            protocolsList.innerHTML = protocolsHTML;
+        }
+
+        function showCategories() {
+            const categoriesSection = document.getElementById('categoriesSection');
+            const protocolsSection = document.getElementById('protocolsSection');
+            
+            if (categoriesSection) categoriesSection.style.display = 'grid';
+            if (protocolsSection) protocolsSection.classList.remove('active');
+        }
+
+        function toggleProtocol(index) {
+            const content = document.getElementById(`content-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+            
+            if (!content || !icon) return;
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                content.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // 👤 ADMIN FUNCTIONS
+        function showAdminLogin() {
+            const overlay = document.getElementById('adminOverlay');
+            if (overlay) overlay.classList.add('active');
+        }
+
+        function closeAdmin() {
+            const overlay = document.getElementById('adminOverlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+            const passwordField = document.getElementById('adminPassword');
+            if (passwordField) passwordField.value = '';
+            currentAdminLevel = null;
+            closeAdmin();
+        }
+
+        function checkAdminPassword() {
+            const passwordField = document.getElementById('adminPassword');
+            const loginError = document.getElementById('loginError');
+            
+            if (!passwordField || !loginError) return;
+            
+            const password = passwordField.value;
+            
+            if (password === 'CRresAdmin1!' || password === 'SeniorAdmin1!') {
+                currentAdminLevel = password === 'SeniorAdmin1!' ? 'senior' : 'admin';
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                document.getElementById('viewFeedbackTab').style.display = 'block';
+                loginError.style.display = 'none';
+                
+                populateAdminDropdowns();
+                updateAnalyticsDisplay();
+            } else {
+                loginError.innerHTML = '<div style="background: #fed7d7; color: #c53030; padding: 12px; border-radius: 6px;">Incorrect password. Please try again.</div>';
+                loginError.style.display = 'block';
+            }
+        }
+
+        function populateAdminDropdowns() {
+            const categories = Object.keys(protocolData);
+            
+            const newProtocolCategory = document.getElementById('newProtocolCategory');
+            const editProtocolCategory = document.getElementById('editProtocolCategory');
+            
+            if (newProtocolCategory) {
+                newProtocolCategory.innerHTML = '<option value="">Select Category...</option>' + 
+                    categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            }
+            
+            if (editProtocolCategory) {
+                editProtocolCategory.innerHTML = '<option value="">Select Category...</option>' + 
+                    categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            }
+
+            // Populate contact category dropdown
+            populateContactCategoryDropdown();
+        }
+
+        function populateContactCategoryDropdown() {
+            const dropdown = document.getElementById('contactCategory');
+            if (!dropdown) return;
+            
+            dropdown.innerHTML = '<option value="">Select Category...</option>' +
+                Object.entries(contactCategories).map(([key, category]) => 
+                    `<option value="${key}">${category.name}</option>`
+                ).join('');
+        }
+
+        function addNewProtocol() {
+            const category = document.getElementById('newProtocolCategory').value;
+            const title = document.getElementById('newProtocolTitle').value.trim();
+            const stepsText = document.getElementById('newProtocolSteps').value.trim();
+            
+            if (!category || !title || !stepsText) {
+                showStatus('Please fill in all fields.', 'error');
+                return;
+            }
+            
+            const steps = stepsText.split('\n').map(step => step.trim()).filter(step => step);
+            
+            if (steps.length === 0) {
+                showStatus('Please enter at least one protocol step.', 'error');
+                return;
+            }
+            
+            const protocolId = Date.now().toString();
+            const newProtocol = {
+                id: protocolId,
+                issue: title,
+                steps: steps,
+                createdAt: new Date().toISOString(),
+                createdBy: currentAdminLevel || 'admin'
+            };
+            
+            // Initialize protocols object if it doesn't exist
+            if (!protocolData[category]) {
+                protocolData[category] = { protocols: {} };
+            }
+            if (!protocolData[category].protocols) {
+                protocolData[category].protocols = {};
+            }
+            
+            protocolData[category].protocols[protocolId] = newProtocol;
+            
+            // Clear form
+            document.getElementById('newProtocolTitle').value = '';
+            document.getElementById('newProtocolSteps').value = '';
+            
+            // Refresh displays
+            displayCategories();
+            updateAnalyticsDisplay();
+            saveDataToFirebase();
+            showStatus('Protocol added successfully!', 'success');
+        }
+
+        function showAdminTab(tabName) {
+            document.querySelectorAll('#adminPanel .tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('#adminPanel .tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            const contentDiv = document.getElementById(tabName + 'Tab');
+            if (contentDiv) {
+                contentDiv.classList.add('active');
+            }
+            
+            if (tabName === 'feedback') {
+                displayAdminFeedbackList();
+            } else if (tabName === 'categories') {
+                loadCategoryList();
+            } else if (tabName === 'quicksearch') {
+                loadQuickSearchChipsList();
+            } else if (tabName === 'protocols') {
+                populateAdminDropdowns();
+            } else if (tabName === 'contacts') {
+                populateContactCategoryDropdown();
+            } else if (tabName === 'contactCategories') {
+                loadContactCategoriesList();
+            } else if (tabName === 'analytics') {
+                updateAnalyticsDisplay();
+            }
+        }
+
+        // 📞 CONTACT FUNCTIONS
+        function showContacts() {
+            const overlay = document.getElementById('contactOverlay');
+            const content = document.getElementById('contactContent');
+            
+            if (overlay) overlay.classList.add('active');
+            if (content) {
+                populateContactDirectory();
+            }
+        }
+
+        function closeContacts() {
+            const overlay = document.getElementById('contactOverlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        function populateContactDirectory() {
+            const content = document.getElementById('contactContent');
+            if (!content) return;
+            
+            // Sort categories by order property
+            const sortedCategories = Object.entries(contactCategories).sort(([,a], [,b]) => (a.order || 999) - (b.order || 999));
+            
+            content.innerHTML = `
+                <div class="contact-search-container" style="margin-bottom: 20px;">
+                    <input type="text" id="contactSearch" class="form-input" placeholder="🔍 Search contacts by name or role..." style="margin-bottom: 10px;" onkeyup="filterContacts()">
+                </div>
+                
+                <div id="contactSections">
+                    ${sortedCategories.map(([categoryKey, category]) => `
+                        <div class="contact-section" style="margin-bottom: 25px;" data-category="${categoryKey}">
+                            <h3 style="${category.isEmergency ? 'color: #c53030;' : ''} margin-bottom: 15px;">${category.emoji} ${category.name}</h3>
+                            <div class="contact-content" style="${category.isEmergency ? 'background: #fed7d7; padding: 15px; border-radius: 8px;' : ''}">
+                                ${contactData[categoryKey] ? contactData[categoryKey].map(contact => createContactHTML(contact, category.isEmergency)).join('') : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function createContactHTML(contact, isEmergency = false) {
+            const emergencyClass = isEmergency ? 'emergency' : '';
+            return `
+                <div class="contact-item ${emergencyClass}" style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px; border-radius: 4px; background: rgba(255,255,255,0.1);" data-name="${contact.name.toLowerCase()}" data-info="${(contact.info || '').toLowerCase()}">
+                    <div>
+                        <strong>${contact.name}</strong>
+                        ${contact.info && contact.info.trim() ? `<br><span>${contact.info}</span>` : ''}
+                    </div>
+                    <a href="tel:${contact.phone}" style="text-decoration: none;">${contact.phone}</a>
+                </div>
+            `;
+        }
+
+        function filterContacts() {
+            const searchTerm = document.getElementById('contactSearch').value.toLowerCase();
+            const contactItems = document.querySelectorAll('.contact-item');
+            const contactSections = document.querySelectorAll('.contact-section');
+            
+            contactSections.forEach(section => {
+                let hasVisibleContacts = false;
+                const contactsInSection = section.querySelectorAll('.contact-item');
+                
+                contactsInSection.forEach(item => {
+                    const name = item.getAttribute('data-name');
+                    const info = item.getAttribute('data-info');
+                    
+                    if (name.includes(searchTerm) || info.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                        hasVisibleContacts = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide entire section based on whether it has visible contacts
+                if (searchTerm === '' || hasVisibleContacts) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // 📞 CONTACT MANAGEMENT FUNCTIONS
+        function loadContactsForCategory() {
+            const category = document.getElementById('contactCategory').value;
+            const container = document.getElementById('contactsList');
+            
+            if (!container) return;
+            
+            if (!category) {
+                container.innerHTML = '<p style="color: #a0aec0; text-align: center; padding: 20px;">Select a category above to view and manage contacts.</p>';
+                return;
+            }
+            
+            const contacts = contactData[category] || [];
+            
+            if (contacts.length === 0) {
+                container.innerHTML = '<p style="color: #a0aec0; text-align: center; padding: 20px;">No contacts in this category yet.</p>';
+                return;
+            }
+            
+            const contactsHTML = contacts.map(contact => `
+                <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: #e2e8f0;">${contact.name}</strong>
+                            ${contact.info && contact.info.trim() ? `<div style="font-size: 0.8rem; color: #a0aec0;">${contact.info}</div>` : ''}
+                            <div style="font-size: 0.8rem; color: #a0aec0;">${contact.phone}</div>
+                        </div>
+                        <div>
+                            <button class="btn-primary" onclick="editContact('${category}', '${contact.id}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                            <button class="btn-danger" onclick="deleteContact('${category}', '${contact.id}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = contactsHTML;
+        }
+
+        function addNewContact() {
+            const category = document.getElementById('contactCategory').value;
+            const name = document.getElementById('newContactName').value.trim();
+            const info = document.getElementById('newContactInfo').value.trim();
+            const phone = document.getElementById('newContactPhone').value.trim();
+            
+            if (!category || !name || !phone) {
+                showStatus('Please fill in category, name, and phone number.', 'error');
+                return;
+            }
+            
+            const contactId = Date.now().toString();
+            const newContact = {
+                id: contactId,
+                name: name,
+                info: info.trim(), // Keep original info, even if empty
+                phone: phone
+            };
+            
+            if (!contactData[category]) {
+                contactData[category] = [];
+            }
+            
+            contactData[category].push(newContact);
+            
+            // Clear form
+            document.getElementById('newContactName').value = '';
+            document.getElementById('newContactInfo').value = '';
+            document.getElementById('newContactPhone').value = '';
+            
+            showStatus('Contact added successfully!', 'success');
+            loadContactsForCategory();
+            saveDataToFirebase();
+        }
+
+        function editContact(category, contactId) {
+            const contact = contactData[category] ? contactData[category].find(c => c.id === contactId) : null;
+            if (!contact) return;
+            
+            const container = document.getElementById('contactsList');
+            
+            // Store other contacts HTML for display after edit form
+            const otherContactsHTML = contactData[category]
+                .filter(c => c.id !== contactId)
+                .map(contact => `
+                    <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="color: #e2e8f0;">${contact.name}</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">${contact.info}</div>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">${contact.phone}</div>
+                            </div>
+                            <div>
+                                <button class="btn-primary" onclick="editContact('${category}', '${contact.id}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                                <button class="btn-danger" onclick="deleteContact('${category}', '${contact.id}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            
+            container.innerHTML = `
+                <div style="background: #4a5568; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <h4 style="color: #e2e8f0; margin-bottom: 15px;">Edit Contact: ${contact.name}</h4>
+                    <div class="form-group">
+                        <label class="form-label">Contact Name:</label>
+                        <input type="text" class="form-input" id="editContactName" value="${contact.name}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contact Role/Info:</label>
+                        <input type="text" class="form-input" id="editContactInfo" value="${contact.info}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number:</label>
+                        <input type="tel" class="form-input" id="editContactPhone" value="${contact.phone}">
+                    </div>
+                    <button class="btn-primary" onclick="saveEditedContact('${category}', '${contactId}')">Save Changes</button>
+                    <button class="btn-primary" onclick="loadContactsForCategory()" style="margin-left: 10px;">Cancel</button>
+                </div>
+            ` + otherContactsHTML;
+        }
+
+        function saveEditedContact(category, contactId) {
+            const name = document.getElementById('editContactName').value.trim();
+            const info = document.getElementById('editContactInfo').value.trim();
+            const phone = document.getElementById('editContactPhone').value.trim();
+            
+            if (!name || !phone) {
+                showStatus('Please enter at least a name and phone number.', 'error');
+                return;
+            }
+            
+            // Find and update the contact
+            const contact = contactData[category] ? contactData[category].find(c => c.id === contactId) : null;
+            if (contact) {
+                contact.name = name;
+                contact.info = info.trim(); // Keep original info, even if empty
+                contact.phone = phone;
+                
+                showStatus('Contact updated successfully!', 'success');
+                loadContactsForCategory();
+                saveDataToFirebase();
+            } else {
+                showStatus('Error: Contact not found.', 'error');
+            }
+        }
+
+        function deleteContact(category, contactId) {
+            if (confirm('Are you sure you want to delete this contact?')) {
+                contactData[category] = contactData[category].filter(c => c.id !== contactId);
+                showStatus('Contact deleted successfully!', 'success');
+                loadContactsForCategory();
+                saveDataToFirebase();
+            }
+        }
+
+        // 📞 CONTACT CATEGORY MANAGEMENT FUNCTIONS
+        function addNewContactCategory() {
+            const key = document.getElementById('newContactCategoryKey').value.trim();
+            const name = document.getElementById('newContactCategoryName').value.trim();
+            const emoji = document.getElementById('newContactCategoryEmoji').value.trim();
+            const description = document.getElementById('newContactCategoryDescription').value.trim();
+            const isEmergency = document.getElementById('newContactCategoryEmergency').checked;
+            
+            if (!key || !name) {
+                showStatus('Please enter at least a category key and name.', 'error');
+                return;
+            }
+            
+            // Check if key already exists
+            if (contactCategories[key]) {
+                showStatus('Category key already exists. Please use a different key.', 'error');
+                return;
+            }
+            
+            // Create new category
+            contactCategories[key] = {
+                name: name,
+                emoji: emoji || '📞',
+                description: description || 'No description provided',
+                isEmergency: isEmergency,
+                order: Object.keys(contactCategories).length + 1
+            };
+            
+            // Initialize empty contact array for this category
+            if (!contactData[key]) {
+                contactData[key] = [];
+            }
+            
+            // Clear form
+            document.getElementById('newContactCategoryKey').value = '';
+            document.getElementById('newContactCategoryName').value = '';
+            document.getElementById('newContactCategoryEmoji').value = '';
+            document.getElementById('newContactCategoryDescription').value = '';
+            document.getElementById('newContactCategoryEmergency').checked = false;
+            
+            showStatus('Contact category added successfully!', 'success');
+            loadContactCategoriesList();
+            populateContactCategoryDropdown();
+            saveDataToFirebase();
+        }
+
+        function loadContactCategoriesList() {
+            const container = document.getElementById('contactCategoriesList');
+            if (!container) return;
+            
+            if (Object.keys(contactCategories).length === 0) {
+                container.innerHTML = '<p style="color: #a0aec0; text-align: center; padding: 20px;">No contact categories yet.</p>';
+                return;
+            }
+            
+            // Sort categories by order for display
+            const sortedCategories = Object.entries(contactCategories).sort(([,a], [,b]) => (a.order || 999) - (b.order || 999));
+            
+            container.innerHTML = `
+                <p style="color: #a0aec0; margin-bottom: 15px;">💡 Drag categories up and down to reorder them in the user contact directory</p>
+                <div id="sortableCategoryList">
+                    ${sortedCategories.map(([key, category]) => `
+                        <div class="draggable-category" draggable="true" data-category-key="${key}" style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="drag-handle">⋮⋮</div>
+                                    <div>
+                                        <strong style="color: #e2e8f0;">${category.emoji} ${category.name}</strong>
+                                        <div style="font-size: 0.8rem; color: #a0aec0;">Key: ${key}</div>
+                                        <div style="font-size: 0.8rem; color: #a0aec0;">${category.description}</div>
+                                        <div style="font-size: 0.8rem; color: #a0aec0;">
+                                            ${category.isEmergency ? '🚨 Emergency Category' : '📋 Standard Category'} | 
+                                            ${contactData[key] ? contactData[key].length : 0} contacts | 
+                                            Order: ${category.order || 'Not set'}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn-primary" onclick="editContactCategory('${key}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                                    <button class="btn-danger" onclick="deleteContactCategory('${key}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Add drag and drop functionality
+            initializeDragAndDrop();
+        }
+
+        function initializeDragAndDrop() {
+            const container = document.getElementById('sortableCategoryList');
+            if (!container) return;
+            
+            let draggedElement = null;
+            
+            // Add event listeners to draggable items
+            container.querySelectorAll('.draggable-category').forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    draggedElement = this;
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/html', this.outerHTML);
+                });
+                
+                item.addEventListener('dragend', function(e) {
+                    this.classList.remove('dragging');
+                });
+                
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                });
+                
+                item.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    if (this !== draggedElement) {
+                        const allItems = Array.from(container.querySelectorAll('.draggable-category'));
+                        const draggedIndex = allItems.indexOf(draggedElement);
+                        const targetIndex = allItems.indexOf(this);
+                        
+                        if (draggedIndex < targetIndex) {
+                            this.parentNode.insertBefore(draggedElement, this.nextSibling);
+                        } else {
+                            this.parentNode.insertBefore(draggedElement, this);
+                        }
+                        
+                        // Update order in data
+                        updateCategoryOrder();
+                    }
+                });
+            });
+        }
+
+        function updateCategoryOrder() {
+            const container = document.getElementById('sortableCategoryList');
+            if (!container) return;
+            
+            const items = container.querySelectorAll('.draggable-category');
+            items.forEach((item, index) => {
+                const categoryKey = item.getAttribute('data-category-key');
+                if (contactCategories[categoryKey]) {
+                    contactCategories[categoryKey].order = index + 1;
+                }
+            });
+            
+            // Save to Firebase
+            saveDataToFirebase();
+            showStatus('Category order updated!', 'success');
+        }
+
+        function editContactCategory(categoryKey) {
+            const category = contactCategories[categoryKey];
+            if (!category) return;
+            
+            const container = document.getElementById('contactCategoriesList');
+            
+            const otherCategoriesHTML = Object.entries(contactCategories)
+                .filter(([key]) => key !== categoryKey)
+                .map(([key, category]) => `
+                    <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="color: #e2e8f0;">${category.emoji} ${category.name}</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Key: ${key}</div>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">${category.description}</div>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">
+                                    ${category.isEmergency ? '🚨 Emergency Category' : '📋 Standard Category'} | 
+                                    ${contactData[key] ? contactData[key].length : 0} contacts
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn-primary" onclick="editContactCategory('${key}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                                <button class="btn-danger" onclick="deleteContactCategory('${key}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            
+            container.innerHTML = `
+                <div style="background: #4a5568; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <h4 style="color: #e2e8f0; margin-bottom: 15px;">Edit Contact Category: ${categoryKey}</h4>
+                    <div class="form-group">
+                        <label class="form-label">Category Key (cannot be changed):</label>
+                        <input type="text" class="form-input" value="${categoryKey}" disabled style="opacity: 0.6;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category Name:</label>
+                        <input type="text" class="form-input" id="editContactCategoryName" value="${category.name}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Emoji:</label>
+                        <input type="text" class="form-input" id="editContactCategoryEmoji" value="${category.emoji}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description:</label>
+                        <input type="text" class="form-input" id="editContactCategoryDescription" value="${category.description}">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: flex; align-items: center; gap: 8px; color: #e2e8f0;">
+                            <input type="checkbox" id="editContactCategoryEmergency" ${category.isEmergency ? 'checked' : ''} style="margin: 0;">
+                            <span>Mark as Emergency Category (red styling)</span>
+                        </label>
+                    </div>
+                    <button class="btn-primary" onclick="saveEditedContactCategory('${categoryKey}')">Save Changes</button>
+                    <button class="btn-primary" onclick="loadContactCategoriesList()" style="margin-left: 10px;">Cancel</button>
+                </div>
+            ` + otherCategoriesHTML;
+        }
+
+        function saveEditedContactCategory(categoryKey) {
+            const name = document.getElementById('editContactCategoryName').value.trim();
+            const emoji = document.getElementById('editContactCategoryEmoji').value.trim();
+            const description = document.getElementById('editContactCategoryDescription').value.trim();
+            const isEmergency = document.getElementById('editContactCategoryEmergency').checked;
+            
+            if (!name) {
+                showStatus('Please enter a category name.', 'error');
+                return;
+            }
+            
+            // Update category
+            contactCategories[categoryKey] = {
+                name: name,
+                emoji: emoji || '📞',
+                description: description || 'No description provided',
+                isEmergency: isEmergency,
+                order: contactCategories[categoryKey].order || 999 // Preserve existing order
+            };
+            
+            showStatus('Contact category updated successfully!', 'success');
+            loadContactCategoriesList();
+            populateContactCategoryDropdown();
+            saveDataToFirebase();
+        }
+
+        function deleteContactCategory(categoryKey) {
+            const contactCount = contactData[categoryKey] ? contactData[categoryKey].length : 0;
+            const confirmMessage = contactCount > 0 
+                ? `Are you sure you want to delete "${contactCategories[categoryKey].name}"? This will also delete ${contactCount} contact(s) in this category.`
+                : `Are you sure you want to delete "${contactCategories[categoryKey].name}"?`;
+            
+            if (confirm(confirmMessage)) {
+                delete contactCategories[categoryKey];
+                if (contactData[categoryKey]) {
+                    delete contactData[categoryKey];
+                }
+                
+                showStatus('Contact category deleted successfully!', 'success');
+                loadContactCategoriesList();
+                populateContactCategoryDropdown();
+                saveDataToFirebase();
+            }
+        }
+
+        // 🔍 QUICK SEARCH CHIP MANAGEMENT
+        function addQuickSearchChip() {
+            const newChipText = document.getElementById('newChipText');
+            if (!newChipText) return;
+            
+            const text = newChipText.value.trim();
+            if (!text) {
+                showStatus('Please enter chip text.', 'error');
+                return;
+            }
+            
+            if (quickSearchChips.includes(text)) {
+                showStatus('This chip already exists.', 'error');
+                return;
+            }
+            
+            quickSearchChips.push(text);
+            newChipText.value = '';
+            
+            showStatus('Quick search chip added successfully!', 'success');
+            updateQuickSearchChips();
+            loadQuickSearchChipsList();
+            saveDataToFirebase();
+        }
+
+        function loadQuickSearchChipsList() {
+            const container = document.getElementById('quickSearchChipsList');
+            if (!container) return;
+            
+            if (quickSearchChips.length === 0) {
+                container.innerHTML = '<p style="color: #a0aec0; text-align: center; padding: 20px;">No quick search chips yet.</p>';
+                return;
+            }
+            
+            const chipsHTML = quickSearchChips.map((chip, index) => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid #4a5568; border-radius: 8px; margin-bottom: 10px; background: #4a5568;">
+                    <div>
+                        <span style="background: #edf2f7; color: #4a5568; padding: 6px 12px; border-radius: 20px; font-size: 0.9rem;">${chip}</span>
+                    </div>
+                    <button class="btn-danger" onclick="deleteQuickSearchChip(${index})" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                </div>
+            `).join('');
+            
+            container.innerHTML = chipsHTML;
+        }
+
+        function deleteQuickSearchChip(index) {
+            if (confirm('Are you sure you want to delete this quick search chip?')) {
+                quickSearchChips.splice(index, 1);
+                
+                showStatus('Quick search chip deleted successfully!', 'success');
+                updateQuickSearchChips();
+                loadQuickSearchChipsList();
+                saveDataToFirebase();
+            }
+        }
+
+        // 🔄 CATEGORY MANAGEMENT
+        function loadCategoryList() {
+            const container = document.getElementById('categoryList');
+            if (!container) return;
+            
+            const categoriesHTML = Object.entries(protocolData).map(([category, data]) => `
+                <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: #e2e8f0;">${category}</strong>
+                            <div style="font-size: 0.8rem; color: #a0aec0;">${data.description}</div>
+                            <div style="font-size: 0.8rem; color: #a0aec0;">${data.protocols ? Object.keys(data.protocols).length : 0} protocols</div>
+                        </div>
+                        <div>
+                            <button class="btn-primary" onclick="editCategory('${category}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                            <button class="btn-danger" onclick="deleteCategory('${category}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = categoriesHTML;
+        }
+
+        function addNewCategory() {
+            const name = document.getElementById('newCategoryName').value.trim();
+            const description = document.getElementById('newCategoryDescription').value.trim();
+            
+            if (!name) {
+                showStatus('Please enter a category name.', 'error');
+                return;
+            }
+            
+            if (protocolData[name]) {
+                showStatus('Category already exists.', 'error');
+                return;
+            }
+            
+            const newCategory = {
+                description: description || 'No description provided',
+                protocols: {}
+            };
+            
+            protocolData[name] = newCategory;
+            
+            showStatus('Category added successfully!', 'success');
+            
+            document.getElementById('newCategoryName').value = '';
+            document.getElementById('newCategoryDescription').value = '';
+            
+            displayCategories();
+            populateAdminDropdowns();
+            loadCategoryList();
+            saveDataToFirebase();
+        }
+
+        function editCategory(categoryName) {
+            const category = protocolData[categoryName];
+            if (!category) return;
+            
+            const container = document.getElementById('categoryList');
+            
+            const otherCategoriesHTML = Object.entries(protocolData)
+                .filter(([cat]) => cat !== categoryName)
+                .map(([category, data]) => `
+                    <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="color: #e2e8f0;">${category}</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">${data.description}</div>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">${data.protocols ? Object.keys(data.protocols).length : 0} protocols</div>
+                            </div>
+                            <div>
+                                <button class="btn-primary" onclick="editCategory('${category}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                                <button class="btn-danger" onclick="deleteCategory('${category}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            
+            container.innerHTML = `
+                <div style="background: #4a5568; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <h4 style="color: #e2e8f0; margin-bottom: 15px;">Edit Category: ${categoryName}</h4>
+                    <div class="form-group">
+                        <label class="form-label">Category Name:</label>
+                        <input type="text" class="form-input" id="editCategoryName" value="${categoryName}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category Description:</label>
+                        <input type="text" class="form-input" id="editCategoryDescription" value="${category.description}">
+                    </div>
+                    <button class="btn-primary" onclick="saveEditedCategory('${categoryName}')">Save Changes</button>
+                    <button class="btn-primary" onclick="loadCategoryList()" style="margin-left: 10px;">Cancel</button>
+                </div>
+            ` + otherCategoriesHTML;
+        }
+
+        function saveEditedCategory(oldCategoryName) {
+            const newName = document.getElementById('editCategoryName').value.trim();
+            const newDescription = document.getElementById('editCategoryDescription').value.trim();
+            
+            if (!newName || !newDescription) {
+                showStatus('Please fill in all fields.', 'error');
+                return;
+            }
+            
+            if (newName !== oldCategoryName && protocolData[newName]) {
+                showStatus('Category name already exists.', 'error');
+                return;
+            }
+            
+            // If name changed, update the data structure
+            if (newName !== oldCategoryName) {
+                protocolData[newName] = protocolData[oldCategoryName];
+                delete protocolData[oldCategoryName];
+            }
+            
+            // Update description
+            protocolData[newName].description = newDescription;
+            
+            showStatus('Category updated successfully!', 'success');
+            displayCategories();
+            populateAdminDropdowns();
+            loadCategoryList();
+            saveDataToFirebase();
+        }
+
+        function deleteCategory(categoryName) {
+            if (confirm(`Are you sure you want to delete "${categoryName}"? This will also delete all protocols in this category.`)) {
+                delete protocolData[categoryName];
+                
+                showStatus('Category deleted successfully!', 'success');
+                displayCategories();
+                populateAdminDropdowns();
+                loadCategoryList();
+                saveDataToFirebase();
+            }
+        }
+
+        // 💬 FEEDBACK FUNCTIONS
+        function showFeedback() {
+            const overlay = document.getElementById('feedbackOverlay');
+            if (overlay) {
+                overlay.classList.add('active');
+                if (currentAdminLevel) {
+                    document.getElementById('viewFeedbackTab').style.display = 'block';
+                }
+            }
+        }
+
+        function closeFeedback() {
+            const overlay = document.getElementById('feedbackOverlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        function showFeedbackTab(tabName) {
+            document.querySelectorAll('#feedbackOverlay .tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('#feedbackOverlay .tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            const contentDiv = document.getElementById(tabName + 'FeedbackTab');
+            if (contentDiv) {
+                contentDiv.classList.add('active');
+            }
+            
+            if (tabName === 'view') {
+                displayFeedbackList();
+            }
+        }
+
+        function submitFeedback() {
+            const type = document.getElementById('feedbackType');
+            const priority = document.getElementById('feedbackPriority');
+            const details = document.getElementById('feedbackDetails');
+            const name = document.getElementById('feedbackName');
+            
+            if (!type || !priority || !details || !name) return;
+            
+            if (!details.value.trim()) {
+                showStatus('Please provide feedback details.', 'error');
+                return;
+            }
+
+            const feedback = {
+                id: Date.now().toString(),
+                type: type.value,
+                priority: priority.value,
+                details: details.value.trim(),
+                name: name.value.trim() || 'Anonymous',
+                timestamp: new Date().toISOString(),
+                status: 'open'
+            };
+
+            feedbackData.push(feedback);
+            
+            // Clear form
+            details.value = '';
+            name.value = '';
+            
+            showStatus('Feedback submitted successfully!', 'success');
+            saveDataToFirebase();
+        }
+
+        function displayFeedbackList() {
+            const feedbackList = document.getElementById('feedbackList');
+            if (!feedbackList) return;
+            
+            if (feedbackData.length === 0) {
+                feedbackList.innerHTML = '<p style="text-align: center; color: #a0aec0; padding: 20px;">No feedback submitted yet.</p>';
+                return;
+            }
+
+            const feedbackHTML = feedbackData
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .map(feedback => `
+                    <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <div>
+                                <span style="background: #e2e8f0; color: #4a5568; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 10px;">${feedback.type}</span>
+                                <span style="background: ${getPriorityColor(feedback.priority)}; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.75rem;">${feedback.priority.toUpperCase()}</span>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #a0aec0;">
+                                ${new Date(feedback.timestamp).toLocaleDateString()} ${new Date(feedback.timestamp).toLocaleTimeString()}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 10px; line-height: 1.5;">${feedback.details}</div>
+                        <div style="font-size: 0.8rem; color: #a0aec0;"><strong>From:</strong> ${feedback.name}</div>
+                    </div>
+                `).join('');
+            
+            feedbackList.innerHTML = feedbackHTML;
+        }
+
+        function displayAdminFeedbackList() {
+            const adminFeedbackList = document.getElementById('adminFeedbackList');
+            if (!adminFeedbackList) return;
+            
+            if (feedbackData.length === 0) {
+                adminFeedbackList.innerHTML = '<p style="text-align: center; color: #a0aec0; padding: 20px;">No user comments or feedback yet.</p>';
+                return;
+            }
+
+            const feedbackHTML = feedbackData
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .map(feedback => `
+                    <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <div>
+                                <span style="background: #e2e8f0; color: #4a5568; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 10px;">${feedback.type.replace('-', ' ').toUpperCase()}</span>
+                                <span style="background: ${getPriorityColor(feedback.priority)}; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.75rem;">${feedback.priority.toUpperCase()}</span>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #a0aec0;">
+                                ${new Date(feedback.timestamp).toLocaleDateString()} ${new Date(feedback.timestamp).toLocaleTimeString()}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 10px; line-height: 1.5; font-weight: 500;">${feedback.details}</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #a0aec0; margin-bottom: 10px;">
+                            <div><strong>From:</strong> ${feedback.name}</div>
+                            <div><strong>Status:</strong> ${feedback.status}</div>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button style="padding: 5px 10px; border: 1px solid #48bb78; background: #4a5568; border-radius: 4px; cursor: pointer; font-size: 0.8rem; color: #e2e8f0;" onclick="markFeedbackResolved('${feedback.id}')">Mark Resolved</button>
+                            <button style="padding: 5px 10px; border: 1px solid #e53e3e; background: #4a5568; border-radius: 4px; cursor: pointer; font-size: 0.8rem; color: #e2e8f0;" onclick="deleteFeedback('${feedback.id}')">Delete</button>
+                        </div>
+                    </div>
+                `).join('');
+            
+            adminFeedbackList.innerHTML = feedbackHTML;
+        }
+
+        function getPriorityColor(priority) {
+            switch (priority) {
+                case 'low': return '#48bb78';
+                case 'medium': return '#ed8936';
+                case 'high': return '#f56565';
+                default: return '#a0aec0';
+            }
+        }
+
+        function markFeedbackResolved(id) {
+            const feedback = feedbackData.find(f => f.id === id);
+            if (feedback) {
+                feedback.status = 'resolved';
+                displayAdminFeedbackList();
+                showStatus('Feedback marked as resolved.', 'success');
+                saveDataToFirebase();
+            }
+        }
+
+        function deleteFeedback(id) {
+            if (confirm('Are you sure you want to delete this feedback?')) {
+                feedbackData = feedbackData.filter(f => f.id !== id);
+                displayAdminFeedbackList();
+                displayFeedbackList();
+                showStatus('Feedback deleted.', 'success');
+                saveDataToFirebase();
+            }
+        }
+
+        // ⏰ REMINDER SYSTEM
+        function showReminders() {
+            const overlay = document.getElementById('reminderOverlay');
+            if (overlay) {
+                overlay.classList.add('active');
+                displayReminders();
+                setDefaultReminderTime();
+            }
+        }
+
+        function closeReminders() {
+            const overlay = document.getElementById('reminderOverlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        function setDefaultReminderTime() {
+            const reminderTime = document.getElementById('reminderTime');
+            if (reminderTime) {
+                const now = new Date();
+                now.setMinutes(now.getMinutes() + 30);
+                reminderTime.value = now.toISOString().slice(0, 16);
+            }
+        }
+
+        function addReminder() {
+            const reminderText = document.getElementById('reminderText');
+            const reminderTime = document.getElementById('reminderTime');
+            const reminderPriority = document.getElementById('reminderPriority');
+            
+            if (!reminderText || !reminderTime || !reminderPriority) return;
+            
+            const text = reminderText.value.trim();
+            const time = reminderTime.value;
+            const priority = reminderPriority.value;
+            
+            if (!text || !time) {
+                showStatus('Please fill in both reminder text and time.', 'error');
+                return;
+            }
+
+            const reminder = {
+                id: Date.now().toString(),
+                text: text,
+                time: new Date(time),
+                priority: priority,
+                active: true,
+                created: new Date()
+            };
+
+            reminderData.push(reminder);
+            
+            reminderText.value = '';
+            reminderPriority.value = 'normal';
+            setDefaultReminderTime();
+            
+            displayReminders();
+            showStatus('Reminder added successfully!', 'success');
+            saveDataToFirebase();
+        }
+
+        function displayReminders() {
+            const reminderList = document.getElementById('reminderList');
+            if (!reminderList) return;
+            
+            const activeReminders = reminderData.filter(r => r.active).sort((a, b) => new Date(a.time) - new Date(b.time));
+            
+            if (activeReminders.length === 0) {
+                reminderList.innerHTML = '<p style="text-align: center; color: #a0aec0; padding: 20px;">No active reminders</p>';
+                return;
+            }
+
+            const reminderHTML = activeReminders.map(reminder => {
+                const timeStr = new Date(reminder.time).toLocaleString();
+                const isUrgent = reminder.priority === 'urgent';
+                
+                return `
+                    <div class="reminder-item ${isUrgent ? 'urgent' : ''}">
+                        <div class="reminder-time">${timeStr} ${isUrgent ? '🔔' : ''}</div>
+                        <div class="reminder-text">${reminder.text}</div>
+                        <div class="reminder-actions">
+                            <button onclick="completeReminder('${reminder.id}')">Mark Complete</button>
+                            <button onclick="deleteReminder('${reminder.id}')">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            reminderList.innerHTML = reminderHTML;
+        }
+
+        function completeReminder(id) {
+            const reminder = reminderData.find(r => r.id === id);
+            if (reminder) {
+                reminder.active = false;
+                displayReminders();
+                saveDataToFirebase();
+            }
+        }
+
+        function deleteReminder(id) {
+            if (confirm('Are you sure you want to delete this reminder?')) {
+                reminderData = reminderData.filter(r => r.id !== id);
+                displayReminders();
+                saveDataToFirebase();
+            }
+        }
+
+        function startReminderCheck() {
+            reminderInterval = setInterval(checkReminders, 30000);
+        }
+
+        function checkReminders() {
+            const now = new Date();
+            const dueReminders = reminderData.filter(r => r.active && new Date(r.time) <= now);
+            
+            dueReminders.forEach(reminder => {
+                showReminderAlert(reminder);
+                completeReminder(reminder.id);
+            });
+        }
+
+        function showReminderAlert(reminder) {
+            const alertDiv = document.getElementById('reminderAlert');
+            const alertText = document.getElementById('reminderAlertText');
+            
+            if (!alertDiv || !alertText) return;
+            
+            alertText.textContent = `⏰ Reminder: ${reminder.text}`;
+            alertDiv.classList.add('active');
+            
+            if (reminder.priority === 'urgent') {
+                playReminderSound();
+            }
+            
+            setTimeout(() => {
+                if (alertDiv.classList.contains('active')) {
+                    alertDiv.classList.remove('active');
+                }
+            }, 30000);
+        }
+
+        function playReminderSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (error) {
+                console.log('Could not play reminder sound:', error);
+            }
+        }
+
+        function dismissReminder() {
+            const alertDiv = document.getElementById('reminderAlert');
+            if (alertDiv) alertDiv.classList.remove('active');
+        }
+
+        function snoozeReminder() {
+            const alertDiv = document.getElementById('reminderAlert');
+            const alertText = document.getElementById('reminderAlertText');
+            
+            if (!alertDiv || !alertText) return;
+            
+            alertDiv.classList.remove('active');
+            
+            const snoozeTime = new Date();
+            snoozeTime.setMinutes(snoozeTime.getMinutes() + 5);
+            
+            const snoozeReminder = {
+                id: Date.now().toString(),
+                text: alertText.textContent.replace('⏰ Reminder: ', '') + ' (Snoozed)',
+                time: snoozeTime,
+                priority: 'urgent',
+                active: true,
+                created: new Date()
+            };
+            
+            reminderData.push(snoozeReminder);
+            saveDataToFirebase();
+        }
+
+        // 🗄️ PROTOCOL MANAGEMENT FUNCTIONS
+        function loadProtocolsForEdit() {
+            const category = document.getElementById('editProtocolCategory').value;
+            const container = document.getElementById('protocolEditList');
+            
+            if (!container) return;
+            
+            if (!category) {
+                container.innerHTML = '';
+                return;
+            }
+            
+            const protocols = protocolData[category].protocols ? Object.values(protocolData[category].protocols) : [];
+            
+            if (protocols.length === 0) {
+                container.innerHTML = '<p style="color: #a0aec0; text-align: center; padding: 20px;">No protocols in this category yet.</p>';
+                return;
+            }
+            
+            const protocolsHTML = protocols.map((protocol) => {
+                return `
+                    <div style="border: 1px solid #4a5568; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #4a5568;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div>
+                                <strong style="color: #e2e8f0;">${protocol.issue}</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">${protocol.steps.length} steps</div>
+                            </div>
+                            <div>
+                                <button class="btn-primary" onclick="editProtocol('${category}', '${protocol.id}')" style="margin-right: 10px; padding: 8px 12px; font-size: 0.8rem;">Edit</button>
+                                <button class="btn-danger" onclick="deleteProtocol('${category}', '${protocol.id}')" style="padding: 8px 12px; font-size: 0.8rem;">Delete</button>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #a0aec0;">
+                            Steps: ${protocol.steps.slice(0, 2).join('; ')}${protocol.steps.length > 2 ? '...' : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = protocolsHTML;
+        }
+
+        function editProtocol(category, protocolId) {
+            const protocol = Object.values(protocolData[category].protocols).find(p => p.id === protocolId);
+            if (!protocol) return;
+            
+            const container = document.getElementById('protocolEditList');
+            
+            container.innerHTML = `
+                <div style="background: #4a5568; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <h4 style="color: #e2e8f0; margin-bottom: 15px;">Edit Protocol</h4>
+                    <div class="form-group">
+                        <label class="form-label">Protocol Title:</label>
+                        <input type="text" class="form-input" id="editTitle" value="${protocol.issue}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Protocol Steps:</label>
+                        <textarea class="form-textarea" id="editSteps">${protocol.steps.join('\n')}</textarea>
+                    </div>
+                    <button class="btn-primary" onclick="saveEditedProtocol('${category}', '${protocolId}')">Save Changes</button>
+                    <button class="btn-primary" onclick="loadProtocolsForEdit()" style="margin-left: 10px;">Cancel</button>
+                </div>
+            `;
+        }
+
+        function saveEditedProtocol(category, protocolId) {
+            const title = document.getElementById('editTitle').value.trim();
+            const stepsText = document.getElementById('editSteps').value.trim();
+            
+            if (!title || !stepsText) {
+                showStatus('Please fill in all fields.', 'error');
+                return;
+            }
+            
+            const steps = stepsText.split('\n').map(step => step.trim()).filter(step => step);
+            
+            if (steps.length === 0) {
+                showStatus('Please enter at least one protocol step.', 'error');
+                return;
+            }
+            
+            const protocol = Object.values(protocolData[category].protocols).find(p => p.id === protocolId);
+            if (protocol) {
+                protocol.issue = title;
+                protocol.steps = steps;
+                protocol.updatedAt = new Date().toISOString();
+                protocol.updatedBy = currentAdminLevel || 'unknown';
+                
+                showStatus('Protocol updated successfully!', 'success');
+                displayCategories();
+                loadProtocolsForEdit();
+                saveDataToFirebase();
+            }
+        }
+
+        function deleteProtocol(category, protocolId) {
+            if (confirm('Are you sure you want to delete this protocol?')) {
+                delete protocolData[category].protocols[protocolId];
+                
+                showStatus('Protocol deleted successfully!', 'success');
+                displayCategories();
+                loadProtocolsForEdit();
+                saveDataToFirebase();
+            }
+        }
+
+        // 📊 ANALYTICS
+        function updateAnalyticsDisplay() {
+            const totalProtocols = Object.values(protocolData).reduce((sum, category) => {
+                return sum + (category.protocols ? Object.keys(category.protocols).length : 0);
+            }, 0);
+            
+            const totalProtocolsEl = document.getElementById('totalProtocols');
+            const totalCategoriesEl = document.getElementById('totalCategories');
+            const totalFeedbackEl = document.getElementById('totalFeedback');
+            const lastUpdateEl = document.getElementById('lastUpdate');
+            
+            if (totalProtocolsEl) totalProtocolsEl.textContent = totalProtocols;
+            if (totalCategoriesEl) totalCategoriesEl.textContent = Object.keys(protocolData).length;
+            if (totalFeedbackEl) totalFeedbackEl.textContent = feedbackData.length;
+            
+            // Find most recent protocol update
+            let lastUpdate = 'Never';
+            let mostRecentDate = null;
+            
+            Object.values(protocolData).forEach(category => {
+                if (category.protocols) {
+                    Object.values(category.protocols).forEach(protocol => {
+                        const protocolDate = protocol.updatedAt || protocol.createdAt;
+                        if (protocolDate) {
+                            const date = new Date(protocolDate);
+                            if (!mostRecentDate || date > mostRecentDate) {
+                                mostRecentDate = date;
+                                lastUpdate = date.toLocaleDateString();
+                            }
+                        }
+                    });
+                }
+            });
+            
+            if (lastUpdateEl) lastUpdateEl.textContent = lastUpdate;
+        }
+
+        // 🎨 ACCESSIBILITY FUNCTIONS
+        function toggleDarkMode() {
+            document.body.classList.toggle('light-mode');
+            const btn = document.getElementById('darkModeBtn');
+            if (btn) {
+                if (document.body.classList.contains('light-mode')) {
+                    btn.textContent = '🌙 Night';
+                    btn.classList.remove('active');
+                } else {
+                    btn.textContent = '☀️ Light';
+                    btn.classList.add('active');
+                }
+            }
+        }
+
+        // 🚀 INITIALIZE WHEN PAGE LOADS
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeBtn = document.getElementById('darkModeBtn');
+            if (darkModeBtn) {
+                darkModeBtn.classList.add('active');
+            }
+            init();
+        });
+    </script>
+</body>
+</html>
