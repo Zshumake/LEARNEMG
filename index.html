@@ -106,6 +106,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
             width: calc(100% - 40px);
+            box-sizing: border-box;
         }
 
         /* Header */
@@ -4197,7 +4198,9 @@
                 padding: 10px;
                 background: var(--light-bg);
                 border-bottom: 3px solid var(--accent-color);
-                overflow: visible;
+                overflow: hidden;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .tab-button {
@@ -4292,7 +4295,9 @@
                 padding: 8px;
                 background: var(--light-bg);
                 border-bottom: 3px solid var(--accent-color);
-                overflow: visible;
+                overflow: hidden;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .tab-button {
