@@ -105,6 +105,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
+            width: calc(100% - 40px);
         }
 
         /* Header */
@@ -128,15 +129,23 @@
             padding: 0;
             overflow-x: auto;
             border-bottom: 3px solid var(--accent-color);
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .tab-button {
-            flex: 1;
-            min-width: 160px;
+            flex: 0 0 auto;
+            min-width: 140px;
             background: var(--light-bg);
             border: none;
-            padding: 15px 10px;
+            padding: 12px 8px;
+            white-space: nowrap;
             cursor: pointer;
             color: #6c757d;
             font-weight: bold;
@@ -165,6 +174,27 @@
         /* Content Area */
         .content {
             padding: 30px;
+            overflow-x: hidden;
+        }
+
+        /* Table Responsiveness */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modern-table,
+        .reference-table,
+        .anastomoses-table {
+            min-width: 600px;
+            width: 100%;
+        }
+
+        /* Prevent horizontal overflow */
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         .tab-content {
@@ -4082,13 +4112,244 @@
             }
         }
 
+        /* Comprehensive Responsive Design */
+        
+        /* Large Desktop (1200px+) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1200px;
+                margin: 20px auto;
+            }
+        }
+        
+        /* Desktop (992px - 1199px) */
+        @media (max-width: 1199px) and (min-width: 992px) {
+            .container {
+                max-width: 100%;
+                margin: 15px;
+                width: calc(100% - 30px);
+            }
+        }
+        
+        /* Tablet/iPad (768px - 991px) */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .container {
+                margin: 10px;
+                width: calc(100% - 20px);
+                border-radius: 12px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .tab-button {
+                min-width: 120px;
+                padding: 10px 6px;
+                font-size: 0.85em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .nerve-buttons {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .quiz-options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+                gap: 15px !important;
+            }
+        }
+        
+        /* Mobile Large (481px - 767px) */
+        @media (max-width: 767px) and (min-width: 481px) {
+            .container {
+                margin: 5px;
+                width: calc(100% - 10px);
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .tab-button {
+                min-width: 100px;
+                padding: 8px 4px;
+                font-size: 0.8em;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .nerve-buttons {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .nerve-group {
+                padding: 15px;
+            }
+            
+            .quiz-options-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            
+            .reference-grid,
+            .clinical-grid,
+            .testing-sections,
+            .anastomoses-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+        
+        /* Mobile Small (320px - 480px) */
         @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .container {
+                margin: 2px;
+                width: calc(100% - 4px);
+                border-radius: 6px;
+            }
+            
+            .header {
+                padding: 15px 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+                line-height: 1.2;
+            }
+            
+            .header p {
+                font-size: 0.9em;
+            }
+            
+            .nav-tabs {
+                flex-wrap: nowrap;
+            }
+            
+            .tab-button {
+                min-width: 80px;
+                padding: 6px 3px;
+                font-size: 0.7em;
+            }
+            
+            .content {
+                padding: 10px;
+            }
+            
+            .nerve-buttons {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .nerve-group {
+                padding: 10px;
+            }
+            
+            .nerve-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            
+            .quiz-options-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+            
+            .quiz-option-card {
+                padding: 15px !important;
+            }
+            
+            .reference-grid,
+            .clinical-grid,
+            .testing-sections,
+            .anastomoses-grid,
+            .nerve-contributions-grid,
+            .clinical-nerves-grid,
+            .plexopathy-modern-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .muscle-test-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .muscle-test-controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .answer-choices {
+                gap: 8px;
+            }
+            
+            .filter-chips {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            
+            .filter-chip, .action-chip {
+                font-size: 0.75em;
+                padding: 6px 10px;
+            }
+            
             .study-stats-grid {
                 grid-template-columns: 1fr;
+                gap: 10px;
             }
 
             .stat-card {
                 padding: 15px;
+            }
+            
+            /* Fix table overflow on small screens */
+            .modern-table,
+            .reference-table,
+            .anastomoses-table {
+                font-size: 0.8em;
+            }
+            
+            .modern-table th,
+            .modern-table td,
+            .reference-table th,
+            .reference-table td {
+                padding: 6px 4px;
+            }
+            
+            /* Fix card layouts */
+            .plexopathy-card,
+            .comparison-card {
+                margin-bottom: 10px;
+            }
+            
+            /* Fix button groups */
+            .muscle-test-actions,
+            .quiz-controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .muscle-test-actions button,
+            .quiz-controls button {
+                width: 100%;
+                margin: 0;
             }
 
             .stat-number {
@@ -6473,8 +6734,9 @@
                 <!-- Quick Overview Chart -->
                 <div class="anastomoses-overview">
                     <h3>📊 Anastomoses at a Glance</h3>
-                    <div class="anastomoses-table">
-                        <table class="modern-table">
+                    <div class="table-container">
+                        <div class="anastomoses-table">
+                            <table class="modern-table">
                             <thead>
                                 <tr>
                                     <th>Anastomosis</th>
@@ -6510,6 +6772,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
 
