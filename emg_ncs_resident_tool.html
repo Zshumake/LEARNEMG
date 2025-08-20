@@ -1873,7 +1873,87 @@
             differentialDiv.innerHTML = content;
         }
         
-        // Consolidated quiz system functions
+        // Essential utility functions
+        function updateProgress(percentage) {
+            document.getElementById('progress-fill').style.width = percentage + '%';
+        }
+
+        function analyzeDifferential() {
+            const userInput = document.getElementById('user-differential').value.toLowerCase();
+            const expectedDifferentials = currentCase.expectedDifferential;
+            const feedbackDiv = document.getElementById('differential-feedback');
+            
+            if (!userInput.trim()) {
+                feedbackDiv.innerHTML = '<div style="color: #e74c3c; padding: 10px;">Please enter your differential diagnosis first.</div>';
+                return;
+            }
+            
+            // Simple keyword matching for educational feedback
+            let matchedDiagnoses = [];
+            let missedDiagnoses = [];
+            
+            expectedDifferentials.forEach(diagnosis => {
+                const keywords = diagnosis.toLowerCase().split(' ');
+                const matched = keywords.some(keyword => userInput.includes(keyword));
+                
+                if (matched) {
+                    matchedDiagnoses.push(diagnosis);
+                } else {
+                    missedDiagnoses.push(diagnosis);
+                }
+            });
+            
+            let feedbackHTML = '<h4>📊 Differential Analysis</h4>';
+            
+            if (matchedDiagnoses.length > 0) {
+                feedbackHTML += '<div style="background: #f0fff4; border: 1px solid #27ae60; border-radius: 5px; padding: 15px; margin: 10px 0;">';
+                feedbackHTML += '<h5 style="color: #27ae60;">✅ Diagnoses you considered:</h5><ul>';
+                matchedDiagnoses.forEach(dx => {
+                    feedbackHTML += `<li>${dx}</li>`;
+                });
+                feedbackHTML += '</ul></div>';
+            }
+            
+            if (missedDiagnoses.length > 0) {
+                feedbackHTML += '<div style="background: #fff5f5; border: 1px solid #e74c3c; border-radius: 5px; padding: 15px; margin: 10px 0;">';
+                feedbackHTML += '<h5 style="color: #e74c3c;">💭 Additional diagnoses to consider:</h5><ul>';
+                missedDiagnoses.forEach(dx => {
+                    feedbackHTML += `<li>${dx}</li>`;
+                });
+                feedbackHTML += '</ul></div>';
+            }
+            
+            feedbackDiv.innerHTML = feedbackHTML;
+            document.getElementById('continue-to-studies').style.display = 'inline-block';
+        }
+
+        function checkFinalDiagnosis() {
+            const userDiagnosis = document.getElementById('final-diagnosis').value;
+            const feedbackDiv = document.getElementById('diagnosis-feedback');
+            
+            if (!userDiagnosis.trim()) {
+                feedbackDiv.innerHTML = '<div style="color: #e74c3c; padding: 10px;">Please enter your diagnosis first.</div>';
+                return;
+            }
+            
+            // For central causes, provide educational feedback
+            if (currentCase.emgIndication === "NOT INDICATED") {
+                feedbackDiv.innerHTML = `
+                    <div style="background: #e74c3c; color: white; border-radius: 8px; padding: 20px; margin: 15px 0;">
+                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
+                        <p><strong>Key Learning Point:</strong> ${currentCase.explanation}</p>
+                        <p><strong>Educational Note:</strong> ${currentCase.educationalNote}</p>
+                    </div>
+                `;
+            } else {
+                feedbackDiv.innerHTML = `
+                    <div style="background: #27ae60; color: white; border-radius: 8px; padding: 20px; margin: 15px 0;">
+                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
+                        <p><strong>Explanation:</strong> ${currentCase.explanation}</p>
+                    </div>
+                `;
+            }
+        }
 
         // New streamlined interface functions
         function startRandomCase() {
