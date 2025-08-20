@@ -1992,6 +1992,344 @@
                 explanation: "This is an upper motor neuron lesion (stroke). EMG/NCS evaluate the peripheral nervous system and would be normal in isolated stroke. Clinical presentation with hyperreflexia, Babinski sign, and spasticity confirms central cause.",
                 correctDiagnosis: "Acute Cerebrovascular Accident (Stroke) - EMG NOT INDICATED",
                 educationalNote: "EMG/NCS studies are used to evaluate the peripheral nervous system (nerve roots, plexuses, peripheral nerves, neuromuscular junction, and muscle). In pure upper motor neuron lesions like stroke, EMG would be normal and is not clinically indicated."
+            },
+            'combined': {
+                title: "Bilateral Hand Numbness and Weakness",
+                presentation: {
+                    age: 52,
+                    gender: "Female",
+                    occupation: "Assembly Line Worker",
+                    chiefComplaint: "6-month history of bilateral hand numbness, tingling, and weakness affecting multiple fingers",
+                    history: "Started with classic carpal tunnel symptoms (thumb/index/middle finger numbness, worse at night). Over past 2 months, developed ring/little finger numbness and weakness pinching with thumb-index finger. Works on assembly line with repetitive elbow flexion and wrist extension. Symptoms now affect both median and ulnar distributions bilaterally.",
+                    pmh: "Osteoarthritis, obesity",
+                    medications: "Ibuprofen PRN"
+                },
+                physicalExam: {
+                    inspection: "Mild thenar and hypothenar atrophy bilaterally",
+                    palpation: "Tender over bilateral carpal tunnels and cubital tunnels",
+                    rom: "Full ROM at all joints",
+                    strength: "Thenar weakness (4/5) and interosseous weakness (4/5) bilaterally",
+                    sensation: "Decreased sensation in median (digits 1-3) and ulnar (digits 4-5) distributions bilaterally",
+                    reflexes: "2+ and symmetric throughout",
+                    specialTests: "Positive Tinel's and Phalen's signs at wrists bilaterally. Positive elbow flexion test bilaterally."
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latencies (5.2ms right, 4.8ms left), reduced amplitudes",
+                        interpretation: "Moderate carpal tunnel syndrome bilaterally"
+                    },
+                    {
+                        name: "Median Sensory (digit 2)",
+                        result: "abnormal", 
+                        findings: "Prolonged peak latencies (4.1ms right, 3.9ms left), reduced amplitudes",
+                        interpretation: "Sensory carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Conduction velocity slowing across elbow (42 m/s right, 45 m/s left)",
+                        interpretation: "Mild cubital tunnel syndrome bilaterally"
+                    },
+                    {
+                        name: "Ulnar Sensory (digit 5)",
+                        result: "abnormal",
+                        findings: "Reduced amplitudes, normal latencies",
+                        interpretation: "Mild sensory involvement at elbow"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Chronic denervation with reinnervation changes",
+                        interpretation: "Chronic median neuropathy"
+                    },
+                    {
+                        muscle: "First dorsal interosseous", 
+                        findings: "Mild denervation changes",
+                        interpretation: "Ulnar neuropathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Combined Carpal Tunnel Syndrome and Cubital Tunnel Syndrome (bilateral)",
+                explanation: "This case demonstrates the classic 'double crush' phenomenon where a worker with repetitive motions develops entrapments at multiple sites. Both median (carpal tunnel) and ulnar (cubital tunnel) neuropathies can coexist, especially in occupational settings."
+            },
+            'c5radiculopathy': {
+                title: "Shoulder Pain and Arm Weakness",
+                presentation: {
+                    age: 41,
+                    gender: "Male",
+                    occupation: "Construction Worker",
+                    chiefComplaint: "3-week history of severe neck pain radiating to right shoulder and arm with weakness",
+                    history: "Lifting heavy materials 3 weeks ago, felt immediate sharp neck pain. Pain radiates from neck to right shoulder, lateral arm, and thumb. Weakness lifting arm overhead and external rotation. Coughing and sneezing worsen pain. No numbness in hand.",
+                    pmh: "Previous back injury 10 years ago",
+                    medications: "Ibuprofen, muscle relaxants"
+                },
+                physicalExam: {
+                    inspection: "Holding right arm in adducted position",
+                    palpation: "Cervical paraspinal muscle spasm, tender over C4-C5 region",
+                    rom: "Limited cervical extension and right lateral flexion",
+                    strength: "Deltoid 3/5, biceps 4/5, supraspinatus 3/5 on right. Left side normal.",
+                    sensation: "Decreased sensation over lateral shoulder (C5 dermatome)",
+                    reflexes: "Biceps reflex diminished (1+) on right. Triceps and brachioradialis normal.",
+                    specialTests: "Positive Spurling's test on right"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency, amplitude, and conduction velocity",
+                        interpretation: "No median neuropathy"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal parameters throughout",
+                        interpretation: "No ulnar neuropathy"
+                    },
+                    {
+                        name: "Radial Motor (EIP)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "No radial neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Cervical paraspinals (C4-C5)",
+                        findings: "Positive sharp waves and fibrillations",
+                        interpretation: "Acute denervation"
+                    },
+                    {
+                        muscle: "Deltoid",
+                        findings: "Positive sharp waves, reduced recruitment",
+                        interpretation: "C5 root involvement"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Mild denervation changes",
+                        interpretation: "C5-C6 involvement"
+                    },
+                    {
+                        muscle: "Supraspinatus",
+                        findings: "Active denervation",
+                        interpretation: "C5 root lesion"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Right C5 Radiculopathy",
+                explanation: "Classic C5 radiculopathy presentation with shoulder/deltoid weakness, diminished biceps reflex, and lateral shoulder sensory loss. Normal peripheral NCS with denervation in C5 myotomes and cervical paraspinals confirms root level pathology."
+            },
+            'l5radiculopathy': {
+                title: "Lower Back Pain with Leg Weakness",
+                presentation: {
+                    age: 38,
+                    gender: "Female", 
+                    occupation: "Nurse",
+                    chiefComplaint: "6-week history of lower back pain radiating down right leg with foot weakness",
+                    history: "Gradual onset lower back pain after lifting patient. Pain radiates from low back down posterior/lateral right leg to dorsum of foot. Weakness dorsiflexing foot, difficulty walking on heels. Numbness between great and second toe. Pain worse with sitting, better with walking.",
+                    pmh: "Previous episode of low back pain 5 years ago, resolved",
+                    medications: "Naproxen, gabapentin"
+                },
+                physicalExam: {
+                    inspection: "Slightly antalgic gait favoring right leg",
+                    palpation: "Lumbar paraspinal muscle spasm, tender over L4-L5 region",
+                    rom: "Limited lumbar flexion and extension",
+                    strength: "Extensor hallucis longus 3/5, tibialis anterior 4/5 on right. Other muscles normal.",
+                    sensation: "Decreased sensation in L5 dermatome (lateral leg, dorsum of foot, web space between toes 1-2)",
+                    reflexes: "Achilles and patellar reflexes symmetric and normal",
+                    specialTests: "Positive straight leg raise at 45 degrees on right"
+                },
+                ncsStudies: [
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (2.1 mV, normal >2.5 mV)",
+                        interpretation: "Mild axonal loss affecting deep peroneal nerve"
+                    },
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "normal",
+                        findings: "Normal amplitude and conduction velocity",
+                        interpretation: "No tibial nerve involvement"
+                    },
+                    {
+                        name: "Superficial Peroneal Sensory",
+                        result: "abnormal",
+                        findings: "Reduced amplitude on right compared to left",
+                        interpretation: "Sensory involvement"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "normal",
+                        findings: "Normal amplitude and velocity bilaterally",
+                        interpretation: "S1 distribution spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Lumbar paraspinals (L4-L5)",
+                        findings: "Positive sharp waves and fibrillations",
+                        interpretation: "Acute denervation"
+                    },
+                    {
+                        muscle: "Tibialis anterior",
+                        findings: "Positive sharp waves, reduced recruitment",
+                        interpretation: "L4-L5 root involvement"
+                    },
+                    {
+                        muscle: "Extensor hallucis longus",
+                        findings: "Active denervation, severely reduced recruitment",
+                        interpretation: "L5 root lesion"
+                    },
+                    {
+                        muscle: "Gluteus medius",
+                        findings: "Mild denervation changes",
+                        interpretation: "Superior gluteal nerve (L5 root)"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Right L5 Radiculopathy",
+                explanation: "L5 radiculopathy with classic dorsiflexor weakness, sensory loss in L5 distribution, and EMG showing denervation in L5 myotomes with sparing of S1 muscles. Reduced peroneal motor amplitude reflects axonal loss from chronic root compression."
+            },
+            'c7radiculopathy': {
+                title: "Arm Pain with Hand Weakness",
+                presentation: {
+                    age: 46,
+                    gender: "Male",
+                    occupation: "Office Manager",
+                    chiefComplaint: "4-week history of neck pain radiating down arm with hand and wrist weakness",
+                    history: "Gradual onset neck pain radiating down posterior arm to middle finger. Weakness extending wrist and fingers. Difficulty opening jars and gripping objects. Pain worse with neck extension. No trauma. Desk job with poor ergonomics.",
+                    pmh: "Cervical disc disease on MRI 2 years ago",
+                    medications: "Tramadol, prednisone taper"
+                },
+                physicalExam: {
+                    inspection: "No visible atrophy",
+                    palpation: "Cervical paraspinal tenderness at C6-C7 level",
+                    rom: "Limited cervical extension",
+                    strength: "Triceps 4/5, wrist extensors 3/5, finger extensors 4/5 on right",
+                    sensation: "Decreased sensation in middle finger (C7 dermatome)",
+                    reflexes: "Triceps reflex diminished (1+) on right. Biceps and brachioradialis normal.",
+                    specialTests: "Positive Spurling's test, negative Tinel's at wrist/elbow"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "No carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Radial Motor (EIP)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (3.2 mV, normal >4.0 mV)",
+                        interpretation: "Mild axonal loss in posterior interosseous nerve"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal parameters",
+                        interpretation: "No ulnar neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Cervical paraspinals (C6-C7)",
+                        findings: "Positive sharp waves and fibrillations",
+                        interpretation: "Acute denervation"
+                    },
+                    {
+                        muscle: "Triceps",
+                        findings: "Positive sharp waves, reduced recruitment",
+                        interpretation: "C7 root involvement"
+                    },
+                    {
+                        muscle: "Extensor carpi radialis",
+                        findings: "Active denervation changes",
+                        interpretation: "C7 root lesion"
+                    },
+                    {
+                        muscle: "Extensor digitorum communis",
+                        findings: "Denervation with reduced recruitment",
+                        interpretation: "Posterior interosseous nerve (C7 root)"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Right C7 Radiculopathy",
+                explanation: "C7 radiculopathy with classic triceps weakness, diminished triceps reflex, and middle finger sensory loss. EMG shows denervation in C7 myotomes including triceps and wrist/finger extensors, with sparing of C5, C6, C8, and T1 muscles."
+            },
+            'plexopathy': {
+                title: "Arm Weakness After Motorcycle Accident",
+                presentation: {
+                    age: 28,
+                    gender: "Male",
+                    occupation: "Motorcycle Mechanic",
+                    chiefComplaint: "3-month history of right arm weakness and numbness following motorcycle accident",
+                    history: "High-speed motorcycle accident 3 months ago with right shoulder trauma. Initially had complete right arm paralysis. Some recovery occurred but persistent weakness and numbness remain. Weakness affects entire arm from shoulder down. Numbness along medial arm and forearm.",
+                    pmh: "No significant past medical history",
+                    medications: "Gabapentin, physical therapy"
+                },
+                physicalExam: {
+                    inspection: "Winged scapula on right, mild atrophy of hand intrinsics",
+                    palpation: "Supraclavicular tenderness, no brachial plexus mass",
+                    rom: "Limited shoulder abduction and flexion",
+                    strength: "Deltoid 2/5, biceps 3/5, triceps 3/5, hand intrinsics 2/5 on right",
+                    sensation: "Decreased sensation along medial arm and forearm (C8-T1 distribution)",
+                    reflexes: "Absent biceps and triceps reflexes on right",
+                    specialTests: "Positive Tinel's sign over brachial plexus"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude (0.8 mV), prolonged latency",
+                        interpretation: "Severe median nerve dysfunction"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude (1.2 mV)",
+                        interpretation: "Severe ulnar nerve dysfunction"
+                    },
+                    {
+                        name: "Radial Motor (EIP)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (2.1 mV)",
+                        interpretation: "Moderate radial nerve dysfunction"
+                    },
+                    {
+                        name: "Medial Antebrachial Cutaneous",
+                        result: "abnormal",
+                        findings: "Absent sensory response",
+                        interpretation: "Medial cord/lower trunk involvement"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Cervical paraspinals",
+                        findings: "Normal",
+                        interpretation: "Root level spared"
+                    },
+                    {
+                        muscle: "Serratus anterior",
+                        findings: "Denervation changes",
+                        interpretation: "Long thoracic nerve involvement"
+                    },
+                    {
+                        muscle: "Hand intrinsics",
+                        findings: "Severe denervation with poor reinnervation",
+                        interpretation: "Lower trunk/medial cord lesion"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Right Brachial Plexopathy (Lower Trunk/Medial Cord Pattern)",
+                explanation: "Post-traumatic brachial plexopathy affecting primarily the lower trunk/medial cord, causing weakness in C8-T1 distribution with sparing of cervical paraspinals (distinguishing from root avulsion). Pattern of multiple nerve involvement localizes to plexus level."
             }
         };
 
