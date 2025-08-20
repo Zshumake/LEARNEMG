@@ -68,8 +68,8 @@ def integrate_nerve_image(nerve_name, base64_file_path, html_file_path):
         html_content = f.read()
     
     # Replace the image placeholder
-    pattern = f'{nerve_name}: {{\\s*roots: "[^"]*",\\s*image: null,'
-    replacement = f'{nerve_name}: {{\\n                        roots: "{get_nerve_roots(nerve_name)}",\\n                        image: "{base64_data}",'
+    pattern = f'{nerve_name}: ' + '{{' + '\\s*roots: "[^"]*",\\s*image: null,'
+    replacement = f'{nerve_name}: ' + '{{' + '\\n                        roots: "{get_nerve_roots(nerve_name)}",\\n                        image: "{base64_data}",'
     
     updated_html = re.sub(pattern, replacement, html_content)
     
