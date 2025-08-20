@@ -173,6 +173,161 @@
             border-left: 4px solid #3498db;
             border-radius: 4px;
         }
+
+        .complaint-group {
+            margin-bottom: 20px;
+        }
+
+        .complaint-group h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .central-warning {
+            background: #fff5f5;
+            border: 2px solid #e74c3c;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .central-button {
+            background: #e74c3c !important;
+        }
+
+        .central-button:hover {
+            background: #c0392b !important;
+        }
+
+        .quiz-container {
+            display: none;
+            margin-top: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .quiz-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .quiz-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .step-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .physical-exam {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .exam-category {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .exam-category h5 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .differential-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .ncs-study {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #27ae60;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .abnormal-finding {
+            background: #fff5f5;
+            border: 1px solid #e74c3c;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #c0392b;
+            font-weight: 500;
+        }
+
+        .normal-finding {
+            background: #f0fff4;
+            border: 1px solid #27ae60;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #27ae60;
+        }
+
+        .quiz-button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+
+        .quiz-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #27ae60);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
         
         .study-grid {
             display: grid;
@@ -377,17 +532,128 @@
                 
                 <div class="differential-builder">
                     <h3>Select Patient Complaint:</h3>
-                    <div class="complaint-selector">
-                        <button class="complaint-button" onclick="showDifferential('hand14')">Hand Pain/Paresthesias (Digits 1-4)</button>
-                        <button class="complaint-button" onclick="showDifferential('hand45')">Hand Pain/Paresthesias (Digits 4-5)</button>
-                        <button class="complaint-button" onclick="showDifferential('thenar')">Thenar Weakness</button>
-                        <button class="complaint-button" onclick="showDifferential('radicular')">Radicular Weakness Pattern</button>
-                        <button class="complaint-button" onclick="showDifferential('dropfoot')">Drop Foot</button>
-                        <button class="complaint-button" onclick="showDifferential('knee')">Knee Extension Weakness</button>
-                        <button class="complaint-button" onclick="showDifferential('brachial')">Brachial Plexopathy</button>
+                    <div class="complaint-categories">
+                        <h3>🔍 Step 1: Select Patient Complaint</h3>
+                        
+                        <h4>Upper Extremity Complaints:</h4>
+                        <div class="complaint-group">
+                            <button class="complaint-button" onclick="startCase('hand14')">Hand numbness/tingling (digits 1-4)</button>
+                            <button class="complaint-button" onclick="startCase('hand45')">Hand numbness/tingling (digits 4-5)</button>
+                            <button class="complaint-button" onclick="startCase('handall')">Hand numbness/tingling (all digits)</button>
+                            <button class="complaint-button" onclick="startCase('thenar')">Thenar weakness/atrophy</button>
+                            <button class="complaint-button" onclick="startCase('hypothenar')">Hypothenar weakness/atrophy</button>
+                            <button class="complaint-button" onclick="startCase('fingerflexor')">Finger flexor weakness</button>
+                            <button class="complaint-button" onclick="startCase('wristdrop')">Wrist drop/extensor weakness</button>
+                            <button class="complaint-button" onclick="startCase('shoulder')">Shoulder weakness/pain with arm symptoms</button>
+                            <button class="complaint-button" onclick="startCase('neckarm')">Neck pain with arm weakness/numbness</button>
+                            <button class="complaint-button" onclick="startCase('bilateralue')">Bilateral hand symptoms</button>
+                        </div>
+
+                        <h4>Lower Extremity Complaints:</h4>
+                        <div class="complaint-group">
+                            <button class="complaint-button" onclick="startCase('footdrop')">Foot drop/dorsiflexor weakness</button>
+                            <button class="complaint-button" onclick="startCase('plantarflexor')">Plantar flexor weakness</button>
+                            <button class="complaint-button" onclick="startCase('footnumb')">Foot numbness/burning sensation</button>
+                            <button class="complaint-button" onclick="startCase('kneeextension')">Knee extension weakness</button>
+                            <button class="complaint-button" onclick="startCase('hipweak')">Hip weakness</button>
+                            <button class="complaint-button" onclick="startCase('backleg')">Back pain with leg symptoms</button>
+                            <button class="complaint-button" onclick="startCase('bilateralee')">Bilateral leg symptoms</button>
+                            <button class="complaint-button" onclick="startCase('gait')">Gait abnormalities</button>
+                        </div>
+
+                        <h4>Generalized/Systemic Complaints:</h4>
+                        <div class="complaint-group">
+                            <button class="complaint-button" onclick="startCase('progressive')">Progressive generalized weakness</button>
+                            <button class="complaint-button" onclick="startCase('cramps')">Muscle cramps/fasciculations</button>
+                            <button class="complaint-button" onclick="startCase('exercise')">Exercise intolerance/fatigue</button>
+                            <button class="complaint-button" onclick="startCase('bulbar')">Diplopia/dysphagia/dysarthria</button>
+                            <button class="complaint-button" onclick="startCase('respiratory')">Respiratory weakness/SOB</button>
+                        </div>
+
+                        <h4>Central Causes (EMG NOT typically indicated):</h4>
+                        <div class="complaint-group central-warning">
+                            <button class="complaint-button central-button" onclick="startCase('stroke')">Acute hemiparesis (stroke)</button>
+                            <button class="complaint-button central-button" onclick="startCase('spinalcord')">Spinal cord injury</button>
+                            <button class="complaint-button central-button" onclick="startCase('ms')">Multiple sclerosis symptoms</button>
+                        </div>
                     </div>
                     
                     <div id="differential-results" class="differential-list"></div>
+                </div>
+
+                <!-- Multi-Step Case Quiz System -->
+                <div id="quiz-container" class="quiz-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+
+                    <!-- Step 1: Case Presentation -->
+                    <div id="step1" class="quiz-step active">
+                        <div class="step-header">
+                            <h3>📋 Step 2: Case Presentation</h3>
+                        </div>
+                        <div id="case-presentation" class="card">
+                            <!-- Case details will be populated here -->
+                        </div>
+                        <button class="quiz-button" onclick="nextStep(2)">Continue to Physical Exam →</button>
+                    </div>
+
+                    <!-- Step 2: Physical Examination -->
+                    <div id="step2" class="quiz-step">
+                        <div class="step-header">
+                            <h3>🔍 Step 3: Physical Examination Findings</h3>
+                        </div>
+                        <div id="physical-exam" class="physical-exam">
+                            <!-- Physical exam findings will be populated here -->
+                        </div>
+                        <button class="quiz-button" onclick="prevStep(1)">← Back</button>
+                        <button class="quiz-button" onclick="nextStep(3)">Build Differential →</button>
+                    </div>
+
+                    <!-- Step 3: Differential Diagnosis Building -->
+                    <div id="step3" class="quiz-step">
+                        <div class="step-header">
+                            <h3>🧠 Step 4: Build Your Differential Diagnosis</h3>
+                        </div>
+                        <div class="card">
+                            <p><strong>Instructions:</strong> Based on the history and physical examination, list your differential diagnoses. Include both peripheral and central causes, ranking from most to least likely.</p>
+                            <textarea id="user-differential" class="differential-input" placeholder="Enter your differential diagnosis list here...&#10;Example:&#10;1. Carpal tunnel syndrome&#10;2. Ulnar neuropathy at elbow&#10;3. Cervical radiculopathy&#10;..."></textarea>
+                            <div id="differential-feedback" style="margin-top: 15px;"></div>
+                        </div>
+                        <button class="quiz-button" onclick="prevStep(2)">← Back</button>
+                        <button class="quiz-button" onclick="analyzeDifferential()">Analyze My Differential</button>
+                        <button id="continue-to-studies" class="quiz-button" onclick="nextStep(4)" style="display: none;">Continue to NCS Studies →</button>
+                    </div>
+
+                    <!-- Step 4: NCS Studies Selection and Results -->
+                    <div id="step4" class="quiz-step">
+                        <div class="step-header">
+                            <h3>⚡ Step 5: Nerve Conduction Studies</h3>
+                        </div>
+                        <div class="card">
+                            <p><strong>Based on your differential, the following NCS studies were performed:</strong></p>
+                            <div id="ncs-studies" class="ncs-studies">
+                                <!-- NCS studies and results will be populated here -->
+                            </div>
+                        </div>
+                        <button class="quiz-button" onclick="prevStep(3)">← Back</button>
+                        <button class="quiz-button" onclick="nextStep(5)">Interpret Results →</button>
+                    </div>
+
+                    <!-- Step 5: Final Diagnosis -->
+                    <div id="step5" class="quiz-step">
+                        <div class="step-header">
+                            <h3>🎯 Step 6: Final Diagnosis</h3>
+                        </div>
+                        <div class="card">
+                            <p><strong>Based on the clinical presentation and NCS findings, what is your final diagnosis?</strong></p>
+                            <textarea id="final-diagnosis" class="differential-input" style="min-height: 80px;" placeholder="Enter your final diagnosis and reasoning..."></textarea>
+                            <div id="diagnosis-feedback" style="margin-top: 15px;"></div>
+                        </div>
+                        <button class="quiz-button" onclick="prevStep(4)">← Back</button>
+                        <button class="quiz-button" onclick="checkFinalDiagnosis()">Check Diagnosis</button>
+                        <button class="quiz-button" onclick="resetQuiz()" style="background: #95a5a6;">Start New Case</button>
+                    </div>
                 </div>
                 
                 <div class="card">
@@ -1106,7 +1372,166 @@
             tabButtons[tabIndex].classList.add('active');
         }
         
-        function showDifferential(complaint) {
+        // Global variables for quiz state
+        let currentCase = null;
+        let currentStep = 1;
+        let userDifferential = '';
+
+        // Comprehensive case database
+        const caseDatabase = {
+            'hand14': {
+                title: "Hand Numbness/Tingling (Digits 1-4)",
+                presentation: {
+                    age: 45,
+                    gender: "Female",
+                    occupation: "Administrative Assistant",
+                    chiefComplaint: "3-month history of numbness and tingling in thumb, index, and middle fingers, worse at night",
+                    history: "Symptoms wake her up at night, shaking hands provides relief. Occasional thenar weakness when gripping objects. No neck pain or trauma. Uses computer 8+ hours daily.",
+                    pmh: "Hypothyroidism, well-controlled",
+                    medications: "Levothyroxine"
+                },
+                physicalExam: {
+                    inspection: "No visible muscle atrophy. No fasciculations observed.",
+                    palpation: "Mild tenderness over carpal tunnel. No cervical spine tenderness.",
+                    rom: "Full ROM at neck, shoulder, elbow, and wrist bilaterally",
+                    strength: "5/5 strength in all muscle groups except mild thenar weakness (4/5) on right",
+                    sensation: "Decreased light touch and pinprick in median nerve distribution (digits 1-3)",
+                    reflexes: "2+ and symmetric throughout. No pathological reflexes.",
+                    specialTests: "Positive Tinel's sign at wrist. Positive Phalen's test. Negative Hoffmann, no clonus, no spasticity"
+                },
+                expectedDifferential: [
+                    "Carpal tunnel syndrome",
+                    "Pronator syndrome", 
+                    "C6 radiculopathy",
+                    "Cervical myelopathy",
+                    "Polyneuropathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency: 5.8 ms (normal <4.2 ms). Reduced CMAP amplitude: 3.2 mV (normal >5.0 mV)",
+                        interpretation: "Consistent with moderate carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Median Sensory (Wrist-Digit 3)",
+                        result: "abnormal", 
+                        findings: "Prolonged peak latency: 4.5 ms (normal <3.4 ms). Reduced amplitude: 8 μV (normal >15 μV)",
+                        interpretation: "Confirms median sensory involvement at wrist"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal distal latency: 2.8 ms. Normal CMAP amplitude: 12.5 mV",
+                        interpretation: "No evidence of ulnar neuropathy"
+                    },
+                    {
+                        name: "Ulnar Sensory (Wrist-Digit 5)",
+                        result: "normal",
+                        findings: "Normal peak latency: 2.9 ms. Normal amplitude: 25 μV",
+                        interpretation: "Ulnar sensory function preserved"
+                    }
+                ],
+                correctDiagnosis: "Moderate Carpal Tunnel Syndrome",
+                explanation: "Classic presentation with night symptoms, thenar weakness, positive provocative tests, and selective median nerve abnormalities on NCS confirm moderate carpal tunnel syndrome."
+            },
+            'footdrop': {
+                title: "Foot Drop/Dorsiflexor Weakness", 
+                presentation: {
+                    age: 28,
+                    gender: "Male",
+                    occupation: "Construction Worker",
+                    chiefComplaint: "2-week history of inability to lift right foot, frequent tripping",
+                    history: "Gradual onset after prolonged squatting while laying tile. No back pain. No numbness initially, mild numbness over dorsum of foot developed later.",
+                    pmh: "None",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Right foot in plantar flexed position. No muscle atrophy visible yet.",
+                    palpation: "No tenderness over fibular head or spine. Fibular head feels normal.",
+                    rom: "Limited active dorsiflexion of right foot. Passive ROM normal.",
+                    strength: "Right dorsiflexion 1/5, eversion 2/5. Plantar flexion and inversion normal (5/5). Hip and knee strength normal.",
+                    sensation: "Decreased sensation over dorsum of right foot in first web space",
+                    reflexes: "Achilles reflex present and symmetric. No pathological reflexes.",
+                    specialTests: "Negative straight leg raise. No Hoffmann, clonus, or spasticity"
+                },
+                expectedDifferential: [
+                    "Common fibular (peroneal) neuropathy at fibular head",
+                    "Deep fibular (peroneal) neuropathy",
+                    "L5 radiculopathy", 
+                    "Sciatic neuropathy",
+                    "Anterior compartment syndrome"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Common Fibular Motor (EDB)",
+                        result: "abnormal",
+                        findings: "No response obtained from extensor digitorum brevis",
+                        interpretation: "Complete conduction block or axonal loss in deep fibular nerve"
+                    },
+                    {
+                        name: "Common Fibular Motor (Tibialis Anterior)",
+                        result: "abnormal", 
+                        findings: "No motor response from tibialis anterior muscle",
+                        interpretation: "Confirms deep fibular nerve involvement"
+                    },
+                    {
+                        name: "Superficial Fibular Sensory",
+                        result: "abnormal",
+                        findings: "No sensory response obtained",
+                        interpretation: "Superficial fibular nerve also affected"
+                    },
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "Tibial nerve function preserved"
+                    },
+                    {
+                        name: "Sural Sensory", 
+                        result: "normal",
+                        findings: "Normal amplitude and latency",
+                        interpretation: "Rules out generalized polyneuropathy"
+                    }
+                ],
+                correctDiagnosis: "Common Fibular (Peroneal) Neuropathy at the Fibular Head",
+                explanation: "Acute onset foot drop with both motor and sensory involvement in common fibular distribution following prolonged squatting (compression at fibular head) is classic for fibular neuropathy."
+            },
+            'stroke': {
+                title: "Acute Hemiparesis (Stroke)",
+                presentation: {
+                    age: 68,
+                    gender: "Male", 
+                    occupation: "Retired",
+                    chiefComplaint: "Acute onset left-sided weakness and facial droop this morning",
+                    history: "Sudden onset of left arm and leg weakness with facial droop. Wife noticed slurred speech. No loss of consciousness. Symptoms came on over minutes.",
+                    pmh: "Hypertension, diabetes, atrial fibrillation",
+                    medications: "Lisinopril, metformin, warfarin"
+                },
+                physicalExam: {
+                    inspection: "Left facial droop, left arm held in flexed posture",
+                    palpation: "Not applicable for acute stroke evaluation", 
+                    rom: "Reduced active ROM on left side due to weakness",
+                    strength: "Left arm 2/5, left leg 3/5. Right side normal (5/5). Upper motor neuron pattern of weakness.",
+                    sensation: "Diminished sensation on entire left side",
+                    reflexes: "Hyperreflexic on left (3+). Right side normal (2+).",
+                    specialTests: "Positive Babinski sign on left. Hoffman sign positive on left. Spasticity present in left arm."
+                },
+                expectedDifferential: [
+                    "Acute cerebrovascular accident (stroke)",
+                    "Brain tumor with mass effect",
+                    "Intracranial hemorrhage",
+                    "Todd's paralysis (post-ictal)",
+                    "Complicated migraine"
+                ],
+                emgIndication: "NOT INDICATED",
+                explanation: "This is an upper motor neuron lesion (stroke). EMG/NCS evaluate the peripheral nervous system and would be normal in isolated stroke. Clinical presentation with hyperreflexia, Babinski sign, and spasticity confirms central cause.",
+                correctDiagnosis: "Acute Cerebrovascular Accident (Stroke) - EMG NOT INDICATED",
+                educationalNote: "EMG/NCS studies are used to evaluate the peripheral nervous system (nerve roots, plexuses, peripheral nerves, neuromuscular junction, and muscle). In pure upper motor neuron lesions like stroke, EMG would be normal and is not clinically indicated."
+            }
+        };
+
+        function startCase(caseId) {
             // Remove selected class from all buttons
             const buttons = document.querySelectorAll('.complaint-button');
             buttons.forEach(button => button.classList.remove('selected'));
@@ -1359,6 +1784,422 @@
             }
             
             differentialDiv.innerHTML = content;
+        }
+        
+        // New comprehensive quiz system functions
+        let currentCase = null;
+        let currentStep = 1;
+        let userDifferential = '';
+
+        // Case database for quiz system
+        const caseDatabase = {
+            'hand14': {
+                title: "Hand Numbness/Tingling (Digits 1-4)",
+                presentation: {
+                    age: 45,
+                    gender: "Female",
+                    occupation: "Administrative Assistant",
+                    chiefComplaint: "3-month history of numbness and tingling in thumb, index, and middle fingers, worse at night",
+                    history: "Symptoms wake her up at night, shaking hands provides relief. Occasional thenar weakness when gripping objects. No neck pain or trauma. Uses computer 8+ hours daily.",
+                    pmh: "Hypothyroidism, well-controlled",
+                    medications: "Levothyroxine"
+                },
+                physicalExam: {
+                    inspection: "No visible muscle atrophy. No fasciculations observed.",
+                    palpation: "Mild tenderness over carpal tunnel. No cervical spine tenderness.",
+                    rom: "Full ROM at neck, shoulder, elbow, and wrist bilaterally",
+                    strength: "5/5 strength in all muscle groups except mild thenar weakness (4/5) on right",
+                    sensation: "Decreased light touch and pinprick in median nerve distribution (digits 1-3)",
+                    reflexes: "2+ and symmetric throughout. No pathological reflexes.",
+                    specialTests: "Positive Tinel's sign at wrist. Positive Phalen's test. Negative Hoffmann, no clonus, no spasticity"
+                },
+                expectedDifferential: [
+                    "carpal tunnel syndrome",
+                    "pronator syndrome", 
+                    "c6 radiculopathy",
+                    "cervical myelopathy",
+                    "polyneuropathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency: 5.8 ms (normal <4.2 ms). Reduced CMAP amplitude: 3.2 mV (normal >5.0 mV)",
+                        interpretation: "Consistent with moderate carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Median Sensory (Wrist-Digit 3)",
+                        result: "abnormal", 
+                        findings: "Prolonged peak latency: 4.5 ms (normal <3.4 ms). Reduced amplitude: 8 μV (normal >15 μV)",
+                        interpretation: "Confirms median sensory involvement at wrist"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal distal latency: 2.8 ms. Normal CMAP amplitude: 12.5 mV",
+                        interpretation: "No evidence of ulnar neuropathy"
+                    },
+                    {
+                        name: "Ulnar Sensory (Wrist-Digit 5)",
+                        result: "normal",
+                        findings: "Normal peak latency: 2.9 ms. Normal amplitude: 25 μV",
+                        interpretation: "Ulnar sensory function preserved"
+                    }
+                ],
+                correctDiagnosis: "Moderate Carpal Tunnel Syndrome",
+                explanation: "Classic presentation with night symptoms, thenar weakness, positive provocative tests, and selective median nerve abnormalities on NCS confirm moderate carpal tunnel syndrome."
+            },
+            'footdrop': {
+                title: "Foot Drop/Dorsiflexor Weakness", 
+                presentation: {
+                    age: 28,
+                    gender: "Male",
+                    occupation: "Construction Worker",
+                    chiefComplaint: "2-week history of inability to lift right foot, frequent tripping",
+                    history: "Gradual onset after prolonged squatting while laying tile. No back pain. No numbness initially, mild numbness over dorsum of foot developed later.",
+                    pmh: "None",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Right foot in plantar flexed position. No muscle atrophy visible yet.",
+                    palpation: "No tenderness over fibular head or spine. Fibular head feels normal.",
+                    rom: "Limited active dorsiflexion of right foot. Passive ROM normal.",
+                    strength: "Right dorsiflexion 1/5, eversion 2/5. Plantar flexion and inversion normal (5/5). Hip and knee strength normal.",
+                    sensation: "Decreased sensation over dorsum of right foot in first web space",
+                    reflexes: "Achilles reflex present and symmetric. No pathological reflexes.",
+                    specialTests: "Negative straight leg raise. No Hoffmann, clonus, or spasticity"
+                },
+                expectedDifferential: [
+                    "common fibular neuropathy",
+                    "peroneal neuropathy",
+                    "deep fibular neuropathy",
+                    "l5 radiculopathy", 
+                    "sciatic neuropathy",
+                    "anterior compartment syndrome"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Common Fibular Motor (EDB)",
+                        result: "abnormal",
+                        findings: "No response obtained from extensor digitorum brevis",
+                        interpretation: "Complete conduction block or axonal loss in deep fibular nerve"
+                    },
+                    {
+                        name: "Common Fibular Motor (Tibialis Anterior)",
+                        result: "abnormal", 
+                        findings: "No motor response from tibialis anterior muscle",
+                        interpretation: "Confirms deep fibular nerve involvement"
+                    },
+                    {
+                        name: "Superficial Fibular Sensory",
+                        result: "abnormal",
+                        findings: "No sensory response obtained",
+                        interpretation: "Superficial fibular nerve also affected"
+                    },
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "Tibial nerve function preserved"
+                    },
+                    {
+                        name: "Sural Sensory", 
+                        result: "normal",
+                        findings: "Normal amplitude and latency",
+                        interpretation: "Rules out generalized polyneuropathy"
+                    }
+                ],
+                correctDiagnosis: "Common Fibular (Peroneal) Neuropathy at the Fibular Head",
+                explanation: "Acute onset foot drop with both motor and sensory involvement in common fibular distribution following prolonged squatting (compression at fibular head) is classic for fibular neuropathy."
+            },
+            'stroke': {
+                title: "Acute Hemiparesis (Stroke)",
+                presentation: {
+                    age: 68,
+                    gender: "Male", 
+                    occupation: "Retired",
+                    chiefComplaint: "Acute onset left-sided weakness and facial droop this morning",
+                    history: "Sudden onset of left arm and leg weakness with facial droop. Wife noticed slurred speech. No loss of consciousness. Symptoms came on over minutes.",
+                    pmh: "Hypertension, diabetes, atrial fibrillation",
+                    medications: "Lisinopril, metformin, warfarin"
+                },
+                physicalExam: {
+                    inspection: "Left facial droop, left arm held in flexed posture",
+                    palpation: "Not applicable for acute stroke evaluation", 
+                    rom: "Reduced active ROM on left side due to weakness",
+                    strength: "Left arm 2/5, left leg 3/5. Right side normal (5/5). Upper motor neuron pattern of weakness.",
+                    sensation: "Diminished sensation on entire left side",
+                    reflexes: "Hyperreflexic on left (3+). Right side normal (2+).",
+                    specialTests: "Positive Babinski sign on left. Hoffman sign positive on left. Spasticity present in left arm."
+                },
+                expectedDifferential: [
+                    "acute cerebrovascular accident",
+                    "stroke",
+                    "brain tumor",
+                    "intracranial hemorrhage",
+                    "todd's paralysis"
+                ],
+                emgIndication: "NOT INDICATED",
+                explanation: "This is an upper motor neuron lesion (stroke). EMG/NCS evaluate the peripheral nervous system and would be normal in isolated stroke. Clinical presentation with hyperreflexia, Babinski sign, and spasticity confirms central cause.",
+                correctDiagnosis: "Acute Cerebrovascular Accident (Stroke) - EMG NOT INDICATED",
+                educationalNote: "EMG/NCS studies are used to evaluate the peripheral nervous system (nerve roots, plexuses, peripheral nerves, neuromuscular junction, and muscle). In pure upper motor neuron lesions like stroke, EMG would be normal and is not clinically indicated."
+            }
+        };
+
+        function startCase(caseId) {
+            if (!caseDatabase[caseId]) {
+                alert('Case not yet available. Please select from: hand14, footdrop, stroke');
+                return;
+            }
+
+            // Set current case and reset step
+            currentCase = caseDatabase[caseId];
+            currentStep = 1;
+            userDifferential = '';
+
+            // Remove selected class from all buttons and add to clicked
+            const buttons = document.querySelectorAll('.complaint-button');
+            buttons.forEach(button => button.classList.remove('selected'));
+            event.target.classList.add('selected');
+
+            // Show quiz container and hide simple differential
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('differential-results').style.display = 'none';
+            
+            // Populate case presentation
+            populateCasePresentation();
+            
+            // Show first step
+            showStep(1);
+            updateProgress(20);
+        }
+
+        function populateCasePresentation() {
+            const caseDiv = document.getElementById('case-presentation');
+            const case_ = currentCase;
+            
+            // Special handling for central causes
+            if (case_.emgIndication === "NOT INDICATED") {
+                caseDiv.innerHTML = `
+                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                        <h3 style="color: #e74c3c;">⚠️ ${case_.title}</h3>
+                        <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
+                        <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
+                        <p><strong>History:</strong> ${case_.presentation.history}</p>
+                        <p><strong>Past Medical History:</strong> ${case_.presentation.pmh}</p>
+                        <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
+                        <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                            <h4>🚫 Educational Note</h4>
+                            <p>${case_.educationalNote}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                caseDiv.innerHTML = `
+                    <h3>${case_.title}</h3>
+                    <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
+                    <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
+                    <p><strong>History of Present Illness:</strong> ${case_.presentation.history}</p>
+                    <p><strong>Past Medical History:</strong> ${case_.presentation.pmh}</p>
+                    <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
+                `;
+            }
+        }
+
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.quiz-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step${stepNumber}`).classList.add('active');
+            currentStep = stepNumber;
+            
+            // Populate step content based on step number
+            if (stepNumber === 2) {
+                populatePhysicalExam();
+            } else if (stepNumber === 4) {
+                populateNCSStudies();
+            }
+        }
+
+        function populatePhysicalExam() {
+            const examDiv = document.getElementById('physical-exam');
+            const exam = currentCase.physicalExam;
+            
+            examDiv.innerHTML = `
+                <div class="exam-category">
+                    <h5>👁️ Inspection</h5>
+                    <p>${exam.inspection}</p>
+                </div>
+                <div class="exam-category">
+                    <h5>👋 Palpation</h5>
+                    <p>${exam.palpation}</p>
+                </div>
+                <div class="exam-category">
+                    <h5>🔄 Range of Motion</h5>
+                    <p>${exam.rom}</p>
+                </div>
+                <div class="exam-category">
+                    <h5>💪 Strength Testing</h5>
+                    <p>${exam.strength}</p>
+                </div>
+                <div class="exam-category">
+                    <h5>👆 Sensation</h5>
+                    <p>${exam.sensation}</p>
+                </div>
+                <div class="exam-category">
+                    <h5>🔨 Reflexes</h5>
+                    <p>${exam.reflexes}</p>
+                </div>
+                <div class="exam-category">
+                    <h5>🧪 Special Tests</h5>
+                    <p>${exam.specialTests}</p>
+                </div>
+            `;
+        }
+
+        function populateNCSStudies() {
+            const ncsDiv = document.getElementById('ncs-studies');
+            
+            if (currentCase.emgIndication === "NOT INDICATED") {
+                ncsDiv.innerHTML = `
+                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px;">
+                        <h3 style="color: #e74c3c;">⚠️ EMG/NCS NOT INDICATED</h3>
+                        <p>${currentCase.explanation}</p>
+                        <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                            <strong>Educational Point:</strong> This case demonstrates when NOT to order EMG/NCS studies.
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            currentCase.ncsStudies.forEach(study => {
+                const resultClass = study.result === 'abnormal' ? 'abnormal-finding' : 'normal-finding';
+                html += `
+                    <div class="ncs-study">
+                        <h4>⚡ ${study.name}</h4>
+                        <div class="${resultClass}">
+                            <strong>Results:</strong> ${study.findings}
+                        </div>
+                        <p><strong>Interpretation:</strong> ${study.interpretation}</p>
+                    </div>
+                `;
+            });
+            ncsDiv.innerHTML = html;
+        }
+
+        function nextStep(stepNumber) {
+            showStep(stepNumber);
+            updateProgress(stepNumber * 20);
+        }
+
+        function prevStep(stepNumber) {
+            showStep(stepNumber);
+            updateProgress(stepNumber * 20);
+        }
+
+        function updateProgress(percentage) {
+            document.getElementById('progress-fill').style.width = percentage + '%';
+        }
+
+        function analyzeDifferential() {
+            const userInput = document.getElementById('user-differential').value.toLowerCase();
+            const expectedDifferentials = currentCase.expectedDifferential;
+            const feedbackDiv = document.getElementById('differential-feedback');
+            
+            if (!userInput.trim()) {
+                feedbackDiv.innerHTML = '<div style="color: #e74c3c; padding: 10px;">Please enter your differential diagnosis first.</div>';
+                return;
+            }
+            
+            // Simple keyword matching for educational feedback
+            let matchedDiagnoses = [];
+            let missedDiagnoses = [];
+            
+            expectedDifferentials.forEach(diagnosis => {
+                const keywords = diagnosis.toLowerCase().split(' ');
+                const matched = keywords.some(keyword => userInput.includes(keyword));
+                
+                if (matched) {
+                    matchedDiagnoses.push(diagnosis);
+                } else {
+                    missedDiagnoses.push(diagnosis);
+                }
+            });
+            
+            let feedbackHTML = '<h4>📊 Differential Analysis</h4>';
+            
+            if (matchedDiagnoses.length > 0) {
+                feedbackHTML += '<div style="background: #f0fff4; border: 1px solid #27ae60; border-radius: 5px; padding: 15px; margin: 10px 0;">';
+                feedbackHTML += '<h5 style="color: #27ae60;">✅ Diagnoses you considered:</h5><ul>';
+                matchedDiagnoses.forEach(dx => {
+                    feedbackHTML += `<li>${dx}</li>`;
+                });
+                feedbackHTML += '</ul></div>';
+            }
+            
+            if (missedDiagnoses.length > 0) {
+                feedbackHTML += '<div style="background: #fff5f5; border: 1px solid #e74c3c; border-radius: 5px; padding: 15px; margin: 10px 0;">';
+                feedbackHTML += '<h5 style="color: #e74c3c;">💭 Additional diagnoses to consider:</h5><ul>';
+                missedDiagnoses.forEach(dx => {
+                    feedbackHTML += `<li>${dx}</li>`;
+                });
+                feedbackHTML += '</ul></div>';
+            }
+            
+            feedbackDiv.innerHTML = feedbackHTML;
+            document.getElementById('continue-to-studies').style.display = 'inline-block';
+        }
+
+        function checkFinalDiagnosis() {
+            const userDiagnosis = document.getElementById('final-diagnosis').value;
+            const feedbackDiv = document.getElementById('diagnosis-feedback');
+            
+            if (!userDiagnosis.trim()) {
+                feedbackDiv.innerHTML = '<div style="color: #e74c3c; padding: 10px;">Please enter your diagnosis first.</div>';
+                return;
+            }
+            
+            // For central causes, provide educational feedback
+            if (currentCase.emgIndication === "NOT INDICATED") {
+                feedbackDiv.innerHTML = `
+                    <div style="background: #e74c3c; color: white; border-radius: 8px; padding: 20px; margin: 15px 0;">
+                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
+                        <p><strong>Key Learning Point:</strong> ${currentCase.explanation}</p>
+                        <p><strong>Educational Note:</strong> ${currentCase.educationalNote}</p>
+                    </div>
+                `;
+            } else {
+                feedbackDiv.innerHTML = `
+                    <div style="background: #27ae60; color: white; border-radius: 8px; padding: 20px; margin: 15px 0;">
+                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
+                        <p><strong>Explanation:</strong> ${currentCase.explanation}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function resetQuiz() {
+            currentCase = null;
+            currentStep = 1;
+            userDifferential = '';
+            
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('user-differential').value = '';
+            document.getElementById('final-diagnosis').value = '';
+            document.getElementById('differential-feedback').innerHTML = '';
+            document.getElementById('diagnosis-feedback').innerHTML = '';
+            document.getElementById('continue-to-studies').style.display = 'none';
+            
+            const buttons = document.querySelectorAll('.complaint-button');
+            buttons.forEach(button => button.classList.remove('selected'));
+            
+            updateProgress(0);
+            showStep(1);
         }
         
         // Initialize videos when page loads
