@@ -2330,6 +2330,356 @@
                 emgIndication: "INDICATED",
                 correctDiagnosis: "Right Brachial Plexopathy (Lower Trunk/Medial Cord Pattern)",
                 explanation: "Post-traumatic brachial plexopathy affecting primarily the lower trunk/medial cord, causing weakness in C8-T1 distribution with sparing of cervical paraspinals (distinguishing from root avulsion). Pattern of multiple nerve involvement localizes to plexus level."
+            },
+            's1radiculopathy': {
+                title: "Lower Back Pain with Calf Weakness",
+                presentation: {
+                    age: 44,
+                    gender: "Male",
+                    occupation: "Warehouse Worker", 
+                    chiefComplaint: "2-month history of lower back pain radiating down leg with calf weakness",
+                    history: "Gradual onset lower back pain after lifting boxes. Pain radiates from low back down posterior leg to lateral foot. Difficulty walking on tiptoes and going up stairs. Numbness in lateral foot and little toe. Pain worse with prolonged standing.",
+                    pmh: "Previous lumbar strain 3 years ago",
+                    medications: "Ibuprofen, cyclobenzaprine"
+                },
+                physicalExam: {
+                    inspection: "Slightly antalgic gait, difficulty with toe walking",
+                    palpation: "Lumbar paraspinal muscle spasm, tender over L5-S1 region",
+                    rom: "Limited lumbar flexion",
+                    strength: "Plantarflexors 4/5, gastrocnemius 3/5 on right. EHL and tibialis anterior normal.",
+                    sensation: "Decreased sensation in S1 dermatome (lateral foot, little toe)",
+                    reflexes: "Achilles reflex absent on right (0+). Patellar normal.",
+                    specialTests: "Positive straight leg raise at 50 degrees on right"
+                },
+                ncsStudies: [
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (8.2 mV, normal >10 mV)",
+                        interpretation: "Mild axonal loss affecting tibial nerve"
+                    },
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "normal",
+                        findings: "Normal amplitude and conduction velocity",
+                        interpretation: "L5 distribution spared"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "Reduced amplitude on right compared to left",
+                        interpretation: "S1 sensory involvement"
+                    },
+                    {
+                        name: "H-reflex",
+                        result: "abnormal",
+                        findings: "Absent H-reflex on right, normal on left",
+                        interpretation: "S1 root dysfunction"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Lumbar paraspinals (L5-S1)",
+                        findings: "Positive sharp waves and fibrillations",
+                        interpretation: "Acute denervation"
+                    },
+                    {
+                        muscle: "Gastrocnemius medial head",
+                        findings: "Positive sharp waves, reduced recruitment",
+                        interpretation: "S1 root involvement"
+                    },
+                    {
+                        muscle: "Gluteus maximus",
+                        findings: "Denervation changes",
+                        interpretation: "Inferior gluteal nerve (S1 root)"
+                    },
+                    {
+                        muscle: "Tibialis anterior",
+                        findings: "Normal",
+                        interpretation: "L5 distribution spared"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Right S1 Radiculopathy",
+                explanation: "S1 radiculopathy with classic plantarflexor weakness, absent Achilles reflex, and lateral foot sensory loss. H-reflex absence is a sensitive early finding in S1 radiculopathy. EMG shows denervation in S1 myotomes with sparing of L5 muscles."
+            },
+            'radialneuropathy': {
+                title: "Wrist Drop After Saturday Night",
+                presentation: {
+                    age: 35,
+                    gender: "Male",
+                    occupation: "Software Developer",
+                    chiefComplaint: "Acute onset inability to extend wrist and fingers after falling asleep with arm over chair",
+                    history: "Woke up yesterday morning unable to extend right wrist or fingers. Had been drinking the night before and fell asleep in chair with right arm draped over the back (Saturday night palsy). No pain, just weakness. Can still flex fingers and wrist normally.",
+                    pmh: "No significant medical history",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Right wrist drop, inability to extend fingers at MCP joints",
+                    palpation: "No tenderness over spiral groove or elbow",
+                    rom: "Full passive ROM, limited active extension",
+                    strength: "Wrist extensors 0/5, finger extensors 0/5, triceps 5/5, brachioradialis 5/5",
+                    sensation: "Decreased sensation in first web space (superficial radial distribution)",
+                    reflexes: "Triceps reflex normal. Brachioradialis present but weak due to positioning.",
+                    specialTests: "Negative Tinel's at elbow, positive wrist drop sign"
+                },
+                ncsStudies: [
+                    {
+                        name: "Radial Motor (EIP)",
+                        result: "abnormal",
+                        findings: "No response elicitable from posterior interosseous nerve",
+                        interpretation: "Complete conduction block in radial nerve"
+                    },
+                    {
+                        name: "Radial Motor (BR)",
+                        result: "normal",
+                        findings: "Normal amplitude and latency to brachioradialis",
+                        interpretation: "Lesion distal to brachioradialis branch"
+                    },
+                    {
+                        name: "Superficial Radial Sensory",
+                        result: "abnormal",
+                        findings: "Absent sensory response",
+                        interpretation: "Superficial radial nerve involvement"
+                    },
+                    {
+                        name: "Median/Ulnar studies",
+                        result: "normal",
+                        findings: "All parameters normal",
+                        interpretation: "Other nerves unaffected"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Extensor carpi radialis longus",
+                        findings: "Normal (innervated above spiral groove)",
+                        interpretation: "Lesion at spiral groove level"
+                    },
+                    {
+                        muscle: "Extensor carpi radialis brevis",
+                        findings: "No voluntary activity",
+                        interpretation: "Posterior interosseous nerve involvement"
+                    },
+                    {
+                        muscle: "Extensor digitorum communis",
+                        findings: "No voluntary activity",
+                        interpretation: "Complete posterior interosseous nerve palsy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Radial Neuropathy at Spiral Groove (Saturday Night Palsy)",
+                explanation: "Classic compression of radial nerve at spiral groove from prolonged pressure. Spares triceps and ECRL (innervated proximal to compression) but affects posterior interosseous nerve causing wrist and finger extensor weakness with sensory loss in superficial radial distribution."
+            },
+            'peronealpalsy': {
+                title: "Foot Drop After Knee Surgery",
+                presentation: {
+                    age: 29,
+                    gender: "Female",
+                    occupation: "Teacher",
+                    chiefComplaint: "Inability to lift foot up and numbness on top of foot since knee arthroscopy 2 weeks ago",
+                    history: "Underwent knee arthroscopy 2 weeks ago for meniscal tear. Woke up from surgery with foot drop and numbness over dorsum of foot. Initially attributed to positioning during surgery. No improvement since discharge. Trips frequently due to toe catching.",
+                    pmh: "Right meniscal tear",
+                    medications: "Ibuprofen, physical therapy"
+                },
+                physicalExam: {
+                    inspection: "Right foot drop, steppage gait pattern",
+                    palpation: "Tenderness over fibular head, no calf tenderness",
+                    rom: "Full passive dorsiflexion, limited active dorsiflexion",
+                    strength: "Tibialis anterior 1/5, EHL 2/5, eversion 2/5. Plantarflexion and inversion normal.",
+                    sensation: "Decreased sensation over dorsum of foot and lateral leg",
+                    reflexes: "Achilles reflex normal. No patellar reflex abnormality.",
+                    specialTests: "Positive Tinel's sign over fibular head"
+                },
+                ncsStudies: [
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency (7.2ms), reduced amplitude (0.8 mV)",
+                        interpretation: "Severe peroneal neuropathy at fibular head"
+                    },
+                    {
+                        name: "Peroneal Motor (TA)",
+                        result: "abnormal",
+                        findings: "No response elicitable",
+                        interpretation: "Complete conduction block to deep peroneal nerve"
+                    },
+                    {
+                        name: "Superficial Peroneal Sensory",
+                        result: "abnormal",
+                        findings: "Absent sensory response",
+                        interpretation: "Superficial peroneal nerve involvement"
+                    },
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "normal",
+                        findings: "Normal amplitude and conduction velocity",
+                        interpretation: "Tibial nerve spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Tibialis anterior",
+                        findings: "No voluntary activity, denervation changes",
+                        interpretation: "Complete deep peroneal nerve palsy"
+                    },
+                    {
+                        muscle: "Extensor digitorum longus",
+                        findings: "No voluntary activity",
+                        interpretation: "Deep peroneal nerve involvement"
+                    },
+                    {
+                        muscle: "Peroneus longus",
+                        findings: "Denervation changes",
+                        interpretation: "Superficial peroneal nerve involvement"
+                    },
+                    {
+                        muscle: "Tibialis posterior",
+                        findings: "Normal",
+                        interpretation: "Tibial nerve spared"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Common Peroneal Neuropathy at Fibular Head (Post-surgical)",
+                explanation: "Iatrogenic peroneal nerve injury at fibular head from surgical positioning or compression. Complete palsy affecting both deep (dorsiflexion) and superficial (eversion) peroneal nerves with sparing of tibial nerve function."
+            },
+            'mg': {
+                title: "Fatigable Weakness and Ptosis",
+                presentation: {
+                    age: 31,
+                    gender: "Female",
+                    occupation: "Graphic Designer",
+                    chiefComplaint: "3-month history of fatigue, droopy eyelids, and weakness that worsens throughout the day",
+                    history: "Gradual onset of fatigue and weakness that gets worse with activity and improves with rest. Noticed droopy eyelids, especially in evening. Difficulty chewing food by end of meals. Voice becomes nasal after talking for extended periods. Shortness of breath with minimal exertion.",
+                    pmh: "Thyroid disease (Hashimoto's thyroiditis)",
+                    medications: "Levothyroxine"
+                },
+                physicalExam: {
+                    inspection: "Bilateral ptosis, worse on left. Facial weakness.",
+                    palpation: "No muscle tenderness or atrophy",
+                    rom: "Full ROM at all joints",
+                    strength: "Proximal weakness (4/5) that worsens with repetitive testing. Normal strength initially.",
+                    sensation: "Normal throughout",
+                    reflexes: "Normal (2+) throughout",
+                    specialTests: "Positive ice pack test (ptosis improves), positive edrophonium test"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "No peripheral neuropathy"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal parameters",
+                        interpretation: "No nerve involvement"
+                    },
+                    {
+                        name: "Repetitive Nerve Stimulation (3Hz)",
+                        result: "abnormal",
+                        findings: "15% decrement in amplitude with slow repetitive stimulation",
+                        interpretation: "Neuromuscular junction dysfunction"
+                    },
+                    {
+                        name: "Single Fiber EMG",
+                        result: "abnormal",
+                        findings: "Increased jitter and blocking in multiple muscles",
+                        interpretation: "Neuromuscular transmission defect"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Normal motor unit morphology, normal recruitment",
+                        interpretation: "No myopathy"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Normal spontaneous activity and motor units",
+                        interpretation: "No denervation"
+                    },
+                    {
+                        muscle: "Orbicularis oculi",
+                        findings: "Increased jitter on single fiber EMG",
+                        interpretation: "Facial muscle involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Myasthenia Gravis (Generalized)",
+                explanation: "Classic presentation of myasthenia gravis with fatigable weakness, ptosis, and bulbar symptoms. Repetitive nerve stimulation shows decremental response characteristic of postsynaptic neuromuscular junction disorder. Single fiber EMG confirms transmission defect."
+            },
+            'tarsal': {
+                title: "Foot Pain and Numbness",
+                presentation: {
+                    age: 42,
+                    gender: "Female",
+                    occupation: "Nurse",
+                    chiefComplaint: "6-month history of burning foot pain and numbness, worse at night",
+                    history: "Gradual onset burning pain and numbness on bottom of foot, radiating to toes. Pain worse at night and when wearing shoes. Standing for long periods at work exacerbates symptoms. Some relief with rest and elevation. No back pain or leg symptoms.",
+                    pmh: "Diabetes mellitus type 2, well-controlled",
+                    medications: "Metformin, gabapentin"
+                },
+                physicalExam: {
+                    inspection: "No visible deformity or swelling",
+                    palpation: "Tenderness over tarsal tunnel, positive Tinel's sign",
+                    rom: "Full ankle ROM",
+                    strength: "Intrinsic foot muscles weak (4/5), other muscles normal",
+                    sensation: "Decreased sensation on plantar surface of foot",
+                    reflexes: "Achilles reflex normal bilaterally",
+                    specialTests: "Positive Tinel's sign over tarsal tunnel, negative straight leg raise"
+                },
+                ncsStudies: [
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "normal",
+                        findings: "Normal amplitude and conduction velocity to proximal muscles",
+                        interpretation: "Proximal tibial nerve normal"
+                    },
+                    {
+                        name: "Medial Plantar Sensory",
+                        result: "abnormal",
+                        findings: "Prolonged peak latency (4.8ms), reduced amplitude",
+                        interpretation: "Medial plantar nerve compression"
+                    },
+                    {
+                        name: "Lateral Plantar Sensory",
+                        result: "abnormal",
+                        findings: "Reduced amplitude compared to contralateral side",
+                        interpretation: "Lateral plantar nerve involvement"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "normal",
+                        findings: "Normal amplitude and velocity",
+                        interpretation: "Sural nerve spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor hallucis",
+                        findings: "Denervation changes with reduced recruitment",
+                        interpretation: "Medial plantar nerve involvement"
+                    },
+                    {
+                        muscle: "Flexor digitorum brevis",
+                        findings: "Mild denervation changes",
+                        interpretation: "Lateral plantar nerve involvement"
+                    },
+                    {
+                        muscle: "Tibialis posterior",
+                        findings: "Normal",
+                        interpretation: "Proximal tibial nerve spared"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Tarsal Tunnel Syndrome (Tibial Neuropathy at Ankle)",
+                explanation: "Compression of tibial nerve and its branches (medial and lateral plantar nerves) at the tarsal tunnel. Prolonged standing and diabetes are risk factors. Studies show distal tibial nerve involvement with sparing of proximal branches."
             }
         };
 
