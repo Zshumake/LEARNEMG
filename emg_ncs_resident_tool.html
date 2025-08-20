@@ -3020,6 +3020,338 @@
                 emgIndication: "INDICATED",
                 correctDiagnosis: "Right C8 Radiculopathy",
                 explanation: "C8 radiculopathy with classic hand intrinsic weakness and sensory loss in C8 distribution. Both median and ulnar nerve amplitudes reduced due to C8 root lesion affecting both nerves. Cervical paraspinal denervation confirms root level pathology."
+            },
+            'guyon': {
+                title: "Hand Numbness After Cycling",
+                presentation: {
+                    age: 34,
+                    gender: "Male",
+                    occupation: "Accountant",
+                    chiefComplaint: "Numbness and weakness in ring and little fingers after long bike ride",
+                    history: "Avid cyclist who completed 100-mile ride 2 weeks ago. Developed numbness in ring and little fingers during ride that persisted. Weakness gripping and pinching with thumb and little finger. No elbow pain or neck symptoms. Uses drop handlebars with prolonged pressure on palms.",
+                    pmh: "No significant medical history",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Mild hypothenar atrophy, no interosseous atrophy",
+                    palpation: "Tenderness over Guyon's canal, no elbow tenderness",
+                    rom: "Full ROM at all joints",
+                    strength: "Hypothenar muscles 4/5, interossei normal, FCU normal",
+                    sensation: "Decreased sensation in little finger and ulnar half of ring finger",
+                    reflexes: "Normal throughout",
+                    specialTests: "Negative Tinel's at elbow, positive Tinel's at Guyon's canal"
+                },
+                ncsStudies: [
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency (4.2ms), reduced amplitude",
+                        interpretation: "Deep motor branch of ulnar nerve at wrist"
+                    },
+                    {
+                        name: "Ulnar Motor (FDI)",
+                        result: "normal",
+                        findings: "Normal latency and amplitude",
+                        interpretation: "Deep motor branch to interossei spared"
+                    },
+                    {
+                        name: "Ulnar Sensory (digit 5)",
+                        result: "abnormal",
+                        findings: "Prolonged latency, reduced amplitude",
+                        interpretation: "Superficial sensory branch involvement"
+                    },
+                    {
+                        name: "Ulnar Motor across elbow",
+                        result: "normal",
+                        findings: "Normal conduction velocity and amplitude",
+                        interpretation: "No cubital tunnel syndrome"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor digiti minimi",
+                        findings: "Mild denervation changes",
+                        interpretation: "Deep motor branch involvement"
+                    },
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Normal",
+                        interpretation: "Deep motor branch to interossei spared"
+                    },
+                    {
+                        muscle: "Flexor carpi ulnaris",
+                        findings: "Normal",
+                        interpretation: "Proximal ulnar nerve normal"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Ulnar Neuropathy at Guyon's Canal (Cyclist's Palsy)",
+                explanation: "Compression of ulnar nerve at Guyon's canal from prolonged pressure on handlebars. Affects superficial sensory branch and deep motor branch to hypothenar muscles while sparing interossei (which branch more proximally). Classic cycling injury."
+            },
+            'lumbosacralplexopathy': {
+                title: "Bilateral Leg Weakness After Prolonged Labor",
+                presentation: {
+                    age: 26,
+                    gender: "Female",
+                    occupation: "Marketing Coordinator",
+                    chiefComplaint: "Bilateral leg weakness and numbness after prolonged childbirth 6 weeks ago",
+                    history: "Had difficult 18-hour labor with prolonged second stage requiring forceps delivery. Immediately post-delivery noticed bilateral leg weakness and numbness. Right leg more affected than left. Difficulty walking, frequent falls. Numbness over anterior thighs and medial legs bilaterally.",
+                    pmh: "Uncomplicated pregnancy until delivery",
+                    medications: "Iron supplements, physical therapy"
+                },
+                physicalExam: {
+                    inspection: "Bilateral quadriceps atrophy, more pronounced on right",
+                    palpation: "No masses or tenderness over pelvis",
+                    rom: "Limited hip flexion due to weakness",
+                    strength: "Hip flexors 3/5 bilaterally, quadriceps 2/5 right, 3/5 left",
+                    sensation: "Decreased sensation over anterior thighs and medial legs bilaterally",
+                    reflexes: "Absent patellar reflexes bilaterally, normal Achilles reflexes",
+                    specialTests: "Negative straight leg raise, positive femoral stretch test bilaterally"
+                },
+                ncsStudies: [
+                    {
+                        name: "Femoral Motor (Quadriceps) - Right",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude (2.1 mV), normal latency",
+                        interpretation: "Severe femoral nerve dysfunction"
+                    },
+                    {
+                        name: "Femoral Motor (Quadriceps) - Left",
+                        result: "abnormal",
+                        findings: "Mildly reduced amplitude (4.8 mV)",
+                        interpretation: "Mild femoral nerve dysfunction"
+                    },
+                    {
+                        name: "Lateral Femoral Cutaneous - Bilateral",
+                        result: "abnormal",
+                        findings: "Absent responses bilaterally",
+                        interpretation: "Bilateral lateral femoral cutaneous nerve involvement"
+                    },
+                    {
+                        name: "Peroneal/Tibial studies",
+                        result: "normal",
+                        findings: "Normal amplitudes and velocities",
+                        interpretation: "L5-S1 distribution spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Lumbar paraspinals",
+                        findings: "Normal",
+                        interpretation: "Root level spared"
+                    },
+                    {
+                        muscle: "Iliopsoas - Bilateral",
+                        findings: "Denervation changes bilaterally",
+                        interpretation: "Bilateral femoral nerve involvement"
+                    },
+                    {
+                        muscle: "Quadriceps - Right",
+                        findings: "Severe denervation with poor reinnervation",
+                        interpretation: "Severe femoral nerve palsy"
+                    },
+                    {
+                        muscle: "Quadriceps - Left",
+                        findings: "Mild denervation changes",
+                        interpretation: "Mild femoral nerve involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Bilateral Lumbosacral Plexopathy (Obstetric) - Femoral Nerve Pattern",
+                explanation: "Bilateral femoral nerve injury from prolonged labor with fetal head compression against maternal pelvis. Classic obstetric complication affecting lumbosacral plexus, typically involving femoral and lateral femoral cutaneous nerves."
+            },
+            'pinoneuropathy': {
+                title: "Thumb Weakness After Wrist Fracture",
+                presentation: {
+                    age: 39,
+                    gender: "Female",
+                    occupation: "Physical Therapist",
+                    chiefComplaint: "Inability to pinch and weakness making 'OK' sign 8 weeks after wrist fracture",
+                    history: "Fell on outstretched hand 8 weeks ago, sustained distal radius fracture requiring ORIF with volar plate. Post-operatively developed inability to pinch tip of thumb to tip of index finger. Can't make 'OK' sign or pick up small objects. No numbness. Other hand functions normal.",
+                    pmh: "No significant medical history",
+                    medications: "Ibuprofen, physical therapy"
+                },
+                physicalExam: {
+                    inspection: "No visible atrophy, well-healed surgical scar",
+                    palpation: "No tenderness over carpal tunnel or surgical site",
+                    rom: "Full ROM at wrist and fingers",
+                    strength: "FPL 2/5, FDP (index) 2/5, all other muscles normal including APB",
+                    sensation: "Normal sensation throughout hand",
+                    reflexes: "Normal throughout",
+                    specialTests: "Positive anterior interosseous nerve sign (can't make 'OK' sign)"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "Main trunk of median nerve normal"
+                    },
+                    {
+                        name: "Median Sensory (digit 2)",
+                        result: "normal",
+                        findings: "Normal amplitude and latency",
+                        interpretation: "No carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Ulnar Motor/Sensory",
+                        result: "normal",
+                        findings: "All parameters normal",
+                        interpretation: "Ulnar nerve unaffected"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Flexor pollicis longus",
+                        findings: "No voluntary activity, denervation changes",
+                        interpretation: "Anterior interosseous nerve palsy"
+                    },
+                    {
+                        muscle: "Flexor digitorum profundus (index)",
+                        findings: "No voluntary activity",
+                        interpretation: "Anterior interosseous nerve involvement"
+                    },
+                    {
+                        muscle: "Pronator quadratus",
+                        findings: "Denervation changes",
+                        interpretation: "Anterior interosseous nerve palsy"
+                    },
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Normal",
+                        interpretation: "Main median nerve trunk spared"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Anterior Interosseous Nerve Palsy (Post-Surgical)",
+                explanation: "Isolated anterior interosseous nerve (pure motor branch of median nerve) palsy following volar plate ORIF. Classic presentation with inability to pinch (FPL and FDP index weakness) with preserved sensation and normal APB. Often iatrogenic from surgical approach."
+            },
+            'lamberteatonmyasthenic': {
+                title: "Progressive Weakness in Cancer Patient",
+                presentation: {
+                    age: 62,
+                    gender: "Male",
+                    occupation: "Retired Electrician",
+                    chiefComplaint: "6-month history of progressive weakness and fatigue, especially in legs",
+                    history: "Gradual onset proximal weakness, especially in legs. Difficulty standing from chair and climbing stairs. Weakness improves with activity initially but then worsens. Dry mouth and some difficulty swallowing. Recently diagnosed with small cell lung cancer. Family concerned about progression.",
+                    pmh: "Small cell lung cancer (recently diagnosed), smoking history",
+                    medications: "Chemotherapy regimen, prednisone"
+                },
+                physicalExam: {
+                    inspection: "Mild proximal muscle atrophy, no fasciculations",
+                    palpation: "No muscle tenderness",
+                    rom: "Full ROM but limited by weakness",
+                    strength: "Proximal weakness (3/5) that improves with initial exercise then fatigues",
+                    sensation: "Normal throughout",
+                    reflexes: "Diminished (1+) but improve with exercise",
+                    specialTests: "Strength improves with brief exercise, then fatigues"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Low baseline amplitude (2.8 mV), normal latency",
+                        interpretation: "Reduced compound muscle action potential"
+                    },
+                    {
+                        name: "High-Frequency Repetitive Stimulation (50Hz)",
+                        result: "abnormal",
+                        findings: "400% increment in amplitude with high-frequency stimulation",
+                        interpretation: "Classic Lambert-Eaton pattern"
+                    },
+                    {
+                        name: "Post-Exercise Facilitation",
+                        result: "abnormal",
+                        findings: "Marked increase in CMAP amplitude after 10 seconds of exercise",
+                        interpretation: "Presynaptic neuromuscular junction disorder"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Small amplitude motor units with normal morphology",
+                        interpretation: "Reduced recruitment due to NMJ dysfunction"
+                    },
+                    {
+                        muscle: "Quadriceps",
+                        findings: "Low amplitude voluntary units, no denervation",
+                        interpretation: "Neuromuscular transmission defect"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Lambert-Eaton Myasthenic Syndrome (Paraneoplastic)",
+                explanation: "Presynaptic neuromuscular junction disorder associated with small cell lung cancer. Characterized by low baseline CMAP amplitudes with dramatic increment (>100%) on high-frequency stimulation, opposite pattern from myasthenia gravis."
+            },
+            'inclusionbodymyositis': {
+                title: "Slowly Progressive Weakness and Atrophy",
+                presentation: {
+                    age: 68,
+                    gender: "Male",
+                    occupation: "Retired Teacher",
+                    chiefComplaint: "3-year history of slowly progressive weakness in arms and legs with muscle wasting",
+                    history: "Insidious onset weakness starting with difficulty gripping objects and frequent falls. Progressive weakness in both proximal and distal muscles. Noticed muscle wasting in forearms and thighs. Difficulty swallowing solids recently. No rash or arthritis. Family history of 'muscle disease' in uncle.",
+                    pmh: "Hypertension, type 2 diabetes",
+                    medications: "Lisinopril, metformin"
+                },
+                physicalExam: {
+                    inspection: "Asymmetric muscle atrophy affecting quadriceps and forearm flexors",
+                    palpation: "Firm, atrophic muscles without tenderness",
+                    rom: "Limited by weakness and contractures",
+                    strength: "Asymmetric weakness: quadriceps 2/5, finger flexors 3/5, deltoids 4/5",
+                    sensation: "Normal throughout",
+                    reflexes: "Diminished (1+) throughout",
+                    specialTests: "No rash, no fasciculations at rest"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "No peripheral neuropathy"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal parameters throughout",
+                        interpretation: "No nerve involvement"
+                    },
+                    {
+                        name: "Sensory studies",
+                        result: "normal",
+                        findings: "All sensory responses normal",
+                        interpretation: "No sensory neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Quadriceps",
+                        findings: "Mixed myopathic and neurogenic changes, positive sharp waves",
+                        interpretation: "Inclusion body myositis pattern"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Small polyphasic motor units with spontaneous activity",
+                        interpretation: "Active myopathy with denervation"
+                    },
+                    {
+                        muscle: "Forearm flexors",
+                        findings: "Mixed pattern: small motor units with fibrillations",
+                        interpretation: "Characteristic IBM pattern"
+                    },
+                    {
+                        muscle: "Deltoid",
+                        findings: "Predominantly myopathic changes",
+                        interpretation: "Proximal myopathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Inclusion Body Myositis",
+                explanation: "Progressive inflammatory myopathy with characteristic asymmetric pattern affecting both proximal and distal muscles. EMG shows mixed myopathic and neurogenic features with spontaneous activity, distinguishing it from other inflammatory myopathies."
             }
         };
 
