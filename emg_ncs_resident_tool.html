@@ -328,6 +328,111 @@
             border-radius: 4px;
             transition: width 0.5s ease;
         }
+
+        .start-case-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .start-case-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .case-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .case-card p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .difficulty {
+            background: #27ae60;
+            color: white;
+        }
+
+        .difficulty.educational {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .case-interface {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .case-step {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .case-step h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .emg-section {
+            background: #fff9e6;
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .emg-section h4 {
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
         
         .study-grid {
             display: grid;
@@ -513,7 +618,7 @@
         
         <div class="main-content">
             <nav class="tab-navigation">
-                <button class="tab-button active" onclick="showTab(0)">Clinical Differential</button>
+                <button class="tab-button active" onclick="showTab(0)">Interactive Case Studies</button>
                 <button class="tab-button" onclick="showTab(1)">Core NCS Studies</button>
                 <button class="tab-button" onclick="showTab(2)">EMG Instruments</button>
                 <button class="tab-button" onclick="showTab(3)">EMG Terms</button>
@@ -524,135 +629,104 @@
             
             <!-- Clinical Differential Tab -->
             <section id="tab-0" class="tab-content active">
-                <h2 class="section-title">Clinical Differential Diagnosis Builder</h2>
+                <h2 class="section-title">Interactive EMG/NCS Case Studies</h2>
                 
                 <div class="alert-warning">
-                    <strong>Clinical Approach:</strong> Always begin with a thorough history and physical examination. EMG/NCS is an extension of your clinical assessment, not a replacement for it.
+                    <strong>Learning Approach:</strong> Practice clinical reasoning with realistic cases. Each case follows the workflow: Patient Presentation → Physical Exam → Differential Building → NCS/EMG Results → Final Diagnosis.
                 </div>
                 
-                <div class="differential-builder">
-                    <h3>Select Patient Complaint:</h3>
-                    <div class="complaint-categories">
-                        <h3>🔍 Step 1: Select Patient Complaint</h3>
-                        
-                        <h4>Upper Extremity Complaints:</h4>
-                        <div class="complaint-group">
-                            <button class="complaint-button" onclick="startCase('hand14')">Hand numbness/tingling (digits 1-4)</button>
-                            <button class="complaint-button" onclick="startCase('hand45')">Hand numbness/tingling (digits 4-5)</button>
-                            <button class="complaint-button" onclick="startCase('handall')">Hand numbness/tingling (all digits)</button>
-                            <button class="complaint-button" onclick="startCase('thenar')">Thenar weakness/atrophy</button>
-                            <button class="complaint-button" onclick="startCase('hypothenar')">Hypothenar weakness/atrophy</button>
-                            <button class="complaint-button" onclick="startCase('fingerflexor')">Finger flexor weakness</button>
-                            <button class="complaint-button" onclick="startCase('wristdrop')">Wrist drop/extensor weakness</button>
-                            <button class="complaint-button" onclick="startCase('shoulder')">Shoulder weakness/pain with arm symptoms</button>
-                            <button class="complaint-button" onclick="startCase('neckarm')">Neck pain with arm weakness/numbness</button>
-                            <button class="complaint-button" onclick="startCase('bilateralue')">Bilateral hand symptoms</button>
-                        </div>
-
-                        <h4>Lower Extremity Complaints:</h4>
-                        <div class="complaint-group">
-                            <button class="complaint-button" onclick="startCase('footdrop')">Foot drop/dorsiflexor weakness</button>
-                            <button class="complaint-button" onclick="startCase('plantarflexor')">Plantar flexor weakness</button>
-                            <button class="complaint-button" onclick="startCase('footnumb')">Foot numbness/burning sensation</button>
-                            <button class="complaint-button" onclick="startCase('kneeextension')">Knee extension weakness</button>
-                            <button class="complaint-button" onclick="startCase('hipweak')">Hip weakness</button>
-                            <button class="complaint-button" onclick="startCase('backleg')">Back pain with leg symptoms</button>
-                            <button class="complaint-button" onclick="startCase('bilateralee')">Bilateral leg symptoms</button>
-                            <button class="complaint-button" onclick="startCase('gait')">Gait abnormalities</button>
-                        </div>
-
-                        <h4>Generalized/Systemic Complaints:</h4>
-                        <div class="complaint-group">
-                            <button class="complaint-button" onclick="startCase('progressive')">Progressive generalized weakness</button>
-                            <button class="complaint-button" onclick="startCase('cramps')">Muscle cramps/fasciculations</button>
-                            <button class="complaint-button" onclick="startCase('exercise')">Exercise intolerance/fatigue</button>
-                            <button class="complaint-button" onclick="startCase('bulbar')">Diplopia/dysphagia/dysarthria</button>
-                            <button class="complaint-button" onclick="startCase('respiratory')">Respiratory weakness/SOB</button>
-                        </div>
-
-                        <h4>Central Causes (EMG NOT typically indicated):</h4>
-                        <div class="complaint-group central-warning">
-                            <button class="complaint-button central-button" onclick="startCase('stroke')">Acute hemiparesis (stroke)</button>
-                            <button class="complaint-button central-button" onclick="startCase('spinalcord')">Spinal cord injury</button>
-                            <button class="complaint-button central-button" onclick="startCase('ms')">Multiple sclerosis symptoms</button>
-                        </div>
+                <!-- Case Selection Interface -->
+                <div id="case-selection" class="case-selection" style="display: block;">
+                    <div style="text-align: center; margin: 40px 0;">
+                        <h3 style="color: #2c3e50; margin-bottom: 30px;">Ready to test your EMG/NCS knowledge?</h3>
+                        <button class="start-case-button" onclick="startRandomCase()">🎯 Start a Case</button>
+                        <p style="margin-top: 20px; color: #7f8c8d;">Click the button above to begin with a random case, or select a specific scenario below:</p>
                     </div>
                     
-                    <div id="differential-results" class="differential-list"></div>
+                    <div class="case-grid">
+                        <div class="case-card" onclick="startSpecificCase('hand14')">
+                            <h4>🖐️ Hand Numbness Case</h4>
+                            <p>45-year-old female with numbness in digits 1-4, worse at night</p>
+                            <span class="difficulty">Beginner</span>
+                        </div>
+                        
+                        <div class="case-card" onclick="startSpecificCase('footdrop')">
+                            <h4>🦶 Foot Drop Case</h4>
+                            <p>28-year-old construction worker with inability to lift right foot</p>
+                            <span class="difficulty">Intermediate</span>
+                        </div>
+                        
+                        <div class="case-card" onclick="startSpecificCase('stroke')">
+                            <h4>🧠 Central Cause Case</h4>
+                            <p>68-year-old male with acute hemiparesis - EMG NOT indicated</p>
+                            <span class="difficulty educational">Educational</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Multi-Step Case Quiz System -->
-                <div id="quiz-container" class="quiz-container">
+                <!-- Streamlined Case Interface -->
+                <div id="case-interface" class="case-interface">
                     <div class="progress-bar">
                         <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
                     </div>
 
                     <!-- Step 1: Case Presentation -->
-                    <div id="step1" class="quiz-step active">
-                        <div class="step-header">
-                            <h3>📋 Step 2: Case Presentation</h3>
+                    <div id="case-presentation-step" class="case-step" style="display: block;">
+                        <h3>📋 Patient Presentation</h3>
+                        <div id="case-details">
+                            <!-- Case presentation will be populated here -->
                         </div>
-                        <div id="case-presentation" class="card">
-                            <!-- Case details will be populated here -->
-                        </div>
-                        <button class="quiz-button" onclick="nextStep(2)">Continue to Physical Exam →</button>
+                        <button class="quiz-button" onclick="showPhysicalExam()">View Physical Exam →</button>
                     </div>
 
                     <!-- Step 2: Physical Examination -->
-                    <div id="step2" class="quiz-step">
-                        <div class="step-header">
-                            <h3>🔍 Step 3: Physical Examination Findings</h3>
+                    <div id="physical-exam-step" class="case-step" style="display: none;">
+                        <h3>🔍 Physical Examination Findings</h3>
+                        <div id="physical-exam-details">
+                            <!-- Physical exam will be populated here -->
                         </div>
-                        <div id="physical-exam" class="physical-exam">
-                            <!-- Physical exam findings will be populated here -->
-                        </div>
-                        <button class="quiz-button" onclick="prevStep(1)">← Back</button>
-                        <button class="quiz-button" onclick="nextStep(3)">Build Differential →</button>
+                        <button class="quiz-button" onclick="showCasePresentation()">← Back to Presentation</button>
+                        <button class="quiz-button" onclick="showDifferentialBuilder()">Build Differential →</button>
                     </div>
 
-                    <!-- Step 3: Differential Diagnosis Building -->
-                    <div id="step3" class="quiz-step">
-                        <div class="step-header">
-                            <h3>🧠 Step 4: Build Your Differential Diagnosis</h3>
-                        </div>
-                        <div class="card">
-                            <p><strong>Instructions:</strong> Based on the history and physical examination, list your differential diagnoses. Include both peripheral and central causes, ranking from most to least likely.</p>
-                            <textarea id="user-differential" class="differential-input" placeholder="Enter your differential diagnosis list here...&#10;Example:&#10;1. Carpal tunnel syndrome&#10;2. Ulnar neuropathy at elbow&#10;3. Cervical radiculopathy&#10;..."></textarea>
-                            <div id="differential-feedback" style="margin-top: 15px;"></div>
-                        </div>
-                        <button class="quiz-button" onclick="prevStep(2)">← Back</button>
-                        <button class="quiz-button" onclick="analyzeDifferential()">Analyze My Differential</button>
-                        <button id="continue-to-studies" class="quiz-button" onclick="nextStep(4)" style="display: none;">Continue to NCS Studies →</button>
+                    <!-- Step 3: Differential Building -->
+                    <div id="differential-step" class="case-step" style="display: none;">
+                        <h3>🧠 Build Your Differential Diagnosis</h3>
+                        <p><strong>Instructions:</strong> Based on the history and physical examination, list your differential diagnoses. Include both peripheral and central causes, ranking from most to least likely.</p>
+                        <textarea id="user-differential" class="differential-input" placeholder="Enter your differential diagnosis list here...&#10;Example:&#10;1. Carpal tunnel syndrome&#10;2. Ulnar neuropathy at elbow&#10;3. Cervical radiculopathy&#10;..."></textarea>
+                        <div id="differential-feedback" style="margin-top: 15px;"></div>
+                        <button class="quiz-button" onclick="showPhysicalExam()">← Back to Exam</button>
+                        <button class="quiz-button" onclick="analyzeDifferential()">Analyze Differential</button>
+                        <button id="continue-to-studies" class="quiz-button" onclick="showNCSResults()" style="display: none;">View NCS Results →</button>
                     </div>
 
-                    <!-- Step 4: NCS Studies Selection and Results -->
-                    <div id="step4" class="quiz-step">
-                        <div class="step-header">
-                            <h3>⚡ Step 5: Nerve Conduction Studies</h3>
+                    <!-- Step 4: NCS/EMG Results -->
+                    <div id="results-step" class="case-step" style="display: none;">
+                        <h3>⚡ Nerve Conduction Study Results</h3>
+                        <div id="ncs-results">
+                            <!-- NCS results will be populated here -->
                         </div>
-                        <div class="card">
-                            <p><strong>Based on your differential, the following NCS studies were performed:</strong></p>
-                            <div id="ncs-studies" class="ncs-studies">
-                                <!-- NCS studies and results will be populated here -->
+                        
+                        <div id="emg-results" class="emg-section" style="display: none;">
+                            <h4>🔬 EMG Results (when required for diagnosis)</h4>
+                            <div id="emg-details">
+                                <!-- EMG results will be populated here -->
                             </div>
                         </div>
-                        <button class="quiz-button" onclick="prevStep(3)">← Back</button>
-                        <button class="quiz-button" onclick="nextStep(5)">Interpret Results →</button>
+                        
+                        <button class="quiz-button" onclick="showDifferentialBuilder()">← Back to Differential</button>
+                        <button class="quiz-button" onclick="showFinalDiagnosis()">Make Final Diagnosis →</button>
                     </div>
 
                     <!-- Step 5: Final Diagnosis -->
-                    <div id="step5" class="quiz-step">
-                        <div class="step-header">
-                            <h3>🎯 Step 6: Final Diagnosis</h3>
-                        </div>
-                        <div class="card">
-                            <p><strong>Based on the clinical presentation and NCS findings, what is your final diagnosis?</strong></p>
-                            <textarea id="final-diagnosis" class="differential-input" style="min-height: 80px;" placeholder="Enter your final diagnosis and reasoning..."></textarea>
-                            <div id="diagnosis-feedback" style="margin-top: 15px;"></div>
-                        </div>
-                        <button class="quiz-button" onclick="prevStep(4)">← Back</button>
+                    <div id="diagnosis-step" class="case-step" style="display: none;">
+                        <h3>🎯 Final Diagnosis</h3>
+                        <p><strong>Based on the clinical presentation and test results, what is your final diagnosis?</strong></p>
+                        <textarea id="final-diagnosis" class="differential-input" style="min-height: 80px;" placeholder="Enter your final diagnosis and reasoning..."></textarea>
+                        <div id="diagnosis-feedback" style="margin-top: 15px;"></div>
+                        <button class="quiz-button" onclick="showNCSResults()">← Back to Results</button>
                         <button class="quiz-button" onclick="checkFinalDiagnosis()">Check Diagnosis</button>
-                        <button class="quiz-button" onclick="resetQuiz()" style="background: #95a5a6;">Start New Case</button>
+                        <button class="quiz-button" onclick="startNewCase()" style="background: #95a5a6;">Start New Case</button>
                     </div>
                 </div>
                 
@@ -1786,10 +1860,7 @@
             differentialDiv.innerHTML = content;
         }
         
-        // New comprehensive quiz system functions
-        let currentCase = null;
-        let currentStep = 1;
-        let userDifferential = '';
+        // Remove duplicate declarations - using the ones from line 1376
 
         // Case database for quiz system
         const caseDatabase = {
@@ -2200,6 +2271,200 @@
             
             updateProgress(0);
             showStep(1);
+        }
+
+        // New streamlined interface functions
+        function startRandomCase() {
+            const caseIds = ['hand14', 'footdrop', 'stroke'];
+            const randomId = caseIds[Math.floor(Math.random() * caseIds.length)];
+            startSpecificCase(randomId);
+        }
+
+        function startSpecificCase(caseId) {
+            if (!caseDatabase[caseId]) {
+                alert('Case not available yet. Please try another case.');
+                return;
+            }
+
+            currentCase = caseDatabase[caseId];
+            
+            // Hide case selection, show case interface
+            document.getElementById('case-selection').style.display = 'none';
+            document.getElementById('case-interface').style.display = 'block';
+            
+            // Populate case details
+            populateCaseDetails();
+            
+            // Reset interface
+            showCasePresentation();
+            updateProgress(20);
+        }
+
+        function populateCaseDetails() {
+            const case_ = currentCase;
+            const caseDetailsDiv = document.getElementById('case-details');
+            
+            if (case_.emgIndication === "NOT INDICATED") {
+                caseDetailsDiv.innerHTML = `
+                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px;">
+                        <h4 style="color: #e74c3c;">⚠️ ${case_.title}</h4>
+                        <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
+                        <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
+                        <p><strong>History:</strong> ${case_.presentation.history}</p>
+                        <p><strong>PMH:</strong> ${case_.presentation.pmh}</p>
+                        <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
+                        <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                            <strong>🚫 Educational Note:</strong> ${case_.educationalNote}
+                        </div>
+                    </div>
+                `;
+            } else {
+                caseDetailsDiv.innerHTML = `
+                    <h4>${case_.title}</h4>
+                    <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
+                    <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
+                    <p><strong>History:</strong> ${case_.presentation.history}</p>
+                    <p><strong>PMH:</strong> ${case_.presentation.pmh}</p>
+                    <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
+                `;
+            }
+            
+            // Populate physical exam
+            const examDiv = document.getElementById('physical-exam-details');
+            const exam = case_.physicalExam;
+            examDiv.innerHTML = `
+                <div class="physical-exam">
+                    <div class="exam-category">
+                        <h5>👁️ Inspection</h5>
+                        <p>${exam.inspection}</p>
+                    </div>
+                    <div class="exam-category">
+                        <h5>👋 Palpation</h5>
+                        <p>${exam.palpation}</p>
+                    </div>
+                    <div class="exam-category">
+                        <h5>🔄 Range of Motion</h5>
+                        <p>${exam.rom}</p>
+                    </div>
+                    <div class="exam-category">
+                        <h5>💪 Strength</h5>
+                        <p>${exam.strength}</p>
+                    </div>
+                    <div class="exam-category">
+                        <h5>👆 Sensation</h5>
+                        <p>${exam.sensation}</p>
+                    </div>
+                    <div class="exam-category">
+                        <h5>🔨 Reflexes</h5>
+                        <p>${exam.reflexes}</p>
+                    </div>
+                    <div class="exam-category">
+                        <h5>🧪 Special Tests</h5>
+                        <p>${exam.specialTests}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showCasePresentation() {
+            hideAllSteps();
+            document.getElementById('case-presentation-step').style.display = 'block';
+            updateProgress(20);
+        }
+
+        function showPhysicalExam() {
+            hideAllSteps();
+            document.getElementById('physical-exam-step').style.display = 'block';
+            updateProgress(40);
+        }
+
+        function showDifferentialBuilder() {
+            hideAllSteps();
+            document.getElementById('differential-step').style.display = 'block';
+            updateProgress(60);
+        }
+
+        function showNCSResults() {
+            hideAllSteps();
+            document.getElementById('results-step').style.display = 'block';
+            
+            // Populate NCS results
+            const ncsDiv = document.getElementById('ncs-results');
+            if (currentCase.emgIndication === "NOT INDICATED") {
+                ncsDiv.innerHTML = `
+                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px;">
+                        <h4 style="color: #e74c3c;">⚠️ EMG/NCS NOT INDICATED</h4>
+                        <p>${currentCase.explanation}</p>
+                    </div>
+                `;
+            } else {
+                let html = '';
+                currentCase.ncsStudies.forEach(study => {
+                    const resultClass = study.result === 'abnormal' ? 'abnormal-finding' : 'normal-finding';
+                    html += `
+                        <div class="ncs-study">
+                            <h4>⚡ ${study.name}</h4>
+                            <div class="${resultClass}">
+                                <strong>Results:</strong> ${study.findings}
+                            </div>
+                            <p><strong>Interpretation:</strong> ${study.interpretation}</p>
+                        </div>
+                    `;
+                });
+                ncsDiv.innerHTML = html;
+                
+                // Show EMG results if required
+                if (currentCase.requiresEMG && currentCase.emgStudies) {
+                    document.getElementById('emg-results').style.display = 'block';
+                    const emgDiv = document.getElementById('emg-details');
+                    let emgHtml = '';
+                    currentCase.emgStudies.forEach(study => {
+                        emgHtml += `
+                            <div style="margin: 15px 0; padding: 15px; background: #fff; border-left: 4px solid #f39c12; border-radius: 5px;">
+                                <h5>${study.muscle}</h5>
+                                <p><strong>Findings:</strong> ${study.findings}</p>
+                                <p><strong>Interpretation:</strong> ${study.interpretation}</p>
+                            </div>
+                        `;
+                    });
+                    emgDiv.innerHTML = emgHtml;
+                }
+            }
+            
+            updateProgress(80);
+        }
+
+        function showFinalDiagnosis() {
+            hideAllSteps();
+            document.getElementById('diagnosis-step').style.display = 'block';
+            updateProgress(100);
+        }
+
+        function hideAllSteps() {
+            const steps = ['case-presentation-step', 'physical-exam-step', 'differential-step', 'results-step', 'diagnosis-step'];
+            steps.forEach(stepId => {
+                document.getElementById(stepId).style.display = 'none';
+            });
+        }
+
+        function startNewCase() {
+            // Reset interface
+            document.getElementById('case-interface').style.display = 'none';
+            document.getElementById('case-selection').style.display = 'block';
+            
+            // Clear form data
+            document.getElementById('user-differential').value = '';
+            document.getElementById('final-diagnosis').value = '';
+            document.getElementById('differential-feedback').innerHTML = '';
+            document.getElementById('diagnosis-feedback').innerHTML = '';
+            document.getElementById('continue-to-studies').style.display = 'none';
+            
+            // Hide EMG results
+            document.getElementById('emg-results').style.display = 'none';
+            
+            // Reset progress
+            updateProgress(0);
+            currentCase = null;
         }
         
         // Initialize videos when page loads
