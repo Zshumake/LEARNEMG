@@ -1612,6 +1612,355 @@
                 correctDiagnosis: "Common Fibular (Peroneal) Neuropathy at the Fibular Head",
                 explanation: "Acute onset foot drop with both motor and sensory involvement in common fibular distribution following prolonged squatting (compression at fibular head) is classic for fibular neuropathy."
             },
+            'ulnar': {
+                title: "Hand Weakness and Numbness",
+                presentation: {
+                    age: 52,
+                    gender: "Male",
+                    occupation: "Carpenter",
+                    chiefComplaint: "6-month history of weakness in right hand and numbness in ring and little fingers",
+                    history: "Gradual onset of difficulty with fine motor tasks. Notices weakness when trying to grip tools. Numbness in ring and little fingers, worse in the morning. Works long hours using hand tools and machinery. No neck pain or trauma.",
+                    pmh: "Diabetes mellitus type 2, hypertension",
+                    medications: "Metformin, lisinopril"
+                },
+                physicalExam: {
+                    inspection: "Mild atrophy of hypothenar eminence and first dorsal interosseous space on right",
+                    palpation: "No tenderness over ulnar groove at elbow. Ulnar nerve mobile at elbow.",
+                    rom: "Full ROM at neck, shoulder, elbow, and wrist bilaterally",
+                    strength: "Right hand intrinsics 3/5 (FDI, ADM, interossei). Grip strength reduced. FCU 4/5. All other muscle groups 5/5.",
+                    sensation: "Decreased light touch and pinprick in ulnar distribution (ring and little finger)",
+                    reflexes: "2+ and symmetric throughout. No pathological reflexes.",
+                    specialTests: "Positive Froment's sign on right. Negative Tinel's at wrist. Mild Tinel's at elbow. No Hoffmann, clonus, or spasticity"
+                },
+                expectedDifferential: [
+                    "cubital tunnel syndrome",
+                    "ulnar neuropathy at elbow",
+                    "guyon's canal syndrome",
+                    "c8 radiculopathy",
+                    "lower trunk brachial plexopathy",
+                    "polyneuropathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Across elbow conduction velocity: 32 m/s (normal >50 m/s). Distal latency: 3.8 ms (normal <3.3 ms)",
+                        interpretation: "Focal slowing across elbow segment consistent with ulnar neuropathy at elbow"
+                    },
+                    {
+                        name: "Ulnar Sensory (Wrist-Digit 5)",
+                        result: "abnormal",
+                        findings: "Prolonged peak latency: 4.2 ms (normal <3.4 ms). Reduced amplitude: 6 μV (normal >10 μV)",
+                        interpretation: "Ulnar sensory involvement"
+                    },
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency: 3.1 ms. Normal CMAP amplitude: 8.2 mV",
+                        interpretation: "No evidence of median neuropathy"
+                    },
+                    {
+                        name: "Median Sensory (Wrist-Digit 3)",
+                        result: "normal",
+                        findings: "Normal peak latency: 2.8 ms. Normal amplitude: 22 μV",
+                        interpretation: "Median sensory function preserved"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Increased insertional activity, frequent fibrillation potentials and positive sharp waves, reduced recruitment with large amplitude motor unit potentials",
+                        interpretation: "Chronic denervation with reinnervation in ulnar-innervated hand muscles"
+                    },
+                    {
+                        muscle: "Flexor carpi ulnaris",
+                        findings: "Normal insertional activity, no abnormal spontaneous activity, full recruitment with normal motor unit potentials",
+                        interpretation: "Normal - suggests lesion below elbow (spares FCU branch)"
+                    }
+                ],
+                requiresEMG: true,
+                correctDiagnosis: "Cubital Tunnel Syndrome (Ulnar Neuropathy at Elbow)",
+                explanation: "Progressive hand weakness with ulnar distribution, positive Froment's sign, focal slowing across elbow on NCS, and EMG showing denervation in distal ulnar muscles while sparing FCU confirms ulnar neuropathy at the elbow."
+            },
+            'cervical': {
+                title: "Neck Pain with Arm Weakness",
+                presentation: {
+                    age: 45,
+                    gender: "Female",
+                    occupation: "Office Manager",
+                    chiefComplaint: "3-month history of neck pain radiating to left arm with weakness and numbness",
+                    history: "Gradual onset of neck pain after minor motor vehicle accident. Pain radiates down left arm to thumb and index finger. Weakness noticed when lifting objects overhead. Numbness in thumb, index, and middle finger. Symptoms worse with neck extension.",
+                    pmh: "None",
+                    medications: "Ibuprofen PRN"
+                },
+                physicalExam: {
+                    inspection: "No visible muscle atrophy. Patient holds head in slightly flexed position.",
+                    palpation: "Tenderness over left cervical paraspinal muscles. No palpable lymphadenopathy.",
+                    rom: "Limited neck extension due to pain. Left lateral flexion reproduces arm pain.",
+                    strength: "Left biceps 4/5, brachioradialis 4/5, deltoid 4-/5. Grip strength mildly reduced on left. Right side normal.",
+                    sensation: "Decreased sensation in left C6 dermatome (thumb, index finger, lateral forearm)",
+                    reflexes: "Left biceps reflex diminished (1+). Brachioradialis reflex absent on left. Triceps 2+ bilaterally.",
+                    specialTests: "Positive Spurling's test on left. Negative Hoffmann bilaterally. No clonus or spasticity"
+                },
+                expectedDifferential: [
+                    "c6 radiculopathy",
+                    "cervical radiculopathy",
+                    "cervical disc herniation",
+                    "brachial plexopathy",
+                    "multiple peripheral neuropathies",
+                    "cervical myelopathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency: 3.2 ms. Normal CMAP amplitude: 9.1 mV",
+                        interpretation: "Median nerve function normal"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal distal latency: 2.7 ms. Normal CMAP amplitude: 11.8 mV",
+                        interpretation: "Ulnar nerve function normal"
+                    },
+                    {
+                        name: "Radial Motor (EIP)",
+                        result: "normal",
+                        findings: "Normal distal latency: 3.4 ms. Normal CMAP amplitude: 4.2 mV",
+                        interpretation: "Radial nerve function normal"
+                    },
+                    {
+                        name: "Median Sensory (Wrist-Digit 1)",
+                        result: "abnormal",
+                        findings: "Prolonged peak latency: 4.1 ms (normal <3.4 ms). Reduced amplitude: 12 μV (normal >15 μV)",
+                        interpretation: "Mild median sensory abnormality - may be secondary to C6 radiculopathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Biceps",
+                        findings: "Increased insertional activity, fibrillation potentials and positive sharp waves, reduced recruitment",
+                        interpretation: "Active denervation in C6 innervated muscle"
+                    },
+                    {
+                        muscle: "Deltoid",
+                        findings: "Increased insertional activity, few fibrillation potentials, reduced recruitment with large amplitude MUPs",
+                        interpretation: "Chronic denervation with reinnervation in C6 innervated muscle"
+                    },
+                    {
+                        muscle: "Triceps",
+                        findings: "Normal insertional activity, no spontaneous activity, full recruitment with normal MUPs",
+                        interpretation: "Normal C7 innervated muscle"
+                    }
+                ],
+                requiresEMG: true,
+                correctDiagnosis: "Left C6 Radiculopathy",
+                explanation: "Clinical presentation with neck pain, C6 distribution weakness and numbness, diminished reflexes, positive Spurling's test, and EMG showing active denervation in C6 myotome muscles confirms C6 radiculopathy."
+            },
+            'polyneuropathy': {
+                title: "Progressive Weakness and Numbness",
+                presentation: {
+                    age: 62,
+                    gender: "Male",
+                    occupation: "Retired Mechanic",
+                    chiefComplaint: "1-year history of progressive numbness in feet and hands with weakness",
+                    history: "Gradual onset of numbness that started in toes and has progressed up legs. Now involves fingertips bilaterally. Reports difficulty walking due to imbalance. Denies back pain or trauma. Has had diabetes for 15 years with poor glucose control.",
+                    pmh: "Diabetes mellitus type 2, hypertension, hyperlipidemia",
+                    medications: "Insulin, metformin, lisinopril, atorvastatin"
+                },
+                physicalExam: {
+                    inspection: "No muscle atrophy visible. Steady gait but decreased arm swing.",
+                    palpation: "No tenderness. Decreased muscle bulk in distal legs.",
+                    rom: "Full ROM throughout",
+                    strength: "Distal lower extremity weakness: dorsiflexion 4/5, plantar flexion 4/5. Intrinsic hand muscles 4/5. Proximal strength normal.",
+                    sensation: "Stocking-glove pattern sensory loss. Vibration and proprioception markedly reduced in toes and fingers.",
+                    reflexes: "Achilles reflexes absent bilaterally. Knee reflexes 1+ bilaterally. Upper extremity reflexes 2+ but symmetric.",
+                    specialTests: "Romberg positive. Unable to heel-to-toe walk. No Hoffmann, clonus, or spasticity"
+                },
+                expectedDifferential: [
+                    "diabetic polyneuropathy",
+                    "distal sensorimotor polyneuropathy",
+                    "peripheral neuropathy",
+                    "chronic inflammatory demyelinating polyneuropathy",
+                    "vitamin deficiency neuropathy",
+                    "toxic neuropathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Median Sensory (Wrist-Digit 3)",
+                        result: "abnormal",
+                        findings: "Prolonged peak latency: 4.8 ms (normal <3.4 ms). Markedly reduced amplitude: 4 μV (normal >15 μV)",
+                        interpretation: "Severe median sensory neuropathy"
+                    },
+                    {
+                        name: "Ulnar Sensory (Wrist-Digit 5)",
+                        result: "abnormal",
+                        findings: "Prolonged peak latency: 4.2 ms (normal <3.4 ms). Reduced amplitude: 6 μV (normal >10 μV)",
+                        interpretation: "Severe ulnar sensory neuropathy"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "No response obtained",
+                        interpretation: "Severe sural sensory neuropathy"
+                    },
+                    {
+                        name: "Fibular Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency: 7.2 ms (normal <6.5 ms). Markedly reduced amplitude: 0.8 mV (normal >2.5 mV)",
+                        interpretation: "Severe fibular motor neuropathy"
+                    }
+                ],
+                requiresEMG: false,
+                correctDiagnosis: "Diabetic Distal Sensorimotor Polyneuropathy",
+                explanation: "Length-dependent sensorimotor polyneuropathy with stocking-glove distribution, absent reflexes, and uniform slowing on NCS studies in a patient with long-standing diabetes confirms diabetic polyneuropathy."
+            },
+            'myopathy': {
+                title: "Progressive Proximal Weakness",
+                presentation: {
+                    age: 38,
+                    gender: "Female",
+                    occupation: "Teacher",
+                    chiefComplaint: "6-month history of difficulty climbing stairs and lifting objects overhead",
+                    history: "Gradual onset of weakness affecting shoulders and hips. Difficulty getting up from chairs and climbing stairs. No pain initially, but now has muscle aches. Denies rash or swallowing difficulties. No family history of muscle disease.",
+                    pmh: "Hypothyroidism",
+                    medications: "Levothyroxine"
+                },
+                physicalExam: {
+                    inspection: "No obvious muscle atrophy. No rash or skin changes observed.",
+                    palpation: "Mild tenderness in proximal muscle groups. No fasciculations palpated.",
+                    rom: "Full passive ROM. Limited active ROM due to weakness.",
+                    strength: "Proximal weakness: deltoids 3/5, hip flexors 3/5, neck flexors 4/5. Distal strength preserved (5/5).",
+                    sensation: "Normal throughout",
+                    reflexes: "2+ and symmetric throughout. No pathological reflexes.",
+                    specialTests: "Gowers' sign present. No Hoffmann, clonus, or spasticity"
+                },
+                expectedDifferential: [
+                    "inflammatory myopathy",
+                    "polymyositis",
+                    "dermatomyositis",
+                    "inclusion body myositis",
+                    "thyroid myopathy",
+                    "muscular dystrophy",
+                    "metabolic myopathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency: 3.0 ms. Normal CMAP amplitude: 8.5 mV",
+                        interpretation: "Normal median nerve function"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal distal latency: 2.8 ms. Normal CMAP amplitude: 10.2 mV",
+                        interpretation: "Normal ulnar nerve function"
+                    },
+                    {
+                        name: "Fibular Motor (EDB)",
+                        result: "normal",
+                        findings: "Normal distal latency: 4.2 ms. Normal CMAP amplitude: 3.8 mV",
+                        interpretation: "Normal fibular nerve function"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Increased insertional activity, frequent fibrillation potentials, positive sharp waves, and complex repetitive discharges. Early recruitment with small, short-duration, polyphasic motor unit potentials",
+                        interpretation: "Myopathic changes with membrane instability"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Increased insertional activity, fibrillation potentials, early recruitment with small amplitude, short duration MUPs",
+                        interpretation: "Myopathic changes consistent with inflammatory myopathy"
+                    },
+                    {
+                        muscle: "Iliopsoas",
+                        findings: "Increased insertional activity, abnormal spontaneous activity, early recruitment with myopathic MUPs",
+                        interpretation: "Proximal myopathic involvement"
+                    }
+                ],
+                requiresEMG: true,
+                correctDiagnosis: "Inflammatory Myopathy (likely Polymyositis)",
+                explanation: "Proximal muscle weakness, elevated CK (implied), normal NCS with myopathic EMG changes showing membrane instability and small, short-duration motor units in proximal muscles supports inflammatory myopathy."
+            },
+            'als': {
+                title: "Progressive Weakness and Muscle Twitching",
+                presentation: {
+                    age: 58,
+                    gender: "Male",
+                    occupation: "Engineer",
+                    chiefComplaint: "8-month history of progressive weakness in right hand and visible muscle twitching",
+                    history: "Started with weakness in right hand, difficulty with fine motor tasks like writing and buttoning shirts. Recently developed weakness in left hand and noticed muscle twitching in arms. Some difficulty with speech articulation. Denies sensory symptoms or bowel/bladder dysfunction.",
+                    pmh: "Hypertension",
+                    medications: "Amlodipine"
+                },
+                physicalExam: {
+                    inspection: "Visible fasciculations in bilateral thenar and hypothenar eminences, deltoids, and tongue. Mild atrophy of right first dorsal interosseous.",
+                    palpation: "Fasciculations palpable in multiple muscle groups. No tenderness.",
+                    rom: "Full ROM throughout",
+                    strength: "Right hand intrinsics 3/5, left hand intrinsics 4/5. Grip strength reduced bilaterally. Proximal strength mildly reduced in arms.",
+                    sensation: "Normal throughout",
+                    reflexes: "Hyperreflexic throughout (3+). Positive Hoffmann sign bilaterally. Jaw jerk present.",
+                    specialTests: "Positive Babinski bilaterally. Tongue fasciculations visible. Mild dysarthria. No clonus."
+                },
+                expectedDifferential: [
+                    "amyotrophic lateral sclerosis",
+                    "motor neuron disease",
+                    "progressive muscular atrophy",
+                    "primary lateral sclerosis",
+                    "kennedy disease",
+                    "multifocal motor neuropathy",
+                    "cervical myelopathy"
+                ],
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Normal distal latency: 3.4 ms. Reduced CMAP amplitude: 2.1 mV (normal >4.0 mV)",
+                        interpretation: "Reduced amplitude suggesting motor axon loss"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Normal distal latency: 3.1 ms. Reduced CMAP amplitude: 3.2 mV (normal >6.0 mV)",
+                        interpretation: "Reduced amplitude consistent with motor neuron loss"
+                    },
+                    {
+                        name: "Median Sensory (Wrist-Digit 3)",
+                        result: "normal",
+                        findings: "Normal peak latency: 2.9 ms. Normal amplitude: 18 μV",
+                        interpretation: "Normal sensory function preserved"
+                    },
+                    {
+                        name: "Ulnar Sensory (Wrist-Digit 5)",
+                        result: "normal",
+                        findings: "Normal peak latency: 3.0 ms. Normal amplitude: 15 μV",
+                        interpretation: "Normal sensory function preserved"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Increased insertional activity, frequent fasciculation potentials, fibrillation potentials and positive sharp waves. Reduced recruitment with large amplitude, long duration motor unit potentials",
+                        interpretation: "Chronic denervation with reinnervation and ongoing fasciculations"
+                    },
+                    {
+                        muscle: "Deltoid",
+                        findings: "Fasciculation potentials, reduced recruitment with giant motor unit potentials",
+                        interpretation: "Chronic reinnervation with ongoing denervation"
+                    },
+                    {
+                        muscle: "Tongue",
+                        findings: "Frequent fasciculation potentials, fibrillation potentials, reduced recruitment",
+                        interpretation: "Bulbar involvement with lower motor neuron signs"
+                    }
+                ],
+                requiresEMG: true,
+                correctDiagnosis: "Amyotrophic Lateral Sclerosis (ALS)",
+                explanation: "Progressive weakness with both upper motor neuron signs (hyperreflexia, Babinski) and lower motor neuron signs (fasciculations, atrophy), preserved sensation, and EMG showing widespread denervation with fasciculations confirms ALS."
+            },
             'stroke': {
                 title: "Acute Hemiparesis",
                 presentation: {
