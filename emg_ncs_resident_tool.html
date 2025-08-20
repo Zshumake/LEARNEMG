@@ -2680,6 +2680,346 @@
                 emgIndication: "INDICATED",
                 correctDiagnosis: "Tarsal Tunnel Syndrome (Tibial Neuropathy at Ankle)",
                 explanation: "Compression of tibial nerve and its branches (medial and lateral plantar nerves) at the tarsal tunnel. Prolonged standing and diabetes are risk factors. Studies show distal tibial nerve involvement with sparing of proximal branches."
+            },
+            'mildcts': {
+                title: "Early Hand Tingling in Pregnancy",
+                presentation: {
+                    age: 28,
+                    gender: "Female",
+                    occupation: "Teacher",
+                    chiefComplaint: "3-week history of mild tingling in fingers, mainly at night",
+                    history: "Currently 32 weeks pregnant. Started noticing mild tingling in thumb, index, and middle fingers that wakes her up at night. Shaking hands provides some relief. No weakness or dropping objects. Symptoms are intermittent and mild. No previous hand problems.",
+                    pmh: "Pregnant (G2P1), no complications",
+                    medications: "Prenatal vitamins"
+                },
+                physicalExam: {
+                    inspection: "No visible atrophy or deformity",
+                    palpation: "Mild tenderness over carpal tunnel, no swelling",
+                    rom: "Full ROM at all joints",
+                    strength: "5/5 strength throughout, normal pinch strength",
+                    sensation: "Subjective mild numbness in median distribution, objective sensation intact",
+                    reflexes: "2+ and symmetric throughout",
+                    specialTests: "Mildly positive Phalen's test (symptoms at 45 seconds), negative Tinel's sign"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency (3.2ms), normal amplitude (8.5 mV)",
+                        interpretation: "No motor involvement"
+                    },
+                    {
+                        name: "Median Sensory (digit 2)",
+                        result: "abnormal",
+                        findings: "Mildly prolonged peak latency (3.8ms, normal <3.5ms), normal amplitude",
+                        interpretation: "Mild sensory median neuropathy"
+                    },
+                    {
+                        name: "Median Sensory (palm-wrist)",
+                        result: "abnormal",
+                        findings: "Prolonged latency difference (0.6ms, normal <0.4ms)",
+                        interpretation: "Early carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Ulnar Sensory (digit 5)",
+                        result: "normal",
+                        findings: "Normal amplitude and latency",
+                        interpretation: "Normal ulnar function"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Normal spontaneous activity, normal motor units",
+                        interpretation: "No denervation"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Mild Carpal Tunnel Syndrome (Pregnancy-related)",
+                explanation: "Early/mild CTS with purely sensory findings. Pregnancy-related fluid retention commonly causes reversible median nerve compression. Palm-wrist comparison study is sensitive for early CTS when routine sensory studies are borderline."
+            },
+            'severects': {
+                title: "Severe Hand Weakness and Atrophy",
+                presentation: {
+                    age: 58,
+                    gender: "Male",
+                    occupation: "Retired Mechanic",
+                    chiefComplaint: "2-year history of progressive hand weakness with visible muscle wasting",
+                    history: "Started with nighttime numbness 2 years ago, gradually worsened. Now has constant numbness in thumb, index, and middle fingers. Significant weakness gripping tools, difficulty with buttons and fine motor tasks. Notices visible muscle loss in thumb area. Denies trauma or neck pain.",
+                    pmh: "Diabetes mellitus type 2, osteoarthritis",
+                    medications: "Metformin, insulin"
+                },
+                physicalExam: {
+                    inspection: "Marked thenar atrophy, visible muscle wasting",
+                    palpation: "Firm, non-tender mass over carpal tunnel",
+                    rom: "Full ROM but weak thumb opposition",
+                    strength: "Abductor pollicis brevis 2/5, opponens pollicis 2/5, severe pinch weakness",
+                    sensation: "Complete sensory loss in median distribution",
+                    reflexes: "2+ and symmetric throughout",
+                    specialTests: "Unable to perform Phalen's test due to weakness, no Tinel's sign"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Severely prolonged distal latency (8.1ms), markedly reduced amplitude (1.2 mV)",
+                        interpretation: "Severe motor median neuropathy"
+                    },
+                    {
+                        name: "Median Sensory (digit 2)",
+                        result: "abnormal",
+                        findings: "No sensory response elicitable",
+                        interpretation: "Severe sensory median neuropathy"
+                    },
+                    {
+                        name: "Median Motor (FPL)",
+                        result: "abnormal",
+                        findings: "Prolonged latency, reduced amplitude",
+                        interpretation: "Proximal median nerve involvement"
+                    },
+                    {
+                        name: "Ulnar Motor/Sensory",
+                        result: "normal",
+                        findings: "All parameters normal",
+                        interpretation: "Ulnar nerve spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Severe chronic denervation with poor reinnervation",
+                        interpretation: "Severe chronic median neuropathy"
+                    },
+                    {
+                        muscle: "Opponens pollicis",
+                        findings: "Chronic denervation changes",
+                        interpretation: "Recurrent motor branch involvement"
+                    },
+                    {
+                        muscle: "Flexor pollicis longus",
+                        findings: "Chronic denervation",
+                        interpretation: "Anterior interosseous nerve involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Severe Carpal Tunnel Syndrome with Thenar Atrophy",
+                explanation: "End-stage CTS with severe motor and sensory involvement, thenar atrophy, and poor prognosis for recovery. Diabetes is a risk factor for more severe neuropathy. Surgical decompression urgent to prevent further deterioration."
+            },
+            'acutecutspost': {
+                title: "Acute Hand Numbness After Elbow Fracture",
+                presentation: {
+                    age: 24,
+                    gender: "Male",
+                    occupation: "Student",
+                    chiefComplaint: "Acute onset numbness and weakness in hand 3 days after elbow fracture surgery",
+                    history: "Fell off bicycle 1 week ago, sustained elbow fracture requiring ORIF. Surgery went well initially. Three days post-op, developed acute numbness in ring and little fingers with weakness pinching. No pre-surgical hand symptoms. Concerned about nerve injury.",
+                    pmh: "No significant medical history",
+                    medications: "Oxycodone, ibuprofen"
+                },
+                physicalExam: {
+                    inspection: "Surgical incision healing well, mild swelling around elbow",
+                    palpation: "Tender over surgical site, positive Tinel's over cubital tunnel",
+                    rom: "Limited elbow flexion due to post-surgical restrictions",
+                    strength: "Interosseous muscles 3/5, FDP (ring/little) 4/5, FCU 4/5",
+                    sensation: "Decreased sensation in ulnar distribution (ring/little fingers)",
+                    reflexes: "Normal throughout",
+                    specialTests: "Positive elbow flexion test, positive Tinel's at cubital tunnel"
+                },
+                ncsStudies: [
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Conduction block across elbow (50% amplitude drop), normal distal latency",
+                        interpretation: "Acute ulnar neuropathy at elbow"
+                    },
+                    {
+                        name: "Ulnar Motor (FDI)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude with conduction block",
+                        interpretation: "Deep motor branch involvement"
+                    },
+                    {
+                        name: "Ulnar Sensory (digit 5)",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude",
+                        interpretation: "Ulnar sensory involvement"
+                    },
+                    {
+                        name: "Median studies",
+                        result: "normal",
+                        findings: "All parameters normal",
+                        interpretation: "Median nerve unaffected"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Reduced recruitment, no denervation (too early)",
+                        interpretation: "Acute ulnar neuropathy"
+                    },
+                    {
+                        muscle: "Flexor carpi ulnaris",
+                        findings: "Reduced recruitment",
+                        interpretation: "Ulnar nerve at elbow level"
+                    },
+                    {
+                        muscle: "Flexor digitorum profundus (ring)",
+                        findings: "Mildly reduced recruitment",
+                        interpretation: "Ulnar nerve involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Acute Post-Surgical Cubital Tunnel Syndrome",
+                explanation: "Iatrogenic ulnar neuropathy following elbow surgery, likely from surgical trauma, swelling, or positioning. Conduction block pattern suggests compressive/demyelinating injury with potential for recovery if decompressed early."
+            },
+            'lumboplexopathy': {
+                title: "Hip Pain with Leg Weakness After Surgery",
+                presentation: {
+                    age: 67,
+                    gender: "Female",
+                    occupation: "Retired",
+                    chiefComplaint: "Right leg weakness and numbness following hip replacement surgery 6 weeks ago",
+                    history: "Underwent right total hip replacement 6 weeks ago for severe arthritis. Post-operatively developed weakness in right leg, difficulty walking, and numbness over anterior thigh. Initially attributed to surgical pain but weakness persists. Can't lift leg straight up or extend knee strongly.",
+                    pmh: "Osteoarthritis, hypertension",
+                    medications: "Lisinopril, tramadol, physical therapy"
+                },
+                physicalExam: {
+                    inspection: "Surgical scar healing well, mild quadriceps atrophy",
+                    palpation: "No tenderness over surgical site, no palpable masses",
+                    rom: "Limited hip flexion due to weakness",
+                    strength: "Hip flexors 2/5, quadriceps 3/5, hip adductors 3/5. Normal ankle dorsiflexion.",
+                    sensation: "Decreased sensation over anterior thigh and medial leg",
+                    reflexes: "Absent patellar reflex on right (0+). Achilles normal.",
+                    specialTests: "Negative straight leg raise, positive femoral stretch test"
+                },
+                ncsStudies: [
+                    {
+                        name: "Femoral Motor (Quadriceps)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (4.2 mV, normal >6 mV)",
+                        interpretation: "Femoral nerve dysfunction"
+                    },
+                    {
+                        name: "Lateral Femoral Cutaneous",
+                        result: "abnormal",
+                        findings: "Absent sensory response",
+                        interpretation: "Lateral femoral cutaneous nerve involvement"
+                    },
+                    {
+                        name: "Saphenous Sensory",
+                        result: "abnormal",
+                        findings: "Reduced amplitude",
+                        interpretation: "Femoral nerve sensory branch involvement"
+                    },
+                    {
+                        name: "Peroneal/Tibial studies",
+                        result: "normal",
+                        findings: "Normal amplitudes and velocities",
+                        interpretation: "L5-S1 distribution spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Lumbar paraspinals",
+                        findings: "Normal",
+                        interpretation: "Root level spared"
+                    },
+                    {
+                        muscle: "Iliopsoas",
+                        findings: "Denervation changes",
+                        interpretation: "Femoral nerve involvement"
+                    },
+                    {
+                        muscle: "Quadriceps",
+                        findings: "Active denervation and reduced recruitment",
+                        interpretation: "Femoral nerve palsy"
+                    },
+                    {
+                        muscle: "Adductor longus",
+                        findings: "Mild denervation changes",
+                        interpretation: "Obturator nerve involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Lumbar Plexopathy (Post-Surgical) - Femoral and Obturator Nerve Pattern",
+                explanation: "Post-surgical lumbar plexopathy affecting femoral and obturator nerves from retractor positioning, hematoma, or direct surgical trauma. Pattern of multiple nerve involvement in L2-L4 distribution with spared paraspinals localizes to plexus level."
+            },
+            'c8radiculopathy': {
+                title: "Hand Weakness with Neck Pain",
+                presentation: {
+                    age: 51,
+                    gender: "Female",
+                    occupation: "Administrative Assistant",
+                    chiefComplaint: "6-week history of neck pain radiating to hand with weakness gripping",
+                    history: "Gradual onset neck pain radiating down medial arm to ring and little fingers. Weakness gripping small objects and difficulty with fine motor tasks. Pain worse with neck movement. Numbness in ring and little fingers. No trauma but poor workplace ergonomics.",
+                    pmh: "Cervical spondylosis on previous MRI",
+                    medications: "NSAIDs, muscle relaxants"
+                },
+                physicalExam: {
+                    inspection: "Mild intrinsic hand muscle atrophy",
+                    palpation: "Cervical paraspinal tenderness at C7-T1 level",
+                    rom: "Limited cervical lateral flexion",
+                    strength: "Hand intrinsics 4/5, FDP (ring/little) 4/5, grip strength reduced",
+                    sensation: "Decreased sensation in C8 dermatome (ring/little fingers, medial hand)",
+                    reflexes: "Normal biceps and triceps, finger flexor reflex hyperactive",
+                    specialTests: "Positive Spurling's test, negative Tinel's at elbow/wrist"
+                },
+                ncsStudies: [
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Mildly reduced amplitude (6.8 mV, normal >8 mV)",
+                        interpretation: "Mild ulnar nerve dysfunction"
+                    },
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (5.2 mV, normal >6 mV)",
+                        interpretation: "Median nerve involvement"
+                    },
+                    {
+                        name: "Ulnar Sensory (digit 5)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude bilaterally",
+                        interpretation: "Ulnar sensory involvement"
+                    },
+                    {
+                        name: "Medial Antebrachial Cutaneous",
+                        result: "abnormal",
+                        findings: "Absent response on affected side",
+                        interpretation: "C8-T1 sensory involvement"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Cervical paraspinals (C7-T1)",
+                        findings: "Positive sharp waves and fibrillations",
+                        interpretation: "Acute denervation"
+                    },
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Denervation changes with reduced recruitment",
+                        interpretation: "C8-T1 root involvement"
+                    },
+                    {
+                        muscle: "Abductor digiti minimi",
+                        findings: "Active denervation",
+                        interpretation: "C8-T1 root lesion"
+                    },
+                    {
+                        muscle: "Flexor digitorum profundus (ring)",
+                        findings: "Denervation changes",
+                        interpretation: "C8 root involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                correctDiagnosis: "Right C8 Radiculopathy",
+                explanation: "C8 radiculopathy with classic hand intrinsic weakness and sensory loss in C8 distribution. Both median and ulnar nerve amplitudes reduced due to C8 root lesion affecting both nerves. Cervical paraspinal denervation confirms root level pathology."
             }
         };
 
