@@ -657,8 +657,8 @@
                         </div>
                         
                         <div class="case-card" onclick="startSpecificCase('stroke')">
-                            <h4>🧠 Central Cause Case</h4>
-                            <p>68-year-old male with acute hemiparesis - EMG NOT indicated</p>
+                            <h4>🧠 Acute Weakness Case</h4>
+                            <p>68-year-old male with acute onset left-sided weakness and facial droop</p>
                             <span class="difficulty educational">Educational</span>
                         </div>
                     </div>
@@ -697,10 +697,38 @@
                         <div id="differential-feedback" style="margin-top: 15px;"></div>
                         <button class="quiz-button" onclick="showPhysicalExam()">← Back to Exam</button>
                         <button class="quiz-button" onclick="analyzeDifferential()">Analyze Differential</button>
-                        <button id="continue-to-studies" class="quiz-button" onclick="showNCSResults()" style="display: none;">View NCS Results →</button>
+                        <button id="continue-to-studies" class="quiz-button" onclick="showEMGDecision()" style="display: none;">Make Clinical Decision →</button>
                     </div>
 
-                    <!-- Step 4: NCS/EMG Results -->
+                    <!-- Step 4: EMG Indication Decision -->
+                    <div id="emg-decision-step" class="case-step" style="display: none;">
+                        <h3>⚖️ Clinical Decision: EMG/NCS Indication</h3>
+                        <div class="card">
+                            <p><strong>Based on the patient's presentation and your differential diagnosis, do the symptoms and findings warrant EMG/NCS studies?</strong></p>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                                <p><strong>Consider:</strong></p>
+                                <ul>
+                                    <li>Does this appear to be a <strong>peripheral nervous system</strong> problem?</li>
+                                    <li>Would EMG/NCS help <strong>localize</strong> the lesion?</li>
+                                    <li>Would EMG/NCS <strong>change management</strong>?</li>
+                                    <li>Are there <strong>upper motor neuron signs</strong> suggesting central pathology?</li>
+                                </ul>
+                            </div>
+                            <div style="text-align: center; margin: 30px 0;">
+                                <button class="quiz-button" onclick="makeEMGDecision(true)" style="background: #27ae60; margin-right: 20px;">
+                                    ✅ YES - EMG/NCS is indicated
+                                </button>
+                                <button class="quiz-button" onclick="makeEMGDecision(false)" style="background: #e74c3c;">
+                                    ❌ NO - EMG/NCS is not indicated
+                                </button>
+                            </div>
+                            <div id="emg-decision-feedback" style="margin-top: 20px;"></div>
+                        </div>
+                        <button class="quiz-button" onclick="showDifferentialBuilder()">← Back to Differential</button>
+                        <button id="continue-after-decision" class="quiz-button" onclick="proceedAfterDecision()" style="display: none;">Continue →</button>
+                    </div>
+
+                    <!-- Step 5: NCS/EMG Results -->
                     <div id="results-step" class="case-step" style="display: none;">
                         <h3>⚡ Nerve Conduction Study Results</h3>
                         <div id="ncs-results">
@@ -1585,13 +1613,13 @@
                 explanation: "Acute onset foot drop with both motor and sensory involvement in common fibular distribution following prolonged squatting (compression at fibular head) is classic for fibular neuropathy."
             },
             'stroke': {
-                title: "Acute Hemiparesis (Stroke)",
+                title: "Acute Hemiparesis",
                 presentation: {
                     age: 68,
                     gender: "Male", 
                     occupation: "Retired",
                     chiefComplaint: "Acute onset left-sided weakness and facial droop this morning",
-                    history: "Sudden onset of left arm and leg weakness with facial droop. Wife noticed slurred speech. No loss of consciousness. Symptoms came on over minutes.",
+                    history: "Patient was found by wife at 7 AM with left-sided weakness and facial droop. She reports he was normal when she went to bed at 11 PM. Patient has slurred speech but is alert and oriented. Denies headache, neck pain, or back pain. No recent trauma or illness.",
                     pmh: "Hypertension, diabetes, atrial fibrillation",
                     medications: "Lisinopril, metformin, warfarin"
                 },
@@ -1986,30 +2014,15 @@
             const case_ = currentCase;
             const caseDetailsDiv = document.getElementById('case-details');
             
-            if (case_.emgIndication === "NOT INDICATED") {
-                caseDetailsDiv.innerHTML = `
-                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px;">
-                        <h4 style="color: #e74c3c;">⚠️ ${case_.title}</h4>
-                        <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
-                        <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
-                        <p><strong>History:</strong> ${case_.presentation.history}</p>
-                        <p><strong>PMH:</strong> ${case_.presentation.pmh}</p>
-                        <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
-                        <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
-                            <strong>🚫 Educational Note:</strong> ${case_.educationalNote}
-                        </div>
-                    </div>
-                `;
-            } else {
-                caseDetailsDiv.innerHTML = `
-                    <h4>${case_.title}</h4>
-                    <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
-                    <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
-                    <p><strong>History:</strong> ${case_.presentation.history}</p>
-                    <p><strong>PMH:</strong> ${case_.presentation.pmh}</p>
-                    <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
-                `;
-            }
+            // Present all cases neutrally - no red warnings
+            caseDetailsDiv.innerHTML = `
+                <h4>${case_.title}</h4>
+                <p><strong>Age:</strong> ${case_.presentation.age} | <strong>Gender:</strong> ${case_.presentation.gender} | <strong>Occupation:</strong> ${case_.presentation.occupation}</p>
+                <p><strong>Chief Complaint:</strong> ${case_.presentation.chiefComplaint}</p>
+                <p><strong>History:</strong> ${case_.presentation.history}</p>
+                <p><strong>PMH:</strong> ${case_.presentation.pmh}</p>
+                <p><strong>Medications:</strong> ${case_.presentation.medications}</p>
+            `;
             
             // Populate physical exam
             const examDiv = document.getElementById('physical-exam-details');
@@ -2064,6 +2077,91 @@
             hideAllSteps();
             document.getElementById('differential-step').style.display = 'block';
             updateProgress(60);
+        }
+
+        function showEMGDecision() {
+            hideAllSteps();
+            document.getElementById('emg-decision-step').style.display = 'block';
+            updateProgress(70);
+        }
+
+        let userEMGDecision = null;
+
+        function makeEMGDecision(indicatedDecision) {
+            userEMGDecision = indicatedDecision;
+            const feedbackDiv = document.getElementById('emg-decision-feedback');
+            const continueBtn = document.getElementById('continue-after-decision');
+            const isEMGIndicated = currentCase.emgIndication !== "NOT INDICATED";
+            
+            if (indicatedDecision === true && isEMGIndicated) {
+                // Correct: YES for peripheral case
+                feedbackDiv.innerHTML = `
+                    <div style="background: #f0fff4; border: 2px solid #27ae60; border-radius: 8px; padding: 20px;">
+                        <h4 style="color: #27ae60;">✅ Correct Decision</h4>
+                        <p>You correctly identified that this presentation warrants EMG/NCS evaluation. This appears to be a peripheral nervous system problem that would benefit from electrodiagnostic studies.</p>
+                    </div>
+                `;
+                continueBtn.style.display = 'inline-block';
+                continueBtn.textContent = 'Proceed to EMG/NCS Results →';
+            } else if (indicatedDecision === false && !isEMGIndicated) {
+                // Correct: NO for central case
+                feedbackDiv.innerHTML = `
+                    <div style="background: #f0fff4; border: 2px solid #27ae60; border-radius: 8px; padding: 20px;">
+                        <h4 style="color: #27ae60;">✅ Excellent Clinical Judgment</h4>
+                        <p>You correctly identified that EMG/NCS is <strong>not indicated</strong> in this case. The presentation suggests a central nervous system lesion with upper motor neuron signs.</p>
+                        <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                            <h5>🚨 Immediate Management Required</h5>
+                            <p>${currentCase.educationalNote}</p>
+                        </div>
+                    </div>
+                `;
+                continueBtn.style.display = 'inline-block';
+                continueBtn.textContent = 'Complete Case Review →';
+            } else if (indicatedDecision === false && isEMGIndicated) {
+                // Incorrect: NO for peripheral case
+                feedbackDiv.innerHTML = `
+                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px;">
+                        <h4 style="color: #e74c3c;">❌ Reconsider Your Decision</h4>
+                        <p>Actually, EMG/NCS <strong>would be appropriate</strong> in this case. This presentation suggests a peripheral nervous system problem that could be localized and characterized with electrodiagnostic studies.</p>
+                        <p><strong>Learning Point:</strong> EMG/NCS is indicated when there are signs of peripheral nerve, muscle, or neuromuscular junction pathology.</p>
+                    </div>
+                `;
+                continueBtn.style.display = 'inline-block';
+                continueBtn.textContent = 'Proceed to EMG/NCS Results (Educational) →';
+            } else {
+                // Incorrect: YES for central case
+                feedbackDiv.innerHTML = `
+                    <div style="background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px; padding: 20px;">
+                        <h4 style="color: #e74c3c;">❌ Reconsider Your Decision</h4>
+                        <p>EMG/NCS would <strong>not be helpful</strong> in this case. The presence of upper motor neuron signs (hyperreflexia, Babinski sign, spasticity) suggests a central nervous system lesion.</p>
+                        <p><strong>Learning Point:</strong> EMG/NCS evaluates the peripheral nervous system and would be normal in isolated central lesions.</p>
+                        <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                            <h5>🚨 This Patient Needs:</h5>
+                            <p>${currentCase.educationalNote}</p>
+                        </div>
+                    </div>
+                `;
+                continueBtn.style.display = 'inline-block';
+                continueBtn.textContent = 'Complete Case Review →';
+            }
+        }
+
+        function proceedAfterDecision() {
+            const isEMGIndicated = currentCase.emgIndication !== "NOT INDICATED";
+            
+            if (userEMGDecision === true && isEMGIndicated) {
+                // Show NCS results for appropriate case
+                showNCSResults();
+            } else if (userEMGDecision === false && !isEMGIndicated) {
+                // End case appropriately for central cause
+                showFinalDiagnosis();
+            } else if (userEMGDecision === false && isEMGIndicated) {
+                // Educational: show NCS results even though they said no
+                showNCSResults();
+            } else {
+                // End case for central cause (they incorrectly said yes)
+                showFinalDiagnosis();
+            }
         }
 
         function showNCSResults() {
@@ -2123,7 +2221,7 @@
         }
 
         function hideAllSteps() {
-            const steps = ['case-presentation-step', 'physical-exam-step', 'differential-step', 'results-step', 'diagnosis-step'];
+            const steps = ['case-presentation-step', 'physical-exam-step', 'differential-step', 'emg-decision-step', 'results-step', 'diagnosis-step'];
             steps.forEach(stepId => {
                 document.getElementById(stepId).style.display = 'none';
             });
