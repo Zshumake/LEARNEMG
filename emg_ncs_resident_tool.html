@@ -4391,6 +4391,319 @@
                 difficulty: "difficult",
                 correctDiagnosis: "Spinal Muscular Atrophy Type II (Intermediate)",
                 explanation: "Genetic motor neuron disease caused by SMN1 gene mutations. Type II presents in childhood with progressive proximal weakness, fasciculations, and preserved sensation. Distinguished from ALS by early onset, family history, and specific genetic pattern."
+            },
+            'toxicneuropathy': {
+                title: "Progressive Painful Neuropathy",
+                presentation: {
+                    age: 52,
+                    gender: "Male",
+                    occupation: "Factory Worker (Chemical Plant)",
+                    chiefComplaint: "6-month history of progressive burning feet and hand numbness",
+                    history: "Insidious onset burning pain in feet, progressing to hands over several months. Works in chemical plant with exposure to organic solvents. Symptoms worse at night, interfering with sleep. Progressive weakness in feet making walking difficult. Coworkers have similar complaints.",
+                    pmh: "No diabetes, no alcohol abuse",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "No visible deformities, mild pes cavus",
+                    palpation: "No specific tenderness",
+                    rom: "Full ROM",
+                    strength: "Mild distal weakness, toe dorsiflexion 4/5, hand intrinsics 4/5",
+                    sensation: "Decreased vibration and pinprick in stocking-glove distribution",
+                    reflexes: "Absent ankle reflexes, diminished throughout",
+                    specialTests: "Negative Romberg, gait with mild foot drop"
+                },
+                ncsStudies: [
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude (2 μV), mildly slow velocity (38 m/s)",
+                        interpretation: "Axonal sensory neuropathy"
+                    },
+                    {
+                        name: "Median Sensory",
+                        result: "abnormal", 
+                        findings: "Reduced amplitude, mildly prolonged latency",
+                        interpretation: "Distal axonal neuropathy"
+                    },
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Low amplitude (1.2 mV), normal velocity",
+                        interpretation: "Axonal motor neuropathy"
+                    },
+                    {
+                        name: "Tibial Motor (AHB)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude, normal conduction velocity",
+                        interpretation: "Length-dependent axonal neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Extensor digitorum brevis",
+                        findings: "Fibrillations and positive sharp waves, reduced recruitment",
+                        interpretation: "Active denervation"
+                    },
+                    {
+                        muscle: "Tibialis anterior",
+                        findings: "Chronic denervation changes with large motor units",
+                        interpretation: "Chronic axonal neuropathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Toxic Polyneuropathy (Solvent Exposure)",
+                explanation: "Length-dependent axonal polyneuropathy caused by chronic exposure to organic solvents. Key features: occupational exposure, predominantly sensory symptoms with burning pain, distal axonal pattern on NCS, and similar symptoms in coworkers suggesting environmental cause."
+            },
+            'postviralguillainbarre': {
+                title: "Acute Ascending Weakness",
+                presentation: {
+                    age: 34,
+                    gender: "Female", 
+                    occupation: "Teacher",
+                    chiefComplaint: "Rapidly progressive weakness in legs and arms over 5 days",
+                    history: "2 weeks ago had viral gastroenteritis with diarrhea. 5 days ago developed tingling in toes, followed by progressive weakness ascending from feet to hands. Now has difficulty walking and using hands. No respiratory symptoms yet but concerned about breathing.",
+                    pmh: "Recent viral gastroenteritis 2 weeks ago",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "No muscle atrophy, appears anxious",
+                    palpation: "No muscle tenderness",
+                    rom: "Full passive ROM",
+                    strength: "Symmetric weakness: legs 3/5 distal, 4/5 proximal; arms 4/5 distal, 4+/5 proximal",
+                    sensation: "Decreased vibration in feet, mild numbness in fingertips",
+                    reflexes: "Absent throughout all extremities",
+                    specialTests: "Negative Babinski, normal cranial nerves, vital capacity 80% predicted"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency (6.2 ms), conduction block, slow velocity (38 m/s)",
+                        interpretation: "Demyelinating motor neuropathy with conduction block"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Prolonged F-wave latency, temporal dispersion",
+                        interpretation: "Proximal demyelination"
+                    },
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Absent response at ankle stimulation",
+                        interpretation: "Severe demyelinating neuropathy"
+                    },
+                    {
+                        name: "Median Sensory",
+                        result: "abnormal",
+                        findings: "Prolonged latency, reduced amplitude",
+                        interpretation: "Sensory nerve involvement"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Normal spontaneous activity, reduced recruitment",
+                        interpretation: "Acute demyelination without denervation yet"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Guillain-Barré Syndrome (AIDP variant)",
+                explanation: "Acute inflammatory demyelinating polyneuropathy following viral infection. Classic features: ascending weakness after infection, areflexia, demyelinating pattern on NCS with conduction blocks and prolonged latencies. Requires urgent monitoring for respiratory involvement."
+            },
+            'hereditaryneuropathy': {
+                title: "Family History of Foot Problems",
+                presentation: {
+                    age: 28,
+                    gender: "Male",
+                    occupation: "Physical Therapist",
+                    chiefComplaint: "Lifelong foot deformities and recent ankle sprains",
+                    history: "Born with high arched feet, frequent ankle sprains since childhood. Mother and grandfather had similar foot problems and weakness. Recently noticed weakness in hands, difficulty with fine motor tasks. Progressive symptoms but very slowly. No acute illnesses.",
+                    pmh: "Multiple ankle sprains, no other medical problems",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "High arched feet (pes cavus), hammer toes, mild hand atrophy",
+                    palpation: "Atrophic intrinsic foot muscles",
+                    rom: "Limited ankle dorsiflexion due to contractures",
+                    strength: "Distal weakness: foot dorsiflexion 3/5, foot inversion 4/5, hand intrinsics 4/5",
+                    sensation: "Decreased vibration in feet and hands",
+                    reflexes: "Absent ankle reflexes, diminished elsewhere",
+                    specialTests: "Steppage gait, positive family history"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Mildly reduced amplitude, slow velocity (42 m/s)",
+                        interpretation: "Mild demyelinating motor neuropathy"
+                    },
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal", 
+                        findings: "Low amplitude (1.5 mV), slow velocity (38 m/s)",
+                        interpretation: "Demyelinating neuropathy with axonal loss"
+                    },
+                    {
+                        name: "Median Sensory",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Severe sensory nerve involvement"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Chronic sensory neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Extensor digitorum brevis",
+                        findings: "Chronic denervation with large motor units",
+                        interpretation: "Chronic neurogenic changes"
+                    },
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Mild chronic denervation changes",
+                        interpretation: "Progressive motor neuropathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Charcot-Marie-Tooth Disease (CMT1A)",
+                explanation: "Hereditary sensorimotor neuropathy with autosomal dominant inheritance. Classic features: pes cavus, distal weakness, positive family history, uniform slowing on NCS, and chronic progressive course. Genetic testing confirms PMP22 duplication."
+            },
+            'metabolicmyopathy': {
+                title: "Exercise Intolerance and Muscle Pain",
+                presentation: {
+                    age: 25,
+                    gender: "Female",
+                    occupation: "Graduate Student",
+                    chiefComplaint: "Lifelong exercise intolerance with muscle pain and fatigue",
+                    history: "Since childhood, develops severe muscle pain and fatigue with moderate exercise. Episodes of dark urine after strenuous activity. Cannot keep up with peers during physical activity. Symptoms improve with rest and carbohydrate intake. Family history of similar symptoms in brother.",
+                    pmh: "Recurrent episodes of myoglobinuria",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Normal muscle bulk, no atrophy",
+                    palpation: "No muscle tenderness at rest",
+                    rom: "Full ROM",
+                    strength: "Normal strength at rest (5/5 throughout)",
+                    sensation: "Normal throughout",
+                    reflexes: "Normal and symmetric (2+ throughout)",
+                    specialTests: "Ischemic forearm test planned, normal baseline strength"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal amplitude, latency, and conduction velocity",
+                        interpretation: "No peripheral neuropathy"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal parameters throughout",
+                        interpretation: "Normal nerve conduction"
+                    },
+                    {
+                        name: "All sensory studies",
+                        result: "normal",
+                        findings: "Normal amplitudes and latencies",
+                        interpretation: "No sensory neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Normal spontaneous activity, normal motor unit morphology",
+                        interpretation: "No evidence of myopathy at rest"
+                    },
+                    {
+                        muscle: "Quadriceps",
+                        findings: "Normal baseline findings",
+                        interpretation: "Normal muscle membrane stability"
+                    },
+                    {
+                        muscle: "Ischemic forearm test",
+                        findings: "No rise in serum lactate with anaerobic exercise",
+                        interpretation: "Suggests glycolytic enzyme deficiency"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "difficult",
+                correctDiagnosis: "McArdle Disease (Glycogen Storage Disease Type V)",
+                explanation: "Metabolic myopathy due to muscle phosphorylase deficiency. Key features: exercise intolerance, myoglobinuria, normal strength at rest, normal EMG at baseline, and abnormal ischemic forearm test (no lactate rise). Requires enzyme testing or genetic analysis for confirmation."
+            },
+            'criticalillnessmyopathy': {
+                title: "Post-ICU Weakness with Elevated CK",
+                presentation: {
+                    age: 48,
+                    gender: "Male",
+                    occupation: "Construction Worker",
+                    chiefComplaint: "Severe weakness after prolonged ICU stay for COVID-19",
+                    history: "Hospitalized 8 weeks ago with severe COVID-19, required mechanical ventilation for 4 weeks. Received high-dose steroids and neuromuscular blocking agents. Now has severe proximal and distal weakness, worse than expected for polyneuropathy alone. CK elevated at 2800 U/L.",
+                    pmh: "Hypertension, obesity",
+                    medications: "Prednisone (tapering), multiple ICU medications"
+                },
+                physicalExam: {
+                    inspection: "Generalized muscle atrophy, more prominent proximally",
+                    palpation: "Muscle atrophy without specific tenderness",
+                    rom: "Full passive ROM, limited active movement",
+                    strength: "Severe weakness: proximal 2/5, distal 3/5 in all extremities",
+                    sensation: "Mild stocking-glove sensory loss",
+                    reflexes: "Absent throughout",
+                    specialTests: "Difficulty with ventilator weaning, elevated CK"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal", 
+                        findings: "Reduced amplitude (2.1 mV), normal velocity",
+                        interpretation: "Axonal motor neuropathy component"
+                    },
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Low amplitude (0.8 mV)",
+                        interpretation: "Severe axonal neuropathy"
+                    },
+                    {
+                        name: "Sensory studies",
+                        result: "abnormal",
+                        findings: "Reduced amplitudes in distal nerves",
+                        interpretation: "Mild sensory axonal neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Fibrillations, positive sharp waves, small polyphasic motor units",
+                        interpretation: "Combined myopathic and neurogenic features"
+                    },
+                    {
+                        muscle: "Quadriceps",
+                        findings: "Abundant spontaneous activity, mixed motor unit sizes",
+                        interpretation: "Acute myopathy with membrane instability"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Myopathic motor units with spontaneous activity",
+                        interpretation: "Necrotizing myopathy pattern"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "difficult",
+                correctDiagnosis: "Critical Illness Myopathy with Polyneuropathy",
+                explanation: "Combined critical illness myopathy and polyneuropathy (CIM/CIP) following prolonged ICU stay. Features: severe weakness, elevated CK, mixed EMG pattern with both myopathic and neurogenic changes, worse than neuropathy alone. Associated with steroids, paralytics, and systemic inflammation."
             }
         };
 
