@@ -578,6 +578,117 @@
         .video-info strong {
             color: #2c3e50;
         }
+
+        /* Difficulty Selection Styles */
+        .difficulty-checkbox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .difficulty-checkbox.active {
+            border-color: #3498db;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        .difficulty-checkbox.inactive {
+            background: #ecf0f1;
+            color: #7f8c8d;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .difficulty-checkbox input {
+            display: none;
+        }
+
+        .difficulty-label {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-status {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .selection-button {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .selection-button:hover {
+            background: #2c3e50;
+            transform: translateY(-1px);
+        }
+
+        .selection-button.primary {
+            background: #e67e22;
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+
+        .selection-button.primary:hover {
+            background: #d35400;
+        }
+
+        .case-card.selected {
+            border-color: #e67e22;
+            background: linear-gradient(135deg, #fef5e7, #fff);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.2);
+        }
+
+        .case-card.hidden {
+            display: none;
+        }
+
+        .case-card input[type="checkbox"] {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .difficulty.beginner {
+            background: #27ae60;
+            color: white;
+        }
+
+        .difficulty.intermediate {
+            background: #f39c12;
+            color: white;
+        }
+
+        .difficulty.difficult {
+            background: #e74c3c;
+            color: white;
+        }
         
         @media (max-width: 768px) {
             .container {
@@ -648,27 +759,48 @@
                 <div id="case-selection" class="case-selection" style="display: block;">
                     <div style="text-align: center; margin: 40px 0;">
                         <h3 style="color: #2c3e50; margin-bottom: 30px;">Ready to test your EMG/NCS knowledge?</h3>
-                        <button class="start-case-button" onclick="startRandomCase()">🎯 Start a Case</button>
-                        <p style="margin-top: 20px; color: #7f8c8d;">Click the button above to begin with a random case, or select a specific scenario below:</p>
+                        <button class="start-case-button" onclick="startRandomCase()">🎯 Start Random Case</button>
+                        <p style="margin-top: 20px; color: #7f8c8d;">Or customize your practice session below:</p>
                     </div>
-                    
-                    <div class="case-grid">
-                        <div class="case-card" onclick="startSpecificCase('hand14')">
-                            <h4>🖐️ Hand Numbness Case</h4>
-                            <p>45-year-old female with numbness in digits 1-4, worse at night</p>
-                            <span class="difficulty">Beginner</span>
+
+                    <!-- Difficulty Level Selection -->
+                    <div class="difficulty-selector" style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 30px 0;">
+                        <h4 style="color: #2c3e50; margin-bottom: 20px;">📊 Select Difficulty Levels</h4>
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                            <div class="difficulty-checkbox active" id="beginner-toggle" onclick="toggleDifficulty('beginner')">
+                                <input type="checkbox" id="beginner-checkbox" checked>
+                                <span class="difficulty-label">🟢 Beginner</span>
+                                <span class="difficulty-status">ON</span>
+                                <small style="display: block; margin-top: 5px;">Basic cases for learning fundamentals</small>
+                            </div>
+                            <div class="difficulty-checkbox active" id="intermediate-toggle" onclick="toggleDifficulty('intermediate')">
+                                <input type="checkbox" id="intermediate-checkbox" checked>
+                                <span class="difficulty-label">🟡 Intermediate</span>
+                                <span class="difficulty-status">ON</span>
+                                <small style="display: block; margin-top: 5px;">Moderate complexity cases</small>
+                            </div>
+                            <div class="difficulty-checkbox active" id="difficult-toggle" onclick="toggleDifficulty('difficult')">
+                                <input type="checkbox" id="difficult-checkbox" checked>
+                                <span class="difficulty-label">🔴 Difficult</span>
+                                <span class="difficulty-status">ON</span>
+                                <small style="display: block; margin-top: 5px;">Advanced diagnostic challenges</small>
+                            </div>
                         </div>
-                        
-                        <div class="case-card" onclick="startSpecificCase('footdrop')">
-                            <h4>🦶 Foot Drop Case</h4>
-                            <p>28-year-old construction worker with inability to lift right foot</p>
-                            <span class="difficulty">Intermediate</span>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button class="quiz-button" onclick="startRandomCaseByDifficulty()" style="background: #e67e22;">🎲 Start Random Case from Selected Levels</button>
                         </div>
-                        
-                        <div class="case-card" onclick="startSpecificCase('stroke')">
-                            <h4>🧠 Acute Weakness Case</h4>
-                            <p>68-year-old male with acute onset left-sided weakness and facial droop</p>
-                            <span class="difficulty educational">Educational</span>
+                    </div>
+
+                    <!-- Individual Case Selection -->
+                    <div class="case-selection-section">
+                        <h4 style="color: #2c3e50; margin-bottom: 20px;">🎯 Or Choose Specific Cases</h4>
+                        <div style="margin-bottom: 20px;">
+                            <button class="selection-button" onclick="selectAllCases()">Select All</button>
+                            <button class="selection-button" onclick="deselectAllCases()">Deselect All</button>
+                            <button class="selection-button primary" onclick="startSelectedCases()">Start Selected Cases</button>
+                        </div>
+                        <div id="case-grid" class="case-grid">
+                            <!-- Cases will be populated here dynamically -->
                         </div>
                     </div>
                 </div>
@@ -5045,9 +5177,166 @@
         }
 
         // New streamlined interface functions
+        // Difficulty selection and case management
+        function toggleDifficulty(difficulty) {
+            const toggle = document.getElementById(`${difficulty}-toggle`);
+            const checkbox = document.getElementById(`${difficulty}-checkbox`);
+            const status = toggle.querySelector('.difficulty-status');
+            
+            if (toggle.classList.contains('active')) {
+                // Turn OFF
+                toggle.classList.remove('active');
+                toggle.classList.add('inactive');
+                checkbox.checked = false;
+                status.textContent = 'OFF';
+            } else {
+                // Turn ON
+                toggle.classList.remove('inactive');
+                toggle.classList.add('active');
+                checkbox.checked = true;
+                status.textContent = 'ON';
+            }
+            
+            updateCaseDisplay();
+        }
+        
+        function updateCaseDisplay() {
+            const beginnerChecked = document.getElementById('beginner-checkbox').checked;
+            const intermediateChecked = document.getElementById('intermediate-checkbox').checked;
+            const difficultChecked = document.getElementById('difficult-checkbox').checked;
+            
+            populateCaseGrid();
+        }
+        
+        function populateCaseGrid() {
+            const caseGrid = document.getElementById('case-grid');
+            const beginnerChecked = document.getElementById('beginner-checkbox').checked;
+            const intermediateChecked = document.getElementById('intermediate-checkbox').checked;
+            const difficultChecked = document.getElementById('difficult-checkbox').checked;
+            
+            let html = '';
+            
+            for (const [caseId, caseData] of Object.entries(caseDatabase)) {
+                const difficulty = caseData.difficulty || 'intermediate';
+                
+                // Filter based on selected difficulties
+                if ((difficulty === 'beginner' && !beginnerChecked) ||
+                    (difficulty === 'intermediate' && !intermediateChecked) ||
+                    (difficulty === 'difficult' && !difficultChecked)) {
+                    continue;
+                }
+                
+                const difficultyClass = difficulty;
+                const difficultyText = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+                
+                html += `
+                    <div class="case-card" onclick="toggleCaseSelection('${caseId}')" id="case-${caseId}">
+                        <input type="checkbox" id="checkbox-${caseId}" onchange="event.stopPropagation(); updateCaseCard('${caseId}')">
+                        <h4>${caseData.title}</h4>
+                        <p><strong>Age:</strong> ${caseData.presentation.age} | <strong>Gender:</strong> ${caseData.presentation.gender}</p>
+                        <p>${caseData.presentation.chiefComplaint}</p>
+                        <span class="difficulty ${difficultyClass}">${difficultyText}</span>
+                    </div>
+                `;
+            }
+            
+            caseGrid.innerHTML = html;
+        }
+        
+        function toggleCaseSelection(caseId) {
+            const checkbox = document.getElementById(`checkbox-${caseId}`);
+            const caseCard = document.getElementById(`case-${caseId}`);
+            
+            checkbox.checked = !checkbox.checked;
+            updateCaseCard(caseId);
+        }
+        
+        function updateCaseCard(caseId) {
+            const checkbox = document.getElementById(`checkbox-${caseId}`);
+            const caseCard = document.getElementById(`case-${caseId}`);
+            
+            if (checkbox.checked) {
+                caseCard.classList.add('selected');
+            } else {
+                caseCard.classList.remove('selected');
+            }
+        }
+        
+        function selectAllCases() {
+            const checkboxes = document.querySelectorAll('#case-grid input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+                const caseId = checkbox.id.replace('checkbox-', '');
+                updateCaseCard(caseId);
+            });
+        }
+        
+        function deselectAllCases() {
+            const checkboxes = document.querySelectorAll('#case-grid input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                const caseId = checkbox.id.replace('checkbox-', '');
+                updateCaseCard(caseId);
+            });
+        }
+        
+        function getSelectedCases() {
+            const selectedCases = [];
+            const checkboxes = document.querySelectorAll('#case-grid input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                const caseId = checkbox.id.replace('checkbox-', '');
+                selectedCases.push(caseId);
+            });
+            return selectedCases;
+        }
+        
+        function startSelectedCases() {
+            const selectedCases = getSelectedCases();
+            if (selectedCases.length === 0) {
+                alert('Please select at least one case first.');
+                return;
+            }
+            
+            // Start with first selected case for now
+            // Could be enhanced to create a queue of cases
+            const randomSelected = selectedCases[Math.floor(Math.random() * selectedCases.length)];
+            startSpecificCase(randomSelected);
+        }
+        
+        function startRandomCaseByDifficulty() {
+            const beginnerChecked = document.getElementById('beginner-checkbox').checked;
+            const intermediateChecked = document.getElementById('intermediate-checkbox').checked;
+            const difficultChecked = document.getElementById('difficult-checkbox').checked;
+            
+            if (!beginnerChecked && !intermediateChecked && !difficultChecked) {
+                alert('Please select at least one difficulty level first.');
+                return;
+            }
+            
+            const availableCases = [];
+            for (const [caseId, caseData] of Object.entries(caseDatabase)) {
+                const difficulty = caseData.difficulty || 'intermediate';
+                
+                if ((difficulty === 'beginner' && beginnerChecked) ||
+                    (difficulty === 'intermediate' && intermediateChecked) ||
+                    (difficulty === 'difficult' && difficultChecked)) {
+                    availableCases.push(caseId);
+                }
+            }
+            
+            if (availableCases.length === 0) {
+                alert('No cases available for the selected difficulty levels.');
+                return;
+            }
+            
+            const randomId = availableCases[Math.floor(Math.random() * availableCases.length)];
+            startSpecificCase(randomId);
+        }
+
         function startRandomCase() {
-            const caseIds = ['hand14', 'footdrop', 'stroke'];
-            const randomId = caseIds[Math.floor(Math.random() * caseIds.length)];
+            // Use all cases for random selection
+            const allCaseIds = Object.keys(caseDatabase);
+            const randomId = allCaseIds[Math.floor(Math.random() * allCaseIds.length)];
             startSpecificCase(randomId);
         }
 
@@ -5411,6 +5700,7 @@
         // Initialize videos when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeVideos();
+            populateCaseGrid(); // Initialize the case grid on page load
         });
     </script>
 </body>
