@@ -579,115 +579,411 @@
             color: #2c3e50;
         }
 
-        /* Difficulty Selection Styles */
-        .difficulty-checkbox {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            padding: 20px;
-            border-radius: 12px;
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            min-width: 180px;
-            border: 3px solid transparent;
-            position: relative;
-        }
-
-        .difficulty-checkbox.active {
-            border-color: #3498db;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+        /* Enhanced Difficulty Selection Styles */
+        .difficulty-selector {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .difficulty-checkbox.inactive {
-            background: #ecf0f1;
-            color: #7f8c8d;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        .difficulty-selector::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
         }
 
-        .difficulty-checkbox input {
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .selector-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .selector-subtitle {
+            text-align: center;
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .difficulty-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .difficulty-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .difficulty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .difficulty-card:hover::before {
+            opacity: 1;
+        }
+
+        .difficulty-card.active {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .difficulty-card.inactive {
+            opacity: 0.4;
+            transform: scale(0.95);
+            filter: grayscale(100%);
+        }
+
+        .beginner-card.active {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.4);
+        }
+
+        .intermediate-card.active {
+            background: linear-gradient(135deg, #fb923c, #f97316);
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.4);
+        }
+
+        .difficult-card.active {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.4);
+        }
+
+        .difficulty-card input {
             display: none;
         }
 
-        .difficulty-label {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 8px;
-            transition: all 0.3s ease;
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            animation: float 3s ease-in-out infinite;
         }
 
-        .difficulty-status {
-            font-size: 12px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
             font-weight: 600;
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            opacity: 0.8;
         }
 
-        .selection-button {
-            background: #34495e;
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .status-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 15px #4ade80;
+            animation: pulse 2s infinite;
+        }
+
+        .difficulty-card.inactive .status-light {
+            background: #6b7280;
+            box-shadow: 0 0 5px #6b7280;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .difficulty-card.inactive .status-text {
+            color: #9ca3af;
+        }
+
+        .card-description {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .primary-action-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
-            margin: 0 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .primary-action-btn:hover::before {
+            left: 100%;
+        }
+
+        .primary-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(5, 150, 105, 0.4);
+        }
+
+        .secondary-action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .secondary-action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Case Selection Section */
+        .case-selection-section {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #f1f5f9;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            opacity: 0.8;
+            color: #cbd5e1;
+        }
+
+        .case-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 25px;
             font-size: 14px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
-        .selection-button:hover {
-            background: #2c3e50;
-            transform: translateY(-1px);
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
-        .selection-button.primary {
-            background: #e67e22;
-            padding: 12px 24px;
-            font-size: 16px;
+        .control-btn.primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-color: #3b82f6;
         }
 
-        .selection-button.primary:hover {
-            background: #d35400;
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            border-color: #6b7280;
+        }
+
+        /* Enhanced Case Cards */
+        .case-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            color: #1e293b;
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .case-card:hover::before {
+            left: 100%;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: #3b82f6;
         }
 
         .case-card.selected {
-            border-color: #e67e22;
-            background: linear-gradient(135deg, #fef5e7, #fff);
-            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.2);
-        }
-
-        .case-card.hidden {
-            display: none;
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+            transform: translateY(-3px);
         }
 
         .case-card input[type="checkbox"] {
             position: absolute;
             top: 15px;
             right: 15px;
-            transform: scale(1.3);
+            transform: scale(1.4);
             cursor: pointer;
             z-index: 2;
+            accent-color: #f59e0b;
+        }
+
+        .case-card h4 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .case-card.selected h4 {
+            color: #92400e;
         }
 
         .difficulty.beginner {
-            background: #27ae60;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
             color: white;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .difficulty.intermediate {
-            background: #f39c12;
+            background: linear-gradient(135deg, #fb923c, #f97316);
             color: white;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .difficulty.difficult {
-            background: #e74c3c;
+            background: linear-gradient(135deg, #f87171, #ef4444);
             color: white;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         @media (max-width: 768px) {
@@ -764,41 +1060,72 @@
                     </div>
 
                     <!-- Difficulty Level Selection -->
-                    <div class="difficulty-selector" style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 30px 0;">
-                        <h4 style="color: #2c3e50; margin-bottom: 20px;">📊 Select Difficulty Levels</h4>
-                        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                            <div class="difficulty-checkbox active" id="beginner-toggle" onclick="toggleDifficulty('beginner')">
+                    <div class="difficulty-selector">
+                        <h3 class="selector-title">⚡ Choose Your Challenge Level</h3>
+                        <p class="selector-subtitle">Select which difficulty levels you want to practice with</p>
+                        
+                        <div class="difficulty-cards">
+                            <div class="difficulty-card beginner-card active" id="beginner-toggle" onclick="toggleDifficulty('beginner')">
                                 <input type="checkbox" id="beginner-checkbox" checked>
-                                <span class="difficulty-label">🟢 Beginner</span>
-                                <span class="difficulty-status">ON</span>
-                                <small style="display: block; margin-top: 5px;">Basic cases for learning fundamentals</small>
+                                <div class="card-icon">🌱</div>
+                                <div class="card-title">Beginner</div>
+                                <div class="card-subtitle">Learning the Basics</div>
+                                <div class="status-indicator">
+                                    <div class="status-light"></div>
+                                    <span class="status-text">ACTIVE</span>
+                                </div>
+                                <div class="card-description">Perfect for residents starting their EMG/NCS journey</div>
                             </div>
-                            <div class="difficulty-checkbox active" id="intermediate-toggle" onclick="toggleDifficulty('intermediate')">
+                            
+                            <div class="difficulty-card intermediate-card active" id="intermediate-toggle" onclick="toggleDifficulty('intermediate')">
                                 <input type="checkbox" id="intermediate-checkbox" checked>
-                                <span class="difficulty-label">🟡 Intermediate</span>
-                                <span class="difficulty-status">ON</span>
-                                <small style="display: block; margin-top: 5px;">Moderate complexity cases</small>
+                                <div class="card-icon">🔥</div>
+                                <div class="card-title">Intermediate</div>
+                                <div class="card-subtitle">Building Skills</div>
+                                <div class="status-indicator">
+                                    <div class="status-light"></div>
+                                    <span class="status-text">ACTIVE</span>
+                                </div>
+                                <div class="card-description">Ready for more complex diagnostic challenges</div>
                             </div>
-                            <div class="difficulty-checkbox active" id="difficult-toggle" onclick="toggleDifficulty('difficult')">
+                            
+                            <div class="difficulty-card difficult-card active" id="difficult-toggle" onclick="toggleDifficulty('difficult')">
                                 <input type="checkbox" id="difficult-checkbox" checked>
-                                <span class="difficulty-label">🔴 Difficult</span>
-                                <span class="difficulty-status">ON</span>
-                                <small style="display: block; margin-top: 5px;">Advanced diagnostic challenges</small>
+                                <div class="card-icon">💎</div>
+                                <div class="card-title">Expert</div>
+                                <div class="card-subtitle">Master Level</div>
+                                <div class="status-indicator">
+                                    <div class="status-light"></div>
+                                    <span class="status-text">ACTIVE</span>
+                                </div>
+                                <div class="card-description">Advanced cases that challenge even experts</div>
                             </div>
                         </div>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <button class="quiz-button" onclick="startRandomCaseByDifficulty()" style="background: #e67e22;">🎲 Start Random Case from Selected Levels</button>
+
+                        <div class="action-buttons">
+                            <button class="primary-action-btn" onclick="startRandomCaseByDifficulty()">
+                                🎲 Start Practice Session
+                            </button>
+                            <button class="secondary-action-btn" onclick="showCaseSelection()">
+                                🎯 Choose Specific Cases
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Individual Case Selection -->
-                    <div class="case-selection-section">
-                        <h4 style="color: #2c3e50; margin-bottom: 20px;">🎯 Or Choose Specific Cases</h4>
-                        <div style="margin-bottom: 20px;">
-                            <button class="selection-button" onclick="selectAllCases()">Select All</button>
-                            <button class="selection-button" onclick="deselectAllCases()">Deselect All</button>
-                            <button class="selection-button primary" onclick="startSelectedCases()">Start Selected Cases</button>
+                    <!-- Individual Case Selection (Hidden by default) -->
+                    <div class="case-selection-section" id="case-selection-section" style="display: none;">
+                        <div class="section-header">
+                            <h3>🎯 Select Your Cases</h3>
+                            <p>Choose specific scenarios to practice</p>
                         </div>
+                        
+                        <div class="case-controls">
+                            <button class="control-btn" onclick="selectAllCases()">✓ Select All</button>
+                            <button class="control-btn" onclick="deselectAllCases()">✗ Clear All</button>
+                            <button class="control-btn primary" onclick="startSelectedCases()">▶ Start Selected</button>
+                            <button class="control-btn secondary" onclick="hideCaseSelection()">← Back</button>
+                        </div>
+                        
                         <div id="case-grid" class="case-grid">
                             <!-- Cases will be populated here dynamically -->
                         </div>
@@ -5181,23 +5508,37 @@
         function toggleDifficulty(difficulty) {
             const toggle = document.getElementById(`${difficulty}-toggle`);
             const checkbox = document.getElementById(`${difficulty}-checkbox`);
-            const status = toggle.querySelector('.difficulty-status');
+            const statusText = toggle.querySelector('.status-text');
             
             if (toggle.classList.contains('active')) {
                 // Turn OFF
                 toggle.classList.remove('active');
                 toggle.classList.add('inactive');
                 checkbox.checked = false;
-                status.textContent = 'OFF';
+                statusText.textContent = 'INACTIVE';
             } else {
                 // Turn ON
                 toggle.classList.remove('inactive');
                 toggle.classList.add('active');
                 checkbox.checked = true;
-                status.textContent = 'ON';
+                statusText.textContent = 'ACTIVE';
             }
             
             updateCaseDisplay();
+        }
+        
+        function showCaseSelection() {
+            document.getElementById('case-selection-section').style.display = 'block';
+            populateCaseGrid();
+            // Smooth scroll to case selection
+            document.getElementById('case-selection-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        function hideCaseSelection() {
+            document.getElementById('case-selection-section').style.display = 'none';
         }
         
         function updateCaseDisplay() {
@@ -5700,7 +6041,7 @@
         // Initialize videos when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeVideos();
-            populateCaseGrid(); // Initialize the case grid on page load
+            // Don't populate case grid initially - only when user clicks "Choose Specific Cases"
         });
     </script>
 </body>
