@@ -229,6 +229,989 @@
             padding-left: 15px;
         }
 
+        /* Senior Level Category Styling */
+        .tab-category.senior-level {
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(217, 119, 6, 0.05) 100%);
+            margin-top: 15px;
+        }
+
+        .tab-category.senior-level .category-header {
+            color: #d97706;
+            border-bottom-color: #f59e0b;
+            font-size: 1.05em;
+        }
+
+        .category-subtitle {
+            font-size: 0.85em;
+            color: #b45309;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 5px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 6px;
+        }
+
+        .senior-tab {
+            border: 1px solid #f59e0b !important;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%) !important;
+            color: #b45309 !important;
+        }
+
+        .senior-tab:hover {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+            border-color: #d97706 !important;
+            transform: translateY(-2px);
+        }
+
+        /* Advanced Tool Styling */
+        .senior-level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-icon {
+            font-size: 1.1em;
+        }
+
+        .senior-level-warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+        }
+
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .warning-icon {
+            font-size: 1.5em;
+        }
+
+        .warning-header h3 {
+            color: #b45309;
+            margin: 0;
+        }
+
+        .senior-level-warning p {
+            color: #92400e;
+            margin-bottom: 12px;
+        }
+
+        .senior-level-warning ul {
+            color: #92400e;
+            margin-left: 20px;
+        }
+
+        .senior-level-warning em {
+            color: #b45309;
+            font-style: italic;
+        }
+
+        .feature-tag.advanced {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+        }
+
+        .feature-tag.expert {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+        }
+
+        /* Advanced Anatomy Controls */
+        .advanced-anatomy-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .control-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .training-mode-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .mode-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(107, 159, 120, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(107, 159, 120, 0.2);
+        }
+
+        .mode-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .mode-card h4 {
+            color: var(--primary-color);
+            margin: 10px 0 8px 0;
+        }
+
+        .mode-card p {
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .mode-difficulty {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* Performance Dashboard */
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(107, 159, 120, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .action-buttons-advanced {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn-advanced {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .action-btn-advanced.primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(107, 159, 120, 0.3);
+        }
+
+        .action-btn-advanced.secondary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .action-btn-advanced:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Advanced Test Modal */
+        .advanced-test-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .advanced-test-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .advanced-test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-bottom: 2px solid rgba(107, 159, 120, 0.2);
+        }
+
+        .test-title h3 {
+            color: var(--primary-color);
+            margin: 0 0 5px 0;
+        }
+
+        .test-mode-indicator {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .test-stats-advanced {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .close-advanced-test-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .advanced-test-body {
+            padding: 30px;
+        }
+
+        .test-question-advanced h4 {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .question-context {
+            background: rgba(107, 159, 120, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .answer-grid-advanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .test-controls-advanced {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn-advanced {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn-advanced.primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .control-btn-advanced.secondary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        /* EMG Challenge Styling */
+        .emg-challenge-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(107, 159, 120, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .challenge-header h3 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .challenge-options {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .option-group h4 {
+            color: var(--secondary-color);
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+        }
+
+        .difficulty-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .difficulty-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .difficulty-btn.senior-moderate {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-color: #f59e0b;
+        }
+
+        .difficulty-btn.senior-hard {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+            border-color: #dc2626;
+        }
+
+        .difficulty-btn.expert {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(120, 53, 15, 0.1) 100%);
+            border-color: #8b4513;
+        }
+
+        .diff-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .diff-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .diff-desc {
+            font-size: 0.9em;
+            color: #6b7280;
+        }
+
+        .launch-challenge-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+
+        .launch-challenge-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(107, 159, 120, 0.3);
+        }
+
+        /* Mobile Responsiveness for Advanced Tools */
+        @media (max-width: 768px) {
+            .training-mode-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .action-buttons-advanced {
+                flex-direction: column;
+            }
+
+            .advanced-test-content {
+                margin: 10px;
+                max-width: calc(100vw - 20px);
+            }
+
+            .difficulty-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cardinal Rules of NCS Styling */
+        .cardinal-rules-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rule-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(107, 159, 120, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h3 {
+            color: var(--primary-color);
+            font-size: 1.4em;
+            margin: 0 0 8px 0;
+        }
+
+        .section-subtitle {
+            color: #6b7280;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Cardinal Rules Grid */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .rule-card {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border: 2px solid rgba(107, 159, 120, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(107, 159, 120, 0.2);
+        }
+
+        .rule-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .rule-content h4 {
+            color: var(--primary-color);
+            margin: 0 0 8px 0;
+            font-size: 1.1em;
+        }
+
+        .rule-content p {
+            margin: 0;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        /* Technical Points Grid */
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .technical-card {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border: 2px solid rgba(107, 159, 120, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .technical-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+
+        .tech-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .technical-card h4 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .technical-card p {
+            color: #374151;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Concept Cards */
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .concept-card {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-2px);
+            border-color: #3b82f6;
+        }
+
+        .concept-card h4 {
+            color: #1e40af;
+            margin: 0 0 8px 0;
+            font-size: 1em;
+        }
+
+        .concept-card p {
+            color: #374151;
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Explanation Cards */
+        .dispersion-explanation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .explanation-card {
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .explanation-card:hover {
+            transform: translateY(-2px);
+            border-color: #a855f7;
+        }
+
+        .explanation-card h4 {
+            color: #7c3aed;
+            margin: 0 0 8px 0;
+            font-size: 1em;
+        }
+
+        .explanation-card p {
+            color: #374151;
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .method-card {
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .method-card.antidromic {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(21, 128, 61, 0.1) 100%);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .method-card.orthodromic {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .method-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .method-card h4 {
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+        }
+
+        .method-card.antidromic h4 {
+            color: #15803d;
+        }
+
+        .method-card.orthodromic h4 {
+            color: #d97706;
+        }
+
+        .method-card ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .method-card li {
+            padding: 5px 0;
+            color: #374151;
+            line-height: 1.4;
+        }
+
+        /* Physiology Grid */
+        .physiology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .physiology-card {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(219, 39, 119, 0.1) 100%);
+            border: 2px solid rgba(236, 72, 153, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .physiology-card:hover {
+            transform: translateY(-2px);
+            border-color: #ec4899;
+        }
+
+        .physiology-card h4 {
+            color: #be185d;
+            margin: 0 0 10px 0;
+            font-size: 1em;
+        }
+
+        .physiology-card p {
+            color: #374151;
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Timeline Styling */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 75px;
+            top: 60px;
+            width: 2px;
+            height: 25px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(107, 159, 120, 0.3);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border: 2px solid rgba(107, 159, 120, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-color);
+            margin: 0 0 5px 0;
+        }
+
+        .timeline-content p {
+            color: #374151;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Clinical Implication */
+        .clinical-implication {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .implication-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .implication-header h4 {
+            color: #dc2626;
+            margin: 0;
+        }
+
+        .warning-icon {
+            font-size: 1.5em;
+        }
+
+        .clinical-implication p {
+            color: #991b1b;
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        /* Mobile Responsiveness for Cardinal Rules */
+        @media (max-width: 768px) {
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .technical-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .concept-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .dispersion-explanation {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .physiology-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .timeline-marker {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Video Grid Styling */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(107, 159, 120, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 35px rgba(107, 159, 120, 0.2);
+        }
+
+        .video-header {
+            padding: 20px 25px 15px 25px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .video-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #f8f9fa;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 20px 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+        }
+
+        .video-info p {
+            margin: 8px 0;
+            color: #374151;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        .video-info strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Mobile Responsiveness for Videos */
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .video-container {
+                height: 200px;
+            }
+
+            .video-header {
+                padding: 15px 20px 12px 20px;
+            }
+
+            .video-header h3 {
+                font-size: 1.1em;
+            }
+
+            .video-info {
+                padding: 15px 20px;
+            }
+        }
+
         /* Tab description styling */
         .tab-description {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
@@ -5172,6 +6155,7 @@
                 <div class="category-tabs">
                     <button class="tab-button active" onclick="NCSApp.showTab(0)" role="tab" aria-selected="true" id="tab-0-btn">📍 Pathway Explorer</button>
                     <button class="tab-button" onclick="NCSApp.showTab(2)" role="tab" aria-selected="false" id="tab-2-btn">📹 NCS Videos</button>
+                    <button class="tab-button" onclick="NCSApp.showTab(17)" role="tab" aria-selected="false" id="tab-17-btn">📐 Cardinal Rules of NCS</button>
                     <button class="tab-button" onclick="NCSApp.showTab(3)" role="tab" aria-selected="false" id="tab-3-btn">🔧 EMG Instruments</button>
                     <button class="tab-button" onclick="NCSApp.showTab(4)" role="tab" aria-selected="false" id="tab-4-btn">⚡ EMG/NCS Terms</button>
                     <button class="tab-button" onclick="NCSApp.showTab(5)" role="tab" aria-selected="false" id="tab-5-btn">📋 Quick Reference</button>
@@ -5199,6 +6183,16 @@
                 <div class="category-tabs">
                     <button class="tab-button" onclick="NCSApp.showTab(1)" role="tab" aria-selected="false" id="tab-1-btn">🎯 Quiz Mode</button>
                     <button class="tab-button" onclick="NCSApp.showTab(13)" role="tab" aria-selected="false" id="tab-13-btn">🎯 EMG Muscle Quiz</button>
+                </div>
+            </div>
+
+            <!-- Advanced Training - Senior Level -->
+            <div class="tab-category senior-level">
+                <div class="category-header">🎓 Advanced Training - Senior Level</div>
+                <div class="category-subtitle">⚠️ For experienced residents with foundational EMG knowledge</div>
+                <div class="category-tabs">
+                    <button class="tab-button senior-tab" onclick="NCSApp.showTab(15)" role="tab" aria-selected="false" id="tab-15-btn">🔬 Advanced Muscle Localization Lab</button>
+                    <button class="tab-button senior-tab" onclick="NCSApp.showTab(16)" role="tab" aria-selected="false" id="tab-16-btn">🧠 EMG Localization Challenge</button>
                 </div>
             </div>
         </nav>
@@ -8390,6 +9384,695 @@
                                     <div class="technique-desc">Multiple recording sites to differentiate true vs artifact</div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 15: Advanced Muscle Localization Lab -->
+            <section id="tab-15" class="tab-content">
+                <div class="tab-description senior-warning">
+                    <div class="senior-level-badge">
+                        <span class="badge-icon">🎓</span>
+                        <span class="badge-text">SENIOR RESIDENT LEVEL</span>
+                    </div>
+                    <h2>🔬 Advanced Muscle Localization Lab</h2>
+                    <p class="tab-desc-text">Master muscle anatomy through unlimited, dynamically generated questions that test advanced knowledge of muscle innervation, nerve roots, and peripheral nerve supply. This adaptive learning system tracks your progress and focuses on challenging areas for senior residents preparing for boards and advanced practice.</p>
+                    <div class="tab-features">
+                        <span class="feature-tag advanced">Unlimited questions</span>
+                        <span class="feature-tag advanced">Adaptive learning</span>
+                        <span class="feature-tag advanced">Performance tracking</span>
+                        <span class="feature-tag advanced">Regional focus</span>
+                    </div>
+                </div>
+
+                <!-- Senior Level Warning -->
+                <div class="senior-level-warning">
+                    <div class="warning-header">
+                        <span class="warning-icon">⚠️</span>
+                        <h3>Advanced Training Tool</h3>
+                    </div>
+                    <p>This tool is designed for <strong>senior residents</strong> who have completed foundational EMG training. It assumes knowledge of:</p>
+                    <ul>
+                        <li>✓ Basic muscle anatomy and nerve supply</li>
+                        <li>✓ EMG needle examination principles</li>
+                        <li>✓ Nerve conduction study fundamentals</li>
+                        <li>✓ Clinical localization concepts</li>
+                    </ul>
+                    <p><em>If you're new to EMG, please start with the Muscle Anatomy tab in the "Study & Learn - Advanced" section.</em></p>
+                </div>
+
+                <!-- Advanced Anatomy Controls -->
+                <div class="advanced-anatomy-controls">
+                    <div class="control-section">
+                        <h3>🎯 Training Mode Selection</h3>
+                        <div class="training-mode-cards">
+                            <div class="mode-card" onclick="AdvancedMuscleTest.setMode('regional')">
+                                <div class="mode-icon">🗺️</div>
+                                <h4>Regional Focus</h4>
+                                <p>Upper or Lower Extremity</p>
+                                <div class="mode-difficulty">Moderate</div>
+                            </div>
+                            <div class="mode-card" onclick="AdvancedMuscleTest.setMode('mixed')">
+                                <div class="mode-icon">🌐</div>
+                                <h4>Mixed Training</h4>
+                                <p>Random muscle selection</p>
+                                <div class="mode-difficulty">Challenging</div>
+                            </div>
+                            <div class="mode-card" onclick="AdvancedMuscleTest.setMode('clinical')">
+                                <div class="mode-icon">📊</div>
+                                <h4>Clinical Scenarios</h4>
+                                <p>Pattern-based questions</p>
+                                <div class="mode-difficulty">Expert</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h3>🏁 Performance Dashboard</h3>
+                        <div class="performance-grid">
+                            <div class="stat-card">
+                                <div class="stat-value" id="advanced-questions-answered">0</div>
+                                <div class="stat-label">Questions Answered</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="advanced-accuracy">0%</div>
+                                <div class="stat-label">Overall Accuracy</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="advanced-streak">0</div>
+                                <div class="stat-label">Current Streak</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="advanced-session-time">0:00</div>
+                                <div class="stat-label">Session Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h3>🚀 Quick Actions</h3>
+                        <div class="action-buttons-advanced">
+                            <button class="action-btn-advanced primary" onclick="AdvancedMuscleTest.startTest()">
+                                <span class="btn-icon">🗡️</span>
+                                <span>Start Advanced Test</span>
+                            </button>
+                            <button class="action-btn-advanced secondary" onclick="AdvancedMuscleTest.reviewMissed()">
+                                <span class="btn-icon">📋</span>
+                                <span>Review Missed</span>
+                            </button>
+                            <button class="action-btn-advanced secondary" onclick="AdvancedMuscleTest.showStats()">
+                                <span class="btn-icon">📈</span>
+                                <span>Detailed Stats</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Test Modal -->
+                <div id="advanced-muscle-test-modal" class="advanced-test-modal" style="display: none;">
+                    <div class="advanced-test-content">
+                        <div class="advanced-test-header">
+                            <div class="test-title">
+                                <h3>🔬 Advanced Muscle Localization Lab</h3>
+                                <div class="test-mode-indicator" id="current-test-mode">Regional Focus</div>
+                            </div>
+                            <div class="test-stats-advanced">
+                                <span id="adv-questions-count">Question 0/∞</span>
+                                <span id="adv-current-accuracy">Accuracy: 0%</span>
+                                <span id="adv-session-streak">Streak: 0</span>
+                            </div>
+                            <button class="close-advanced-test-btn" onclick="AdvancedMuscleTest.stopTest()">
+                                <span>✕</span> End Session
+                            </button>
+                        </div>
+                        
+                        <div class="advanced-test-body">
+                            <div class="test-question-advanced">
+                                <h4 id="advanced-question-text">Loading advanced question...</h4>
+                                <div class="question-context" id="advanced-question-context"></div>
+                            </div>
+                            
+                            <div class="test-answers-advanced">
+                                <div class="answer-grid-advanced" id="advanced-answer-options">
+                                    <!-- Answer options will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <div class="test-feedback-advanced">
+                                <div id="advanced-feedback" class="feedback-container"></div>
+                            </div>
+                            
+                            <div class="test-controls-advanced">
+                                <button id="advanced-submit-btn" class="control-btn-advanced primary" onclick="AdvancedMuscleTest.submitAnswer()" disabled>
+                                    Submit Answer
+                                </button>
+                                <button id="advanced-hint-btn" class="control-btn-advanced secondary" onclick="AdvancedMuscleTest.showHint()">
+                                    💡 Advanced Hint
+                                </button>
+                                <button id="advanced-next-btn" class="control-btn-advanced primary" onclick="AdvancedMuscleTest.nextQuestion()" style="display: none;">
+                                    Next Question →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 16: EMG Localization Challenge -->
+            <section id="tab-16" class="tab-content">
+                <div class="tab-description senior-warning">
+                    <div class="senior-level-badge">
+                        <span class="badge-icon">🎓</span>
+                        <span class="badge-text">SENIOR RESIDENT LEVEL</span>
+                    </div>
+                    <h2>🧠 EMG Localization Challenge</h2>
+                    <p class="tab-desc-text">Sharpen your advanced muscle localization skills with this expert-level quiz system that presents dynamic, contextual questions about EMG findings and complex muscle anatomy patterns. Perfect for senior residents preparing for board examinations and fellowship training.</p>
+                    <div class="tab-features">
+                        <span class="feature-tag expert">Clinical scenarios</span>
+                        <span class="feature-tag expert">Dynamic questions</span>
+                        <span class="feature-tag expert">Pattern recognition</span>
+                        <span class="feature-tag expert">Board prep</span>
+                    </div>
+                </div>
+
+                <!-- Senior Level Warning -->
+                <div class="senior-level-warning">
+                    <div class="warning-header">
+                        <span class="warning-icon">⚠️</span>
+                        <h3>Expert-Level Clinical Tool</h3>
+                    </div>
+                    <p>This advanced challenge is designed for <strong>senior residents and fellows</strong> with substantial EMG experience. Prerequisites include:</p>
+                    <ul>
+                        <li>✓ Extensive EMG needle examination experience</li>
+                        <li>✓ Advanced understanding of denervation patterns</li>
+                        <li>✓ Clinical correlation and localization expertise</li>
+                        <li>✓ Familiarity with complex anatomical variations</li>
+                    </ul>
+                    <p><em>This tool simulates real clinical scenarios with complex denervation patterns requiring expert-level interpretation skills.</em></p>
+                </div>
+
+                <!-- EMG Challenge Interface -->
+                <div class="emg-challenge-container">
+                    <!-- Challenge Setup -->
+                    <div id="emg-challenge-setup" class="challenge-section">
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>📋 Challenge Configuration</h3>
+                                <p>Configure your advanced EMG localization challenge parameters</p>
+                            </div>
+                            
+                            <div class="challenge-options">
+                                <div class="option-group">
+                                    <h4>🎯 Difficulty Level</h4>
+                                    <div class="difficulty-selector">
+                                        <button class="difficulty-btn senior-moderate" data-level="moderate" onclick="EMGChallenge.setDifficulty('moderate')">
+                                            <span class="diff-icon">🔥</span>
+                                            <span class="diff-name">Senior Moderate</span>
+                                            <span class="diff-desc">Standard patterns</span>
+                                        </button>
+                                        <button class="difficulty-btn senior-hard" data-level="hard" onclick="EMGChallenge.setDifficulty('hard')">
+                                            <span class="diff-icon">⚡</span>
+                                            <span class="diff-name">Senior Advanced</span>
+                                            <span class="diff-desc">Complex patterns</span>
+                                        </button>
+                                        <button class="difficulty-btn expert" data-level="expert" onclick="EMGChallenge.setDifficulty('expert')">
+                                            <span class="diff-icon">🏆</span>
+                                            <span class="diff-name">Board Level</span>
+                                            <span class="diff-desc">Expert scenarios</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="option-group">
+                                    <h4>🗺️ Regional Focus</h4>
+                                    <div class="region-selector-challenge">
+                                        <button class="region-btn-challenge" data-region="upper" onclick="EMGChallenge.setRegion('upper')">
+                                            💪 Upper Extremity
+                                        </button>
+                                        <button class="region-btn-challenge" data-region="lower" onclick="EMGChallenge.setRegion('lower')">
+                                            🦵 Lower Extremity
+                                        </button>
+                                        <button class="region-btn-challenge" data-region="mixed" onclick="EMGChallenge.setRegion('mixed')">
+                                            🌍 Mixed Regions
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="option-group">
+                                    <h4>⚙️ Challenge Type</h4>
+                                    <div class="challenge-type-selector">
+                                        <button class="type-btn" data-type="localization" onclick="EMGChallenge.setType('localization')">
+                                            🎯 Lesion Localization
+                                        </button>
+                                        <button class="type-btn" data-type="pattern" onclick="EMGChallenge.setType('pattern')">
+                                            🧩 Pattern Recognition
+                                        </button>
+                                        <button class="type-btn" data-type="clinical" onclick="EMGChallenge.setType('clinical')">
+                                            📊 Clinical Integration
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="challenge-launch">
+                                <button class="launch-challenge-btn" onclick="EMGChallenge.startChallenge()">
+                                    <span class="launch-icon">🚀</span>
+                                    <span>Launch EMG Challenge</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Challenge -->  
+                    <div id="emg-challenge-active" class="challenge-section" style="display: none;">
+                        <div class="challenge-card">
+                            <div class="challenge-header-active">
+                                <div class="case-info">
+                                    <h3>🔍 EMG Case Analysis</h3>
+                                    <div class="case-metadata">
+                                        <span class="case-number" id="challenge-case-number">Case #1</span>
+                                        <span class="case-difficulty" id="challenge-difficulty">Senior Moderate</span>
+                                        <span class="case-region" id="challenge-region">Upper Extremity</span>
+                                    </div>
+                                </div>
+                                <div class="challenge-stats">
+                                    <span id="challenge-score">Score: 0</span>
+                                    <span id="challenge-accuracy">Accuracy: 0%</span>
+                                    <span id="challenge-time">Time: 0:00</span>
+                                </div>
+                            </div>
+                            
+                            <div class="clinical-scenario">
+                                <div class="scenario-header">
+                                    <h4>💼 Clinical Scenario</h4>
+                                </div>
+                                <div class="scenario-content" id="challenge-scenario-text">
+                                    Loading clinical scenario...
+                                </div>
+                            </div>
+                            
+                            <div class="emg-findings">
+                                <div class="findings-header">
+                                    <h4>⚡ EMG Needle Examination Results</h4>
+                                </div>
+                                
+                                <div class="findings-layout">
+                                    <div class="abnormal-findings">
+                                        <h5 class="findings-title abnormal">❌ Abnormal Muscles (Denervation)</h5>
+                                        <ul id="challenge-abnormal-muscles" class="muscle-findings-list abnormal">
+                                            <!-- Abnormal muscles will be populated here -->
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="normal-findings">
+                                        <h5 class="findings-title normal">✅ Normal Muscles</h5>
+                                        <ul id="challenge-normal-muscles" class="muscle-findings-list normal">
+                                            <!-- Normal muscles will be populated here -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-question">
+                                <div class="question-header">
+                                    <h4>🧠 Analysis Question</h4>
+                                </div>
+                                <div class="question-text" id="challenge-question-text">
+                                    Where is the most likely location of the lesion?
+                                </div>
+                                
+                                <div class="answer-options-challenge" id="challenge-answer-options">
+                                    <!-- Answer options will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-controls">
+                                <button id="challenge-submit-btn" class="challenge-btn primary" onclick="EMGChallenge.submitAnswer()" disabled>
+                                    Submit Analysis
+                                </button>
+                                <button id="challenge-hint-btn" class="challenge-btn secondary" onclick="EMGChallenge.showAdvancedHint()">
+                                    💡 Advanced Hint
+                                </button>
+                                <button id="challenge-explanation-btn" class="challenge-btn info" onclick="EMGChallenge.showExplanation()" style="display: none;">
+                                    📝 Full Explanation
+                                </button>
+                                <button id="challenge-next-btn" class="challenge-btn primary" onclick="EMGChallenge.nextCase()" style="display: none;">
+                                    Next Case →
+                                </button>
+                            </div>
+                            
+                            <div class="challenge-feedback" id="challenge-feedback" style="display: none;">
+                                <!-- Feedback will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Challenge Results -->
+                    <div id="emg-challenge-results" class="challenge-section" style="display: none;">
+                        <div class="challenge-card">
+                            <div class="results-header">
+                                <h3>🏆 Challenge Complete</h3>
+                                <div class="final-score" id="challenge-final-score">Score: 0/0</div>
+                            </div>
+                            
+                            <div class="results-breakdown" id="challenge-results-breakdown">
+                                <!-- Results breakdown will be populated here -->
+                            </div>
+                            
+                            <div class="results-actions">
+                                <button class="results-btn primary" onclick="EMGChallenge.retryChallenge()">
+                                    🔄 Try Again
+                                </button>
+                                <button class="results-btn secondary" onclick="EMGChallenge.newChallenge()">
+                                    🆕 New Challenge
+                                </button>
+                                <button class="results-btn info" onclick="EMGChallenge.reviewCases()">
+                                    📋 Review Cases
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 17: Cardinal Rules of NCS -->
+            <section id="tab-17" class="tab-content">
+                <div class="tab-description">
+                    <h2>📐 Cardinal Rules of NCS (Preston & Shapiro)</h2>
+                    <p class="tab-desc-text">Essential principles that every resident must master for successful nerve conduction studies. These fundamental rules form the foundation of accurate EMG/NCS practice and interpretation.</p>
+                    <div class="tab-features">
+                        <span class="feature-tag">Essential principles</span>
+                        <span class="feature-tag">Technical mastery</span>
+                        <span class="feature-tag">Clinical correlation</span>
+                        <span class="feature-tag">Best practices</span>
+                    </div>
+                </div>
+
+                <div class="cardinal-rules-container">
+                    <!-- Essential Principles -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>🎯 Cardinal Rules of NCS</h3>
+                            <p class="section-subtitle">Essential principles that every resident must remember</p>
+                        </div>
+                        
+                        <div class="rules-grid">
+                            <div class="rule-card rule-1">
+                                <div class="rule-number">1</div>
+                                <div class="rule-content">
+                                    <h4>Clinical Correlation First</h4>
+                                    <p><strong>NCS are an extension of the clinical examination</strong> - Always correlate findings with clinical symptoms</p>
+                                </div>
+                            </div>
+                            
+                            <div class="rule-card rule-2">
+                                <div class="rule-number">2</div>
+                                <div class="rule-content">
+                                    <h4>Technical Factors Rule</h4>
+                                    <p><strong>When in doubt, think technical factors</strong> - Most "abnormalities" are technical errors</p>
+                                </div>
+                            </div>
+                            
+                            <div class="rule-card rule-3">
+                                <div class="rule-number">3</div>
+                                <div class="rule-content">
+                                    <h4>Reexamine When Needed</h4>
+                                    <p><strong>When in doubt, reexamine the patient</strong> - If findings don't match exam, recheck both</p>
+                                </div>
+                            </div>
+                            
+                            <div class="rule-card rule-4">
+                                <div class="rule-number">4</div>
+                                <div class="rule-content">
+                                    <h4>Supramaximal Stimulation</h4>
+                                    <p><strong>Use supramaximal stimulation</strong> - Increase current 20% beyond plateau</p>
+                                </div>
+                            </div>
+                            
+                            <div class="rule-card rule-5">
+                                <div class="rule-number">5</div>
+                                <div class="rule-content">
+                                    <h4>Optimize Stimulator Position</h4>
+                                    <p><strong>Find lowest threshold, then increase to supramaximal</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="rule-card rule-6">
+                                <div class="rule-number">6</div>
+                                <div class="rule-content">
+                                    <h4>Don't Overcall Abnormalities</h4>
+                                    <p><strong>Minor findings without clinical correlation may be irrelevant</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Technical Points -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>⚙️ Key Technical Points</h3>
+                            <p class="section-subtitle">Critical technical considerations for accurate studies</p>
+                        </div>
+                        
+                        <div class="technical-grid">
+                            <div class="technical-card">
+                                <div class="tech-icon">🌡️</div>
+                                <h4>Temperature</h4>
+                                <p>Keep limbs warm (>32°C) - cold slows conduction velocity</p>
+                            </div>
+                            
+                            <div class="technical-card">
+                                <div class="tech-icon">⚡</div>
+                                <h4>Supramaximal Stimulation</h4>
+                                <p>Increase intensity until no further amplitude increase, then add 20%</p>
+                            </div>
+                            
+                            <div class="technical-card">
+                                <div class="tech-icon">📍</div>
+                                <h4>Electrode Placement</h4>
+                                <p>Precise anatomical landmarks are crucial for reproducible results</p>
+                            </div>
+                            
+                            <div class="technical-card">
+                                <div class="tech-icon">📏</div>
+                                <h4>Distance Measurement</h4>
+                                <p>Use consistent surface measurements with tape measure</p>
+                            </div>
+                            
+                            <div class="technical-card">
+                                <div class="tech-icon">📡</div>
+                                <h4>Artifact Minimization</h4>
+                                <p>Proper grounding and electrode impedance (<5 kΩ)</p>
+                            </div>
+                            
+                            <div class="technical-card">
+                                <div class="tech-icon">🎯</div>
+                                <h4>Stimulator Optimization</h4>
+                                <p>Start with low intensity, find optimal position, then increase</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volume Conduction Principles -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>🌊 Volume Conduction Principles</h3>
+                            <p class="section-subtitle">Understanding how electrical signals travel from nerve/muscle to recording electrodes</p>
+                        </div>
+                        
+                        <div class="concept-cards">
+                            <div class="concept-card">
+                                <h4>📍 Near-field Potentials</h4>
+                                <p>Most NCS record near-field potentials (CMAPs, SNAPs)</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <h4>🌊 Triphasic Waveforms</h4>
+                                <p>Advancing action potential creates positive→negative→positive phases</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <h4>📊 Biphasic Waveforms</h4>
+                                <p>Action potential starting under electrode (motor studies)</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <h4>📉 Distance Effects</h4>
+                                <p>Amplitude decreases with distance from source</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <h4>⚡ Far-field Potentials</h4>
+                                <p>Stimulus artifact is example - appears instantly at all sites</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temporal Dispersion -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>⏱️ Temporal Dispersion & Phase Cancellation</h3>
+                            <p class="section-subtitle">Why proximal sensory responses are smaller and longer</p>
+                        </div>
+                        
+                        <div class="dispersion-explanation">
+                            <div class="explanation-card">
+                                <h4>🔄 Temporal Dispersion</h4>
+                                <p>Fast fibers arrive before slow fibers (more with distance)</p>
+                            </div>
+                            
+                            <div class="explanation-card">
+                                <h4>❌ Phase Cancellation</h4>
+                                <p>Positive phase of fast fibers overlaps negative phase of slow fibers</p>
+                            </div>
+                            
+                            <div class="explanation-card">
+                                <h4>📊 Normal Effect</h4>
+                                <p>Proximal SNAPs have lower amplitude, longer duration</p>
+                            </div>
+                            
+                            <div class="explanation-card">
+                                <h4>⚠️ Pathological Enhancement</h4>
+                                <p>Demyelination worsens these effects</p>
+                            </div>
+                            
+                            <div class="explanation-card">
+                                <h4>💪 Motor vs Sensory</h4>
+                                <p>Less prominent in motor studies due to longer MUAP duration</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orthodromic vs Antidromic -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>↔️ Orthodromic vs Antidromic Studies</h3>
+                            <p class="section-subtitle">Two methods for sensory conduction studies</p>
+                        </div>
+                        
+                        <div class="comparison-grid">
+                            <div class="method-card antidromic">
+                                <h4>📍 Antidromic (Preferred)</h4>
+                                <ul>
+                                    <li>• Stimulate nerve, record from digit</li>
+                                    <li>• Higher amplitude responses</li>
+                                    <li>• May have volume-conducted motor potential</li>
+                                    <li>• Better for small/pathologic potentials</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="method-card orthodromic">
+                                <h4>📍 Orthodromic</h4>
+                                <ul>
+                                    <li>• Stimulate digit, record from nerve</li>
+                                    <li>• Lower amplitude responses</li>
+                                    <li>• No motor contamination</li>
+                                    <li>• Useful when antidromic unclear</li>
+                                    <li>• Same latencies as antidromic</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nerve Physiology -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>🧠 Basic Nerve Physiology for NCS</h3>
+                            <p class="section-subtitle">Understanding saltatory conduction and myelination</p>
+                        </div>
+                        
+                        <div class="physiology-grid">
+                            <div class="physiology-card">
+                                <h4>💪 Myelinated Fibers</h4>
+                                <p>Conduct 35-75 m/s via saltatory conduction</p>
+                            </div>
+                            
+                            <div class="physiology-card">
+                                <h4>🔍 Nodes of Ranvier</h4>
+                                <p>Action potential "jumps" between nodes (every ~1mm)</p>
+                            </div>
+                            
+                            <div class="physiology-card">
+                                <h4>🐌 Unmyelinated Fibers</h4>
+                                <p>Conduct 0.2-1.5 m/s (pain, temperature, autonomic)</p>
+                            </div>
+                            
+                            <div class="physiology-card">
+                                <h4>✨ Myelin Function</h4>
+                                <p>Insulates internodes, reduces capacitance, speeds conduction</p>
+                            </div>
+                            
+                            <div class="physiology-card">
+                                <h4>📊 NCS Records</h4>
+                                <p>Only largest, fastest myelinated fibers</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wallerian Degeneration Timeline -->
+                    <div class="rule-section">
+                        <div class="section-header">
+                            <h3>⏰ Wallerian Degeneration Timeline</h3>
+                            <p class="section-subtitle">Critical timing for interpreting acute nerve injuries</p>
+                        </div>
+                        
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-marker day-0">Day 0-3</div>
+                                <div class="timeline-content">
+                                    <h4>Immediate Phase</h4>
+                                    <p>Normal distal NCS despite proximal nerve injury</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker day-3">Day 3-5</div>
+                                <div class="timeline-content">
+                                    <h4>Motor Decline</h4>
+                                    <p>Motor responses begin to decline</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker day-6">Day 6-10</div>
+                                <div class="timeline-content">
+                                    <h4>Sensory Decline</h4>
+                                    <p>Sensory responses begin to decline</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker day-7">Day 7-10</div>
+                                <div class="timeline-content">
+                                    <h4>Complete Loss</h4>
+                                    <p>Distal nerve becomes inexcitable</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker week-2">Week 2-3</div>
+                                <div class="timeline-content">
+                                    <h4>EMG Changes</h4>
+                                    <p>Fibrillations appear on needle EMG</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker month-3">Month 3-6</div>
+                                <div class="timeline-content">
+                                    <h4>Recovery Phase</h4>
+                                    <p>Reinnervation potentials appear if recovery occurs</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="clinical-implication">
+                            <div class="implication-header">
+                                <span class="warning-icon">⚠️</span>
+                                <h4>Clinical Implication</h4>
+                            </div>
+                            <p>Normal NCS in first week don't exclude severe nerve injury</p>
                         </div>
                     </div>
                 </div>
@@ -23942,16 +25625,629 @@ Common roots in this pattern: ${commonRoots.join(', ') || 'Mixed pattern - consi
             }
         };
 
-        // Initialize FlashcardEngine when EMG Flashcards tab is shown
-        const originalShowTabForFlashcards = NCSApp.showTab;
+        // Initialize content when tabs are shown
+        const originalShowTabForContent = NCSApp.showTab;
         NCSApp.showTab = function(tabIndex) {
-            originalShowTabForFlashcards.call(this, tabIndex);
+            originalShowTabForContent.call(this, tabIndex);
+            
+            // Initialize NCS Videos
+            if (tabIndex === 2) {
+                setTimeout(() => {
+                    NCSApp.initializeVideos();
+                }, 100);
+            }
+            
+            // Initialize EMG Flashcards
             if (tabIndex === 11) {
                 setTimeout(() => {
                     FlashcardEngine.init();
                 }, 100);
             }
+            
+            // Initialize advanced tools
+            if (tabIndex === 15) {
+                setTimeout(() => {
+                    if (window.AdvancedMuscleTest) {
+                        AdvancedMuscleTest.init();
+                    }
+                }, 100);
+            }
+            if (tabIndex === 16) {
+                setTimeout(() => {
+                    if (window.EMGChallenge) {
+                        EMGChallenge.init();
+                    }
+                }, 100);
+            }
         };
+
+        // NCS Videos Initialization
+        NCSApp.initializeVideos = function() {
+            console.log('📹 Initializing NCS video content...');
+            
+            const videos = [
+                {
+                    title: "📍 Median Motor Study",
+                    description: "Median motor nerve conduction technique",
+                    recording: "Thenar muscles (APB)",
+                    stimulation: "Wrist & elbow",
+                    videoUrl: "https://www.youtube.com/embed/cdVrcgeBgIg"
+                },
+                {
+                    title: "📍 Ulnar Motor Study", 
+                    description: "Ulnar motor nerve conduction technique",
+                    recording: "Hypothenar muscles (ADM)",
+                    stimulation: "Wrist, below & above elbow",
+                    videoUrl: "https://www.youtube.com/embed/UmFYJDMucOY"
+                },
+                {
+                    title: "📍 Median to Radial Comparison Study",
+                    description: "Comparative median and radial nerve study", 
+                    recording: "Multiple muscle comparison",
+                    stimulation: "Various sites",
+                    videoUrl: "https://www.youtube.com/embed/nMaxrbpyR-0"
+                },
+                {
+                    title: "📍 Common Fibular Motor Study",
+                    description: "Common fibular motor nerve conduction technique",
+                    recording: "Extensor digitorum brevis (EDB)", 
+                    stimulation: "Ankle, fibular head & popliteal fossa",
+                    videoUrl: "https://www.youtube.com/embed/G1bsDinxuF8"
+                },
+                {
+                    title: "📍 Median Sensory Study",
+                    description: "Median sensory nerve conduction study",
+                    recording: "Digit 3 to wrist",
+                    stimulation: "Orthodromic stimulation",
+                    videoUrl: "https://www.youtube.com/embed/86j7cNLIX0U"
+                },
+                {
+                    title: "📍 Ulnar Sensory Study",
+                    description: "Ulnar sensory nerve conduction study", 
+                    recording: "Digit 5 to wrist",
+                    stimulation: "Orthodromic stimulation",
+                    videoUrl: "https://www.youtube.com/embed/i9Naurf0eWU"
+                },
+                {
+                    title: "📍 Tibial Motor Study",
+                    description: "Tibial motor nerve conduction technique",
+                    recording: "Abductor hallucis (AH)",
+                    stimulation: "Ankle, popliteal fossa",
+                    videoUrl: "https://www.youtube.com/embed/pWeH6kCa9lo"
+                },
+                {
+                    title: "📍 Dorsal Ulnar Cutaneous Study",
+                    description: "Dorsal ulnar cutaneous nerve conduction",
+                    recording: "Dorsal hand to forearm",
+                    stimulation: "Antidromic stimulation",
+                    videoUrl: "https://www.youtube.com/embed/U-60ft_8klI"
+                },
+                {
+                    title: "📍 Superficial Fibular Study",
+                    description: "Superficial fibular sensory nerve conduction",
+                    recording: "Lateral foot to leg",
+                    stimulation: "Antidromic stimulation",
+                    videoUrl: "https://www.youtube.com/embed/M1sE2FT8YQg"
+                },
+                {
+                    title: "📍 Sural Sensory Study",
+                    description: "Sural sensory nerve conduction study",
+                    recording: "Lateral foot to calf",
+                    stimulation: "Antidromic stimulation",
+                    videoUrl: "https://www.youtube.com/embed/zP1yAU5DW2s"
+                }
+            ];
+            
+            const container = document.getElementById('video-grid');
+            if (!container) {
+                console.warn('⚠️ Video grid container not found');
+                return;
+            }
+            
+            let html = '';
+            
+            videos.forEach(video => {
+                html += `
+                    <div class="video-card">
+                        <div class="video-header">
+                            <h3>${video.title}</h3>
+                        </div>
+                        <div class="video-container">
+                            <iframe width="100%" height="250" src="${video.videoUrl}" 
+                                    frameborder="0" allowfullscreen 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    title="${video.description}">
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <p><strong>Description:</strong> ${video.description}</p>
+                            <p><strong>Recording:</strong> ${video.recording}</p>
+                            <p><strong>Stimulation:</strong> ${video.stimulation}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            console.log('✅ NCS Video content initialized with', videos.length, 'videos');
+        };
+
+        // Advanced Muscle Localization Lab (Tab 15)
+        window.AdvancedMuscleTest = {
+            currentMode: 'regional',
+            isTestActive: false,
+            currentQuestion: null,
+            stats: {
+                questionsAnswered: 0,
+                correctAnswers: 0,
+                currentStreak: 0,
+                sessionStartTime: null
+            },
+            
+            init: function() {
+                console.log('🔬 Advanced Muscle Localization Lab initialized');
+                this.updateStats();
+                this.setupEventListeners();
+            },
+            
+            setMode: function(mode) {
+                this.currentMode = mode;
+                document.querySelectorAll('.mode-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                event.target.closest('.mode-card').classList.add('selected');
+                console.log('🎯 Training mode set to:', mode);
+            },
+            
+            startTest: function() {
+                this.isTestActive = true;
+                this.stats.sessionStartTime = Date.now();
+                document.getElementById('advanced-muscle-test-modal').style.display = 'flex';
+                this.generateQuestion();
+                console.log('🚀 Advanced muscle test started');
+            },
+            
+            stopTest: function() {
+                this.isTestActive = false;
+                document.getElementById('advanced-muscle-test-modal').style.display = 'none';
+                console.log('⏹️ Advanced muscle test stopped');
+            },
+            
+            generateQuestion: function() {
+                // Advanced question generation logic
+                const questions = this.getQuestionPool();
+                this.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+                this.displayQuestion();
+            },
+            
+            getQuestionPool: function() {
+                // Return different question pools based on mode
+                const baseQuestions = [
+                    {
+                        muscle: "Flexor pollicis longus",
+                        nerve: "Anterior interosseous nerve (branch of median)",
+                        roots: "C7, C8, T1",
+                        region: "UE",
+                        difficulty: "advanced",
+                        context: "Patient unable to flex thumb IP joint, but thenar muscles intact"
+                    },
+                    {
+                        muscle: "Extensor indicis proprius",
+                        nerve: "Posterior interosseous nerve (branch of radial)",
+                        roots: "C7, C8",
+                        region: "UE",
+                        difficulty: "expert",
+                        context: "Isolated weakness of index finger extension"
+                    },
+                    {
+                        muscle: "Tibialis posterior",
+                        nerve: "Tibial nerve",
+                        roots: "L4, L5",
+                        region: "LE",
+                        difficulty: "advanced",
+                        context: "Foot drop with preserved dorsiflexion but weak inversion"
+                    }
+                ];
+                
+                if (this.currentMode === 'regional') {
+                    return baseQuestions; // Filter by region if needed
+                }
+                return baseQuestions;
+            },
+            
+            displayQuestion: function() {
+                const question = this.currentQuestion;
+                document.getElementById('advanced-question-text').textContent = 
+                    `What nerve innervates the ${question.muscle}?`;
+                document.getElementById('advanced-question-context').textContent = 
+                    `Clinical Context: ${question.context}`;
+                
+                // Generate answer options
+                const options = this.generateAnswerOptions(question);
+                this.displayAnswerOptions(options);
+            },
+            
+            generateAnswerOptions: function(question) {
+                const correct = question.nerve;
+                const distractors = [
+                    "Median nerve",
+                    "Ulnar nerve", 
+                    "Radial nerve",
+                    "Musculocutaneous nerve",
+                    "Axillary nerve",
+                    "Tibial nerve",
+                    "Common peroneal nerve"
+                ].filter(option => option !== correct);
+                
+                const shuffled = [correct, ...distractors.slice(0, 3)].sort(() => Math.random() - 0.5);
+                return shuffled.map((option, index) => ({
+                    id: String.fromCharCode(65 + index),
+                    text: option,
+                    correct: option === correct
+                }));
+            },
+            
+            displayAnswerOptions: function(options) {
+                const container = document.getElementById('advanced-answer-options');
+                container.innerHTML = options.map(option => `
+                    <div class="answer-option-advanced" data-answer="${option.id}" onclick="AdvancedMuscleTest.selectAnswer('${option.id}')">
+                        <div class="option-letter">${option.id}</div>
+                        <div class="option-text">${option.text}</div>
+                    </div>
+                `).join('');
+            },
+            
+            selectAnswer: function(answerId) {
+                document.querySelectorAll('.answer-option-advanced').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                document.querySelector(`[data-answer="${answerId}"]`).classList.add('selected');
+                document.getElementById('advanced-submit-btn').disabled = false;
+            },
+            
+            submitAnswer: function() {
+                const selectedOption = document.querySelector('.answer-option-advanced.selected');
+                if (!selectedOption) return;
+                
+                const isCorrect = this.checkAnswer(selectedOption.dataset.answer);
+                this.updateStatsAfterAnswer(isCorrect);
+                this.showFeedback(isCorrect);
+                
+                document.getElementById('advanced-submit-btn').style.display = 'none';
+                document.getElementById('advanced-next-btn').style.display = 'block';
+            },
+            
+            checkAnswer: function(answerId) {
+                const options = this.generateAnswerOptions(this.currentQuestion);
+                const selectedOption = options.find(opt => opt.id === answerId);
+                return selectedOption && selectedOption.correct;
+            },
+            
+            updateStatsAfterAnswer: function(isCorrect) {
+                this.stats.questionsAnswered++;
+                if (isCorrect) {
+                    this.stats.correctAnswers++;
+                    this.stats.currentStreak++;
+                } else {
+                    this.stats.currentStreak = 0;
+                }
+                this.updateStats();
+            },
+            
+            showFeedback: function(isCorrect) {
+                const feedbackContainer = document.getElementById('advanced-feedback');
+                const question = this.currentQuestion;
+                
+                feedbackContainer.innerHTML = `
+                    <div class="feedback-card ${isCorrect ? 'correct' : 'incorrect'}">
+                        <h4>${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</h4>
+                        <p><strong>${question.muscle}</strong> is innervated by the <strong>${question.nerve}</strong></p>
+                        <p><strong>Nerve roots:</strong> ${question.roots}</p>
+                        <p><strong>Clinical pearl:</strong> ${question.context}</p>
+                    </div>
+                `;
+            },
+            
+            nextQuestion: function() {
+                document.getElementById('advanced-submit-btn').style.display = 'block';
+                document.getElementById('advanced-next-btn').style.display = 'none';
+                document.getElementById('advanced-submit-btn').disabled = true;
+                document.getElementById('advanced-feedback').innerHTML = '';
+                
+                this.generateQuestion();
+            },
+            
+            updateStats: function() {
+                document.getElementById('advanced-questions-answered').textContent = this.stats.questionsAnswered;
+                document.getElementById('advanced-accuracy').textContent = 
+                    this.stats.questionsAnswered > 0 ? 
+                    Math.round((this.stats.correctAnswers / this.stats.questionsAnswered) * 100) + '%' : '0%';
+                document.getElementById('advanced-streak').textContent = this.stats.currentStreak;
+                
+                // Update session time
+                if (this.stats.sessionStartTime) {
+                    const elapsed = Math.floor((Date.now() - this.stats.sessionStartTime) / 1000);
+                    const minutes = Math.floor(elapsed / 60);
+                    const seconds = elapsed % 60;
+                    document.getElementById('advanced-session-time').textContent = 
+                        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                }
+                
+                // Update modal stats
+                if (document.getElementById('adv-questions-count')) {
+                    document.getElementById('adv-questions-count').textContent = 
+                        `Question ${this.stats.questionsAnswered + 1}/∞`;
+                    document.getElementById('adv-current-accuracy').textContent = 
+                        `Accuracy: ${this.stats.questionsAnswered > 0 ? 
+                        Math.round((this.stats.correctAnswers / this.stats.questionsAnswered) * 100) + '%' : '0%'}`;
+                    document.getElementById('adv-session-streak').textContent = 
+                        `Streak: ${this.stats.currentStreak}`;
+                }
+            },
+            
+            setupEventListeners: function() {
+                // Update stats every second when test is active
+                setInterval(() => {
+                    if (this.isTestActive) {
+                        this.updateStats();
+                    }
+                }, 1000);
+            },
+            
+            reviewMissed: function() {
+                alert('Review missed questions functionality will be implemented in the next update!');
+            },
+            
+            showStats: function() {
+                alert('Detailed statistics functionality will be implemented in the next update!');
+            }
+        };
+
+        // EMG Localization Challenge (Tab 16)
+        window.EMGChallenge = {
+            currentSettings: {
+                difficulty: 'moderate',
+                region: 'mixed',
+                type: 'localization'
+            },
+            isActive: false,
+            currentCase: null,
+            stats: {
+                score: 0,
+                totalCases: 0,
+                accuracy: 0,
+                startTime: null
+            },
+            
+            init: function() {
+                console.log('🧠 EMG Localization Challenge initialized');
+                this.setupEventListeners();
+            },
+            
+            setDifficulty: function(level) {
+                this.currentSettings.difficulty = level;
+                document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.closest('.difficulty-btn').classList.add('selected');
+                console.log('🔥 Difficulty set to:', level);
+            },
+            
+            setRegion: function(region) {
+                this.currentSettings.region = region;
+                document.querySelectorAll('.region-btn-challenge').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.classList.add('selected');
+                console.log('🗺️ Region set to:', region);
+            },
+            
+            setType: function(type) {
+                this.currentSettings.type = type;
+                document.querySelectorAll('.type-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.classList.add('selected');
+                console.log('⚙️ Challenge type set to:', type);
+            },
+            
+            startChallenge: function() {
+                this.isActive = true;
+                this.stats = { score: 0, totalCases: 0, accuracy: 0, startTime: Date.now() };
+                
+                document.getElementById('emg-challenge-setup').style.display = 'none';
+                document.getElementById('emg-challenge-active').style.display = 'block';
+                
+                this.generateCase();
+                console.log('🚀 EMG Challenge started with settings:', this.currentSettings);
+            },
+            
+            generateCase: function() {
+                this.currentCase = this.getCaseData();
+                this.displayCase();
+            },
+            
+            getCaseData: function() {
+                const cases = {
+                    moderate: [
+                        {
+                            scenario: "A 35-year-old office worker presents with numbness and tingling in the thumb, index, and middle fingers, worse at night.",
+                            abnormalMuscles: ["Abductor pollicis brevis", "Opponens pollicis", "Flexor pollicis longus"],
+                            normalMuscles: ["Abductor digiti minimi", "First dorsal interosseous", "Flexor carpi ulnaris"],
+                            correctAnswer: "Median nerve at the wrist (carpal tunnel)",
+                            options: [
+                                "Median nerve at the wrist (carpal tunnel)",
+                                "Ulnar nerve at the elbow",
+                                "C8 radiculopathy",
+                                "Brachial plexus lower trunk"
+                            ],
+                            explanation: "Classic carpal tunnel syndrome with denervation limited to median-innervated thenar muscles, sparing ulnar-innervated intrinsics."
+                        }
+                    ],
+                    hard: [
+                        {
+                            scenario: "A 45-year-old carpenter with progressive weakness affecting grip strength and difficulty with fine motor tasks.",
+                            abnormalMuscles: ["Abductor digiti minimi", "First dorsal interosseous", "Flexor digitorum profundus (4th, 5th digits)"],
+                            normalMuscles: ["Abductor pollicis brevis", "Flexor carpi radialis", "Extensor carpi radialis"],
+                            correctAnswer: "Ulnar nerve at the elbow (cubital tunnel)",
+                            options: [
+                                "C8 radiculopathy",
+                                "Ulnar nerve at the elbow (cubital tunnel)",
+                                "Ulnar nerve at the wrist (Guyon's canal)",
+                                "Lower trunk brachial plexopathy"
+                            ],
+                            explanation: "Cubital tunnel syndrome with both motor and sensory involvement, affecting FCU and FDP to 4th/5th digits as well as intrinsics."
+                        }
+                    ]
+                };
+                
+                const difficulty = this.currentSettings.difficulty === 'expert' ? 'hard' : this.currentSettings.difficulty;
+                const casePool = cases[difficulty] || cases.moderate;
+                return casePool[Math.floor(Math.random() * casePool.length)];
+            },
+            
+            displayCase: function() {
+                const case_data = this.currentCase;
+                this.stats.totalCases++;
+                
+                // Update case metadata
+                document.getElementById('challenge-case-number').textContent = `Case #${this.stats.totalCases}`;
+                document.getElementById('challenge-difficulty').textContent = this.currentSettings.difficulty.charAt(0).toUpperCase() + this.currentSettings.difficulty.slice(1);
+                document.getElementById('challenge-region').textContent = this.currentSettings.region.charAt(0).toUpperCase() + this.currentSettings.region.slice(1);
+                
+                // Display scenario
+                document.getElementById('challenge-scenario-text').textContent = case_data.scenario;
+                
+                // Display muscle findings
+                document.getElementById('challenge-abnormal-muscles').innerHTML = 
+                    case_data.abnormalMuscles.map(muscle => `<li>${muscle}</li>`).join('');
+                document.getElementById('challenge-normal-muscles').innerHTML = 
+                    case_data.normalMuscles.map(muscle => `<li>${muscle}</li>`).join('');
+                
+                // Display answer options
+                const shuffledOptions = [...case_data.options].sort(() => Math.random() - 0.5);
+                document.getElementById('challenge-answer-options').innerHTML = 
+                    shuffledOptions.map((option, index) => `
+                        <div class="answer-option-challenge" data-answer="${option}" onclick="EMGChallenge.selectAnswer('${option}')">
+                            <div class="option-letter-challenge">${String.fromCharCode(65 + index)}</div>
+                            <div class="option-text-challenge">${option}</div>
+                        </div>
+                    `).join('');
+                
+                // Reset buttons
+                document.getElementById('challenge-submit-btn').disabled = true;
+                document.getElementById('challenge-submit-btn').style.display = 'block';
+                document.getElementById('challenge-explanation-btn').style.display = 'none';
+                document.getElementById('challenge-next-btn').style.display = 'none';
+                document.getElementById('challenge-feedback').style.display = 'none';
+            },
+            
+            selectAnswer: function(answer) {
+                document.querySelectorAll('.answer-option-challenge').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                document.querySelector(`[data-answer="${answer}"]`).classList.add('selected');
+                document.getElementById('challenge-submit-btn').disabled = false;
+            },
+            
+            submitAnswer: function() {
+                const selectedOption = document.querySelector('.answer-option-challenge.selected');
+                if (!selectedOption) return;
+                
+                const selectedAnswer = selectedOption.dataset.answer;
+                const isCorrect = selectedAnswer === this.currentCase.correctAnswer;
+                
+                if (isCorrect) {
+                    this.stats.score++;
+                }
+                
+                this.stats.accuracy = Math.round((this.stats.score / this.stats.totalCases) * 100);
+                this.updateChallengeStats();
+                this.showChallengeFeedback(isCorrect, selectedAnswer);
+                
+                document.getElementById('challenge-submit-btn').style.display = 'none';
+                document.getElementById('challenge-explanation-btn').style.display = 'block';
+                document.getElementById('challenge-next-btn').style.display = 'block';
+            },
+            
+            showChallengeFeedback: function(isCorrect, selectedAnswer) {
+                const feedbackDiv = document.getElementById('challenge-feedback');
+                const case_data = this.currentCase;
+                
+                feedbackDiv.innerHTML = `
+                    <div class="challenge-feedback-card ${isCorrect ? 'correct' : 'incorrect'}">
+                        <h4>${isCorrect ? '🎯 Excellent Analysis!' : '🔍 Learning Opportunity'}</h4>
+                        <div class="feedback-content">
+                            <p><strong>Your answer:</strong> ${selectedAnswer}</p>
+                            <p><strong>Correct answer:</strong> ${case_data.correctAnswer}</p>
+                            ${!isCorrect ? `<p class="correction-note">💡 Review the muscle pattern to understand the localization</p>` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                feedbackDiv.style.display = 'block';
+            },
+            
+            showAdvancedHint: function() {
+                const case_data = this.currentCase;
+                alert(`💡 Advanced Hint:\n\nConsider which muscles are affected vs. spared. The pattern of denervation helps localize the lesion.\n\nAbnormal: ${case_data.abnormalMuscles.join(', ')}\nNormal: ${case_data.normalMuscles.join(', ')}`);
+            },
+            
+            showExplanation: function() {
+                const case_data = this.currentCase;
+                alert(`📚 Detailed Explanation:\n\n${case_data.explanation}\n\nThis pattern is characteristic of the localization because of the specific muscles involved and the anatomical distribution of the nerve.`);
+            },
+            
+            nextCase: function() {
+                this.generateCase();
+            },
+            
+            updateChallengeStats: function() {
+                document.getElementById('challenge-score').textContent = `Score: ${this.stats.score}/${this.stats.totalCases}`;
+                document.getElementById('challenge-accuracy').textContent = `Accuracy: ${this.stats.accuracy}%`;
+                
+                // Update time
+                if (this.stats.startTime) {
+                    const elapsed = Math.floor((Date.now() - this.stats.startTime) / 1000);
+                    const minutes = Math.floor(elapsed / 60);
+                    const seconds = elapsed % 60;
+                    document.getElementById('challenge-time').textContent = 
+                        `Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                }
+            },
+            
+            setupEventListeners: function() {
+                // Update time every second
+                setInterval(() => {
+                    if (this.isActive) {
+                        this.updateChallengeStats();
+                    }
+                }, 1000);
+            },
+            
+            retryChallenge: function() {
+                document.getElementById('emg-challenge-results').style.display = 'none';
+                document.getElementById('emg-challenge-setup').style.display = 'block';
+                this.isActive = false;
+            },
+            
+            newChallenge: function() {
+                this.retryChallenge();
+            },
+            
+            reviewCases: function() {
+                alert('Case review functionality will be implemented in the next update!');
+            }
+        };
+
+        // Console helpers
+        console.log('🔬 Advanced Muscle Localization Lab loaded');
+        console.log('🧠 EMG Localization Challenge loaded');
+        console.log('💡 Use AdvancedMuscleTest and EMGChallenge objects for debugging');
+
+        // Export for debugging
+        window.AdvancedMuscleTest = AdvancedMuscleTest;
+        window.EMGChallenge = EMGChallenge;
     </script>
 </body>
 </html>
