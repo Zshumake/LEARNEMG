@@ -1230,6 +1230,13 @@
             color: #856404;
         }
 
+        .expected-diagnosis {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007bff;
+            color: #004085;
+            font-weight: 700;
+        }
+
         .feedback-note {
             font-style: italic;
             opacity: 0.8;
@@ -5885,11 +5892,19 @@
                 `;
             }
             
-            if (matchedDiagnoses.length === 0 && missedDiagnoses.length === 0) {
+            if (matchedDiagnoses.length === 0) {
+                // Show all expected differentials when user didn't match any
                 feedbackHTML += `
                     <div class="feedback-card warning">
                         <h4>🤔 Hmm, let's think about this...</h4>
-                        <p>Your input didn't match the expected differentials. Try using medical terms or common abbreviations.</p>
+                        <p>Your input didn't match the expected differentials. Here are the key diagnoses to consider for this presentation:</p>
+                    </div>
+                    <div class="feedback-card info">
+                        <h4>📚 Expected Differential Diagnoses:</h4>
+                        <ul class="diagnosis-list">
+                            ${expectedDifferentials.map(dx => `<li class="expected-diagnosis">${dx}</li>`).join('')}
+                        </ul>
+                        <p class="feedback-note"><strong>Learning Point:</strong> These are the primary differentials based on the clinical presentation. Consider how each fits with the patient's symptoms and examination findings.</p>
                         <p><strong>Tip:</strong> You can use abbreviations like "CTS" for carpal tunnel syndrome!</p>
                     </div>
                 `;
