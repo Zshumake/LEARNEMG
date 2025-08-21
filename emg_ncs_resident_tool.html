@@ -5892,54 +5892,88 @@
                 `;
             }
             
+            // Always show the complete expected differential list for educational value
             if (matchedDiagnoses.length === 0) {
-                // Show all expected differentials when user didn't match any
                 feedbackHTML += `
                     <div class="feedback-card warning">
                         <h4>🤔 Hmm, let's think about this...</h4>
                         <p>Your input didn't match the expected differentials. Here are the key diagnoses to consider for this presentation:</p>
                     </div>
-                    <div class="feedback-card info">
-                        <h4>📚 Expected Differential Diagnoses:</h4>
-                        <ul class="diagnosis-list">
-                            ${expectedDifferentials.map(dx => `<li class="expected-diagnosis">${dx}</li>`).join('')}
-                        </ul>
-                        <p class="feedback-note"><strong>Learning Point:</strong> These are the primary differentials based on the clinical presentation. Consider how each fits with the patient's symptoms and examination findings.</p>
-                        <p><strong>Tip:</strong> You can use abbreviations like "CTS" for carpal tunnel syndrome!</p>
-                    </div>
                 `;
             }
+            
+            // Always display the complete differential list for learning
+            feedbackHTML += `
+                <div class="feedback-card info">
+                    <h4>📚 Complete Expected Differential Diagnoses:</h4>
+                    <ul class="diagnosis-list">
+                        ${expectedDifferentials.map(dx => `<li class="expected-diagnosis">${dx}</li>`).join('')}
+                    </ul>
+                    <p class="feedback-note"><strong>Learning Point:</strong> These are the primary differentials based on the clinical presentation. Consider how each fits with the patient's symptoms and examination findings.</p>
+                    ${matchedDiagnoses.length === 0 ? '<p><strong>Tip:</strong> You can use abbreviations like "CTS" for carpal tunnel syndrome!</p>' : ''}
+                </div>
+            `;
             
             feedbackDiv.innerHTML = feedbackHTML;
             document.getElementById('continue-to-studies').style.display = 'inline-block';
         }
 
         function checkFinalDiagnosis() {
-            const userDiagnosis = document.getElementById('final-diagnosis').value;
+            const userDiagnosis = document.getElementById('final-diagnosis').value.trim();
             const feedbackDiv = document.getElementById('diagnosis-feedback');
             
-            if (!userDiagnosis.trim()) {
-                feedbackDiv.innerHTML = '<div style="color: #e74c3c; padding: 10px;">Please enter your diagnosis first.</div>';
+            if (!userDiagnosis) {
+                feedbackDiv.innerHTML = '<div class="feedback-card error"><h4>📝 Missing Input</h4><p>Please enter your diagnosis first.</p></div>';
                 return;
             }
             
-            // For central causes, provide educational feedback
-            if (currentCase.emgIndication === "NOT INDICATED") {
-                feedbackDiv.innerHTML = `
-                    <div style="background: #e74c3c; color: white; border-radius: 8px; padding: 20px; margin: 15px 0;">
-                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
-                        <p><strong>Key Learning Point:</strong> ${currentCase.explanation}</p>
-                        <p><strong>Educational Note:</strong> ${currentCase.educationalNote}</p>
-                    </div>
-                `;
-            } else {
-                feedbackDiv.innerHTML = `
-                    <div style="background: #27ae60; color: white; border-radius: 8px; padding: 20px; margin: 15px 0;">
-                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
+            // Simple matching to determine if user got it right or wrong
+            const correctDiagnosis = currentCase.correctDiagnosis.toLowerCase();
+            const userLower = userDiagnosis.toLowerCase();
+            const isCorrect = correctDiagnosis.includes(userLower) || userLower.includes(correctDiagnosis) ||
+                             correctDiagnosis.split(' ').some(word => userLower.includes(word) && word.length > 3);
+            
+            let feedbackHTML = `
+                <div class="analysis-header">
+                    <h3>🎯 Final Diagnosis Review</h3>
+                    <p>Your diagnosis: "<em>${userDiagnosis}</em>"</p>
+                </div>
+            `;
+            
+            if (isCorrect) {
+                feedbackHTML += `
+                    <div class="feedback-card success">
+                        <h4>✅ Excellent! You got it right!</h4>
+                        <p><strong>Correct Diagnosis:</strong> ${currentCase.correctDiagnosis}</p>
                         <p><strong>Explanation:</strong> ${currentCase.explanation}</p>
                     </div>
                 `;
+            } else {
+                feedbackHTML += `
+                    <div class="feedback-card error">
+                        <h4>🤔 Not quite - let's review</h4>
+                        <p><strong>Your Answer:</strong> ${userDiagnosis}</p>
+                    </div>
+                    <div class="feedback-card info">
+                        <h4>🎯 Correct Diagnosis: ${currentCase.correctDiagnosis}</h4>
+                        <p><strong>Explanation:</strong> ${currentCase.explanation}</p>
+                        ${currentCase.educationalNote ? `<p><strong>Educational Note:</strong> ${currentCase.educationalNote}</p>` : ''}
+                    </div>
+                `;
             }
+            
+            // Special handling for EMG not indicated cases
+            if (currentCase.emgIndication === "NOT INDICATED") {
+                feedbackHTML += `
+                    <div class="feedback-card warning">
+                        <h4>⚠️ Important Clinical Point</h4>
+                        <p><strong>EMG/NCS was NOT indicated</strong> for this case because this represents upper motor neuron pathology.</p>
+                        <p>${currentCase.educationalNote || 'EMG/NCS studies evaluate the peripheral nervous system and would be normal in central lesions.'}</p>
+                    </div>
+                `;
+            }
+            
+            feedbackDiv.innerHTML = feedbackHTML;
         }
 
         // New streamlined interface functions
