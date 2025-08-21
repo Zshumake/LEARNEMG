@@ -5742,6 +5742,18 @@
                 return;
             }
             
+            // Check for insufficient input (too short to be meaningful)
+            if (userInput.trim().length < 3) {
+                feedbackDiv.innerHTML = `
+                    <div class="feedback-card warning">
+                        <h4>🤔 Need More Detail</h4>
+                        <p>Please provide more detailed input. Single letters or very short text cannot be properly analyzed.</p>
+                        <p><strong>Example:</strong> Try entering actual diagnoses like "carpal tunnel syndrome" or abbreviations like "CTS".</p>
+                    </div>
+                `;
+                return;
+            }
+            
             // Enhanced synonym dictionary for smart recognition
             const synonyms = {
                 'cts': ['carpal tunnel syndrome', 'carpal tunnel', 'median neuropathy at wrist'],
@@ -5762,37 +5774,48 @@
                 'stroke': ['cva', 'cerebrovascular accident', 'brain infarct', 'hemiplegia']
             };
             
-            // Smart matching function
+            // Smart matching function with proper minimum length requirements
             function isMatch(userText, diagnosis) {
                 const diagnosisLower = diagnosis.toLowerCase();
-                const userLower = userText.toLowerCase();
+                const userLower = userText.toLowerCase().trim();
                 
-                // Direct substring match
-                if (userLower.includes(diagnosisLower) || diagnosisLower.includes(userLower)) {
-                    return true;
+                // Minimum input length requirement - must be at least 3 characters
+                if (userLower.length < 3) {
+                    return false;
                 }
                 
-                // Check synonyms
-                for (const [key, values] of Object.entries(synonyms)) {
-                    if (userLower.includes(key)) {
-                        return values.some(synonym => diagnosisLower.includes(synonym));
-                    }
-                    if (diagnosisLower.includes(key)) {
-                        return values.some(synonym => userLower.includes(synonym));
-                    }
-                    if (values.some(synonym => userLower.includes(synonym) && diagnosisLower.includes(key))) {
+                // Direct substring match (only if user input is meaningful)
+                if (userLower.length >= 4) {
+                    if (diagnosisLower.includes(userLower)) {
                         return true;
                     }
                 }
                 
-                // Check individual keywords
-                const diagnosisWords = diagnosisLower.split(' ').filter(word => word.length > 3);
+                // Check synonyms (only with meaningful input)
+                for (const [key, values] of Object.entries(synonyms)) {
+                    if (key.length >= 3 && userLower.includes(key)) {
+                        return values.some(synonym => diagnosisLower.includes(synonym));
+                    }
+                    if (diagnosisLower.includes(key)) {
+                        return values.some(synonym => synonym.length >= 3 && userLower.includes(synonym));
+                    }
+                    if (values.some(synonym => synonym.length >= 3 && userLower.includes(synonym) && diagnosisLower.includes(key))) {
+                        return true;
+                    }
+                }
+                
+                // Check individual keywords (with stricter matching)
+                const diagnosisWords = diagnosisLower.split(' ').filter(word => word.length > 4);
                 const userWords = userLower.split(' ').filter(word => word.length > 3);
                 
+                // Require at least 4-character overlap for word matching
                 return diagnosisWords.some(diagWord => 
-                    userWords.some(userWord => 
-                        diagWord.includes(userWord) || userWord.includes(diagWord)
-                    )
+                    userWords.some(userWord => {
+                        if (userWord.length >= 4 && diagWord.length >= 4) {
+                            return diagWord.includes(userWord) || (userWord.length >= 5 && userWord.includes(diagWord));
+                        }
+                        return false;
+                    })
                 );
             }
             
