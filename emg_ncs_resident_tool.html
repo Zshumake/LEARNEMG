@@ -2193,6 +2193,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "intermediate",
                 correctDiagnosis: "Right L5 Radiculopathy",
                 explanation: "L5 radiculopathy with classic dorsiflexor weakness, sensory loss in L5 distribution, and EMG showing denervation in L5 myotomes with sparing of S1 muscles. Reduced peroneal motor amplitude reflects axonal loss from chronic root compression."
             },
@@ -2260,6 +2261,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "intermediate",
                 correctDiagnosis: "Right C7 Radiculopathy",
                 explanation: "C7 radiculopathy with classic triceps weakness, diminished triceps reflex, and middle finger sensory loss. EMG shows denervation in C7 myotomes including triceps and wrist/finger extensors, with sparing of C5, C6, C8, and T1 muscles."
             },
@@ -2328,6 +2330,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "difficult",
                 correctDiagnosis: "Right Brachial Plexopathy (Lower Trunk/Medial Cord Pattern)",
                 explanation: "Post-traumatic brachial plexopathy affecting primarily the lower trunk/medial cord, causing weakness in C8-T1 distribution with sparing of cervical paraspinals (distinguishing from root avulsion). Pattern of multiple nerve involvement localizes to plexus level."
             },
@@ -2401,6 +2404,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "intermediate",
                 correctDiagnosis: "Right S1 Radiculopathy",
                 explanation: "S1 radiculopathy with classic plantarflexor weakness, absent Achilles reflex, and lateral foot sensory loss. H-reflex absence is a sensitive early finding in S1 radiculopathy. EMG shows denervation in S1 myotomes with sparing of L5 muscles."
             },
@@ -2469,6 +2473,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "beginner",
                 correctDiagnosis: "Radial Neuropathy at Spiral Groove (Saturday Night Palsy)",
                 explanation: "Classic compression of radial nerve at spiral groove from prolonged pressure. Spares triceps and ECRL (innervated proximal to compression) but affects posterior interosseous nerve causing wrist and finger extensor weakness with sensory loss in superficial radial distribution."
             },
@@ -2542,6 +2547,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "beginner",
                 correctDiagnosis: "Common Peroneal Neuropathy at Fibular Head (Post-surgical)",
                 explanation: "Iatrogenic peroneal nerve injury at fibular head from surgical positioning or compression. Complete palsy affecting both deep (dorsiflexion) and superficial (eversion) peroneal nerves with sparing of tibial nerve function."
             },
@@ -2610,6 +2616,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "difficult",
                 correctDiagnosis: "Myasthenia Gravis (Generalized)",
                 explanation: "Classic presentation of myasthenia gravis with fatigable weakness, ptosis, and bulbar symptoms. Repetitive nerve stimulation shows decremental response characteristic of postsynaptic neuromuscular junction disorder. Single fiber EMG confirms transmission defect."
             },
@@ -2678,6 +2685,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "intermediate",
                 correctDiagnosis: "Tarsal Tunnel Syndrome (Tibial Neuropathy at Ankle)",
                 explanation: "Compression of tibial nerve and its branches (medial and lateral plantar nerves) at the tarsal tunnel. Prolonged standing and diabetes are risk factors. Studies show distal tibial nerve involvement with sparing of proximal branches."
             },
@@ -2736,6 +2744,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "beginner",
                 correctDiagnosis: "Mild Carpal Tunnel Syndrome (Pregnancy-related)",
                 explanation: "Early/mild CTS with purely sensory findings. Pregnancy-related fluid retention commonly causes reversible median nerve compression. Palm-wrist comparison study is sensitive for early CTS when routine sensory studies are borderline."
             },
@@ -2804,6 +2813,7 @@
                 ],
                 requiresEMG: true,
                 emgIndication: "INDICATED",
+                difficulty: "beginner",
                 correctDiagnosis: "Severe Carpal Tunnel Syndrome with Thenar Atrophy",
                 explanation: "End-stage CTS with severe motor and sensory involvement, thenar atrophy, and poor prognosis for recovery. Diabetes is a risk factor for more severe neuropathy. Surgical decompression urgent to prevent further deterioration."
             },
@@ -3352,6 +3362,321 @@
                 emgIndication: "INDICATED",
                 correctDiagnosis: "Inclusion Body Myositis",
                 explanation: "Progressive inflammatory myopathy with characteristic asymmetric pattern affecting both proximal and distal muscles. EMG shows mixed myopathic and neurogenic features with spontaneous activity, distinguishing it from other inflammatory myopathies."
+            },
+            'pronatorteres': {
+                title: "Forearm Pain with Hand Numbness",
+                presentation: {
+                    age: 42,
+                    gender: "Female",
+                    occupation: "Tennis Instructor",
+                    chiefComplaint: "6-month history of forearm pain and hand numbness that worsens with activity",
+                    history: "Gradual onset pain in proximal forearm with numbness in thumb, index, and middle fingers. Pain and numbness worsen with repetitive forearm pronation during tennis instruction. Unlike typical carpal tunnel, symptoms present during day with activity rather than at night. No weakness with pinching.",
+                    pmh: "Tennis elbow 2 years ago, resolved",
+                    medications: "Ibuprofen PRN"
+                },
+                physicalExam: {
+                    inspection: "No visible atrophy or deformity",
+                    palpation: "Tenderness over pronator teres muscle, no carpal tunnel tenderness",
+                    rom: "Full ROM but pain with resisted pronation",
+                    strength: "5/5 strength throughout including normal pinch strength",
+                    sensation: "Mild numbness in median distribution, including thenar eminence",
+                    reflexes: "2+ and symmetric throughout",
+                    specialTests: "Negative Phalen's and Tinel's at wrist. Positive pronator teres compression test."
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Mildly prolonged distal latency (4.2ms), normal amplitude",
+                        interpretation: "Mild motor median neuropathy"
+                    },
+                    {
+                        name: "Median Sensory (digit 2)",
+                        result: "abnormal",
+                        findings: "Prolonged latency, reduced amplitude compared to ulnar",
+                        interpretation: "Sensory median neuropathy"
+                    },
+                    {
+                        name: "Median Sensory (palm-wrist)",
+                        result: "normal",
+                        findings: "Normal latency difference (<0.4ms)",
+                        interpretation: "No carpal tunnel syndrome"
+                    },
+                    {
+                        name: "Palmar cutaneous sensory",
+                        result: "abnormal",
+                        findings: "Reduced amplitude",
+                        interpretation: "Proximal to carpal tunnel (palmar cutaneous branches above wrist)"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Mild denervation changes",
+                        interpretation: "Median nerve involvement"
+                    },
+                    {
+                        muscle: "Flexor pollicis longus",
+                        findings: "Normal",
+                        interpretation: "AIN spared (branches before pronator teres)"
+                    },
+                    {
+                        muscle: "Pronator teres",
+                        findings: "Normal",
+                        interpretation: "Compression distal to muscle innervation"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Pronator Teres Syndrome (Proximal Median Neuropathy)",
+                explanation: "Median nerve compression at pronator teres level. Key features: activity-related symptoms (vs nighttime CTS), thenar eminence numbness (palmar cutaneous involved), normal palm-wrist studies. Less common than CTS, requires high index of suspicion."
+            },
+            'sci': {
+                title: "Acute Paralysis After Diving Accident",
+                presentation: {
+                    age: 22,
+                    gender: "Male",
+                    occupation: "College Student",
+                    chiefComplaint: "Complete paralysis below chest level after diving accident 2 weeks ago",
+                    history: "Dove into shallow water 2 weeks ago, struck head on bottom. Immediate complete paralysis below nipple line. No sensation or movement in legs. Some arm movement preserved but hands weak. Bladder and bowel dysfunction. MRI shows complete C6 spinal cord injury.",
+                    pmh: "Previously healthy athlete",
+                    medications: "Methylprednisolone, catheter care"
+                },
+                physicalExam: {
+                    inspection: "Wheelchair-bound, complete flaccid paralysis below C6 level",
+                    palpation: "No pain sensation below injury level",
+                    rom: "No active movement below C6 dermatome",
+                    strength: "Biceps 4/5, triceps 0/5, complete paralysis below C7",
+                    sensation: "Complete sensory loss below C6 dermatome",
+                    reflexes: "Absent reflexes below injury, hyperreflexic biceps",
+                    specialTests: "Positive Babinski sign, spasticity in arms"
+                },
+                ncsStudies: [],
+                emgStudies: [],
+                requiresEMG: false,
+                emgIndication: "NOT INDICATED",
+                difficulty: "beginner",
+                correctDiagnosis: "Complete C6 Spinal Cord Injury - EMG NOT INDICATED",
+                explanation: "Complete spinal cord injury with clear anatomical level and imaging confirmation. EMG/NCS would be normal below the lesion as the peripheral nervous system is intact. Clinical picture and imaging provide definitive diagnosis.",
+                educationalNote: "EMG/NCS studies evaluate the peripheral nervous system. In complete spinal cord injuries, the peripheral nerves, muscles, and neuromuscular junctions are intact. EMG would show normal nerve conduction and muscle responses, providing no additional diagnostic information beyond clinical examination and imaging."
+            },
+            'femoraltrauma': {
+                title: "Hip Pain and Leg Weakness After MVA",
+                presentation: {
+                    age: 35,
+                    gender: "Male",
+                    occupation: "Construction Worker",
+                    chiefComplaint: "Right leg weakness and anterior thigh numbness 8 weeks after motor vehicle accident",
+                    history: "High-speed MVA 8 weeks ago with pelvic fractures and retroperitoneal hematoma. After initial trauma stabilization, developed right leg weakness and numbness. Cannot extend knee or flex hip effectively. Numbness over anterior thigh and medial leg. Initial concern was for back injury but lumbar spine imaging normal.",
+                    pmh: "No significant medical history before accident",
+                    medications: "Oxycodone, physical therapy"
+                },
+                physicalExam: {
+                    inspection: "Right quadriceps atrophy, antalgic gait with assistive device",
+                    palpation: "Well-healed abdominal surgical scars, no palpable masses",
+                    rom: "Limited hip flexion and knee extension",
+                    strength: "Hip flexors 2/5, quadriceps 1/5, hip adductors 3/5 on right",
+                    sensation: "Complete sensory loss over anterior thigh and medial leg",
+                    reflexes: "Absent patellar reflex on right (0+), normal Achilles",
+                    specialTests: "Positive femoral stretch test, negative straight leg raise"
+                },
+                ncsStudies: [
+                    {
+                        name: "Femoral Motor (Quadriceps)",
+                        result: "abnormal",
+                        findings: "No motor response elicitable",
+                        interpretation: "Complete femoral nerve palsy"
+                    },
+                    {
+                        name: "Saphenous Sensory",
+                        result: "abnormal",
+                        findings: "Absent sensory response",
+                        interpretation: "Complete sensory loss in femoral distribution"
+                    },
+                    {
+                        name: "Lateral Femoral Cutaneous",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Lateral femoral cutaneous nerve involvement"
+                    },
+                    {
+                        name: "Obturator nerve testing",
+                        result: "abnormal",
+                        findings: "Reduced response to adductor muscles",
+                        interpretation: "Partial obturator nerve involvement"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Lumbar paraspinals",
+                        findings: "Normal",
+                        interpretation: "Root level spared"
+                    },
+                    {
+                        muscle: "Iliopsoas",
+                        findings: "No voluntary activity, denervation changes",
+                        interpretation: "Complete femoral nerve palsy"
+                    },
+                    {
+                        muscle: "Quadriceps",
+                        findings: "No voluntary activity, active denervation",
+                        interpretation: "Complete femoral nerve lesion"
+                    },
+                    {
+                        muscle: "Adductor longus",
+                        findings: "Denervation changes",
+                        interpretation: "Partial obturator nerve involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Traumatic Femoral Nerve Palsy with Partial Obturator Nerve Injury",
+                explanation: "Complete femoral nerve palsy from retroperitoneal hematoma or direct trauma during pelvic fracture. Compression/stretching of lumbar plexus branches. Pattern localizes to plexus level (spared paraspinals) rather than root avulsion."
+            },
+            'sciaticneoplasm': {
+                title: "Progressive Leg Pain and Weakness",
+                presentation: {
+                    age: 58,
+                    gender: "Female",
+                    occupation: "Accountant",
+                    chiefComplaint: "6-month history of progressive right leg pain, weakness, and numbness",
+                    history: "Insidious onset deep, aching pain in right buttock radiating down entire leg. Progressive weakness in foot dorsiflexion and plantarflexion. Numbness in lateral leg and foot. Pain constant, not positional. Weight loss of 15 pounds. Night pain disrupting sleep. No back pain or trauma.",
+                    pmh: "Breast cancer 8 years ago, treated with mastectomy and chemotherapy",
+                    medications: "Gabapentin, oxycodone"
+                },
+                physicalExam: {
+                    inspection: "Right leg atrophy, foot drop gait pattern",
+                    palpation: "Deep tenderness in right buttock, no discrete mass palpable",
+                    rom: "Limited by weakness and pain",
+                    strength: "Complete foot drop (0/5 dorsiflexion), plantarflexion 2/5, hip weakness 3/5",
+                    sensation: "Decreased sensation in entire sciatic distribution (lateral leg, dorsal/plantar foot)",
+                    reflexes: "Absent Achilles reflex, absent patellar reflex on right",
+                    specialTests: "Negative straight leg raise (too painful), negative Spurling's test"
+                },
+                ncsStudies: [
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "No response elicitable",
+                        interpretation: "Complete deep peroneal nerve palsy"
+                    },
+                    {
+                        name: "Tibial Motor (AH)",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude (2.1 mV)",
+                        interpretation: "Severe tibial nerve dysfunction"
+                    },
+                    {
+                        name: "Superficial Peroneal Sensory",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Complete superficial peroneal nerve loss"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Complete sural nerve loss"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Lumbar paraspinals",
+                        findings: "Normal",
+                        interpretation: "Root level spared"
+                    },
+                    {
+                        muscle: "Gluteus maximus",
+                        findings: "Severe denervation, no voluntary activity",
+                        interpretation: "Sciatic nerve involvement above knee"
+                    },
+                    {
+                        muscle: "Biceps femoris (short head)",
+                        findings: "Complete denervation",
+                        interpretation: "Peroneal division of sciatic nerve"
+                    },
+                    {
+                        muscle: "Gastrocnemius",
+                        findings: "Severe denervation changes",
+                        interpretation: "Tibial division of sciatic nerve"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Sciatic Neuropathy Secondary to Neoplasm (Metastatic Disease)",
+                explanation: "Complete sciatic nerve palsy from tumor compression/infiltration in pelvis. History of breast cancer, weight loss, and progressive nature suggest metastatic disease. EMG localizes to sciatic nerve level with spared paraspinals, distinguishing from root pathology."
+            },
+            'ulnarwristcompression': {
+                title: "Hand Weakness After Wrist Injury",
+                presentation: {
+                    age: 29,
+                    gender: "Male",
+                    occupation: "Rock Climber",
+                    chiefComplaint: "Hand weakness and numbness after fall while rock climbing 4 weeks ago",
+                    history: "Fell while climbing 4 weeks ago, landed on outstretched hands. Initially focused on wrist pain, but developed progressive weakness and numbness in ring and little fingers. Weakness gripping and difficulty with fine motor tasks. Uses wrist guards for climbing which may compress ulnar nerve at wrist.",
+                    pmh: "Previous wrist injuries from climbing",
+                    medications: "Ibuprofen, wrist bracing"
+                },
+                physicalExam: {
+                    inspection: "Mild hypothenar atrophy, well-healed abrasions on palm",
+                    palpation: "Tenderness over Guyon's canal and pisiform bone",
+                    rom: "Full ROM at wrist and fingers",
+                    strength: "Hypothenar muscles 3/5, interossei normal (5/5), FCU normal",
+                    sensation: "Decreased sensation in little finger and ulnar half ring finger",
+                    reflexes: "Normal throughout",
+                    specialTests: "Positive Tinel's at Guyon's canal, negative at elbow"
+                },
+                ncsStudies: [
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Prolonged distal latency (4.8ms), reduced amplitude",
+                        interpretation: "Deep motor branch ulnar neuropathy at wrist"
+                    },
+                    {
+                        name: "Ulnar Motor (FDI)",
+                        result: "normal",
+                        findings: "Normal latency and amplitude",
+                        interpretation: "Deep motor branch to interossei spared"
+                    },
+                    {
+                        name: "Ulnar Sensory (digit 5)",
+                        result: "abnormal",
+                        findings: "Prolonged latency, reduced amplitude",
+                        interpretation: "Superficial sensory branch involvement"
+                    },
+                    {
+                        name: "Dorsal ulnar cutaneous",
+                        result: "normal",
+                        findings: "Normal response",
+                        interpretation: "Branches proximal to Guyon's canal spared"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor digiti minimi",
+                        findings: "Denervation changes with reduced recruitment",
+                        interpretation: "Deep motor branch involvement"
+                    },
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Normal",
+                        interpretation: "Interossei branch spares (branches proximally in canal)"
+                    },
+                    {
+                        muscle: "Flexor carpi ulnaris",
+                        findings: "Normal",
+                        interpretation: "Proximal ulnar nerve intact"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Ulnar Neuropathy at Guyon's Canal - Type I (Mixed Motor and Sensory)",
+                explanation: "Ulnar nerve compression at Guyon's canal affecting both superficial sensory and deep motor branches to hypothenar muscles. Spares interossei (branch more proximally) and dorsal ulnar cutaneous nerve (branches above wrist). Classic pattern from trauma or chronic pressure."
             }
         };
 
