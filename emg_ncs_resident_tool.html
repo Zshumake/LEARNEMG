@@ -448,6 +448,15 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-left: 5px solid #3498db;
         }
+
+        .study-card.advanced {
+            border-left: 5px solid #e67e22;
+            background: linear-gradient(135deg, #fff 0%, #fef8f3 100%);
+        }
+
+        .study-card.advanced h4 {
+            color: #d35400;
+        }
         
         .study-card h4 {
             color: #2c3e50;
@@ -619,7 +628,7 @@
         <div class="main-content">
             <nav class="tab-navigation">
                 <button class="tab-button active" onclick="showTab(0)">Interactive Case Studies</button>
-                <button class="tab-button" onclick="showTab(1)">Core NCS Studies</button>
+                <button class="tab-button" onclick="showTab(1)">NCS Reference</button>
                 <button class="tab-button" onclick="showTab(2)">EMG Instruments</button>
                 <button class="tab-button" onclick="showTab(3)">EMG Terms</button>
                 <button class="tab-button" onclick="showTab(4)">Nerve Classifications</button>
@@ -770,9 +779,9 @@
                 </div>
             </section>
             
-            <!-- Core NCS Studies Tab -->
+            <!-- NCS Reference Tab -->
             <section id="tab-1" class="tab-content">
-                <h2 class="section-title">Core Nerve Conduction Studies</h2>
+                <h2 class="section-title">NCS Reference Guide</h2>
                 
                 <div class="alert-info">
                     <strong>Essential Studies for Residents:</strong> Master these fundamental NCS before advancing to complex studies. Focus on proper technique and normal value interpretation.
@@ -1451,6 +1460,191 @@
                         <strong>4. Clinical Correlation:</strong> Always correlate EDX findings with clinical presentation<br>
                         <strong>5. Sensory Studies:</strong> Normal SNAPs with clinical sensory loss = proximal to DRG<br>
                         <strong>6. Motor vs Sensory:</strong> Different patterns help localize lesion level
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Additional Upper Extremity NCS Studies (Preston & Shapiro)</h3>
+                    <div class="alert-warning">
+                        <strong>Advanced Studies:</strong> Additional techniques for complex cases. Master essential studies first.
+                    </div>
+                    
+                    <div class="study-grid">
+                        <div class="study-card advanced">
+                            <h4>Median Sensory - Ring Finger (Mixed)</h4>
+                            <p><strong>Recording:</strong> Ring finger (digit 4)</p>
+                            <p><strong>Stimulation:</strong> Wrist, 14 cm proximal</p>
+                            <p><strong>Purpose:</strong> Compares median vs ulnar innervation to ring finger</p>
+                            <p><strong>Normal:</strong> Median amplitude usually smaller than ulnar</p>
+                            <p><strong>Pathological significance:</strong> Median > ulnar suggests ulnar neuropathy</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Median Sensory - Thumb</h4>
+                            <p><strong>Recording:</strong> Thumb (digit 1)</p>
+                            <p><strong>Stimulation:</strong> Wrist, 10 cm proximal</p>
+                            <p><strong>Purpose:</strong> Pure median sensory territory</p>
+                            <p><strong>Technique:</strong> Bar electrodes on thumb</p>
+                            <p><strong>Clinical use:</strong> Carpal tunnel syndrome evaluation</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Median Motor - 2nd Lumbrical</h4>
+                            <p><strong>Recording:</strong> 2nd lumbrical muscle</p>
+                            <p><strong>Stimulation:</strong> Wrist</p>
+                            <p><strong>Electrode placement:</strong> Between 2nd and 3rd metacarpals</p>
+                            <p><strong>Purpose:</strong> Distal median motor function</p>
+                            <p><strong>Advantage:</strong> No ulnar innervation contamination</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Ulnar Sensory - Little Finger</h4>
+                            <p><strong>Recording:</strong> Little finger (digit 5)</p>
+                            <p><strong>Stimulation:</strong> Wrist, 14 cm proximal</p>
+                            <p><strong>Landmark:</strong> Just medial to FCU tendon</p>
+                            <p><strong>Purpose:</strong> Pure ulnar sensory territory</p>
+                            <p><strong>Normal values:</strong> Peak latency <3.7 ms, amplitude >6 μV</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Ulnar Motor - First Dorsal Interosseous</h4>
+                            <p><strong>Recording:</strong> First dorsal interosseous</p>
+                            <p><strong>Stimulation:</strong> Wrist, below elbow, above elbow</p>
+                            <p><strong>Electrode placement:</strong> Between thumb and index metacarpals</p>
+                            <p><strong>Purpose:</strong> Deep branch ulnar motor function</p>
+                            <p><strong>Clinical use:</strong> Ulnar neuropathy at Guyon's canal</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Radial Sensory - Superficial Branch</h4>
+                            <p><strong>Recording:</strong> Anatomical snuffbox</p>
+                            <p><strong>Stimulation:</strong> Forearm, 10-12 cm proximal</p>
+                            <p><strong>Landmark:</strong> Lateral border of radius</p>
+                            <p><strong>Purpose:</strong> Superficial radial nerve function</p>
+                            <p><strong>Clinical use:</strong> Radial tunnel syndrome, Saturday night palsy</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Radial Motor - Extensor Indicis</h4>
+                            <p><strong>Recording:</strong> Extensor indicis muscle</p>
+                            <p><strong>Stimulation:</strong> Posterior interosseous nerve at forearm</p>
+                            <p><strong>Electrode placement:</strong> Dorsal forearm, ulnar to EPL tendon</p>
+                            <p><strong>Purpose:</strong> Posterior interosseous nerve function</p>
+                            <p><strong>Clinical use:</strong> Radial tunnel syndrome</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Lateral Antebrachial Cutaneous</h4>
+                            <p><strong>Recording:</strong> Lateral forearm</p>
+                            <p><strong>Stimulation:</strong> Lateral elbow, 14 cm proximal</p>
+                            <p><strong>Purpose:</strong> Musculocutaneous nerve sensory branch</p>
+                            <p><strong>Clinical use:</strong> Lateral cord plexopathy</p>
+                            <p><strong>Technique:</strong> Patient supination, stimulate lateral to biceps</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Medial Antebrachial Cutaneous</h4>
+                            <p><strong>Recording:</strong> Medial forearm</p>
+                            <p><strong>Stimulation:</strong> Medial elbow, 14 cm proximal</p>
+                            <p><strong>Purpose:</strong> Medial cord function</p>
+                            <p><strong>Clinical use:</strong> Medial cord plexopathy, thoracic outlet syndrome</p>
+                            <p><strong>Normal:</strong> Often small amplitude, difficult to obtain</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Dorsal Ulnar Cutaneous</h4>
+                            <p><strong>Recording:</strong> Dorsal hand between 4th and 5th metacarpals</p>
+                            <p><strong>Stimulation:</strong> Forearm, 14 cm proximal</p>
+                            <p><strong>Purpose:</strong> Ulnar nerve branch proximal to Guyon's canal</p>
+                            <p><strong>Clinical use:</strong> Distinguish Guyon's canal vs. forearm ulnar lesions</p>
+                            <p><strong>Advantage:</strong> Spares Guyon's canal lesions</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Median-Ulnar Comparison Studies</h4>
+                            <p><strong>Palmar mixed (palm-wrist):</strong> 8 cm segment</p>
+                            <p><strong>Ring finger comparison:</strong> Median vs ulnar to digit 4</p>
+                            <p><strong>Thumb-little finger:</strong> Median digit 1 vs ulnar digit 5</p>
+                            <p><strong>Purpose:</strong> Increase sensitivity for carpal tunnel syndrome</p>
+                            <p><strong>Normal:</strong> <0.4 ms difference median-ulnar latencies</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Axillary Motor</h4>
+                            <p><strong>Recording:</strong> Deltoid muscle (middle portion)</p>
+                            <p><strong>Stimulation:</strong> Erb's point</p>
+                            <p><strong>Electrode placement:</strong> Lateral deltoid, 10-12 cm from acromion</p>
+                            <p><strong>Purpose:</strong> Posterior cord/axillary nerve function</p>
+                            <p><strong>Clinical use:</strong> Shoulder trauma, quadrilateral space syndrome</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Suprascapular Motor</h4>
+                            <p><strong>Recording:</strong> Supraspinatus or infraspinatus</p>
+                            <p><strong>Stimulation:</strong> Suprascapular notch</p>
+                            <p><strong>Purpose:</strong> Upper trunk brachial plexus</p>
+                            <p><strong>Clinical use:</strong> Erb's palsy, suprascapular nerve entrapment</p>
+                            <p><strong>Technique:</strong> Needle electrodes often required</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Long Thoracic Motor</h4>
+                            <p><strong>Recording:</strong> Serratus anterior</p>
+                            <p><strong>Stimulation:</strong> Erb's point</p>
+                            <p><strong>Purpose:</strong> Long thoracic nerve function</p>
+                            <p><strong>Clinical use:</strong> Winged scapula, neuralgic amyotrophy</p>
+                            <p><strong>Technique:</strong> Patient in lateral position</p>
+                        </div>
+
+                        <div class="study-card advanced">
+                            <h4>Spinal Accessory Motor</h4>
+                            <p><strong>Recording:</strong> Upper trapezius</p>
+                            <p><strong>Stimulation:</strong> Posterior border SCM muscle</p>
+                            <p><strong>Purpose:</strong> CN XI function</p>
+                            <p><strong>Clinical use:</strong> Neck surgery complications, trauma</p>
+                            <p><strong>Normal:</strong> Bilateral comparison important</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Technical Considerations (Preston & Shapiro)</h3>
+                        <div class="technique-details">
+                            <h4>Electrode Placement Principles:</h4>
+                            <ul>
+                                <li><strong>Active (G1):</strong> Over muscle belly for motor, nerve for sensory</li>
+                                <li><strong>Reference (G2):</strong> Over tendon for motor, distal joint for sensory</li>
+                                <li><strong>Ground:</strong> Between stimulator and recording electrodes</li>
+                                <li><strong>Distance:</strong> Maintain consistent distances for comparison</li>
+                            </ul>
+
+                            <h4>Stimulation Techniques:</h4>
+                            <ul>
+                                <li><strong>Intensity:</strong> Supramaximal (20% above maximum response)</li>
+                                <li><strong>Duration:</strong> 0.1-1.0 ms pulse width</li>
+                                <li><strong>Cathode placement:</strong> Distal for motor studies</li>
+                                <li><strong>Volume conduction:</strong> Consider co-stimulation of nearby nerves</li>
+                            </ul>
+
+                            <h4>Normal Value Adjustments:</h4>
+                            <ul>
+                                <li><strong>Temperature:</strong> Correct to 32°C surface temperature</li>
+                                <li><strong>Age:</strong> Decrease velocity ~1 m/s per decade after age 30</li>
+                                <li><strong>Height:</strong> Longer limbs have slower velocities</li>
+                                <li><strong>Side-to-side:</strong> <10% amplitude difference, <10% latency difference</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Clinical Applications</h3>
+                        <div class="alert-info">
+                            <strong>When to Use Advanced Studies:</strong><br><br>
+                            <strong>1. Comparison Studies:</strong> When routine studies are borderline<br>
+                            <strong>2. Anatomical Variants:</strong> Martin-Gruber, Riche-Cannieu anastomoses<br>
+                            <strong>3. Localization:</strong> Precise lesion localization needed<br>
+                            <strong>4. Plexopathy Evaluation:</strong> Upper vs middle vs lower trunk involvement<br>
+                            <strong>5. Entrapment Syndromes:</strong> Specific nerve segment evaluation
+                        </div>
                     </div>
                 </div>
             </section>
