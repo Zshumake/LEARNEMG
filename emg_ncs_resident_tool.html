@@ -1478,6 +1478,7 @@
         let currentCase = null;
         let currentStep = 1;
         let userDifferential = '';
+        let currentDifficultyFilter = 'all';
 
         // Comprehensive case database
         const caseDatabase = {
@@ -3679,6 +3680,320 @@
                 difficulty: "intermediate",
                 correctDiagnosis: "Ulnar Neuropathy at Guyon's Canal - Type I (Mixed Motor and Sensory)",
                 explanation: "Ulnar nerve compression at Guyon's canal affecting both superficial sensory and deep motor branches to hypothenar muscles. Spares interossei (branch more proximally) and dorsal ulnar cutaneous nerve (branches above wrist). Classic pattern from trauma or chronic pressure."
+            },
+            'fibromyalgia': {
+                title: "Widespread Pain and Fatigue",
+                presentation: {
+                    age: 45,
+                    gender: "Female",
+                    occupation: "Office Manager",
+                    chiefComplaint: "6-month history of widespread muscle pain, fatigue, and tingling in hands",
+                    history: "Gradual onset of widespread muscle and joint pain, fatigue, and sleep disturbances. Reports tingling in hands that led to EMG referral. No weakness or muscle atrophy. Pain worse with stress and weather changes. Multiple tender points throughout body. Previous normal labs including ESR, CRP, ANA.",
+                    pmh: "Depression, irritable bowel syndrome",
+                    medications: "Sertraline, gabapentin"
+                },
+                physicalExam: {
+                    inspection: "No visible atrophy or fasciculations",
+                    palpation: "Multiple tender points at neck, shoulders, back, hips",
+                    rom: "Full ROM but limited by pain",
+                    strength: "5/5 strength throughout (limited by effort due to pain)",
+                    sensation: "Normal objective sensation, subjective numbness in hands",
+                    reflexes: "2+ and symmetric throughout",
+                    specialTests: "Positive tender points (>11/18), negative Tinel's/Phalen's"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "normal",
+                        findings: "Normal distal latency and amplitude",
+                        interpretation: "No median neuropathy"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "normal",
+                        findings: "Normal parameters throughout",
+                        interpretation: "No ulnar neuropathy"
+                    },
+                    {
+                        name: "All sensory studies",
+                        result: "normal",
+                        findings: "Normal amplitudes and latencies",
+                        interpretation: "No peripheral neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Multiple muscles sampled",
+                        findings: "Normal spontaneous activity, normal motor units",
+                        interpretation: "No evidence of myopathy or neuropathy"
+                    }
+                ],
+                requiresEMG: false,
+                emgIndication: "NOT INDICATED",
+                difficulty: "beginner",
+                correctDiagnosis: "Fibromyalgia - EMG NOT INDICATED",
+                explanation: "Fibromyalgia is a central pain disorder with normal peripheral nervous system. EMG/NCS are normal and not indicated unless there are objective neurological findings. Subjective sensory symptoms without objective deficits don't warrant electrodiagnostic studies.",
+                educationalNote: "EMG/NCS should only be performed when there are objective neurological findings (weakness, atrophy, reflex changes, objective sensory loss). Subjective pain and fatigue without focal neurological deficits are not indications for electrodiagnostic testing."
+            },
+            'charcotmarietooth': {
+                title: "Progressive Foot Deformity and Weakness",
+                presentation: {
+                    age: 32,
+                    gender: "Male",
+                    occupation: "Software Engineer",
+                    chiefComplaint: "Lifelong foot problems with recent worsening weakness and frequent falls",
+                    history: "Born with 'club feet' requiring braces as child. Progressive weakness in feet and legs over past 5 years. Frequent ankle sprains and falls. Family history of similar problems in father and paternal grandfather. High-arched feet and difficulty finding shoes that fit.",
+                    pmh: "Pes cavus since childhood, multiple ankle sprains",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Bilateral pes cavus, hammer toes, distal leg atrophy",
+                    palpation: "Atrophic calf muscles, normal proximal muscles",
+                    rom: "Limited ankle dorsiflexion",
+                    strength: "Distal weakness: dorsiflexion 3/5, plantarflexion 4/5. Proximal muscles normal.",
+                    sensation: "Decreased vibration and position sense in feet",
+                    reflexes: "Absent Achilles reflexes, diminished patellar reflexes",
+                    specialTests: "Positive Romberg sign, high-arched feet"
+                },
+                ncsStudies: [
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Markedly reduced amplitude (0.5 mV), slow conduction velocity (25 m/s)",
+                        interpretation: "Severe demyelinating neuropathy"
+                    },
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude, slow conduction velocity (35 m/s)",
+                        interpretation: "Demyelinating neuropathy affecting arms"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Severe sensory neuropathy"
+                    },
+                    {
+                        name: "Median Sensory",
+                        result: "abnormal",
+                        findings: "Reduced amplitude, slow conduction velocity",
+                        interpretation: "Demyelinating sensory neuropathy"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Tibialis anterior",
+                        findings: "Chronic denervation with large polyphasic motor units",
+                        interpretation: "Chronic neuropathy with reinnervation"
+                    },
+                    {
+                        muscle: "Gastrocnemius",
+                        findings: "Severe denervation, poor recruitment",
+                        interpretation: "Advanced neuropathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "intermediate",
+                correctDiagnosis: "Charcot-Marie-Tooth Disease (Hereditary Neuropathy)",
+                explanation: "Hereditary demyelinating neuropathy with classic distal weakness, pes cavus, and family history. Uniform slowing of conduction velocities throughout suggests demyelinating CMT (likely CMT1). Genetic testing would confirm specific subtype."
+            },
+            'multifocalmotorneuropathy': {
+                title: "Asymmetric Hand and Arm Weakness",
+                presentation: {
+                    age: 48,
+                    gender: "Male",
+                    occupation: "Electrician",
+                    chiefComplaint: "2-year history of progressive asymmetric weakness in hands and arms",
+                    history: "Gradual onset weakness starting in right hand, now affecting left hand and right arm. Weakness is patchy - some muscles weak while adjacent ones normal. No sensory symptoms. No fasciculations visible. Weakness interferes with work requiring fine motor control.",
+                    pmh: "No significant medical history",
+                    medications: "None"
+                },
+                physicalExam: {
+                    inspection: "Asymmetric muscle atrophy in hands and forearms",
+                    palpation: "Atrophic muscles without tenderness",
+                    rom: "Full ROM where strength permits",
+                    strength: "Patchy weakness: FDI 2/5 right, normal left. APB 3/5 right, 4/5 left. Triceps normal bilaterally.",
+                    sensation: "Normal throughout",
+                    reflexes: "Normal throughout",
+                    specialTests: "No fasciculations, no upper motor neuron signs"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Conduction block: 60% amplitude drop from forearm to wrist",
+                        interpretation: "Focal conduction block in median nerve"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Conduction block across elbow, prolonged distal latency",
+                        interpretation: "Multifocal involvement of ulnar nerve"
+                    },
+                    {
+                        name: "All sensory studies",
+                        result: "normal",
+                        findings: "Normal amplitudes and latencies",
+                        interpretation: "No sensory involvement"
+                    },
+                    {
+                        name: "Anti-GM1 antibodies",
+                        result: "positive",
+                        findings: "Elevated anti-GM1 ganglioside antibodies",
+                        interpretation: "Supports MMN diagnosis"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Abductor pollicis brevis",
+                        findings: "Chronic denervation with large motor units",
+                        interpretation: "Chronic motor neuropathy"
+                    },
+                    {
+                        muscle: "First dorsal interosseous",
+                        findings: "Active denervation, reduced recruitment",
+                        interpretation: "Progressive motor neuropathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "difficult",
+                correctDiagnosis: "Multifocal Motor Neuropathy (MMN)",
+                explanation: "Rare immune-mediated motor neuropathy with conduction blocks at non-entrapment sites. Key features: asymmetric pure motor involvement, normal sensory studies, conduction blocks, and anti-GM1 antibodies. Responds to immunotherapy unlike ALS."
+            },
+            'criticalillnesspolyneuropathy': {
+                title: "Weakness After Prolonged ICU Stay",
+                presentation: {
+                    age: 55,
+                    gender: "Female",
+                    occupation: "Nurse",
+                    chiefComplaint: "Severe weakness in all extremities after 3-week ICU stay for sepsis",
+                    history: "Admitted 6 weeks ago with severe pneumonia and sepsis, required mechanical ventilation for 3 weeks. Multiple organ failure with prolonged use of steroids and neuromuscular blocking agents. When sedation lifted, found to have severe weakness in all extremities. Unable to lift arms or legs against gravity.",
+                    pmh: "Diabetes mellitus, hypertension",
+                    medications: "Multiple ICU medications, now weaning steroids"
+                },
+                physicalExam: {
+                    inspection: "Generalized muscle atrophy, recently extubated",
+                    palpation: "Diffuse muscle atrophy without specific tenderness",
+                    rom: "Full passive ROM, limited active movement",
+                    strength: "Proximal and distal weakness 2-3/5 throughout all extremities",
+                    sensation: "Decreased sensation in stocking-glove distribution",
+                    reflexes: "Diminished to absent throughout (1+ or absent)",
+                    specialTests: "Difficulty weaning from ventilator due to diaphragm weakness"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Markedly reduced amplitude (1.8 mV), normal conduction velocity",
+                        interpretation: "Severe axonal motor neuropathy"
+                    },
+                    {
+                        name: "Peroneal Motor (EDB)",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude (0.6 mV)",
+                        interpretation: "Severe axonal neuropathy"
+                    },
+                    {
+                        name: "Median Sensory",
+                        result: "abnormal",
+                        findings: "Severely reduced amplitude",
+                        interpretation: "Axonal sensory neuropathy"
+                    },
+                    {
+                        name: "Sural Sensory",
+                        result: "abnormal",
+                        findings: "Absent response",
+                        interpretation: "Severe sensory axonal loss"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Fibrillations, positive sharp waves, reduced recruitment",
+                        interpretation: "Acute denervation"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Mixed myopathic and neuropathic changes",
+                        interpretation: "Critical illness neuromyopathy"
+                    },
+                    {
+                        muscle: "Tibialis anterior",
+                        findings: "Severe denervation changes",
+                        interpretation: "Axonal neuropathy"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "difficult",
+                correctDiagnosis: "Critical Illness Polyneuropathy/Myopathy",
+                explanation: "Acquired condition in critically ill patients, often with sepsis, prolonged mechanical ventilation, and multiple organ failure. Combination of axonal neuropathy and myopathy. Recovery is variable and often incomplete."
+            },
+            'spinalmusculatrophy': {
+                title: "Progressive Weakness Since Childhood",
+                presentation: {
+                    age: 28,
+                    gender: "Male",
+                    occupation: "Teacher (uses wheelchair)",
+                    chiefComplaint: "Lifelong progressive weakness, now with new concerns about swallowing",
+                    history: "Born with muscle weakness, delayed motor milestones. Progressive weakness throughout childhood requiring wheelchair by age 12. Recent development of difficulty swallowing and choking on liquids. Family history of similar condition in younger brother who died in infancy.",
+                    pmh: "Spinal muscular atrophy (known diagnosis), scoliosis",
+                    medications: "Nusinersen injections, respiratory support"
+                },
+                physicalExam: {
+                    inspection: "Severe muscle atrophy, scoliosis, fasciculations in tongue",
+                    palpation: "Diffuse muscle atrophy, particularly proximal",
+                    rom: "Contractures at hips and knees",
+                    strength: "Severe proximal weakness (1-2/5), distal muscles relatively preserved",
+                    sensation: "Normal throughout",
+                    reflexes: "Absent throughout",
+                    specialTests: "Tongue fasciculations, weak cough, difficulty swallowing"
+                },
+                ncsStudies: [
+                    {
+                        name: "Median Motor (APB)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude (3.2 mV), normal latency and conduction velocity",
+                        interpretation: "Reduced motor units but normal nerve conduction"
+                    },
+                    {
+                        name: "Ulnar Motor (ADM)",
+                        result: "abnormal",
+                        findings: "Reduced amplitude, normal conduction parameters",
+                        interpretation: "Motor neuron loss"
+                    },
+                    {
+                        name: "All sensory studies",
+                        result: "normal",
+                        findings: "Normal amplitudes and latencies",
+                        interpretation: "No sensory involvement"
+                    }
+                ],
+                emgStudies: [
+                    {
+                        muscle: "Deltoid",
+                        findings: "Widespread fasciculations, large polyphasic motor units",
+                        interpretation: "Chronic denervation with reinnervation"
+                    },
+                    {
+                        muscle: "Biceps",
+                        findings: "Fasciculations, giant motor units, reduced recruitment",
+                        interpretation: "Chronic motor neuron disease"
+                    },
+                    {
+                        muscle: "Tongue",
+                        findings: "Fasciculations and fibrillations",
+                        interpretation: "Bulbar motor neuron involvement"
+                    }
+                ],
+                requiresEMG: true,
+                emgIndication: "INDICATED",
+                difficulty: "difficult",
+                correctDiagnosis: "Spinal Muscular Atrophy Type II (Intermediate)",
+                explanation: "Genetic motor neuron disease caused by SMN1 gene mutations. Type II presents in childhood with progressive proximal weakness, fasciculations, and preserved sensation. Distinguished from ALS by early onset, family history, and specific genetic pattern."
             }
         };
 
