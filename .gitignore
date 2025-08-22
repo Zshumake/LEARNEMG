@@ -1,0 +1,29 @@
+# Exclude everything except essential files
+*
+
+# Include only these files
+!index.html
+!README.md
+!LICENSE
+!.gitignore
+
+# Exclude development and backup files
+emg_ncs_resident_tool.html
+*backup*
+*test*
+*debug*
+*.log
+*.txt
+*.py
+*.apkg
+*.webloc
+*.command
+*.db
+
+# Exclude directories
+EMG_flashcards/
+Universal Scheduler/
+SCH APP/
+SVG/
+Nerve Paths/
+Photos-*/
