@@ -1,8 +1,22 @@
-# 🧠 EMG/NCS Comprehensive Study Tool
+# 🩺 EMG/NCS Resident Education Tool
 
-A comprehensive, interactive study platform designed for neurology residents and medical professionals learning electromyography (EMG) and nerve conduction studies (NCS). This tool provides an extensive database of muscle anatomy, nerve pathways, clinical patterns, and interactive learning modules.
+## 🌐 **[Live Demo - Click to Access Tool](https://zshumake.github.io/EMG-NCS-Resident-Tool/)**
+
+A comprehensive, interactive web-based tool designed for medical residents and practitioners to master Electromyography (EMG) and Nerve Conduction Studies (NCS). This tool provides an immersive learning experience with anatomical visualization, intelligent case generation, and comprehensive muscle database integration.
 
 ## ✨ Features
+
+### 🆕 Latest Updates
+- **Advanced EMG Challenge**: Realistic clinical cases with intelligent anatomical logic
+- **Regional Consistency**: Smart separation of Upper/Lower Extremity content
+- **Dynamic Case Generation**: Real-time EMG cases based on actual nerve pathways
+- **Enhanced Mobile Support**: Optimized for all device sizes
+
+### 🎯 EMG Challenge Mode
+- **Realistic Clinical Cases**: Dynamically generated EMG cases based on actual anatomical pathways
+- **Regional Consistency**: Intelligent separation of Upper Extremity (UE) and Lower Extremity (LE) cases
+- **Anatomical Logic**: Advanced muscle-lesion mapping using comprehensive innervation data
+- **Educational Feedback**: Detailed explanations with normal vs. abnormal muscle patterns
 
 ### 🎯 Interactive Learning Modules
 
