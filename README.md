@@ -1,8 +1,8 @@
-# 🩺 EMG/NCS Resident Education Tool
+# 🧠 Nerve/MuscleTool
 
-## 🌐 **[Live Demo - Click to Access Tool](https://zshumake.github.io/EMG-NCS-Resident-Tool/)**
+## 🌐 **[Live Demo - Click to Access Tool](https://zshumake.github.io/Nerve-MuscleTool/)**
 
-A comprehensive, interactive web-based tool designed for medical residents and practitioners to master Electromyography (EMG) and Nerve Conduction Studies (NCS). This tool provides an immersive learning experience with anatomical visualization, intelligent case generation, and comprehensive muscle database integration.
+A comprehensive, interactive web-based tool designed for medical residents and practitioners to master nerve anatomy, muscle innervation, and Electromyography (EMG)/Nerve Conduction Studies (NCS). This tool provides an immersive learning experience with anatomical visualization, intelligent case generation, and comprehensive muscle database integration.
 
 ## ✨ Features
 
