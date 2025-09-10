@@ -3,15 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧠 Nerve/MuscleTool - Medical Education Platform</title>
+    <title>🧠 EMG/NCS Learning with ERNEST - Medical Education Platform</title>
+    <link rel="icon" type="image/png" href="ERNEST.png">
+    <link rel="apple-touch-icon" href="ERNEST.png">
     <style>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 </head>
 <body>
     <div class="container">
-        <!-- Main Interface Container - Can be completely hidden for focused content -->
-        <div id="main-interface-container">
+        <!-- PGY Selection Landing Page -->
+        <div id="pgy-selection-page" class="page-container active">
+            <div class="pgy-selection-content">
+                <div class="welcome-header">
+                    <h1>🧠 EMG/NCS Resident Education</h1>
+                    <p class="welcome-subtitle">Competency-based learning for PM&R residents</p>
+                    <div class="learning-approach-info">
+                        <strong>Learning Approach:</strong> Sequential progression through 7 core competencies aligned with residency requirements
+                    </div>
+                </div>
+                
+                <div class="pgy-selection-grid">
+                    <div class="pgy-card" onclick="selectPGYLevel('pgy2')">
+                        <div class="pgy-icon">👨‍⚕️</div>
+                        <h3>PGY-2</h3>
+                        <div class="pgy-subtitle">Foundation Year</div>
+                        <div class="competency-levels">Levels 1-2</div>
+                        <div class="pgy-description">
+                            • Basic anatomy & pathophysiology<br>
+                            • NCS technique foundations<br>
+                            • Supervised EMG evaluation
+                        </div>
+                        <div class="module-count">12 Learning Modules</div>
+                    </div>
+                    
+                    <div class="pgy-card" onclick="selectPGYLevel('pgy3')">
+                        <div class="pgy-icon">👩‍⚕️</div>
+                        <h3>PGY-3</h3>
+                        <div class="pgy-subtitle">Development Year</div>
+                        <div class="competency-levels">Levels 1-3</div>
+                        <div class="pgy-description">
+                            • Independent NCS/EMG evaluation<br>
+                            • Advanced pattern recognition<br>
+                            • Clinical correlation skills
+                        </div>
+                        <div class="module-count">16 Learning Modules</div>
+                    </div>
+                    
+                    <div class="pgy-card" onclick="selectPGYLevel('pgy4')">
+                        <div class="pgy-icon">🩺</div>
+                        <h3>PGY-4</h3>
+                        <div class="pgy-subtitle">Mastery Year</div>
+                        <div class="competency-levels">Levels 1-4</div>
+                        <div class="pgy-description">
+                            • Complete diagnostic proficiency<br>
+                            • Complex case management<br>
+                            • Teaching preparation
+                        </div>
+                        <div class="module-count">20 Learning Modules</div>
+                    </div>
+                </div>
+                
+                <div class="competency-overview">
+                    <h3>📋 Seven Core Competencies</h3>
+                    <div class="competency-badges">
+                        <span class="competency-badge">1. NCS Techniques</span>
+                        <span class="competency-badge">2. Radiculopathy</span>
+                        <span class="competency-badge">3. Peripheral Neuropathy</span>
+                        <span class="competency-badge">4. Neuropathy vs Myopathy</span>
+                        <span class="competency-badge">5. Spontaneous Discharges</span>
+                        <span class="competency-badge">6. Plexus Anatomy</span>
+                        <span class="competency-badge">7. EMG Reports</span>
+                    </div>
+                </div>
+                
+                <div class="ernest-introduction">
+                    <div class="ernest-intro-character">
+                        <img src="ERNEST.png" alt="ERNEST - Your EMG Guide" style="width: 80px; height: 80px; object-fit: contain;">
+                    </div>
+                    <div class="ernest-intro-text">
+                        <h3>👋 Meet ERNEST!</h3>
+                        <p>I'm your personal EMG probe guide! I'll hop along with you through each learning module, celebrating your progress and helping you master EMG/NCS skills. Let's embark on this educational journey together!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candyland Learning Board -->
+        <div id="learning-board-page" class="page-container">
+            <div class="board-header">
+                <div class="board-title">
+                    <h1 id="board-pgy-title">🧠 EMG Learning Journey</h1>
+                    <div class="progress-info">
+                        <span id="progress-display">Progress: 0/12 Modules</span>
+                        <button class="change-pgy-btn" onclick="showPGYSelection()">Change PGY Level</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="learning-board" id="learning-board">
+                <!-- Learning modules will be dynamically generated here -->
+            </div>
+        </div>
+
+        <!-- Individual Learning Module Page -->
+        <div id="module-page" class="page-container">
+            <div class="module-header">
+                <button class="back-to-board-btn" onclick="returnToBoard()">
+                    ← Back to Learning Board
+                </button>
+                <div class="module-title">
+                    <h1 id="module-title">Learning Module</h1>
+                    <div id="module-subtitle">Module Content</div>
+                </div>
+            </div>
+            
+            <div class="module-content" id="module-content">
+                <!-- Module content will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <!-- Legacy Interface Container (hidden) -->
+        <div id="main-interface-container" class="page-container" style="display: none;">
             <div class="header">
                 <h1>🧠 Nerve/MuscleTool</h1>
                 <p>Interactive medical education platform for nerve anatomy and muscle innervation</p>
