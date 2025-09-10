@@ -6,6 +6,12 @@
 !README.md
 !LICENSE
 !.gitignore
+!ERNEST.png
+!css/
+!js/
+!audio/
+!images/
+!videos/
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
