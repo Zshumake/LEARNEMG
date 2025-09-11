@@ -77,12 +77,78 @@
             console.error('%c❌ JavaScript Error Detected:', 'color: #ef4444; font-weight: bold;', e.error);
         });
         
-        // Auto-run debug after DOM loads
+        // Force correct interface initialization
+        window.forceMainInterface = function() {
+            console.log('%c🔧 Forcing Main Interface Display', 'color: #10b981; font-weight: bold;');
+            
+            // Hide PGY selection pages
+            const pgySelection = document.querySelector('.pgy-selection-page');
+            if (pgySelection) {
+                pgySelection.style.display = 'none';
+                console.log('✅ Hidden PGY selection page');
+            }
+            
+            // Show main content areas
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent) {
+                mainContent.style.display = 'block';
+                console.log('✅ Showed main content');
+            }
+            
+            // Show container
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.display = 'block';
+                console.log('✅ Showed container');
+            }
+            
+            // Show header
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.display = 'block';
+                console.log('✅ Showed header');
+            }
+            
+            // Activate first tab if tabs exist
+            const tabButtons = document.querySelectorAll('.tab-button');
+            if (tabButtons.length > 0) {
+                console.log('✅ Found', tabButtons.length, 'tab buttons');
+                // Try to show first tab
+                if (typeof showTab === 'function') {
+                    showTab(0);
+                    console.log('✅ Activated first tab');
+                }
+            }
+        };
+        
+        // Initialize main interface on load
+        window.initMainInterface = function() {
+            console.log('%c🚀 Initializing Main ERNEST Interface', 'color: #10b981; font-weight: bold;');
+            
+            // Ensure main interface is visible
+            const mainInterface = document.getElementById('main-interface-container');
+            if (mainInterface) {
+                mainInterface.style.display = 'block';
+                console.log('✅ Main interface container visible');
+            }
+            
+            // Activate first tab by default
+            const firstTabButton = document.querySelector('.tab-button');
+            if (firstTabButton && typeof showTab === 'function') {
+                showTab(0);
+                console.log('✅ First tab activated');
+            }
+            
+            console.log('🎉 ERNEST Interface Ready!');
+        };
+        
+        // Auto-run initialization after DOM loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('%c🚀 DOM Content Loaded - Running Auto-Diagnostic', 'color: #f59e0b; font-weight: bold;');
             setTimeout(() => {
                 window.debugERNEST();
                 window.debugCSS();
+                window.initMainInterface();
             }, 1000);
         });
         
