@@ -1,3 +1,91 @@
+        // === ERNEST SYSTEM DEBUGGING === //
+        console.log('%c🧠 ERNEST System Debug Mode Activated', 'color: #4a6d52; font-size: 16px; font-weight: bold;');
+        
+        // Debug function to inspect DOM elements
+        window.debugERNEST = function() {
+            console.group('%cERNEST System Diagnostic Report', 'color: #6b9f78; font-weight: bold;');
+            
+            // Check main container
+            const container = document.querySelector('.container');
+            console.log('📦 Container element:', container);
+            if (container) {
+                console.log('Container styles:', window.getComputedStyle(container));
+                console.log('Container children:', container.children.length);
+            }
+            
+            // Check header
+            const header = document.querySelector('.header');
+            console.log('🏷️ Header element:', header);
+            if (header) {
+                console.log('Header display:', window.getComputedStyle(header).display);
+                console.log('Header visibility:', window.getComputedStyle(header).visibility);
+            }
+            
+            // Check main content
+            const mainContent = document.querySelector('.main-content');
+            console.log('📄 Main content element:', mainContent);
+            if (mainContent) {
+                console.log('Main content display:', window.getComputedStyle(mainContent).display);
+                console.log('Main content visibility:', window.getComputedStyle(mainContent).visibility);
+            }
+            
+            // Check tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            console.log('🔘 Tab buttons found:', tabButtons.length);
+            
+            // Check body content
+            console.log('📋 Body innerHTML length:', document.body.innerHTML.length);
+            console.log('📋 Body text content length:', document.body.textContent.length);
+            
+            // Check CSS loading
+            const stylesheets = document.styleSheets;
+            console.log('🎨 Stylesheets loaded:', stylesheets.length);
+            
+            console.groupEnd();
+        };
+        
+        // CSS Debugging function
+        window.debugCSS = function() {
+            console.group('%c🎨 CSS Debug Report', 'color: #8b5cf6; font-weight: bold;');
+            
+            // Check if CSS file loaded
+            const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+            console.log('🔗 CSS files linked:', cssLinks.length);
+            cssLinks.forEach((link, index) => {
+                console.log(`CSS ${index + 1}:`, link.href);
+            });
+            
+            // Check for hidden elements
+            const allElements = document.querySelectorAll('*');
+            let hiddenElements = 0;
+            allElements.forEach(el => {
+                const styles = window.getComputedStyle(el);
+                if (styles.display === 'none' || styles.visibility === 'hidden') {
+                    hiddenElements++;
+                    if (el.className) {
+                        console.log('🙈 Hidden element:', el.tagName, el.className);
+                    }
+                }
+            });
+            console.log('Total hidden elements:', hiddenElements);
+            
+            console.groupEnd();
+        };
+        
+        // Error tracking
+        window.addEventListener('error', function(e) {
+            console.error('%c❌ JavaScript Error Detected:', 'color: #ef4444; font-weight: bold;', e.error);
+        });
+        
+        // Auto-run debug after DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('%c🚀 DOM Content Loaded - Running Auto-Diagnostic', 'color: #f59e0b; font-weight: bold;');
+            setTimeout(() => {
+                window.debugERNEST();
+                window.debugCSS();
+            }, 1000);
+        });
+        
         // Global variable to track current PGY level
         let currentPGYLevel = 'all';
         
