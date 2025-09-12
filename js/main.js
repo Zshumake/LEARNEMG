@@ -125,31 +125,63 @@
         window.initMainInterface = function() {
             console.log('%c🚀 Initializing Main ERNEST Interface', 'color: #10b981; font-weight: bold;');
             
-            // Ensure main interface is visible
+            // Force hide PGY selection page
+            const pgySelection = document.getElementById('pgy-selection-page');
+            if (pgySelection) {
+                pgySelection.classList.remove('active');
+                pgySelection.style.display = 'none';
+                console.log('✅ PGY selection page hidden');
+            }
+            
+            // Force show main interface
             const mainInterface = document.getElementById('main-interface-container');
             if (mainInterface) {
+                mainInterface.classList.add('active');
                 mainInterface.style.display = 'block';
-                console.log('✅ Main interface container visible');
+                console.log('✅ Main interface container visible and active');
+            }
+            
+            // Hide other page containers
+            const learningBoard = document.getElementById('learning-board-page');
+            const modulePage = document.getElementById('module-page');
+            if (learningBoard) {
+                learningBoard.classList.remove('active');
+                learningBoard.style.display = 'none';
+            }
+            if (modulePage) {
+                modulePage.classList.remove('active');
+                modulePage.style.display = 'none';
             }
             
             // Activate first tab by default
-            const firstTabButton = document.querySelector('.tab-button');
-            if (firstTabButton && typeof showTab === 'function') {
-                showTab(0);
-                console.log('✅ First tab activated');
-            }
+            setTimeout(() => {
+                const firstTabButton = document.querySelector('.tab-button');
+                if (firstTabButton && typeof showTab === 'function') {
+                    showTab(0);
+                    console.log('✅ First tab activated');
+                }
+            }, 100);
             
             console.log('🎉 ERNEST Interface Ready!');
         };
         
-        // Auto-run initialization after DOM loads
+        // Auto-run initialization after DOM loads (run immediately and aggressively)
         document.addEventListener('DOMContentLoaded', function() {
             console.log('%c🚀 DOM Content Loaded - Running Auto-Diagnostic', 'color: #f59e0b; font-weight: bold;');
+            
+            // Run initialization immediately
+            window.initMainInterface();
+            
+            // Run diagnostics after a short delay
             setTimeout(() => {
                 window.debugERNEST();
                 window.debugCSS();
+            }, 500);
+            
+            // Run initialization again to override any other conflicting code
+            setTimeout(() => {
                 window.initMainInterface();
-            }, 1000);
+            }, 1500);
         });
         
         // Global variable to track current PGY level
@@ -9268,9 +9300,10 @@ let completedModules = new Set();
 let currentPage = 'pgy-selection';
 
 // Initialize the system when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    initializeLearningBoard();
-});
+// DISABLED: This was forcing PGY selection page to show, overriding HTML default
+// document.addEventListener('DOMContentLoaded', function() {
+//     initializeLearningBoard();
+// });
 
 // Initialize the learning board system
 function initializeLearningBoard() {
