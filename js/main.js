@@ -9972,5 +9972,132 @@ window.ernestCelebration = ernestCelebration;
 window.showErnestSpeechBubble = showErnestSpeechBubble;
 
 // ================================================
+// MISSING INTERACTIVE FUNCTIONS
+// ================================================
+
+// Interactive Case Functions
+function showCaseAnswer(caseType) {
+    console.log('showCaseAnswer called with:', caseType);
+    
+    const caseAnswers = {
+        'birth_injury': {
+            title: 'Birth Injury - Upper Trunk Brachial Plexopathy',
+            answer: 'Upper trunk brachial plexus injury (Erb\'s palsy)',
+            explanation: 'The pattern of weakness (deltoid, biceps, supraspinatus, infraspinatus) with sparing of triceps and hand intrinsics indicates an upper trunk (C5-C6) brachial plexus lesion, commonly seen in birth trauma.'
+        },
+        'radiation': {
+            title: 'Radiation Plexopathy',
+            answer: 'Radiation-induced brachial plexopathy',
+            explanation: 'Radiation plexopathy typically affects the upper trunk first and can occur months to years after radiation therapy. EMG shows chronic denervation without acute changes.'
+        },
+        'diabetic_plexopathy': {
+            title: 'Diabetic Plexopathy',
+            answer: 'Diabetic lumbosacral plexopathy',
+            explanation: 'Also known as diabetic amyotrophy, this condition typically affects the proximal muscles of the lower extremity and can be quite painful. Recovery is often partial.'
+        }
+    };
+    
+    const caseData = caseAnswers[caseType];
+    if (caseData) {
+        showModal(caseData.title, `
+            <div class="case-answer-content">
+                <h4>Answer:</h4>
+                <p><strong>${caseData.answer}</strong></p>
+                <h4>Explanation:</h4>
+                <p>${caseData.explanation}</p>
+            </div>
+        `);
+    } else {
+        showModal('Case Answer', '<p>Case answer details coming soon!</p>');
+    }
+}
+
+// Entrapment Details Functions
+function showEntrapmentDetails(entrapment) {
+    console.log('showEntrapmentDetails called with:', entrapment);
+    
+    const entrapmentData = {
+        'carpal_tunnel': {
+            title: 'Carpal Tunnel Syndrome',
+            details: 'Median nerve compression at the wrist. Classic symptoms include numbness in thumb, index, middle, and radial half of ring finger.'
+        },
+        'cubital_tunnel': {
+            title: 'Cubital Tunnel Syndrome', 
+            details: 'Ulnar nerve compression at the elbow. Symptoms include numbness in little finger and ulnar half of ring finger, weakness of intrinsic hand muscles.'
+        },
+        'tarsal_tunnel': {
+            title: 'Tarsal Tunnel Syndrome',
+            details: 'Posterior tibial nerve compression at the ankle. Symptoms include numbness and tingling on the plantar surface of the foot.'
+        },
+        'peroneal': {
+            title: 'Peroneal Nerve Entrapment',
+            details: 'Common peroneal nerve compression at the fibular head. Results in foot drop and numbness over the dorsum of the foot.'
+        }
+    };
+    
+    const data = entrapmentData[entrapment];
+    if (data) {
+        showModal(data.title, `<p>${data.details}</p>`);
+    } else {
+        showModal('Entrapment Details', '<p>Detailed information coming soon!</p>');
+    }
+}
+
+// Lower Extremity Nerve Details
+function showLENeveDetails(nerve) {
+    console.log('showLENeveDetails called with:', nerve);
+    
+    const nerveDetails = {
+        'femoral': {
+            title: 'Femoral Nerve (L2-L4)',
+            details: 'Innervates quadriceps and provides sensation to anterior thigh and medial leg via saphenous branch.'
+        },
+        'sciatic': {
+            title: 'Sciatic Nerve (L4-S3)',
+            details: 'Largest nerve in the body. Divides into tibial and common peroneal nerves. Innervates posterior thigh muscles.'
+        },
+        'tibial': {
+            title: 'Tibial Nerve (L4-S3)',
+            details: 'Innervates posterior leg muscles and intrinsic foot muscles via plantar nerves.'
+        },
+        'peroneal': {
+            title: 'Common Peroneal Nerve (L4-S2)', 
+            details: 'Divides into deep and superficial branches. Innervates anterior and lateral leg muscles.'
+        }
+    };
+    
+    const data = nerveDetails[nerve];
+    if (data) {
+        showModal(data.title, `<p>${data.details}</p>`);
+    } else {
+        showModal('Nerve Details', '<p>Detailed nerve information coming soon!</p>');
+    }
+}
+
+// Plexus Diagram Interactive Functions
+function resetLSPlexusDiagram() {
+    console.log('resetLSPlexusDiagram called');
+    showModal('Reset Diagram', '<p>Interactive plexus diagram reset functionality coming soon!</p>');
+}
+
+function showLSAllPaths() {
+    console.log('showLSAllPaths called');
+    showModal('Show All Paths', '<p>Interactive nerve pathway highlighting coming soon!</p>');
+}
+
+function startLSTracingQuiz() {
+    console.log('startLSTracingQuiz called');
+    showModal('Nerve Tracing Quiz', '<p>Interactive nerve tracing quiz functionality coming soon!</p>');
+}
+
+// Export functions to global scope
+window.showCaseAnswer = showCaseAnswer;
+window.showEntrapmentDetails = showEntrapmentDetails;
+window.showLENeveDetails = showLENeveDetails;
+window.resetLSPlexusDiagram = resetLSPlexusDiagram;
+window.showLSAllPaths = showLSAllPaths;
+window.startLSTracingQuiz = startLSTracingQuiz;
+
+// ================================================
 // END OF CANDYLAND LEARNING BOARD SYSTEM
 // ================================================
