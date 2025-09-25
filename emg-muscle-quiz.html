@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muscle Quiz Test</title>
+</head>
+<body>
+    <h1>Muscle Quiz Test</h1>
+    <div id="muscle-quiz-container">
+        <div id="quiz-setup" class="quiz-section">
+            <button onclick="testMuscleQuiz('upper')">Test UE Quiz</button>
+            <button onclick="testMuscleQuiz('lower')">Test LE Quiz</button>
+        </div>
+        <div id="quiz-active" class="quiz-section" style="display: none;">
+            <p>Quiz Active Section</p>
+        </div>
+        <div id="quiz-results" class="quiz-section" style="display: none;">
+            <p>Quiz Results Section</p>
+        </div>
+    </div>
+
+    <div id="console-output"></div>
+
+    <script>
+        // Basic MuscleQuiz object for testing
+        const MuscleQuiz = {
+            currentQuiz: null,
+            selectedAnswer: null,
+            
+            muscleDatabase: {
+                // Upper Extremity Muscles
+                'Trapezius (upper)': { nerve: 'Spinal accessory', roots: ['C3', 'C4'], region: 'UE', peripheralNerve: 'Spinal accessory' },
+                'Rhomboids': { nerve: 'Dorsal scapular', roots: ['C5'], region: 'UE', peripheralNerve: 'Dorsal scapular' },
+                'Deltoid': { nerve: 'Axillary', roots: ['C5', 'C6'], region: 'UE', peripheralNerve: 'Axillary' },
+                'Biceps': { nerve: 'Musculocutaneous', roots: ['C5', 'C6'], region: 'UE', peripheralNerve: 'Musculocutaneous' },
+                
+                // Lower Extremity Muscles
+                'Quadriceps': { nerve: 'Femoral', roots: ['L2', 'L3', 'L4'], region: 'LE', peripheralNerve: 'Femoral' },
+                'Adductor longus': { nerve: 'Obturator', roots: ['L2', 'L3', 'L4'], region: 'LE', peripheralNerve: 'Obturator' },
+                'Tibialis anterior': { nerve: 'Deep peroneal', roots: ['L4', 'L5'], region: 'LE', peripheralNerve: 'Peroneal' },
+                'Gastrocnemius': { nerve: 'Tibial', roots: ['S1', 'S2'], region: 'LE', peripheralNerve: 'Tibial' }
+            },
+            
+            startQuiz(region) {
+                console.log(`🎯 Starting ${region} extremity muscle quiz...`);
+                log(`Starting ${region} quiz`);
+                
+                const difficulty = 'intermediate';
+                this.generateDynamicQuiz(difficulty, region);
+                this.showQuizSection('quiz-active');
+            },
+            
+            generateDynamicQuiz(difficulty, region) {
+                log(`Generating quiz for ${region} region with ${difficulty} difficulty`);
+                
+                // Filter muscles by region
+                const regionMuscles = Object.keys(this.muscleDatabase).filter(muscle => {
+                    if (region === 'upper') return this.muscleDatabase[muscle].region === 'UE';
+                    if (region === 'lower') return this.muscleDatabase[muscle].region === 'LE';
+                    return false;
+                });
+                
+                log(`Found ${regionMuscles.length} muscles for ${region} region: ${regionMuscles.join(', ')}`);
+                
+                if (regionMuscles.length === 0) {
+                    log(`ERROR: No muscles found for region ${region}`);
+                    return;
+                }
+                
+                // Create a simple quiz
+                this.currentQuiz = {
+                    muscles: regionMuscles,
+                    region: region,
+                    difficulty: difficulty
+                };
+                
+                log(`Quiz generated successfully`);
+            },
+            
+            showQuizSection(sectionId) {
+                log(`Showing section: ${sectionId}`);
+                const sections = ['quiz-setup', 'quiz-active', 'quiz-results'];
+                sections.forEach(section => {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        element.style.display = section === sectionId ? 'block' : 'none';
+                        log(`Section ${section}: ${element.style.display}`);
+                    } else {
+                        log(`ERROR: Section ${section} not found`);
+                    }
+                });
+            }
+        };
+
+        function log(message) {
+            const output = document.getElementById('console-output');
+            output.innerHTML += '<div>' + message + '</div>';
+            console.log(message);
+        }
+
+        function testMuscleQuiz(region) {
+            log(`=== Testing ${region} quiz ===`);
+            try {
+                MuscleQuiz.startQuiz(region);
+                log(`✅ ${region} quiz test completed successfully`);
+            } catch (error) {
+                log(`❌ Error testing ${region} quiz: ${error.message}`);
+                console.error(error);
+            }
+        }
+
+        window.MuscleQuiz = MuscleQuiz;
+    </script>
+</body>
+</html>

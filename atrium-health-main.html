@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrium Health EMG/NCS Learning System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6b9f78 0%, #5a8a67 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        .atrium-logo {
+            width: 80px;
+            height: 80px;
+            background: #1e8b8a;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .content-area {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .ernest-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .ernest-character {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            border: 3px solid #6b9f78;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .ernest-screen {
+            width: 80%;
+            height: 40%;
+            background: #2c3e50;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b9f78;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .ernest-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .ernest-button {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #6b9f78;
+        }
+
+        .ernest-probes {
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            top: -15px;
+        }
+
+        .probe {
+            width: 4px;
+            height: 20px;
+            background: #34495e;
+            border-radius: 2px;
+        }
+
+        .ernest-label {
+            background: #6b9f78;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .speech-bubble {
+            flex: 1;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-right: 15px solid #e2e8f0;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 13px solid transparent;
+            border-bottom: 13px solid transparent;
+            border-right: 13px solid #f8fafc;
+        }
+
+        .speech-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6b9f78, #5a8a67);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 159, 120, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 159, 120, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .main-container {
+                padding: 30px 20px;
+            }
+
+            .main-title {
+                font-size: 2em;
+            }
+
+            .ernest-character {
+                width: 150px;
+                height: 150px;
+            }
+
+            .speech-bubble::before,
+            .speech-bubble::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Atrium Health Logo -->
+        <div class="atrium-logo">
+            🏥
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="main-title">Atrium Health EMG/NCS Learning System</h1>
+
+        <!-- Content Area with ERNEST and Speech Bubble -->
+        <div class="content-area">
+            <!-- ERNEST Character -->
+            <div class="ernest-container">
+                <div class="ernest-character">
+                    <div class="ernest-probes">
+                        <div class="probe"></div>
+                        <div class="probe"></div>
+                    </div>
+                    <div class="ernest-screen">-3 +/-</div>
+                    <div class="ernest-controls">
+                        <div class="ernest-button"></div>
+                        <div class="ernest-button"></div>
+                        <div class="ernest-button"></div>
+                    </div>
+                    <div style="font-size: 24px; color: #6b9f78;">👍</div>
+                    <div style="font-size: 12px; color: #6b7280; margin-top: 5px;">STIM</div>
+                    <div style="font-size: 12px; color: #6b7280;">2</div>
+                </div>
+                <div class="ernest-label">ERNEST</div>
+            </div>
+
+            <!-- Speech Bubble -->
+            <div class="speech-bubble">
+                <p class="speech-text">
+                    Welcome to the Atrium Health EMG/NCS Learning System! I'm ERNEST,
+                    your companion for mastering electrodiagnostic medicine. Ready to begin
+                    your journey through comprehensive EMG and nerve conduction studies?
+                </p>
+            </div>
+        </div>
+
+        <!-- Call to Action Button -->
+        <button class="cta-button" onclick="startLearningJourney()">
+            I'm ready to learn!
+        </button>
+    </div>
+
+    <script>
+        function startLearningJourney() {
+            // This will navigate to your learning system
+            // For now, let's redirect to your existing enhanced journey
+            window.location.href = 'enhanced-journey-with-modals.html';
+        }
+    </script>
+</body>
+</html>

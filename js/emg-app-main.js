@@ -1,781 +1,55 @@
-console.log('🔍 DEBUG: main.js file starting to load...');
-
-// EMERGENCY EMG CHALLENGE FIX - Place at very beginning to ensure it executes
-console.log('🚨 EMERGENCY: Creating persistent EMGChallenge object...');
-
-// Create the emergency EMGChallenge object
-const EMERGENCY_EMGChallenge = {
-    startChallenge: function() {
-        console.log('🚀 EMERGENCY EMG Challenge startChallenge() called!');
-        alert('🎯 EMG Challenge is working! This is an emergency working version. Full functionality will be restored after syntax fixes.');
-
-        // Show/hide the challenge interface
-        const setupEl = document.getElementById('emg-challenge-settings');
-        const activeEl = document.getElementById('emg-challenge-active');
-        if (setupEl) setupEl.style.display = 'none';
-        if (activeEl) activeEl.style.display = 'block';
-    },
-
-    backToSettings: function() {
-        console.log('🔙 Back to EMG Challenge settings');
-        const setupEl = document.getElementById('emg-challenge-settings');
-        const activeEl = document.getElementById('emg-challenge-active');
-        if (setupEl) setupEl.style.display = 'block';
-        if (activeEl) activeEl.style.display = 'none';
-    }
-};
-
-// Assign it initially
-window.EMGChallenge = EMERGENCY_EMGChallenge;
-
-// Create a watchdog to restore it if anything overwrites it
-setInterval(function() {
-    if (!window.EMGChallenge || !window.EMGChallenge.startChallenge) {
-        console.log('🚨 WATCHDOG: EMGChallenge was overwritten, restoring emergency version...');
-        window.EMGChallenge = EMERGENCY_EMGChallenge;
-    }
-}, 100);
-
-console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog protection');
-        // === COMPREHENSIVE UI BLEEDING DEBUG SYSTEM === //
-        console.log('%c🚨 UI BLEEDING DEBUG MODE ACTIVATED', 'color: #dc2626; font-size: 18px; font-weight: bold;');
-        
-        // Complete UI bleeding diagnostic function
-        window.debugUIBleeding = function() {
-            console.group('%c🔍 COMPREHENSIVE UI BLEEDING DIAGNOSTIC', 'color: #dc2626; font-weight: bold; font-size: 16px;');
-            
-            // 1. Check all elements that should be hidden
-            console.log('%c--- CHECKING HIDDEN ELEMENTS ---', 'color: #f59e0b; font-weight: bold;');
-            
-            const hiddenSelectors = [
-                '#main-interface-container',
-                '.tab-content',
-                '.tab-buttons', 
-                '.main-layout',
-                '.sidebar',
-                '.content-area',
-                '.competency-navigation-container',
-                'section[id^="tab-"]',
-                '.pgy-dashboard:not(.board-header)'
-            ];
-            
-            hiddenSelectors.forEach(selector => {
-                const elements = document.querySelectorAll(selector);
-                console.log(`${selector}:`, elements.length, 'elements found');
-                elements.forEach((el, index) => {
-                    const computed = window.getComputedStyle(el);
-                    const isHidden = computed.display === 'none';
-                    const color = isHidden ? 'green' : 'red';
-                    console.log(`  [${index}] display: ${computed.display}, visibility: ${computed.visibility}`, 
-                               `%c${isHidden ? '✅ HIDDEN' : '❌ VISIBLE'}`, `color: ${color}; font-weight: bold;`);
-                    if (!isHidden) {
-                        console.log('    Element:', el);
-                        console.log('    Classes:', el.className);
-                        console.log('    ID:', el.id);
-                        console.log('    Parent:', el.parentElement);
-                    }
-                });
-            });
-            
-            // 2. Find all visible elements at bottom of page
-            console.log('%c--- SCANNING BOTTOM OF PAGE ---', 'color: #f59e0b; font-weight: bold;');
-            const allElements = document.querySelectorAll('*');
-            const pageHeight = Math.max(document.body.scrollHeight, window.innerHeight);
-            const bottomThreshold = pageHeight - 500; // Last 500px
-            
-            console.log(`Page height: ${pageHeight}px, scanning from ${bottomThreshold}px`);
-            
-            let bottomElements = [];
-            allElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const elementTop = rect.top + window.pageYOffset;
-                if (elementTop > bottomThreshold && rect.height > 10) {
-                    const computed = window.getComputedStyle(el);
-                    if (computed.display !== 'none' && computed.visibility !== 'hidden') {
-                        bottomElements.push({
-                            element: el,
-                            top: elementTop,
-                            tag: el.tagName,
-                            id: el.id,
-                            classes: el.className,
-                            text: el.textContent?.substring(0, 100)
-                        });
-                    }
-                }
-            });
-            
-            console.log(`Found ${bottomElements.length} visible elements in bottom area:`);
-            bottomElements.forEach(item => {
-                console.log(`  ${item.tag}#${item.id}.${item.classes} @ ${item.top}px:`, item.text);
-                console.log('    Element:', item.element);
-            });
-            
-            // 3. Check for elements with conflicting CSS
-            console.log('%c--- CHECKING CSS CONFLICTS ---', 'color: #f59e0b; font-weight: bold;');
-            const targetElements = document.querySelectorAll('.tab-content, section[id^="tab-"]');
-            targetElements.forEach(el => {
-                const computed = window.getComputedStyle(el);
-                const hasImportant = el.style.cssText.includes('!important');
-                console.log(`${el.tagName}#${el.id}:`, {
-                    display: computed.display,
-                    visibility: computed.visibility,
-                    hasImportantStyle: hasImportant,
-                    inlineStyle: el.style.cssText
-                });
-            });
-            
-            // 4. Check page containers and their states
-            console.log('%c--- CHECKING PAGE CONTAINERS ---', 'color: #f59e0b; font-weight: bold;');
-            const pageContainers = document.querySelectorAll('.page-container, [class*="page"], [id*="page"]');
-            pageContainers.forEach(el => {
-                const computed = window.getComputedStyle(el);
-                console.log(`${el.tagName}#${el.id}.${el.className}:`, {
-                    display: computed.display,
-                    visibility: computed.visibility,
-                    zIndex: computed.zIndex,
-                    position: computed.position
-                });
-            });
-            
-            console.groupEnd();
-        };
-        
-        // Debug Candyland system loading
-        window.debugCandylandSystem = function() {
-            console.group('%c🍭 CANDYLAND SYSTEM DEBUG', 'color: #7c3aed; font-weight: bold; font-size: 16px;');
-            
-            // Check page containers
-            console.log('--- PAGE CONTAINER STATUS ---');
-            const pgySelectionPage = document.getElementById('pgy-selection-page');
-            const learningBoardPage = document.getElementById('learning-board-page');
-            const moduleContentPage = document.getElementById('module-content-page');
-            
-            console.log('PGY Selection Page:', pgySelectionPage, pgySelectionPage ? window.getComputedStyle(pgySelectionPage).display : 'NOT FOUND');
-            console.log('Learning Board Page:', learningBoardPage, learningBoardPage ? window.getComputedStyle(learningBoardPage).display : 'NOT FOUND');
-            console.log('Module Content Page:', moduleContentPage, moduleContentPage ? window.getComputedStyle(moduleContentPage).display : 'NOT FOUND');
-            
-            // Check system state
-            console.log('--- SYSTEM STATE ---');
-            console.log('currentPage:', typeof currentPage !== 'undefined' ? currentPage : 'UNDEFINED');
-            console.log('currentPGYLevel:', typeof currentPGYLevel !== 'undefined' ? currentPGYLevel : 'UNDEFINED');
-            console.log('currentModuleIndex:', typeof currentModuleIndex !== 'undefined' ? currentModuleIndex : 'UNDEFINED');
-            
-            // Check if functions exist
-            console.log('--- FUNCTION AVAILABILITY ---');
-            console.log('selectPGYLevel:', typeof selectPGYLevel);
-            console.log('generateLearningBoard:', typeof generateLearningBoard);
-            console.log('transitionToPage:', typeof transitionToPage);
-            console.log('showPGYSelection:', typeof showPGYSelection);
-            
-            // Check learning board container
-            console.log('--- LEARNING BOARD ELEMENTS ---');
-            const learningBoard = document.getElementById('learning-board');
-            const learningPath = document.querySelector('.learning-path');
-            const moduleSquares = document.querySelectorAll('.module-square');
-            
-            console.log('Learning Board Container:', learningBoard, learningBoard ? 'EXISTS' : 'MISSING');
-            console.log('Learning Path:', learningPath, learningPath ? 'EXISTS' : 'MISSING');
-            console.log('Module Squares Count:', moduleSquares.length);
-            
-            if (learningBoard) {
-                console.log('Learning Board Content Length:', learningBoard.innerHTML.length);
-                console.log('Learning Board First 200 chars:', learningBoard.innerHTML.substring(0, 200));
-            }
-            
-            // Check localStorage
-            console.log('--- LOCALSTORAGE STATE ---');
-            const storedPGY = localStorage.getItem('emg-pgy-level');
-            console.log('Stored PGY Level:', storedPGY);
-            
-            console.groupEnd();
-        };
-        
-        // Comprehensive debug function
-        window.runFullDebug = function() {
-            console.log('%c🔧 RUNNING FULL SYSTEM DIAGNOSTIC', 'color: #7c3aed; font-size: 20px; font-weight: bold;');
-            window.debugCandylandSystem();
-            window.debugUIBleeding();
-            window.debugERNEST();
-            window.debugCSS();
-        };
-        
-        // Auto-run debug on page load
-        setTimeout(() => {
-            window.runFullDebug();
-        }, 3000);
-        
-        // Function to forcibly hide ALL legacy UI
-        window.forceHideLegacyUI = function() {
-            console.log('🚨 FORCE HIDING ALL LEGACY UI ELEMENTS');
-            
-            // FIRST: Ensure HTML and BODY are visible
-            document.documentElement.style.display = 'block';
-            document.documentElement.style.visibility = 'visible';
-            document.body.style.display = 'block';
-            document.body.style.visibility = 'visible';
-            console.log('✅ Ensured HTML and BODY are visible');
-            
-            const legacySelectors = [
-                '#main-interface-container',
-                '.tab-content',
-                '.tab-buttons', 
-                '.main-layout',
-                '.sidebar',
-                '.content-area',
-                '.competency-navigation-container',
-                'section[id^="tab-"]',
-                '.pgy-dashboard:not(.board-header)',
-                // Removed problematic CSS selector that was causing errors
-                '.main-content-area',
-                '.tab-container',
-                '.tab-navigation'
-            ];
-            
-            legacySelectors.forEach(selector => {
-                try {
-                    const elements = document.querySelectorAll(selector);
-                    elements.forEach(el => {
-                        el.style.display = 'none';
-                        el.style.visibility = 'hidden';
-                        el.style.opacity = '0';
-                        el.style.position = 'absolute';
-                        el.style.left = '-9999px';
-                        console.log(`✅ Force-hidden: ${selector}`);
-                    });
-                } catch (e) {
-                    console.log(`⚠️ Could not hide ${selector}:`, e);
-                }
-            });
-            
-            // Also remove any elements that might be at the bottom
-            const allElements = document.querySelectorAll('*');
-            allElements.forEach(el => {
-                if (el.textContent && el.textContent.includes('Nerve/MuscleTool')) {
-                    el.style.display = 'none';
-                    console.log('✅ Hidden element containing "Nerve/MuscleTool"');
-                }
-                
-                if (el.tagName === 'SECTION' && el.id && el.id.startsWith('tab-')) {
-                    el.style.display = 'none';
-                    console.log(`✅ Force-hidden section: ${el.id}`);
-                }
-            });
-            
-            console.log('✅ LEGACY UI FORCE-HIDE COMPLETE');
-        };
-        
-        // Function to force create ERNEST if missing
-        window.forceCreateERNEST = function() {
-            let ernst = document.getElementById('ernest-character');
-            if (!ernst) {
-                console.log('🚨 FORCING ERNEST CREATION');
-                ernst = document.createElement('div');
-                ernst.id = 'ernest-character';
-                ernst.className = 'ernest-character idle';
-                document.body.appendChild(ernst);
-                console.log('✅ ERNEST force-created and added to body');
-            }
-            
-            // Force position ERNEST
-            ernst.style.position = 'fixed';
-            ernst.style.left = '100px';
-            ernst.style.top = '100px';
-            ernst.style.zIndex = '1001';
-            ernst.style.display = 'block';
-            ernst.style.visibility = 'visible';
-            console.log('✅ ERNEST forced to visible position');
-        };
-        
-        // Emergency PGY page show function
-        window.emergencyShowPGY = function() {
-            console.log('🚨 EMERGENCY: Force showing PGY selection page');
-            
-            // Find and force show PGY page
-            const pgyPage = document.getElementById('pgy-selection-page');
-            if (pgyPage) {
-                // Remove all classes that might hide it
-                pgyPage.style.display = 'block';
-                pgyPage.style.visibility = 'visible';
-                pgyPage.style.opacity = '1';
-                pgyPage.style.position = 'relative';
-                pgyPage.style.zIndex = '1000';
-                pgyPage.classList.add('active');
-                
-                // Hide ALL other page containers
-                const allPages = document.querySelectorAll('.page-container');
-                allPages.forEach(page => {
-                    if (page.id !== 'pgy-selection-page') {
-                        page.style.display = 'none';
-                        page.classList.remove('active');
-                    }
-                });
-                
-                console.log('✅ Emergency PGY page shown');
-            } else {
-                console.error('❌ Cannot find PGY selection page at all');
-                
-                // Create it from scratch
-                console.log('🛠️ Creating PGY page from scratch...');
-                const newPGYPage = document.createElement('div');
-                newPGYPage.id = 'pgy-selection-page';
-                newPGYPage.className = 'page-container active';
-                newPGYPage.innerHTML = `
-                    <div class="pgy-selection-content">
-                        <h1>🧠 Choose Your PGY Level</h1>
-                        <div class="pgy-options">
-                            <button onclick="selectPGYLevel('pgy2')" class="pgy-btn">PGY-2</button>
-                            <button onclick="selectPGYLevel('pgy3')" class="pgy-btn">PGY-3</button>
-                            <button onclick="selectPGYLevel('pgy4')" class="pgy-btn">PGY-4</button>
-                        </div>
-                    </div>
-                `;
-                newPGYPage.style.cssText = `
-                    display: block !important;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(135deg, #6b9f78 0%, #4a6d52 100%);
-                    z-index: 1000;
-                    color: white;
-                    text-align: center;
-                    padding: 100px 20px;
-                `;
-                document.body.appendChild(newPGYPage);
-                console.log('✅ Emergency PGY page created');
-            }
-        };
-        
-        // Force initialize the Candyland system
-        window.forceInitCandyland = function() {
-            console.log('🍭 FORCE INITIALIZING CANDYLAND SYSTEM');
-            
-            // Clear localStorage to reset system
-            localStorage.removeItem('emg-pgy-level');
-            localStorage.removeItem('emg-learning-progress');
-            
-            // Reset system state
-            window.currentPage = 'pgy-selection';
-            window.currentPGYLevel = null;
-            window.currentModuleIndex = 0;
-            window.completedModules = new Set();
-            
-            // Force hide all legacy elements
-            window.forceHideLegacyUI();
-            
-            // Emergency show PGY page
-            window.emergencyShowPGY();
-            
-            console.log('✅ CANDYLAND FORCE INIT COMPLETE');
-        };
-        
-        // Function to force-start the Candyland system
-        window.forceStartCandyland = function() {
-            console.log('🍭 FORCING CANDYLAND SYSTEM TO START');
-            
-            // First, hide all legacy UI
-            window.forceHideLegacyUI();
-            
-            // Check if the PGY selection page exists
-            let pgyPage = document.getElementById('pgy-selection-page');
-            if (!pgyPage) {
-                console.log('🚨 PGY Selection page missing - system may not have loaded');
-                
-                // Try to find it in the HTML and unhide it
-                const pageContainers = document.querySelectorAll('.page-container');
-                console.log('Found page containers:', pageContainers.length);
-                pageContainers.forEach((container, index) => {
-                    console.log(`Container ${index}:`, container.id, container.className);
-                    if (container.id === 'pgy-selection-page') {
-                        pgyPage = container;
-                    }
-                });
-            }
-            
-            if (pgyPage) {
-                // Force show PGY selection page
-                pgyPage.style.display = 'block';
-                pgyPage.style.visibility = 'visible';
-                pgyPage.style.opacity = '1';
-                pgyPage.classList.add('active');
-                console.log('✅ PGY Selection page forced visible');
-                
-                // Initialize system state
-                if (typeof currentPage === 'undefined') {
-                    window.currentPage = 'pgy-selection';
-                }
-                
-                // If selectPGYLevel function exists, try to force PGY-2
-                if (typeof selectPGYLevel === 'function') {
-                    console.log('🎯 Force selecting PGY-2');
-                    selectPGYLevel('pgy2');
-                } else {
-                    console.log('⚠️ selectPGYLevel function not available');
-                    console.log('Available functions:', Object.keys(window).filter(key => key.includes('PGY')));
-                }
-            } else {
-                console.error('🚨 CANNOT FIND PGY SELECTION PAGE AT ALL');
-                console.log('All page containers:', document.querySelectorAll('[id*="page"]'));
-                console.log('All elements with "pgy" in id:', document.querySelectorAll('[id*="pgy"]'));
-            }
-        };
-        
-        // Add debug buttons to page
-        setTimeout(() => {
-            const debugButton = document.createElement('button');
-            debugButton.textContent = '🔍 Debug UI';
-            debugButton.style.cssText = `
-                position: fixed; 
-                top: 10px; 
-                left: 10px; 
-                z-index: 9999; 
-                background: #dc2626; 
-                color: white; 
-                border: none; 
-                padding: 10px; 
-                border-radius: 5px; 
-                cursor: pointer;
-                font-weight: bold;
-            `;
-            debugButton.onclick = window.runFullDebug;
-            document.body.appendChild(debugButton);
-            
-            const ernestButton = document.createElement('button');
-            ernestButton.textContent = '🧠 Fix ERNEST';
-            ernestButton.style.cssText = `
-                position: fixed; 
-                top: 10px; 
-                left: 120px; 
-                z-index: 9999; 
-                background: #059669; 
-                color: white; 
-                border: none; 
-                padding: 10px; 
-                border-radius: 5px; 
-                cursor: pointer;
-                font-weight: bold;
-            `;
-            ernestButton.onclick = window.forceCreateERNEST;
-            document.body.appendChild(ernestButton);
-            
-            const candylandButton = document.createElement('button');
-            candylandButton.textContent = '🍭 Start Candyland';
-            candylandButton.style.cssText = `
-                position: fixed; 
-                top: 10px; 
-                left: 250px; 
-                z-index: 9999; 
-                background: #7c3aed; 
-                color: white; 
-                border: none; 
-                padding: 10px; 
-                border-radius: 5px; 
-                cursor: pointer;
-                font-weight: bold;
-            `;
-            candylandButton.onclick = window.forceStartCandyland;
-            document.body.appendChild(candylandButton);
-            
-            const initButton = document.createElement('button');
-            initButton.textContent = 'Init System';
-            initButton.style.cssText = `
-                position: fixed; 
-                top: 50px; 
-                left: 10px; 
-                z-index: 9999; 
-                background: #059669; 
-                color: white; 
-                border: none; 
-                padding: 10px; 
-                border-radius: 5px; 
-                cursor: pointer;
-                font-weight: bold;
-            `;
-            initButton.onclick = window.forceInitCandyland;
-            document.body.appendChild(initButton);
-            
-            const emergencyButton = document.createElement('button');
-            emergencyButton.textContent = '🚨 Emergency PGY';
-            emergencyButton.style.cssText = `
-                position: fixed; 
-                top: 50px; 
-                left: 120px; 
-                z-index: 9999; 
-                background: #dc2626; 
-                color: white; 
-                border: none; 
-                padding: 10px; 
-                border-radius: 5px; 
-                cursor: pointer;
-                font-weight: bold;
-            `;
-            emergencyButton.onclick = window.emergencyShowPGY;
-            document.body.appendChild(emergencyButton);
-        }, 1000);
-        
-        // === ERNEST SYSTEM DEBUGGING === //
-        console.log('%c🧠 ERNEST System Debug Mode Activated', 'color: #4a6d52; font-size: 16px; font-weight: bold;');
-        
-        // Debug function to inspect ERNEST system
-        window.debugERNEST = function() {
-            console.group('%cERNEST System Diagnostic Report', 'color: #6b9f78; font-weight: bold;');
-            
-            // Check for ERNEST character element
-            const ernst = document.getElementById('ernest-character');
-            console.log('ERNEST Character Element:', ernst);
-            if (ernst) {
-                console.log('ERNEST Position:', {
-                    left: ernst.style.left,
-                    top: ernst.style.top,
-                    position: ernst.style.position,
-                    zIndex: ernst.style.zIndex,
-                    display: window.getComputedStyle(ernst).display,
-                    visibility: window.getComputedStyle(ernst).visibility
-                });
-                console.log('ERNEST Classes:', ernst.className);
-                console.log('ERNEST Parent:', ernst.parentElement);
-            } else {
-                console.error('❌ ERNEST CHARACTER MISSING!');
-                
-                // Check if learning board exists
-                const board = document.getElementById('learning-board');
-                console.log('Learning Board:', board);
-                if (board) {
-                    console.log('Learning Board Content:', board.innerHTML.substring(0, 500));
-                }
-                
-                // Check if learning path exists
-                const path = document.querySelector('.learning-path');
-                console.log('Learning Path:', path);
-                if (path) {
-                    console.log('Learning Path Content:', path.innerHTML.substring(0, 500));
-                }
-            }
-            
-            // Check currentPage state
-            console.log('Current Page State:', currentPage);
-            console.log('Current PGY Level:', currentPGYLevel);
-            console.log('Current Module Index:', currentModuleIndex);
-            
-            // Check main container
-            const container = document.querySelector('.container');
-            console.log('📦 Container element:', container);
-            if (container) {
-                console.log('Container styles:', window.getComputedStyle(container));
-                console.log('Container children:', container.children.length);
-            }
-            
-            // Check header
-            const header = document.querySelector('.header');
-            console.log('🏷️ Header element:', header);
-            if (header) {
-                console.log('Header display:', window.getComputedStyle(header).display);
-                console.log('Header visibility:', window.getComputedStyle(header).visibility);
-            }
-            
-            // Check main content
-            const mainContent = document.querySelector('.main-content');
-            console.log('📄 Main content element:', mainContent);
-            if (mainContent) {
-                console.log('Main content display:', window.getComputedStyle(mainContent).display);
-                console.log('Main content visibility:', window.getComputedStyle(mainContent).visibility);
-            }
-            
-            // Check tab buttons
-            const tabButtons = document.querySelectorAll('.tab-button');
-            console.log('🔘 Tab buttons found:', tabButtons.length);
-            
-            // Check body content
-            console.log('📋 Body innerHTML length:', document.body.innerHTML.length);
-            console.log('📋 Body text content length:', document.body.textContent.length);
-            
-            // Check CSS loading
-            const stylesheets = document.styleSheets;
-            console.log('🎨 Stylesheets loaded:', stylesheets.length);
-            
-            console.groupEnd();
-        };
-        
-        // CSS Debugging function
-        window.debugCSS = function() {
-            console.group('%c🎨 CSS Debug Report', 'color: #8b5cf6; font-weight: bold;');
-            
-            // Check if CSS file loaded
-            const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-            console.log('🔗 CSS files linked:', cssLinks.length);
-            cssLinks.forEach((link, index) => {
-                console.log(`CSS ${index + 1}:`, link.href);
-            });
-            
-            // Check for hidden elements
-            const allElements = document.querySelectorAll('*');
-            let hiddenElements = 0;
-            allElements.forEach(el => {
-                const styles = window.getComputedStyle(el);
-                if (styles.display === 'none' || styles.visibility === 'hidden') {
-                    hiddenElements++;
-                    if (el.className) {
-                        console.log('🙈 Hidden element:', el.tagName, el.className);
-                    }
-                }
-            });
-            console.log('Total hidden elements:', hiddenElements);
-            
-            console.groupEnd();
-        };
-        
-        // Error tracking
-        window.addEventListener('error', function(e) {
-            console.error('%c❌ JavaScript Error Detected:', 'color: #ef4444; font-weight: bold;', e.error);
-        });
-        
-        // Force correct interface initialization
-        window.forceMainInterface = function() {
-            console.log('%c🔧 Forcing Main Interface Display', 'color: #10b981; font-weight: bold;');
-            
-            // Hide PGY selection pages
-            const pgySelection = document.querySelector('.pgy-selection-page');
-            if (pgySelection) {
-                pgySelection.style.display = 'none';
-                console.log('✅ Hidden PGY selection page');
-            }
-            
-            // Show main content areas
-            const mainContent = document.querySelector('.main-content');
-            if (mainContent) {
-                mainContent.style.display = 'block';
-                console.log('✅ Showed main content');
-            }
-            
-            // Show container
-            const container = document.querySelector('.container');
-            if (container) {
-                container.style.display = 'block';
-                console.log('✅ Showed container');
-            }
-            
-            // Show header
-            const header = document.querySelector('.header');
-            if (header) {
-                header.style.display = 'block';
-                console.log('✅ Showed header');
-            }
-            
-            // Activate first tab if tabs exist
-            const tabButtons = document.querySelectorAll('.tab-button');
-            if (tabButtons.length > 0) {
-                console.log('✅ Found', tabButtons.length, 'tab buttons');
-                // Try to show first tab
-                if (typeof showTab === 'function') {
-                    showTab(0);
-                    console.log('✅ Activated first tab');
-                }
-            }
-        };
-        
-        // Initialize main interface on load
-        window.initMainInterface = function() {
-            console.log('%c🚀 Initializing Main ERNEST Interface', 'color: #10b981; font-weight: bold;');
-            
-            // Force hide PGY selection page
-            const pgySelection = document.getElementById('pgy-selection-page');
-            if (pgySelection) {
-                pgySelection.classList.remove('active');
-                pgySelection.style.display = 'none';
-                console.log('✅ PGY selection page hidden');
-            }
-            
-            // Force show main interface
-            const mainInterface = document.getElementById('main-interface-container');
-            if (mainInterface) {
-                mainInterface.classList.add('active');
-                mainInterface.style.display = 'block';
-                console.log('✅ Main interface container visible and active');
-            }
-            
-            // Hide other page containers
-            const learningBoard = document.getElementById('learning-board-page');
-            const modulePage = document.getElementById('module-page');
-            if (learningBoard) {
-                learningBoard.classList.remove('active');
-                learningBoard.style.display = 'none';
-            }
-            if (modulePage) {
-                modulePage.classList.remove('active');
-                modulePage.style.display = 'none';
-            }
-            
-            // Activate first tab by default
-            setTimeout(() => {
-                const firstTabButton = document.querySelector('.tab-button');
-                if (firstTabButton && typeof showTab === 'function') {
-                    showTab(1);
-                    console.log('✅ First tab activated (tab-1)');
-                }
-            }, 100);
-            
-            console.log('🎉 ERNEST Interface Ready!');
-        };
-        
-        // LEGACY AUTO-INITIALIZATION DISABLED TO PREVENT CONFLICTS
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     console.log('%c🚀 DOM Content Loaded - Running Auto-Diagnostic', 'color: #f59e0b; font-weight: bold;');
-        //     console.log('%c✅ JavaScript variable conflict fixed - no more duplicate currentPGYLevel', 'color: #10b981; font-weight: bold;');
-        //     
-        //     // Run initialization immediately
-        //     window.initMainInterface();
-        //     
-        //     // Run diagnostics after a short delay
-        //     setTimeout(() => {
-        //         window.debugERNEST();
-        //         window.debugCSS();
-        //     }, 500);
-        //     
-        //     // Run initialization again to override any other conflicting code
-        //     setTimeout(() => {
-        //         window.initMainInterface();
-        //     }, 1500);
-        // });
-        
         // Global variable to track current PGY level
         let currentPGYLevel = 'all';
         
-        // Professional Modal System
+        // Enhanced Smooth Modal System
         function showModal(title, content) {
             const overlay = document.getElementById('modal-overlay');
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
-            
+
+            if (!overlay || !modalTitle || !modalBody) {
+                console.error('❌ Modal elements not found');
+                return;
+            }
+
+            // Set content
             modalTitle.textContent = title;
             modalBody.innerHTML = content;
-            overlay.classList.add('active');
-            
-            // Scroll to top of page so modal is visible
+
+            // Show overlay first (invisible)
+            overlay.style.display = 'flex';
+
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Ensure modal is visible and centered
+
+            // Force reflow then animate in
+            overlay.offsetHeight;
+
+            // Add show class for smooth animation
             setTimeout(() => {
-                const modal = document.querySelector('.modal-content');
-                if (modal) {
-                    modal.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
-                    });
-                }
-            }, 100);
-            
+                overlay.classList.add('show');
+            }, 10);
+
             // Add keyboard support
             document.addEventListener('keydown', handleModalKeydown);
-            
-            // Show visual feedback that modal opened
-            console.log(`Modal opened: ${title}`);
+
+            console.log(`✨ Smooth modal opened: ${title}`);
         }
         
         function closeModal() {
             const overlay = document.getElementById('modal-overlay');
-            overlay.classList.remove('active');
-            document.removeEventListener('keydown', handleModalKeydown);
+            if (overlay) {
+                // Smooth close animation
+                overlay.classList.remove('show');
+
+                // Hide after animation completes
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 400);
+
+                document.removeEventListener('keydown', handleModalKeydown);
+                console.log('🔒 Smooth modal closed');
+            }
         }
         
         function handleModalKeydown(event) {
@@ -792,10 +66,8 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
             }
         });
         
-        // PGY Level Selection Function - LEGACY - DISABLED FOR CANDYLAND SYSTEM
+        // PGY Level Selection Function
         function selectPGY(pgyLevel) {
-            console.log('⚠️ LEGACY selectPGY() function called - DISABLED in Candyland system');
-            return; // DISABLED TO PREVENT DASHBOARD BLEEDING
             // Update global variable
             currentPGYLevel = pgyLevel;
             
@@ -934,11 +206,11 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
             const savedPGY = localStorage.getItem('selectedPGY');
             const initialPGY = savedPGY || 'all';
             
-            // DISABLED: selectPGY(initialPGY); // LEGACY FUNCTION - CAUSES DASHBOARD BLEEDING
+            selectPGY(initialPGY);
         }
         
-        // LEGACY SYSTEM DISABLED - Call initialization when page loads
-        // document.addEventListener('DOMContentLoaded', initializePGYSelection);
+        // Call initialization when page loads
+        document.addEventListener('DOMContentLoaded', initializePGYSelection);
         
         // Global variable to track current competency area filter
         let currentCompetencyArea = 'all';
@@ -1118,10 +390,8 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
             }
         }
         
-        // Return to PGY Navigator Function - LEGACY - DISABLED FOR CANDYLAND SYSTEM  
+        // Return to PGY Navigator Function
         function returnToPGYNavigator(pgyLevel) {
-            console.log('⚠️ LEGACY returnToPGYNavigator() function called - DISABLED in Candyland system');
-            return; // DISABLED TO PREVENT DASHBOARD BLEEDING
             console.log(`🏠 Returning to ${pgyLevel} dashboard`);
             
             // Hide all content areas
@@ -1872,7 +1142,7 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
             
             // Return to the original PGY level or default to 'all'
             const targetPGY = pgyLevel || 'all';
-            // DISABLED: selectPGY(targetPGY); // LEGACY FUNCTION - CAUSES DASHBOARD BLEEDING
+            selectPGY(targetPGY);
             
             // Show notification
             const notification = document.createElement('div');
@@ -5569,7 +4839,7 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
                         <p>${exam.palpation}</p>
                     </div>
                     <div class="exam-category">
-                        <h5>Range of Motion</h5>
+                        <h5>🔄 Range of Motion</h5>
                         <p>${exam.rom}</p>
                     </div>
                     <div class="exam-category">
@@ -6050,7 +5320,6 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
         };
 
         // EMG Localization Challenge (Tab 9)
-        console.log('🔍 DEBUG: About to assign EMGChallenge to window...');
         window.EMGChallenge = {
             currentSettings: {
                 difficulty: 'moderate',
@@ -6105,18 +5374,10 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
             },
             
             startChallenge: function() {
-                console.log('🚀 EMG Challenge startChallenge() called!');
-                console.log('🔍 EMGChallenge object:', this);
-
                 this.isActive = true;
-
-                const setupEl = document.getElementById('emg-challenge-setup');
-                const activeEl = document.getElementById('emg-challenge-active');
-                console.log('🔍 Setup element:', setupEl);
-                console.log('🔍 Active element:', activeEl);
-
-                if (setupEl) setupEl.style.display = 'none';
-                if (activeEl) activeEl.style.display = 'block';
+                
+                document.getElementById('emg-challenge-setup').style.display = 'none';
+                document.getElementById('emg-challenge-active').style.display = 'block';
                 
                 this.generateCase();
                 console.log('🚀 EMG Challenge started');
@@ -6713,13 +5974,13 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
         };
 
 
-        // LEGACY VIDEO/MUSCLE SYSTEM DISABLED TO PREVENT CONFLICTS
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     initializeVideos();
-        //     MuscleAnatomy.initializeDisplay();
-        //     initializeProgressDashboard();
-        //     // Don't populate case grid initially - only when user clicks "Choose Specific Cases"
-        // });
+        // Initialize videos when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeVideos();
+            MuscleAnatomy.initializeDisplay();
+            initializeProgressDashboard();
+            // Don't populate case grid initially - only when user clicks "Choose Specific Cases"
+        });
 
         // Advanced Muscle Anatomy System
         const MuscleAnatomy = {
@@ -7890,7 +7151,6 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
             }
         };
 
-        console.log('🔍 DEBUG: About to define EMGChallenge object...');
         // EMG Clinical Localization Challenge System
         const EMGChallenge = {
             currentCase: null,
@@ -8183,9 +7443,6 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
                 if (nextBtn) nextBtn.style.display = 'none';
             }
         };
-
-        console.log('🔍 DEBUG: EMGChallenge object defined successfully');
-        console.log('🔍 DEBUG: window.EMGChallenge =', window.EMGChallenge);
 
         // PGY-Specific Case Filtering Functions
         function startPGYSpecificCases(pgyLevel, difficulty) {
@@ -9800,7 +9057,7 @@ console.log('✅ EMERGENCY: Persistent EMGChallenge object created with watchdog
 // CANDYLAND LEARNING BOARD SYSTEM
 // ================================================
 
-// Learning modules configuration for different PGY levels - UPDATED to include all user competencies
+// Learning modules configuration for different PGY levels
 const learningModulesConfig = {
     pgy2: [
         { id: 'intro-emg', title: 'EMG/NCS Introduction', icon: '🧠', competency: 'Foundation', description: 'Basic principles and patient care approach', contentId: 'emg-introduction' },
@@ -9817,376 +9074,69 @@ const learningModulesConfig = {
         { id: 'clinical-correlation', title: 'Clinical Application', icon: '🩺', competency: 'Integration', description: 'Simple clinical case examples', contentId: 'clinical-correlation' }
     ],
     pgy3: [
-        // PGY-3 Competency-Based Learning - 24 modules total
-        { id: 'independent-ncs', title: 'Independent NCS Screen', icon: '🎯', competency: 'Competency 1 - Level 3', description: 'Perform independent NCS for median, ulnar, radial, peroneal, tibial, sural, H-reflex, F-wave', contentId: 'independent-ncs' },
-        { id: 'ncs-landmarks', title: 'NCS Landmarks Mastery', icon: '📍', competency: 'Competency 1 - Level 3', description: 'Precise electrode placement for all standard NCS', contentId: 'ncs-landmarks' },
-        { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', icon: '🧠', competency: 'Competency 2 - Level 1', description: 'Articulate understanding of pathophysiology of radiculopathy', contentId: 'radiculopathy-pathophysiology' },
-        { id: 'radiculopathy-ncs', title: 'NCS for Radiculopathy', icon: '⚡', competency: 'Competency 2 - Level 2', description: 'Properly perform NCS for radiculopathy evaluation', contentId: 'radiculopathy-ncs' },
-        { id: 'radiculopathy-emg', title: 'EMG for Radiculopathy', icon: '🧬', competency: 'Competency 2 - Level 3', description: 'Properly perform EMG evaluation for radiculopathy', contentId: 'radiculopathy-emg' },
-        { id: 'neuropathy-pathophysiology', title: 'Neuropathy Pathophysiology', icon: '🧠', competency: 'Competency 3 - Level 1', description: 'Articulate understanding of peripheral neuropathy pathophysiology', contentId: 'neuropathy-pathophysiology' },
-        { id: 'neuropathy-ncs', title: 'NCS for Neuropathy', icon: '⚡', competency: 'Competency 3 - Level 2', description: 'Properly perform NCS for peripheral neuropathy', contentId: 'neuropathy-ncs' },
-        { id: 'neuropathy-emg', title: 'EMG for Neuropathy', icon: '🎯', competency: 'Competency 3 - Level 3', description: 'Properly perform EMG evaluation for peripheral neuropathy', contentId: 'neuropathy-emg' },
-        { id: 'neuropathy-patterns', title: 'Neuropathy Patterns', icon: '🩺', competency: 'Competency 3 - Level 3', description: 'Study peripheral neuropathy diagnosis patterns', contentId: 'neuropathy-patterns' },
-        { id: 'neuropathy-myopathy-ddx', title: 'Neuropathy vs Myopathy DDx', icon: '🧠', competency: 'Competency 4 - Level 3', description: 'Discuss DDx associated with common neuropathies vs myopathies', contentId: 'neuropathy-myopathy-ddx' },
-        { id: 'case-practice', title: 'Neuropathy vs Myopathy Cases', icon: '🎯', competency: 'Competency 4 - Level 3', description: 'Practice differentiating neuropathy vs myopathy cases', contentId: 'case-practice' },
-        { id: 'emg-recognition', title: 'Audio/Visual EMG Recognition', icon: '👁️👂', competency: 'Competency 5 - Level 3', description: 'Recognize and differentiate Fibs, PSWs, Fascics, CRDs, Myokymia via audio and visual EMG', contentId: 'emg-recognition' },
-        { id: 'recruitment-patterns', title: 'Recruitment Pattern Mastery', icon: '📊', competency: 'Competency 5 - Level 2-3', description: 'Master recruitment pattern, frequency, and morphology assessment', contentId: 'recruitment-patterns' },
-        { id: 'entrapments', title: 'Common Entrapments', icon: '🧠', competency: 'Competency 6 - Level 3', description: 'Articulate common entrapments associated with upper and lower limb', contentId: 'entrapments' },
-        { id: 'entrapment-patterns', title: 'Entrapment Patterns', icon: '🩺', competency: 'Competency 6 - Level 3', description: 'Study entrapment diagnosis patterns and findings', contentId: 'entrapment-patterns' },
-        { id: 'report-components', title: 'Critical Report Components', icon: '📋', competency: 'Competency 7 - Level 3', description: 'Describe critical components associated with useful EMG reports', contentId: 'report-components' },
-        { id: 'report-practice', title: 'Report Writing Practice', icon: '📝', competency: 'Competency 7 - Level 3', description: 'Practice writing structured EMG reports', contentId: 'report-practice' },
-        { id: 'foundation-cases', title: 'Foundation Cases', icon: '🌱', competency: 'Assessment Level 1-2', description: 'Beginner-level clinical scenarios to solidify your basics', contentId: 'foundation-cases' },
-        { id: 'intermediate-cases', title: 'Intermediate Cases', icon: '🔥', competency: 'Assessment Level 3', description: 'Target-level scenarios testing your Level 3 skills', contentId: 'intermediate-cases' },
-        { id: 'muscle-lab', title: 'Advanced Muscle Lab', icon: '🎓', competency: 'PGY-3+ Tool', description: 'Hands-on muscle testing and anatomy review', contentId: 'muscle-lab' },
-        { id: 'emg-quiz', title: 'EMG Recognition Quiz', icon: '👁️👂', competency: 'Level 3 Essential', description: 'Test your audio/visual EMG identification skills', contentId: 'emg-quiz' },
-        { id: 'plexus-challenge', title: 'Plexus Anatomy Challenge', icon: '🧠', competency: 'Level 3 Anatomy', description: 'Test your entrapment and plexus knowledge', contentId: 'plexus-challenge' },
-        { id: 'ncs-test', title: 'NCS Landmarks Test', icon: '📍', competency: 'Level 3 Skills', description: 'Test your electrode placement precision', contentId: 'ncs-test' },
-        { id: 'comprehensive-assessment', title: 'PGY-3 Comprehensive Assessment', icon: '🎯', competency: 'Complete Evaluation', description: 'Mixed assessment covering all Level 1-3 competencies', contentId: 'comprehensive-assessment' }
+        // Include all PGY-2 modules plus additional Level 3 content
+        { id: 'intro-emg', title: 'EMG/NCS Introduction', icon: '🧠', competency: 'Foundation', description: 'Basic principles and patient care approach', contentId: 'emg-introduction' },
+        { id: 'peripheral-anatomy', title: 'Peripheral Anatomy', icon: '🦴', competency: 'Competency 1 & 6', description: 'Brachial and lumbosacral plexus foundations', contentId: 'plexus-anatomy' },
+        { id: 'radiculopathy-patho', title: 'Radiculopathy Pathophysiology', icon: '🔬', competency: 'Competency 2 - Level 1', description: 'Understanding nerve root compression', contentId: 'radiculopathy-pathophysiology' },
+        { id: 'neuropathy-patho', title: 'Neuropathy Pathophysiology', icon: '⚡', competency: 'Competency 3 - Level 1', description: 'Axonal vs demyelinating processes', contentId: 'neuropathy-pathophysiology' },
+        { id: 'ncs-basics', title: 'NCS Fundamentals', icon: '📈', competency: 'Competency 1 - Level 1', description: 'Basic nerve conduction principles', contentId: 'ncs-fundamentals' },
+        { id: 'ncs-techniques', title: 'NCS Techniques', icon: '🎯', competency: 'Competency 1 - Level 2', description: 'Proper electrode placement and protocols', contentId: 'ncs-techniques' },
+        { id: 'emg-needle-basics', title: 'EMG Needle Techniques', icon: '💉', competency: 'Competency 2 & 3 - Level 2', description: 'Basic needle EMG evaluation', contentId: 'emg-needle-basics' },
+        { id: 'muscle-anatomy', title: 'Muscle Localization', icon: '💪', competency: 'Competency 2 & 3', description: 'Interactive muscle anatomy quiz', contentId: 'muscle-quiz' },
+        { id: 'independent-ncs', title: 'Independent NCS Screen', icon: '🔍', competency: 'Competency 1 - Level 3', description: 'Median, ulnar, radial, peroneal, tibial studies', contentId: 'independent-ncs' },
+        { id: 'radiculopathy-emg', title: 'Radiculopathy EMG Evaluation', icon: '🎪', competency: 'Competency 2 - Level 3', description: 'Independent EMG evaluation techniques', contentId: 'radiculopathy-emg' },
+        { id: 'neuropathy-emg', title: 'Neuropathy EMG Evaluation', icon: '⚡', competency: 'Competency 3 - Level 3', description: 'Independent neuropathy assessment', contentId: 'neuropathy-emg' },
+        { id: 'advanced-patterns', title: 'Advanced Pattern Recognition', icon: '🔊', competency: 'Competency 5 - Level 3', description: 'Audio/visual differentiation of discharges', contentId: 'advanced-patterns' },
+        { id: 'neuropathy-myopathy-ddx', title: 'Neuropathy vs Myopathy DDx', icon: '🧬', competency: 'Competency 4 - Level 3', description: 'Common condition differentiation', contentId: 'neuropathy-myopathy-ddx' },
+        { id: 'plexus-entrapments', title: 'Plexus & Entrapments', icon: '🕸️', competency: 'Competency 6 - Level 3', description: 'Common entrapment syndromes', contentId: 'plexus-entrapments' },
+        { id: 'intermediate-reports', title: 'Intermediate Report Writing', icon: '📋', competency: 'Competency 7 - Level 3', description: 'Critical components and DDx ranking', contentId: 'intermediate-reports' },
+        { id: 'complex-cases', title: 'Complex Clinical Cases', icon: '🧩', competency: 'Integration', description: 'Multi-competency case studies', contentId: 'complex-cases' }
     ],
     pgy4: [
-        // PGY-4 Graduation Requirements - 24 modules total for Level 4 mastery
-        { id: 'complete-edx-reports', title: 'Complete EDx Reports', icon: '📋', competency: 'Competency 1 - Level 4', description: 'Prepare complete EDx reports with appropriate recommendations', contentId: 'complete-edx-reports' },
-        { id: 'advanced-studies', title: 'Advanced Studies', icon: '⚡', competency: 'Competency 1 - Level 4', description: 'Describe blink reflex, repetitive nerve stim, and proximal nerve conduction', contentId: 'advanced-studies' },
-        { id: 'independent-radiculopathy', title: 'Independent Radiculopathy Evaluation', icon: '🎯', competency: 'Competency 2 - Level 4', description: 'Independent NCS/EMG evaluation for radiculopathy', contentId: 'independent-radiculopathy' },
-        { id: 'advanced-muscle-lab', title: 'Advanced Muscle Lab', icon: '🎓', competency: 'Competency 2 - Level 4', description: 'Senior-level radiculopathy muscle testing', contentId: 'advanced-muscle-lab' },
-        { id: 'independent-neuropathy', title: 'Independent Neuropathy Evaluation', icon: '🎯', competency: 'Competency 3 - Level 4', description: 'Independent NCS/EMG evaluation for peripheral neuropathy', contentId: 'independent-neuropathy' },
-        { id: 'specific-emg-findings', title: 'Specific EMG Findings', icon: '📊', competency: 'Competency 4 - Level 4', description: 'Convey understanding of specific EMG findings for common neuropathic vs myopathic conditions', contentId: 'specific-emg-findings' },
-        { id: 'complex-differentiation', title: 'Complex Case Differentiation', icon: '🎯', competency: 'Competency 4 - Level 4', description: 'Advanced cases requiring neuropathy vs myopathy differentiation', contentId: 'complex-differentiation' },
-        { id: 'ddx-discussion', title: 'DDx Discussion', icon: '🧠', competency: 'Competency 5 - Level 4', description: 'Discuss various DDx associated with abnormal spontaneous activity', contentId: 'ddx-discussion' },
-        { id: 'emg-challenge-mode', title: 'EMG Challenge Mode', icon: '🧠', competency: 'Competency 5 - Level 4', description: 'Test advanced EMG interpretation skills', contentId: 'emg-challenge-mode' },
-        { id: 'peripheral-ddx', title: 'Common DDx Discussion', icon: '🩺', competency: 'Competency 6 - Level 4', description: 'Discuss common DDx associated with EDx findings in peripheral nerve conditions', contentId: 'peripheral-ddx' },
-        { id: 'advanced-plexus', title: 'Advanced Plexus Cases', icon: '🧠', competency: 'Competency 6 - Level 4', description: 'Complex plexus pathology interpretation', contentId: 'advanced-plexus' },
-        { id: 'ddx-ranking', title: 'DDx Ranking', icon: '📊', competency: 'Competency 7 - Level 4', description: 'Arrange DDx in order from most likely to least based on study findings', contentId: 'ddx-ranking' },
-        { id: 'advanced-report-writing', title: 'Advanced Report Writing', icon: '📝', competency: 'Competency 7 - Level 4', description: 'Master professional EMG report composition', contentId: 'advanced-report-writing' },
-        { id: 'quick-reference', title: 'Quick Reference', icon: '⚡', competency: 'Level 4 Reference', description: 'Fast lookup for independent practice', contentId: 'quick-reference' },
-        { id: 'nerve-classifications', title: 'Nerve Classifications', icon: '🧬', competency: 'Level 4 Reference', description: 'Complete nerve fiber reference', contentId: 'nerve-classifications' },
-        { id: 'complete-case-collection', title: 'Complete Case Collection', icon: '🎯', competency: 'Level 1-4 All Cases', description: 'All difficulty levels: beginner, intermediate, and expert cases', contentId: 'complete-case-collection' },
-        { id: 'expert-cases', title: 'Expert Level Cases', icon: '💎', competency: 'Level 4 Target Cases', description: 'Challenging graduation-level clinical scenarios', contentId: 'expert-cases' },
-        { id: 'muscle-mastery', title: 'Advanced Muscle Lab', icon: '🎓', competency: 'PGY-3+ Tool', description: 'Complete muscle testing and anatomy mastery', contentId: 'muscle-mastery' },
-        { id: 'emg-advanced', title: 'EMG Challenge Mode', icon: '🧠', competency: 'PGY-4 Advanced', description: 'Expert-level EMG interpretation challenges', contentId: 'emg-advanced' },
-        { id: 'emg-recognition-mastery', title: 'Advanced EMG Recognition', icon: '👁️👂', competency: 'Level 4 Mastery', description: 'Complete audio/visual EMG mastery testing', contentId: 'emg-recognition-mastery' },
-        { id: 'ncs-mastery', title: 'NCS Landmarks Mastery', icon: '📍', competency: 'Level 4 Skills', description: 'Advanced electrode placement precision', contentId: 'ncs-mastery' },
-        { id: 'plexus-assessment', title: 'Advanced Plexus Assessment', icon: '🧠', competency: 'Level 4 Anatomy', description: 'Complex plexus pathology and DDx evaluation', contentId: 'plexus-assessment' },
-        { id: 'graduation-assessment', title: 'Graduation Readiness Assessment', icon: '🎓', competency: 'Complete Graduation Evaluation', description: 'Comprehensive evaluation of all Level 1-4 competencies', contentId: 'graduation-assessment' },
-        { id: 'consultant-challenge', title: 'Consultant-Level Challenge', icon: '👑', competency: 'Beyond Graduation', description: 'Aspirational Level 5 content for future practice', contentId: 'consultant-challenge' }
+        // Include all previous modules plus Level 4 content
+        { id: 'intro-emg', title: 'EMG/NCS Introduction', icon: '🧠', competency: 'Foundation', description: 'Basic principles and patient care approach', contentId: 'emg-introduction' },
+        { id: 'peripheral-anatomy', title: 'Peripheral Anatomy', icon: '🦴', competency: 'Competency 1 & 6', description: 'Brachial and lumbosacral plexus foundations', contentId: 'plexus-anatomy' },
+        { id: 'radiculopathy-patho', title: 'Radiculopathy Pathophysiology', icon: '🔬', competency: 'Competency 2 - Level 1', description: 'Understanding nerve root compression', contentId: 'radiculopathy-pathophysiology' },
+        { id: 'neuropathy-patho', title: 'Neuropathy Pathophysiology', icon: '⚡', competency: 'Competency 3 - Level 1', description: 'Axonal vs demyelinating processes', contentId: 'neuropathy-pathophysiology' },
+        { id: 'ncs-basics', title: 'NCS Fundamentals', icon: '📈', competency: 'Competency 1 - Level 1', description: 'Basic nerve conduction principles', contentId: 'ncs-fundamentals' },
+        { id: 'ncs-techniques', title: 'NCS Techniques', icon: '🎯', competency: 'Competency 1 - Level 2', description: 'Proper electrode placement and protocols', contentId: 'ncs-techniques' },
+        { id: 'emg-needle-basics', title: 'EMG Needle Techniques', icon: '💉', competency: 'Competency 2 & 3 - Level 2', description: 'Basic needle EMG evaluation', contentId: 'emg-needle-basics' },
+        { id: 'muscle-anatomy', title: 'Muscle Localization', icon: '💪', competency: 'Competency 2 & 3', description: 'Interactive muscle anatomy quiz', contentId: 'muscle-quiz' },
+        { id: 'independent-ncs', title: 'Independent NCS Screen', icon: '🔍', competency: 'Competency 1 - Level 3', description: 'Median, ulnar, radial, peroneal, tibial studies', contentId: 'independent-ncs' },
+        { id: 'radiculopathy-emg', title: 'Radiculopathy EMG Evaluation', icon: '🎪', competency: 'Competency 2 - Level 3', description: 'Independent EMG evaluation techniques', contentId: 'radiculopathy-emg' },
+        { id: 'neuropathy-emg', title: 'Neuropathy EMG Evaluation', icon: '⚡', competency: 'Competency 3 - Level 3', description: 'Independent neuropathy assessment', contentId: 'neuropathy-emg' },
+        { id: 'advanced-patterns', title: 'Advanced Pattern Recognition', icon: '🔊', competency: 'Competency 5 - Level 3', description: 'Audio/visual differentiation of discharges', contentId: 'advanced-patterns' },
+        { id: 'neuropathy-myopathy-ddx', title: 'Neuropathy vs Myopathy DDx', icon: '🧬', competency: 'Competency 4 - Level 3', description: 'Common condition differentiation', contentId: 'neuropathy-myopathy-ddx' },
+        { id: 'plexus-entrapments', title: 'Plexus & Entrapments', icon: '🕸️', competency: 'Competency 6 - Level 3', description: 'Common entrapment syndromes', contentId: 'plexus-entrapments' },
+        { id: 'intermediate-reports', title: 'Intermediate Report Writing', icon: '📋', competency: 'Competency 7 - Level 3', description: 'Critical components and DDx ranking', contentId: 'intermediate-reports' },
+        { id: 'advanced-ncs', title: 'Advanced NCS Studies', icon: '🔬', competency: 'Competency 1 - Level 4', description: 'Blink reflex, repetitive stim, proximal conduction', contentId: 'advanced-ncs' },
+        { id: 'complete-radiculopathy', title: 'Complete Radiculopathy Assessment', icon: '📊', competency: 'Competency 2 - Level 4', description: 'Independent NCS/EMG evaluation', contentId: 'complete-radiculopathy' },
+        { id: 'complete-neuropathy', title: 'Complete Neuropathy Assessment', icon: '⚡', competency: 'Competency 3 - Level 4', description: 'Independent comprehensive evaluation', contentId: 'complete-neuropathy' },
+        { id: 'neuropathy-myopathy-findings', title: 'Specific EMG Findings', icon: '🔍', competency: 'Competency 4 - Level 4', description: 'Specific EMG findings for conditions', contentId: 'neuropathy-myopathy-findings' },
+        { id: 'discharge-ddx', title: 'Discharge Pattern DDx', icon: '🎵', competency: 'Competency 5 - Level 4', description: 'DDx for abnormal spontaneous activity', contentId: 'discharge-ddx' },
+        { id: 'plexus-ddx', title: 'Plexus DDx & Findings', icon: '🧠', competency: 'Competency 6 - Level 4', description: 'Common DDx for EDx findings', contentId: 'plexus-ddx' },
+        { id: 'advanced-reports', title: 'Advanced Report Writing', icon: '📄', competency: 'Competency 7 - Level 4', description: 'DDx ranking and clinical integration', contentId: 'advanced-reports' },
+        { id: 'teaching-prep', title: 'Teaching Preparation', icon: '🎓', competency: 'Leadership', description: 'Preparing to teach junior residents', contentId: 'teaching-prep' },
+        { id: 'consultant-cases', title: 'Consultant-Level Cases', icon: '👨‍⚕️', competency: 'Mastery', description: 'Complex multi-system cases', contentId: 'consultant-cases' }
     ]
 };
 
-// Current system state  
-// currentPGYLevel is already declared earlier in the file
-let currentModuleIndex = 0;
-let completedModules = new Set();
+// Current system state - use existing global variables if available
+if (typeof window.currentPGYLevel === 'undefined') {
+    window.currentPGYLevel = null;
+}
+if (typeof window.currentModuleIndex === 'undefined') {
+    window.currentModuleIndex = 0;
+}
+if (typeof window.completedModules === 'undefined') {
+    window.completedModules = new Set();
+}
 let currentPage = 'pgy-selection';
 
-// Initialize the CANDYLAND system when page loads
+// Initialize the system when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🧠 ERNEST System - Initializing...');
-    
-    // Simple initialization - HTML structure already works
-    const pgyPage = document.getElementById('pgy-selection-page');
-    if (pgyPage) {
-        // Ensure PGY page is visible (should already be with CSS)
-        if (!pgyPage.classList.contains('active')) {
-            pgyPage.classList.add('active');
-        }
-        console.log('✅ ERNEST interface ready');
-    } else {
-        console.error('❌ PGY selection page not found');
-    }
-    
-    // Quick verification after 500ms (reduced from aggressive retries)
-    setTimeout(() => {
-        const pgyPage = document.getElementById('pgy-selection-page');
-        if (pgyPage) {
-            const computedStyle = window.getComputedStyle(pgyPage);
-            if (computedStyle.display !== 'none') {
-                console.log('✅ ERNEST interface confirmed visible');
-            } else {
-                console.log('🔧 Applying visibility fix...');
-                pgyPage.style.display = 'block';
-                pgyPage.classList.add('active');
-            }
-        }
-    }, 500);
-    
-    // NUCLEAR OPTION: If everything else fails, create system from scratch after 3 seconds
-    // DISABLED: Nuclear option was destroying working HTML structure
-    // setTimeout(() => {
-        console.log('✅ Nuclear option disabled - HTML structure works correctly');
-        
-        // Check if any Candyland content is visible
-        let pgyPageCheck = document.getElementById('pgy-selection-page');
-        const isVisible = pgyPageCheck && window.getComputedStyle(pgyPageCheck).display !== 'none';
-        
-        if (!isVisible) {
-            console.log('🚨 No Candyland content visible - deploying nuclear option');
-            
-            // Nuke everything and start fresh
-            document.body.innerHTML = `
-                <div id="nuclear-candyland-system" style="
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(135deg, #6b9f78 0%, #4a6d52 100%);
-                    z-index: 9999;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    color: white;
-                    font-family: Arial, sans-serif;
-                ">
-                    <h1 style="font-size: 3em; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                        🧠 ERNEST EMG Learning System
-                    </h1>
-                    <p style="font-size: 1.2em; margin-bottom: 40px; text-align: center;">
-                        Choose your PGY level to begin the Candyland learning journey
-                    </p>
-                    <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
-                        <button onclick="window.nuclearSelectPGY('pgy2')" style="
-                            background: linear-gradient(135deg, #10b981, #059669);
-                            color: white;
-                            border: none;
-                            padding: 20px 40px;
-                            font-size: 1.3em;
-                            border-radius: 15px;
-                            cursor: pointer;
-                            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-                            transition: transform 0.3s ease;
-                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            🎓 PGY-2<br><small>Foundation Level</small>
-                        </button>
-                        <button onclick="window.nuclearSelectPGY('pgy3')" style="
-                            background: linear-gradient(135deg, #f59e0b, #d97706);
-                            color: white;
-                            border: none;
-                            padding: 20px 40px;
-                            font-size: 1.3em;
-                            border-radius: 15px;
-                            cursor: pointer;
-                            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-                            transition: transform 0.3s ease;
-                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            ⚡ PGY-3<br><small>Development Level</small>
-                        </button>
-                        <button onclick="window.nuclearSelectPGY('pgy4')" style="
-                            background: linear-gradient(135deg, #dc2626, #b91c1c);
-                            color: white;
-                            border: none;
-                            padding: 20px 40px;
-                            font-size: 1.3em;
-                            border-radius: 15px;
-                            cursor: pointer;
-                            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-                            transition: transform 0.3s ease;
-                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            🔥 PGY-4<br><small>Mastery Level</small>
-                        </button>
-                    </div>
-                    <p style="margin-top: 40px; opacity: 0.8; font-size: 0.9em;">
-                        ☢️ Emergency Nuclear System - Legacy UI has been defeated!
-                    </p>
-                </div>
-            `;
-            
-            // Add nuclear PGY selection function
-            window.nuclearSelectPGY = function(level) {
-                console.log(`☢️ Nuclear PGY selection: ${level}`);
-                localStorage.setItem('emg-pgy-level', level);
-                window.currentPGYLevel = level;
-                
-                // This will trigger a page reload to start fresh
-                location.reload();
-            };
-            
-            console.log('☢️ Nuclear Candyland system deployed successfully');
-        // } else {
-        //     console.log('✅ Candyland system is visible - nuclear option not needed');
-        // }
-    // }, 3000);
-    
-    // DISABLED: MutationObserver was causing infinite loop (1.93M console messages)
-    // const legacyObserver = new MutationObserver((mutations) => {
-    //     let legacyDetected = false;
-    //     
-    //     mutations.forEach((mutation) => {
-    //         mutation.addedNodes.forEach((node) => {
-    //             if (node.nodeType === Node.ELEMENT_NODE) {
-    //                 // Check if it's a legacy dashboard element
-    //                 if (node.id && node.id.includes('dashboard') && node.id.includes('pgy')) {
-    //                     console.log('🚨 MUTATION OBSERVER: Legacy dashboard detected:', node.id);
-    //                     node.style.display = 'none !important';
-    //                     node.style.visibility = 'hidden !important';
-    //                     node.style.opacity = '0';
-    //                     node.style.height = '0';
-    //                     node.style.overflow = 'hidden';
-    //                     node.style.position = 'absolute';
-    //                     node.style.left = '-9999px';
-    //                     legacyDetected = true;
-    //                 }
-    //                 
-    //                 // Check for any descendants that are legacy dashboards
-    //                 const legacyDashboards = node.querySelectorAll('[id*="pgy"][id*="dashboard"], .pgy-dashboard');
-    //                 legacyDashboards.forEach(dashboard => {
-    //                     console.log('🚨 MUTATION OBSERVER: Legacy dashboard descendant detected:', dashboard.id || dashboard.className);
-    //                     dashboard.style.display = 'none !important';
-    //                     dashboard.style.visibility = 'hidden !important';
-    //                     dashboard.style.opacity = '0';
-    //                     dashboard.style.height = '0';
-    //                     dashboard.style.overflow = 'hidden';
-    //                     dashboard.style.position = 'absolute';
-    //                     dashboard.style.left = '-9999px';
-    //                     legacyDetected = true;
-    //                 });
-    //             }
-    //         });
-    //         
-    //         // Also check for style/attribute mutations that might be making legacy elements visible
-    //         if (mutation.type === 'attributes' && (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-    //             const target = mutation.target;
-    //             if (target.id && target.id.includes('dashboard') && target.id.includes('pgy')) {
-    //                 const computedStyle = window.getComputedStyle(target);
-    //                 if (computedStyle.display !== 'none') {
-    //                     console.log('🚨 MUTATION OBSERVER: Legacy dashboard made visible via attributes:', target.id);
-    //                     target.style.display = 'none !important';
-    //                     target.style.visibility = 'hidden !important';
-    //                     legacyDetected = true;
-    //                 }
-    //             }
-    //         }
-    //     });
-    //     
-    //     if (legacyDetected) {
-    //         console.log('⚔️ MUTATION OBSERVER: Legacy content neutralized!');
-    //     }
-    // });
-    
-    // DISABLED: Observer was causing infinite style modification loop
-    // legacyObserver.observe(document.body, {
-    //     childList: true,
-    //     subtree: true,
-    //     attributes: true,
-    //     attributeFilter: ['style', 'class']
-    // });
-    
-    console.log('✅ MutationObserver disabled - infinite loop fixed');
-    
-    // SUPPRESS IMAGE LOADING ERRORS - Clean up console output
-    const handleImageError = (event) => {
-        console.log(`🖼️ Image failed to load (expected - using fallbacks): ${event.target.src}`);
-        event.preventDefault();
-        return false;
-    };
-    
-    // Add error handler for existing images
-    document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('error', handleImageError);
-    });
-    
-    // Add error handler for future images
-    document.addEventListener('error', (event) => {
-        if (event.target.tagName === 'IMG') {
-            handleImageError(event);
-        }
-    }, true);
-    
-    console.log('🖼️ IMAGE ERROR SUPPRESSION: Active - cleaning up console output');
-    
-    // REAL-TIME BATTLE SYSTEM: Monitor and defend against legacy system takeover
-    let battleSystemActive = true;
-    
-    function battleLegacySystem() {
-        if (!battleSystemActive) return;
-        
-        // Check if Candyland system is under attack
-        const pgyPage = document.getElementById('pgy-selection-page');
-        const learningBoard = document.getElementById('learning-board-page');
-        
-        let candylandVisible = false;
-        
-        if (pgyPage) {
-            const pgyStyle = window.getComputedStyle(pgyPage);
-            candylandVisible = (pgyStyle.display !== 'none' && pgyStyle.visibility !== 'hidden' && pgyStyle.opacity !== '0');
-        }
-        
-        if (learningBoard) {
-            const boardStyle = window.getComputedStyle(learningBoard);
-            candylandVisible = candylandVisible || (boardStyle.display !== 'none' && boardStyle.visibility !== 'hidden' && boardStyle.opacity !== '0');
-        }
-        
-        // Check for nuclear system
-        const nuclearSystem = document.getElementById('nuclear-candyland-system');
-        if (nuclearSystem) {
-            const nuclearStyle = window.getComputedStyle(nuclearSystem);
-            candylandVisible = candylandVisible || (nuclearStyle.display !== 'none');
-        }
-        
-        // AGGRESSIVE LEGACY DASHBOARD HUNTING
-        const legacyDashboards = ['pgy2-dashboard', 'pgy3-dashboard', 'pgy4-dashboard', 'all-levels-dashboard'];
-        let legacyDashboardsFound = 0;
-        
-        legacyDashboards.forEach(dashboardId => {
-            const dashboard = document.getElementById(dashboardId);
-            if (dashboard) {
-                const style = window.getComputedStyle(dashboard);
-                if (style.display !== 'none') {
-                    console.log(`🚨 BATTLE: Legacy dashboard ${dashboardId} detected with display: ${style.display}!`);
-                    dashboard.style.display = 'none !important';
-                    dashboard.style.visibility = 'hidden !important';
-                    dashboard.style.opacity = '0 !important';
-                    dashboard.style.height = '0px !important';
-                    dashboard.style.overflow = 'hidden !important';
-                    dashboard.style.position = 'absolute !important';
-                    dashboard.style.left = '-9999px !important';
-                    dashboard.style.top = '-9999px !important';
-                    legacyDashboardsFound++;
-                }
-            }
-        });
-        
-        if (legacyDashboardsFound > 0) {
-            console.log(`⚔️ BATTLE: Neutralized ${legacyDashboardsFound} legacy dashboards!`);
-        }
-
-        if (!candylandVisible) {
-            console.log('⚔️ BATTLE: Legacy system detected! Counter-attacking...');
-            
-            // Counter-attack: Hide legacy elements
-            if (typeof window.forceHideLegacyUI === 'function') {
-                window.forceHideLegacyUI();
-            }
-            
-            // Counter-attack: Restore Candyland system
-            if (pgyPage && !nuclearSystem) {
-                pgyPage.style.display = 'block !important';
-                pgyPage.style.visibility = 'visible !important';
-                pgyPage.style.opacity = '1 !important';
-                pgyPage.style.zIndex = '2001 !important';
-                pgyPage.classList.add('active');
-                console.log('⚔️ BATTLE: PGY page restored');
-            }
-        }
-        
-        // Check if user has made a selection (stop battle system)
-        if (localStorage.getItem('emg-pgy-level')) {
-            console.log('✅ BATTLE SYSTEM: User made selection - disabling battle system');
-            battleSystemActive = false;
-        }
-    }
-    
-    // DISABLED: Battle system was causing 1M+ console messages
-    // const battleInterval = setInterval(() => {
-    //     if (battleSystemActive) {
-    //         battleLegacySystem();
-    //     } else {
-    //         clearInterval(battleInterval);
-    //         console.log('⚔️ BATTLE SYSTEM DEACTIVATED');
-    //     }
-    // }, 500);
-    
-    console.log('⚔️ BATTLE SYSTEM DISABLED - Was causing console flood');
+    initializeLearningBoard();
+});
 
 // Initialize the learning board system
 function initializeLearningBoard() {
@@ -10251,7 +9201,7 @@ function generateLearningBoard(pgyLevel) {
     const modules = learningModulesConfig[pgyLevel];
     
     // Calculate the height needed for the path based on number of modules
-    const pathHeight = Math.max(3000, (modules.length * 120) + 600);
+    const pathHeight = Math.max(800, (modules.length * 100) + 400);
     
     boardContainer.innerHTML = `
         <div class="learning-path" style="min-height: ${pathHeight}px;">
@@ -10264,35 +9214,10 @@ function generateLearningBoard(pgyLevel) {
     
     currentPage = 'learning-board';
     
-    // Debug ERNEST creation
-    console.log('🧠 ERNEST: Learning board generated, checking for ERNEST...');
-    setTimeout(() => {
-        const ernst = document.getElementById('ernest-character');
-        console.log('🧠 ERNST Element immediately after creation:', ernst);
-        if (ernst) {
-            console.log('🧠 ERNST initial style:', window.getComputedStyle(ernst));
-            console.log('🧠 ERNEST parent element:', ernst.parentElement);
-        }
-    }, 100);
-    
     // Position ERNEST on the current module after a brief delay
     setTimeout(() => {
-        console.log('🧠 ERNEST: Attempting to position ERNEST...');
         positionErnest();
         showErnestWelcomeMessage();
-        
-        // Debug after positioning
-        const ernst = document.getElementById('ernest-character');
-        if (ernst) {
-            console.log('🧠 ERNEST positioned successfully:', {
-                position: ernst.style.position,
-                left: ernst.style.left,
-                top: ernst.style.top,
-                zIndex: ernst.style.zIndex
-            });
-        } else {
-            console.error('🚨 ERNEST STILL MISSING AFTER POSITIONING ATTEMPT!');
-        }
     }, 500);
 }
 
@@ -10303,238 +9228,28 @@ function generateModuleSquare(module, index) {
     const isLocked = index > currentModuleIndex && !isCompleted;
     
     let statusClass = '';
-    let statusText = '';
-    let statusIcon = '';
     
     if (isCompleted) {
         statusClass = 'completed';
-        statusText = 'Complete';
-        statusIcon = '✅';
     } else if (isCurrent) {
         statusClass = 'current';
-        statusText = 'Current';
-        statusIcon = '👉';
     } else if (isAvailable) {
         statusClass = 'available';
-        statusText = 'Available';
-        statusIcon = '🔓';
     } else {
         statusClass = 'locked';
-        statusText = 'Locked';
-        statusIcon = '🔒';
     }
     
     const isClickable = !isLocked;
-    const clickHandler = isClickable ? `showModuleDialog(${index})` : '';
-    const moduleNumber = index + 1;
-    
-    // Determine if content exists or is placeholder
-    const hasContent = checkModuleContentExists(module.contentId);
-    const contentStatus = hasContent ? '' : '<div class="module-placeholder-badge">📋 Placeholder</div>';
+    const clickHandler = isClickable ? `navigateToModule(${index})` : '';
     
     return `
         <div class="module-square ${statusClass}" onclick="${clickHandler}" data-module-index="${index}" data-module-id="${module.id}">
-            <div class="module-header">
-                <div class="module-number">${moduleNumber}</div>
-                <div class="module-status">
-                    <span class="status-icon">${statusIcon}</span>
-                    <span class="status-text">${statusText}</span>
-                </div>
-            </div>
             <div class="module-icon">${module.icon}</div>
             <div class="module-title">${module.title}</div>
             <div class="module-competency">${module.competency}</div>
-            <div class="module-description">${module.description}</div>
-            ${contentStatus}
         </div>
     `;
 }
-
-// Check if module content actually exists (not placeholder)
-function checkModuleContentExists(contentId) {
-    const existingContent = [
-        'emg-introduction', 'plexus-anatomy', 'ncs-fundamentals', 
-        'ncs-techniques', 'muscle-quiz', 'basic-patterns', 
-        'simple-reports', 'clinical-correlation'
-    ];
-    return existingContent.includes(contentId);
-}
-
-// Show ERNEST dialog when clicking a module
-function showModuleDialog(moduleIndex) {
-    const modules = learningModulesConfig[currentPGYLevel];
-    const module = modules[moduleIndex];
-    const hasContent = checkModuleContentExists(module.contentId);
-    
-    // MOVE ERNEST TO THE CLICKED MODULE and KEEP HIM THERE
-    moveErnestToClickedModule(moduleIndex);
-    
-    // Create dialog overlay
-    const dialogOverlay = document.createElement('div');
-    dialogOverlay.className = 'ernest-dialog-overlay';
-    
-    const dialogContent = `
-        <div class="ernest-dialog">
-            <div class="ernest-dialog-header">
-                <div class="dialog-ernest">
-                    <img src="ERNEST.png" alt="ERNEST" class="dialog-ernest-image" />
-                    <div class="ernest-speech-bubble-dialog">
-                        <div class="speech-bubble-content">
-                            <h3>📚 ${module.title}</h3>
-                            <p><strong>Competency:</strong> ${module.competency}</p>
-                            <p><strong>Description:</strong> ${module.description}</p>
-                            ${hasContent ? 
-                                '<p>🎯 This module contains interactive content and exercises!</p>' : 
-                                '<p>📋 This module is currently a placeholder and will be developed soon.</p>'
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ernest-dialog-actions">
-                ${hasContent ? 
-                    `<button class="ernest-dialog-btn primary" onclick="navigateToModuleContent(${moduleIndex})">
-                        🚀 Let's Go!
-                    </button>` :
-                    `<button class="ernest-dialog-btn secondary" onclick="markPlaceholderComplete(${moduleIndex})">
-                        📋 Mark as Reviewed
-                    </button>`
-                }
-                <button class="ernest-dialog-btn secondary" onclick="closeModuleDialog()">
-                    ❌ Maybe Later
-                </button>
-            </div>
-        </div>
-    `;
-    
-    dialogOverlay.innerHTML = dialogContent;
-    document.body.appendChild(dialogOverlay);
-    
-    // Animate dialog in
-    setTimeout(() => {
-        dialogOverlay.classList.add('active');
-    }, 10);
-}
-
-// Close module dialog
-function closeModuleDialog() {
-    const dialog = document.querySelector('.ernest-dialog-overlay');
-    if (dialog) {
-        dialog.classList.add('closing');
-        setTimeout(() => {
-            dialog.remove();
-        }, 300);
-    }
-}
-
-// Navigate to module content with smooth transition
-function navigateToModuleContent(moduleIndex) {
-    const modules = learningModulesConfig[currentPGYLevel];
-    const module = modules[moduleIndex];
-    
-    // Close dialog
-    closeModuleDialog();
-    
-    // Map content IDs to tab IDs
-    const contentMapping = {
-        'emg-introduction': 'tab-7',     // Cardinal Rules
-        'plexus-anatomy': 'tab-12',      // Interactive Plexus
-        'ncs-fundamentals': 'tab-1',     // NCS Reference
-        'ncs-techniques': 'tab-6',       // NCS Videos
-        'muscle-quiz': 'tab-8',          // Muscle Anatomy
-        'basic-patterns': 'tab-9',       // EMG Patterns
-        'simple-reports': 'tab-13',      // Report Writing
-        'clinical-correlation': 'tab-14'  // Diagnosis Reference
-    };
-    
-    const targetTabId = contentMapping[module.contentId];
-    if (targetTabId) {
-        showModuleContentPage(targetTabId, module.title);
-    }
-}
-
-// Mark placeholder module as complete
-function markPlaceholderComplete(moduleIndex) {
-    const modules = learningModulesConfig[currentPGYLevel];
-    const module = modules[moduleIndex];
-    
-    completedModules.add(module.id);
-    saveProgress();
-    
-    // Move to next module if this was current
-    if (moduleIndex === currentModuleIndex) {
-        currentModuleIndex = Math.min(currentModuleIndex + 1, modules.length - 1);
-    }
-    
-    closeModuleDialog();
-    regenerateLearningBoard();
-}
-
-// Show module content page with smooth transition
-function showModuleContentPage(tabId, moduleTitle) {
-    // Create module content overlay
-    const contentOverlay = document.createElement('div');
-    contentOverlay.className = 'module-content-overlay';
-    
-    // Get the target tab content
-    const targetTab = document.getElementById(tabId);
-    if (!targetTab) return;
-    
-    const contentHTML = `
-        <div class="module-content-page">
-            <div class="module-content-header">
-                <button class="back-to-board-btn" onclick="closeModuleContent()">
-                    ← Back to Learning Board
-                </button>
-                <h1 class="module-content-title">${moduleTitle}</h1>
-                <div class="module-progress-indicator">
-                    Progress: ${completedModules.size}/${learningModulesConfig[currentPGYLevel].length} Modules
-                </div>
-            </div>
-            <div class="module-content-body">
-                ${targetTab.innerHTML}
-            </div>
-        </div>
-    `;
-    
-    contentOverlay.innerHTML = contentHTML;
-    document.body.appendChild(contentOverlay);
-    
-    // Animate content in
-    setTimeout(() => {
-        contentOverlay.classList.add('active');
-    }, 10);
-}
-
-// Close module content and return to board
-function closeModuleContent() {
-    const contentOverlay = document.querySelector('.module-content-overlay');
-    if (contentOverlay) {
-        contentOverlay.classList.add('closing');
-        setTimeout(() => {
-            contentOverlay.remove();
-        }, 300);
-    }
-}
-
-// Regenerate learning board with updated progress
-function regenerateLearningBoard() {
-    generateLearningBoard(currentPGYLevel);
-    updateBoardHeader(currentPGYLevel);
-    
-    // Re-position ERNEST after regeneration
-    setTimeout(() => {
-        positionErnest();
-    }, 100);
-}
-
-// Export new functions
-window.showModuleDialog = showModuleDialog;
-window.closeModuleDialog = closeModuleDialog;
-window.navigateToModuleContent = navigateToModuleContent;
-window.markPlaceholderComplete = markPlaceholderComplete;
-window.showModuleContentPage = showModuleContentPage;
-window.closeModuleContent = closeModuleContent;
 
 function updateBoardHeader(pgyLevel) {
     const boardTitle = document.getElementById('board-pgy-title');
@@ -10679,63 +9394,39 @@ function animateErnestToModule(targetIndex, fromIndex) {
     }, 800);
 }
 
-// Move ERNEST to a specific clicked module and KEEP HIM THERE
-function moveErnestToClickedModule(moduleIndex) {
-    const ernst = document.getElementById('ernest-character');
-    if (!ernst) return;
-    
-    const currentModuleSquares = document.querySelectorAll('.module-square');
-    const targetSquare = currentModuleSquares[moduleIndex];
-    
-    if (!targetSquare) return;
-    
-    // Remove previous ERNEST positioning from all squares
-    document.querySelectorAll('.module-square').forEach(square => {
-        square.classList.remove('has-ernest');
-    });
-    
-    // Add ERNEST to clicked module
-    targetSquare.classList.add('has-ernest');
-    
-    // Position ERNEST ABSOLUTELY within the learning board container
-    // This makes ERNEST stay with the module regardless of scrolling
-    const learningBoard = document.querySelector('.learning-modules');
-    const boardRect = learningBoard.getBoundingClientRect();
-    const squareRect = targetSquare.getBoundingClientRect();
-    
-    // Calculate position relative to the learning board container
-    const ernestX = (squareRect.left - boardRect.left) + (squareRect.width / 2) - 30;
-    const ernestY = (squareRect.top - boardRect.top) + (squareRect.height / 2) - 30;
-    
-    ernst.style.position = 'absolute'; // CHANGED FROM FIXED TO ABSOLUTE
-    ernst.style.left = `${ernestX}px`;
-    ernst.style.top = `${ernestY}px`;
-    ernst.style.zIndex = '1001';
-    ernst.style.pointerEvents = 'none'; // Allow clicking through ERNEST to the module
-    
-    // Store the clicked module for persistence
-    ernst.dataset.targetModule = moduleIndex;
-    ernst.dataset.clickedModule = moduleIndex; // Store the user's choice
-    
-    console.log(`🧠 ERNEST moved to clicked module ${moduleIndex + 1} and will STAY there!`);
-}
-
-// Position ERNEST on the current learning module (LEGACY - now only used for initial positioning)
+// Position ERNEST on the current learning module
 function positionErnest() {
     const ernst = document.getElementById('ernest-character');
     if (!ernst) return;
     
-    // Check if user has clicked a specific module - if so, don't auto-position
-    if (ernst.dataset.clickedModule) {
-        console.log(`🧠 ERNEST staying at user's clicked module ${parseInt(ernst.dataset.clickedModule) + 1}`);
-        return;
-    }
-    
     const modules = learningModulesConfig[currentPGYLevel];
     if (!modules || modules.length === 0) return;
     
-    // Only do initial positioning if no specific module has been clicked
-    moveErnestToClickedModule(Math.min(currentModuleIndex, modules.length - 1));
+    // Find the current module square
+    const currentModuleSquares = document.querySelectorAll('.module-square');
+    const targetIndex = Math.min(currentModuleIndex, currentModuleSquares.length - 1);
+    const targetSquare = currentModuleSquares[targetIndex];
+    
+    if (!targetSquare) return;
+    
+    // Remove previous ernest positioning
+    document.querySelectorAll('.module-square').forEach(square => {
+        square.classList.remove('has-ernest');
+    });
+    
+    // Add ernest to current module
+    targetSquare.classList.add('has-ernest');
+    
+    // Calculate position relative to the learning board
+    const boardRect = document.querySelector('.learning-path').getBoundingClientRect();
+    const squareRect = targetSquare.getBoundingClientRect();
+    
+    // Position ERNEST on top-center of the module square
+    const ernestX = (squareRect.left - boardRect.left) + (squareRect.width / 2) - 30;
+    const ernestY = (squareRect.top - boardRect.top) - 20;
+    
+    ernst.style.left = `${ernestX}px`;
+    ernst.style.top = `${ernestY}px`;
 }
 
 // Animate ERNEST hopping to next module
@@ -11091,49 +9782,6 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Scroll handler for PGY color zones
-function updatePGYZoneIndicator() {
-    const scrollPercent = window.pageYOffset / (document.body.scrollHeight - window.innerHeight);
-    let currentZone = 'PGY-2';
-    let zoneClass = 'pgy-2';
-    
-    if (scrollPercent > 0.35 && scrollPercent <= 0.65) {
-        currentZone = 'PGY-3 Zone';
-        zoneClass = 'pgy-3';
-    } else if (scrollPercent > 0.65) {
-        currentZone = 'PGY-4 Zone';
-        zoneClass = 'pgy-4';
-    }
-    
-    let indicator = document.querySelector('.pgy-zone-indicator');
-    if (!indicator) {
-        indicator = document.createElement('div');
-        indicator.className = 'pgy-zone-indicator';
-        document.body.appendChild(indicator);
-    }
-    
-    indicator.textContent = currentZone;
-    indicator.className = `pgy-zone-indicator ${zoneClass}`;
-}
-
-// Add scroll listener for zone tracking (ERNEST positioning DISABLED - now stays fixed on clicked module)
-window.addEventListener('scroll', () => {
-    if (currentPage === 'learning-board') {
-        updatePGYZoneIndicator();
-        
-        // ERNEST REPOSITIONING DISABLED - now uses absolute positioning and stays on clicked module
-        // No need to reposition ERNEST during scroll since he's absolutely positioned relative to the learning board
-        console.log('📜 Scroll detected - PGY zone updated, ERNEST staying in place on clicked module');
-    }
-
-    // Export MuscleAnatomy to window for global access
-    console.log('🔍 DEBUG: About to export MuscleAnatomy to window...');
-    window.MuscleAnatomy = MuscleAnatomy;
-    console.log('🔍 DEBUG: MuscleAnatomy exported successfully');
-});
-
-// End DOMContentLoaded block from line 9830
-
 // Export functions for global access
 window.selectPGYLevel = selectPGYLevel;
 window.showPGYSelection = showPGYSelection;
@@ -11156,653 +9804,6 @@ window.moveErnestToNextModule = moveErnestToNextModule;
 window.ernestCelebration = ernestCelebration;
 window.showErnestSpeechBubble = showErnestSpeechBubble;
 
-
-// ================================================
-// MISSING INTERACTIVE FUNCTIONS
-// ================================================
-
-// Interactive Case Functions
-function showCaseAnswer(caseType) {
-    console.log('showCaseAnswer called with:', caseType);
-    
-    const caseAnswers = {
-        'birth_injury': {
-            title: 'Birth Injury - Upper Trunk Brachial Plexopathy',
-            answer: 'Upper trunk brachial plexus injury (Erb\'s palsy)',
-            explanation: 'The pattern of weakness (deltoid, biceps, supraspinatus, infraspinatus) with sparing of triceps and hand intrinsics indicates an upper trunk (C5-C6) brachial plexus lesion, commonly seen in birth trauma.'
-        },
-        'radiation': {
-            title: 'Radiation Plexopathy',
-            answer: 'Radiation-induced brachial plexopathy',
-            explanation: 'Radiation plexopathy typically affects the upper trunk first and can occur months to years after radiation therapy. EMG shows chronic denervation without acute changes.'
-        },
-        'diabetic_plexopathy': {
-            title: 'Diabetic Plexopathy',
-            answer: 'Diabetic lumbosacral plexopathy',
-            explanation: 'Also known as diabetic amyotrophy, this condition typically affects the proximal muscles of the lower extremity and can be quite painful. Recovery is often partial.'
-        }
-    };
-    
-    const caseData = caseAnswers[caseType];
-    if (caseData) {
-        showModal(caseData.title, `
-            <div class="case-answer-content">
-                <h4>Answer:</h4>
-                <p><strong>${caseData.answer}</strong></p>
-                <h4>Explanation:</h4>
-                <p>${caseData.explanation}</p>
-            </div>
-        `);
-    } else {
-        showModal('Case Answer', '<p>Case answer details coming soon!</p>');
-    }
-}
-
-// Entrapment Details Functions
-function showEntrapmentDetails(entrapment) {
-    console.log('showEntrapmentDetails called with:', entrapment);
-    
-    const entrapmentData = {
-        'carpal_tunnel': {
-            title: 'Carpal Tunnel Syndrome',
-            details: 'Median nerve compression at the wrist. Classic symptoms include numbness in thumb, index, middle, and radial half of ring finger.'
-        },
-        'cubital_tunnel': {
-            title: 'Cubital Tunnel Syndrome', 
-            details: 'Ulnar nerve compression at the elbow. Symptoms include numbness in little finger and ulnar half of ring finger, weakness of intrinsic hand muscles.'
-        },
-        'tarsal_tunnel': {
-            title: 'Tarsal Tunnel Syndrome',
-            details: 'Posterior tibial nerve compression at the ankle. Symptoms include numbness and tingling on the plantar surface of the foot.'
-        },
-        'peroneal': {
-            title: 'Peroneal Nerve Entrapment',
-            details: 'Common peroneal nerve compression at the fibular head. Results in foot drop and numbness over the dorsum of the foot.'
-        }
-    };
-    
-    const data = entrapmentData[entrapment];
-    if (data) {
-        showModal(data.title, `<p>${data.details}</p>`);
-    } else {
-        showModal('Entrapment Details', '<p>Detailed information coming soon!</p>');
-    }
-}
-
-// Lower Extremity Nerve Details
-function showLENeveDetails(nerve) {
-    console.log('showLENeveDetails called with:', nerve);
-    
-    const nerveDetails = {
-        'femoral': {
-            title: 'Femoral Nerve (L2-L4)',
-            details: 'Innervates quadriceps and provides sensation to anterior thigh and medial leg via saphenous branch.'
-        },
-        'sciatic': {
-            title: 'Sciatic Nerve (L4-S3)',
-            details: 'Largest nerve in the body. Divides into tibial and common peroneal nerves. Innervates posterior thigh muscles.'
-        },
-        'tibial': {
-            title: 'Tibial Nerve (L4-S3)',
-            details: 'Innervates posterior leg muscles and intrinsic foot muscles via plantar nerves.'
-        },
-        'peroneal': {
-            title: 'Common Peroneal Nerve (L4-S2)', 
-            details: 'Divides into deep and superficial branches. Innervates anterior and lateral leg muscles.'
-        }
-    };
-    
-    const data = nerveDetails[nerve];
-    if (data) {
-        showModal(data.title, `<p>${data.details}</p>`);
-    } else {
-        showModal('Nerve Details', '<p>Detailed nerve information coming soon!</p>');
-    }
-}
-
-// Plexus Diagram Interactive Functions
-function resetLSPlexusDiagram() {
-    console.log('resetLSPlexusDiagram called');
-    showModal('Reset Diagram', '<p>Interactive plexus diagram reset functionality coming soon!</p>');
-}
-
-function showLSAllPaths() {
-    console.log('showLSAllPaths called');
-    showModal('Show All Paths', '<p>Interactive nerve pathway highlighting coming soon!</p>');
-}
-
-function startLSTracingQuiz() {
-    console.log('startLSTracingQuiz called');
-    showModal('Nerve Tracing Quiz', '<p>Interactive nerve tracing quiz functionality coming soon!</p>');
-}
-
-// Export functions to global scope
-window.showCaseAnswer = showCaseAnswer;
-window.showEntrapmentDetails = showEntrapmentDetails;
-window.showLENeveDetails = showLENeveDetails;
-window.resetLSPlexusDiagram = resetLSPlexusDiagram;
-window.showLSAllPaths = showLSAllPaths;
-window.startLSTracingQuiz = startLSTracingQuiz;
-
 // ================================================
 // END OF CANDYLAND LEARNING BOARD SYSTEM
 // ================================================
-
-// ================================================
-// BRACHIAL PLEXUS INTERACTIVE MODULE
-// ================================================
-
-// Initialize brachial plexus when tab 12 is shown
-function initializeBrachialPlexus() {
-    // Check if we're on tab 12 and the SVG exists
-    const svg = document.getElementById('plexus-svg');
-    if (!svg) return;
-
-    console.log('🧠 Initializing Brachial Plexus Interactive Module');
-
-    // Initialize the diagram
-    initializePlexusDiagram();
-}
-
-// Add this to the existing showTab function hook
-const originalShowTab = window.showTab;
-if (originalShowTab) {
-    window.showTab = function(tabNumber) {
-        originalShowTab(tabNumber);
-        if (tabNumber === 12) {
-            // Small delay to ensure DOM is ready
-            setTimeout(initializeBrachialPlexus, 100);
-        }
-    };
-}
-
-// Also initialize when page loads if tab 12 is active
-document.addEventListener('DOMContentLoaded', function() {
-    const activeTab = document.querySelector('#tab-12.active, #tab-12.tab-content.active');
-    if (activeTab) {
-        setTimeout(initializeBrachialPlexus, 100);
-    }
-});
-
-// Brachial Plexus Data and Functions (condensed version for integration)
-const plexusData = {
-    roots: [
-        { id: 'C5', x: 80, y: 120, label: 'C5', description: 'Fifth cervical nerve root' },
-        { id: 'C6', x: 80, y: 180, label: 'C6', description: 'Sixth cervical nerve root' },
-        { id: 'C7', x: 80, y: 280, label: 'C7', description: 'Seventh cervical nerve root' },
-        { id: 'C8', x: 80, y: 380, label: 'C8', description: 'Eighth cervical nerve root' },
-        { id: 'T1', x: 80, y: 440, label: 'T1', description: 'First thoracic nerve root' }
-    ],
-    nerves: [
-        {
-            id: 'musculocutaneous', x: 630, y: 160, label: 'Musculocutaneous',
-            description: 'C5-C7 • Lateral Cord • Elbow Flexion',
-            roots: ['C5', 'C6', 'C7'],
-            muscles: ['Biceps', 'Brachialis', 'Coracobrachialis'],
-            sensory: 'Lateral forearm'
-        },
-        {
-            id: 'axillary', x: 500, y: 240, label: 'Axillary',
-            description: 'C5-C6 • Posterior Cord • Shoulder Abduction',
-            roots: ['C5', 'C6'],
-            muscles: ['Deltoid', 'Teres minor'],
-            sensory: 'Lateral arm'
-        },
-        {
-            id: 'median', x: 630, y: 280, label: 'Median',
-            description: 'C6-T1 • Lateral & Medial Cords • Precision Grip Master',
-            roots: ['C6', 'C7', 'C8', 'T1'],
-            muscles: ['APB', 'OP', 'FPB', 'Lumb 1&2', 'Pronator Teres', 'FCR'],
-            sensory: 'Thumb, index, middle, lateral ring'
-        },
-        {
-            id: 'radial', x: 500, y: 320, label: 'Radial',
-            description: 'C5-T1 • Posterior Cord • Extension Powerhouse',
-            roots: ['C5', 'C6', 'C7', 'C8', 'T1'],
-            muscles: ['Extensors', 'Triceps', 'Brachioradialis'],
-            sensory: 'First web space, posterior forearm'
-        },
-        {
-            id: 'ulnar', x: 630, y: 410, label: 'Ulnar',
-            description: 'C8-T1 • Medial Cord • Grip Strength & Fine Motor Control',
-            roots: ['C8', 'T1'],
-            muscles: ['Hand intrinsics', 'FCU', 'FDP (4,5)'],
-            sensory: 'Ring, little finger + dorsal hand'
-        },
-        {
-            id: 'suprascapular', x: 290, y: 130, label: 'Suprascapular',
-            description: 'C5-C6 • Upper Trunk • Supraspinatus & Infraspinatus',
-            roots: ['C5', 'C6'],
-            muscles: ['Supraspinatus', 'Infraspinatus'],
-            sensory: 'None'
-        },
-        {
-            id: 'dorsal_scapular', x: 160, y: 110, label: 'Dorsal Scapular',
-            description: 'C5 root directly • Rhomboids',
-            roots: ['C5'],
-            muscles: ['Rhomboids', 'Levator scapulae'],
-            sensory: 'None'
-        }
-    ]
-};
-
-// Global variables for the brachial plexus module
-let currentNerve = null;
-let showLabels = true;
-let showVariants = false;
-
-// Main initialization function
-function initializePlexusDiagram() {
-    const svg = document.getElementById('plexus-svg');
-    if (!svg) return;
-
-    svg.innerHTML = ''; // Clear existing content
-
-    // Draw the plexus diagram
-    drawConnections(svg);
-    drawRoots(svg);
-    drawNerves(svg);
-
-    console.log('✅ Brachial Plexus diagram initialized');
-}
-
-// Simplified drawing functions for integration
-function drawConnections(svg) {
-    // Essential anatomical pathways coordinates
-    const coords = {
-        upperLine: 160, middleLine: 280, lowerLine: 410,
-        rootConvergence: 200, middlePlexus: 400, terminalStart: 600,
-        upperJunction: { x: 200, y: 160 }, lowerJunction: { x: 200, y: 410 }
-    };
-
-    // Draw main pathways (simplified for integration)
-    const pathways = [
-        // C5+C6 to upper horizontal
-        { x1: 125, y1: 120, x2: 200, y2: 160, nerve: 'musculocutaneous,axillary,suprascapular,radial' },
-        { x1: 125, y1: 180, x2: 200, y2: 160, nerve: 'musculocutaneous,axillary,suprascapular,median,radial' },
-        // Upper horizontal segments
-        { x1: 200, y1: 160, x2: 570, y2: 160, nerve: 'median' },
-        { x1: 570, y1: 160, x2: 600, y2: 160, nerve: 'musculocutaneous' },
-        // C7 horizontal
-        { x1: 125, y1: 280, x2: 600, y2: 280, nerve: 'median,radial' },
-        // C8+T1 to lower horizontal
-        { x1: 125, y1: 380, x2: 200, y2: 410, nerve: 'ulnar,median,radial' },
-        { x1: 125, y1: 440, x2: 200, y2: 410, nerve: 'ulnar,median,radial' },
-        { x1: 200, y1: 410, x2: 550, y2: 410, nerve: 'ulnar,median' },
-        { x1: 550, y1: 410, x2: 600, y2: 410, nerve: 'ulnar' },
-        // Median convergence
-        { x1: 570, y1: 160, x2: 600, y2: 280, nerve: 'median' },
-        { x1: 550, y1: 410, x2: 600, y2: 280, nerve: 'median' },
-        // Branch lines
-        { x1: 260, y1: 160, x2: 280, y2: 130, nerve: 'suprascapular' },
-        { x1: 125, y1: 120, x2: 160, y2: 100, nerve: 'dorsal_scapular' },
-        { x1: 460, y1: 280, x2: 490, y2: 240, nerve: 'axillary' },
-        { x1: 460, y1: 280, x2: 500, y2: 320, nerve: 'radial' }
-    ];
-
-    pathways.forEach(path => {
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', path.x1);
-        line.setAttribute('y1', path.y1);
-        line.setAttribute('x2', path.x2);
-        line.setAttribute('y2', path.y2);
-        line.setAttribute('stroke', '#374151');
-        line.setAttribute('stroke-width', '3');
-        line.classList.add('plexus-connection');
-        line.setAttribute('data-nerve', path.nerve);
-        svg.appendChild(line);
-    });
-
-    // Add section headers
-    const headers = [
-        { text: 'ROOTS', x: 80, y: 80 },
-        { text: 'TERMINAL NERVES', x: 650, y: 80 }
-    ];
-
-    headers.forEach(header => {
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', header.x);
-        text.setAttribute('y', header.y);
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('style', 'font-size: 16px; font-weight: bold; fill: #374151;');
-        text.textContent = header.text;
-        svg.appendChild(text);
-    });
-}
-
-function drawRoots(svg) {
-    plexusData.roots.forEach(root => {
-        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        g.classList.add('plexus-element', 'plexus-root');
-        g.setAttribute('data-id', root.id);
-
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', root.x);
-        rect.setAttribute('y', root.y);
-        rect.setAttribute('width', '45');
-        rect.setAttribute('height', '28');
-        rect.setAttribute('rx', '6');
-
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', root.x + 22.5);
-        text.setAttribute('y', root.y + 19);
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('font-size', '16');
-        text.setAttribute('font-weight', 'bold');
-        text.setAttribute('fill', '#1f2937');
-        text.textContent = root.label;
-
-        g.appendChild(rect);
-        g.appendChild(text);
-        svg.appendChild(g);
-    });
-}
-
-function drawNerves(svg) {
-    plexusData.nerves.forEach(nerve => {
-        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        g.classList.add('plexus-element', 'plexus-nerve', 'nerve-button-svg');
-        g.setAttribute('data-id', nerve.id);
-        g.style.cursor = 'pointer';
-
-        const textLength = nerve.label.length;
-        const buttonWidth = Math.max(textLength * 8 + 20, 80);
-        const buttonHeight = 28;
-
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', nerve.x);
-        rect.setAttribute('y', nerve.y - buttonHeight/2);
-        rect.setAttribute('width', buttonWidth);
-        rect.setAttribute('height', buttonHeight);
-        rect.setAttribute('rx', '6');
-        rect.setAttribute('fill', '#ffffff');
-        rect.setAttribute('stroke', '#d1d5db');
-        rect.setAttribute('stroke-width', '1.5');
-        rect.setAttribute('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))');
-
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', nerve.x + buttonWidth/2);
-        text.setAttribute('y', nerve.y + 4);
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('font-size', '13');
-        text.setAttribute('font-weight', '600');
-        text.setAttribute('font-family', 'system-ui, -apple-system, sans-serif');
-        text.setAttribute('fill', '#1f2937');
-        text.textContent = nerve.label;
-
-        g.appendChild(rect);
-        g.appendChild(text);
-
-        // Add click handler
-        g.addEventListener('click', () => traceNerve(nerve.id));
-
-        svg.appendChild(g);
-    });
-}
-
-// Nerve tracing functionality
-function traceNerve(nerveName) {
-    clearTracing();
-    currentNerve = nerveName;
-
-    const nerve = plexusData.nerves.find(n => n.id === nerveName);
-    if (!nerve) return;
-
-    // Update active button
-    document.querySelectorAll('.nerve-button').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.nerve-button-svg').forEach(btn => btn.classList.remove('active'));
-
-    const clickedSvgButton = document.querySelector(`.nerve-button-svg[data-id="${nerveName}"]`);
-    if (clickedSvgButton) {
-        clickedSvgButton.classList.add('active');
-    }
-
-    // Highlight pathway
-    highlightPathway(nerve);
-    updateNerveInfo(nerve);
-}
-
-function highlightPathway(nerve) {
-    // Reset all connections
-    document.querySelectorAll('.plexus-connection').forEach(line => {
-        line.style.opacity = '0.3';
-        line.style.strokeWidth = '3';
-        line.style.filter = 'none';
-    });
-
-    // Highlight relevant connections
-    document.querySelectorAll('.plexus-connection').forEach(line => {
-        const datanerve = line.getAttribute('data-nerve');
-        const isInPathway = datanerve && datanerve.split(',').includes(nerve.id);
-
-        if (isInPathway) {
-            line.style.opacity = '1';
-            line.style.strokeWidth = '5';
-            line.style.filter = 'drop-shadow(0 0 6px #3b82f6)';
-        }
-    });
-
-    // Highlight connected roots
-    if (nerve.roots) {
-        nerve.roots.forEach(rootId => {
-            const rootElement = document.querySelector(`[data-id="${rootId}"]`);
-            if (rootElement) {
-                rootElement.classList.add('highlighted');
-                rootElement.style.filter = 'drop-shadow(0 0 4px #3b82f6)';
-            }
-        });
-    }
-}
-
-function clearTracing() {
-    // Reset all connections
-    document.querySelectorAll('.plexus-connection').forEach(line => {
-        line.style.opacity = '1';
-        line.style.strokeWidth = '3';
-        line.style.filter = 'none';
-    });
-
-    // Clear highlighted elements
-    document.querySelectorAll('.plexus-element').forEach(el => {
-        el.classList.remove('highlighted');
-        el.style.filter = 'none';
-    });
-
-    // Clear active buttons
-    document.querySelectorAll('.nerve-button').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.nerve-button-svg').forEach(btn => btn.classList.remove('active'));
-    currentNerve = null;
-
-    // Reset info panel
-    const infoPanel = document.getElementById('nerve-info');
-    if (infoPanel) {
-        infoPanel.innerHTML = `
-            <h4 style="color: #1e40af; margin-bottom: 10px;">Select a nerve to trace its pathway</h4>
-            <p style="color: #64748b;">Click on any nerve button to see how each nerve root contributes to the terminal nerve through the brachial plexus pathways.</p>
-        `;
-    }
-}
-
-function updateNerveInfo(nerve) {
-    const infoPanel = document.getElementById('nerve-info');
-    if (!infoPanel) return;
-
-    infoPanel.innerHTML = `
-        <h4 style="color: #1e40af; margin-bottom: 15px;">${nerve.label} Nerve</h4>
-        <p style="color: #64748b; margin-bottom: 12px; line-height: 1.5;">${nerve.description}</p>
-        <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; margin-bottom: 10px;">
-            <strong style="color: #1e40af;">Motor:</strong> ${nerve.muscles.join(', ')}
-        </div>
-        <div style="background: #f0fdf4; padding: 12px; border-radius: 8px;">
-            <strong style="color: #059669;">Sensory:</strong> ${nerve.sensory}
-        </div>
-    `;
-}
-
-// Display option functions
-function toggleLabels() {
-    showLabels = document.getElementById('show-labels')?.checked || true;
-    // Implementation for label visibility
-}
-
-function toggleVariants() {
-    showVariants = document.getElementById('show-variants')?.checked || false;
-    // Implementation for anatomical variants
-}
-
-// Export functions to global scope for HTML onclick handlers
-window.traceNerve = traceNerve;
-window.clearTracing = clearTracing;
-window.toggleLabels = toggleLabels;
-window.toggleVariants = toggleVariants;
-window.initializeBrachialPlexus = initializeBrachialPlexus;
-
-console.log('🔍 DEBUG: About to complete brachial plexus setup...');
-console.log('🧠 Brachial Plexus Interactive Module Ready');
-
-console.log('🔍 DEBUG: Reached end of main.js file - checking for syntax issues...');
-
-// TEMPORARY BYPASS: Move EMGChallenge outside DOMContentLoaded to get it working immediately
-console.log('🔍 DEBUG: Temporarily bypassing DOMContentLoaded syntax issue for EMG Challenge...');
-
-// Complete EMGChallenge object with all required methods
-if (!window.EMGChallenge) {
-    console.log('🚀 DEBUG: Creating complete EMGChallenge object...');
-    window.EMGChallenge = {
-        selectedTypes: ['root', 'trunk', 'cord', 'peripheral'],
-        currentCase: null,
-
-        toggleQuestionType: function(type) {
-            console.log('🔍 DEBUG: toggleQuestionType called with:', type);
-            const element = document.querySelector(`[data-type="${type}"]`);
-            if (element) {
-                if (this.selectedTypes.includes(type)) {
-                    this.selectedTypes = this.selectedTypes.filter(t => t !== type);
-                    element.classList.remove('active');
-                } else {
-                    this.selectedTypes.push(type);
-                    element.classList.add('active');
-                }
-                this.updateLaunchButton();
-            }
-        },
-
-        updateLaunchButton: function() {
-            const launchBtn = document.querySelector('.launch-challenge-btn');
-            if (launchBtn) {
-                if (this.selectedTypes.length > 0) {
-                    launchBtn.disabled = false;
-                    launchBtn.textContent = '🚀 Launch EMG Challenge';
-                } else {
-                    launchBtn.disabled = true;
-                    launchBtn.textContent = 'At least one question type must be selected';
-                }
-            }
-        },
-
-        startChallenge: function() {
-            console.log('🚀 EMG Challenge startChallenge() called!');
-            if (this.selectedTypes.length === 0) {
-                alert('Please select at least one question type to begin the challenge.');
-                return;
-            }
-
-            // Hide settings and show challenge interface
-            const settingsDiv = document.getElementById('emg-challenge-settings');
-            const challengeDiv = document.getElementById('emg-challenge-interface');
-
-            if (settingsDiv) settingsDiv.style.display = 'none';
-            if (challengeDiv) challengeDiv.style.display = 'block';
-
-            this.generateNewCase();
-        },
-
-        generateNewCase: function() {
-            console.log('📝 Generating new EMG case...');
-            // Simple case generation for now
-            const caseArea = document.getElementById('emg-case-area');
-            if (caseArea) {
-                caseArea.innerHTML = `
-                    <div style="padding: 20px; background: #f8fafc; border-radius: 10px;">
-                        <h3>EMG Case Study</h3>
-                        <p>A 45-year-old patient presents with weakness and numbness in the right hand...</p>
-                        <div style="margin-top: 20px;">
-                            <h4>Clinical Findings:</h4>
-                            <ul>
-                                <li>Decreased sensation in thumb and index finger</li>
-                                <li>Weakness in thumb abduction</li>
-                                <li>Normal biceps reflex</li>
-                            </ul>
-                        </div>
-                        <div style="margin-top: 20px;">
-                            <h4>Question: What is the most likely localization?</h4>
-                            <div class="answer-options">
-                                <button onclick="window.EMGChallenge.selectAnswer('median')">Median nerve</button>
-                                <button onclick="window.EMGChallenge.selectAnswer('ulnar')">Ulnar nerve</button>
-                                <button onclick="window.EMGChallenge.selectAnswer('radial')">Radial nerve</button>
-                                <button onclick="window.EMGChallenge.selectAnswer('c6')">C6 radiculopathy</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        },
-
-        selectAnswer: function(answer) {
-            console.log('📝 Answer selected:', answer);
-            this.currentCase = { selectedAnswer: answer };
-
-            // Enable submit button
-            const submitBtn = document.getElementById('challenge-submit-btn');
-            if (submitBtn) {
-                submitBtn.disabled = false;
-            }
-        },
-
-        submitAnswer: function() {
-            console.log('✅ Submit answer called');
-            if (!this.currentCase) {
-                alert('Please select an answer first.');
-                return;
-            }
-
-            // Show feedback
-            alert('Correct! This pattern is consistent with median nerve entrapment (carpal tunnel syndrome).');
-
-            // Show next button
-            const nextBtn = document.getElementById('challenge-next-btn');
-            if (nextBtn) {
-                nextBtn.style.display = 'block';
-            }
-        },
-
-        nextCase: function() {
-            console.log('➡️ Next case called');
-            this.generateNewCase();
-
-            // Reset buttons
-            const submitBtn = document.getElementById('challenge-submit-btn');
-            const nextBtn = document.getElementById('challenge-next-btn');
-
-            if (submitBtn) submitBtn.disabled = true;
-            if (nextBtn) nextBtn.style.display = 'none';
-        },
-
-        backToSettings: function() {
-            console.log('⬅️ Back to settings called');
-
-            // Show settings and hide challenge interface
-            const settingsDiv = document.getElementById('emg-challenge-settings');
-            const challengeDiv = document.getElementById('emg-challenge-interface');
-
-            if (settingsDiv) settingsDiv.style.display = 'block';
-            if (challengeDiv) challengeDiv.style.display = 'none';
-        }
-    };
-    console.log('✅ DEBUG: Complete EMGChallenge object created and assigned to window');
-} else {
-    console.log('✅ DEBUG: EMGChallenge already exists on window');
-}
-
-// The syntax issues will be resolved later, but this gets EMG Challenge working now
-console.log('🔍 DEBUG: EMGChallenge should now be accessible');

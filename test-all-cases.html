@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMG/NCS Case Testing</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .case-result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .has-ncs { background-color: #d4f4dd; }
+        .missing-ncs { background-color: #f4d4d4; }
+        .has-emg { border-left: 5px solid green; }
+        .missing-emg { border-left: 5px solid red; }
+        .case-name { font-weight: bold; }
+        .details { font-size: 12px; color: #666; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>EMG/NCS Case Analysis</h1>
+    <div id="results"></div>
+
+    <script src="js/emg-app-complete-system.js"></script>
+    <script>
+        // Test all cases
+        const results = [];
+
+        // Get all case keys
+        const allCases = Object.keys(clinicalCases || caseDatabase || {});
+        console.log('Found cases:', allCases);
+
+        allCases.forEach(caseId => {
+            const caseData = (clinicalCases || caseDatabase)[caseId];
+            if (!caseData) return;
+
+            const result = {
+                id: caseId,
+                title: caseData.title,
+                hasNcsResults: !!caseData.ncsResults,
+                hasNcsStudies: !!caseData.ncsStudies,
+                hasEmgInNcs: false,
+                hasEmgFindings: false,
+                emgCount: 0,
+                ncsStructure: 'none'
+            };
+
+            // Check NCS structure
+            if (caseData.ncsResults) {
+                result.ncsStructure = 'ncsResults';
+                result.hasEmgInNcs = !!(caseData.ncsResults.emgFindings && caseData.ncsResults.emgFindings.length > 0);
+                result.emgCount = caseData.ncsResults.emgFindings ? caseData.ncsResults.emgFindings.length : 0;
+            } else if (caseData.ncsStudies) {
+                result.ncsStructure = 'ncsStudies';
+                result.hasEmgInNcs = !!(caseData.ncsStudies.emgFindings && caseData.ncsStudies.emgFindings.length > 0);
+                result.emgCount = caseData.ncsStudies.emgFindings ? caseData.ncsStudies.emgFindings.length : 0;
+            }
+
+            // Check separate EMG findings
+            result.hasEmgFindings = !!(caseData.emgFindings && caseData.emgFindings.length > 0);
+            if (caseData.emgFindings) {
+                result.emgCount += caseData.emgFindings.length;
+            }
+
+            results.push(result);
+        });
+
+        // Display results
+        const resultsDiv = document.getElementById('results');
+        results.forEach(result => {
+            const hasAnyNcs = result.hasNcsResults || result.hasNcsStudies;
+            const hasAnyEmg = result.hasEmgInNcs || result.hasEmgFindings;
+
+            const div = document.createElement('div');
+            div.className = `case-result ${hasAnyNcs ? 'has-ncs' : 'missing-ncs'} ${hasAnyEmg ? 'has-emg' : 'missing-emg'}`;
+
+            div.innerHTML = `
+                <div class="case-name">${result.id}: ${result.title}</div>
+                <div class="details">
+                    NCS: ${result.ncsStructure} |
+                    EMG Count: ${result.emgCount} |
+                    ${hasAnyEmg ? '✅ HAS EMG' : '❌ MISSING EMG'}
+                </div>
+            `;
+
+            resultsDiv.appendChild(div);
+        });
+
+        // Summary
+        const totalCases = results.length;
+        const casesWithEmg = results.filter(r => r.hasEmgInNcs || r.hasEmgFindings).length;
+        const casesWithoutEmg = totalCases - casesWithEmg;
+
+        const summary = document.createElement('div');
+        summary.innerHTML = `
+            <h2>Summary</h2>
+            <p><strong>Total Cases:</strong> ${totalCases}</p>
+            <p><strong>Cases with EMG:</strong> ${casesWithEmg}</p>
+            <p><strong>Cases missing EMG:</strong> ${casesWithoutEmg}</p>
+            <h3>Cases Missing EMG Data:</h3>
+            <ul>
+            ${results.filter(r => !(r.hasEmgInNcs || r.hasEmgFindings))
+                     .map(r => `<li><strong>${r.id}</strong>: ${r.title}</li>`)
+                     .join('')}
+            </ul>
+        `;
+
+        resultsDiv.insertBefore(summary, resultsDiv.firstChild);
+
+        console.log('Analysis complete:', {
+            totalCases,
+            casesWithEmg,
+            casesWithoutEmg,
+            missingEmgCases: results.filter(r => !(r.hasEmgInNcs || r.hasEmgFindings)).map(r => r.id)
+        });
+    </script>
+</body>
+</html>
