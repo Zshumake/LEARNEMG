@@ -1132,6 +1132,226 @@
                 display: none;
             }
         }
+
+        /* Learning Objectives Button */
+        .learning-objectives-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6b9f78, #4a6d52);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 15px 0 10px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(107, 159, 120, 0.3);
+        }
+
+        .learning-objectives-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(107, 159, 120, 0.4);
+            background: linear-gradient(135deg, #7ab088, #557d5e);
+        }
+
+        /* Learning Objectives Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .modal-body {
+            padding: 25px;
+            max-height: calc(90vh - 100px);
+            overflow-y: auto;
+        }
+
+        .learning-objectives-content {
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* PGY-2 Section (Prominent) */
+        .pgy2-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .pgy2-header {
+            color: #1e40af;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        /* Three Column Grid */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section Styling */
+        .objectives-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .pgy3-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+        }
+
+        .pgy3-header {
+            color: #92400e;
+        }
+
+        .pgy4-section {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border: 2px solid #ec4899;
+        }
+
+        .pgy4-header {
+            color: #831843;
+        }
+
+        .advanced-section {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            border: 2px solid #a855f7;
+        }
+
+        .advanced-header {
+            color: #6b21a8;
+        }
+
+        .objectives-header {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .objectives-subtitle {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        /* Competency Groups */
+        .competency-group {
+            margin-bottom: 20px;
+        }
+
+        .competency-group h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .competency-group ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .competency-group li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+            color: #4b5563;
+        }
+
+        /* Compact Groups for 3-column layout */
+        .competency-group-compact {
+            margin-bottom: 15px;
+        }
+
+        .competency-group-compact h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .competency-group-compact ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .competency-group-compact li {
+            margin-bottom: 4px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #4b5563;
+        }
     </style>
 </head>
 <body>
@@ -2226,6 +2446,7 @@
                             EMG/NCS Learning Pathway
                         </h1>
                         <p class="pathway-subtitle">Comprehensive Electrodiagnostic Medicine Training</p>
+                        <button class="learning-objectives-btn" onclick="showLearningObjectives()">See Learning Objectives</button>
                     </div>
 
                     <!-- 13-Module Vertical Pathway -->
@@ -2574,6 +2795,256 @@
                 }
             }
         });
+
+        // Learning Objectives Modal Functions - Global Scope
+        window.showLearningObjectives = function() {
+            console.log('🎯 showLearningObjectives called');
+            const modal = document.getElementById('learning-objectives-modal');
+            console.log('📋 Modal element:', modal);
+            if (modal) {
+                console.log('✅ Modal found, displaying...');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                console.error('❌ Modal not found!');
+            }
+        };
+
+        window.closeLearningObjectives = function() {
+            const modal = document.getElementById('learning-objectives-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        // Close modal when clicking outside content
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('learning-objectives-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        window.closeLearningObjectives();
+                    }
+                });
+            }
+        });
     </script>
+
+    <!-- Learning Objectives Modal -->
+    <div id="learning-objectives-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content learning-objectives-content">
+            <div class="modal-header">
+                <h2 class="modal-title">EMG/NCS Learning Objectives</h2>
+                <button class="modal-close" onclick="closeLearningObjectives()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- PGY-2 Section (Prominent) -->
+                <div class="objectives-section pgy2-section">
+                    <h3 class="objectives-header pgy2-header">👨‍⚕️ PGY-2 Objectives</h3>
+                    <p class="objectives-subtitle">Foundation & Developing Independence</p>
+
+                    <div class="competency-group">
+                        <h4>🔬 NCS Patient Care</h4>
+                        <ul>
+                            <li>Describe peripheral anatomy (brachial plexus, lumbosacral plexus)</li>
+                            <li>Perform focused H&P pertinent to study</li>
+                            <li>Independently perform NCS screen for median, ulnar, radial nerves</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-group">
+                        <h4>🦴 Radiculopathy</h4>
+                        <ul>
+                            <li>Understand pathophysiology of radiculopathy</li>
+                            <li>Outline appropriate diagnostic plan</li>
+                            <li>Properly perform NCS for radiculopathy (understand when NCS are normal vs abnormal)</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-group">
+                        <h4>⚡ Peripheral Neuropathy</h4>
+                        <ul>
+                            <li>Assess and diagnose basic neuropathy patterns</li>
+                            <li>Properly perform NCS for peripheral neuropathy</li>
+                            <li>Classify neuropathy types (axonal vs demyelinating)</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-group">
+                        <h4>🧠 Medical Knowledge</h4>
+                        <ul>
+                            <li>Differentiate neuropathy vs myopathy</li>
+                            <li>Explain pathophysiological differences</li>
+                            <li>Apply knowledge to diagnostic decision-making</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-group">
+                        <h4>📊 Spontaneous Discharges</h4>
+                        <ul>
+                            <li>Recognize fibrillation potentials and positive sharp waves</li>
+                            <li>Identify fasciculation potentials and complex repetitive discharges</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-group">
+                        <h4>🗺️ Plexus Anatomy</h4>
+                        <ul>
+                            <li>Trace nerve roots, branches, cords, divisions, and trunks (basic level)</li>
+                            <li>Localize lesions in upper and lower limbs</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-group">
+                        <h4>📝 Report Writing</h4>
+                        <ul>
+                            <li>Understand importance of comprehensive EDx reports</li>
+                            <li>Recognize basic structure</li>
+                            <li>Complete templates with appropriate recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Three Column Layout for PGY-3, PGY-4, Advanced -->
+                <div class="objectives-grid">
+                    <!-- PGY-3 Column -->
+                    <div class="objectives-section pgy3-section">
+                        <h3 class="objectives-header pgy3-header">👩‍⚕️ PGY-3 Objectives</h3>
+                        <p class="objectives-subtitle">Independent Practice</p>
+
+                        <div class="competency-group-compact">
+                            <h4>NCS Patient Care</h4>
+                            <ul>
+                                <li>Perform complete NCS independently</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Radiculopathy</h4>
+                            <ul>
+                                <li>Perform and interpret EMG studies independently</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Peripheral Neuropathy</h4>
+                            <ul>
+                                <li>Distinguish between different neuropathy patterns independently</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Medical Knowledge</h4>
+                            <ul>
+                                <li>Independently diagnose neuropathy vs myopathy cases</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Spontaneous Discharges</h4>
+                            <ul>
+                                <li>Assess myokymic discharges</li>
+                                <li>Evaluate recruitment patterns qualitatively</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Plexus Anatomy</h4>
+                            <ul>
+                                <li>Understand entrapment neuropathy differential diagnosis</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Report Writing</h4>
+                            <ul>
+                                <li>Prepare comprehensive EDx reports in timely manner</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PGY-4 Column -->
+                    <div class="objectives-section pgy4-section">
+                        <h3 class="objectives-header pgy4-header">🩺 PGY-4 Objectives</h3>
+                        <p class="objectives-subtitle">Complex Cases</p>
+
+                        <div class="competency-group-compact">
+                            <h4>NCS Patient Care</h4>
+                            <ul>
+                                <li>Perform complex studies (blink reflex, repetitive nerve stimulation, proximal studies)</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Radiculopathy</h4>
+                            <ul>
+                                <li>Communicate findings via coherent EDx report</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Peripheral Neuropathy</h4>
+                            <ul>
+                                <li>Handle complex neuropathy cases with atypical presentations</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Medical Knowledge</h4>
+                            <ul>
+                                <li>Handle unusual and complex diagnostic scenarios</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Spontaneous Discharges</h4>
+                            <ul>
+                                <li>Evaluate recruitment patterns quantitatively</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Plexus Anatomy</h4>
+                            <ul>
+                                <li>Diagnose complex plexopathies with multiple level involvement</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>Report Writing</h4>
+                            <ul>
+                                <li>Integrate clinical and EDx findings</li>
+                                <li>Provide ranked differential diagnosis</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Advanced/Aspirational Column -->
+                    <div class="objectives-section advanced-section">
+                        <h3 class="objectives-header advanced-header">⭐ Advanced & Beyond</h3>
+                        <p class="objectives-subtitle">Expert/Teaching Level</p>
+
+                        <div class="competency-group-compact">
+                            <h4>NCS Patient Care</h4>
+                            <ul>
+                                <li>Capable of teaching and discussing full differential diagnosis</li>
+                            </ul>
+                        </div>
+
+                        <div class="competency-group-compact">
+                            <h4>All Competencies</h4>
+                            <ul>
+                                <li>Expert level proficiency</li>
+                                <li>Capable of teaching others</li>
+                                <li>Handle all cases including rare/complex scenarios</li>
+                                <li>Educate patients, families, and colleagues</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
