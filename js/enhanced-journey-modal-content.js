@@ -930,120 +930,68 @@ window.initializeEMGIntroduction = initializeEMGIntroduction;
 function generateMuscleQuizContent(module) {
     return `
         <div class="interactive-content">
-            <!-- ERNEST Introduction -->
-            <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border: 2px solid rgba(107, 159, 120, 0.8); border-radius: 20px; padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-                <div style="display: flex; align-items: flex-start; gap: 20px;">
-                    <img src="ERNEST.png" alt="ERNEST" style="width: 80px; height: 80px; object-fit: contain; border-radius: 12px; border: 2px solid #6b9f78; flex-shrink: 0; background: rgba(255,255,255,0.9);">
-                    <div style="flex: 1;">
-                        <h3 style="color: #065f46; margin-bottom: 15px; font-size: 1.4em;">🏋️ Muscle Study Lab</h3>
-                        <p style="color: #047857; font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
-                            Complete muscle anatomy learning system with study cards for nerves, roots, trunks, cords, and actions, plus integrated interactive quiz functionality.
-                        </p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                            <div style="background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                                <h4 style="color: #1e40af; margin-bottom: 8px;">📚 Study Cards</h4>
-                                <p style="color: #1e40af; font-size: 0.95em; margin: 0;">Learn nerves, roots, trunks, cords, and actions with interactive reveal cards</p>
-                            </div>
-                            <div style="background: rgba(220, 38, 38, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #dc2626;">
-                                <h4 style="color: #991b1b; margin-bottom: 8px;">🧠 EMG Challenge</h4>
-                                <p style="color: #991b1b; font-size: 0.95em; margin: 0;">Advanced lesion localization using muscle pattern analysis</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Learning Objective Banner -->
+            <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #10b981;">
+                <h3 style="color: #065f46; margin-bottom: 15px;">💪 Advanced Muscle Localization Training</h3>
+                <p style="color: #047857; font-size: 1.1em; font-weight: 500; margin: 0;">
+                    Interactive quiz system with nerve roots, innervation patterns, and clinical correlation - the same advanced system from the main EMG application.
+                </p>
             </div>
 
-            <!-- Professional Learning Systems Layout -->
-            <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
-
-                <!-- Study Cards - Primary Learning System -->
-                <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 20px; padding: 30px; border: 2px solid #cbd5e1; box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1);">
-                    <div style="display: flex; align-items: center; gap: 25px;">
-                        <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); width: 80px; height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
-                            <span style="font-size: 2.5em;">📚</span>
-                        </div>
-                        <div style="flex: 1;">
-                            <h3 style="color: #1e40af; margin-bottom: 12px; font-size: 1.6em; font-weight: 700;">Anatomy Study Cards</h3>
-                            <p style="color: #475569; font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
-                                Comprehensive muscle anatomy cards with integrated quiz system. Study <strong>nerves, roots, trunks, cords, and actions</strong> using interactive reveal cards with upper/lower extremity organization and built-in testing functionality.
-                            </p>
-                            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
-                                <span style="background: rgba(59, 130, 246, 0.1); color: #1e40af; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">🔌 Nerves</span>
-                                <span style="background: rgba(34, 197, 94, 0.1); color: #166534; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">🌿 Roots</span>
-                                <span style="background: rgba(168, 85, 247, 0.1); color: #7c3aed; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">🕸️ Trunks & Cords</span>
-                                <span style="background: rgba(245, 158, 11, 0.1); color: #d97706; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">💪 Actions</span>
-                            </div>
-                        </div>
-                        <button
-                            onclick="showStudyCards()"
-                            style="
-                                background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-                                color: white;
-                                border: none;
-                                padding: 15px 30px;
-                                border-radius: 12px;
-                                font-size: 1.2em;
-                                font-weight: 700;
-                                cursor: pointer;
-                                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-                                transition: all 0.3s ease;
-                                min-width: 160px;
-                            "
-                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(59, 130, 246, 0.4)'"
-                            onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.3)'"
-                        >
-                            Launch Study Cards
-                        </button>
-                    </div>
+            <!-- Note: EMG Needle Localization Guide is available in the dedicated tab above -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                <div style="background: #f8fafc; border-radius: 15px; padding: 25px; border: 2px solid #e2e8f0; text-align: center;">
+                    <h4 style="color: #1e40af; margin-bottom: 15px;">🫀 Anatomy Study Cards</h4>
+                    <p style="color: #64748b; margin-bottom: 20px; font-size: 1em;">
+                        Interactive cards with reveal functionality for detailed study.
+                    </p>
+                    <button
+                        onclick="showStudyCards()"
+                        style="
+                            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            cursor: pointer;
+                            width: 100%;
+                        "
+                    >
+                        Launch Study Cards
+                    </button>
                 </div>
 
-                <!-- EMG Challenge - Advanced System -->
-                <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 20px; padding: 30px; border: 2px solid #f87171; box-shadow: 0 8px 25px rgba(220, 38, 38, 0.1);">
-                    <div style="display: flex; align-items: center; gap: 25px;">
-                        <div style="background: linear-gradient(135deg, #dc2626, #b91c1c); width: 80px; height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);">
-                            <span style="font-size: 2.5em;">🧪</span>
-                        </div>
-                        <div style="flex: 1;">
-                            <h3 style="color: #dc2626; margin-bottom: 12px; font-size: 1.6em; font-weight: 700;">EMG Localization Challenge</h3>
-                            <p style="color: #475569; font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
-                                Advanced diagnostic challenge system that presents <strong>4 normal + 4 abnormal muscles</strong> and requires identification of lesion location. Uses sophisticated algorithms to ensure only one correct answer per case.
-                            </p>
-                            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
-                                <span style="background: rgba(220, 38, 38, 0.1); color: #dc2626; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">🎯 Root Level</span>
-                                <span style="background: rgba(168, 85, 247, 0.1); color: #7c3aed; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">🕸️ Plexus</span>
-                                <span style="background: rgba(34, 197, 94, 0.1); color: #166534; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">⚡ Peripheral</span>
-                                <span style="background: rgba(59, 130, 246, 0.1); color: #1e40af; padding: 6px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">∞ Infinite Cases</span>
-                            </div>
-                        </div>
-                        <button
-                            onclick="
-                                console.log('🔍 EMG Challenge button clicked');
-                                if (window.launchEMGChallenge) {
-                                    console.log('✅ Launching EMG Challenge in new window...');
-                                    launchEMGChallenge();
-                                } else {
-                                    console.error('❌ launchEMGChallenge function not found!');
+                <div style="background: #f8fafc; border-radius: 15px; padding: 25px; border: 2px solid #e2e8f0; text-align: center;">
+                    <h4 style="color: #dc2626; margin-bottom: 15px;">🧪 EMG Localization Challenge</h4>
+                    <p style="color: #64748b; margin-bottom: 20px; font-size: 1em;">
+                        Advanced lesion localization with normal/abnormal muscle patterns.
+                    </p>
+                    <button
+                        onclick="
+                            const challengeInterface = document.getElementById('emg-challenge-interface');
+                            if (challengeInterface) {
+                                challengeInterface.style.display = challengeInterface.style.display === 'none' ? 'block' : 'none';
+                                if (challengeInterface.style.display === 'block') {
+                                    challengeInterface.scrollIntoView({ behavior: 'smooth' });
                                 }
-                            "
-                            style="
-                                background: linear-gradient(135deg, #dc2626, #b91c1c);
-                                color: white;
-                                border: none;
-                                padding: 15px 30px;
-                                border-radius: 12px;
-                                font-size: 1.2em;
-                                font-weight: 700;
-                                cursor: pointer;
-                                box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
-                                transition: all 0.3s ease;
-                                min-width: 160px;
-                            "
-                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(220, 38, 38, 0.4)'"
-                            onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 4px 15px rgba(220, 38, 38, 0.3)'"
-                        >
-                            Launch Challenge
-                        </button>
-                    </div>
+                            }
+                        "
+                        style="
+                            background: linear-gradient(135deg, #dc2626, #b91c1c);
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            cursor: pointer;
+                            width: 100%;
+                        "
+                    >
+                        Launch EMG Challenge
+                    </button>
                 </div>
             </div>
 
@@ -1168,7 +1116,7 @@ function generateMuscleQuizContent(module) {
                     </div>
 
                     <div class="challenge-launch" style="text-align: center;">
-                        <button class="launch-challenge-btn" onclick="console.log('🔍 Button clicked! Launching EMG Challenge in new window...'); if (window.launchEMGChallenge) { launchEMGChallenge(); } else { console.error('❌ launchEMGChallenge function not found!'); }" style="
+                        <button class="launch-challenge-btn" onclick="console.log('🔍 Button clicked!', 'window.EMGChallenge:', window.EMGChallenge); if (window.EMGChallenge) { EMGChallenge.startChallenge(); } else { console.error('❌ EMGChallenge not found!'); }" style="
                             background: linear-gradient(135deg, #10b981, #059669);
                             color: white;
                             border: none;
@@ -2536,7 +2484,7 @@ function generateBasicPatternsContent(module) {
                                 Spontaneous muscle fiber discharges indicating active denervation - the hallmark of nerve injury and motor neuron disease.
                             </p>
                             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe src="https://www.youtube.com/embed/jjUZMf8_B1k"
+                                <iframe loading="lazy" src="https://www.youtube.com/embed/jjUZMf8_B1k"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -2559,7 +2507,7 @@ function generateBasicPatternsContent(module) {
                                 Severe denervation with abundant positive sharp waves filling multiple muscle areas - indicates significant nerve damage.
                             </p>
                             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe src="https://www.youtube.com/embed/fT6Lx4rnRNs"
+                                <iframe loading="lazy" src="https://www.youtube.com/embed/fT6Lx4rnRNs"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -2583,7 +2531,7 @@ function generateBasicPatternsContent(module) {
                                 Time-linked muscle fibers creating perfectly regular "machine-like" discharges - characteristic of chronic muscle disorders.
                             </p>
                             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe src="https://www.youtube.com/embed/UE-UIRDzZ-U"
+                                <iframe loading="lazy" src="https://www.youtube.com/embed/UE-UIRDzZ-U"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -2607,7 +2555,7 @@ function generateBasicPatternsContent(module) {
                                 Grouped bursts of the same motor unit with "marching soldiers" sound - often seen in radiation-induced nerve damage.
                             </p>
                             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe src="https://www.youtube.com/embed/ZClcikXOOaU"
+                                <iframe loading="lazy" src="https://www.youtube.com/embed/ZClcikXOOaU"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -2637,7 +2585,7 @@ function generateBasicPatternsContent(module) {
                                 Motor units with >4 phases indicating loss of synchrony - seen in both muscle disease and nerve reinnervation.
                             </p>
                             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe src="https://www.youtube.com/embed/liNujyDKe58"
+                                <iframe loading="lazy" src="https://www.youtube.com/embed/liNujyDKe58"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -2660,7 +2608,7 @@ function generateBasicPatternsContent(module) {
                                 Progressive activation of motor units with increasing force - essential for distinguishing neuropathic vs. myopathic patterns.
                             </p>
                             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe src="https://www.youtube.com/embed/kTJiD1d0NsI"
+                                <iframe loading="lazy" src="https://www.youtube.com/embed/kTJiD1d0NsI"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -2688,7 +2636,7 @@ function generateBasicPatternsContent(module) {
                             Normal needle-induced activity at the neuromuscular junction - important to distinguish from pathologic fibrillations.
                         </p>
                         <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                            <iframe src="https://www.youtube.com/embed/2QgTg8f0pHE"
+                            <iframe loading="lazy" src="https://www.youtube.com/embed/2QgTg8f0pHE"
                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen></iframe>
@@ -10727,430 +10675,6 @@ window.AdvancedMuscleTest = {
     }
 };
 
-// EMG Challenge - New Window Launch Function
-window.launchEMGChallenge = function() {
-    console.log('🚀 Launching EMG Challenge in new window...');
-
-    // Create new window
-    const challengeWindow = window.open('', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
-
-    // Generate complete HTML content for the challenge window
-    const challengeHTML = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EMG Localization Challenge</title>
-        <style>
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                margin: 0;
-                padding: 20px;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                min-height: 100vh;
-            }
-
-            .challenge-container {
-                max-width: 1100px;
-                margin: 0 auto;
-                background: white;
-                border-radius: 20px;
-                padding: 30px;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            }
-
-            .challenge-header {
-                text-align: center;
-                margin-bottom: 30px;
-                padding: 20px;
-                background: linear-gradient(135deg, #dc2626, #b91c1c);
-                border-radius: 15px;
-                color: white;
-            }
-
-            .challenge-settings {
-                background: linear-gradient(135deg, #fefcf3, #fef3c7);
-                border: 2px solid #f59e0b;
-                border-radius: 15px;
-                padding: 25px;
-                margin-bottom: 20px;
-            }
-
-            .toggle-options {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .toggle-option {
-                display: flex;
-                align-items: center;
-                padding: 15px;
-                background: #f0fdf4;
-                border: 2px solid #10b981;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-
-            .toggle-option.inactive {
-                background: #f8fafc;
-                border-color: #e2e8f0;
-            }
-
-            .toggle-option:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-            }
-
-            .challenge-active {
-                background: linear-gradient(135deg, #fefcf3, #fef3c7);
-                border: 2px solid #f59e0b;
-                border-radius: 15px;
-                padding: 25px;
-                margin-top: 20px;
-            }
-
-            .findings-layout {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-                margin-bottom: 25px;
-            }
-
-            .abnormal-findings {
-                background: #fef2f2;
-                border: 2px solid #dc2626;
-                border-radius: 10px;
-                padding: 20px;
-            }
-
-            .normal-findings {
-                background: #f0fdf4;
-                border: 2px solid #10b981;
-                border-radius: 10px;
-                padding: 20px;
-            }
-
-            .mc-options {
-                background: white;
-                border: 2px solid #e5e7eb;
-                border-radius: 12px;
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .mc-option {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px;
-                border: 2px solid #e5e7eb;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.2s;
-                margin-bottom: 10px;
-            }
-
-            .mc-option:hover {
-                border-color: #3b82f6;
-                background: #eff6ff;
-            }
-
-            .challenge-buttons {
-                text-align: center;
-                margin-top: 20px;
-            }
-
-            .btn {
-                padding: 12px 24px;
-                border: none;
-                border-radius: 8px;
-                font-weight: 600;
-                cursor: pointer;
-                margin: 5px;
-                transition: all 0.2s;
-            }
-
-            .btn-primary {
-                background: #3b82f6;
-                color: white;
-            }
-
-            .btn-success {
-                background: #10b981;
-                color: white;
-            }
-
-            .btn-secondary {
-                background: #6b7280;
-                color: white;
-            }
-
-            .btn:hover {
-                transform: translateY(-2px);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="challenge-container">
-            <div class="challenge-header">
-                <h1>🔬 EMG Localization Challenge</h1>
-                <p>Advanced muscle localization challenge with nerve root, plexus, and peripheral nerve lesions</p>
-            </div>
-
-            <div class="challenge-settings">
-                <h3 style="color: #92400e; margin-bottom: 15px;">🎯 Select Question Types</h3>
-                <p style="color: #a16207; margin-bottom: 20px;">Choose which types of localizations you want to practice</p>
-
-                <div class="toggle-options">
-                    <div class="toggle-option" data-type="root" onclick="toggleQuestionType('root')">
-                        <div style="margin-right: 15px; font-size: 1.5em;">🌿</div>
-                        <div style="flex: 1;">
-                            <h5 style="margin: 0 0 5px 0; color: #059669;">Nerve Root Lesions</h5>
-                            <p style="margin: 0; font-size: 0.9em; color: #6b7280;">C5-T1, L2-S1 radiculopathies</p>
-                        </div>
-                    </div>
-
-                    <div class="toggle-option" data-type="trunk" onclick="toggleQuestionType('trunk')">
-                        <div style="margin-right: 15px; font-size: 1.5em;">🌳</div>
-                        <div style="flex: 1;">
-                            <h5 style="margin: 0 0 5px 0; color: #059669;">Plexus Trunk Lesions</h5>
-                            <p style="margin: 0; font-size: 0.9em; color: #6b7280;">Upper, middle, lower trunk injuries</p>
-                        </div>
-                    </div>
-
-                    <div class="toggle-option" data-type="cord" onclick="toggleQuestionType('cord')">
-                        <div style="margin-right: 15px; font-size: 1.5em;">🔗</div>
-                        <div style="flex: 1;">
-                            <h5 style="margin: 0 0 5px 0; color: #059669;">Plexus Cord Lesions</h5>
-                            <p style="margin: 0; font-size: 0.9em; color: #6b7280;">Lateral, posterior, medial cord injuries</p>
-                        </div>
-                    </div>
-
-                    <div class="toggle-option" data-type="peripheral" onclick="toggleQuestionType('peripheral')">
-                        <div style="margin-right: 15px; font-size: 1.5em;">⚡</div>
-                        <div style="flex: 1;">
-                            <h5 style="margin: 0 0 5px 0; color: #059669;">Peripheral Nerve Lesions</h5>
-                            <p style="margin: 0; font-size: 0.9em; color: #6b7280;">Entrapment neuropathies, focal injuries</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align: center;">
-                    <button class="btn btn-primary" onclick="startChallenge()">
-                        🚀 Launch EMG Challenge
-                    </button>
-                </div>
-            </div>
-
-            <div id="challenge-active" class="challenge-active" style="display: none;">
-                <div class="challenge-header" style="background: none; color: #92400e; text-align: center;">
-                    <h3>🔬 EMG Case Analysis</h3>
-                    <p id="challenge-scenario">Loading case scenario...</p>
-                </div>
-
-                <div class="findings-layout">
-                    <div class="abnormal-findings">
-                        <h5 style="color: #dc2626; margin-bottom: 15px;">❌ Abnormal Muscles (Denervation)</h5>
-                        <ul id="challenge-abnormal-muscles"></ul>
-                    </div>
-
-                    <div class="normal-findings">
-                        <h5 style="color: #10b981; margin-bottom: 15px;">✅ Normal Muscles</h5>
-                        <ul id="challenge-normal-muscles"></ul>
-                    </div>
-                </div>
-
-                <div id="mc-options" class="mc-options" style="display: none;">
-                    <h5 style="color: #374151; margin-bottom: 15px;">🎯 Select the Most Likely Localization:</h5>
-                    <div id="mc-options-container"></div>
-                </div>
-
-                <div id="challenge-feedback" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px;"></div>
-
-                <div class="challenge-buttons">
-                    <button id="submit-btn" class="btn btn-primary" onclick="submitAnswer()" style="display: none;">
-                        Submit Answer
-                    </button>
-                    <button id="next-btn" class="btn btn-success" onclick="nextCase()" style="display: none;">
-                        Next Case →
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            // EMG Challenge JavaScript - Embedded in new window
-            let activeQuestionTypes = {
-                root: true,
-                trunk: true,
-                cord: true,
-                peripheral: true
-            };
-
-            let currentCase = null;
-            let correctAnswer = null;
-
-            // Lesion Sites Database
-            const lesionSites = {
-                UE: {
-                    'C5 Root': { type: 'root', muscles: ['Deltoid', 'Biceps', 'Rhomboid', 'Supraspinatus'] },
-                    'C6 Root': { type: 'root', muscles: ['Biceps', 'Brachioradialis', 'Extensor carpi radialis'] },
-                    'C7 Root': { type: 'root', muscles: ['Triceps', 'Flexor carpi radialis', 'Pronator teres'] },
-                    'C8 Root': { type: 'root', muscles: ['Flexor digitorum profundus', 'First dorsal interosseous', 'Abductor pollicis brevis'] },
-                    'Upper Trunk': { type: 'trunk', muscles: ['Deltoid', 'Biceps', 'Supraspinatus', 'Infraspinatus'] },
-                    'Lower Trunk': { type: 'trunk', muscles: ['Flexor digitorum profundus', 'First dorsal interosseous', 'Abductor digiti minimi'] },
-                    'Lateral Cord': { type: 'cord', muscles: ['Biceps', 'Coracobrachialis', 'Flexor carpi radialis'] },
-                    'Posterior Cord': { type: 'cord', muscles: ['Deltoid', 'Triceps', 'Extensor indicis', 'Extensor pollicis longus'] },
-                    'Medial Cord': { type: 'cord', muscles: ['Flexor digitorum profundus', 'First dorsal interosseous', 'Abductor digiti minimi'] },
-                    'Median Nerve': { type: 'peripheral', muscles: ['Abductor pollicis brevis', 'Flexor carpi radialis', 'Pronator teres'] },
-                    'Ulnar Nerve': { type: 'peripheral', muscles: ['First dorsal interosseous', 'Abductor digiti minimi', 'Flexor carpi ulnaris'] },
-                    'Radial Nerve': { type: 'peripheral', muscles: ['Triceps', 'Extensor carpi radialis', 'Extensor indicis'] }
-                },
-                LE: {
-                    'L5 Root': { type: 'root', muscles: ['Tibialis anterior', 'Extensor hallucis longus', 'Gluteus medius'] },
-                    'S1 Root': { type: 'root', muscles: ['Gastrocnemius', 'Gluteus maximus', 'Biceps femoris'] },
-                    'Common Fibular Nerve': { type: 'peripheral', muscles: ['Tibialis anterior', 'Extensor digitorum longus', 'Fibularis longus'] },
-                    'Tibial Nerve': { type: 'peripheral', muscles: ['Gastrocnemius', 'Tibialis posterior', 'Flexor digitorum longus'] }
-                }
-            };
-
-            function toggleQuestionType(type) {
-                activeQuestionTypes[type] = !activeQuestionTypes[type];
-                const element = document.querySelector('[data-type="' + type + '"]');
-                if (activeQuestionTypes[type]) {
-                    element.classList.remove('inactive');
-                } else {
-                    element.classList.add('inactive');
-                }
-            }
-
-            function startChallenge() {
-                document.getElementById('challenge-active').style.display = 'block';
-                loadRandomCase();
-            }
-
-            function loadRandomCase() {
-                const availableCases = [];
-                const regions = ['UE', 'LE'];
-
-                regions.forEach(region => {
-                    Object.keys(lesionSites[region]).forEach(lesion => {
-                        const lesionData = lesionSites[region][lesion];
-                        if (activeQuestionTypes[lesionData.type]) {
-                            availableCases.push({
-                                region,
-                                lesion,
-                                data: lesionData
-                            });
-                        }
-                    });
-                });
-
-                if (availableCases.length === 0) {
-                    alert('⚠️ No question types selected. Please select at least one question type.');
-                    return;
-                }
-
-                const randomCase = availableCases[Math.floor(Math.random() * availableCases.length)];
-                currentCase = randomCase;
-
-                // Generate muscle set
-                const abnormalMuscles = randomCase.data.muscles;
-                const normalMuscles = ['Trapezius', 'Levator scapulae', 'Serratus anterior', 'Pectoralis major'];
-
-                // Populate case content
-                document.getElementById('challenge-scenario').innerHTML =
-                    'EMG reveals the following pattern of abnormal and normal muscles. Based on this pattern, identify the most likely lesion localization:';
-
-                document.getElementById('challenge-abnormal-muscles').innerHTML =
-                    abnormalMuscles.map(muscle => '<li><strong>' + muscle + '</strong> - Abnormal spontaneous activity, neurogenic motor unit potentials</li>').join('');
-
-                document.getElementById('challenge-normal-muscles').innerHTML =
-                    normalMuscles.map(muscle => '<li><strong>' + muscle + '</strong> - Normal insertional activity, normal motor unit potentials</li>').join('');
-
-                generateMultipleChoiceOptions(randomCase);
-            }
-
-            function generateMultipleChoiceOptions(correctCase) {
-                const allLocalizations = Object.keys(lesionSites[correctCase.region]);
-                const options = [correctCase.lesion];
-
-                // Add distractors
-                while (options.length < 5 && options.length < allLocalizations.length) {
-                    const randomDistractor = allLocalizations[Math.floor(Math.random() * allLocalizations.length)];
-                    if (!options.includes(randomDistractor)) {
-                        options.push(randomDistractor);
-                    }
-                }
-
-                // Shuffle options
-                for (let i = options.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [options[i], options[j]] = [options[j], options[i]];
-                }
-
-                correctAnswer = correctCase.lesion;
-
-                const mcContainer = document.getElementById('mc-options-container');
-                mcContainer.innerHTML = options.map(option =>
-                    '<label class="mc-option" onclick="selectOption(this)"><input type="radio" name="localization" value="' + option + '"><span>' + option + '</span></label>'
-                ).join('');
-
-                document.getElementById('mc-options').style.display = 'block';
-                document.getElementById('submit-btn').style.display = 'inline-block';
-                document.getElementById('next-btn').style.display = 'none';
-                document.getElementById('challenge-feedback').style.display = 'none';
-            }
-
-            function selectOption(element) {
-                document.querySelectorAll('.mc-option').forEach(opt => opt.style.background = '');
-                element.style.background = '#eff6ff';
-                element.querySelector('input').checked = true;
-            }
-
-            function submitAnswer() {
-                const selected = document.querySelector('input[name="localization"]:checked');
-                if (!selected) {
-                    alert('Please select an answer first.');
-                    return;
-                }
-
-                const isCorrect = selected.value === correctAnswer;
-                const feedback = document.getElementById('challenge-feedback');
-
-                if (isCorrect) {
-                    feedback.style.background = '#dcfce7';
-                    feedback.style.border = '2px solid #16a34a';
-                    feedback.innerHTML = '<div style="color: #15803d;"><h5>✅ Correct!</h5><p>Selected: <strong>' + selected.value + '</strong></p></div>';
-                } else {
-                    feedback.style.background = '#fef2f2';
-                    feedback.style.border = '2px solid #dc2626';
-                    feedback.innerHTML = '<div style="color: #dc2626;"><h5>❌ Incorrect</h5><p>Selected: <strong>' + selected.value + '</strong></p><p>Correct Answer: <strong>' + correctAnswer + '</strong></p></div>';
-                }
-
-                feedback.style.display = 'block';
-                document.getElementById('submit-btn').style.display = 'none';
-                document.getElementById('next-btn').style.display = 'inline-block';
-            }
-
-            function nextCase() {
-                loadRandomCase();
-            }
-        </script>
-    </body>
-    </html>`;
-
-    // Write content to new window
-    challengeWindow.document.write(challengeHTML);
-    challengeWindow.document.close();
-
-    console.log('✅ EMG Challenge launched in new window');
-};
-
 // EMG Localization Challenge - Extracted from EMG_NCS_Resident_Tool
 window.EMGChallenge = {
     currentSettings: {
@@ -11212,317 +10736,8 @@ window.EMGChallenge = {
     startChallenge: function() {
         this.isActive = true;
         console.log('🚀 EMG Challenge started');
-
-        // Show the actual challenge interface
-        const challengeInterface = document.getElementById('emg-challenge-interface');
-        console.log('🔍 Challenge interface element:', challengeInterface);
-
-        if (challengeInterface) {
-            console.log('🔍 Current display style:', challengeInterface.style.display);
-            challengeInterface.style.display = 'block';
-            console.log('🔍 After setting display to block:', challengeInterface.style.display);
-
-            // Force visibility and positioning with enhanced styling
-            challengeInterface.style.visibility = 'visible';
-            challengeInterface.style.opacity = '1';
-            challengeInterface.style.position = 'relative';
-            challengeInterface.style.zIndex = '1000';
-            challengeInterface.style.backgroundColor = '#ffffff';
-            challengeInterface.style.border = '3px solid #dc2626';
-            challengeInterface.style.borderRadius = '15px';
-            challengeInterface.style.padding = '25px';
-            challengeInterface.style.marginTop = '30px';
-            challengeInterface.style.marginBottom = '30px';
-            challengeInterface.style.boxShadow = '0 15px 35px rgba(220, 38, 38, 0.4)';
-            challengeInterface.style.minHeight = '400px';
-
-            console.log('🔍 Applied enhanced forced styling to challenge interface');
-
-            // Check if it's actually visible
-            const rect = challengeInterface.getBoundingClientRect();
-            console.log('🔍 Element bounds:', rect);
-
-            // Scroll within the modal container, not the whole page
-            setTimeout(() => {
-                const modalBody = document.getElementById('modal-body');
-                const activeChallenge = document.getElementById('emg-challenge-active');
-
-                console.log('🔍 DEBUG - Challenge interface bounds:', challengeInterface.getBoundingClientRect());
-                console.log('🔍 DEBUG - Active challenge element:', activeChallenge ? 'Found' : 'Not found');
-                console.log('🔍 DEBUG - Active challenge display:', activeChallenge ? activeChallenge.style.display : 'N/A');
-
-                if (modalBody) {
-                    console.log('🔍 DEBUG - Modal body height:', modalBody.scrollHeight);
-                    console.log('🔍 DEBUG - Modal body viewport height:', modalBody.clientHeight);
-                    console.log('🔍 DEBUG - Challenge offset top:', challengeInterface.offsetTop);
-
-                    // Scroll the modal body to show the challenge interface
-                    modalBody.scrollTop = challengeInterface.offsetTop - 50;
-                    console.log('🔍 Modal scrolled to show challenge at:', challengeInterface.offsetTop);
-
-                    // Additional debug: check if challenge is actually visible
-                    setTimeout(() => {
-                        const challengeRect = challengeInterface.getBoundingClientRect();
-                        const modalRect = modalBody.getBoundingClientRect();
-                        console.log('🔍 DEBUG - After scroll - Challenge visible in viewport:',
-                            challengeRect.top >= modalRect.top && challengeRect.bottom <= modalRect.bottom);
-                    }, 100);
-                } else {
-                    console.log('🔍 Modal body not found, using standard scroll');
-                    challengeInterface.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 300);
-
-            // Initialize the first case
-            this.loadRandomCase();
-
-            console.log('✅ EMG Challenge interface activated and case loaded');
-        } else {
-            console.error('❌ EMG Challenge interface element not found');
-            alert('🚀 EMG Challenge Starting! Advanced muscle localization challenge with nerve root, plexus, and peripheral nerve lesions.');
-        }
-    },
-
-    loadRandomCase: function() {
-        // Get available cases based on active question types
-        const availableCases = [];
-        const regions = ['UE', 'LE'];
-
-        regions.forEach(region => {
-            Object.keys(this.lesionSites[region]).forEach(lesion => {
-                const lesionData = this.lesionSites[region][lesion];
-                if (this.activeQuestionTypes[lesionData.type]) {
-                    availableCases.push({
-                        region,
-                        lesion,
-                        data: lesionData
-                    });
-                }
-            });
-        });
-
-        if (availableCases.length === 0) {
-            alert('⚠️ No question types selected. Please select at least one question type (Root, Plexus, or Peripheral).');
-            return;
-        }
-
-        // Show the active challenge section
-        const activeChallenge = document.getElementById('emg-challenge-active');
-        if (activeChallenge) {
-            activeChallenge.style.display = 'block';
-            activeChallenge.style.border = '4px solid #dc2626';
-            activeChallenge.style.backgroundColor = '#fef2f2';
-            console.log('🔍 EMG Challenge active section now visible');
-
-            // Add temporary alert box at top
-            activeChallenge.innerHTML = `
-                <div style="background: #dc2626; color: white; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px; font-size: 1.2em; font-weight: bold;">
-                    🚀 EMG CHALLENGE IS NOW ACTIVE! 🚀
-                    <div style="font-size: 0.9em; margin-top: 5px;">You should see the challenge content below this message</div>
-                </div>
-                ${activeChallenge.innerHTML}
-            `;
-        }
-
-        // Select random case
-        const randomCase = availableCases[Math.floor(Math.random() * availableCases.length)];
-        this.currentCase = randomCase;
-
-        // Generate comprehensive muscle set for realistic EMG challenge
-        const allRegionMuscles = Object.keys(this.lesionSites[randomCase.region]);
-        const normalMuscles = [];
-        const abnormalMuscles = randomCase.data.muscles;
-
-        // Add 4-5 normal muscles that should NOT be affected by this lesion
-        let addedNormal = 0;
-        for (const lesion of allRegionMuscles) {
-            if (lesion !== randomCase.lesion && addedNormal < 4) {
-                const otherLesionMuscles = this.lesionSites[randomCase.region][lesion].muscles;
-                // Add muscles that are NOT in the current lesion's affected muscles
-                for (const muscle of otherLesionMuscles) {
-                    if (!abnormalMuscles.includes(muscle) && !normalMuscles.includes(muscle) && addedNormal < 4) {
-                        normalMuscles.push(muscle);
-                        addedNormal++;
-                    }
-                }
-            }
-        }
-
-        // Update the challenge display using existing elements
-        const scenarioElement = document.getElementById('challenge-scenario');
-        const abnormalMusclesElement = document.getElementById('challenge-abnormal-muscles');
-        const normalMusclesElement = document.getElementById('challenge-normal-muscles');
-
-        if (scenarioElement) {
-            scenarioElement.innerHTML = `EMG reveals the following pattern of abnormal and normal muscles. Based on this pattern, identify the most likely lesion localization:`;
-        }
-
-        if (abnormalMusclesElement) {
-            abnormalMusclesElement.innerHTML = abnormalMuscles.map(muscle =>
-                `<li><strong>${muscle}</strong> - Abnormal spontaneous activity, neurogenic motor unit potentials</li>`
-            ).join('');
-        }
-
-        if (normalMusclesElement) {
-            normalMusclesElement.innerHTML = normalMuscles.map(muscle =>
-                `<li><strong>${muscle}</strong> - Normal insertional activity, normal motor unit potentials</li>`
-            ).join('');
-        }
-
-        // Add multiple choice options for lesion localization
-        this.generateMultipleChoiceOptions(randomCase);
-
-        // Clear previous feedback
-        const feedbackElement = document.getElementById('challenge-feedback');
-        if (feedbackElement) {
-            feedbackElement.style.display = 'none';
-            feedbackElement.innerHTML = '';
-        }
-
-        // Reset buttons
-        const submitBtn = document.getElementById('challenge-submit-btn');
-        const nextBtn = document.getElementById('challenge-next-btn');
-        if (submitBtn) {
-            submitBtn.style.display = 'block';
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = '1';
-        }
-        if (nextBtn) {
-            nextBtn.style.display = 'none';
-        }
-
-        // Re-enable radio buttons for new case
-        setTimeout(() => {
-            document.querySelectorAll('input[name="emg-localization"]').forEach(radio => {
-                radio.disabled = false;
-            });
-        }, 100);
-
-        console.log('🎯 Loaded new case:', randomCase);
-    },
-
-    submitAnswer: function() {
-        if (!this.currentCase) {
-            console.error('❌ No current case loaded');
-            return;
-        }
-
-        // Get selected answer
-        const selectedRadio = document.querySelector('input[name="emg-localization"]:checked');
-        if (!selectedRadio) {
-            alert('⚠️ Please select a localization before submitting.');
-            return;
-        }
-
-        const selectedAnswer = selectedRadio.value;
-        const isCorrect = selectedAnswer === this.correctAnswer;
-
-        // Show feedback
-        const feedbackArea = document.getElementById('challenge-feedback');
-        if (feedbackArea) {
-            feedbackArea.style.display = 'block';
-
-            if (isCorrect) {
-                feedbackArea.style.background = '#dcfce7';
-                feedbackArea.style.border = '2px solid #16a34a';
-                feedbackArea.innerHTML = `
-                    <div style="color: #15803d;">
-                        <h5 style="margin-bottom: 10px;">✅ Correct!</h5>
-                        <p><strong>Selected:</strong> ${selectedAnswer}</p>
-                        <p><strong>Type:</strong> ${this.currentCase.data.type} lesion</p>
-                        <p><strong>Explanation:</strong> The combination of affected muscles (${this.currentCase.data.muscles.join(', ')}) is characteristic of a ${this.currentCase.lesion} lesion. These muscles share common ${this.currentCase.data.type === 'root' ? 'nerve root' : this.currentCase.data.type === 'plexus' ? 'plexus structure' : 'peripheral nerve'} innervation, making this pattern diagnostic.</p>
-                    </div>
-                `;
-            } else {
-                feedbackArea.style.background = '#fef2f2';
-                feedbackArea.style.border = '2px solid #dc2626';
-                feedbackArea.innerHTML = `
-                    <div style="color: #dc2626;">
-                        <h5 style="margin-bottom: 10px;">❌ Incorrect</h5>
-                        <p><strong>Selected:</strong> ${selectedAnswer}</p>
-                        <p><strong>Correct Answer:</strong> ${this.correctAnswer}</p>
-                        <p><strong>Explanation:</strong> The muscle pattern (affected: ${this.currentCase.data.muscles.join(', ')}) specifically indicates ${this.currentCase.lesion}. Review the anatomical relationships between these muscles and their shared ${this.currentCase.data.type === 'root' ? 'nerve root' : this.currentCase.data.type === 'plexus' ? 'plexus structure' : 'peripheral nerve'} innervation.</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Disable all radio buttons to prevent changes after submission
-        document.querySelectorAll('input[name="emg-localization"]').forEach(radio => {
-            radio.disabled = true;
-        });
-
-        // Show next button, hide submit button
-        const submitBtn = document.getElementById('challenge-submit-btn');
-        const nextBtn = document.getElementById('challenge-next-btn');
-        if (submitBtn) submitBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'block';
-    },
-
-    nextCase: function() {
-        this.loadRandomCase();
-    },
-
-    generateMultipleChoiceOptions: function(correctCase) {
-        // Get all possible localizations for this region
-        const allLocalizations = Object.keys(this.lesionSites[correctCase.region]);
-
-        // Create multiple choice options (correct + 3-4 distractors)
-        const options = [correctCase.lesion];
-
-        // Add distractors from the same region
-        while (options.length < 5 && options.length < allLocalizations.length) {
-            const randomDistractor = allLocalizations[Math.floor(Math.random() * allLocalizations.length)];
-            if (!options.includes(randomDistractor)) {
-                options.push(randomDistractor);
-            }
-        }
-
-        // Shuffle the options
-        for (let i = options.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [options[i], options[j]] = [options[j], options[i]];
-        }
-
-        // Find and populate the multiple choice area
-        this.displayMultipleChoiceOptions(options, correctCase.lesion);
-    },
-
-    displayMultipleChoiceOptions: function(options, correctAnswer) {
-        // Look for an existing multiple choice area or create one
-        let mcArea = document.getElementById('emg-mc-options');
-        if (!mcArea) {
-            // Find a good place to insert the multiple choice options
-            const challengeInterface = document.getElementById('emg-challenge-interface');
-            const findingsLayout = challengeInterface.querySelector('.findings-layout');
-            if (findingsLayout) {
-                mcArea = document.createElement('div');
-                mcArea.id = 'emg-mc-options';
-                mcArea.style.marginBottom = '20px';
-                findingsLayout.parentNode.insertBefore(mcArea, findingsLayout.nextSibling);
-            }
-        }
-
-        if (mcArea) {
-            mcArea.innerHTML = `
-                <div style="background: white; border-radius: 12px; padding: 25px; border: 2px solid #e5e7eb;">
-                    <h5 style="color: #374151; margin-bottom: 20px; font-size: 1.2em;">🎯 Select the Most Likely Localization:</h5>
-                    <div style="display: grid; gap: 10px;">
-                        ${options.map((option, index) => `
-                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.2s;"
-                                   onmouseover="this.style.borderColor='#3b82f6'; this.style.background='#eff6ff';"
-                                   onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='white';">
-                                <input type="radio" name="emg-localization" value="${option}" style="width: 18px; height: 18px;">
-                                <span style="font-size: 1em; color: #374151; font-weight: 500;">${option}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-
-        // Store correct answer for checking
-        this.correctAnswer = correctAnswer;
+        // Show a placeholder message since we don't have the full interface
+        alert('🚀 EMG Challenge Starting! Advanced muscle localization challenge with nerve root, plexus, and peripheral nerve lesions.');
     }
 };
 
@@ -11559,54 +10774,6 @@ window.showStudyCards = function() {
 
     const muscleLabContent = `
         <style>
-            /* Advanced Muscle Lab Styling */
-            .muscle-lab-hero {
-                background: linear-gradient(135deg, rgba(107, 159, 120, 0.15) 0%, rgba(74, 109, 82, 0.15) 100%);
-                border-radius: 25px;
-                padding: 40px;
-                margin: 20px 0;
-                backdrop-filter: blur(20px);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                text-align: center;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-                color: #2c3e50;
-                margin-bottom: 15px;
-                font-weight: 700;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-                color: #6b7280;
-                margin-bottom: 25px;
-            }
-            .hero-stats {
-                display: flex;
-                justify-content: center;
-                gap: 30px;
-                flex-wrap: wrap;
-            }
-            .stat-card {
-                background: rgba(254, 252, 243, 0.9);
-                backdrop-filter: blur(10px);
-                border-radius: 15px;
-                padding: 20px 30px;
-                border: 1px solid rgba(107, 159, 120, 0.2);
-                min-width: 120px;
-            }
-            .stat-number {
-                font-size: 2rem;
-                font-weight: 700;
-                color: #6b9f78;
-                margin-bottom: 5px;
-            }
-            .stat-label {
-                font-size: 0.9rem;
-                color: #64748b;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-
             /* Advanced Muscle Lab Styling */
             .muscle-lab-hero {
                 background: linear-gradient(135deg, rgba(107, 159, 120, 0.15) 0%, rgba(74, 109, 82, 0.15) 100%);
@@ -12148,92 +11315,6 @@ window.showStudyCards = function() {
             </div>
         </div>
 
-        <!-- Enhanced Interactive Quiz Section -->
-        <div class="quiz-section">
-            <div class="quiz-header">
-                <h3>🧪 Interactive Quiz</h3>
-                <p>Customize your quiz with multiple categories and regions</p>
-            </div>
-
-            <!-- Quiz Configuration Panel -->
-            <div style="background: rgba(255, 255, 255, 0.8); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(107, 159, 120, 0.2);">
-
-                <!-- Region Selection for Quiz -->
-                <div style="margin-bottom: 20px;">
-                    <h5 style="color: #374151; margin-bottom: 12px; font-size: 1em; font-weight: 600;">🎯 Quiz Region:</h5>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="quiz-region-btn active" data-region="upper" onclick="MuscleAnatomy.setQuizRegion('upper')"
-                            style="padding: 8px 16px; border: 2px solid #6b9f78; border-radius: 8px; background: #6b9f78; color: white; font-size: 0.9em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            💪 Upper Only
-                        </button>
-                        <button class="quiz-region-btn" data-region="lower" onclick="MuscleAnatomy.setQuizRegion('lower')"
-                            style="padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #6b7280; font-size: 0.9em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            🦵 Lower Only
-                        </button>
-                        <button class="quiz-region-btn" data-region="both" onclick="MuscleAnatomy.setQuizRegion('both')"
-                            style="padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #6b7280; font-size: 0.9em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            🫀 Both Extremities
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Category Selection for Quiz -->
-                <div style="margin-bottom: 20px;">
-                    <h5 style="color: #374151; margin-bottom: 12px; font-size: 1em; font-weight: 600;">📚 Quiz Categories (Select Multiple):</h5>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="quiz-category-btn active" data-category="nerve" onclick="MuscleAnatomy.toggleQuizCategory('nerve')"
-                            style="padding: 8px 16px; border: 2px solid #059669; border-radius: 8px; background: #059669; color: white; font-size: 0.85em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            🔌 Nerves
-                        </button>
-                        <button class="quiz-category-btn" data-category="roots" onclick="MuscleAnatomy.toggleQuizCategory('roots')"
-                            style="padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #6b7280; font-size: 0.85em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            🌿 Roots
-                        </button>
-                        <button class="quiz-category-btn" data-category="cord" onclick="MuscleAnatomy.toggleQuizCategory('cord')"
-                            style="padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #6b7280; font-size: 0.85em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            🕸️ Cords/Trunks
-                        </button>
-                        <button class="quiz-category-btn" data-category="actions" onclick="MuscleAnatomy.toggleQuizCategory('actions')"
-                            style="padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #6b7280; font-size: 0.85em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            💪 Actions
-                        </button>
-                    </div>
-                    <p style="color: #6b7280; font-size: 0.8em; margin-top: 8px; font-style: italic;">Click multiple categories to include them in your quiz</p>
-                </div>
-
-                <!-- Quiz Mode -->
-                <div style="margin-bottom: 20px;">
-                    <h5 style="color: #374151; margin-bottom: 12px; font-size: 1em; font-weight: 600;">⚙️ Quiz Mode:</h5>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="mode-toggle-btn active" data-mode="multiple" onclick="MuscleAnatomy.setQuizMode('multiple')"
-                            style="padding: 8px 16px; border: 2px solid #8b5cf6; border-radius: 8px; background: #8b5cf6; color: white; font-size: 0.9em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            Multiple Choice
-                        </button>
-                        <button class="mode-toggle-btn" data-mode="type" onclick="MuscleAnatomy.setQuizMode('type')"
-                            style="padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #6b7280; font-size: 0.9em; cursor: pointer; transition: all 0.2s; font-weight: 500;">
-                            Type Answer
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quiz Action Buttons -->
-            <div class="quiz-action-btns" style="text-align: center; margin-bottom: 20px;">
-                <button class="quiz-start-btn" onclick="MuscleAnatomy.startCustomQuiz()"
-                    style="padding: 12px 32px; background: #8b5cf6; color: white; border: none; border-radius: 10px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-right: 15px;">
-                    🚀 Start Custom Quiz
-                </button>
-                <button class="quiz-stop-btn" onclick="MuscleAnatomy.stopInlineQuiz()" style="display: none; padding: 12px 32px; background: #ef4444; color: white; border: none; border-radius: 10px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
-                    ✋ Stop Quiz
-                </button>
-            </div>
-
-            <div id="inline-quiz-area" class="inline-quiz-area" style="display: none;">
-                <!-- Quiz content will be populated here -->
-            </div>
-        </div>
-
-        <!-- Study Controls Bar -->
         <div class="study-controls-bar">
             <div class="control-section">
                 <h4>Region</h4>
@@ -12248,7 +11329,7 @@ window.showStudyCards = function() {
             </div>
 
             <div class="control-section">
-                <h4>Study View</h4>
+                <h4>Anatomy Display</h4>
                 <div class="anatomy-selector">
                     <button class="anatomy-btn active" data-anatomy="nerve" onclick="MuscleAnatomy.setAnatomyType('nerve')">
                         Nerve
@@ -12263,6 +11344,37 @@ window.showStudyCards = function() {
                         Actions
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-header">
+                <h3>🧪 Interactive Quiz</h3>
+                <p>Test your knowledge with adaptive questions</p>
+            </div>
+
+            <div class="quiz-controls">
+                <div class="quiz-mode-toggle">
+                    <label>Quiz Mode:</label>
+                    <button class="mode-toggle-btn" data-mode="type" onclick="MuscleAnatomy.setQuizMode('type')">
+                        Type Answer
+                    </button>
+                    <button class="mode-toggle-btn active" data-mode="multiple" onclick="MuscleAnatomy.setQuizMode('multiple')">
+                        Multiple Choice
+                    </button>
+                </div>
+                <div class="quiz-action-btns">
+                    <button class="quiz-start-btn" onclick="MuscleAnatomy.startInlineQuiz()">
+                        Start Quiz
+                    </button>
+                    <button class="quiz-stop-btn" onclick="MuscleAnatomy.stopInlineQuiz()" style="display: none;">
+                        Stop Quiz
+                    </button>
+                </div>
+            </div>
+
+            <div id="inline-quiz-area" class="inline-quiz-area" style="display: none;">
+                <!-- Quiz content will be populated here -->
             </div>
         </div>
 
@@ -12339,7 +11451,6 @@ window.showStudyCards = function() {
         }
     }, 500);
 };
-
 
 // Complete MuscleAnatomy Object - Preston & Shapiro Database
 window.MuscleAnatomy = {
@@ -12921,347 +12032,6 @@ window.MuscleAnatomy = {
         typeBtn.textContent = buttonTexts[type];
 
         console.log(`🔍 Global reveal ${type}:`, !anyTypeVisible ? 'shown' : 'hidden');
-    },
-
-    // Enhanced Quiz Functions
-    setQuizRegion(region) {
-        console.log(`🎯 Setting quiz region: ${region}`);
-        this.quizRegion = region;
-
-        // Update button states
-        document.querySelectorAll('.quiz-region-btn').forEach(btn => {
-            const btnRegion = btn.dataset.region;
-            if (btnRegion === region) {
-                btn.classList.add('active');
-                btn.style.background = '#6b9f78';
-                btn.style.borderColor = '#6b9f78';
-                btn.style.color = 'white';
-            } else {
-                btn.classList.remove('active');
-                btn.style.background = 'white';
-                btn.style.borderColor = '#e5e7eb';
-                btn.style.color = '#6b7280';
-            }
-        });
-    },
-
-    toggleQuizCategory(category) {
-        console.log(`🎯 Toggling quiz category: ${category}`);
-
-        if (!this.quizCategories) this.quizCategories = ['nerve']; // Default
-
-        const btn = document.querySelector(`[data-category="${category}"]`);
-        if (!btn) return;
-
-        const isActive = btn.classList.contains('active');
-
-        if (isActive) {
-            // Deactivate
-            btn.classList.remove('active');
-            btn.style.background = 'white';
-            btn.style.borderColor = '#e5e7eb';
-            btn.style.color = '#6b7280';
-
-            // Remove from categories
-            this.quizCategories = this.quizCategories.filter(cat => cat !== category);
-        } else {
-            // Activate
-            btn.classList.add('active');
-            btn.style.background = '#059669';
-            btn.style.borderColor = '#059669';
-            btn.style.color = 'white';
-
-            // Add to categories
-            if (!this.quizCategories.includes(category)) {
-                this.quizCategories.push(category);
-            }
-        }
-
-        console.log('🎯 Current quiz categories:', this.quizCategories);
-    },
-
-    startCustomQuiz() {
-        const region = this.quizRegion || 'upper';
-        const categories = this.quizCategories || ['nerve'];
-        const mode = this.quizMode || 'multiple';
-
-        console.log('🚀 Starting custom quiz:', { region, categories, mode });
-
-        // Validate at least one category is selected
-        if (categories.length === 0) {
-            alert('⚠️ Please select at least one quiz category!');
-            return;
-        }
-
-        // Show inline quiz area and start actual quiz
-        const quizArea = document.getElementById('inline-quiz-area');
-        if (quizArea) {
-            quizArea.style.display = 'block';
-
-            // Show stop button, hide start button
-            document.querySelector('.quiz-start-btn').style.display = 'none';
-            document.querySelector('.quiz-stop-btn').style.display = 'block';
-
-            // Initialize quiz state
-            this.selectedQuizAnswer = null;
-            this.currentQuizQuestion = null;
-
-            // Start actual quiz question generation
-            this.generateCustomQuizQuestion();
-
-            // Scroll to quiz area
-            setTimeout(() => quizArea.scrollIntoView({ behavior: 'smooth' }), 100);
-        }
-
-        this.inlineQuizActive = true;
-    },
-
-    generateCustomQuizQuestion() {
-        const region = this.quizRegion || 'upper';
-        const categories = this.quizCategories || ['nerve'];
-
-        // Filter muscles by region
-        let availableMuscles = Object.keys(this.muscleDatabase);
-
-        if (region === 'upper') {
-            availableMuscles = availableMuscles.filter(muscle =>
-                this.muscleDatabase[muscle].region === 'UE'
-            );
-        } else if (region === 'lower') {
-            availableMuscles = availableMuscles.filter(muscle =>
-                this.muscleDatabase[muscle].region === 'LE'
-            );
-        }
-        // If region === 'both', use all muscles
-
-        if (availableMuscles.length === 0) {
-            alert('No muscles available for selected region!');
-            return;
-        }
-
-        // Pick a random muscle
-        const muscle = availableMuscles[Math.floor(Math.random() * availableMuscles.length)];
-        const muscleData = this.muscleDatabase[muscle];
-
-        // Pick a random category to ask about
-        const category = categories[Math.floor(Math.random() * categories.length)];
-
-        let question, correctAnswer, options;
-
-        switch (category) {
-            case 'nerve':
-                question = `What nerve innervates the ${muscle}?`;
-                correctAnswer = muscleData.nerve;
-                break;
-            case 'roots':
-                question = `What are the nerve roots for ${muscle}?`;
-                correctAnswer = muscleData.roots;
-                break;
-            case 'cord':
-                question = `What cord/trunk supplies ${muscle}?`;
-                correctAnswer = muscleData.cord || 'Not specified';
-                break;
-            case 'actions':
-                question = `What are the primary actions of ${muscle}?`;
-                correctAnswer = muscleData.actions || 'Not specified';
-                break;
-        }
-
-        // Generate multiple choice options
-        if (this.quizMode === 'multiple') {
-            options = this.generateQuizOptions(correctAnswer, category, availableMuscles);
-        }
-
-        this.currentQuizQuestion = {
-            muscle,
-            category,
-            question,
-            correctAnswer,
-            options
-        };
-
-        this.displayQuizQuestion();
-    },
-
-    generateQuizOptions(correctAnswer, category, availableMuscles) {
-        const options = [correctAnswer];
-
-        // Generate 3 incorrect options from other muscles
-        const otherMuscles = availableMuscles.filter(m => {
-            const data = this.muscleDatabase[m];
-            return data[category] && data[category] !== correctAnswer;
-        });
-
-        while (options.length < 4 && otherMuscles.length > 0) {
-            const randomMuscle = otherMuscles[Math.floor(Math.random() * otherMuscles.length)];
-            const wrongAnswer = this.muscleDatabase[randomMuscle][category];
-
-            if (wrongAnswer && !options.includes(wrongAnswer)) {
-                options.push(wrongAnswer);
-            }
-
-            // Remove this muscle from consideration
-            otherMuscles.splice(otherMuscles.indexOf(randomMuscle), 1);
-        }
-
-        // Shuffle options
-        for (let i = options.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [options[i], options[j]] = [options[j], options[i]];
-        }
-
-        return options;
-    },
-
-    displayQuizQuestion() {
-        const quizArea = document.getElementById('inline-quiz-area');
-        const { question, options, correctAnswer } = this.currentQuizQuestion;
-
-        if (this.quizMode === 'multiple') {
-            quizArea.innerHTML = `
-                <div style="background: white; border: 2px solid #8b5cf6; border-radius: 12px; padding: 25px; margin-top: 20px;">
-                    <h4 style="color: #7c3aed; margin-bottom: 20px;">${question}</h4>
-                    <div style="margin-bottom: 20px;">
-                        ${options.map((option, index) => `
-                            <label style="display: block; margin-bottom: 12px; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.2s;"
-                                   onmouseover="this.style.borderColor='#8b5cf6'; this.style.background='#f3f4f6';"
-                                   onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='white';"
-                                   onclick="MuscleAnatomy.selectQuizAnswer('${option}')">
-                                <input type="radio" name="quiz-option" value="${option}" class="quiz-option-input" style="margin-right: 10px;">
-                                <span style="font-weight: 500;">${option}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                    <div style="text-align: center;">
-                        <button onclick="MuscleAnatomy.submitQuizAnswer()"
-                                style="padding: 12px 24px; background: #8b5cf6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-right: 15px;">
-                            Submit Answer
-                        </button>
-                        <button onclick="MuscleAnatomy.generateCustomQuizQuestion()"
-                                style="padding: 12px 24px; background: #6b7280; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                            Skip Question
-                        </button>
-                    </div>
-                    <div id="quiz-feedback" style="display: none; margin-top: 20px;"></div>
-                </div>
-            `;
-        } else {
-            // Type mode
-            quizArea.innerHTML = `
-                <div style="background: white; border: 2px solid #8b5cf6; border-radius: 12px; padding: 25px; margin-top: 20px;">
-                    <h4 style="color: #7c3aed; margin-bottom: 20px;">${question}</h4>
-                    <input type="text" id="quiz-text-answer" placeholder="Type your answer..."
-                           style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1em; margin-bottom: 20px;">
-                    <div style="text-align: center;">
-                        <button onclick="MuscleAnatomy.submitQuizAnswer()"
-                                style="padding: 12px 24px; background: #8b5cf6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-right: 15px;">
-                            Submit Answer
-                        </button>
-                        <button onclick="MuscleAnatomy.generateCustomQuizQuestion()"
-                                style="padding: 12px 24px; background: #6b7280; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                            Skip Question
-                        </button>
-                    </div>
-                    <div id="quiz-feedback" style="display: none; margin-top: 20px;"></div>
-                </div>
-            `;
-        }
-    },
-
-    selectQuizAnswer(answer, element) {
-        // Clear previous selections
-        document.querySelectorAll('label[onclick*="selectQuizAnswer"]').forEach(label => {
-            label.style.borderColor = '#e5e7eb';
-            label.style.background = 'white';
-        });
-
-        // Highlight selected
-        element.style.borderColor = '#8b5cf6';
-        element.style.background = '#f3f4f6';
-
-        this.selectedQuizAnswer = answer;
-    },
-
-    submitQuizAnswer() {
-        const { correctAnswer, question } = this.currentQuizQuestion;
-        let userAnswer;
-        let isCorrect;
-
-        if (this.quizMode === 'multiple') {
-            userAnswer = this.selectedQuizAnswer;
-            if (!userAnswer) {
-                alert('Please select an answer first!');
-                return;
-            }
-            isCorrect = userAnswer === correctAnswer;
-        } else {
-            userAnswer = document.getElementById('quiz-text-answer').value.trim();
-            if (!userAnswer) {
-                alert('Please type an answer first!');
-                return;
-            }
-            isCorrect = userAnswer.toLowerCase().includes(correctAnswer.toLowerCase()) ||
-                       correctAnswer.toLowerCase().includes(userAnswer.toLowerCase());
-        }
-
-        const feedbackDiv = document.getElementById('quiz-feedback');
-        feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = `
-            <div style="padding: 15px; border-radius: 8px; ${isCorrect ? 'background: #dcfce7; border: 2px solid #16a34a; color: #15803d;' : 'background: #fef2f2; border: 2px solid #dc2626; color: #dc2626;'}">
-                <h5 style="margin-bottom: 10px;">${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</h5>
-                <p><strong>Your answer:</strong> ${userAnswer}</p>
-                <p><strong>Correct answer:</strong> ${correctAnswer}</p>
-                <button onclick="MuscleAnatomy.generateCustomQuizQuestion()"
-                        style="margin-top: 15px; padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 6px; cursor: pointer;">
-                    Next Question →
-                </button>
-            </div>
-        `;
-
-        this.selectedQuizAnswer = null;
-    },
-
-    selectQuizAnswer(answerValue) {
-        console.log('🎯 Selected answer:', answerValue);
-        this.selectedQuizAnswer = answerValue;
-
-        // Update visual selection
-        document.querySelectorAll('.quiz-option-input').forEach(input => {
-            const label = input.closest('label');
-            if (input.value === answerValue) {
-                label.style.borderColor = '#8b5cf6';
-                label.style.background = '#f3f4f6';
-            } else {
-                label.style.borderColor = '#e5e7eb';
-                label.style.background = 'white';
-            }
-        });
-    },
-
-    submitQuizAnswer() {
-        if (!this.selectedQuizAnswer) {
-            alert('⚠️ Please select an answer first!');
-            return;
-        }
-
-        const { correctAnswer } = this.currentQuizQuestion;
-        const isCorrect = this.selectedQuizAnswer === correctAnswer;
-
-        // Show feedback
-        const feedbackDiv = document.getElementById('quiz-feedback');
-        feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = `
-            <div style="padding: 15px; border-radius: 8px; ${isCorrect ? 'background: #d1fae5; border: 2px solid #10b981; color: #065f46;' : 'background: #fee2e2; border: 2px solid #ef4444; color: #7f1d1d;'}">
-                <h5 style="margin-bottom: 8px;">${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</h5>
-                <p style="margin-bottom: 8px;">Correct answer: <strong>${correctAnswer}</strong></p>
-                <button onclick="MuscleAnatomy.generateCustomQuizQuestion()"
-                        style="margin-top: 15px; padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 6px; cursor: pointer;">
-                    Next Question →
-                </button>
-            </div>
-        `;
-
-        console.log(isCorrect ? '✅ Correct answer!' : '❌ Wrong answer');
     }
 };
 
@@ -13903,6 +12673,133 @@ window.showEMGLocalizationGuide = function() {
             .image-placeholder p {
                 margin: 8px 0;
                 font-weight: 500;
+            }
+
+            /* MOBILE RESPONSIVENESS */
+            @media (max-width: 480px) {
+                .emg-localization-container {
+                    border-radius: 10px;
+                }
+
+                /* Header adjustments */
+                .emg-header {
+                    padding: 20px 15px !important;
+                }
+
+                .emg-header h3 {
+                    font-size: 1.5em !important;
+                }
+
+                .emg-header p {
+                    font-size: 0.9em !important;
+                }
+
+                /* CRITICAL: Stack left panel and right panel vertically */
+                .emg-main-content {
+                    flex-direction: column !important;
+                    min-height: auto !important;
+                }
+
+                /* Left panel - full width on mobile */
+                .muscle-list-panel {
+                    width: 100% !important;
+                    max-height: 400px !important;
+                    border-right: none !important;
+                    border-bottom: 3px solid #e2e8f0;
+                }
+
+                /* Region headers */
+                .region-header {
+                    padding: 12px 15px !important;
+                }
+
+                .region-header h4 {
+                    font-size: 1.1em !important;
+                }
+
+                /* Muscle list items - more compact */
+                .muscle-list-item {
+                    padding: 12px 15px !important;
+                    font-size: 0.9em;
+                }
+
+                .muscle-name {
+                    font-size: 0.95em !important;
+                }
+
+                .muscle-abbrev {
+                    font-size: 0.85em !important;
+                }
+
+                /* Right panel - full width on mobile */
+                .muscle-detail-panel {
+                    padding: 20px 15px !important;
+                    max-height: none !important;
+                }
+
+                /* Placeholder content */
+                .placeholder-content {
+                    padding: 40px 20px !important;
+                }
+
+                .placeholder-content h4 {
+                    font-size: 1.2em !important;
+                }
+
+                .placeholder-content p {
+                    font-size: 0.9em !important;
+                }
+
+                .placeholder-content li {
+                    font-size: 0.85em !important;
+                    margin-bottom: 8px;
+                }
+
+                /* Muscle detail content */
+                .muscle-detail-content h3 {
+                    font-size: 1.4em !important;
+                }
+
+                .muscle-detail-content h4 {
+                    font-size: 1.1em !important;
+                }
+
+                .muscle-detail-content h5 {
+                    font-size: 1em !important;
+                }
+
+                .muscle-detail-content p,
+                .muscle-detail-content li {
+                    font-size: 0.9em !important;
+                    line-height: 1.5 !important;
+                }
+
+                /* Info boxes */
+                .info-box {
+                    padding: 12px !important;
+                    margin: 12px 0 !important;
+                }
+
+                /* Image placeholders */
+                .image-placeholder {
+                    padding: 30px 15px !important;
+                    margin-bottom: 15px !important;
+                }
+
+                .image-placeholder-icon {
+                    font-size: 2.5em !important;
+                }
+            }
+
+            /* Extra small phones */
+            @media (max-width: 375px) {
+                .emg-header h3 {
+                    font-size: 1.3em !important;
+                }
+
+                .muscle-list-panel {
+                    max-height: 350px !important;
+                }
             }
         </style>
     `;

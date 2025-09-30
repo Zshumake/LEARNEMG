@@ -268,6 +268,140 @@
             margin-top: 20px;
             border-left: 4px solid #10b981;
         }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 480px) {
+            /* Base adjustments */
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            /* Header */
+            .header h1 {
+                font-size: 1.5em !important;
+            }
+
+            .header p {
+                font-size: 0.9em !important;
+            }
+
+            .header {
+                padding: 20px 15px !important;
+            }
+
+            /* Tab container - Stack vertically */
+            .tab-container {
+                flex-direction: column !important;
+            }
+
+            .tab {
+                padding: 12px !important;
+                font-size: 0.95em !important;
+            }
+
+            /* Main plexus container - Stack vertically */
+            .plexus-container {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                height: auto !important;
+            }
+
+            /* Content padding */
+            .tab-content {
+                padding: 20px 15px !important;
+            }
+
+            /* Diagram adjustments */
+            .plexus-diagram {
+                padding: 15px !important;
+                height: auto !important;
+                min-height: 400px;
+            }
+
+            /* Info panel */
+            .info-panel {
+                padding: 15px !important;
+            }
+
+            /* Typography */
+            h1 {
+                font-size: 1.5em !important;
+            }
+
+            h2 {
+                font-size: 1.3em !important;
+            }
+
+            h3 {
+                font-size: 1.1em !important;
+            }
+
+            h4 {
+                font-size: 1em !important;
+            }
+
+            p, li, div {
+                font-size: 0.9em !important;
+                line-height: 1.4 !important;
+            }
+
+            /* Force all grid layouts to single column */
+            div[style*="grid-template-columns"] {
+                display: block !important;
+            }
+
+            div[style*="grid-template-columns"] > div {
+                margin-bottom: 15px !important;
+            }
+
+            /* Card grids */
+            .card-grid,
+            div[style*="minmax"] {
+                display: block !important;
+            }
+
+            /* Buttons */
+            button {
+                padding: 10px 15px !important;
+                font-size: 0.9em !important;
+            }
+
+            /* Nerve buttons */
+            .nerve-btn {
+                padding: 8px 12px !important;
+                font-size: 0.85em !important;
+            }
+
+            /* Clinical patterns and sections */
+            .clinical-pattern,
+            .emg-section {
+                padding: 12px !important;
+                margin-top: 12px !important;
+            }
+
+            /* SVG and canvas elements */
+            svg, canvas {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        /* Extra small phones */
+        @media (max-width: 375px) {
+            body {
+                font-size: 13px;
+            }
+
+            .header h1 {
+                font-size: 1.3em !important;
+            }
+
+            .tab {
+                padding: 10px !important;
+                font-size: 0.9em !important;
+            }
+        }
     </style>
 </head>
 <body>
