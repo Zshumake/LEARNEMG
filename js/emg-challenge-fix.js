@@ -165,24 +165,33 @@ window.EMGChallenge = {
                 button.style.cssText = `
                     display: block;
                     width: 100%;
-                    padding: 15px;
-                    margin-bottom: 10px;
-                    background: #ffffff;
-                    border: 2px solid #e5e7eb;
-                    border-radius: 8px;
+                    padding: 18px 25px;
+                    margin-bottom: 0px;
+                    background: white;
+                    border: 2px solid rgba(251, 191, 36, 0.3);
+                    border-radius: 50px;
                     cursor: pointer;
-                    transition: all 0.2s;
+                    transition: all 0.3s ease;
                     text-align: left;
-                    font-size: 14px;
+                    font-size: 1.05rem;
+                    font-weight: 600;
+                    color: #64748b;
+                    box-shadow: 0 3px 12px rgba(251, 191, 36, 0.1);
                 `;
                 button.onmouseover = () => {
-                    button.style.borderColor = '#3b82f6';
-                    button.style.backgroundColor = '#eff6ff';
+                    if (!button.classList.contains('selected')) {
+                        button.style.borderColor = 'rgba(251, 191, 36, 0.6)';
+                        button.style.backgroundColor = 'rgba(251, 191, 36, 0.05)';
+                        button.style.transform = 'translateX(5px)';
+                        button.style.boxShadow = '0 5px 20px rgba(251, 191, 36, 0.2)';
+                    }
                 };
                 button.onmouseout = () => {
                     if (!button.classList.contains('selected')) {
-                        button.style.borderColor = '#e5e7eb';
-                        button.style.backgroundColor = '#ffffff';
+                        button.style.borderColor = 'rgba(251, 191, 36, 0.3)';
+                        button.style.backgroundColor = 'white';
+                        button.style.transform = '';
+                        button.style.boxShadow = '0 3px 12px rgba(251, 191, 36, 0.1)';
                     }
                 };
                 optionsContainer.appendChild(button);
@@ -207,18 +216,24 @@ window.EMGChallenge = {
         const allButtons = document.querySelectorAll('.emg-answer-option');
         allButtons.forEach(btn => {
             btn.classList.remove('selected');
-            btn.style.borderColor = '#e5e7eb';
-            btn.style.backgroundColor = '#ffffff';
-            btn.style.fontWeight = 'normal';
+            btn.style.borderColor = 'rgba(251, 191, 36, 0.3)';
+            btn.style.backgroundColor = 'white';
+            btn.style.fontWeight = '600';
+            btn.style.color = '#64748b';
+            btn.style.transform = '';
+            btn.style.boxShadow = '0 3px 12px rgba(251, 191, 36, 0.1)';
         });
 
         // Find and highlight the selected button
         allButtons.forEach(btn => {
             if (btn.textContent === answer) {
                 btn.classList.add('selected');
-                btn.style.borderColor = '#3b82f6';
-                btn.style.backgroundColor = '#eff6ff';
-                btn.style.fontWeight = 'bold';
+                btn.style.borderColor = 'transparent';
+                btn.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
+                btn.style.color = 'white';
+                btn.style.fontWeight = '700';
+                btn.style.transform = 'translateX(8px)';
+                btn.style.boxShadow = '0 6px 25px rgba(251, 191, 36, 0.4)';
             }
         });
 

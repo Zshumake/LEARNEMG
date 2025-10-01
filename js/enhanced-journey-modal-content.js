@@ -987,331 +987,175 @@ window.initializeEMGIntroduction = initializeEMGIntroduction;
 
 function generateMuscleQuizContent(module) {
     return `
+        <style>
+            @keyframes gradient-flow {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+
+            @keyframes float-gentle {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-8px); }
+            }
+        </style>
         <div class="interactive-content">
             <!-- Learning Objective Banner -->
-            <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #10b981;">
-                <h3 style="color: #065f46; margin-bottom: 15px;">💪 Advanced Muscle Localization Training</h3>
-                <p style="color: #047857; font-size: 1.1em; font-weight: 500; margin: 0;">
-                    Interactive quiz system with nerve roots, innervation patterns, and clinical correlation - the same advanced system from the main EMG application.
-                </p>
+            <div style="
+                background: linear-gradient(135deg, #14b8a6, #06b6d4, #8b5cf6);
+                background-size: 200% 200%;
+                animation: gradient-flow 8s ease infinite;
+                padding: 35px;
+                border-radius: 20px;
+                margin-bottom: 30px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 10px 40px rgba(20, 184, 166, 0.3);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="position: relative; z-index: 2;">
+                    <h3 style="color: white; margin-bottom: 15px; font-size: 1.8em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">💪 Advanced Muscle Localization Training</h3>
+                    <p style="color: rgba(255,255,255,0.95); font-size: 1.1em; font-weight: 500; margin: 0; text-shadow: 0 1px 5px rgba(0,0,0,0.1);">
+                        Interactive quiz system with nerve roots, innervation patterns, and clinical correlation - the same advanced system from the main EMG application.
+                    </p>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); z-index: 1;"></div>
             </div>
 
             <!-- Note: EMG Needle Localization Guide is available in the dedicated tab above -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
-                <div style="background: #f8fafc; border-radius: 15px; padding: 25px; border: 2px solid #e2e8f0; text-align: center;">
-                    <h4 style="color: #1e40af; margin-bottom: 15px;">🫀 Anatomy Study Cards</h4>
-                    <p style="color: #64748b; margin-bottom: 20px; font-size: 1em;">
-                        Interactive cards with reveal functionality for detailed study.
-                    </p>
-                    <button
-                        onclick="showStudyCards()"
-                        style="
-                            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-                            color: white;
-                            border: none;
-                            padding: 12px 24px;
-                            border-radius: 8px;
-                            font-size: 1.1em;
-                            font-weight: 600;
-                            cursor: pointer;
-                            width: 100%;
-                        "
-                    >
-                        Launch Study Cards
-                    </button>
+            <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+
+                <!-- Study Cards - Large Interactive Card -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(6, 182, 212, 0.05));
+                    border-radius: 25px;
+                    padding: 45px;
+                    border: 3px solid rgba(20, 184, 166, 0.3);
+                    box-shadow: 0 10px 40px rgba(20, 184, 166, 0.2);
+                    transition: all 0.4s ease;
+                    position: relative;
+                    overflow: hidden;
+                " onmouseover="this.style.transform='translateY(-5px) scale(1.01)'; this.style.boxShadow='0 15px 50px rgba(20, 184, 166, 0.3)'; this.style.borderColor='rgba(20, 184, 166, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 40px rgba(20, 184, 166, 0.2)'; this.style.borderColor='rgba(20, 184, 166, 0.3)'">
+
+                    <div style="position: relative; z-index: 2;">
+                        <div style="text-align: left; margin-bottom: 25px;">
+                            <h3 style="
+                                background: linear-gradient(135deg, #0d9488, #06b6d4);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                background-clip: text;
+                                font-size: 2em;
+                                margin-bottom: 12px;
+                                font-weight: 700;
+                            ">📚 Master Every Muscle</h3>
+                            <p style="color: #475569; font-size: 1.15em; line-height: 1.6; margin: 0;">
+                                Dive deep into 45 muscles with interactive flashcards. Test your knowledge on innervation, nerve roots, actions, and clinical correlations.
+                            </p>
+                        </div>
+
+                        <button
+                            onclick="showStudyCards()"
+                            style="
+                                background: linear-gradient(135deg, #14b8a6, #06b6d4);
+                                color: white;
+                                border: none;
+                                padding: 18px 45px;
+                                border-radius: 50px;
+                                font-size: 1.3em;
+                                font-weight: 700;
+                                cursor: pointer;
+                                box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+                                transition: all 0.3s ease;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                            "
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(20, 184, 166, 0.5)'; this.style.background='linear-gradient(135deg, #0d9488, #0891b2)'"
+                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.4)'; this.style.background='linear-gradient(135deg, #14b8a6, #06b6d4)'"
+                        >
+                            🚀 Start Learning →
+                        </button>
+                    </div>
                 </div>
 
-                <div style="background: #f8fafc; border-radius: 15px; padding: 25px; border: 2px solid #e2e8f0; text-align: center;">
-                    <h4 style="color: #dc2626; margin-bottom: 15px;">🧪 EMG Localization Challenge</h4>
-                    <p style="color: #64748b; margin-bottom: 20px; font-size: 1em;">
-                        Advanced lesion localization with normal/abnormal muscle patterns.
-                    </p>
-                    <button
-                        onclick="
-                            const challengeInterface = document.getElementById('emg-challenge-interface');
-                            if (challengeInterface) {
-                                challengeInterface.style.display = challengeInterface.style.display === 'none' ? 'block' : 'none';
-                                if (challengeInterface.style.display === 'block') {
-                                    challengeInterface.scrollIntoView({ behavior: 'smooth' });
-                                }
-                            }
-                        "
-                        style="
-                            background: linear-gradient(135deg, #dc2626, #b91c1c);
-                            color: white;
-                            border: none;
-                            padding: 12px 24px;
-                            border-radius: 8px;
-                            font-size: 1.1em;
-                            font-weight: 600;
-                            cursor: pointer;
-                            width: 100%;
-                        "
-                    >
-                        Launch EMG Challenge
-                    </button>
+                <!-- EMG Challenge - Large Interactive Card -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(99, 102, 241, 0.05));
+                    border-radius: 25px;
+                    padding: 45px;
+                    border: 3px solid rgba(139, 92, 246, 0.3);
+                    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
+                    transition: all 0.4s ease;
+                    position: relative;
+                    overflow: hidden;
+                " onmouseover="this.style.transform='translateY(-5px) scale(1.01)'; this.style.boxShadow='0 15px 50px rgba(139, 92, 246, 0.3)'; this.style.borderColor='rgba(139, 92, 246, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 40px rgba(139, 92, 246, 0.2)'; this.style.borderColor='rgba(139, 92, 246, 0.3)'">
+
+                    <div style="position: relative; z-index: 2;">
+                        <div style="text-align: left; margin-bottom: 25px;">
+                            <h3 style="
+                                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                background-clip: text;
+                                font-size: 2em;
+                                margin-bottom: 12px;
+                                font-weight: 700;
+                            ">📋 Localize Like A Pro</h3>
+                            <p style="color: #475569; font-size: 1.15em; line-height: 1.6; margin: 0;">
+                                Challenge yourself with real EMG patterns. Analyze abnormal findings, identify lesion locations, and build diagnostic confidence.
+                            </p>
+                        </div>
+
+                        <button
+                            onclick="showEMGChallenge()"
+                            style="
+                                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                                color: white;
+                                border: none;
+                                padding: 18px 45px;
+                                border-radius: 50px;
+                                font-size: 1.3em;
+                                font-weight: 700;
+                                cursor: pointer;
+                                box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+                                transition: all 0.3s ease;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                            "
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(139, 92, 246, 0.5)'; this.style.background='linear-gradient(135deg, #7c3aed, #4f46e5)'"
+                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(139, 92, 246, 0.4)'; this.style.background='linear-gradient(135deg, #8b5cf6, #6366f1)'"
+                        >
+                            🎯 Take Challenge →
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <!-- Instructions -->
-            <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 20px; border-radius: 10px;">
-                <h4 style="color: #1e40af; margin-bottom: 15px;">📚 How to Use the Advanced Quiz System</h4>
-                <ul style="color: #374151; line-height: 1.6; margin: 0; padding-left: 20px;">
-                    <li><strong>Select Quiz Types:</strong> Choose which anatomical aspects to test (nerve, roots, cords, actions)</li>
-                    <li><strong>Choose Mode:</strong> Type answers for harder challenge or use multiple choice</li>
-                    <li><strong>Region Selection:</strong> Focus on upper or lower extremity muscles</li>
-                    <li><strong>Start Quiz:</strong> Begin interactive questions with immediate feedback</li>
-                    <li><strong>EMG Testing Mode:</strong> Advanced continuous quiz with performance statistics</li>
-                    <li><strong>EMG Localization Challenge:</strong> Study normal/abnormal muscle patterns to identify lesion locations</li>
+            <div style="
+                background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+                padding: 25px;
+                border-radius: 15px;
+                border: 2px solid rgba(251, 191, 36, 0.3);
+                box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
+            ">
+                <h4 style="
+                    background: linear-gradient(135deg, #f59e0b, #d97706);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    margin-bottom: 18px;
+                    font-size: 1.3em;
+                ">📚 How to Use the Advanced Quiz System</h4>
+                <ul style="color: #374151; line-height: 1.8; margin: 0; padding-left: 20px; font-size: 1.05em;">
+                    <li><strong style="color: #0d9488;">Select Quiz Types:</strong> Choose which anatomical aspects to test (nerve, roots, cords, actions)</li>
+                    <li><strong style="color: #0d9488;">Choose Mode:</strong> Type answers for harder challenge or use multiple choice</li>
+                    <li><strong style="color: #0d9488;">Region Selection:</strong> Focus on upper or lower extremity muscles</li>
+                    <li><strong style="color: #0d9488;">Start Quiz:</strong> Begin interactive questions with immediate feedback</li>
+                    <li><strong style="color: #0d9488;">EMG Testing Mode:</strong> Advanced continuous quiz with performance statistics</li>
+                    <li><strong style="color: #0d9488;">EMG Localization Challenge:</strong> Study normal/abnormal muscle patterns to identify lesion locations</li>
                 </ul>
             </div>
 
-            <!-- EMG Challenge Interface -->
-            <div id="emg-challenge-interface" style="display: none; margin-top: 30px;">
-                <!-- Challenge Settings -->
-                <div id="emg-challenge-settings" class="challenge-section" style="
-                    background: linear-gradient(135deg, #fefcf3, #fef3c7);
-                    border: 2px solid #f59e0b;
-                    border-radius: 15px;
-                    padding: 30px;
-                    margin-bottom: 20px;
-                ">
-                    <div class="challenge-header" style="text-align: center; margin-bottom: 30px;">
-                        <h3 style="color: #92400e; margin-bottom: 10px; font-size: 1.5em;">📋 EMG Localization Challenge</h3>
-                        <p style="color: #d97706; margin: 0;">Configure your advanced EMG localization challenge parameters</p>
-                    </div>
-
-                    <!-- Question Type Toggles -->
-                    <div class="question-type-selector" style="margin-bottom: 30px;">
-                        <h4 style="color: #92400e; margin-bottom: 15px;">🎯 Select Question Types</h4>
-                        <p style="color: #a16207; margin-bottom: 20px;">Choose which types of localizations you want to practice</p>
-
-                        <div class="toggle-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                            <div class="toggle-option active" data-type="root" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('root')" style="
-                                display: flex;
-                                align-items: center;
-                                padding: 15px;
-                                background: #f0fdf4;
-                                border: 2px solid #10b981;
-                                border-radius: 10px;
-                                cursor: pointer;
-                                transition: all 0.3s;
-                            ">
-                                <div style="margin-right: 15px; font-size: 1.5em;">🌿</div>
-                                <div style="flex: 1;">
-                                    <h5 style="margin: 0 0 5px 0; color: #059669;">Nerve Root Lesions</h5>
-                                    <p style="margin: 0; font-size: 0.9em; color: #6b7280;">C5-T1, L2-S1 radiculopathies</p>
-                                    <div style="font-size: 0.8em; color: #9ca3af; margin-top: 3px;">Examples: C6 radiculopathy, L5 radiculopathy</div>
-                                </div>
-                                <div class="toggle-status" style="margin-left: 10px;">
-                                    <span class="status-indicator active" style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                                </div>
-                            </div>
-
-                            <div class="toggle-option active" data-type="trunk" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('trunk')" style="
-                                display: flex;
-                                align-items: center;
-                                padding: 15px;
-                                background: #f0fdf4;
-                                border: 2px solid #10b981;
-                                border-radius: 10px;
-                                cursor: pointer;
-                                transition: all 0.3s;
-                            ">
-                                <div style="margin-right: 15px; font-size: 1.5em;">🌳</div>
-                                <div style="flex: 1;">
-                                    <h5 style="margin: 0 0 5px 0; color: #059669;">Plexus Trunk Lesions</h5>
-                                    <p style="margin: 0; font-size: 0.9em; color: #6b7280;">Upper, middle, lower trunk injuries</p>
-                                    <div style="font-size: 0.8em; color: #9ca3af; margin-top: 3px;">Examples: Erb's palsy, Klumpke's palsy</div>
-                                </div>
-                                <div class="toggle-status" style="margin-left: 10px;">
-                                    <span class="status-indicator active" style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                                </div>
-                            </div>
-
-                            <div class="toggle-option active" data-type="cord" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('cord')" style="
-                                display: flex;
-                                align-items: center;
-                                padding: 15px;
-                                background: #f0fdf4;
-                                border: 2px solid #10b981;
-                                border-radius: 10px;
-                                cursor: pointer;
-                                transition: all 0.3s;
-                            ">
-                                <div style="margin-right: 15px; font-size: 1.5em;">🔗</div>
-                                <div style="flex: 1;">
-                                    <h5 style="margin: 0 0 5px 0; color: #059669;">Plexus Cord Lesions</h5>
-                                    <p style="margin: 0; font-size: 0.9em; color: #6b7280;">Lateral, posterior, medial cord injuries</p>
-                                    <div style="font-size: 0.8em; color: #9ca3af; margin-top: 3px;">Examples: Lateral cord palsy, posterior cord injury</div>
-                                </div>
-                                <div class="toggle-status" style="margin-left: 10px;">
-                                    <span class="status-indicator active" style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                                </div>
-                            </div>
-
-                            <div class="toggle-option active" data-type="peripheral" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('peripheral')" style="
-                                display: flex;
-                                align-items: center;
-                                padding: 15px;
-                                background: #f0fdf4;
-                                border: 2px solid #10b981;
-                                border-radius: 10px;
-                                cursor: pointer;
-                                transition: all 0.3s;
-                            ">
-                                <div style="margin-right: 15px; font-size: 1.5em;">⚡</div>
-                                <div style="flex: 1;">
-                                    <h5 style="margin: 0 0 5px 0; color: #059669;">Peripheral Nerve Lesions</h5>
-                                    <p style="margin: 0; font-size: 0.9em; color: #6b7280;">Entrapment neuropathies, focal injuries</p>
-                                    <div style="font-size: 0.8em; color: #9ca3af; margin-top: 3px;">Examples: Carpal tunnel, peroneal palsy</div>
-                                </div>
-                                <div class="toggle-status" style="margin-left: 10px;">
-                                    <span class="status-indicator active" style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="challenge-launch" style="text-align: center;">
-                        <button class="launch-challenge-btn" onclick="console.log('🔍 Button clicked!', 'window.EMGChallenge:', window.EMGChallenge); if (window.EMGChallenge) { EMGChallenge.startChallenge(); } else { console.error('❌ EMGChallenge not found!'); }" style="
-                            background: linear-gradient(135deg, #10b981, #059669);
-                            color: white;
-                            border: none;
-                            padding: 15px 30px;
-                            border-radius: 10px;
-                            font-size: 1.1em;
-                            font-weight: 600;
-                            cursor: pointer;
-                            transition: all 0.3s;
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 10px;
-                        ">
-                            <span style="font-size: 1.2em;">🚀</span>
-                            <span>Launch EMG Challenge</span>
-                        </button>
-                        <div style="margin-top: 10px; color: #a16207; font-size: 0.9em;">At least one question type must be selected</div>
-                    </div>
-                </div>
-
-                <!-- Active Challenge -->
-                <div id="emg-challenge-active" class="challenge-section" style="display: none;
-                    background: linear-gradient(135deg, #fefcf3, #fef3c7);
-                    border: 2px solid #f59e0b;
-                    border-radius: 15px;
-                    padding: 30px;
-                ">
-                    <div class="challenge-header" style="text-align: center; margin-bottom: 30px;">
-                        <h3 style="color: #92400e; margin-bottom: 10px;">🔬 EMG Case Analysis</h3>
-                        <div style="color: #a16207; font-size: 1.1em;">
-                            <p id="challenge-scenario" style="margin: 0;">Loading case scenario...</p>
-                        </div>
-                    </div>
-
-                    <div class="findings-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-                        <div class="abnormal-findings" style="
-                            background: #fef2f2;
-                            border: 2px solid #dc2626;
-                            border-radius: 10px;
-                            padding: 20px;
-                        ">
-                            <h5 style="color: #dc2626; margin-bottom: 15px; font-size: 1.2em;">❌ Abnormal Muscles (Denervation)</h5>
-                            <ul id="challenge-abnormal-muscles" style="
-                                color: #991b1b;
-                                line-height: 1.6;
-                                margin: 0;
-                                padding-left: 20px;
-                            ">
-                                <!-- Abnormal muscles will be populated here -->
-                            </ul>
-                        </div>
-
-                        <div class="normal-findings" style="
-                            background: #f0fdf4;
-                            border: 2px solid #10b981;
-                            border-radius: 10px;
-                            padding: 20px;
-                        ">
-                            <h5 style="color: #10b981; margin-bottom: 15px; font-size: 1.2em;">✅ Normal Muscles</h5>
-                            <ul id="challenge-normal-muscles" style="
-                                color: #065f46;
-                                line-height: 1.6;
-                                margin: 0;
-                                padding-left: 20px;
-                            ">
-                                <!-- Normal muscles will be populated here -->
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="challenge-question" style="
-                        background: white;
-                        border-radius: 10px;
-                        padding: 20px;
-                        margin-bottom: 20px;
-                        text-align: center;
-                    ">
-                        <div class="question-text" id="challenge-question-text" style="
-                            color: #374151;
-                            font-size: 1.2em;
-                            font-weight: 600;
-                            margin-bottom: 20px;
-                        ">
-                            Where is the most likely location of the lesion?
-                        </div>
-
-                        <div class="answer-options-challenge" id="challenge-answer-options" style="
-                            display: grid;
-                            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                            gap: 10px;
-                        ">
-                            <!-- Answer options will be populated here -->
-                        </div>
-                    </div>
-
-                    <div class="challenge-controls" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <button id="challenge-back-btn" onclick="window.EMGChallenge && EMGChallenge.backToSettings()" style="
-                            background: #6b7280;
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 8px;
-                            cursor: pointer;
-                            font-weight: 600;
-                        ">
-                            ← Back to Settings
-                        </button>
-                        <button id="challenge-submit-btn" onclick="window.EMGChallenge && EMGChallenge.submitAnswer()" disabled style="
-                            background: #10b981;
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 8px;
-                            cursor: pointer;
-                            font-weight: 600;
-                            opacity: 0.5;
-                        ">
-                            Submit Analysis
-                        </button>
-                        <button id="challenge-next-btn" onclick="window.EMGChallenge && EMGChallenge.nextCase()" style="display: none;
-                            background: #10b981;
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 8px;
-                            cursor: pointer;
-                            font-weight: 600;
-                        ">
-                            Next Case →
-                        </button>
-                    </div>
-
-                    <div class="challenge-feedback" id="challenge-feedback" style="display: none;">
-                        <!-- Feedback will be populated here -->
-                    </div>
-                </div>
-            </div>
+            <!-- EMG Challenge Interface - Now Opens in Modal via showEMGChallenge() -->
 
             <!-- Required HTML for quiz functionality -->
             <div id="muscle-test-modal" class="muscle-test-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
@@ -11422,6 +11266,8 @@ window.EMGChallenge = {
     },
     isActive: false,
     currentCase: null,
+    selectedAnswer: null,
+    score: { correct: 0, total: 0 },
     activeQuestionTypes: {
         root: true,
         plexus: true,
@@ -11450,15 +11296,15 @@ window.EMGChallenge = {
             'Suprascapular nerve': { type: 'peripheral', muscles: ['Supraspinatus', 'Infraspinatus'] }
         },
         LE: {
-            'L2 nerve root': { type: 'root', muscles: ['Iliopsoas (psoas major)', 'Adductor longus', 'Sartorius'] },
+            'L2 nerve root': { type: 'root', muscles: ['Iliopsoas', 'Adductor longus', 'Sartorius'] },
             'L3 nerve root': { type: 'root', muscles: ['Rectus femoris', 'Vastus medialis', 'Adductor longus'] },
             'L4 nerve root': { type: 'root', muscles: ['Tibialis anterior', 'Rectus femoris', 'Vastus medialis'] },
-            'L5 nerve root': { type: 'root', muscles: ['Extensor hallucis longus', 'Tibialis anterior', 'Gluteus medius', 'Biceps femoris (short head)'] },
-            'S1 nerve root': { type: 'root', muscles: ['Gastrocnemius', 'Gluteus maximus', 'Biceps femoris (long head)'] },
+            'L5 nerve root': { type: 'root', muscles: ['Extensor hallucis longus', 'Tibialis anterior', 'Gluteus medius', 'Biceps femoris'] },
+            'S1 nerve root': { type: 'root', muscles: ['Gastrocnemius', 'Gluteus maximus', 'Biceps femoris'] },
             'Femoral nerve': { type: 'peripheral', muscles: ['Rectus femoris', 'Vastus medialis', 'Vastus lateralis', 'Sartorius'] },
             'Peroneal nerve at fibular head': { type: 'peripheral', muscles: ['Tibialis anterior', 'Extensor hallucis longus', 'Fibularis longus'] },
-            'Deep peroneal nerve': { type: 'peripheral', muscles: ['Tibialis anterior', 'Extensor hallucis longus', 'Extensor digitorum brevis'] },
-            'Sciatic nerve': { type: 'peripheral', muscles: ['Biceps femoris (long head)', 'Semitendinosus', 'Gastrocnemius'] },
+            'Deep peroneal nerve': { type: 'peripheral', muscles: ['Tibialis anterior', 'Extensor hallucis longus', 'Extensor digitorum longus'] },
+            'Sciatic nerve': { type: 'peripheral', muscles: ['Biceps femoris', 'Semitendinosus', 'Gastrocnemius'] },
             'Tibial nerve': { type: 'peripheral', muscles: ['Gastrocnemius', 'Soleus', 'Flexor hallucis longus'] },
             'Superior gluteal nerve': { type: 'peripheral', muscles: ['Gluteus medius', 'Gluteus minimus', 'Tensor fasciae latae'] },
             'Inferior gluteal nerve': { type: 'peripheral', muscles: ['Gluteus maximus'] }
@@ -11466,17 +11312,642 @@ window.EMGChallenge = {
     },
 
     toggleQuestionType: function(type) {
-        console.log('🎯 Toggle called for:', type);
         this.activeQuestionTypes[type] = !this.activeQuestionTypes[type];
-        console.log('🎯 Question type toggled:', type, '→', this.activeQuestionTypes[type]);
     },
 
     startChallenge: function() {
         this.isActive = true;
-        console.log('🚀 EMG Challenge started');
-        // Show a placeholder message since we don't have the full interface
-        alert('🚀 EMG Challenge Starting! Advanced muscle localization challenge with nerve root, plexus, and peripheral nerve lesions.');
+        this.score = { correct: 0, total: 0 };
+
+        // Hide settings, show active challenge
+        const settingsPanel = document.getElementById('emg-challenge-setup');
+        const activePanel = document.getElementById('emg-challenge-active');
+
+        if (settingsPanel) settingsPanel.style.display = 'none';
+        if (activePanel) activePanel.style.display = 'block';
+
+        this.generateCase();
+    },
+
+    generateCase: function() {
+        // Get available lesions based on settings
+        const availableLesions = this.getAvailableLesions();
+
+        if (availableLesions.length === 0) {
+            alert('❌ No lesion types selected! Please enable at least one question type.');
+            this.backToSettings();
+            return;
+        }
+
+        // Pick random lesion
+        const randomIndex = Math.floor(Math.random() * availableLesions.length);
+        const correctLesion = availableLesions[randomIndex];
+
+        // Get lesion data
+        const lesionData = this.getLesionData(correctLesion);
+
+        // Select 4 abnormal muscles from lesion
+        const abnormalMuscles = this.selectRandomMuscles(lesionData.muscles, 4);
+
+        // Select 4 normal muscles (not in lesion)
+        const normalMuscles = this.selectNormalMuscles(lesionData.muscles, lesionData.region, 4);
+
+        // Generate answer options
+        const answerOptions = this.generateAnswerOptions(correctLesion, lesionData);
+
+        // Store current case
+        this.currentCase = {
+            correctLesion: correctLesion,
+            abnormalMuscles: abnormalMuscles,
+            normalMuscles: normalMuscles,
+            answerOptions: answerOptions,
+            region: lesionData.region
+        };
+
+        this.selectedAnswer = null;
+
+        // Display case
+        this.displayCase();
+    },
+
+    getAvailableLesions: function() {
+        const lesions = [];
+        const regions = this.currentSettings.region === 'mixed' ? ['UE', 'LE'] :
+                       this.currentSettings.region === 'upper' ? ['UE'] : ['LE'];
+
+        regions.forEach(region => {
+            Object.entries(this.lesionSites[region]).forEach(([name, data]) => {
+                if (this.activeQuestionTypes[data.type]) {
+                    lesions.push(name);
+                }
+            });
+        });
+
+        return lesions;
+    },
+
+    getLesionData: function(lesionName) {
+        // Check UE first, then LE
+        if (this.lesionSites.UE[lesionName]) {
+            return { ...this.lesionSites.UE[lesionName], region: 'UE' };
+        } else if (this.lesionSites.LE[lesionName]) {
+            return { ...this.lesionSites.LE[lesionName], region: 'LE' };
+        }
+        return null;
+    },
+
+    selectRandomMuscles: function(muscleArray, count) {
+        const shuffled = [...muscleArray].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, Math.min(count, muscleArray.length));
+    },
+
+    selectNormalMuscles: function(abnormalMuscles, region, count) {
+        // Get all muscles from the same extremity
+        const allMuscles = Object.keys(window.MuscleAnatomy.muscleDatabase).filter(muscle => {
+            return window.MuscleAnatomy.muscleDatabase[muscle].region === region;
+        });
+
+        // Filter out abnormal muscles
+        const normalMuscles = allMuscles.filter(muscle => !abnormalMuscles.includes(muscle));
+
+        // Select random normal muscles
+        return this.selectRandomMuscles(normalMuscles, count);
+    },
+
+    generateAnswerOptions: function(correctLesion, correctLesionData) {
+        const options = [correctLesion];
+        const region = correctLesionData.region;
+        const correctType = correctLesionData.type;
+
+        // Get all lesions from same region
+        const sameLesions = Object.keys(this.lesionSites[region])
+            .filter(name => name !== correctLesion);
+
+        // Try to get 3 distractors of same type first
+        const sameTypeLesions = sameLesions.filter(name =>
+            this.lesionSites[region][name].type === correctType
+        );
+
+        // Add up to 3 same-type distractors
+        const shuffledSameType = [...sameTypeLesions].sort(() => Math.random() - 0.5);
+        shuffledSameType.slice(0, 3).forEach(lesion => options.push(lesion));
+
+        // If we need more, add different types
+        if (options.length < 4) {
+            const differentTypeLesions = sameLesions.filter(name =>
+                this.lesionSites[region][name].type !== correctType &&
+                !options.includes(name)
+            );
+            const shuffledDifferent = [...differentTypeLesions].sort(() => Math.random() - 0.5);
+            shuffledDifferent.slice(0, 4 - options.length).forEach(lesion => options.push(lesion));
+        }
+
+        // Shuffle final options
+        return options.sort(() => Math.random() - 0.5);
+    },
+
+    displayCase: function() {
+        const { abnormalMuscles, normalMuscles, answerOptions } = this.currentCase;
+
+        // Update abnormal muscles list
+        const abnormalList = document.getElementById('challenge-abnormal-muscles');
+        if (abnormalList) {
+            abnormalList.innerHTML = abnormalMuscles.map(m => `<li>${m}</li>`).join('');
+        }
+
+        // Update normal muscles list
+        const normalList = document.getElementById('challenge-normal-muscles');
+        if (normalList) {
+            normalList.innerHTML = normalMuscles.map(m => `<li>${m}</li>`).join('');
+        }
+
+        // Update answer options
+        const optionsContainer = document.getElementById('challenge-answer-options');
+        if (optionsContainer) {
+            optionsContainer.innerHTML = answerOptions.map(option => `
+                <button class="challenge-answer-btn" onclick="EMGChallenge.selectAnswer('${option.replace(/'/g, "\\'")}')" style="
+                    background: white;
+                    border: 2px solid #d1d5db;
+                    border-radius: 8px;
+                    padding: 15px 20px;
+                    color: #374151;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-align: center;
+                ">
+                    ${option}
+                </button>
+            `).join('');
+        }
+
+        // Reset buttons
+        const submitBtn = document.getElementById('challenge-submit-btn');
+        const nextBtn = document.getElementById('challenge-next-btn');
+        const feedbackDiv = document.getElementById('challenge-feedback');
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.cursor = 'not-allowed';
+            submitBtn.style.display = 'block'; // Show submit button again
+        }
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (feedbackDiv) feedbackDiv.style.display = 'none';
+    },
+
+    selectAnswer: function(lesion) {
+        this.selectedAnswer = lesion;
+
+        // Highlight selected answer
+        document.querySelectorAll('.challenge-answer-btn').forEach(btn => {
+            if (btn.textContent.trim() === lesion) {
+                btn.style.background = '#6b9f78';
+                btn.style.color = 'white';
+                btn.style.borderColor = '#6b9f78';
+            } else {
+                btn.style.background = 'white';
+                btn.style.color = '#374151';
+                btn.style.borderColor = '#d1d5db';
+            }
+        });
+
+        // Enable submit button
+        const submitBtn = document.getElementById('challenge-submit-btn');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+        }
+    },
+
+    submitAnswer: function() {
+        if (!this.selectedAnswer) return;
+
+        const correct = this.selectedAnswer === this.currentCase.correctLesion;
+        this.score.total++;
+        if (correct) this.score.correct++;
+
+        // Show feedback
+        const feedbackDiv = document.getElementById('challenge-feedback');
+        if (feedbackDiv) {
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = `
+                <div style="background: ${correct ? '#f0fdf4' : '#fef2f2'};
+                            border: 2px solid ${correct ? '#10b981' : '#dc2626'};
+                            border-radius: 10px;
+                            padding: 20px;
+                            margin-top: 20px;">
+                    <h4 style="color: ${correct ? '#10b981' : '#dc2626'}; margin-bottom: 10px;">
+                        ${correct ? '✅ Correct!' : '❌ Incorrect'}
+                    </h4>
+                    <p style="margin: 10px 0;">
+                        <strong>Your answer:</strong> ${this.selectedAnswer}
+                    </p>
+                    <p style="margin: 10px 0;">
+                        <strong>Correct answer:</strong> ${this.currentCase.correctLesion}
+                    </p>
+                    <p style="margin: 10px 0; color: #374151;">
+                        The pattern of ${this.currentCase.abnormalMuscles.join(', ')} being abnormal
+                        while ${this.currentCase.normalMuscles.join(', ')} remain normal
+                        is consistent with a <strong>${this.currentCase.correctLesion}</strong> lesion.
+                    </p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #6b9f78;">
+                        Score: ${this.score.correct}/${this.score.total}
+                    </p>
+                </div>
+            `;
+        }
+
+        // Disable submit, show next button
+        const submitBtn = document.getElementById('challenge-submit-btn');
+        const nextBtn = document.getElementById('challenge-next-btn');
+
+        if (submitBtn) submitBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'block';
+
+        // Disable answer buttons
+        document.querySelectorAll('.challenge-answer-btn').forEach(btn => {
+            btn.disabled = true;
+            btn.style.cursor = 'not-allowed';
+            if (btn.textContent.trim() === this.currentCase.correctLesion) {
+                btn.style.background = '#10b981';
+                btn.style.color = 'white';
+                btn.style.borderColor = '#10b981';
+            }
+        });
+    },
+
+    nextCase: function() {
+        this.generateCase();
+    },
+
+    backToSettings: function() {
+        this.isActive = false;
+
+        const settingsPanel = document.getElementById('emg-challenge-setup');
+        const activePanel = document.getElementById('emg-challenge-active');
+
+        if (settingsPanel) settingsPanel.style.display = 'block';
+        if (activePanel) activePanel.style.display = 'none';
     }
+};
+
+// EMG Challenge Modal Function
+window.showEMGChallenge = function() {
+    console.log('🧪 Launching EMG Localization Challenge...');
+
+    const emgChallengeContent = `
+        <style>
+            @keyframes pulse-glow {
+                0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+                50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+            }
+
+            /* Toggle card inactive state - HIGHLY VISIBLE */
+            .toggle-option:not(.active) {
+                opacity: 0.35;
+                filter: grayscale(0.8);
+                transform: scale(0.96);
+                border: 2px solid rgba(239, 68, 68, 0.3) !important;
+                background: rgba(254, 226, 226, 0.3) !important;
+            }
+
+            .toggle-option:not(.active)::after {
+                content: '✕ DISABLED';
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                color: #ef4444;
+                font-size: 0.75rem;
+                font-weight: 700;
+                opacity: 0.7;
+            }
+
+            .toggle-option:not(.active) .status-indicator {
+                background: #ef4444 !important;
+                box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important;
+            }
+
+            .toggle-option.active {
+                position: relative;
+            }
+
+            .toggle-option.active::after {
+                content: '✓ ENABLED';
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                color: #10b981;
+                font-size: 0.75rem;
+                font-weight: 700;
+            }
+
+            .toggle-option.active .status-indicator {
+                animation: pulse-indicator 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse-indicator {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.2); opacity: 0.8; }
+            }
+        </style>
+
+        <!-- Challenge Settings -->
+        <div id="emg-challenge-setup" class="challenge-section" style="
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(99, 102, 241, 0.03));
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-radius: 25px;
+            padding: 45px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15);
+        ">
+            <div class="challenge-header" style="text-align: center; margin-bottom: 40px;">
+                <h3 style="
+                    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    margin-bottom: 15px;
+                    font-size: 2.2em;
+                    font-weight: 700;
+                ">📋 EMG Localization Challenge</h3>
+                <p style="color: #64748b; margin: 0; font-size: 1.15em;">Configure your challenge and test your diagnostic skills</p>
+            </div>
+
+            <!-- Question Type Toggles -->
+            <div class="question-type-selector" style="margin-bottom: 40px;">
+                <h4 style="
+                    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    margin-bottom: 15px;
+                    font-size: 1.4em;
+                    font-weight: 600;
+                ">🎯 Select Lesion Types</h4>
+                <p style="color: #64748b; margin-bottom: 25px; font-size: 1.05em;">Choose which localizations you want to master</p>
+
+                <div class="toggle-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div class="toggle-option active" data-type="root" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('root')" style="
+                        display: flex;
+                        align-items: center;
+                        padding: 20px;
+                        background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(6, 182, 212, 0.08));
+                        border: 2px solid rgba(20, 184, 166, 0.4);
+                        border-radius: 15px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15);
+                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                        <div style="margin-right: 15px; font-size: 2em;">🌿</div>
+                        <div style="flex: 1;">
+                            <h5 style="margin: 0 0 8px 0; color: #0d9488; font-size: 1.15em; font-weight: 600;">Nerve Root Lesions</h5>
+                            <p style="margin: 0; font-size: 0.95em; color: #64748b; line-height: 1.4;">C5-T1, L2-S1 radiculopathies</p>
+                            <div style="font-size: 0.85em; color: #94a3b8; margin-top: 5px;">e.g., C6, L5 radiculopathy</div>
+                        </div>
+                        <div class="toggle-status" style="margin-left: 15px;">
+                            <span class="status-indicator active" style="width: 16px; height: 16px; background: #14b8a6; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);"></span>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option active" data-type="plexus" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('plexus')" style="
+                        display: flex;
+                        align-items: center;
+                        padding: 20px;
+                        background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.08));
+                        border: 2px solid rgba(251, 191, 36, 0.4);
+                        border-radius: 15px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        box-shadow: 0 4px 15px rgba(251, 191, 36, 0.15);
+                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(251, 191, 36, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(251, 191, 36, 0.15)'">
+                        <div style="margin-right: 15px; font-size: 2em;">🌳</div>
+                        <div style="flex: 1;">
+                            <h5 style="margin: 0 0 8px 0; color: #d97706; font-size: 1.15em; font-weight: 600;">Plexus Lesions</h5>
+                            <p style="margin: 0; font-size: 0.95em; color: #64748b; line-height: 1.4;">Trunk and cord injuries</p>
+                            <div style="font-size: 0.85em; color: #94a3b8; margin-top: 5px;">e.g., Upper trunk, posterior cord</div>
+                        </div>
+                        <div class="toggle-status" style="margin-left: 15px;">
+                            <span class="status-indicator active" style="width: 16px; height: 16px; background: #fbbf24; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);"></span>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option active" data-type="peripheral" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('peripheral')" style="
+                        display: flex;
+                        align-items: center;
+                        padding: 20px;
+                        background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(99, 102, 241, 0.08));
+                        border: 2px solid rgba(139, 92, 246, 0.4);
+                        border-radius: 15px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(139, 92, 246, 0.15)'">
+                        <div style="margin-right: 15px; font-size: 2em;">⚡</div>
+                        <div style="flex: 1;">
+                            <h5 style="margin: 0 0 8px 0; color: #8b5cf6; font-size: 1.15em; font-weight: 600;">Peripheral Nerve Lesions</h5>
+                            <p style="margin: 0; font-size: 0.95em; color: #64748b; line-height: 1.4;">Entrapment neuropathies, focal injuries</p>
+                            <div style="font-size: 0.85em; color: #94a3b8; margin-top: 5px;">e.g., Carpal tunnel, peroneal palsy</div>
+                        </div>
+                        <div class="toggle-status" style="margin-left: 15px;">
+                            <span class="status-indicator active" style="width: 16px; height: 16px; background: #8b5cf6; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-launch" style="text-align: center;">
+                <button class="launch-challenge-btn" onclick="window.EMGChallenge && EMGChallenge.startChallenge()" style="
+                    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                    color: white;
+                    border: none;
+                    padding: 20px 50px;
+                    border-radius: 50px;
+                    font-size: 1.4em;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 12px;
+                    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    animation: pulse-glow 3s ease-in-out infinite;
+                " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 40px rgba(139, 92, 246, 0.6)'; this.style.animation='none'" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 30px rgba(139, 92, 246, 0.4)'; this.style.animation='pulse-glow 3s ease-in-out infinite'">
+                    <span style="font-size: 1.1em;">🚀</span>
+                    <span>Begin Challenge</span>
+                </button>
+                <div style="margin-top: 15px; color: #64748b; font-size: 1em;">Select at least one lesion type to start</div>
+            </div>
+        </div>
+
+        <!-- Active Challenge -->
+        <div id="emg-challenge-active" class="challenge-section" style="display: none;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(99, 102, 241, 0.03));
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-radius: 25px;
+            padding: 45px;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15);
+        ">
+            <div class="challenge-header" style="text-align: center; margin-bottom: 40px;">
+                <h3 style="
+                    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    margin-bottom: 15px;
+                    font-size: 2.2em;
+                    font-weight: 700;
+                ">🔬 EMG Case Analysis</h3>
+                <div style="color: #64748b; font-size: 1.2em; font-weight: 500;">
+                    <p id="challenge-scenario" style="margin: 0;">Loading case scenario...</p>
+                </div>
+            </div>
+
+            <div class="findings-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px;">
+                <div class="abnormal-findings" style="
+                    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(220, 38, 38, 0.08));
+                    border: 3px solid rgba(239, 68, 68, 0.4);
+                    border-radius: 20px;
+                    padding: 30px;
+                    box-shadow: 0 6px 25px rgba(239, 68, 68, 0.15);
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 35px rgba(239, 68, 68, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 25px rgba(239, 68, 68, 0.15)'">
+                    <h5 style="
+                        background: linear-gradient(135deg, #ef4444, #dc2626);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        margin-bottom: 20px;
+                        font-size: 1.4em;
+                        font-weight: 700;
+                    ">❌ Abnormal Muscles (Denervation)</h5>
+                    <ul id="challenge-abnormal-muscles" style="
+                        color: #991b1b;
+                        line-height: 2;
+                        margin: 0;
+                        padding-left: 25px;
+                        font-size: 1.05em;
+                        font-weight: 600;
+                    ">
+                        <!-- Abnormal muscles will be populated here -->
+                    </ul>
+                </div>
+
+                <div class="normal-findings" style="
+                    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.08));
+                    border: 3px solid rgba(16, 185, 129, 0.4);
+                    border-radius: 20px;
+                    padding: 30px;
+                    box-shadow: 0 6px 25px rgba(16, 185, 129, 0.15);
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 35px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 25px rgba(16, 185, 129, 0.15)'">
+                    <h5 style="
+                        background: linear-gradient(135deg, #10b981, #059669);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        margin-bottom: 20px;
+                        font-size: 1.4em;
+                        font-weight: 700;
+                    ">✅ Normal Muscles</h5>
+                    <ul id="challenge-normal-muscles" style="
+                        color: #065f46;
+                        line-height: 2;
+                        margin: 0;
+                        padding-left: 25px;
+                        font-size: 1.05em;
+                        font-weight: 600;
+                    ">
+                        <!-- Normal muscles will be populated here -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-question" style="
+                background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.08));
+                border: 3px solid rgba(251, 191, 36, 0.3);
+                border-radius: 20px;
+                padding: 35px;
+                margin-bottom: 30px;
+                text-align: center;
+                box-shadow: 0 6px 25px rgba(251, 191, 36, 0.15);
+            ">
+                <div class="question-text" id="challenge-question-text" style="
+                    background: linear-gradient(135deg, #f59e0b, #d97706);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    font-size: 1.5em;
+                    font-weight: 700;
+                    margin-bottom: 30px;
+                ">
+                    Where is the most likely location of the lesion?
+                </div>
+
+                <div class="answer-options-challenge" id="challenge-answer-options" style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 15px;
+                ">
+                    <!-- Answer options will be populated here -->
+                </div>
+            </div>
+
+            <div class="challenge-controls" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 20px;">
+                <button id="challenge-back-btn" onclick="window.EMGChallenge && EMGChallenge.backToSettings()" style="
+                    background: linear-gradient(135deg, #64748b, #475569);
+                    color: white;
+                    border: none;
+                    padding: 14px 30px;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    font-weight: 700;
+                    font-size: 1.05rem;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(100, 116, 139, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(100, 116, 139, 0.3)'">
+                    ← Back to Settings
+                </button>
+                <button id="challenge-submit-btn" onclick="window.EMGChallenge && EMGChallenge.submitAnswer()" disabled style="
+                    background: linear-gradient(135deg, #10b981, #059669);
+                    color: white;
+                    border: none;
+                    padding: 16px 40px;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    font-weight: 700;
+                    font-size: 1.15rem;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    opacity: 0.5;
+                " onmouseover="if(!this.disabled) { this.style.transform='translateY(-2px) scale(1.03)'; this.style.boxShadow='0 8px 30px rgba(16, 185, 129, 0.5)'; }" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 25px rgba(16, 185, 129, 0.4)'">
+                    Submit Analysis
+                </button>
+                <button id="challenge-next-btn" onclick="window.EMGChallenge && EMGChallenge.nextCase()" style="display: none;
+                    background: #10b981;
+                    color: white;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: 600;
+                ">
+                    Next Case →
+                </button>
+            </div>
+
+            <div class="challenge-feedback" id="challenge-feedback" style="display: none;">
+                <!-- Feedback will be populated here -->
+            </div>
+        </div>
+    `;
+
+    showModal('🧪 EMG Localization Challenge', emgChallengeContent);
 };
 
 // Muscle Localization System - Simple Implementation for Region Switching
@@ -11509,29 +11980,59 @@ window.MuscleLocalization = {
 // Study Cards Function - Links to Advanced Muscle Tools
 window.showStudyCards = function() {
     console.log('🧬 Launching Advanced Muscle Study Lab...');
+    console.log('✨ UI FACELIFT VERSION LOADED - v20251001093045');
 
     const muscleLabContent = `
         <style>
             /* Advanced Muscle Lab Styling */
+            @keyframes gradient-shift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
             .muscle-lab-hero {
-                background: linear-gradient(135deg, rgba(107, 159, 120, 0.15) 0%, rgba(74, 109, 82, 0.15) 100%);
+                background: linear-gradient(135deg, #14b8a6, #06b6d4, #8b5cf6, #14b8a6);
+                background-size: 300% 300%;
+                animation: gradient-shift 15s ease infinite;
                 border-radius: 25px;
                 padding: 40px;
                 margin: 20px 0;
                 backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 text-align: center;
+                box-shadow: 0 20px 60px rgba(20, 184, 166, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .muscle-lab-hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(255, 255, 255, 0.05);
+                z-index: 1;
+            }
+
+            .muscle-lab-hero .hero-content {
+                position: relative;
+                z-index: 2;
             }
             .hero-title {
                 font-size: 2.5rem;
-                color: #2c3e50;
+                color: white;
                 margin-bottom: 15px;
                 font-weight: 700;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             }
             .hero-subtitle {
                 font-size: 1.1rem;
-                color: #6b7280;
+                color: rgba(255, 255, 255, 0.9);
                 margin-bottom: 25px;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             }
             .hero-stats {
                 display: flex;
@@ -11539,25 +12040,45 @@ window.showStudyCards = function() {
                 gap: 30px;
                 flex-wrap: wrap;
             }
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+
             .stat-card {
-                background: rgba(254, 252, 243, 0.9);
+                background: rgba(255, 255, 255, 0.2);
                 backdrop-filter: blur(10px);
                 border-radius: 15px;
                 padding: 20px 30px;
-                border: 1px solid rgba(107, 159, 120, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.3);
                 min-width: 120px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            .stat-card:nth-child(1) { animation-delay: 0s; }
+            .stat-card:nth-child(2) { animation-delay: 0.2s; }
+            .stat-card:nth-child(3) { animation-delay: 0.4s; }
+
+            .stat-card:hover {
+                transform: translateY(-15px) scale(1.05);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                background: rgba(255, 255, 255, 0.3);
             }
             .stat-number {
                 font-size: 2rem;
                 font-weight: 700;
-                color: #6b9f78;
+                color: white;
                 margin-bottom: 5px;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             }
             .stat-label {
                 font-size: 0.9rem;
-                color: #64748b;
+                color: rgba(255, 255, 255, 0.9);
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             }
 
             .study-controls-bar {
@@ -11584,26 +12105,30 @@ window.showStudyCards = function() {
                 gap: 10px;
             }
             .region-btn, .anatomy-btn {
-                padding: 8px 16px;
-                border: 2px solid #e5e7eb;
-                border-radius: 8px;
-                background: white;
-                color: #6b7280;
-                font-weight: 500;
+                padding: 16px 35px;
+                border: 2px solid rgba(20, 184, 166, 0.3);
+                border-radius: 50px;
+                background: rgba(255, 255, 255, 0.9);
+                color: #0d9488;
+                font-weight: 600;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                font-size: 0.9rem;
+                font-size: 1.1rem;
+                box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15);
             }
             .region-btn:hover, .anatomy-btn:hover {
-                border-color: #6b9f78;
-                background: rgba(107, 159, 120, 0.05);
-                color: #6b9f78;
+                background: rgba(20, 184, 166, 0.1);
+                color: #0d9488;
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 6px 20px rgba(20, 184, 166, 0.25);
+                border-color: rgba(20, 184, 166, 0.5);
             }
             .region-btn.active, .anatomy-btn.active {
-                border-color: #6b9f78;
-                background: #6b9f78;
+                background: linear-gradient(135deg, #14b8a6, #06b6d4);
                 color: white;
-                font-weight: 600;
+                font-weight: 700;
+                box-shadow: 0 6px 25px rgba(20, 184, 166, 0.5);
+                border-color: transparent;
             }
 
             .quiz-section {
@@ -11663,29 +12188,41 @@ window.showStudyCards = function() {
                 display: flex;
                 gap: 15px;
             }
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+
             .quiz-start-btn, .quiz-stop-btn {
-                padding: 12px 24px;
+                padding: 14px 28px;
                 border: none;
-                border-radius: 8px;
+                border-radius: 12px;
                 font-weight: 600;
                 cursor: pointer;
                 transition: all 0.3s ease;
+                font-size: 1.05rem;
             }
             .quiz-start-btn {
-                background: #8b5cf6;
+                background: linear-gradient(135deg, #10b981, #059669);
                 color: white;
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+                animation: pulse 2s ease-in-out infinite;
             }
             .quiz-start-btn:hover {
-                background: #7c3aed;
-                transform: translateY(-2px);
+                background: linear-gradient(135deg, #059669, #047857);
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+                animation: none;
             }
             .quiz-stop-btn {
-                background: #ef4444;
+                background: linear-gradient(135deg, #f97316, #ec4899);
                 color: white;
+                box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
             }
             .quiz-stop-btn:hover {
-                background: #dc2626;
+                background: linear-gradient(135deg, #ea580c, #db2777);
                 transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
             }
             .inline-quiz-area {
                 border-top: 1px solid #e5e7eb;
@@ -11718,7 +12255,7 @@ window.showStudyCards = function() {
 
             .muscle-card-interactive {
                 background: white;
-                border: 2px solid #e5e7eb;
+                border: 2px solid rgba(20, 184, 166, 0.15);
                 border-radius: 12px;
                 padding: 20px;
                 transition: all 0.3s ease;
@@ -11726,15 +12263,16 @@ window.showStudyCards = function() {
             }
 
             .muscle-card-interactive:hover {
-                border-color: #6b9f78;
-                box-shadow: 0 8px 25px rgba(107, 159, 120, 0.15);
-                transform: translateY(-2px);
+                border-color: #14b8a6;
+                box-shadow: 0 8px 25px rgba(20, 184, 166, 0.25);
+                transform: translateY(-4px);
             }
 
             .muscle-card-interactive.expanded {
-                border-color: #6b9f78;
-                box-shadow: 0 12px 35px rgba(107, 159, 120, 0.2);
+                border-color: #14b8a6;
+                box-shadow: 0 12px 35px rgba(20, 184, 166, 0.3);
                 transform: scale(1.02);
+                background: linear-gradient(135deg, rgba(20, 184, 166, 0.02), rgba(6, 182, 212, 0.02));
             }
 
             .muscle-header {
@@ -11742,7 +12280,10 @@ window.showStudyCards = function() {
             }
 
             .muscle-name {
-                color: #1e40af;
+                background: linear-gradient(135deg, #0d9488, #06b6d4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
                 font-size: 1.1rem;
                 font-weight: 600;
                 margin: 0;
@@ -11757,10 +12298,10 @@ window.showStudyCards = function() {
 
             .muscle-btn {
                 padding: 6px 12px;
-                border: 1px solid #d1d5db;
-                border-radius: 6px;
-                background: #f9fafb;
-                color: #6b7280;
+                border: 1px solid rgba(20, 184, 166, 0.3);
+                border-radius: 8px;
+                background: rgba(20, 184, 166, 0.05);
+                color: #0d9488;
                 font-size: 0.8rem;
                 font-weight: 500;
                 cursor: pointer;
@@ -11768,37 +12309,44 @@ window.showStudyCards = function() {
             }
 
             .muscle-btn:hover {
-                border-color: #6b9f78;
-                background: rgba(107, 159, 120, 0.1);
-                color: #6b9f78;
+                border-color: #14b8a6;
+                background: rgba(20, 184, 166, 0.15);
+                color: #0d9488;
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
             }
 
             .muscle-btn.active {
-                border-color: #6b9f78;
-                background: #6b9f78;
+                border-color: #14b8a6;
+                background: linear-gradient(135deg, #14b8a6, #06b6d4);
                 color: white;
+                box-shadow: 0 3px 10px rgba(20, 184, 166, 0.3);
             }
 
             .muscle-btn.show-all {
-                background: #3b82f6;
-                border-color: #3b82f6;
+                background: linear-gradient(135deg, #fbbf24, #f59e0b);
+                border: none;
                 color: white;
+                box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+                transition: all 0.3s ease;
             }
 
             .muscle-btn.show-all:hover {
-                background: #2563eb;
-                border-color: #2563eb;
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
             }
 
             .muscle-detail {
                 margin-top: 10px;
                 padding: 12px;
                 border-radius: 8px;
-                border-left: 4px solid #6b9f78;
-                background: #f8fafc;
+                border-left: 4px solid #14b8a6;
+                background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(6, 182, 212, 0.05));
                 transition: all 0.3s ease;
                 opacity: 0;
                 transform: translateY(-10px);
+                box-shadow: 0 2px 8px rgba(20, 184, 166, 0.1);
             }
 
             .muscle-detail[style*="display: block"] {
@@ -11876,69 +12424,129 @@ window.showStudyCards = function() {
             }
 
             .close-test-btn {
-                background: #ef4444;
+                background: linear-gradient(135deg, #f97316, #ec4899);
                 color: white;
                 border: none;
                 padding: 8px 16px;
                 border-radius: 6px;
                 cursor: pointer;
                 font-weight: 600;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+            }
+
+            .close-test-btn:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+            }
+
+            .quiz-question {
+                background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(99, 102, 241, 0.05));
+                border: 2px solid rgba(139, 92, 246, 0.2);
+                border-radius: 20px;
+                padding: 30px;
+                box-shadow: 0 6px 25px rgba(139, 92, 246, 0.15);
             }
 
             .quiz-question h4 {
-                color: #1f2937;
-                margin-bottom: 20px;
+                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 25px;
+                font-size: 1.5rem;
+                font-weight: 700;
             }
 
             .quiz-answer-input {
                 display: flex;
-                gap: 10px;
-                margin-bottom: 20px;
+                gap: 12px;
+                margin-bottom: 25px;
             }
 
             .quiz-answer-input input {
                 flex: 1;
-                padding: 10px;
-                border: 2px solid #e5e7eb;
-                border-radius: 6px;
-                font-size: 1rem;
+                padding: 14px 20px;
+                border: 2px solid rgba(139, 92, 246, 0.3);
+                border-radius: 50px;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 3px 10px rgba(139, 92, 246, 0.1);
+            }
+
+            .quiz-answer-input input:focus {
+                outline: none;
+                border-color: rgba(139, 92, 246, 0.6);
+                box-shadow: 0 5px 20px rgba(139, 92, 246, 0.2);
             }
 
             .check-answer-btn {
-                background: #10b981;
+                background: linear-gradient(135deg, #10b981, #059669);
                 color: white;
                 border: none;
-                padding: 10px 20px;
-                border-radius: 6px;
+                padding: 14px 35px;
+                border-radius: 50px;
                 cursor: pointer;
-                font-weight: 600;
+                font-weight: 700;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .check-answer-btn:hover {
+                background: linear-gradient(135deg, #059669, #047857);
+                transform: translateY(-2px) scale(1.03);
+                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+            }
+
+            .check-answer-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                transform: none;
             }
 
             .quiz-options {
                 display: grid;
-                gap: 10px;
-                margin-bottom: 20px;
+                gap: 15px;
+                margin-bottom: 25px;
             }
 
             .quiz-option {
                 display: flex;
                 align-items: center;
-                gap: 10px;
-                padding: 12px;
-                border: 2px solid #e5e7eb;
-                border-radius: 8px;
+                gap: 12px;
+                padding: 18px 25px;
+                border: 2px solid rgba(139, 92, 246, 0.3);
+                border-radius: 50px;
                 cursor: pointer;
-                transition: all 0.2s ease;
+                transition: all 0.3s ease;
+                background: white;
+                font-weight: 600;
+                font-size: 1.05rem;
+                box-shadow: 0 3px 12px rgba(139, 92, 246, 0.1);
             }
 
             .quiz-option:hover {
-                border-color: #6b9f78;
-                background: rgba(107, 159, 120, 0.05);
+                border-color: rgba(139, 92, 246, 0.6);
+                background: rgba(139, 92, 246, 0.05);
+                transform: translateX(5px);
+                box-shadow: 0 5px 20px rgba(139, 92, 246, 0.2);
             }
 
             .quiz-option.selected {
-                border-color: #6b9f78;
-                background: rgba(107, 159, 120, 0.1);
+                border-color: transparent;
+                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                color: white;
+                transform: translateX(8px);
+                box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
+            }
+
+            .quiz-option input[type="radio"] {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
             }
 
             .quiz-feedback {
@@ -11971,64 +12579,344 @@ window.showStudyCards = function() {
 
             /* Global Reveal Controls */
             .global-reveal-controls {
-                position: relative;
-                margin-bottom: 20px;
+                background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(99, 102, 241, 0.03));
+                border-radius: 20px;
+                padding: 25px;
+                margin-bottom: 30px;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+                box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
             }
 
             .global-reveal-buttons {
-                position: absolute;
-                top: 0;
-                right: 0;
                 display: flex;
-                gap: 8px;
+                gap: 12px;
                 flex-wrap: wrap;
-                justify-content: flex-end;
-                z-index: 100;
+                justify-content: center;
             }
 
             .global-reveal-btn {
-                padding: 8px 12px;
-                border: 2px solid #e5e7eb;
-                border-radius: 8px;
-                background: white;
-                color: #6b7280;
-                font-size: 0.85rem;
-                font-weight: 600;
+                padding: 14px 24px;
+                border: none;
+                border-radius: 50px;
+                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                color: white;
+                font-size: 1rem;
+                font-weight: 700;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
                 white-space: nowrap;
             }
 
             .global-reveal-btn:hover {
-                border-color: #6b9f78;
-                background: rgba(107, 159, 120, 0.1);
-                color: #6b9f78;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
+                background: linear-gradient(135deg, #7c3aed, #4f46e5);
             }
 
             .global-reveal-btn.active {
-                border-color: #6b9f78;
-                background: #6b9f78;
-                color: white;
-                box-shadow: 0 4px 12px rgba(107, 159, 120, 0.3);
+                background: linear-gradient(135deg, #6366f1, #4f46e5);
+                box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
             }
 
             .global-reveal-btn.reveal-all {
-                background: #3b82f6;
-                border-color: #3b82f6;
-                color: white;
+                background: linear-gradient(135deg, #fbbf24, #f59e0b);
+                box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+                font-size: 1.1rem;
+                padding: 16px 30px;
             }
 
             .global-reveal-btn.reveal-all:hover {
-                background: #2563eb;
-                border-color: #2563eb;
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 6px 25px rgba(251, 191, 36, 0.5);
+                background: linear-gradient(135deg, #f59e0b, #d97706);
             }
 
             .global-reveal-btn.reveal-all.active {
-                background: #1d4ed8;
-                border-color: #1d4ed8;
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+            }
+
+            /* Tab Navigation Styles */
+            .muscle-lab-tabs {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 30px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            }
+
+            .muscle-tab {
+                padding: 15px 30px;
+                background: transparent;
+                border: none;
+                border-radius: 10px;
+                color: #6b7280;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .muscle-tab:hover {
+                color: #14b8a6;
+                background: rgba(20, 184, 166, 0.1);
+                transform: translateY(-2px);
+            }
+
+            .muscle-tab.active {
+                color: white;
+                background: linear-gradient(135deg, #14b8a6, #06b6d4);
+                box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
+            }
+
+            /* Tab Content */
+            .tab-content {
+                display: none;
+            }
+
+            .tab-content.active {
+                display: block;
+            }
+
+            /* Cards Section Styles */
+            .cards-controls-section {
+                background: linear-gradient(135deg, rgba(20, 184, 166, 0.03), rgba(6, 182, 212, 0.03));
+                border-radius: 20px;
+                padding: 30px;
+                margin-bottom: 30px;
+                border: 2px solid rgba(20, 184, 166, 0.2);
+                box-shadow: 0 4px 20px rgba(20, 184, 166, 0.1);
+            }
+
+            .cards-controls-section h4 {
+                background: linear-gradient(135deg, #0d9488, #06b6d4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .extremity-toggle-buttons {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            /* Quiz Config Panel Styles */
+            .quiz-config-panel {
+                background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(99, 102, 241, 0.03));
+                border-radius: 25px;
+                padding: 40px;
+                margin-bottom: 30px;
+                border: 3px solid rgba(139, 92, 246, 0.2);
+                box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+            }
+
+            .quiz-section-block {
+                margin-bottom: 30px;
+                padding-bottom: 30px;
+                border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+            }
+
+            .quiz-section-block:last-of-type {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+
+            .quiz-section-block h4 {
+                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+                font-weight: 700;
+            }
+
+            /* Quiz Content Checkboxes */
+            .quiz-content-checkboxes {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+
+            .checkbox-label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+                padding: 14px 22px;
+                background: white;
+                border: 2px solid rgba(20, 184, 166, 0.3);
+                border-radius: 50px;
+                transition: all 0.3s ease;
+                font-weight: 600;
+                color: #64748b;
+                box-shadow: 0 3px 10px rgba(20, 184, 166, 0.1);
+            }
+
+            .checkbox-label:hover {
+                border-color: rgba(20, 184, 166, 0.6);
+                background: rgba(20, 184, 166, 0.05);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(20, 184, 166, 0.2);
+            }
+
+            .checkbox-label input[type="checkbox"] {
+                cursor: pointer;
+                width: 18px;
+                height: 18px;
+            }
+
+            .checkbox-label:has(input:checked) {
+                background: linear-gradient(135deg, #14b8a6, #06b6d4);
+                border-color: transparent;
+                color: white;
+                box-shadow: 0 5px 20px rgba(20, 184, 166, 0.4);
+            }
+
+            /* Quiz Extremity Radios */
+            .quiz-extremity-radios {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .radio-label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+                padding: 14px 22px;
+                background: white;
+                border: 2px solid rgba(251, 191, 36, 0.3);
+                border-radius: 50px;
+                transition: all 0.3s ease;
+                font-weight: 600;
+                color: #64748b;
+                box-shadow: 0 3px 10px rgba(251, 191, 36, 0.1);
+            }
+
+            .radio-label:hover {
+                border-color: rgba(251, 191, 36, 0.6);
+                background: rgba(251, 191, 36, 0.05);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2);
+            }
+
+            .radio-label input[type="radio"] {
+                cursor: pointer;
+                width: 18px;
+                height: 18px;
+            }
+
+            .radio-label:has(input:checked) {
+                background: linear-gradient(135deg, #fbbf24, #f59e0b);
+                border-color: transparent;
+                color: white;
+                box-shadow: 0 5px 20px rgba(251, 191, 36, 0.4);
+            }
+
+            /* Test All Toggle Button */
+            .test-all-toggle-btn {
+                background: linear-gradient(135deg, #14b8a6, #06b6d4);
+                color: white;
+                border: none;
+                padding: 12px 28px;
+                border-radius: 50px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+                font-size: 1rem;
+            }
+
+            .test-all-toggle-btn:hover {
+                background: linear-gradient(135deg, #0d9488, #0891b2);
+                transform: translateY(-2px) scale(1.03);
+                box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+            }
+
+            /* Quiz Mode Buttons */
+            .quiz-mode-buttons {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .mode-toggle-btn {
+                padding: 14px 28px;
+                border: 2px solid rgba(139, 92, 246, 0.3);
+                border-radius: 50px;
+                background: white;
+                color: #8b5cf6;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 1rem;
+                box-shadow: 0 3px 10px rgba(139, 92, 246, 0.1);
+            }
+
+            .mode-toggle-btn:hover {
+                border-color: rgba(139, 92, 246, 0.6);
+                background: rgba(139, 92, 246, 0.05);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+            }
+
+            .mode-toggle-btn.active {
+                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                border-color: transparent;
+                color: white;
+                box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+                font-weight: 700;
+            }
+
+            /* Quiz Action Section */
+            .quiz-action-section {
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .quiz-action-section .quiz-start-btn {
+                font-size: 1.3rem;
+                padding: 18px 45px;
+                border-radius: 50px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+            }
+
+            .quiz-action-section .quiz-start-btn:hover {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+            }
+
+            .quiz-action-section .quiz-stop-btn {
+                font-size: 1.2rem;
+                padding: 16px 40px;
+                border-radius: 50px;
+                font-weight: 700;
+                box-shadow: 0 6px 25px rgba(249, 115, 22, 0.4);
+            }
+
+            .quiz-action-section .quiz-stop-btn:hover {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 8px 30px rgba(249, 115, 22, 0.5);
             }
         </style>
 
@@ -12053,10 +12941,22 @@ window.showStudyCards = function() {
             </div>
         </div>
 
-        <div class="study-controls-bar">
-            <div class="control-section">
-                <h4>Region</h4>
-                <div class="region-selector">
+        <!-- Tab Navigation -->
+        <div class="muscle-lab-tabs">
+            <button class="muscle-tab active" data-tab="cards" onclick="MuscleAnatomy.switchTab('cards')">
+                📚 Study Cards
+            </button>
+            <button class="muscle-tab" data-tab="quiz" onclick="MuscleAnatomy.switchTab('quiz')">
+                🧪 Interactive Quiz
+            </button>
+        </div>
+
+        <!-- CARDS TAB CONTENT -->
+        <div id="cards-tab-content" class="tab-content active">
+            <!-- Extremity Selection for Cards -->
+            <div class="cards-controls-section">
+                <h4>Select Extremity</h4>
+                <div class="extremity-toggle-buttons">
                     <button class="region-btn active" data-region="lower" onclick="MuscleAnatomy.switchAnatomy('lower')">
                         🦵 Lower Extremity
                     </button>
@@ -12066,79 +12966,110 @@ window.showStudyCards = function() {
                 </div>
             </div>
 
-            <div class="control-section">
-                <h4>Anatomy Display</h4>
-                <div class="anatomy-selector">
-                    <button class="anatomy-btn active" data-anatomy="nerve" onclick="MuscleAnatomy.setAnatomyType('nerve')">
-                        Nerve
+            <!-- Global Reveal Controls -->
+            <div class="global-reveal-controls">
+                <div class="global-reveal-buttons">
+                    <button class="global-reveal-btn reveal-all" onclick="MuscleAnatomy.globalRevealAll()" title="Show/Hide All Details">
+                        📖 Reveal All
                     </button>
-                    <button class="anatomy-btn" data-anatomy="roots" onclick="MuscleAnatomy.setAnatomyType('roots')">
-                        Roots
+                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('nerve')" title="Show/Hide All Nerve Information">
+                        🔌 All Nerves
                     </button>
-                    <button class="anatomy-btn" data-anatomy="cord" onclick="MuscleAnatomy.setAnatomyType('cord')">
-                        Cord/Trunk
+                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('roots')" title="Show/Hide All Nerve Roots">
+                        🌿 All Roots
                     </button>
-                    <button class="anatomy-btn" data-anatomy="actions" onclick="MuscleAnatomy.setAnatomyType('actions')">
-                        Actions
+                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('cord')" title="Show/Hide All Cord/Trunk Information">
+                        🕸️ All Cords/Trunks
+                    </button>
+                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('actions')" title="Show/Hide All Muscle Actions">
+                        💪 All Actions
                     </button>
                 </div>
+            </div>
+
+            <!-- Muscle Cards Display -->
+            <div id="muscle-anatomy-display" class="muscle-anatomy-display-enhanced">
+                <!-- Muscles will be displayed here -->
             </div>
         </div>
 
-        <div class="quiz-section">
-            <div class="quiz-header">
-                <h3>🧪 Interactive Quiz</h3>
-                <p>Test your knowledge with adaptive questions</p>
-            </div>
+        <!-- QUIZ TAB CONTENT -->
+        <div id="quiz-tab-content" class="tab-content" style="display: none;">
+            <div class="quiz-config-panel">
 
-            <div class="quiz-controls">
-                <div class="quiz-mode-toggle">
-                    <label>Quiz Mode:</label>
-                    <button class="mode-toggle-btn" data-mode="type" onclick="MuscleAnatomy.setQuizMode('type')">
-                        Type Answer
-                    </button>
-                    <button class="mode-toggle-btn active" data-mode="multiple" onclick="MuscleAnatomy.setQuizMode('multiple')">
-                        Multiple Choice
+                <!-- Quiz Content Filter -->
+                <div class="quiz-section-block">
+                    <h4>📋 What to Test</h4>
+                    <div class="quiz-content-checkboxes">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="quiz-nerve" checked onchange="MuscleAnatomy.updateQuizContent()">
+                            <span>Nerve</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="quiz-roots" checked onchange="MuscleAnatomy.updateQuizContent()">
+                            <span>Roots</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="quiz-cord" checked onchange="MuscleAnatomy.updateQuizContent()">
+                            <span>Cord/Trunk</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="quiz-actions" checked onchange="MuscleAnatomy.updateQuizContent()">
+                            <span>Actions</span>
+                        </label>
+                    </div>
+                    <button class="test-all-toggle-btn" onclick="MuscleAnatomy.toggleAllQuizContent()">
+                        ✓ Test All
                     </button>
                 </div>
-                <div class="quiz-action-btns">
+
+                <!-- Extremity Selection for Quiz -->
+                <div class="quiz-section-block">
+                    <h4>🦴 Which Muscles</h4>
+                    <div class="quiz-extremity-radios">
+                        <label class="radio-label">
+                            <input type="radio" name="quiz-region" value="upper" onchange="MuscleAnatomy.updateQuizRegion()">
+                            <span>💪 Upper Extremity</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="quiz-region" value="lower" onchange="MuscleAnatomy.updateQuizRegion()">
+                            <span>🦵 Lower Extremity</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="quiz-region" value="both" checked onchange="MuscleAnatomy.updateQuizRegion()">
+                            <span>🎯 Both Extremities</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Answer Format -->
+                <div class="quiz-section-block">
+                    <h4>✏️ Answer Format</h4>
+                    <div class="quiz-mode-buttons">
+                        <button class="mode-toggle-btn" data-mode="type" onclick="MuscleAnatomy.setQuizMode('type')">
+                            Type Answer
+                        </button>
+                        <button class="mode-toggle-btn active" data-mode="multiple" onclick="MuscleAnatomy.setQuizMode('multiple')">
+                            Multiple Choice
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Start/Stop Buttons -->
+                <div class="quiz-action-section">
                     <button class="quiz-start-btn" onclick="MuscleAnatomy.startInlineQuiz()">
-                        Start Quiz
+                        ▶️ Start Quiz
                     </button>
                     <button class="quiz-stop-btn" onclick="MuscleAnatomy.stopInlineQuiz()" style="display: none;">
-                        Stop Quiz
+                        ⏹️ Stop Quiz
                     </button>
                 </div>
             </div>
 
+            <!-- Quiz Display Area -->
             <div id="inline-quiz-area" class="inline-quiz-area" style="display: none;">
                 <!-- Quiz content will be populated here -->
             </div>
-        </div>
-
-        <!-- Global Reveal Controls -->
-        <div class="global-reveal-controls">
-            <div class="global-reveal-buttons">
-                <button class="global-reveal-btn reveal-all" onclick="MuscleAnatomy.globalRevealAll()" title="Show/Hide All Details">
-                    📖 Reveal All
-                </button>
-                <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('nerve')" title="Show/Hide All Nerve Information">
-                    🔌 All Nerves
-                </button>
-                <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('roots')" title="Show/Hide All Nerve Roots">
-                    🌿 All Roots
-                </button>
-                <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('cord')" title="Show/Hide All Cord/Trunk Information">
-                    🕸️ All Cords/Trunks
-                </button>
-                <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('actions')" title="Show/Hide All Muscle Actions">
-                    💪 All Actions
-                </button>
-            </div>
-        </div>
-
-        <div id="muscle-anatomy-display" class="muscle-anatomy-display-enhanced">
-            <!-- Muscles will be displayed here -->
         </div>
 
 
@@ -12192,11 +13123,16 @@ window.showStudyCards = function() {
 
 // Complete MuscleAnatomy Object - Preston & Shapiro Database
 window.MuscleAnatomy = {
+    currentTab: 'cards',
     currentRegion: 'lower',
     currentAnatomyType: 'nerve',
     inlineQuizActive: false,
     quizMode: 'multiple', // 'type' or 'multiple'
     selectedQuizAnswer: null,
+    currentQuestionAnatomyType: null, // Store anatomy type for current question
+    currentQuestionMuscle: null, // Store muscle for current question
+    quizContentTypes: ['nerve', 'roots', 'cord', 'actions'], // What anatomy types to test
+    quizRegion: 'both', // 'upper', 'lower', or 'both'
     testData: {
         questionsAnswered: 0,
         correctAnswers: 0,
@@ -12270,6 +13206,69 @@ window.MuscleAnatomy = {
 
     initializeDisplay() {
         this.displayMuscles('lower');
+    },
+
+    switchTab(tab) {
+        this.currentTab = tab;
+
+        // Update tab buttons
+        document.querySelectorAll('.muscle-tab').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        const activeTab = document.querySelector(`[data-tab="${tab}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+
+        // Show/hide tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.style.display = 'none';
+            content.classList.remove('active');
+        });
+        const activeContent = document.getElementById(`${tab}-tab-content`);
+        if (activeContent) {
+            activeContent.style.display = 'block';
+            activeContent.classList.add('active');
+        }
+    },
+
+    updateQuizContent() {
+        this.quizContentTypes = [];
+        if (document.getElementById('quiz-nerve')?.checked) this.quizContentTypes.push('nerve');
+        if (document.getElementById('quiz-roots')?.checked) this.quizContentTypes.push('roots');
+        if (document.getElementById('quiz-cord')?.checked) this.quizContentTypes.push('cord');
+        if (document.getElementById('quiz-actions')?.checked) this.quizContentTypes.push('actions');
+
+        // Ensure at least one is selected
+        if (this.quizContentTypes.length === 0) {
+            this.quizContentTypes = ['nerve'];
+            document.getElementById('quiz-nerve').checked = true;
+        }
+    },
+
+    toggleAllQuizContent() {
+        const allChecked = this.quizContentTypes.length === 4;
+        const newState = !allChecked;
+
+        ['quiz-nerve', 'quiz-roots', 'quiz-cord', 'quiz-actions'].forEach(id => {
+            const checkbox = document.getElementById(id);
+            if (checkbox) {
+                checkbox.checked = newState;
+            }
+        });
+
+        this.updateQuizContent();
+
+        // Update button text
+        const btn = event?.target;
+        if (btn) {
+            btn.textContent = newState ? '✓ Test All' : '☐ Test All';
+        }
+    },
+
+    updateQuizRegion() {
+        const selected = document.querySelector('input[name="quiz-region"]:checked');
+        this.quizRegion = selected ? selected.value : 'both';
     },
 
     switchAnatomy(region) {
@@ -12454,8 +13453,30 @@ window.MuscleAnatomy = {
     },
 
     generateInlineQuestion() {
-        const muscles = Object.keys(this.muscleDatabase);
-        const muscle = muscles[Math.floor(Math.random() * muscles.length)];
+        // Filter muscles by selected region
+        let muscleEntries = Object.entries(this.muscleDatabase);
+
+        if (this.quizRegion === 'upper') {
+            muscleEntries = muscleEntries.filter(([name, data]) => data.region === 'UE');
+        } else if (this.quizRegion === 'lower') {
+            muscleEntries = muscleEntries.filter(([name, data]) => data.region === 'LE');
+        }
+        // if 'both', use all muscles
+
+        // Pick random muscle
+        const [muscle, muscleData] = muscleEntries[Math.floor(Math.random() * muscleEntries.length)];
+
+        // Pick random anatomy type from selected content types
+        const anatomyType = this.quizContentTypes[Math.floor(Math.random() * this.quizContentTypes.length)];
+
+        // Store question context for checking answer later
+        this.currentQuestionAnatomyType = anatomyType;
+        this.currentQuestionMuscle = muscle;
+
+        // Temporarily set currentAnatomyType for question generation
+        const previousAnatomyType = this.currentAnatomyType;
+        this.currentAnatomyType = anatomyType;
+
         const quizArea = document.getElementById('inline-quiz-area');
 
         if (this.quizMode === 'type') {
@@ -12464,7 +13485,7 @@ window.MuscleAnatomy = {
                     <h4>What is the ${this.getAnatomyLabel()} of ${muscle}?</h4>
                     <div class="quiz-answer-input">
                         <input type="text" id="quiz-answer" placeholder="Enter your answer..." />
-                        <button onclick="MuscleAnatomy.checkInlineAnswer('${muscle}')" class="check-answer-btn">Check Answer</button>
+                        <button onclick="MuscleAnatomy.checkInlineAnswer()" class="check-answer-btn">Check Answer</button>
                     </div>
                     <div id="quiz-feedback" class="quiz-feedback" style="display: none;"></div>
                 </div>
@@ -12483,17 +13504,20 @@ window.MuscleAnatomy = {
                     <h4>What is the ${this.getAnatomyLabel()} of ${muscle}?</h4>
                     <div class="quiz-options">
                         ${options.map((option, index) => `
-                            <div class="quiz-option" onclick="MuscleAnatomy.selectQuizOption('${option}', '${muscle}')">
+                            <div class="quiz-option" onclick="MuscleAnatomy.selectQuizOption('${option}')">
                                 <input type="radio" name="quiz-choice" id="option-${index}" value="${option}">
                                 <label for="option-${index}">${option}</label>
                             </div>
                         `).join('')}
                     </div>
-                    <button onclick="MuscleAnatomy.checkInlineAnswer('${muscle}')" class="check-answer-btn" disabled id="check-multiple-btn">Check Answer</button>
+                    <button onclick="MuscleAnatomy.checkInlineAnswer()" class="check-answer-btn" disabled id="check-multiple-btn">Check Answer</button>
                     <div id="quiz-feedback" class="quiz-feedback" style="display: none;"></div>
                 </div>
             `;
         }
+
+        // Restore previous anatomy type (for card display)
+        this.currentAnatomyType = previousAnatomyType;
     },
 
     getCorrectAnswer(muscle) {
@@ -12530,7 +13554,7 @@ window.MuscleAnatomy = {
         return options;
     },
 
-    selectQuizOption(answer, muscle) {
+    selectQuizOption(answer) {
         document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
         event.target.closest('.quiz-option').classList.add('selected');
 
@@ -12548,8 +13572,17 @@ window.MuscleAnatomy = {
         }
     },
 
-    checkInlineAnswer(muscle) {
+    checkInlineAnswer() {
+        // Use stored question context
+        const muscle = this.currentQuestionMuscle;
+        const previousAnatomyType = this.currentAnatomyType;
+        this.currentAnatomyType = this.currentQuestionAnatomyType;
+
         const correctAnswer = this.getCorrectAnswer(muscle);
+
+        // Restore anatomy type
+        this.currentAnatomyType = previousAnatomyType;
+
         const feedbackEl = document.getElementById('quiz-feedback');
         let userAnswer, isCorrect;
 
