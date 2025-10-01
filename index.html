@@ -1443,7 +1443,7 @@
     <!-- Load EMG APP Complete System with all clinical cases -->
     <script src="js/emg-app-complete-system.js"></script>
     <!-- <script src="js/enhanced-journey-modal-content.js"></script> -->
-    <script src="js/enhanced-journey-modal-content.js?v=2025"></script>
+    <script src="js/enhanced-journey-modal-content.js?v=20250930-injury"></script>
 
     <script>
         // Atrium Health Welcome Screen Function
@@ -2038,13 +2038,13 @@
                 image: "Nerve Paths/Median Nerve.png",
                 story: "The Median Messenger starts his epic journey at the bustling Brachial Plexus Central Station (C6-T1), where lateral and medial cords shake hands to form our hero. He travels down the arm like a VIP, riding the bicipital groove limousine between the Biceps and Brachialis neighborhoods. At the Cubital Fossa rest stop, he takes a breather medial to the brachial artery before squeezing through the narrow Pronator Teres tunnel. His faithful sidekick, the Anterior Interosseous branch, splits off to handle the deep muscle work while our main character continues toward his final destination: the infamous Carpal Tunnel! After surviving this tight squeeze, he emerges victorious in the hand, ready to command the LOAF muscles like a general commanding his troops!",
                 steps: [
-                    {title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)"},
-                    {title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove"},
-                    {title: "Cubital Fossa", desc: "Passes medial to brachial artery"},
-                    {title: "Forearm Entry", desc: "Passes between heads of pronator teres"},
-                    {title: "AIN Branch", desc: "Gives off anterior interosseous nerve"},
-                    {title: "Carpal Tunnel", desc: "Passes through carpal tunnel"},
-                    {title: "Hand", desc: "Divides into branches for thenar muscles (LOAF)"}
+                    {title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false},
+                    {title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false},
+                    {title: "Cubital Fossa", desc: "Passes medial to brachial artery", isInjurySite: false},
+                    {title: "Forearm Entry", desc: "Passes between heads of pronator teres (common entrapment site)", isInjurySite: true},
+                    {title: "AIN Branch", desc: "Gives off anterior interosseous nerve", isInjurySite: false},
+                    {title: "Carpal Tunnel", desc: "Passes through carpal tunnel under transverse carpal ligament (most common entrapment)", isInjurySite: true},
+                    {title: "Hand", desc: "Divides into branches for thenar muscles (LOAF)", isInjurySite: false}
                 ]
             },
             ulnar: {
@@ -2053,13 +2053,13 @@
                 image: "Nerve Paths/Ulnar Nerve.png",
                 story: "The Ulnar Underdog begins as the lone ranger from the medial cord, carrying the pure power of C8 and T1. He travels down the arm, taking the scenic route around the medial epicondyle at the elbow - that famous 'funny bone' spot where everyone's felt his electric personality! He slides through Guyon's canal at the wrist like a secret agent, then splits his mission: the deep branch heads to the interossei (the hand's fine motor specialists), while the superficial branch handles sensation for the pinky side of life.",
                 steps: [
-                    {title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)"},
-                    {title: "Upper Arm", desc: "Travels down medial aspect of arm"},
-                    {title: "Cubital Tunnel", desc: "Passes through cubital tunnel behind medial epicondyle"},
-                    {title: "Forearm", desc: "Travels between FCU and FDP in forearm"},
-                    {title: "Guyon's Canal", desc: "Passes through Guyon's canal at wrist"},
-                    {title: "Hand Division", desc: "Splits into superficial and deep branches"},
-                    {title: "Hand Muscles", desc: "Innervates intrinsic hand muscles and sensation"}
+                    {title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)", isInjurySite: false},
+                    {title: "Upper Arm", desc: "Travels down medial aspect of arm", isInjurySite: false},
+                    {title: "Cubital Tunnel", desc: "Passes through cubital tunnel under Osborne's band behind medial epicondyle (most common entrapment)", isInjurySite: true},
+                    {title: "Forearm", desc: "Travels between FCU and FDP in forearm", isInjurySite: false},
+                    {title: "Guyon's Canal", desc: "Passes through Guyon's canal at wrist (volar carpal ligament roof)", isInjurySite: true},
+                    {title: "Hand Division", desc: "Splits into superficial and deep branches", isInjurySite: false},
+                    {title: "Hand Muscles", desc: "Innervates intrinsic hand muscles and sensation", isInjurySite: false}
                 ]
             },
             radial: {
@@ -2068,12 +2068,12 @@
                 image: "Nerve Paths/Radial Nerve.png",
                 story: "The Radial Rebel is the strong, silent type from the posterior cord, packing the full power of C5-T1. This mighty nerve takes the back route down the arm, spiraling around the humerus in the famous spiral groove like a roller coaster. He's the extension expert, powering all the muscles that straighten the elbow, lift the wrist, and extend the fingers. His most vulnerable moment comes at the spiral groove, where a broken humerus can leave him bruised and beaten, causing the dreaded 'wrist drop.'",
                 steps: [
-                    {title: "Origin", desc: "Arises from posterior cord (C5-T1)"},
-                    {title: "Spiral Groove", desc: "Travels in spiral groove of humerus (vulnerable point)"},
-                    {title: "Lateral Arm", desc: "Emerges laterally, pierces lateral intermuscular septum"},
-                    {title: "Elbow Division", desc: "Divides into superficial and deep (PIN) branches"},
-                    {title: "Posterior Forearm", desc: "PIN innervates extensor muscles"},
-                    {title: "Dorsal Hand", desc: "Superficial branch provides dorsal hand sensation"}
+                    {title: "Origin", desc: "Arises from posterior cord (C5-T1)", isInjurySite: false},
+                    {title: "Spiral Groove", desc: "Travels in spiral groove of humerus directly on bone (most vulnerable point for compression/fracture)", isInjurySite: true},
+                    {title: "Lateral Arm", desc: "Emerges laterally, pierces lateral intermuscular septum", isInjurySite: false},
+                    {title: "Elbow Division", desc: "Divides into superficial and deep (PIN) branches", isInjurySite: false},
+                    {title: "Posterior Forearm", desc: "PIN passes through arcade of Frohse at supinator (compression site)", isInjurySite: true},
+                    {title: "Dorsal Hand", desc: "Superficial branch provides dorsal hand sensation", isInjurySite: false}
                 ]
             },
             musculocutaneous: {
@@ -2082,12 +2082,12 @@
                 image: "Nerve Paths/Musculocutaneous Nerve.png",
                 story: "The Musculocutaneous Marvel begins at the lateral cord headquarters in the brachial plexus, carrying orders from C5-C7. This sturdy nerve pierces through the coracobrachialis muscle like a determined warrior, then travels between the biceps brachii and brachialis muscles, supervising their every flex. As it approaches the elbow, it transforms into the lateral cutaneous nerve of the forearm, spreading its sensory network across the lateral forearm like a protective shield.",
                 steps: [
-                    {title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)"},
-                    {title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle"},
-                    {title: "Biceps Brachii", desc: "Innervates biceps brachii"},
-                    {title: "Brachialis", desc: "Innervates lateral part of brachialis"},
-                    {title: "Lateral Cutaneous", desc: "Becomes lateral cutaneous nerve of forearm"},
-                    {title: "Forearm Sensation", desc: "Provides sensation to lateral forearm"}
+                    {title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)", isInjurySite: false},
+                    {title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle", isInjurySite: false},
+                    {title: "Biceps Brachii", desc: "Innervates biceps brachii", isInjurySite: false},
+                    {title: "Brachialis", desc: "Innervates lateral part of brachialis", isInjurySite: false},
+                    {title: "Lateral Cutaneous", desc: "Becomes lateral cutaneous nerve of forearm", isInjurySite: false},
+                    {title: "Forearm Sensation", desc: "Provides sensation to lateral forearm", isInjurySite: false}
                 ]
             },
             axillary: {
@@ -2096,12 +2096,12 @@
                 image: "Nerve Paths/Axillary Nerve.png",
                 story: "The Axillary Ambassador emerges from the posterior cord, carrying the strength of C5 and C6. This diplomatic nerve travels posteriorly around the surgical neck of the humerus, navigating through the quadrilateral space like a secret agent. It has two important missions: powering the mighty deltoid muscle and providing sensation to the shoulder's badge of honor - that small patch of skin over the deltoid that soldiers call the 'regimental patch'.",
                 steps: [
-                    {title: "Origin", desc: "Arises from posterior cord (C5-C6)"},
-                    {title: "Quadrilateral Space", desc: "Passes through quadrilateral space"},
-                    {title: "Surgical Neck", desc: "Wraps around surgical neck of humerus"},
-                    {title: "Deltoid Motor", desc: "Innervates deltoid muscle"},
-                    {title: "Teres Minor", desc: "Innervates teres minor muscle"},
-                    {title: "Cutaneous Branch", desc: "Provides sensation over deltoid (regimental patch)"}
+                    {title: "Origin", desc: "Arises from posterior cord (C5-C6)", isInjurySite: false},
+                    {title: "Quadrilateral Space", desc: "Passes through quadrilateral space", isInjurySite: false},
+                    {title: "Surgical Neck", desc: "Wraps around surgical neck of humerus (vulnerable to fracture)", isInjurySite: true},
+                    {title: "Deltoid Motor", desc: "Innervates deltoid muscle", isInjurySite: false},
+                    {title: "Teres Minor", desc: "Innervates teres minor muscle", isInjurySite: false},
+                    {title: "Cutaneous Branch", desc: "Provides sensation over deltoid (regimental patch)", isInjurySite: false}
                 ]
             },
             femoral: {
@@ -2110,12 +2110,12 @@
                 image: "Nerve Paths/Femoral Nerve.png",
                 story: "The Femoral General emerges from the lumbar plexus with the authority of L2-L4. This commanding nerve travels under the inguinal ligament like a VIP passing through customs, then spreads its influence across the anterior thigh. It's the knee extension expert, powering the mighty quadriceps muscle group while also providing sensation down the medial leg via its saphenous branch - the longest sensory nerve in the body!",
                 steps: [
-                    {title: "Origin", desc: "Forms from lumbar plexus (L2-L4)"},
-                    {title: "Inguinal Ligament", desc: "Passes under inguinal ligament"},
-                    {title: "Femoral Triangle", desc: "Enters femoral triangle"},
-                    {title: "Quadriceps", desc: "Innervates quadriceps muscle group"},
-                    {title: "Saphenous Branch", desc: "Gives off saphenous nerve"},
-                    {title: "Medial Leg", desc: "Saphenous nerve provides sensation to medial leg"}
+                    {title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false},
+                    {title: "Inguinal Ligament", desc: "Passes under inguinal ligament", isInjurySite: false},
+                    {title: "Femoral Triangle", desc: "Enters femoral triangle", isInjurySite: false},
+                    {title: "Quadriceps", desc: "Innervates quadriceps muscle group", isInjurySite: false},
+                    {title: "Saphenous Branch", desc: "Gives off saphenous nerve", isInjurySite: false},
+                    {title: "Medial Leg", desc: "Saphenous nerve provides sensation to medial leg", isInjurySite: false}
                 ]
             },
             tibial: {
@@ -2124,12 +2124,12 @@
                 image: "Nerve Paths/Tibial Nerve.png",
                 story: "The Tibial Traveler is one half of the mighty sciatic nerve's legacy, carrying the plantarflexion power of L4-S3. After the sciatic nerve splits at the popliteal fossa, this nerve takes the deep route down the posterior leg, traveling through the tarsal tunnel at the ankle like a train through a mountain pass. It's the pointing-toes expert, controlling all the muscles that push the foot down and curl the toes.",
                 steps: [
-                    {title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)"},
-                    {title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation"},
-                    {title: "Posterior Leg", desc: "Travels down posterior compartment"},
-                    {title: "Plantarflexors", desc: "Innervates calf muscles and deep compartment"},
-                    {title: "Tarsal Tunnel", desc: "Passes through tarsal tunnel at ankle"},
-                    {title: "Foot Muscles", desc: "Innervates intrinsic foot muscles"}
+                    {title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)", isInjurySite: false},
+                    {title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation", isInjurySite: false},
+                    {title: "Posterior Leg", desc: "Travels down posterior compartment", isInjurySite: false},
+                    {title: "Plantarflexors", desc: "Innervates calf muscles and deep compartment", isInjurySite: false},
+                    {title: "Tarsal Tunnel", desc: "Passes through tarsal tunnel under flexor retinaculum at medial ankle (entrapment site)", isInjurySite: true},
+                    {title: "Foot Muscles", desc: "Divides into medial and lateral plantar nerves for intrinsic foot muscles", isInjurySite: false}
                 ]
             },
             peroneal: {
@@ -2139,12 +2139,12 @@
                 deepImage: "Nerve Paths/Deep Fibular Nerve.png",
                 story: "The Peroneal Pioneer, also known as the Common Fibular nerve, is an adventurous branch of the mighty sciatic nerve. This nerve loves taking the scenic route around the fibular head, making it vulnerable but vital for foot function. It splits into two explorers: the superficial peroneal (the ankle evertor) and the deep peroneal (the toe lifter), each with their own important territories to govern in the lower leg and foot.",
                 steps: [
-                    {title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)"},
-                    {title: "Fibular Head", desc: "Wraps around fibular head (vulnerable point)"},
-                    {title: "Superficial Branch", desc: "Gives off superficial peroneal nerve"},
-                    {title: "Deep Branch", desc: "Continues as deep peroneal nerve"},
-                    {title: "Ankle Muscles", desc: "Innervates ankle dorsiflexors and everters"},
-                    {title: "Foot Sensation", desc: "Provides sensation to dorsal foot and web spaces"}
+                    {title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)", isInjurySite: false},
+                    {title: "Fibular Head", desc: "Wraps around fibular neck through fibular tunnel (most common lower extremity mononeuropathy)", isInjurySite: true},
+                    {title: "Superficial Branch", desc: "Gives off superficial peroneal nerve for ankle eversion", isInjurySite: false},
+                    {title: "Deep Branch", desc: "Continues as deep peroneal nerve for ankle dorsiflexion", isInjurySite: false},
+                    {title: "Anterior Tarsal Tunnel", desc: "Deep peroneal passes under inferior extensor retinaculum at ankle (rare entrapment)", isInjurySite: true},
+                    {title: "Foot", desc: "Provides motor to foot extensors and sensation to dorsal foot and first web space", isInjurySite: false}
                 ]
             },
             sciatic: {
@@ -2153,12 +2153,12 @@
                 image: "Nerve Paths/Sciatic Nerve.png",
                 story: "The Sciatic Supreme is the body's largest and most powerful nerve, combining the might of the lumbar and sacral plexuses. This heavyweight champion travels through the greater sciatic foramen, then runs down the posterior thigh like a mighty river. At the popliteal fossa, it typically splits into its two famous branches: the tibial nerve (the plantarflexion powerhouse) and the common peroneal nerve (the dorsiflexion dynamo).",
                 steps: [
-                    {title: "Origin", desc: "Forms from sacral plexus (L4-S3)"},
-                    {title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen"},
-                    {title: "Posterior Thigh", desc: "Travels down posterior thigh"},
-                    {title: "Hamstring Muscles", desc: "Innervates hamstring muscles"},
-                    {title: "Popliteal Fossa", desc: "Reaches popliteal fossa"},
-                    {title: "Bifurcation", desc: "Splits into tibial and common peroneal nerves"}
+                    {title: "Origin", desc: "Forms from sacral plexus (L4-S3)", isInjurySite: false},
+                    {title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen", isInjurySite: false},
+                    {title: "Posterior Thigh", desc: "Travels down posterior thigh", isInjurySite: false},
+                    {title: "Hamstring Muscles", desc: "Innervates hamstring muscles", isInjurySite: false},
+                    {title: "Popliteal Fossa", desc: "Reaches popliteal fossa", isInjurySite: false},
+                    {title: "Bifurcation", desc: "Splits into tibial and common peroneal nerves", isInjurySite: false}
                 ]
             },
             obturator: {
@@ -2167,12 +2167,12 @@
                 image: "Nerve Paths/Obturator Nerve.png",
                 story: "The Obturator Officer is a specialized nerve with a unique mission: controlling hip adduction. Born from the lumbar plexus, this nerve takes an unusual route through the obturator foramen (hence its name), like a secret tunnel through the pelvis. It divides into anterior and posterior branches to command the adductor muscle army, helping bring the legs together and stabilize the hip during walking.",
                 steps: [
-                    {title: "Origin", desc: "Arises from lumbar plexus (L2-L4)"},
-                    {title: "Obturator Foramen", desc: "Passes through obturator foramen"},
-                    {title: "Anterior Branch", desc: "Splits into anterior branch"},
-                    {title: "Posterior Branch", desc: "Splits into posterior branch"},
-                    {title: "Adductor Muscles", desc: "Innervates adductor muscle group"},
-                    {title: "Hip Sensation", desc: "Provides sensation to medial thigh"}
+                    {title: "Origin", desc: "Arises from lumbar plexus (L2-L4)", isInjurySite: false},
+                    {title: "Obturator Foramen", desc: "Passes through obturator foramen", isInjurySite: false},
+                    {title: "Anterior Branch", desc: "Splits into anterior branch", isInjurySite: false},
+                    {title: "Posterior Branch", desc: "Splits into posterior branch", isInjurySite: false},
+                    {title: "Adductor Muscles", desc: "Innervates adductor muscle group", isInjurySite: false},
+                    {title: "Hip Sensation", desc: "Provides sensation to medial thigh", isInjurySite: false}
                 ]
             }
         };
@@ -2239,36 +2239,80 @@
             }
         };
 
+        // Define showStep with RED/GREEN injury highlighting + click functionality
         window.showStep = function(stepIndex) {
             const explorer = window.pathwayExplorer;
             if (!explorer.currentNerve || stepIndex < 0 || stepIndex >= explorer.maxSteps) return;
 
             explorer.currentStep = stepIndex;
 
-            const stepsElement = document.getElementById('pathway-steps');
-            if (stepsElement) {
-                let stepsHtml = '';
-                for (let i = 0; i < explorer.currentNerve.steps.length; i++) {
-                    const s = explorer.currentNerve.steps[i];
-                    const bgColor = i === stepIndex ? '#f0fdf4' : (i < stepIndex ? '#ecfdf5' : '#f9fafb');
-                    const borderColor = i <= stepIndex ? '#10b981' : '#e5e7eb';
-                    const titleColor = i <= stepIndex ? '#059669' : '#6b7280';
-                    const descColor = i <= stepIndex ? '#374151' : '#9ca3af';
+            // Build HTML with RED for injuries, GREEN for normal
+            const stepsHtml = explorer.currentNerve.steps.map((s, i) => {
+                const isInjury = s.isInjurySite;
+                const isCurrent = i === stepIndex;
+                const isFuture = i > stepIndex;
 
-                    stepsHtml += '<div style="padding: 10px; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid ' + borderColor + '; background: ' + bgColor + ';"><div style="font-weight: 600; color: ' + titleColor + '; margin-bottom: 4px;">' + (i + 1) + '. ' + s.title + '</div><div style="color: ' + descColor + '; font-size: 0.95em;">' + s.desc + '</div></div>';
+                let borderColor, bgColor, textColor, icon;
+
+                if (isFuture) {
+                    borderColor = '#e5e7eb';
+                    bgColor = '#f9fafb';
+                    textColor = '#6b7280';
+                    icon = `${i + 1}.`;
+                } else if (isInjury) {
+                    borderColor = '#dc2626';
+                    bgColor = isCurrent ? '#fee2e2' : '#fef2f2';
+                    textColor = isCurrent ? '#991b1b' : '#dc2626';
+                    icon = `⚠️ ${i + 1}.`;
+                } else {
+                    borderColor = '#10b981';
+                    bgColor = isCurrent ? '#f0fdf4' : '#ecfdf5';
+                    textColor = isCurrent ? '#047857' : '#059669';
+                    icon = `${i + 1}.`;
                 }
-                stepsElement.innerHTML = stepsHtml;
-            }
 
+                return `<div style="padding: 10px; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid ${borderColor}; background: ${bgColor};">
+                    <div style="font-weight: 600; color: ${textColor}; margin-bottom: 4px;">
+                        ${icon} ${s.title}
+                    </div>
+                    <div style="color: ${isFuture ? '#9ca3af' : '#374151'}; font-size: 0.95em;">
+                        ${s.desc}
+                    </div>
+                </div>`;
+            }).join('');
+
+            const clickHint = stepIndex === explorer.maxSteps - 1 ? '' :
+                '<div style="position: absolute; bottom: 10px; right: 15px; color: #94a3b8; font-size: 0.8em; opacity: 0.7;">Click anywhere to advance →</div>';
+
+            document.getElementById('pathway-steps').innerHTML = stepsHtml + clickHint;
+
+            // Update prev button
             const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
             if (prevBtn) {
                 prevBtn.disabled = stepIndex === 0;
                 prevBtn.style.opacity = stepIndex === 0 ? '0.5' : '1';
             }
-            if (nextBtn) {
-                nextBtn.disabled = stepIndex === explorer.maxSteps - 1;
-                nextBtn.style.opacity = stepIndex === explorer.maxSteps - 1 ? '0.5' : '1';
+
+            // Set up click-to-advance functionality
+            const pathwayBox = document.getElementById('pathway-steps');
+            if (stepIndex === explorer.maxSteps - 1) {
+                pathwayBox.style.cursor = 'default';
+                pathwayBox.onclick = null;
+            } else {
+                pathwayBox.style.cursor = 'pointer';
+                pathwayBox.onclick = window.nextStep;
+                pathwayBox.onmouseover = function() {
+                    this.style.backgroundColor = '#f0f9ff';
+                    this.style.borderColor = '#0ea5e9';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(14, 165, 233, 0.15)';
+                };
+                pathwayBox.onmouseout = function() {
+                    this.style.backgroundColor = 'white';
+                    this.style.borderColor = '#bae6fd';
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                };
             }
         };
 

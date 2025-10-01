@@ -882,6 +882,64 @@ function generateEMGIntroductionContent(module) {
                 </div>
             </div>
 
+            ${generateModuleQuiz([
+                {
+                    question: "What is the PRIMARY goal of every electrodiagnostic (EDX) study?",
+                    options: [
+                        "To diagnose a specific disease",
+                        "To localize the disorder",
+                        "To determine prognosis",
+                        "To measure nerve conduction velocity"
+                    ],
+                    correct: 1,
+                    explanation: "The principal goal of every EDX study is to LOCALIZE the disorder. Once localized, the differential diagnosis is dramatically narrowed. EDX studies help determine whether a disorder is neuropathic, myopathic, at the neuromuscular junction, or central."
+                },
+                {
+                    question: "Why must NCS and needle EMG always be performed together during the same session?",
+                    options: [
+                        "For billing purposes",
+                        "To save time",
+                        "They are complementary and yield the greatest diagnostic information together",
+                        "Insurance requirements mandate it"
+                    ],
+                    correct: 2,
+                    explanation: "NCS and needle EMG are COMPLEMENTARY examinations that must always be performed together during the same setting because they yield the greatest diagnostic information when combined. They evaluate different aspects of neuromuscular function."
+                },
+                {
+                    question: "What is a critical principle when planning an EDX study?",
+                    options: [
+                        "Study every available nerve and muscle systematically",
+                        "Focus only on the symptomatic area",
+                        "Individualize the study based on exam findings and differential diagnosis",
+                        "Always follow a standardized protocol regardless of presentation"
+                    ],
+                    correct: 2,
+                    explanation: "The study must be INDIVIDUALIZED based on the neurologic examination and differential diagnosis, and modified in real time as the study progresses. It is neither desirable nor practical to study all nerves and muscles - a directed exam is most appropriate."
+                },
+                {
+                    question: "In neuropathic localization, what distinguishes a plexopathy from a radiculopathy on EDX?",
+                    options: [
+                        "Plexopathy shows normal paraspinal muscles, radiculopathy shows abnormal paraspinals",
+                        "Radiculopathy affects only sensory fibers",
+                        "Plexopathy never shows sensory changes",
+                        "They cannot be distinguished electrodiagnostically"
+                    ],
+                    correct: 0,
+                    explanation: "A key differentiator is that RADICULOPATHY shows abnormal paraspinal muscles (serratus anterior, rhomboids) because the lesion is proximal to these nerve branches, while PLEXOPATHY shows NORMAL paraspinals because the lesion is distal to where these nerves branch off from the roots."
+                },
+                {
+                    question: "What is a fundamental principle regarding the interpretation of subclinical EDX findings?",
+                    options: [
+                        "All abnormalities found should be reported regardless of symptoms",
+                        "Subclinical findings should drive treatment decisions",
+                        "Abnormal findings without corresponding clinical symptoms should not drive clinical decision-making",
+                        "Age-related changes are always pathological"
+                    ],
+                    correct: 2,
+                    explanation: "Age-related changes, anatomical variants, and subclinical findings should NOT drive clinical decision-making without corresponding symptoms and signs. The clinical examination and patient symptoms must guide interpretation - EDX studies are an extension of the clinical exam, not a replacement for it."
+                }
+            ])}
+
         </div>
     `;
 }
@@ -2833,6 +2891,65 @@ function generateBasicPatternsContent(module) {
                     </div>
                 </div>
             </div>
+
+            ${generateModuleQuiz([
+                {
+                    question: "In systematic EMG pattern analysis, what are the THREE key parameters that must be evaluated?",
+                    options: [
+                        "Morphology, Stability, and Firing Characteristics",
+                        "Amplitude, Duration, and Frequency",
+                        "Sound, Shape, and Speed",
+                        "Recruitment, Rhythm, and Rate"
+                    ],
+                    correct: 0,
+                    explanation: "The three key parameters for systematic EMG pattern analysis are: (1) MORPHOLOGY (duration, amplitude, phases, initial deflection, shape), (2) STABILITY (consistent vs. waxing/waning), and (3) FIRING CHARACTERISTICS (rate, pattern, rhythm, recruitment, voluntary control)."
+                },
+                {
+                    question: "What is the characteristic sound of fibrillation potentials on EMG?",
+                    options: [
+                        "Machine-like regular pattern",
+                        "Rain on tin roof",
+                        "Marching soldiers",
+                        "Seashell sound"
+                    ],
+                    correct: 1,
+                    explanation: "Fibrillations produce a characteristic 'rain on tin roof' sound. These are brief spikes (1-5ms duration) firing regularly at 0.5-10Hz, indicating active denervation from radiculopathy, neuropathy, or motor neuron disease. They appear 1-3 weeks post-denervation."
+                },
+                {
+                    question: "Complex repetitive discharges (CRDs) are characterized by what distinctive feature?",
+                    options: [
+                        "Grouped bursts with inter-burst intervals",
+                        "Perfectly regular machine-like discharges at 5-100Hz",
+                        "Waxing and waning amplitude",
+                        "Brief duration less than 1ms"
+                    ],
+                    correct: 1,
+                    explanation: "CRDs are characterized by perfectly regular 'machine-like' discharges at 5-100Hz. They result from ephaptic transmission between time-linked denervated muscle fibers and are seen in chronic neuropathic/myopathic conditions."
+                },
+                {
+                    question: "What is the clinical significance of myokymic discharges?",
+                    options: [
+                        "Always indicate motor neuron disease",
+                        "Grouped repetitive discharges of the same MUAP often associated with radiation plexopathy, MS, or Guillain-Barré",
+                        "Normal finding in healthy muscle",
+                        "Only seen in myopathies"
+                    ],
+                    correct: 1,
+                    explanation: "Myokymic discharges are grouped repetitive discharges of the same motor unit with a characteristic 'marching soldiers' sound. They fire at 1-5Hz (interburst) and 5-60Hz (intraburst), and are commonly associated with radiation plexopathy, MS (facial), and Guillain-Barré syndrome."
+                },
+                {
+                    question: "How can you distinguish endplate spikes (normal) from pathologic fibrillations?",
+                    options: [
+                        "Endplate spikes have initial negative deflection; fibrillations have initial positive deflection",
+                        "Endplate spikes are larger in amplitude",
+                        "Endplate spikes fire faster",
+                        "There is no difference"
+                    ],
+                    correct: 0,
+                    explanation: "The KEY DIFFERENTIATOR is the initial deflection: Endplate spikes have an INITIAL NEGATIVE deflection (needle-induced terminal nerve twig irritation at NMJ), while pathologic fibrillations have an INITIAL POSITIVE deflection. Both are brief and regular, making this distinction critical."
+                }
+            ])}
+
         </div>
     `;
 }
@@ -5431,28 +5548,12 @@ function generatePlexusAnatomyContent(module) {
                 </div>
             </div>
 
-            <!-- Interactive Quiz -->
-            <div class="quiz-section">
-                <h4 style="color: #7c2d12; margin-bottom: 20px;">🧠 Plexus Knowledge Check</h4>
-                <div style="background: #fef7f0; padding: 20px; border-radius: 12px; border: 2px solid rgba(234, 88, 12, 0.2);">
-                    <p style="font-size: 1.1em; margin-bottom: 15px; color: #1f2937;">
-                        A patient has weakness in thumb abduction and thenar atrophy, but normal median nerve
-                        sensory responses. Which location is MOST likely?
-                    </p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="checkPlexusAnswer(this, false)">Carpal tunnel syndrome</button>
-                        <button class="quiz-option" onclick="checkPlexusAnswer(this, true)">Anterior interosseous nerve syndrome</button>
-                        <button class="quiz-option" onclick="checkPlexusAnswer(this, false)">C8 radiculopathy</button>
-                        <button class="quiz-option" onclick="checkPlexusAnswer(this, false)">Radial nerve</button>
-                        <button class="quiz-option" onclick="checkPlexusAnswer(this, false)">Ulnar nerve</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <script>
             // Pathway Explorer JavaScript - defined in global scope
-            if (typeof window.pathwayExplorer === 'undefined') {
+            console.log("DEBUG FORCE INITIALIZING PATHWAY EXPLORER WITH INJURY SITES!");
+            window.pathwayExplorer = {};
                 window.pathwayExplorer = {};
 
                 window.pathwayExplorer.currentNerve = null;
@@ -5465,13 +5566,13 @@ function generatePlexusAnatomyContent(module) {
                         roots: "C6-T1",
                         story: "The Median Messenger starts his epic journey at the bustling Brachial Plexus Central Station (C6-T1), where lateral and medial cords shake hands to form our hero. He travels down the arm like a VIP, riding the bicipital groove limousine between the Biceps and Brachialis neighborhoods. At the Cubital Fossa rest stop, he takes a breather medial to the brachial artery before squeezing through the narrow Pronator Teres tunnel. His faithful sidekick, the Anterior Interosseous branch, splits off to handle the deep muscle work while our main character continues toward his final destination: the infamous Carpal Tunnel! After surviving this tight squeeze, he emerges victorious in the hand, ready to command the LOAF muscles like a general commanding his troops!",
                         steps: [
-                            {title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)"},
-                            {title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove"},
-                            {title: "Cubital Fossa", desc: "Passes medial to brachial artery"},
-                            {title: "Forearm Entry", desc: "Passes between heads of pronator teres"},
-                            {title: "AIN Branch", desc: "Gives off anterior interosseous nerve"},
-                            {title: "Carpal Tunnel", desc: "Passes through carpal tunnel"},
-                            {title: "Hand", desc: "Divides into branches for thenar muscles (LOAF)"}
+                            {title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false},
+                            {title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false},
+                            {title: "Cubital Fossa", desc: "Passes medial to brachial artery", isInjurySite: false},
+                            {title: "Forearm Entry", desc: "Passes between heads of pronator teres (common entrapment site)", isInjurySite: true},
+                            {title: "AIN Branch", desc: "Gives off anterior interosseous nerve", isInjurySite: false},
+                            {title: "Carpal Tunnel", desc: "Passes through carpal tunnel under transverse carpal ligament (most common entrapment)", isInjurySite: true},
+                            {title: "Hand", desc: "Divides into branches for thenar muscles (LOAF)", isInjurySite: false}
                         ]
                     },
                     ulnar: {
@@ -5479,13 +5580,13 @@ function generatePlexusAnatomyContent(module) {
                         roots: "C8-T1",
                         story: "The Ulnar Underdog begins as the lone ranger from the medial cord, carrying the pure power of C8 and T1. He travels down the arm, taking the scenic route around the medial epicondyle at the elbow - that famous 'funny bone' spot where everyone's felt his electric personality! He slides through Guyon's canal at the wrist like a secret agent, then splits his mission: the deep branch heads to the interossei (the hand's fine motor specialists), while the superficial branch handles sensation for the pinky side of life.",
                         steps: [
-                            {title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)"},
-                            {title: "Upper Arm", desc: "Travels down medial aspect of arm"},
-                            {title: "Cubital Tunnel", desc: "Passes through cubital tunnel behind medial epicondyle"},
-                            {title: "Forearm", desc: "Travels between FCU and FDP in forearm"},
-                            {title: "Guyon's Canal", desc: "Passes through Guyon's canal at wrist"},
-                            {title: "Hand Division", desc: "Splits into superficial and deep branches"},
-                            {title: "Hand Muscles", desc: "Innervates intrinsic hand muscles and sensation"}
+                            {title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)", isInjurySite: false},
+                            {title: "Upper Arm", desc: "Travels down medial aspect of arm", isInjurySite: false},
+                            {title: "Cubital Tunnel", desc: "Passes through cubital tunnel under Osborne's band behind medial epicondyle (most common entrapment)", isInjurySite: true},
+                            {title: "Forearm", desc: "Travels between FCU and FDP in forearm", isInjurySite: false},
+                            {title: "Guyon's Canal", desc: "Passes through Guyon's canal at wrist (volar carpal ligament roof)", isInjurySite: true},
+                            {title: "Hand Division", desc: "Splits into superficial and deep branches", isInjurySite: false},
+                            {title: "Hand Muscles", desc: "Innervates intrinsic hand muscles and sensation", isInjurySite: false}
                         ]
                     },
                     radial: {
@@ -5493,12 +5594,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "C5-T1",
                         story: "The Radial Rebel is the strong, silent type from the posterior cord, packing the full power of C5-T1. This mighty nerve takes the back route down the arm, spiraling around the humerus in the famous spiral groove like a roller coaster. He's the extension expert, powering all the muscles that straighten the elbow, lift the wrist, and extend the fingers. His most vulnerable moment comes at the spiral groove, where a broken humerus can leave him bruised and beaten, causing the dreaded 'wrist drop.'",
                         steps: [
-                            {title: "Origin", desc: "Arises from posterior cord (C5-T1)"},
-                            {title: "Spiral Groove", desc: "Travels in spiral groove of humerus (vulnerable point)"},
-                            {title: "Lateral Arm", desc: "Emerges laterally, pierces lateral intermuscular septum"},
-                            {title: "Elbow Division", desc: "Divides into superficial and deep (PIN) branches"},
-                            {title: "Posterior Forearm", desc: "PIN innervates extensor muscles"},
-                            {title: "Dorsal Hand", desc: "Superficial branch provides dorsal hand sensation"}
+                            {title: "Origin", desc: "Arises from posterior cord (C5-T1)", isInjurySite: false},
+                            {title: "Spiral Groove", desc: "Travels in spiral groove of humerus directly on bone (most vulnerable point for compression/fracture)", isInjurySite: true},
+                            {title: "Lateral Arm", desc: "Emerges laterally, pierces lateral intermuscular septum", isInjurySite: false},
+                            {title: "Elbow Division", desc: "Divides into superficial and deep (PIN) branches", isInjurySite: false},
+                            {title: "Posterior Forearm", desc: "PIN passes through arcade of Frohse at supinator (compression site)", isInjurySite: true},
+                            {title: "Dorsal Hand", desc: "Superficial branch provides dorsal hand sensation", isInjurySite: false}
                         ]
                     },
                     musculocutaneous: {
@@ -5506,12 +5607,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "C5-C7",
                         story: "The Musculocutaneous Marvel begins at the lateral cord headquarters in the brachial plexus, carrying orders from C5-C7. This sturdy nerve pierces through the coracobrachialis muscle like a determined warrior, then travels between the biceps brachii and brachialis muscles, supervising their every flex. As it approaches the elbow, it transforms into the lateral cutaneous nerve of the forearm, spreading its sensory network across the lateral forearm like a protective shield.",
                         steps: [
-                            {title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)"},
-                            {title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle"},
-                            {title: "Biceps Brachii", desc: "Innervates biceps brachii"},
-                            {title: "Brachialis", desc: "Innervates lateral part of brachialis"},
-                            {title: "Lateral Cutaneous", desc: "Becomes lateral cutaneous nerve of forearm"},
-                            {title: "Forearm Sensation", desc: "Provides sensation to lateral forearm"}
+                            {title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)", isInjurySite: false},
+                            {title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle", isInjurySite: false},
+                            {title: "Biceps Brachii", desc: "Innervates biceps brachii", isInjurySite: false},
+                            {title: "Brachialis", desc: "Innervates lateral part of brachialis", isInjurySite: false},
+                            {title: "Lateral Cutaneous", desc: "Becomes lateral cutaneous nerve of forearm", isInjurySite: false},
+                            {title: "Forearm Sensation", desc: "Provides sensation to lateral forearm", isInjurySite: false}
                         ]
                     },
                     axillary: {
@@ -5519,12 +5620,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "C5-C6",
                         story: "The Axillary Ambassador emerges from the posterior cord, carrying the strength of C5 and C6. This diplomatic nerve travels posteriorly around the surgical neck of the humerus, navigating through the quadrilateral space like a secret agent. It has two important missions: powering the mighty deltoid muscle and providing sensation to the shoulder's badge of honor - that small patch of skin over the deltoid that soldiers call the 'regimental patch'.",
                         steps: [
-                            {title: "Origin", desc: "Arises from posterior cord (C5-C6)"},
-                            {title: "Quadrilateral Space", desc: "Passes through quadrilateral space"},
-                            {title: "Surgical Neck", desc: "Wraps around surgical neck of humerus"},
-                            {title: "Deltoid Motor", desc: "Innervates deltoid muscle"},
-                            {title: "Teres Minor", desc: "Innervates teres minor muscle"},
-                            {title: "Cutaneous Branch", desc: "Provides sensation over deltoid (regimental patch)"}
+                            {title: "Origin", desc: "Arises from posterior cord (C5-C6)", isInjurySite: false},
+                            {title: "Quadrilateral Space", desc: "Passes through quadrilateral space", isInjurySite: false},
+                            {title: "Surgical Neck", desc: "Wraps around surgical neck of humerus (vulnerable to fracture)", isInjurySite: true},
+                            {title: "Deltoid Motor", desc: "Innervates deltoid muscle", isInjurySite: false},
+                            {title: "Teres Minor", desc: "Innervates teres minor muscle", isInjurySite: false},
+                            {title: "Cutaneous Branch", desc: "Provides sensation over deltoid (regimental patch)", isInjurySite: false}
                         ]
                     },
                     femoral: {
@@ -5532,12 +5633,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "L2-L4",
                         story: "The Femoral General emerges from the lumbar plexus with the authority of L2-L4. This commanding nerve travels under the inguinal ligament like a VIP passing through customs, then spreads its influence across the anterior thigh. It's the knee extension expert, powering the mighty quadriceps muscle group while also providing sensation down the medial leg via its saphenous branch - the longest sensory nerve in the body!",
                         steps: [
-                            {title: "Origin", desc: "Forms from lumbar plexus (L2-L4)"},
-                            {title: "Inguinal Ligament", desc: "Passes under inguinal ligament"},
-                            {title: "Femoral Triangle", desc: "Enters femoral triangle"},
-                            {title: "Quadriceps", desc: "Innervates quadriceps muscle group"},
-                            {title: "Saphenous Branch", desc: "Gives off saphenous nerve"},
-                            {title: "Medial Leg", desc: "Saphenous nerve provides sensation to medial leg"}
+                            {title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false},
+                            {title: "Inguinal Ligament", desc: "Passes under inguinal ligament", isInjurySite: false},
+                            {title: "Femoral Triangle", desc: "Enters femoral triangle", isInjurySite: false},
+                            {title: "Quadriceps", desc: "Innervates quadriceps muscle group", isInjurySite: false},
+                            {title: "Saphenous Branch", desc: "Gives off saphenous nerve", isInjurySite: false},
+                            {title: "Medial Leg", desc: "Saphenous nerve provides sensation to medial leg", isInjurySite: false}
                         ]
                     },
                     tibial: {
@@ -5545,12 +5646,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "L4-S3",
                         story: "The Tibial Traveler is one half of the mighty sciatic nerve's legacy, carrying the plantarflexion power of L4-S3. After the sciatic nerve splits at the popliteal fossa, this nerve takes the deep route down the posterior leg, traveling through the tarsal tunnel at the ankle like a train through a mountain pass. It's the pointing-toes expert, controlling all the muscles that push the foot down and curl the toes.",
                         steps: [
-                            {title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)"},
-                            {title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation"},
-                            {title: "Posterior Leg", desc: "Travels down posterior compartment"},
-                            {title: "Plantarflexors", desc: "Innervates calf muscles and deep compartment"},
-                            {title: "Tarsal Tunnel", desc: "Passes through tarsal tunnel at ankle"},
-                            {title: "Foot Muscles", desc: "Innervates intrinsic foot muscles"}
+                            {title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)", isInjurySite: false},
+                            {title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation", isInjurySite: false},
+                            {title: "Posterior Leg", desc: "Travels down posterior compartment", isInjurySite: false},
+                            {title: "Plantarflexors", desc: "Innervates calf muscles and deep compartment", isInjurySite: false},
+                            {title: "Tarsal Tunnel", desc: "Passes through tarsal tunnel under flexor retinaculum at medial ankle (entrapment site)", isInjurySite: true},
+                            {title: "Foot Muscles", desc: "Divides into medial and lateral plantar nerves for intrinsic foot muscles", isInjurySite: false}
                         ]
                     },
                     peroneal: {
@@ -5558,12 +5659,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "L4-S2",
                         story: "The Peroneal Pioneer, also known as the Common Fibular nerve, is an adventurous branch of the mighty sciatic nerve. This nerve loves taking the scenic route around the fibular head, making it vulnerable but vital for foot function. It splits into two explorers: the superficial peroneal (the ankle evertor) and the deep peroneal (the toe lifter), each with their own important territories to govern in the lower leg and foot.",
                         steps: [
-                            {title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)"},
-                            {title: "Fibular Head", desc: "Wraps around fibular head (vulnerable point)"},
-                            {title: "Superficial Branch", desc: "Gives off superficial peroneal nerve"},
-                            {title: "Deep Branch", desc: "Continues as deep peroneal nerve"},
-                            {title: "Ankle Muscles", desc: "Innervates ankle dorsiflexors and everters"},
-                            {title: "Foot Sensation", desc: "Provides sensation to dorsal foot and web spaces"}
+                            {title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)", isInjurySite: false},
+                            {title: "Fibular Head", desc: "Wraps around fibular neck through fibular tunnel (most common lower extremity mononeuropathy)", isInjurySite: true},
+                            {title: "Superficial Branch", desc: "Gives off superficial peroneal nerve for ankle eversion", isInjurySite: false},
+                            {title: "Deep Branch", desc: "Continues as deep peroneal nerve for ankle dorsiflexion", isInjurySite: false},
+                            {title: "Anterior Tarsal Tunnel", desc: "Deep peroneal passes under inferior extensor retinaculum at ankle (rare entrapment)", isInjurySite: true},
+                            {title: "Foot", desc: "Provides motor to foot extensors and sensation to dorsal foot and first web space", isInjurySite: false}
                         ]
                     },
                     sciatic: {
@@ -5571,12 +5672,12 @@ function generatePlexusAnatomyContent(module) {
                         roots: "L4-S3",
                         story: "The Sciatic Supreme is the body's largest and most powerful nerve, combining the might of the lumbar and sacral plexuses. This heavyweight champion travels through the greater sciatic foramen, then runs down the posterior thigh like a mighty river. At the popliteal fossa, it typically splits into its two famous branches: the tibial nerve (the plantarflexion powerhouse) and the common peroneal nerve (the dorsiflexion dynamo).",
                         steps: [
-                            {title: "Origin", desc: "Forms from sacral plexus (L4-S3)"},
-                            {title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen"},
-                            {title: "Posterior Thigh", desc: "Travels down posterior thigh"},
-                            {title: "Hamstring Muscles", desc: "Innervates hamstring muscles"},
-                            {title: "Popliteal Fossa", desc: "Reaches popliteal fossa"},
-                            {title: "Bifurcation", desc: "Splits into tibial and common peroneal nerves"}
+                            {title: "Origin", desc: "Forms from sacral plexus (L4-S3)", isInjurySite: false},
+                            {title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen", isInjurySite: false},
+                            {title: "Posterior Thigh", desc: "Travels down posterior thigh", isInjurySite: false},
+                            {title: "Hamstring Muscles", desc: "Innervates hamstring muscles", isInjurySite: false},
+                            {title: "Popliteal Fossa", desc: "Reaches popliteal fossa", isInjurySite: false},
+                            {title: "Bifurcation", desc: "Splits into tibial and common peroneal nerves", isInjurySite: false}
                         ]
                     },
                     obturator: {
@@ -5584,22 +5685,25 @@ function generatePlexusAnatomyContent(module) {
                         roots: "L2-L4",
                         story: "The Obturator Officer is a specialized nerve with a unique mission: controlling hip adduction. Born from the lumbar plexus, this nerve takes an unusual route through the obturator foramen (hence its name), like a secret tunnel through the pelvis. It divides into anterior and posterior branches to command the adductor muscle army, helping bring the legs together and stabilize the hip during walking.",
                         steps: [
-                            {title: "Origin", desc: "Arises from lumbar plexus (L2-L4)"},
-                            {title: "Obturator Foramen", desc: "Passes through obturator foramen"},
-                            {title: "Anterior Branch", desc: "Splits into anterior branch"},
-                            {title: "Posterior Branch", desc: "Splits into posterior branch"},
-                            {title: "Adductor Muscles", desc: "Innervates adductor muscle group"},
-                            {title: "Hip Sensation", desc: "Provides sensation to medial thigh"}
+                            {title: "Origin", desc: "Arises from lumbar plexus (L2-L4)", isInjurySite: false},
+                            {title: "Obturator Foramen", desc: "Passes through obturator foramen", isInjurySite: false},
+                            {title: "Anterior Branch", desc: "Splits into anterior branch", isInjurySite: false},
+                            {title: "Posterior Branch", desc: "Splits into posterior branch", isInjurySite: false},
+                            {title: "Adductor Muscles", desc: "Innervates adductor muscle group", isInjurySite: false},
+                            {title: "Hip Sensation", desc: "Provides sensation to medial thigh", isInjurySite: false}
                         ]
                     }
                 };
             }
 
             window.selectNerve = function(nerveName) {
+                console.log('DEBUG selectNerve called with:', nerveName);
                 const explorer = window.pathwayExplorer;
                 if (!explorer.nerveData[nerveName]) return;
 
                 explorer.currentNerve = explorer.nerveData[nerveName];
+                console.log('DEBUG Selected nerve data:', explorer.currentNerve);
+                console.log('DEBUG First step has isInjurySite?', explorer.currentNerve.steps[0].isInjurySite);
                 explorer.currentStep = 0;
                 explorer.maxSteps = explorer.currentNerve.steps.length;
 
@@ -5632,23 +5736,57 @@ function generatePlexusAnatomyContent(module) {
             };
 
             window.showStep = function(stepIndex) {
+                console.log('DEBUG showStep called with index:', stepIndex);
                 const explorer = window.pathwayExplorer;
                 if (!explorer.currentNerve || stepIndex < 0 || stepIndex >= explorer.maxSteps) return;
 
                 explorer.currentStep = stepIndex;
                 const step = explorer.currentNerve.steps[stepIndex];
+                console.log('DEBUG Current step:', step);
+                console.log('DEBUG Has isInjurySite flag?', step.isInjurySite);
 
-                // Update pathway steps display
-                const stepsHtml = explorer.currentNerve.steps.map((s, i) => \`
-                    <div style="padding: 10px; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid \${i <= stepIndex ? '#10b981' : '#e5e7eb'}; background: \${i === stepIndex ? '#f0fdf4' : (i < stepIndex ? '#ecfdf5' : '#f9fafb')};">
-                        <div style="font-weight: 600; color: \${i <= stepIndex ? '#059669' : '#6b7280'}; margin-bottom: 4px;">
-                            \${i + 1}. \${s.title}
+                // Update pathway steps display with RED for injury sites, GREEN for normal
+                const stepsHtml = explorer.currentNerve.steps.map((s, i) => {
+                    const isInjury = s.isInjurySite;
+                    console.log('DEBUG Step ' + i + ': ' + s.title + ', isInjury:', isInjury);
+                    const isPast = i < stepIndex;
+                    const isCurrent = i === stepIndex;
+                    const isFuture = i > stepIndex;
+
+                    // Color scheme: RED for injury sites, GREEN for normal pathway
+                    let borderColor, bgColor, textColor, icon;
+
+                    if (isFuture) {
+                        // Future steps - gray
+                        borderColor = '#e5e7eb';
+                        bgColor = '#f9fafb';
+                        textColor = '#6b7280';
+                        icon = \`\${i + 1}.\`;
+                    } else if (isInjury) {
+                        // Injury sites - RED
+                        borderColor = '#dc2626';
+                        bgColor = isCurrent ? '#fee2e2' : '#fef2f2';
+                        textColor = isCurrent ? '#991b1b' : '#dc2626';
+                        icon = \`⚠️ \${i + 1}.\`;
+                    } else {
+                        // Normal pathway - GREEN
+                        borderColor = '#10b981';
+                        bgColor = isCurrent ? '#f0fdf4' : '#ecfdf5';
+                        textColor = isCurrent ? '#047857' : '#059669';
+                        icon = \`\${i + 1}.\`;
+                    }
+
+                    return \`
+                        <div style="padding: 10px; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid \${borderColor}; background: \${bgColor};">
+                            <div style="font-weight: 600; color: \${textColor}; margin-bottom: 4px;">
+                                \${icon} \${s.title}
+                            </div>
+                            <div style="color: \${isFuture ? '#9ca3af' : '#374151'}; font-size: 0.95em;">
+                                \${s.desc}
+                            </div>
                         </div>
-                        <div style="color: \${i <= stepIndex ? '#374151' : '#9ca3af'}; font-size: 0.95em;">
-                            \${s.desc}
-                        </div>
-                    </div>
-                \`).join('');
+                    \`;
+                }).join('');
 
                 // Add click hint at the bottom if not at last step
                 const clickHint = stepIndex === explorer.maxSteps - 1 ? '' :
@@ -5706,6 +5844,64 @@ function generatePlexusAnatomyContent(module) {
                 }
             };
         </script>
+
+        ${generateModuleQuiz([
+            {
+                question: "Through which anatomical structure does the median nerve pass at the wrist?",
+                options: [
+                    "Carpal tunnel",
+                    "Guyon's canal",
+                    "Cubital tunnel",
+                    "Quadrilateral space"
+                ],
+                correct: 0,
+                explanation: "The median nerve passes through the CARPAL TUNNEL at the wrist. After traveling down the arm through the bicipital groove and passing between the heads of pronator teres in the forearm, it enters this narrow passage before dividing into branches for the thenar muscles (LOAF)."
+            },
+            {
+                question: "Where does the ulnar nerve pass at the elbow, traveling under Osborne's band behind the medial epicondyle?",
+                options: [
+                    "Through the carpal tunnel",
+                    "Through the cubital tunnel (most common ulnar entrapment site)",
+                    "Through the spiral groove",
+                    "Between the heads of pronator teres"
+                ],
+                correct: 1,
+                explanation: "The ulnar nerve passes through the CUBITAL TUNNEL under Osborne's band (the roof of the tunnel) behind the medial epicondyle at the elbow - the famous 'funny bone' spot. This is the most common site of ulnar nerve entrapment, with compression occurring at multiple potential sites including the arcade of Struthers, medial intermuscular septum, cubital tunnel proper, and the aponeurosis between FCU heads."
+            },
+            {
+                question: "What is the most vulnerable anatomical location for radial nerve injury, particularly with humeral fractures?",
+                options: [
+                    "Guyon's canal",
+                    "Carpal tunnel",
+                    "Spiral groove of the humerus",
+                    "Cubital tunnel"
+                ],
+                correct: 2,
+                explanation: "The radial nerve travels in the SPIRAL GROOVE of the humerus like a roller coaster. This is the most vulnerable location - a humeral fracture at this site can cause the dreaded 'wrist drop' due to loss of wrist and finger extension."
+            },
+            {
+                question: "After passing through Guyon's canal at the wrist, how does the ulnar nerve divide in the hand?",
+                options: [
+                    "Into superficial and deep branches",
+                    "Into medial and lateral branches",
+                    "Into anterior and posterior branches",
+                    "It does not divide"
+                ],
+                correct: 0,
+                explanation: "After sliding through Guyon's canal at the wrist like a secret agent, the ulnar nerve splits into SUPERFICIAL and DEEP branches. The deep branch heads to the interossei (fine motor specialists), while the superficial branch handles sensation for the pinky side."
+            },
+            {
+                question: "The axillary nerve wraps around which anatomical structure and provides sensation to which area?",
+                options: [
+                    "Surgical neck of humerus; sensation over deltoid (regimental patch)",
+                    "Spiral groove; dorsal hand",
+                    "Medial epicondyle; pinky finger",
+                    "Carpal tunnel; thenar eminence"
+                ],
+                correct: 0,
+                explanation: "The axillary nerve wraps around the SURGICAL NECK OF THE HUMERUS after passing through the quadrilateral space. It innervates the deltoid muscle and provides sensation to that small patch of skin over the deltoid - the 'REGIMENTAL PATCH.'"
+            }
+        ])}
     `;
 }
 
@@ -13599,3 +13795,195 @@ window.showTerminologyQuiz = function() {
 window.loadAllExamples = function() {
     filterExamples("all");
 };
+
+// ===================================================================
+// UNIVERSAL MODULE QUIZ SYSTEM
+// ===================================================================
+
+/**
+ * Generate a standardized quiz section for any module
+ * @param {Array} questions - Array of question objects with structure:
+ *   {
+ *     question: "Question text",
+ *     options: ["Option A", "Option B", "Option C", "Option D"],
+ *     correct: 0, // Index of correct answer (0-3)
+ *     explanation: "Explanation of correct answer"
+ *   }
+ * @returns {string} HTML for quiz section
+ */
+function generateModuleQuiz(questions) {
+    if (!questions || questions.length === 0) return '';
+
+    // Generate HTML for all questions (hidden by default except first)
+    const quizHTML = questions.map((q, index) => `
+        <div class="quiz-question-card" style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb; display: ${index === 0 ? 'block' : 'none'};" data-question="${index}">
+            <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 20px; color: #1f2937;">
+                <span style="background: #0d9488; color: white; padding: 4px 10px; border-radius: 6px; margin-right: 10px; font-size: 0.9em;">Question ${index + 1} of ${questions.length}</span>
+                ${q.question}
+            </p>
+            <div class="quiz-options" style="display: grid; gap: 10px;">
+                ${q.options.map((option, optIndex) => `
+                    <button class="quiz-option"
+                            onclick="checkQuizAnswer(this, ${optIndex === q.correct}, '${q.explanation.replace(/'/g, "\\'")}', ${index}, ${questions.length})"
+                            style="padding: 15px 20px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 1em; transition: all 0.3s; min-height: 48px;"
+                            onmouseover="this.style.background='#f1f5f9'; this.style.borderColor='#cbd5e1';"
+                            onmouseout="if(!this.classList.contains('correct') && !this.classList.contains('incorrect')) { this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'; }">
+                        ${option}
+                    </button>
+                `).join('')}
+            </div>
+            <div class="quiz-feedback" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
+            <button class="quiz-next-btn" style="margin-top: 20px; padding: 12px 24px; background: #0d9488; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; display: none; transition: all 0.3s;"
+                    onclick="nextQuizQuestion(${index}, ${questions.length})"
+                    onmouseover="this.style.background='#0f766e';"
+                    onmouseout="this.style.background='#0d9488';">
+                ${index === questions.length - 1 ? 'View Results' : 'Next Question →'}
+            </button>
+        </div>
+    `).join('');
+
+    return `
+        <div class="module-quiz-section" style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #e5e7eb;">
+            <div style="background: linear-gradient(135deg, #0d9488, #0f766e); padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
+                <h3 style="color: white; margin-bottom: 10px; font-size: 1.8em;">📝 Test Your Knowledge</h3>
+                <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1.1em;">Answer 5 questions to reinforce your learning</p>
+            </div>
+
+            <div class="quiz-score-tracker" style="background: #f0fdfa; padding: 15px 20px; border-radius: 10px; margin-bottom: 25px; text-align: center; border: 2px solid #99f6e4;">
+                <span style="font-size: 1.2em; font-weight: 600; color: #134e4a;">Score: <span id="quiz-score">0</span>/${questions.length}</span>
+            </div>
+
+            <div class="quiz-container">
+                ${quizHTML}
+            </div>
+
+            <div id="quiz-complete" style="display: none; background: #ccfbf1; padding: 25px; border-radius: 12px; border: 2px solid #5eead4; text-align: center;">
+                <h3 style="color: #115e59; margin-bottom: 15px;">🎉 Quiz Complete!</h3>
+                <p style="color: #134e4a; font-size: 1.2em; margin: 0;">You scored <span id="final-score"></span> out of ${questions.length}</p>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Check quiz answer and provide immediate feedback
+ * @param {HTMLElement} button - The clicked button
+ * @param {boolean} isCorrect - Whether the answer is correct
+ * @param {string} explanation - Explanation text
+ * @param {number} questionIndex - Index of the question
+ */
+window.checkQuizAnswer = function(button, isCorrect, explanation, questionIndex, totalQuestions) {
+    const questionCard = button.closest('.quiz-question-card');
+    const allButtons = questionCard.querySelectorAll('.quiz-option');
+    const feedbackDiv = questionCard.querySelector('.quiz-feedback');
+    const nextBtn = questionCard.querySelector('.quiz-next-btn');
+
+    // Disable all buttons for this question
+    allButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.cursor = 'not-allowed';
+        btn.style.opacity = '0.6';
+    });
+
+    // Style the clicked button
+    if (isCorrect) {
+        button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        button.style.borderColor = '#059669';
+        button.style.color = 'white';
+        button.style.fontWeight = '600';
+        button.style.opacity = '1';
+        button.classList.add('correct');
+
+        // Update score
+        const scoreEl = document.getElementById('quiz-score');
+        if (scoreEl) {
+            scoreEl.textContent = parseInt(scoreEl.textContent) + 1;
+        }
+
+        // Show success feedback
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.style.background = '#d1fae5';
+        feedbackDiv.style.borderLeft = '4px solid #10b981';
+        feedbackDiv.innerHTML = `
+            <p style="margin: 0; color: #065f46; font-weight: 600; margin-bottom: 8px;">✅ Correct!</p>
+            <p style="margin: 0; color: #047857; line-height: 1.6;">${explanation}</p>
+        `;
+    } else {
+        button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        button.style.borderColor = '#dc2626';
+        button.style.color = 'white';
+        button.style.fontWeight = '600';
+        button.style.opacity = '1';
+        button.classList.add('incorrect');
+
+        // Highlight correct answer
+        allButtons.forEach((btn, idx) => {
+            if (btn !== button && !btn.classList.contains('incorrect')) {
+                const isThisCorrect = btn.onclick.toString().includes('true');
+                if (isThisCorrect) {
+                    btn.style.background = '#d1fae5';
+                    btn.style.borderColor = '#10b981';
+                    btn.style.color = '#065f46';
+                    btn.style.fontWeight = '600';
+                    btn.style.opacity = '1';
+                }
+            }
+        });
+
+        // Show error feedback
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.style.background = '#fee2e2';
+        feedbackDiv.style.borderLeft = '4px solid #ef4444';
+        feedbackDiv.innerHTML = `
+            <p style="margin: 0; color: #991b1b; font-weight: 600; margin-bottom: 8px;">❌ Incorrect</p>
+            <p style="margin: 0; color: #b91c1c; line-height: 1.6;">${explanation}</p>
+        `;
+    }
+
+    // Show next button
+    if (nextBtn) {
+        nextBtn.style.display = 'block';
+    }
+
+    // Smooth scroll to feedback
+    feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+};
+
+/**
+ * Move to next quiz question
+ * @param {number} currentIndex - Current question index
+ * @param {number} totalQuestions - Total number of questions
+ */
+window.nextQuizQuestion = function(currentIndex, totalQuestions) {
+    // Hide current question
+    const currentCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex}"]`);
+    if (currentCard) {
+        currentCard.style.display = 'none';
+    }
+
+    // Check if we're at the last question
+    if (currentIndex === totalQuestions - 1) {
+        // Show completion message
+        const completeDiv = document.getElementById('quiz-complete');
+        const finalScoreSpan = document.getElementById('final-score');
+        const currentScore = document.getElementById('quiz-score').textContent;
+
+        if (completeDiv && finalScoreSpan) {
+            finalScoreSpan.textContent = currentScore;
+            completeDiv.style.display = 'block';
+            completeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    } else {
+        // Show next question
+        const nextCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex + 1}"]`);
+        if (nextCard) {
+            nextCard.style.display = 'block';
+            nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+};
+
+// Expose quiz generation function globally
+window.generateModuleQuiz = generateModuleQuiz;
+
+console.log('✅ Universal Module Quiz System loaded');
