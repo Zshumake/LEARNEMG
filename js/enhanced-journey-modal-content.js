@@ -2011,6 +2011,98 @@ function generateNCSFundamentalsContent(module) {
                 </div>
             </div>
 
+            <!-- NCS Fundamentals Quiz -->
+            ${generateModuleQuiz([
+                {
+                    question: "What is the primary physiological mechanism underlying saltatory conduction in myelinated nerve fibers?",
+                    options: [
+                        "Continuous depolarization along the entire axon membrane",
+                        "Action potentials 'jump' between nodes of Ranvier, depolarizing only at nodes",
+                        "Myelin increases the resistance of the axon membrane uniformly",
+                        "Schwann cells actively conduct the electrical signal"
+                    ],
+                    correct: 1,
+                    explanation: "SALTATORY CONDUCTION occurs when action potentials 'JUMP' between nodes of Ranvier in myelinated fibers. This mechanism: (1) increases conduction velocity 50x compared to unmyelinated fibers, (2) requires depolarization only at nodes rather than continuously, (3) is energy efficient by reducing the membrane area requiring active Na⁺/K⁺ pumping. Myelination by Schwann cells insulates internodal segments, concentrating voltage-gated channels at nodes. This is why demyelinating diseases dramatically slow conduction."
+                },
+                {
+                    question: "In nerve conduction studies, what does CMAP amplitude primarily reflect?",
+                    options: [
+                        "The speed of the fastest conducting motor fibers",
+                        "The number of functioning motor axons",
+                        "The degree of myelination of the nerve",
+                        "The distance between stimulation sites"
+                    ],
+                    correct: 1,
+                    explanation: "CMAP AMPLITUDE reflects the NUMBER OF FUNCTIONING MOTOR AXONS. When measured from baseline to negative peak (in millivolts), amplitude indicates how many motor units are contributing to the response. AXONAL LOSS causes amplitude reduction because fewer axons depolarize muscle fibers. This contrasts with: (1) LATENCY - reflects fastest fibers, (2) CONDUCTION VELOCITY - reflects myelination/fiber diameter, (3) DURATION - reflects synchrony. Amplitude is the key parameter for detecting axonal neuropathies."
+                },
+                {
+                    question: "What is the target limb temperature for nerve conduction studies, and why does temperature matter?",
+                    options: [
+                        "Target >37°C; higher temperature speeds conduction",
+                        "Target >32°C; every 1°C drop slows conduction by 2-5%",
+                        "Target <30°C; cold temperatures improve signal quality",
+                        "Temperature doesn't significantly affect NCS results"
+                    ],
+                    correct: 1,
+                    explanation: "Limb temperature must be >32°C because cold significantly affects conduction. For every 1°C DROP below normal, conduction velocity SLOWS by 2-5% and distal latency increases. Cold limbs can falsely suggest demyelinating neuropathy. Temperature effects occur because: (1) ion channel kinetics slow in cold, (2) membrane resistance increases, (3) enzyme activity decreases. Always warm cold limbs with heating lamps or warm water before testing to avoid false-positive results."
+                },
+                {
+                    question: "What is supramaximal stimulation, and why is it necessary in motor NCS?",
+                    options: [
+                        "Stimulation at the maximum tolerable intensity for the patient",
+                        "Stimulation 20-50% above threshold to ensure all axons depolarize",
+                        "The highest stimulus intensity the equipment can produce",
+                        "Stimulation that produces a painful sensation"
+                    ],
+                    correct: 1,
+                    explanation: "SUPRAMAXIMAL STIMULATION is 20-50% ABOVE the stimulus intensity that produces maximum CMAP amplitude. This ensures ALL motor axons in the nerve are depolarized. Verification: further increasing stimulus intensity produces NO amplitude increase. Submaximal stimulation causes errors: (1) underestimates amplitude (appears falsely reduced), (2) overestimates conduction velocity (only fastest fibers activated). This is a fundamental technical requirement - failure to achieve supramaximal stimulation is a common source of false-positive findings."
+                },
+                {
+                    question: "What is the key difference in how CMAP amplitude versus SNAP amplitude is measured?",
+                    options: [
+                        "CMAP: baseline-to-peak (mV); SNAP: peak-to-peak (μV)",
+                        "CMAP: peak-to-peak (mV); SNAP: baseline-to-peak (μV)",
+                        "Both are measured peak-to-peak in the same units",
+                        "Both are measured baseline-to-peak in the same units"
+                    ],
+                    correct: 0,
+                    explanation: "CMAP amplitude is measured BASELINE-TO-NEGATIVE PEAK in millivolts (mV), while SNAP amplitude is measured PEAK-TO-PEAK in microvolts (μV). This difference exists because: (1) CMAPs are large (several mV), uniphasic/biphasic waveforms from muscle with clear baseline, (2) SNAPs are small (μV range), often triphasic with baseline drift, making peak-to-peak more reliable, (3) SNAPs are 1000x smaller than CMAPs. Understanding proper measurement technique is crucial for accurate amplitude interpretation."
+                },
+                {
+                    question: "In conduction velocity calculations, if the wrist latency is 3.2ms, elbow latency is 4.8ms, and distance is 8cm, what is the forearm conduction velocity?",
+                    options: [
+                        "25 m/s",
+                        "40 m/s",
+                        "50 m/s",
+                        "64 m/s"
+                    ],
+                    correct: 2,
+                    explanation: "CALCULATION: Distance ÷ (Latency difference) = 8cm ÷ (4.8ms - 3.2ms) = 8 ÷ 1.6 = 50 m/s. This is NORMAL for median motor nerve. The formula is: Conduction Velocity (m/s) = Distance (cm) ÷ Time difference (ms) × 10. Key points: (1) use ONSET latencies for motor studies, (2) distance must be measured accurately between stimulation sites, (3) normal motor CV is typically >49-50 m/s in upper extremity. Values <70% of lower limit suggest demyelination."
+                },
+                {
+                    question: "What pattern distinguishes demyelinating neuropathy from axonal neuropathy on NCS?",
+                    options: [
+                        "Demyelinating: reduced amplitude with normal CV; Axonal: slow CV with preserved amplitude",
+                        "Demyelinating: slow CV with conduction blocks; Axonal: reduced amplitude with normal/mildly slow CV",
+                        "Both show identical NCS patterns",
+                        "Demyelinating: absent responses; Axonal: prolonged latencies"
+                    ],
+                    correct: 1,
+                    explanation: "DEMYELINATING pattern: (1) Significantly SLOWED CV (<70% of LLN), (2) Markedly prolonged DL (>130% of ULN), (3) Amplitudes relatively preserved early, (4) Temporal dispersion and conduction blocks, (5) Affects myelin/Schwann cells. AXONAL pattern: (1) Normal or mildly slow CV (>80% of LLN), (2) REDUCED AMPLITUDES (<50% of LLN), (3) Normal duration, (4) Length-dependent distribution, (5) Affects axons directly. This fundamental distinction guides diagnosis, prognosis, and treatment."
+                },
+                {
+                    question: "What is the F-wave, and what does it assess?",
+                    options: [
+                        "A direct motor response that assesses distal nerve segments",
+                        "A sensory response that evaluates dorsal root function",
+                        "A late response traveling antidromically to anterior horn cells then returning orthodromically, assessing entire motor pathway",
+                        "A reflex response through the dorsal root ganglion"
+                    ],
+                    correct: 2,
+                    explanation: "The F-WAVE is a LATE MOTOR RESPONSE that assesses the ENTIRE MOTOR PATHWAY. Pathway: (1) Antidromic stimulation travels UP motor axon to anterior horn cell, (2) ~5% of cells 'backfire', (3) Orthodromic impulse returns DOWN to muscle. Clinical utility: (1) Assesses PROXIMAL conduction (plexus, roots), (2) Useful in radiculopathy and proximal neuropathies, (3) Normal values: median <31ms, tibial <56ms. Prolonged or absent F-waves suggest proximal demyelination or axonal loss."
+                }
+            ])}
+
         </div>
     `;
 }
@@ -3229,16 +3321,97 @@ function generateRadiculopathyContent(module) {
                 </div>
             </div>
 
-            <div class="quiz-section">
-                <h4>🧠 Knowledge Check</h4>
-                <p><strong>A patient has neuropathic changes in triceps, flexor carpi radialis, and C7 paraspinal muscles. The sensory NCS are normal. What is the most likely diagnosis?</strong></p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="checkRadiculopathyAnswer(this, true)">C7 radiculopathy</button>
-                    <button class="quiz-option" onclick="checkRadiculopathyAnswer(this, false)">Radial neuropathy</button>
-                    <button class="quiz-option" onclick="checkRadiculopathyAnswer(this, false)">Median neuropathy</button>
-                    <button class="quiz-option" onclick="checkRadiculopathyAnswer(this, false)">Brachial plexopathy</button>
-                </div>
-            </div>
+            <!-- Radiculopathy Pathophysiology Quiz -->
+            ${generateModuleQuiz([
+                {
+                    question: "Why are sensory nerve conduction studies (SNAPs) always normal in radiculopathy?",
+                    options: [
+                        "The sensory fibers are not affected in radiculopathy",
+                        "The lesion is proximal to the dorsal root ganglion",
+                        "Sensory symptoms are purely subjective and don't affect NCS",
+                        "The compression only affects motor roots"
+                    ],
+                    correct: 1,
+                    explanation: "In radiculopathy, sensory NCS remain ALWAYS NORMAL because the lesion occurs PROXIMAL to the dorsal root ganglion (DRG). Since the DRG contains the sensory nerve cell bodies, and NCS recordings measure distal to the DRG, the recorded potentials appear normal even though the patient may have sensory symptoms. This is a crucial distinguishing feature from peripheral nerve lesions where SNAPs are reduced."
+                },
+                {
+                    question: "A patient has neuropathic changes in triceps (radial nerve), flexor carpi radialis (median nerve), and C7 paraspinal muscles. What is the diagnosis?",
+                    options: [
+                        "Radial neuropathy",
+                        "Median neuropathy",
+                        "C7 radiculopathy",
+                        "Brachial plexopathy"
+                    ],
+                    correct: 2,
+                    explanation: "This is C7 RADICULOPATHY. The key features are: (1) MYOTOMAL PATTERN - neuropathic changes in muscles innervated by the same nerve root (C7) but different peripheral nerves (triceps via radial, FCR via median), (2) PARASPINAL INVOLVEMENT - C7 paraspinal abnormalities confirm the lesion is at the root level, (3) Normal sensory NCS (implied). This myotomal distribution pattern distinguishes radiculopathy from single peripheral nerve lesions."
+                },
+                {
+                    question: "What is the most common cause of radiculopathy in a 35-year-old patient?",
+                    options: [
+                        "Spinal stenosis",
+                        "Degenerative spondylosis",
+                        "Herniated nucleus pulposus (disc herniation)",
+                        "Malignancy"
+                    ],
+                    correct: 2,
+                    explanation: "In patients YOUNGER than 50 years, HERNIATED NUCLEUS PULPOSUS (disc herniation) is the most common cause of radiculopathy. The nucleus pulposus herniates through the annulus fibrosus and compresses the nerve root. In contrast, patients OLDER than 50 years more commonly have SPINAL STENOSIS due to degenerative changes. This age-related pattern is clinically important for differential diagnosis."
+                },
+                {
+                    question: "How long after acute radiculopathy onset do abnormal spontaneous potentials (fibrillations) typically appear in limb muscles?",
+                    options: [
+                        "Immediately (Day 0)",
+                        "1 week after onset",
+                        "2-3 weeks after onset",
+                        "5-6 weeks after onset"
+                    ],
+                    correct: 2,
+                    explanation: "Abnormal spontaneous activity (fibrillations and positive sharp waves) appears in LIMB muscles approximately 2-3 WEEKS after acute radiculopathy onset. Timeline: Day 0 = decreased recruitment and abnormal F-waves (immediate), 1 week = paraspinal abnormalities appear FIRST, 2-3 weeks = limb muscle abnormalities begin, 3+ weeks = full pattern in both paraspinals and limbs. This timeline is crucial for timing of EDX studies."
+                },
+                {
+                    question: "Which reflex is associated with L4 radiculopathy?",
+                    options: [
+                        "Achilles reflex",
+                        "Patellar reflex",
+                        "Biceps reflex",
+                        "Medial hamstring reflex"
+                    ],
+                    correct: 1,
+                    explanation: "L4 radiculopathy affects the PATELLAR (knee jerk) reflex. Key L4 findings include: patellar reflex loss, knee extension weakness, ankle dorsiflexion weakness, and sensory changes in anterolateral thigh and anteromedial calf. The reflex patterns are: L4 = patellar, L5 = medial hamstring, S1 = Achilles. C8 has NO associated reflex. Understanding reflex-root relationships aids clinical localization."
+                },
+                {
+                    question: "A 60-year-old patient presents with progressive back pain and bilateral leg weakness. What is the most likely etiology?",
+                    options: [
+                        "Disc herniation",
+                        "Spinal stenosis",
+                        "Inflammatory radiculitis",
+                        "Athletic injury"
+                    ],
+                    correct: 1,
+                    explanation: "In patients OLDER than 50 years, SPINAL STENOSIS is the most common cause of radiculopathy. Spinal stenosis results from degenerative spondylosis causing foraminal narrowing and progressive nerve root compression. Bilateral involvement with progressive symptoms is typical. In contrast, younger patients (<50 years) typically have acute disc herniation, often with unilateral presentation."
+                },
+                {
+                    question: "What percentage of radiculopathy cases may have paraspinal abnormalities as the ONLY EMG finding?",
+                    options: [
+                        "0-5% (very rare)",
+                        "10-30% (not uncommon)",
+                        "50-70% (majority)",
+                        "90-100% (almost always)"
+                    ],
+                    correct: 1,
+                    explanation: "Paraspinal abnormalities can be the ONLY EMG finding in 10-30% of radiculopathy cases. This makes paraspinal examination CRUCIAL and emphasizes why it must never be skipped. Paraspinal muscles are innervated by the posterior rami directly from the nerve root, so they are often the earliest and sometimes the only muscles showing denervation. Missing paraspinal examination can result in false-negative studies."
+                },
+                {
+                    question: "What does the 'HI MADAM' mnemonic help remember in radiculopathy evaluation?",
+                    options: [
+                        "Timeline of EMG changes",
+                        "Myotomal muscle patterns",
+                        "Non-mechanical causes of radiculopathy",
+                        "Nerve root reflex associations"
+                    ],
+                    correct: 2,
+                    explanation: "'HI MADAM' helps recall NON-MECHANICAL causes of radiculopathy: H=Herpes zoster, I=Inflammatory (TB, Lyme, HIV, sarcoid), M=Metastasis, A=Arachnoiditis, D=Diabetes mellitus, A=Abscess, M=Mass (neurofibroma, meningioma). While most radiculopathies are mechanical (disc herniation, stenosis), this mnemonic reminds clinicians to consider infectious, inflammatory, and neoplastic etiologies, especially when presentation is atypical or progressive despite treatment."
+                }
+            ])}
         </div>
     `;
 }
