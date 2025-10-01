@@ -3262,10 +3262,10 @@ function generateNeuropathyContent(module) {
                 </div>
             </div>
 
-            <!-- Neuropathy Pathophysiology Mechanisms Section -->
+            <!-- Neuropathy Pathophysiology & Clinical Applications Section -->
             <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); padding: 25px; border-radius: 15px; margin-bottom: 25px; border: 2px solid #8b5cf6;">
-                <h4 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.4em;">🧠 Neuropathy Pathophysiology Mechanisms</h4>
-                <p style="color: #7c3aed; margin-bottom: 25px; font-style: italic;">Understanding the fundamental mechanisms behind nerve injury and dysfunction</p>
+                <h4 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.4em;">🧠 Neuropathy Pathophysiology & Clinical Applications</h4>
+                <p style="color: #7c3aed; margin-bottom: 25px; font-style: italic;">From fundamental mechanisms to clinical diagnosis of peripheral nerve disorders</p>
 
                 <!-- Pathophysiology Tab Navigation -->
                 <div style="display: flex; background: #faf5ff; padding: 5px; border-radius: 12px; margin-bottom: 25px; gap: 3px; flex-wrap: wrap;">
@@ -3281,6 +3281,12 @@ function generateNeuropathyContent(module) {
                     ">
                         ⚡ Injury Mechanisms
                     </button>
+                    <button onclick="showPathophysSection('injury-classification')" id="patho-injury-classification-tab" class="patho-tab" style="
+                        background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
+                        transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
+                    ">
+                        🔀 Injury Classification
+                    </button>
                     <button onclick="showPathophysSection('correlations')" id="patho-correlations-tab" class="patho-tab" style="
                         background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
@@ -3292,6 +3298,12 @@ function generateNeuropathyContent(module) {
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
                         🧪 Fiber Classification
+                    </button>
+                    <button onclick="showPathophysSection('atlas')" id="patho-atlas-tab" class="patho-tab" style="
+                        background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
+                        transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
+                    ">
+                        🗺️ Clinical Atlas
                     </button>
                 </div>
 
@@ -3466,6 +3478,231 @@ function generateNeuropathyContent(module) {
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Injury Classification Section -->
+                <div id="patho-injury-classification-content" class="patho-content" style="display: none;">
+                    <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb;">
+                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;">🔀 Nerve Injury Classification Systems</h5>
+
+                        <!-- Nerve Regeneration Info Box -->
+                        <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 20px; border-radius: 10px; border-left: 4px solid #10b981; margin-bottom: 25px;">
+                            <h6 style="color: #047857; margin-bottom: 12px; font-size: 1.1em; display: flex; align-items: center;">
+                                <span style="font-size: 24px; margin-right: 10px;">⏱️</span>
+                                Key Principle: Nerve Regeneration Rate
+                            </h6>
+                            <div style="color: #065f46; line-height: 1.6;">
+                                <p style="font-size: 1.05em; margin-bottom: 10px;"><strong>Peripheral nerves regenerate at approximately:</strong></p>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 10px;">
+                                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                                        <p style="font-size: 2em; font-weight: bold; color: #10b981; margin: 0;">1 mm/day</p>
+                                        <p style="font-size: 0.9em; margin: 5px 0 0 0;">Millimeters per day</p>
+                                    </div>
+                                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                                        <p style="font-size: 2em; font-weight: bold; color: #10b981; margin: 0;">1 inch/month</p>
+                                        <p style="font-size: 0.9em; margin: 5px 0 0 0;">Approximately 25mm/month</p>
+                                    </div>
+                                </div>
+                                <p style="font-size: 0.95em;"><strong>Clinical Implication:</strong> Recovery time depends on distance from injury site to target muscle. A proximal lesion requires more time for reinnervation than a distal one.</p>
+                            </div>
+                        </div>
+
+                        <!-- Seddon Classification -->
+                        <div style="background: #fef2f2; padding: 20px; border-radius: 10px; border: 2px solid #dc2626; margin-bottom: 25px;">
+                            <h6 style="color: #991b1b; margin-bottom: 20px; font-size: 1.2em;">📋 Seddon Classification (1943)</h6>
+                            <p style="color: #7f1d1d; margin-bottom: 20px; font-style: italic;">Simple 3-category system based on structural damage and prognosis</p>
+
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
+                                <!-- Neurapraxia -->
+                                <div style="background: #fee2e2; padding: 18px; border-radius: 10px; border: 2px solid #fca5a5;">
+                                    <h6 style="color: #991b1b; margin-bottom: 12px; font-weight: bold;">Type 1: Neurapraxia</h6>
+                                    <p style="color: #7f1d1d; font-size: 0.9em; margin-bottom: 10px;"><strong>Etiology:</strong> Nerve compression injury</p>
+                                    <p style="color: #7f1d1d; font-size: 0.9em; margin-bottom: 10px;"><strong>Pathology:</strong> Local myelin injury, axon intact</p>
+                                    <p style="color: #7f1d1d; font-size: 0.9em; margin-bottom: 10px;"><strong>Conduction:</strong> Block at lesion site</p>
+                                    <p style="color: #059669; font-size: 0.9em; font-weight: bold;">✓ Best prognosis</p>
+                                    <p style="color: #059669; font-size: 0.85em;">Recovery: Days to weeks</p>
+                                </div>
+
+                                <!-- Axonotmesis -->
+                                <div style="background: #fef3c7; padding: 18px; border-radius: 10px; border: 2px solid #fcd34d;">
+                                    <h6 style="color: #92400e; margin-bottom: 12px; font-weight: bold;">Type 2: Axonotmesis</h6>
+                                    <p style="color: #78350f; font-size: 0.9em; margin-bottom: 10px;"><strong>Etiology:</strong> Nerve crush injury</p>
+                                    <p style="color: #78350f; font-size: 0.9em; margin-bottom: 10px;"><strong>Pathology:</strong> Axonal interruption, endoneurial tubes intact</p>
+                                    <p style="color: #78350f; font-size: 0.9em; margin-bottom: 10px;"><strong>Conduction:</strong> Wallerian degeneration</p>
+                                    <p style="color: #d97706; font-size: 0.9em; font-weight: bold;">⚠ Intermediate prognosis</p>
+                                    <p style="color: #d97706; font-size: 0.85em;">Recovery: Months (1mm/day)</p>
+                                </div>
+
+                                <!-- Neurotmesis -->
+                                <div style="background: #fee2e2; padding: 18px; border-radius: 10px; border: 2px solid #dc2626;">
+                                    <h6 style="color: #7f1d1d; margin-bottom: 12px; font-weight: bold;">Type 3: Neurotmesis</h6>
+                                    <p style="color: #450a0a; font-size: 0.9em; margin-bottom: 10px;"><strong>Etiology:</strong> Nerve transection injury</p>
+                                    <p style="color: #450a0a; font-size: 0.9em; margin-bottom: 10px;"><strong>Pathology:</strong> Complete disruption of axon and connective tissue</p>
+                                    <p style="color: #450a0a; font-size: 0.9em; margin-bottom: 10px;"><strong>Conduction:</strong> Complete failure</p>
+                                    <p style="color: #dc2626; font-size: 0.9em; font-weight: bold;">✗ Worst prognosis</p>
+                                    <p style="color: #dc2626; font-size: 0.85em;">Recovery: Surgery required</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sunderland Classification -->
+                        <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; border: 2px solid #3b82f6; margin-bottom: 25px;">
+                            <h6 style="color: #1e40af; margin-bottom: 20px; font-size: 1.2em;">📊 Sunderland Classification (1951)</h6>
+                            <p style="color: #1e3a8a; margin-bottom: 20px; font-style: italic;">Detailed 5-type system based on specific structural components damaged</p>
+
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px;">
+                                <!-- Type 1 -->
+                                <div style="background: #dbeafe; padding: 15px; border-radius: 8px; border: 2px solid #93c5fd;">
+                                    <h6 style="color: #1e40af; margin-bottom: 10px; font-weight: bold; font-size: 0.95em;">Type 1</h6>
+                                    <p style="color: #1e3a8a; font-size: 0.85em; margin-bottom: 8px;"><strong>= Neurapraxia</strong></p>
+                                    <p style="color: #1e3a8a; font-size: 0.8em; margin-bottom: 8px;">Conduction block</p>
+                                    <div style="background: white; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                                        <p style="color: #059669; font-size: 0.75em; margin: 0;"><strong>Myelin:</strong> ✗</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Axon:</strong> ✓</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Endoneurium:</strong> ✓</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Perineurium:</strong> ✓</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Epineurium:</strong> ✓</p>
+                                    </div>
+                                    <p style="color: #059669; font-size: 0.75em; font-weight: bold;">Excellent recovery</p>
+                                </div>
+
+                                <!-- Type 2 -->
+                                <div style="background: #e0f2fe; padding: 15px; border-radius: 8px; border: 2px solid #7dd3fc;">
+                                    <h6 style="color: #0369a1; margin-bottom: 10px; font-weight: bold; font-size: 0.95em;">Type 2</h6>
+                                    <p style="color: #075985; font-size: 0.85em; margin-bottom: 8px;"><strong>= Axonotmesis</strong></p>
+                                    <p style="color: #075985; font-size: 0.8em; margin-bottom: 8px;">Axonal injury</p>
+                                    <div style="background: white; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Myelin:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Axon:</strong> ✗</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Endoneurium:</strong> ✓</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Perineurium:</strong> ✓</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Epineurium:</strong> ✓</p>
+                                    </div>
+                                    <p style="color: #059669; font-size: 0.75em; font-weight: bold;">Good recovery</p>
+                                </div>
+
+                                <!-- Type 3 -->
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border: 2px solid #fcd34d;">
+                                    <h6 style="color: #92400e; margin-bottom: 10px; font-weight: bold; font-size: 0.95em;">Type 3</h6>
+                                    <p style="color: #78350f; font-size: 0.85em; margin-bottom: 8px;"><strong>Type 2 +</strong></p>
+                                    <p style="color: #78350f; font-size: 0.8em; margin-bottom: 8px;">Endoneurium injury</p>
+                                    <div style="background: white; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Myelin:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Axon:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Endoneurium:</strong> ✗</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Perineurium:</strong> ✓</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Epineurium:</strong> ✓</p>
+                                    </div>
+                                    <p style="color: #d97706; font-size: 0.75em; font-weight: bold;">Variable recovery</p>
+                                </div>
+
+                                <!-- Type 4 -->
+                                <div style="background: #fee2e2; padding: 15px; border-radius: 8px; border: 2px solid #fca5a5;">
+                                    <h6 style="color: #991b1b; margin-bottom: 10px; font-weight: bold; font-size: 0.95em;">Type 4</h6>
+                                    <p style="color: #7f1d1d; font-size: 0.85em; margin-bottom: 8px;"><strong>Type 3 +</strong></p>
+                                    <p style="color: #7f1d1d; font-size: 0.8em; margin-bottom: 8px;">Perineurium injury</p>
+                                    <div style="background: white; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Myelin:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Axon:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Endoneurium:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Perineurium:</strong> ✗</p>
+                                        <p style="color: #475569; font-size: 0.75em; margin: 0;"><strong>Epineurium:</strong> ✓</p>
+                                    </div>
+                                    <p style="color: #dc2626; font-size: 0.75em; font-weight: bold;">Poor recovery</p>
+                                </div>
+
+                                <!-- Type 5 -->
+                                <div style="background: #fecaca; padding: 15px; border-radius: 8px; border: 2px solid #dc2626;">
+                                    <h6 style="color: #7f1d1d; margin-bottom: 10px; font-weight: bold; font-size: 0.95em;">Type 5</h6>
+                                    <p style="color: #450a0a; font-size: 0.85em; margin-bottom: 8px;"><strong>= Neurotmesis</strong></p>
+                                    <p style="color: #450a0a; font-size: 0.8em; margin-bottom: 8px;">Complete transection</p>
+                                    <div style="background: white; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Myelin:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Axon:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Endoneurium:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Perineurium:</strong> ✗</p>
+                                        <p style="color: #dc2626; font-size: 0.75em; margin: 0;"><strong>Epineurium:</strong> ✗</p>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.75em; font-weight: bold;">No recovery w/o surgery</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comprehensive Comparison Table -->
+                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #8b5cf6; margin-bottom: 25px;">
+                            <h6 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.2em;">📊 Detailed Electrodiagnostic & Clinical Comparison</h6>
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+                                    <thead>
+                                        <tr style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">
+                                            <th style="border: 2px solid #8b5cf6; padding: 10px; text-align: left; min-width: 120px;">Classification</th>
+                                            <th style="border: 2px solid #8b5cf6; padding: 10px; text-align: left; min-width: 150px;">Etiology</th>
+                                            <th style="border: 2px solid #8b5cf6; padding: 10px; text-align: left; min-width: 180px;">Pathophysiology</th>
+                                            <th style="border: 2px solid #8b5cf6; padding: 10px; text-align: left; min-width: 180px;">NCS Findings</th>
+                                            <th style="border: 2px solid #8b5cf6; padding: 10px; text-align: left; min-width: 150px;">EMG Findings</th>
+                                            <th style="border: 2px solid #8b5cf6; padding: 10px; text-align: left; min-width: 120px;">Recovery</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="background: #fef2f2;">
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; font-weight: bold;">Neurapraxia<br/>(Sunderland 1)</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Compression, ischemia, mild trauma</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Focal demyelination, axon intact, conduction block at lesion</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Normal distal to lesion, absent/reduced proximal to lesion, temporal dispersion</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Normal or decreased recruitment, no denervation</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; color: #059669; font-weight: bold;">Complete<br/>Days-weeks</td>
+                                        </tr>
+                                        <tr style="background: #fef3c7;">
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; font-weight: bold;">Axonotmesis<br/>(Sunderland 2)</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Crush injury, severe compression</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Axonal interruption, Wallerian degeneration, endoneurial tubes intact</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Resembles neurapraxia 4-5 days, then amplitude drops as Wallerian degeneration occurs</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Fibrillations/PSWs after 2-3 weeks, reduced recruitment</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; color: #d97706; font-weight: bold;">Good<br/>Months (1mm/day)</td>
+                                        </tr>
+                                        <tr style="background: #fee2e2;">
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; font-weight: bold;">Sunderland 3</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Severe crush, traction injury</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Axon + endoneurium disrupted, loss of guided regeneration</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Similar to axonotmesis, absent responses in severe cases</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Widespread denervation, poor reinnervation</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; color: #dc2626; font-weight: bold;">Variable<br/>Months-years</td>
+                                        </tr>
+                                        <tr style="background: #fecaca;">
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; font-weight: bold;">Sunderland 4</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Severe traction, near-transection</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Axon + endoneurium + perineurium disrupted, fascicular architecture lost</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Absent responses, no recovery on serial studies</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Persistent denervation, no reinnervation</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; color: #7f1d1d; font-weight: bold;">Poor<br/>Surgery often needed</td>
+                                        </tr>
+                                        <tr style="background: #fee2e2;">
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; font-weight: bold;">Neurotmesis<br/>(Sunderland 5)</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Complete transection, laceration</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Complete nerve disruption, all layers severed, neuroma formation</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Absent all responses, no improvement over time</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px;">Complete denervation, no spontaneous recovery</td>
+                                            <td style="border: 1px solid #e5e7eb; padding: 10px; color: #450a0a; font-weight: bold;">None<br/>Surgery required</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Wallerian Degeneration Timeline -->
+                        <div style="background: #faf5ff; padding: 20px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                            <h6 style="color: #6b21a8; margin-bottom: 15px; font-size: 1.1em;">⏳ Wallerian Degeneration & Recovery Timeline</h6>
+                            <div style="color: #581c87; line-height: 1.6;">
+                                <p style="margin-bottom: 10px;"><strong>Acute Phase (0-7 days):</strong> Axon degenerates distally, NCS may appear normal initially</p>
+                                <p style="margin-bottom: 10px;"><strong>Subacute Phase (7-21 days):</strong> CMAP/SNAP amplitudes drop, fibrillations begin appearing on EMG (distal muscles first)</p>
+                                <p style="margin-bottom: 10px;"><strong>Chronic Phase (>3 weeks):</strong> Complete denervation pattern, reinnervation potentials if recovery occurring</p>
+                                <p style="margin-bottom: 10px;"><strong>Regeneration:</strong> Axons regenerate at ~1mm/day from injury site toward target. Proximal lesions take longer to recover.</p>
+                                <p style="margin-top: 15px; padding: 12px; background: white; border-radius: 8px; font-weight: 600; color: #6b21a8;">
+                                    💡 Clinical Pearl: Serial EMG studies every 3-4 weeks can track reinnervation progress by detecting nascent motor unit potentials.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -3683,7 +3920,9 @@ function generateNeuropathyContent(module) {
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Clinical Atlas Section -->
+                <div id="patho-atlas-content" class="patho-content" style="display: none;">
 
             <!-- Common Peripheral Neuropathies Atlas -->
             <div style="background: linear-gradient(135deg, #e0f2fe, #b3e5fc); padding: 25px; border-radius: 15px; margin-bottom: 25px; border: 2px solid #0ea5e9;">
@@ -3826,6 +4065,46 @@ function generateNeuropathyContent(module) {
 
                     <div id="proximal-median" class="median-section" style="display: none;">
                         ${generateProximalMedianContent()}
+                    </div>
+
+                    <!-- Comparison Table for Median Nerve Lesions -->
+                    <div style="background: white; padding: 20px; border-radius: 15px; margin-top: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="color: #1e40af; margin-bottom: 15px; display: flex; align-items: center;">
+                            <span style="font-size: 24px; margin-right: 10px;">📊</span>
+                            Quick Comparison: Median Nerve Lesions
+                        </h3>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                                <thead>
+                                    <tr style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">
+                                        <th style="border: 2px solid #3b82f6; padding: 10px; text-align: center;">Location</th>
+                                        <th style="border: 2px solid #3b82f6; padding: 10px; text-align: center;">Motor Loss</th>
+                                        <th style="border: 2px solid #3b82f6; padding: 10px; text-align: center;">Sensory Loss</th>
+                                        <th style="border: 2px solid #3b82f6; padding: 10px; text-align: center;">Key EDX Finding</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: #f8f9fa;">
+                                        <td style="border: 1px solid #dee2e6; padding: 10px; font-weight: bold;">Carpal Tunnel</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">APB, OP, FPB (superficial), lumbricals 1&2</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">Thumb, index, middle, lateral ring</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">Prolonged distal latencies</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px; font-weight: bold;">Pronator Syndrome</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">Same as CTS + proximal muscles</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">Same as CTS + thenar eminence</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">Slow forearm conduction</td>
+                                    </tr>
+                                    <tr style="background: #f8f9fa;">
+                                        <td style="border: 1px solid #dee2e6; padding: 10px; font-weight: bold;">AIN Syndrome</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">FPL, FDP (index/middle), PQ</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">None (pure motor)</td>
+                                        <td style="border: 1px solid #dee2e6; padding: 10px;">Denervation in specific muscles</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -4640,54 +4919,144 @@ function generateNeuropathyContent(module) {
                 </div>
             </div>
 
-            <!-- Comparison Table -->
-            <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                <h3 style="color: #059669; margin-bottom: 15px;">📊 Quick Comparison: Median & Ulnar Nerve Lesions</h3>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
-                        <thead>
-                            <tr style="background: linear-gradient(135deg, #e0f2fe, #b3e5fc);">
-                                <th style="border: 2px solid #0288d1; padding: 10px; text-align: center;">Location</th>
-                                <th style="border: 2px solid #0288d1; padding: 10px; text-align: center;">Motor Loss</th>
-                                <th style="border: 2px solid #0288d1; padding: 10px; text-align: center;">Sensory Loss</th>
-                                <th style="border: 2px solid #0288d1; padding: 10px; text-align: center;">Key EDX Finding</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="background: #f8f9fa;">
-                                <td style="border: 1px solid #dee2e6; padding: 10px; font-weight: bold;">Carpal Tunnel</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">APB, OP, FPB (superficial), lumbricals 1&2</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">Thumb, index, middle, lateral ring</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">Prolonged distal latencies</td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #dee2e6; padding: 10px; font-weight: bold;">Pronator Syndrome</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">Same as CTS + proximal muscles</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">Same as CTS + thenar eminence</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">Slow forearm conduction</td>
-                            </tr>
-                            <tr style="background: #f8f9fa;">
-                                <td style="border: 1px solid #dee2e6; padding: 10px; font-weight: bold;">AIN Syndrome</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">FPL, FDP (index/middle), PQ</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">None (pure motor)</td>
-                                <td style="border: 1px solid #dee2e6; padding: 10px;">Denervation in specific muscles</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
 
-            <!-- Interactive Quiz -->
-            <div style="background: white; padding: 20px; border-radius: 15px; border-left: 5px solid #f59e0b;">
-                <h4 style="color: #d97706; margin-bottom: 15px;">🧠 Knowledge Check</h4>
-                <p style="margin-bottom: 15px;"><strong>A patient presents with numbness in the thumb and index finger, weakness of thumb abduction, but normal sensation over the thenar eminence. What is the most likely diagnosis?</strong></p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="checkMedianAnswer(this, true)" style="display: block; width: 100%; margin: 5px 0; padding: 10px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer;">Carpal tunnel syndrome</button>
-                    <button class="quiz-option" onclick="checkMedianAnswer(this, false)" style="display: block; width: 100%; margin: 5px 0; padding: 10px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer;">Pronator syndrome</button>
-                    <button class="quiz-option" onclick="checkMedianAnswer(this, false)" style="display: block; width: 100%; margin: 5px 0; padding: 10px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer;">Anterior interosseous syndrome</button>
-                    <button class="quiz-option" onclick="checkMedianAnswer(this, false)" style="display: block; width: 100%; margin: 5px 0; padding: 10px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer;">C6 radiculopathy</button>
-                </div>
-            </div>
+            <!-- Neuropathy Pathophysiology Quiz -->
+        ${generateModuleQuiz([
+            {
+                question: "What is the primary pathological difference between demyelinating and axonal neuropathies?",
+                options: [
+                    "Demyelinating affects myelin; axonal affects the axon itself",
+                    "Demyelinating is painful; axonal is painless",
+                    "Demyelinating occurs proximally; axonal occurs distally",
+                    "Demyelinating affects motor fibers; axonal affects sensory fibers"
+                ],
+                correct: 0,
+                explanation: "Demyelinating neuropathies primarily damage the myelin sheath (Schwann cells), leading to slowed conduction velocity and conduction blocks. Axonal neuropathies involve degeneration of the axon itself (Wallerian degeneration), resulting in reduced amplitudes but preserved conduction velocity. This fundamental distinction is crucial for diagnosis and prognosis."
+            },
+            {
+                question: "In a demyelinating neuropathy, what is the most characteristic electrodiagnostic finding?",
+                options: [
+                    "Reduced CMAP/SNAP amplitudes with normal conduction velocity",
+                    "Slowed conduction velocity with conduction blocks",
+                    "Fibrillation potentials and positive sharp waves",
+                    "Reduced recruitment with large motor units"
+                ],
+                correct: 1,
+                explanation: "Demyelinating neuropathies characteristically show SLOWED CONDUCTION VELOCITY and may demonstrate CONDUCTION BLOCKS or temporal dispersion. The myelin damage disrupts saltatory conduction, causing signals to travel more slowly. Amplitudes are typically preserved unless severe secondary axonal loss occurs. This contrasts with axonal neuropathies where velocities are normal but amplitudes are reduced."
+            },
+            {
+                question: "What NCS finding indicates axonal loss rather than demyelination?",
+                options: [
+                    "Prolonged F-wave latencies",
+                    "Temporal dispersion of the waveform",
+                    "Reduced CMAP amplitude with normal conduction velocity",
+                    "Conduction block across a nerve segment"
+                ],
+                correct: 2,
+                explanation: "REDUCED CMAP/SNAP AMPLITUDES with NORMAL/NEAR-NORMAL conduction velocities indicate axonal loss. The amplitude reflects the number of functioning axons - when axons degenerate, fewer motor units contribute to the response, reducing amplitude. Conduction velocity remains preserved because the surviving myelinated fibers conduct normally. This is the hallmark of axonal neuropathies."
+            },
+            {
+                question: "What are the three progressive stages of compression neuropathy pathophysiology?",
+                options: [
+                    "Inflammation → Fibrosis → Atrophy",
+                    "Ischemia → Demyelination → Axonal Loss",
+                    "Edema → Scarring → Necrosis",
+                    "Conduction slowing → Conduction block → Denervation"
+                ],
+                correct: 1,
+                explanation: "Compression neuropathies progress through three stages: (1) ISCHEMIA - reduced blood flow causes reversible dysfunction and conduction slowing, (2) DEMYELINATION - continued compression causes myelin breakdown with conduction blocks and temporal dispersion, (3) AXONAL LOSS - severe/prolonged compression leads to Wallerian degeneration with amplitude reduction and denervation changes. Understanding these stages guides prognosis and treatment timing."
+            },
+            {
+                question: "What EMG finding would you expect in an acute axonal neuropathy (less than 2 weeks)?",
+                options: [
+                    "Fibrillation potentials throughout affected muscles",
+                    "Reduced recruitment with no spontaneous activity",
+                    "Normal EMG with abnormal NCS amplitudes",
+                    "Myotonic discharges with reduced recruitment"
+                ],
+                correct: 1,
+                explanation: "In ACUTE axonal injury (<2-3 weeks), EMG shows REDUCED RECRUITMENT (due to motor unit loss) but NO SPONTANEOUS ACTIVITY yet. Fibrillation potentials and positive sharp waves require time to develop - typically appearing 2-3 weeks after denervation (distal muscles) or 3-4 weeks (proximal muscles). This time lag reflects Wallerian degeneration and muscle fiber membrane instability development."
+            },
+            {
+                question: "A patient has slowed median motor conduction velocity (35 m/s), but normal ulnar and radial velocities. What does this suggest?",
+                options: [
+                    "Generalized demyelinating polyneuropathy",
+                    "Focal median nerve demyelination (e.g., carpal tunnel)",
+                    "C6-C7 radiculopathy affecting median components",
+                    "Brachial plexopathy affecting lateral cord"
+                ],
+                correct: 1,
+                explanation: "ISOLATED slowing of ONE nerve with normal velocities in other nerves indicates a FOCAL DEMYELINATING LESION of that specific nerve. In this case, median nerve compression (likely carpal tunnel syndrome). Generalized demyelinating polyneuropathies would affect multiple nerves symmetrically. Radiculopathy and plexopathy would show denervation patterns rather than uniform slowing."
+            },
+            {
+                question: "What is the functional consequence of saltatory conduction in myelinated fibers?",
+                options: [
+                    "Slower but more energy-efficient transmission",
+                    "Faster conduction (35-75 m/s) with energy efficiency",
+                    "Continuous depolarization along the entire membrane",
+                    "Better pain and temperature sensation"
+                ],
+                correct: 1,
+                explanation: "SALTATORY CONDUCTION occurs in myelinated fibers where action potentials 'jump' between nodes of Ranvier, depolarizing only at nodes rather than continuously along the membrane. This produces FASTER conduction velocities (35-75 m/s for motor fibers) compared to unmyelinated fibers (0.2-1.5 m/s). It's also ENERGY EFFICIENT since less membrane area requires active depolarization. This is why demyelinating diseases cause such profound slowing."
+            },
+            {
+                question: "Why are large myelinated fibers (Aα, Aβ) typically affected first in metabolic and compressive neuropathies?",
+                options: [
+                    "They have slower conduction and accumulate more toxins",
+                    "They have higher metabolic demands and longer transport distances",
+                    "They are unmyelinated and more fragile",
+                    "They only carry pain signals which are most sensitive"
+                ],
+                correct: 1,
+                explanation: "Large myelinated fibers (Aα, Aβ) are affected first because: (1) HIGHER METABOLIC DEMANDS - maintaining large axons and thick myelin requires more energy, (2) LONGER AXONAL TRANSPORT DISTANCES - nutrients/proteins must travel farther in large fibers, (3) MORE SUSCEPTIBLE TO COMPRESSION - larger diameter makes them vulnerable to mechanical pressure, (4) GREATER MYELIN CONTENT - more myelin means more vulnerability to demyelinating processes. This is why weakness, vibration loss, and areflexia occur before small fiber symptoms."
+            },
+            {
+                question: "What pathophysiological mechanism causes 'conduction block' in demyelinating neuropathies?",
+                options: [
+                    "Complete axonal transection at the compression site",
+                    "Severe focal demyelination preventing action potential propagation",
+                    "Ischemia causing temporary nerve dysfunction",
+                    "Schwann cell hypertrophy blocking sodium channels"
+                ],
+                correct: 1,
+                explanation: "CONDUCTION BLOCK occurs when severe focal demyelination is so extensive that the action potential cannot propagate past the lesion, despite intact axons. The demyelinated segment has increased capacitance and reduced resistance, causing current to leak away. Proximal stimulation shows reduced amplitude compared to distal stimulation (>50% drop). This is reversible with remyelination, unlike axonal loss."
+            },
+            {
+                question: "A diabetic patient has reduced sural and superficial peroneal SNAP amplitudes, but normal median/ulnar sensory responses. What pattern does this represent?",
+                options: [
+                    "Mononeuritis multiplex",
+                    "Length-dependent sensory polyneuropathy",
+                    "Dorsal root ganglionopathy",
+                    "Small fiber neuropathy"
+                ],
+                correct: 1,
+                explanation: "This represents LENGTH-DEPENDENT SENSORY POLYNEUROPATHY, the classic 'stocking-glove' distribution. The longest nerves (lower extremities) are affected first because: (1) longer axons have greater metabolic demands, (2) more distance for toxin/metabolic dysfunction accumulation, and (3) greater vulnerability to vascular supply issues. Sural and superficial peroneal nerves are longest sensory nerves, hence affected earliest in diabetic neuropathy."
+            },
+            {
+                question: "What is the key difference between Seddon's and Sunderland's nerve injury classification systems?",
+                options: [
+                    "Seddon uses 3 categories based on severity; Sunderland uses 5 grades based on anatomical structures damaged",
+                    "Seddon focuses on motor deficits; Sunderland focuses on sensory deficits",
+                    "Seddon is used for compression injuries; Sunderland is used for traumatic injuries",
+                    "Seddon classifies demyelinating injuries; Sunderland classifies axonal injuries"
+                ],
+                correct: 0,
+                explanation: "SEDDON'S CLASSIFICATION uses 3 broad categories based on injury severity: (1) Neurapraxia - temporary myelin damage, (2) Axonotmesis - axon damage with intact connective tissue, (3) Neurotmesis - complete nerve transection. SUNDERLAND'S CLASSIFICATION expands this into 5 grades based on specific anatomical structures damaged: Grade 1 = myelin only, Grade 2 = axon + myelin (endoneurium intact), Grade 3 = endoneurium disrupted (perineurium intact), Grade 4 = perineurium disrupted (epineurium intact), Grade 5 = complete transection. Sunderland's system provides more detail for surgical planning and prognosis."
+            },
+            {
+                question: "A patient suffers a severe laceration to the median nerve. You counsel them that peripheral nerves regenerate at approximately what rate, and recovery time depends on distance to target?",
+                options: [
+                    "1 millimeter per week (~0.25 inches per month)",
+                    "1 millimeter per day (~1 inch per month)",
+                    "1 centimeter per day (~1 foot per month)",
+                    "1 millimeter per hour (~2 feet per month)"
+                ],
+                correct: 1,
+                explanation: "Peripheral nerves regenerate at approximately 1 MILLIMETER PER DAY (or about 1 INCH PER MONTH). This rate is relatively consistent across patients and is crucial for counseling about recovery expectations. For example, a median nerve injury at the wrist (about 10cm from APB muscle) would take approximately 3-4 months before reinnervation begins. This regeneration rate reflects the speed of axonal transport mechanisms that deliver structural proteins and organelles to the regenerating growth cone. Understanding this timeline helps set realistic expectations for functional recovery and guides timing of surgical interventions."
+            }
+        ])}
         </div>
 
         <script>
@@ -13846,7 +14215,7 @@ function generateModuleQuiz(questions) {
         <div class="module-quiz-section" style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #e5e7eb;">
             <div style="background: linear-gradient(135deg, #0d9488, #0f766e); padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
                 <h3 style="color: white; margin-bottom: 10px; font-size: 1.8em;">📝 Test Your Knowledge</h3>
-                <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1.1em;">Answer 5 questions to reinforce your learning</p>
+                <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1.1em;">Answer ${questions.length} questions to reinforce your learning</p>
             </div>
 
             <div class="quiz-score-tracker" style="background: #f0fdfa; padding: 15px 20px; border-radius: 10px; margin-bottom: 25px; text-align: center; border: 2px solid #99f6e4;">
