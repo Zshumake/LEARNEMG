@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>✨ Enhanced Journey EMG/NCS Learning System - Full Integration</title>
     <!-- <link rel="icon" type="image/png" href="ERNEST.png"> -->
-    <link rel="stylesheet" href="css/enhanced-journey-candyland.css?v=20251002-stop-propagation">
+    <link rel="stylesheet" href="css/enhanced-journey-candyland.css?v=20251002-memory-debug">
     <link rel="stylesheet" href="css/professional-board-candyland.css">
     <style>
         /* Clean Medical Background System */
@@ -1353,6 +1353,53 @@
             color: #4b5563;
         }
     </style>
+
+    <!-- Critical functions that need to be available immediately -->
+    <script>
+        // Define startAtriumJourney early so onclick handlers can use it
+        window.startAtriumJourney = function() {
+            console.log('🏥 Starting Atrium Health Journey');
+
+            // Wait for DOM and all scripts to be ready
+            function executeStart() {
+                // Smooth fade out welcome screen
+                const welcomeScreen = document.getElementById('pgy-selection');
+                if (welcomeScreen) {
+                    welcomeScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    welcomeScreen.style.opacity = '0';
+                    welcomeScreen.style.transform = 'translateY(-20px)';
+
+                    // Start the 13-module PGY-2 journey after transition
+                    setTimeout(() => {
+                        // Retry logic: wait for startJourney to be available
+                        let retryCount = 0;
+                        const maxRetries = 50; // 5 seconds max
+
+                        const tryStart = setInterval(() => {
+                            if (typeof startJourney === 'function') {
+                                clearInterval(tryStart);
+                                startJourney('pgy2');
+                            } else {
+                                retryCount++;
+                                if (retryCount >= maxRetries) {
+                                    clearInterval(tryStart);
+                                    console.error('❌ startJourney function failed to load after 5 seconds');
+                                    alert('Error loading journey system. Please refresh the page.');
+                                }
+                            }
+                        }, 100);
+                    }, 800);
+                }
+            }
+
+            // Wait for DOM if still loading
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', executeStart);
+            } else {
+                executeStart();
+            }
+        };
+    </script>
 </head>
 <body>
     <!-- Atrium Health Welcome Screen -->
@@ -1443,9 +1490,71 @@
     <!-- Load EMG APP Complete System with all clinical cases -->
     <script src="js/emg-app-complete-system.js"></script>
     <!-- <script src="js/enhanced-journey-modal-content.js"></script> -->
-    <script src="js/enhanced-journey-modal-content.js?v=20251002-final-fix"></script>
+    <script src="js/enhanced-journey-modal-content.js?v=20251002-larger-text"></script>
 
     <script>
+        // Comprehensive iOS crash tracking
+        // Check if isIOS already exists to prevent duplicate declaration
+        if (typeof isIOS === 'undefined') {
+            window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+
+        if (window.isIOS) {
+            console.warn('📱 iOS DETECTED - Enhanced crash tracking enabled');
+
+            // Track memory if available
+            if (performance.memory) {
+                setInterval(() => {
+                    const mem = performance.memory;
+                    const usedMB = (mem.usedJSHeapSize / 1048576).toFixed(2);
+                    const totalMB = (mem.totalJSHeapSize / 1048576).toFixed(2);
+                    const limitMB = (mem.jsHeapSizeLimit / 1048576).toFixed(2);
+                    const percentUsed = ((mem.usedJSHeapSize / mem.jsHeapSizeLimit) * 100).toFixed(1);
+
+                    console.log(`💾 Memory: ${usedMB}MB / ${limitMB}MB (${percentUsed}%)`);
+
+                    if (percentUsed > 90) {
+                        console.error('🚨 MEMORY CRITICAL: ' + percentUsed + '%');
+                    }
+                }, 2000);
+            }
+
+            // Track zoom level changes
+            let lastZoom = window.visualViewport ? window.visualViewport.scale : 1;
+            if (window.visualViewport) {
+                window.visualViewport.addEventListener('resize', () => {
+                    const currentZoom = window.visualViewport.scale;
+                    if (currentZoom !== lastZoom) {
+                        console.warn('🔍 ZOOM CHANGED:', {
+                            from: lastZoom.toFixed(2),
+                            to: currentZoom.toFixed(2),
+                            width: window.visualViewport.width,
+                            height: window.visualViewport.height
+                        });
+                        lastZoom = currentZoom;
+                    }
+                });
+            }
+
+            // Track visible content size
+            const trackVisibleContent = () => {
+                const modalBody = document.getElementById('modal-body');
+                if (modalBody) {
+                    const rect = modalBody.getBoundingClientRect();
+                    const contentSize = modalBody.innerHTML.length;
+                    console.log('📏 Visible modal:', {
+                        width: rect.width.toFixed(0),
+                        height: rect.height.toFixed(0),
+                        contentBytes: contentSize,
+                        scrollHeight: modalBody.scrollHeight
+                    });
+                }
+            };
+
+            // Track every 5 seconds
+            setInterval(trackVisibleContent, 5000);
+        }
+
         // Minimal crash tracking
         window.addEventListener('beforeunload', function(e) {
             console.error('⚠️ PAGE UNLOAD - Something triggered navigation away from page');
@@ -1455,41 +1564,7 @@
             console.error('⚠️ PAGE HIDE - Page is being hidden/closed');
         });
 
-        // Track if something is programmatically changing location
-        const originalLocationAssign = window.location.assign;
-        const originalLocationReplace = window.location.replace;
-        const originalLocationReload = window.location.reload;
-
-        window.location.assign = function() {
-            console.error('🚨 location.assign() called!', new Error().stack);
-            return originalLocationAssign.apply(this, arguments);
-        };
-
-        window.location.replace = function() {
-            console.error('🚨 location.replace() called!', new Error().stack);
-            return originalLocationReplace.apply(this, arguments);
-        };
-
-        window.location.reload = function() {
-            console.error('🚨 location.reload() called!', new Error().stack);
-            return originalLocationReload.apply(this, arguments);
-        };
-
-        // Atrium Health Welcome Screen Function
-        function startAtriumJourney() {
-            console.log('🏥 Starting Atrium Health Journey');
-
-            // Smooth fade out welcome screen
-            const welcomeScreen = document.getElementById('pgy-selection');
-            welcomeScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            welcomeScreen.style.opacity = '0';
-            welcomeScreen.style.transform = 'translateY(-20px)';
-
-            // Start the 13-module PGY-2 journey after transition
-            setTimeout(() => {
-                startJourney('pgy2');
-            }, 800);
-        }
+        // Note: window.startAtriumJourney is now defined in the <head> section for immediate availability
 
         // Enhanced journey interface with modal integration
         function startJourney(pgyLevel) {
@@ -2590,7 +2665,14 @@
         function openAtriumModule(moduleNumber, moduleId) {
             console.log(`🎓 Opening Module ${moduleNumber}: ${moduleId}`);
 
-            // Create module object for existing modal system
+            // iOS QUICK FIX: Open in new tab to avoid zoom crash
+            if (window.isIOS) {
+                console.log('📱 iOS detected - opening module in new tab');
+                openModuleInNewTab(moduleNumber, moduleId);
+                return;
+            }
+
+            // Desktop: Use modal as normal
             const module = { contentId: moduleId, id: moduleId };
 
             try {
@@ -2611,6 +2693,151 @@
             } catch (error) {
                 console.error(`❌ Error opening module ${moduleNumber}:`, error);
                 showFallbackContent(moduleNumber, moduleId);
+            }
+        }
+
+        // Open module in new tab (iOS workaround for zoom crash)
+        function openModuleInNewTab(moduleNumber, moduleId) {
+            const module = { contentId: moduleId, id: moduleId };
+
+            try {
+                if (typeof generateLearningContentByType === 'function') {
+                    const content = generateLearningContentByType(module, moduleNumber - 1);
+                    const moduleTitle = atriumModuleConfig[moduleNumber - 1].title;
+
+                    // Get base URL for script paths
+                    const baseURL = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+
+                    // Create standalone HTML page using string concatenation to avoid template literal issues
+                    const newTabHTML = '<!DOCTYPE html>\n' +
+'<html lang="en">\n' +
+'<head>\n' +
+'    <meta charset="UTF-8">\n' +
+'    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">\n' +
+'    <title>Module ' + moduleNumber + ': ' + moduleTitle + '</title>\n' +
+'    <base href="' + baseURL + '">\n' +
+'    <style>\n' +
+'        * { box-sizing: border-box; }\n' +
+'        body {\n' +
+'            font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;\n' +
+'            line-height: 1.8;\n' +
+'            color: #1f2937;\n' +
+'            background: linear-gradient(135deg, #fdfcf8 0%, #f9f7f1 100%);\n' +
+'            margin: 0;\n' +
+'            padding: 20px;\n' +
+'            font-size: 18px;\n' +
+'        }\n' +
+'        .module-header {\n' +
+'            background: linear-gradient(135deg, #4f46e5, #6366f1);\n' +
+'            color: white;\n' +
+'            padding: 25px;\n' +
+'            border-radius: 15px;\n' +
+'            margin-bottom: 25px;\n' +
+'            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);\n' +
+'        }\n' +
+'        .module-header h1 { margin: 0 0 10px 0; font-size: 1.8em; }\n' +
+'        .back-button {\n' +
+'            display: inline-block;\n' +
+'            background: white;\n' +
+'            color: #4f46e5;\n' +
+'            padding: 12px 24px;\n' +
+'            border-radius: 25px;\n' +
+'            text-decoration: none;\n' +
+'            font-weight: 600;\n' +
+'            margin-top: 15px;\n' +
+'            box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n' +
+'        }\n' +
+'        .content-wrapper {\n' +
+'            background: white;\n' +
+'            padding: 30px;\n' +
+'            border-radius: 15px;\n' +
+'            box-shadow: 0 2px 20px rgba(0,0,0,0.08);\n' +
+'            max-width: 900px;\n' +
+'            margin: 0 auto;\n' +
+'            overflow: hidden;\n' +
+'        }\n' +
+'        /* Mobile-optimized column layout - stack vertically */\n' +
+'        .content-wrapper .study-section,\n' +
+'        .content-wrapper .two-column-layout {\n' +
+'            display: block !important;\n' +
+'            width: 100% !important;\n' +
+'        }\n' +
+'        .content-wrapper .study-column,\n' +
+'        .content-wrapper [style*="flex: 1"],\n' +
+'        .content-wrapper [style*="width: 48%"],\n' +
+'        .content-wrapper [style*="width: 50%"] {\n' +
+'            display: block !important;\n' +
+'            width: 100% !important;\n' +
+'            max-width: 100% !important;\n' +
+'            margin-bottom: 20px !important;\n' +
+'            word-wrap: break-word;\n' +
+'            overflow-wrap: break-word;\n' +
+'        }\n' +
+'        /* Ensure flex and grid containers don\'t break */\n' +
+'        .content-wrapper [style*="display: grid"],\n' +
+'        .content-wrapper [style*="display: flex"] {\n' +
+'            display: block !important;\n' +
+'        }\n' +
+'        .content-wrapper img, .content-wrapper table { max-width: 100%; height: auto; }\n' +
+'    </style>\n' +
+'</head>\n' +
+'<body>\n' +
+'    <div class="module-header">\n' +
+'        <h1>📚 Module ' + moduleNumber + ': ' + moduleTitle + '</h1>\n' +
+'        <p style="margin: 0; opacity: 0.9;">EMG/NCS Learning Journey</p>\n' +
+'        <a href="#" onclick="window.close(); return false;" class="back-button">← Close & Return to Journey</a>\n' +
+'    </div>\n' +
+'    <div class="content-wrapper">\n' +
+        content +
+'\n    </div>\n' +
+'\n' +
+'    <!-- Lightweight interactive stubs for mobile - avoids loading 976KB file -->\n' +
+'    <script>\n' +
+'        // Stub functions that redirect back to main page for interactive features\n' +
+'        window.showStudyCards = function() {\n' +
+'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to use NCS Study Cards?\')) {\n' +
+'                window.close();\n' +
+'            }\n' +
+'        };\n' +
+'        \n' +
+'        window.showEMGChallenge = function() {\n' +
+'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to use the EMG Challenge?\')) {\n' +
+'                window.close();\n' +
+'            }\n' +
+'        };\n' +
+'        \n' +
+'        window.launchEMGApp = function(caseId) {\n' +
+'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to launch this EMG case?\')) {\n' +
+'                window.close();\n' +
+'            }\n' +
+'        };\n' +
+'        \n' +
+'        window.openBrachialPlexusModal = function() {\n' +
+'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page for the interactive Brachial Plexus?\')) {\n' +
+'                window.close();\n' +
+'            }\n' +
+'        };\n' +
+'        \n' +
+'        console.log(\'📱 Mobile-optimized stubs loaded. Interactive features redirect to main page.\');\n' +
+'    </' + 'script>\n' +
+'</body>\n' +
+'</html>';
+
+                    // Open in new tab
+                    const newTab = window.open('', '_blank');
+                    if (newTab) {
+                        newTab.document.write(newTabHTML);
+                        newTab.document.close();
+                        console.log(`✅ Module ${moduleNumber} opened in new tab`);
+                    } else {
+                        alert('Please allow pop-ups to view learning modules on mobile.');
+                    }
+                } else {
+                    console.error('❌ generateLearningContentByType function not available');
+                }
+            } catch (error) {
+                console.error(`❌ Error opening module ${moduleNumber} in new tab:`, error);
+                alert('Error loading module content. Please try again.');
             }
         }
 
@@ -2754,7 +2981,7 @@
         window.generateLearningBoard = generateAtriumPathway;
 
         // Make sure all functions are available globally
-        window.startAtriumJourney = startAtriumJourney;
+        // window.startAtriumJourney is already defined earlier in the script
         window.showModuleDescription = showModuleDescription;
         window.hideModuleDescription = hideModuleDescription;
 
@@ -2897,8 +3124,18 @@
             const overlay = document.getElementById('modal-overlay');
             if (overlay) {
                 overlay.addEventListener('click', function(e) {
-                    // Only close if clicking directly on overlay (not modal content)
-                    if (e.target === this) {
+                    // Check if click came from modal content by traversing up the DOM
+                    let element = e.target;
+                    while (element && element !== overlay) {
+                        if (element.hasAttribute && element.hasAttribute('data-modal-content')) {
+                            // Click is from modal content, don't close
+                            return;
+                        }
+                        element = element.parentElement;
+                    }
+
+                    // Click is on overlay itself, close modal
+                    if (e.target === overlay) {
                         closeGeneralModal();
                     }
                 });

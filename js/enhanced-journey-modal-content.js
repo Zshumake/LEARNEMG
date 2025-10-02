@@ -24,10 +24,17 @@ function navigateWithTransition(callback, duration = 300) {
     }, duration);
 }
 
+// Detect iOS (use existing if already defined in index.html)
+if (typeof window.isIOS === 'undefined') {
+    window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+const isIOS = window.isIOS;
+
 // Modal System Function with Transitions
 function showModal(title, content) {
     console.log('🔍 DEBUG: showModal called with title:', title);
     console.log('🔍 DEBUG: Content length:', content ? content.length : 'null');
+    console.log('🔍 DEBUG: iOS detected:', isIOS);
 
     const overlay = document.getElementById('modal-overlay');
     const modalTitle = document.getElementById('modal-title');
@@ -46,22 +53,60 @@ function showModal(title, content) {
 
     // Set content
     modalTitle.textContent = title;
-    modalBody.innerHTML = content;
 
-    // CRITICAL FIX: Block touch events from modal content from bubbling to overlay
-    // This prevents zoom gestures inside modal from triggering overlay handlers
-    // Remove old listener if exists and add fresh one each time
-    modalBody.removeAttribute('data-touch-blocked');
+    // For iOS: Optimize content to reduce memory pressure
+    if (isIOS && content && content.length > 30000) {
+        console.log('📱 iOS: Optimizing large content for mobile');
 
-    const blockTouchPropagation = function(e) {
-        // Block touch events from bubbling to overlay to prevent zoom crash
-        e.stopPropagation();
-    };
+        // Create a temporary div to parse content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
 
-    // Add listeners for all touch events in capture phase
-    modalBody.addEventListener('touchstart', blockTouchPropagation, { passive: false, capture: true });
-    modalBody.addEventListener('touchmove', blockTouchPropagation, { passive: false, capture: true });
-    modalBody.addEventListener('touchend', blockTouchPropagation, { passive: false, capture: true });
+        // Remove all image placeholders and large visual elements to reduce DOM size
+        const images = tempDiv.querySelectorAll('img, [style*="background-image"]');
+        images.forEach(img => {
+            const placeholder = document.createElement('div');
+            placeholder.style.cssText = 'background: #f0f9ff; padding: 20px; border-radius: 8px; text-align: center; color: #0369a1; margin: 10px 0;';
+            placeholder.textContent = '📱 Image hidden on mobile to improve performance';
+            img.replaceWith(placeholder);
+        });
+
+        // Simplify complex nested structures
+        const complexDivs = tempDiv.querySelectorAll('[style*="linear-gradient"]');
+        complexDivs.forEach(div => {
+            if (div.style.background) {
+                div.style.background = '#f8fafc';
+            }
+        });
+
+        modalBody.innerHTML = tempDiv.innerHTML;
+        console.log('✅ iOS: Content optimized and loaded');
+    } else {
+        // Desktop or small content: load immediately
+        modalBody.innerHTML = content;
+    }
+
+    // CRITICAL FIX: Mark modal body so overlay can identify and ignore touches from it
+    // This is a simpler approach that doesn't use stopPropagation which causes Safari crashes
+    modalBody.setAttribute('data-modal-content', 'true');
+
+    // iOS FIX: Increase base font size so less zoom is needed
+    if (isIOS) {
+        modalBody.style.fontSize = '18px';
+        modalBody.style.lineHeight = '1.8';
+
+        // Make all text larger
+        const allText = modalBody.querySelectorAll('p, li, span, div');
+        allText.forEach(el => {
+            const currentSize = window.getComputedStyle(el).fontSize;
+            const sizeNum = parseFloat(currentSize);
+            if (sizeNum < 16) {
+                el.style.fontSize = '16px';
+            }
+        });
+
+        console.log('✅ iOS: Increased base font size for better readability');
+    }
 
     // Show overlay but keep it invisible initially
     overlay.style.display = 'flex';
