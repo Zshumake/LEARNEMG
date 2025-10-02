@@ -2419,8 +2419,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median Motor -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Motor Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Median motor at wrist.png", "NCS images/Median motor at elbow.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Median motor at wrist.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Median Motor</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2437,8 +2440,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median Motor Palmar -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Motor Palmar Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Median motor at wrist.png", "NCS images/Median motor at elbow.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Median motor at wrist.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Median Motor Palmar</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2455,8 +2461,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Ulnar Motor -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Ulnar Motor Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Ulnar motor at the wrist.png", "NCS images/Ulnar Motor NCS below the elbow.png", "NCS images/Ulnar Motor NCS above the elbow.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Ulnar motor at the wrist.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 3</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Ulnar Motor</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2475,8 +2484,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Deep Ulnar Motor (FDI) -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Deep Ulnar Motor (FDI) Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Deep Ulnar Motor Branch.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Deep Ulnar Motor Branch.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Deep Ulnar Motor (FDI)</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2494,8 +2503,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Radial Motor -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Radial Motor Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Radial motor distal stim.png", "NCS images/Radial motor stim at elbow.png", "NCS images/Radial motor stim below spiral groove.png", "NCS images/Radial motor stim above spiral groove.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Radial motor distal stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 4</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Radial Motor</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2522,8 +2534,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median Sensory -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Sensory Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Median Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Median Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Median Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2539,8 +2551,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median Sensory Palmar -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Sensory Palmar Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Median Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Median Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Median Sensory Palmar</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2555,8 +2567,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Ulnar Sensory -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Ulnar Sensory Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Ulnar Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Ulnar Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Ulnar Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2572,8 +2584,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Dorsal Ulnar Cutaneous -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Dorsal Ulnar Cutaneous Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Dorsal Ulnar Cutaneous NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Dorsal Ulnar Cutaneous NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Dorsal Ulnar Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2589,8 +2601,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Radial Sensory -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Radial Sensory Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Radial Sensory study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Radial Sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Radial Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2606,8 +2618,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Medial Antebrachial Cutaneous -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Medial Antebrachial Cutaneous Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Medial antebrachial cutaneous.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Medial antebrachial cutaneous.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Medial Antebrachial Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2623,8 +2635,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Lateral Antebrachial Cutaneous -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Lateral Antebrachial Cutaneous Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/lateral antebrachial cutaneous.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/lateral antebrachial cutaneous.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Lateral Antebrachial Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2641,7 +2653,7 @@ function generateNCSBasicTechniquesContent(module) {
                         <!-- Upper Extremity Proximal -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
                             <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: UE Proximal Stimulation Technique</span>
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 No Image Available</span>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 UE Proximal Stimulation</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2665,8 +2677,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Lumbrical-Interossei -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Lumbrical-Interossei Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Ulnar-median motor comparsion - median stim.png", "NCS images/Ulnar-median motor comparsion - ulnar stim.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Ulnar-median motor comparsion - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚖️ Lumbrical-Interossei</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2682,8 +2697,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median vs Ulnar Digit 4 -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median vs Ulnar Digit 4 Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/ulnar to median sensory comparison - median stim.png", "NCS images/ulnar to median sensory comparison - ulnar stim.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/ulnar to median sensory comparison - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚖️ Median vs Ulnar - Digit 4</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2699,8 +2717,11 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median vs Radial Digit 1 -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median vs Radial Digit 1 Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Radian vs. median sensory comparison - median stim.png", "NCS images/Radian vs. median sensory comparison - radial stim.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Radian vs. median sensory comparison - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                                <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
+                                <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
+                                <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚖️ Median vs Radial - Digit 1</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2724,8 +2745,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Median Palmar Mixed -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Palmar Mixed Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Median vs. ulnar palmar mixed  - median record.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Median vs. ulnar palmar mixed  - median record.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Median Palmar Mixed</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -2741,8 +2762,8 @@ function generateNCSBasicTechniquesContent(module) {
 
                         <!-- Ulnar Palmar Mixed -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
-                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Ulnar Palmar Mixed Technique</span>
+                            <div class="ncs-image-gallery" data-images='["NCS images/Median vs. ulnar palmar mixed  - ulnar record.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS images/Median vs. ulnar palmar mixed  - ulnar record.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Ulnar Palmar Mixed</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -16072,6 +16093,27 @@ window.nextQuizQuestion = function(currentIndex, totalQuestions) {
 
 // Expose quiz generation function globally
 window.generateModuleQuiz = generateModuleQuiz;
+
+// NCS Image Gallery Navigation Function
+window.navigateGallery = function(button, direction) {
+    const gallery = button.closest('.ncs-image-gallery');
+    const img = gallery.querySelector('.ncs-gallery-image');
+    const images = JSON.parse(gallery.getAttribute('data-images'));
+    const counter = gallery.querySelector('.gallery-counter');
+    const leftBtn = gallery.querySelectorAll('button')[0];
+    const rightBtn = gallery.querySelectorAll('button')[1];
+
+    let currentIndex = parseInt(gallery.getAttribute('data-current-index') || '0');
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    gallery.setAttribute('data-current-index', currentIndex);
+
+    img.src = images[currentIndex];
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+    // Show/hide arrows based on position
+    leftBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+    rightBtn.style.display = currentIndex === images.length - 1 ? 'none' : 'block';
+};
 
 // NCS Techniques Videos/Pictures Toggle Function
 window.showNCSContentType = function(type) {
