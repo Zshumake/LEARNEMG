@@ -1443,7 +1443,7 @@
     <!-- Load EMG APP Complete System with all clinical cases -->
     <script src="js/emg-app-complete-system.js"></script>
     <!-- <script src="js/enhanced-journey-modal-content.js"></script> -->
-    <script src="js/enhanced-journey-modal-content.js?v=20251001-emg-case-facelift"></script>
+    <script src="js/enhanced-journey-modal-content.js?v=20251001-fix-blur-title"></script>
 
     <script>
         // Atrium Health Welcome Screen Function
@@ -2794,14 +2794,54 @@
         function closeGeneralModal() {
             const overlay = document.getElementById('modal-overlay');
             if (overlay) {
-                overlay.style.display = 'none';
-                console.log('🔒 Modal closed');
+                // Fade out with transition
+                overlay.classList.remove('show');
+
+                // Hide after animation completes (increased to match slower transition)
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 700);
+
+                console.log('🔒 Modal closed with transition');
             }
         }
 
-        // Add CSS styles for modal
+        // Add CSS styles for modal and transitions
         const modalStyles = document.createElement('style');
         modalStyles.textContent = `
+            /* Page transition effects */
+            .page-transition {
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .blur-out {
+                filter: blur(20px);
+                opacity: 0.3;
+                transform: scale(0.95);
+            }
+
+            #modal-overlay {
+                opacity: 0;
+                backdrop-filter: blur(0px);
+                transition: opacity 0.6s ease, backdrop-filter 0.6s ease;
+            }
+
+            #modal-overlay.show {
+                opacity: 1;
+                backdrop-filter: blur(8px);
+            }
+
+            #modal-overlay > div {
+                opacity: 0;
+                transform: scale(0.9) translateY(40px);
+                transition: opacity 0.5s ease 0.2s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+            }
+
+            #modal-overlay.show > div {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+
             #modal-overlay button:hover {
                 background: #dc2626 !important;
                 transform: scale(1.1);
@@ -2814,6 +2854,11 @@
 
             #modal-overlay .quiz-section {
                 margin-bottom: 20px;
+            }
+
+            /* Transition for main content */
+            #learning-board, #pgy-selection {
+                transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
             }
         `;
         document.head.appendChild(modalStyles);

@@ -1,7 +1,30 @@
 // Enhanced Journey Modal Content Generation Functions
 // Clean implementation for smooth learning content integration
 
-// Modal System Function
+// Navigation transition helper
+function navigateWithTransition(callback, duration = 300) {
+    // Get main content areas to blur
+    const mainContent = document.getElementById('learning-board') || document.getElementById('pgy-selection');
+
+    if (mainContent) {
+        // Add blur-out effect to current content
+        mainContent.classList.add('blur-out');
+    }
+
+    // Wait for blur animation, then execute navigation
+    setTimeout(() => {
+        callback();
+
+        // Remove blur from background after modal shows
+        if (mainContent) {
+            setTimeout(() => {
+                mainContent.classList.remove('blur-out');
+            }, 100);
+        }
+    }, duration);
+}
+
+// Modal System Function with Transitions
 function showModal(title, content) {
     console.log('🔍 DEBUG: showModal called with title:', title);
     console.log('🔍 DEBUG: Content length:', content ? content.length : 'null');
@@ -21,26 +44,43 @@ function showModal(title, content) {
         return;
     }
 
+    // Set content
     modalTitle.textContent = title;
     modalBody.innerHTML = content;
+
+    // Show overlay but keep it invisible initially
     overlay.style.display = 'flex';
 
-    console.log('🔍 DEBUG: Modal display set to:', overlay.style.display);
-    console.log('🔍 DEBUG: Modal overlay computed style:', window.getComputedStyle(overlay).display);
-
-    // Scroll to top of page so modal is visible
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Force a repaint
+    // Force a repaint to ensure display: flex is applied
     overlay.offsetHeight;
 
+    // Trigger fade-in animation
+    requestAnimationFrame(() => {
+        overlay.classList.add('show');
+    });
+
     // Show visual feedback that modal opened
-    console.log(`✅ Modal opened: ${title}`);
-    console.log('🔍 DEBUG: Modal should now be visible');
+    console.log(`✅ Modal opened with transition: ${title}`);
 }
 
-// Make showModal globally available
+// Enhanced close modal with transition
+function closeModalWithTransition() {
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay) {
+        // Fade out
+        overlay.classList.remove('show');
+
+        // Hide after animation completes (increased to match slower transition)
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 700);
+    }
+}
+
+// Make functions globally available
 window.showModal = showModal;
+window.navigateWithTransition = navigateWithTransition;
+window.closeModalWithTransition = closeModalWithTransition;
 
 // Brachial Plexus Interactive Content Generator
 function generateBrachialPlexusInteractiveContent(module) {
@@ -1012,13 +1052,10 @@ function generateMuscleQuizContent(module) {
                 position: relative;
                 overflow: hidden;
             ">
-                <div style="position: relative; z-index: 2;">
-                    <h3 style="color: white; margin-bottom: 15px; font-size: 1.8em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">💪 Advanced Muscle Localization Training</h3>
-                    <p style="color: rgba(255,255,255,0.95); font-size: 1.1em; font-weight: 500; margin: 0; text-shadow: 0 1px 5px rgba(0,0,0,0.1);">
-                        Interactive quiz system with nerve roots, innervation patterns, and clinical correlation - the same advanced system from the main EMG application.
-                    </p>
-                </div>
-                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); z-index: 1;"></div>
+                <h3 style="color: white; margin-bottom: 15px; font-size: 1.8em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">💪 Advanced Muscle Localization Training</h3>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.1em; font-weight: 500; margin: 0; text-shadow: 0 1px 5px rgba(0,0,0,0.1);">
+                    Interactive quiz system with nerve roots, innervation patterns, and clinical correlation - the same advanced system from the main EMG application.
+                </p>
             </div>
 
             <!-- Note: EMG Needle Localization Guide is available in the dedicated tab above -->
