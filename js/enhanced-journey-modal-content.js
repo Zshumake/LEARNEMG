@@ -48,6 +48,21 @@ function showModal(title, content) {
     modalTitle.textContent = title;
     modalBody.innerHTML = content;
 
+    // CRITICAL FIX: Block touch events from modal content from bubbling to overlay
+    // This prevents zoom gestures inside modal from triggering overlay handlers
+    // Remove old listener if exists and add fresh one each time
+    modalBody.removeAttribute('data-touch-blocked');
+
+    const blockTouchPropagation = function(e) {
+        // Block touch events from bubbling to overlay to prevent zoom crash
+        e.stopPropagation();
+    };
+
+    // Add listeners for all touch events in capture phase
+    modalBody.addEventListener('touchstart', blockTouchPropagation, { passive: false, capture: true });
+    modalBody.addEventListener('touchmove', blockTouchPropagation, { passive: false, capture: true });
+    modalBody.addEventListener('touchend', blockTouchPropagation, { passive: false, capture: true });
+
     // Show overlay but keep it invisible initially
     overlay.style.display = 'flex';
 
@@ -2071,219 +2086,634 @@ window.initializePathophysiology = initializePathophysiology;
 
 function generateNCSBasicTechniquesContent(module) {
     return `
+        <style>
+            @keyframes gradient-flow {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+        </style>
         <div class="interactive-content">
-            <!-- Learning Objective Banner -->
-            <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #3b82f6;">
-                <h3 style="color: #1e40af; margin-bottom: 15px;">🎯 Learning Objectives</h3>
-                <p style="color: #1e3a8a; font-size: 1.1em; font-weight: 500; margin: 0;">
-                    Master proper electrode placement, stimulation techniques, and recording protocols for nerve conduction studies through hands-on video demonstrations.
+            <!-- Learning Objective Banner with Animated Gradient -->
+            <div style="
+                background: linear-gradient(135deg, #14b8a6, #06b6d4, #8b5cf6);
+                background-size: 200% 200%;
+                animation: gradient-flow 8s ease infinite;
+                padding: 35px;
+                border-radius: 20px;
+                margin-bottom: 30px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 10px 40px rgba(20, 184, 166, 0.3);
+            ">
+                <h3 style="color: white; margin-bottom: 15px; font-size: 1.8em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">🎯 Master NCS Techniques</h3>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.1em; font-weight: 500; margin: 0; text-shadow: 0 1px 5px rgba(0,0,0,0.1);">
+                    Master proper electrode placement, stimulation techniques, and recording protocols for nerve conduction studies through video demonstrations and visual guides.
                 </p>
             </div>
 
-            <!-- YouTube NCS Technique Videos -->
-            <div style="background: linear-gradient(135deg, #fef3c7, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
-                <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.4em;">📹 Essential NCS Technique Videos for PGY-2s</h4>
+            <!-- Videos/Pictures Toggle Buttons -->
+            <div style="display: flex; gap: 20px; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <button
+                    id="ncs-videos-btn"
+                    onclick="showNCSContentType('videos')"
+                    style="
+                        flex: 1;
+                        padding: 20px 40px;
+                        border: none;
+                        border-radius: 50px;
+                        background: linear-gradient(135deg, #14b8a6, #06b6d4);
+                        color: white;
+                        font-size: 1.3em;
+                        font-weight: 700;
+                        cursor: pointer;
+                        box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+                        transition: all 0.3s ease;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                    "
+                    onmouseover="if(this.classList.contains('active')) this.style.transform='scale(1.05)'"
+                    onmouseout="if(this.classList.contains('active')) this.style.transform='scale(1)'"
+                    class="active"
+                >
+                    📹 Videos
+                </button>
+                <button
+                    id="ncs-pictures-btn"
+                    onclick="showNCSContentType('pictures')"
+                    style="
+                        flex: 1;
+                        padding: 20px 40px;
+                        border: 2px solid rgba(139, 92, 246, 0.3);
+                        border-radius: 50px;
+                        background: white;
+                        color: #64748b;
+                        font-size: 1.3em;
+                        font-weight: 700;
+                        cursor: pointer;
+                        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+                        transition: all 0.3s ease;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                    "
+                    onmouseover="if(!this.classList.contains('active')) this.style.borderColor='rgba(139, 92, 246, 0.5)'"
+                    onmouseout="if(!this.classList.contains('active')) this.style.borderColor='rgba(139, 92, 246, 0.3)'"
+                >
+                    📸 Pictures
+                </button>
+            </div>
 
+            <!-- Videos Section -->
+            <div id="ncs-videos-section" style="display: block;">
                 <!-- Upper Extremity Videos -->
-                <div style="margin-bottom: 30px;">
-                    <h5 style="color: #7c2d12; margin-bottom: 15px; font-size: 1.2em;">🖐️ Upper Extremity NCS</h5>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 10px;">📍 Median Motor Study</h6>
-                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 8px; margin-bottom: 15px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cdVrcgeBgIg"
-                                        frameborder="0" allowfullscreen
-                                        style="border-radius: 8px;"
-                                        title="Median Motor Nerve Conduction Study">
-                                </iframe>
-                            </div>
-                            <p style="color: #6b7280; font-size: 0.9em; margin: 0;">
-                                <strong>Recording:</strong> Thenar muscles (APB)<br>
-                                <strong>Stimulation:</strong> Wrist & elbow
-                            </p>
-                        </div>
+                <div style="margin-bottom: 40px;">
+                    <h4 style="
+                        background: linear-gradient(135deg, #0d9488, #06b6d4);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-size: 1.8em;
+                        margin-bottom: 25px;
+                        font-weight: 700;
+                    ">🖐️ Upper Extremity NCS</h4>
 
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 10px;">📍 Median Sensory Study</h6>
-                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 8px; margin-bottom: 15px;">
+                    <!-- First Row: Median Sensory, Ulnar Sensory -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Median Sensory</h6>
+                            <div style="position: relative; width: 100%; height: 220px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
                                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/86j7cNLIX0U"
                                         frameborder="0" allowfullscreen
-                                        style="border-radius: 8px;"
+                                        style="border-radius: 12px;"
                                         title="Median Sensory Nerve Conduction Study">
                                 </iframe>
                             </div>
-                            <p style="color: #6b7280; font-size: 0.9em; margin: 0;">
-                                <strong>Recording:</strong> Digit 3 to wrist<br>
-                                <strong>Stimulation:</strong> Orthodromic stimulation
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Digit 3 to wrist<br>
+                                <strong style="color: #0d9488;">Method:</strong> Orthodromic
+                            </p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Ulnar Sensory</h6>
+                            <div style="position: relative; width: 100%; height: 220px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/i9Naurf0eWU"
+                                        frameborder="0" allowfullscreen
+                                        style="border-radius: 12px;"
+                                        title="Ulnar Sensory Nerve Conduction Study">
+                                </iframe>
+                            </div>
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Digit 5 to wrist<br>
+                                <strong style="color: #0d9488;">Method:</strong> Orthodromic
                             </p>
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 10px;">📍 Ulnar Motor Study</h6>
-                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 8px; margin-bottom: 15px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/UmFYJDMucOY"
+                    <!-- Second Row: Median-Radial Comparison, Dorsal Ulnar Cutaneous -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Median-Radial Comparison</h6>
+                            <div style="position: relative; width: 100%; height: 220px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/nMaxrbpyR-0"
                                         frameborder="0" allowfullscreen
-                                        style="border-radius: 8px;"
-                                        title="Ulnar Motor Nerve Conduction Study">
+                                        style="border-radius: 12px;"
+                                        title="Radial Sensory Nerve Conduction Study">
                                 </iframe>
                             </div>
-                            <p style="color: #6b7280; font-size: 0.9em; margin: 0;">
-                                <strong>Recording:</strong> Hypothenar muscles (ADM)<br>
-                                <strong>Stimulation:</strong> Wrist, below & above elbow
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Superficial radial<br>
+                                <strong style="color: #0d9488;">Use:</strong> CTS comparison
                             </p>
                         </div>
 
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 10px;">📍 Ulnar Sensory Study</h6>
-                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 8px; margin-bottom: 15px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/i9Naurf0eWU"
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Dorsal Ulnar Cutaneous</h6>
+                            <div style="position: relative; width: 100%; height: 220px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/U-60ft_8klI"
                                         frameborder="0" allowfullscreen
-                                        style="border-radius: 8px;"
-                                        title="Ulnar Sensory Nerve Conduction Study">
+                                        style="border-radius: 12px;"
+                                        title="Dorsal Ulnar Cutaneous Study">
                                 </iframe>
                             </div>
-                            <p style="color: #6b7280; font-size: 0.9em; margin: 0;">
-                                <strong>Recording:</strong> Digit 5 to wrist<br>
-                                <strong>Stimulation:</strong> Orthodromic stimulation
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> DUC branch<br>
+                                <strong style="color: #0d9488;">Use:</strong> Ulnar localization
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Third Row: Median Motor, Ulnar Motor -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Median Motor</h6>
+                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cdVrcgeBgIg"
+                                        frameborder="0" allowfullscreen
+                                        style="border-radius: 12px;"
+                                        title="Median Motor Nerve Conduction Study">
+                                </iframe>
+                            </div>
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Thenar (APB)<br>
+                                <strong style="color: #0d9488;">Stimulation:</strong> Wrist & elbow
+                            </p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Ulnar Motor</h6>
+                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/UmFYJDMucOY"
+                                        frameborder="0" allowfullscreen
+                                        style="border-radius: 12px;"
+                                        title="Ulnar Motor Nerve Conduction Study">
+                                </iframe>
+                            </div>
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Hypothenar (ADM)<br>
+                                <strong style="color: #0d9488;">Stimulation:</strong> Wrist, below & above elbow
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Lower Extremity Videos -->
-                <div style="margin-bottom: 30px;">
-                    <h5 style="color: #7c2d12; margin-bottom: 15px; font-size: 1.2em;">🦵 Lower Extremity NCS</h5>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 10px;">📍 Common Fibular Motor Study</h6>
-                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 8px; margin-bottom: 15px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/G1bsDinxuF8"
+                <div style="margin-bottom: 40px;">
+                    <h4 style="
+                        background: linear-gradient(135deg, #0d9488, #06b6d4);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-size: 1.8em;
+                        margin-bottom: 25px;
+                        font-weight: 700;
+                    ">🦵 Lower Extremity NCS</h4>
+
+                    <!-- First Row: Superficial Fibular Sensory, Sural Sensory -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Superficial Fibular Sensory</h6>
+                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/M1sE2FT8YQg"
                                         frameborder="0" allowfullscreen
-                                        style="border-radius: 8px;"
-                                        title="Common Fibular Motor Nerve Conduction Study">
+                                        style="border-radius: 12px;"
+                                        title="Superficial Fibular Sensory Nerve Conduction Study">
                                 </iframe>
                             </div>
-                            <p style="color: #6b7280; font-size: 0.9em; margin: 0;">
-                                <strong>Recording:</strong> Extensor digitorum brevis (EDB)<br>
-                                <strong>Stimulation:</strong> Ankle, fibular head & popliteal fossa
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Ankle to lateral leg<br>
+                                <strong style="color: #0d9488;">Use:</strong> Fibular neuropathy
                             </p>
                         </div>
 
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 10px;">📍 Tibial Motor Study</h6>
-                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 8px; margin-bottom: 15px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pWeH6kCa9lo"
-                                        frameborder="0" allowfullscreen
-                                        style="border-radius: 8px;"
-                                        title="Tibial Motor Nerve Conduction Study">
-                                </iframe>
-                            </div>
-                            <p style="color: #6b7280; font-size: 0.9em; margin: 0;">
-                                <strong>Recording:</strong> Abductor hallucis (AH)<br>
-                                <strong>Stimulation:</strong> Ankle, popliteal fossa
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Advanced/Specialized Studies -->
-                <div style="margin-bottom: 20px;">
-                    <h5 style="color: #7c2d12; margin-bottom: 15px; font-size: 1.2em;">🔬 Advanced Studies</h5>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 8px; font-size: 0.95em;">📍 Dorsal Ulnar Cutaneous</h6>
-                            <div style="position: relative; width: 100%; height: 150px; background: #f3f4f6; border-radius: 6px; margin-bottom: 10px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/U-60ft_8klI"
-                                        frameborder="0" allowfullscreen
-                                        style="border-radius: 6px;"
-                                        title="Dorsal Ulnar Cutaneous Study">
-                                </iframe>
-                            </div>
-                            <p style="color: #6b7280; font-size: 0.8em; margin: 0;">DUC study for ulnar neuropathy localization</p>
-                        </div>
-
-                        <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 8px; font-size: 0.95em;">📍 Radial Sensory Study</h6>
-                            <div style="position: relative; width: 100%; height: 150px; background: #f3f4f6; border-radius: 6px; margin-bottom: 10px;">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/nMaxrbpyR-0"
-                                        frameborder="0" allowfullscreen
-                                        style="border-radius: 6px;"
-                                        title="Radial Sensory Nerve Conduction Study">
-                                </iframe>
-                            </div>
-                            <p style="color: #6b7280; font-size: 0.8em; margin: 0;">Superficial radial sensory technique</p>
-                        </div>
-
-                        <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h6 style="color: #1f2937; margin-bottom: 8px; font-size: 0.95em;">📍 Sural Sensory Study</h6>
-                            <div style="position: relative; width: 100%; height: 150px; background: #f3f4f6; border-radius: 6px; margin-bottom: 10px;">
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Sural Sensory</h6>
+                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
                                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/zP1yAU5DW2s"
                                         frameborder="0" allowfullscreen
-                                        style="border-radius: 6px;"
+                                        style="border-radius: 12px;"
                                         title="Sural Sensory Nerve Conduction Study">
                                 </iframe>
                             </div>
-                            <p style="color: #6b7280; font-size: 0.8em; margin: 0;">Important for polyneuropathy screening</p>
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Calf to ankle<br>
+                                <strong style="color: #0d9488;">Use:</strong> Polyneuropathy screening
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Second Row: Common Fibular Motor, Tibial Motor -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Common Fibular Motor</h6>
+                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/G1bsDinxuF8"
+                                        frameborder="0" allowfullscreen
+                                        style="border-radius: 12px;"
+                                        title="Common Fibular Motor Nerve Conduction Study">
+                                </iframe>
+                            </div>
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> EDB<br>
+                                <strong style="color: #0d9488;">Stimulation:</strong> Ankle, fibular head, popliteal fossa
+                            </p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.15)'">
+                            <h6 style="color: #0d9488; margin-bottom: 12px; font-size: 1.1em; font-weight: 700;">📍 Tibial Motor</h6>
+                            <div style="position: relative; width: 100%; height: 200px; background: #f3f4f6; border-radius: 12px; margin-bottom: 15px;">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pWeH6kCa9lo"
+                                        frameborder="0" allowfullscreen
+                                        style="border-radius: 12px;"
+                                        title="Tibial Motor Nerve Conduction Study">
+                                </iframe>
+                            </div>
+                            <p style="color: #64748b; font-size: 0.9em; margin: 0; line-height: 1.5;">
+                                <strong style="color: #0d9488;">Recording:</strong> Abductor hallucis<br>
+                                <strong style="color: #0d9488;">Stimulation:</strong> Ankle, popliteal fossa
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Technique Tips -->
-            <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
-                <h4 style="color: #166534; margin-bottom: 20px; font-size: 1.3em;">💡 Pro Tips for Success</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div style="background: white; padding: 20px; border-radius: 10px;">
-                        <h5 style="color: #166534; margin-bottom: 15px;">🎯 Electrode Placement</h5>
-                        <ul style="color: #374151; line-height: 1.7; margin: 0; padding-left: 20px;">
-                            <li>Use consistent landmark measurements</li>
-                            <li>Clean skin thoroughly with alcohol</li>
-                            <li>Maintain proper ground electrode placement</li>
-                            <li>Check impedances before recording</li>
-                        </ul>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 10px;">
-                        <h5 style="color: #166534; margin-bottom: 15px;">⚡ Stimulation Technique</h5>
-                        <ul style="color: #374151; line-height: 1.7; margin: 0; padding-left: 20px;">
-                            <li>Start with supramaximal stimulation</li>
-                            <li>Watch for stimulus artifact</li>
-                            <li>Ensure proper cathode positioning</li>
-                            <li>Use gel to improve contact</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <!-- Pictures Section (Initially Hidden) -->
+            <div id="ncs-pictures-section" style="display: none;">
+                <h4 style="
+                    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    font-size: 1.8em;
+                    margin-bottom: 30px;
+                    font-weight: 700;
+                ">📸 Upper Extremity NCS Technique Guide</h4>
 
-            <!-- Interactive Quiz -->
-            <div class="quiz-section">
-                <div style="background: linear-gradient(135deg, #fef3c7, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
-                    <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.3em;">🧠 Check Your Understanding</h4>
-                    <div id="technique-quiz" style="background: white; padding: 20px; border-radius: 10px;">
-                        <div class="quiz-question" style="margin-bottom: 20px;">
-                            <h5 style="color: #1f2937; margin-bottom: 15px;">What is the standard recording site for median motor studies?</h5>
-                            <div style="display: flex; flex-direction: column; gap: 10px;">
-                                <label style="display: flex; align-items: center; cursor: pointer; padding: 8px;">
-                                    <input type="radio" name="q1" value="a" style="margin-right: 10px;">
-                                    <span>First dorsal interosseous (FDI)</span>
-                                </label>
-                                <label style="display: flex; align-items: center; cursor: pointer; padding: 8px;">
-                                    <input type="radio" name="q1" value="b" style="margin-right: 10px;">
-                                    <span>Abductor pollicis brevis (APB)</span>
-                                </label>
-                                <label style="display: flex; align-items: center; cursor: pointer; padding: 8px;">
-                                    <input type="radio" name="q1" value="c" style="margin-right: 10px;">
-                                    <span>Abductor digiti minimi (ADM)</span>
-                                </label>
+                <!-- Motor Studies Section -->
+                <div style="margin-bottom: 40px;">
+                    <h5 style="color: #8b5cf6; font-size: 1.4em; margin-bottom: 20px; font-weight: 700;">⚡ Motor Studies</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+
+                        <!-- Median Motor -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Motor Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Median Motor</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Abductor pollicis brevis (APB) - lateral thenar eminence<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Muscle belly | <strong style="color: #8b5cf6;">G2:</strong> 1st MCP joint<br>
+                                <strong style="color: #8b5cf6;">Stimulation Sites:</strong><br>
+                                &nbsp;&nbsp;• <strong>Wrist:</strong> Between FCR & palmaris longus tendons (8 cm)<br>
+                                &nbsp;&nbsp;• <strong>Antecubital fossa:</strong> Over brachial artery pulse
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Excessive stim may co-activate ulnar nerve. Check for Martin-Gruber anastomosis if antecubital > wrist amplitude.</small>
                             </div>
                         </div>
-                        <button onclick="checkAnswer('b', 'Correct! APB is the standard recording muscle for median motor studies.')"
-                                style="background: #3b82f6; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer;">
-                            Submit Answer
-                        </button>
+
+                        <!-- Median Motor Palmar -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Motor Palmar Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Median Motor Palmar</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> APB<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Muscle belly | <strong style="color: #8b5cf6;">G2:</strong> 1st MCP joint<br>
+                                <strong style="color: #8b5cf6;">Stimulation Sites:</strong><br>
+                                &nbsp;&nbsp;• <strong>Wrist:</strong> Between FCR & palmaris longus, 8 cm from recording<br>
+                                &nbsp;&nbsp;• <strong>Palm:</strong> 7 cm distal to wrist, toward index/middle web space
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Palm/wrist ratio >1.2 implies conduction block across wrist. Recurrent thenar branch curves back from palm.</small>
+                            </div>
+                        </div>
+
+                        <!-- Ulnar Motor -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Ulnar Motor Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Ulnar Motor</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Abductor digiti minimi (ADM) - medial hypothenar<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Muscle belly | <strong style="color: #8b5cf6;">G2:</strong> 5th MCP joint<br>
+                                <strong style="color: #8b5cf6;">Stimulation Sites:</strong><br>
+                                &nbsp;&nbsp;• <strong>Wrist:</strong> Medial wrist, adjacent to FCU tendon (8 cm)<br>
+                                &nbsp;&nbsp;• <strong>Below elbow:</strong> 3 cm distal to medial epicondyle<br>
+                                &nbsp;&nbsp;• <strong>Above elbow:</strong> Medial humerus, 10-12 cm from below-elbow<br>
+                                &nbsp;&nbsp;• <strong>Axilla (optional):</strong> Proximal axilla, medial to biceps over axillary pulse
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Elbow flexed 90-135°. Must stimulate ≥3 cm distal to medial epicondyle. Check Martin-Gruber if below-elbow >10% smaller than wrist.</small>
+                            </div>
+                        </div>
+
+                        <!-- Deep Ulnar Motor (FDI) -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Deep Ulnar Motor (FDI) Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Deep Ulnar Motor (FDI)</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> First dorsal interosseous (dorsal web thumb/index)<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Muscle belly | <strong style="color: #8b5cf6;">G2:</strong> Thumb MCP joint<br>
+                                <strong style="color: #8b5cf6;">Stimulation Sites:</strong><br>
+                                &nbsp;&nbsp;• <strong>Wrist:</strong> Medial wrist, adjacent to FCU tendon (8-12 cm, use calipers)<br>
+                                &nbsp;&nbsp;• <strong>Below elbow:</strong> 3 cm distal to medial epicondyle<br>
+                                &nbsp;&nbsp;• <strong>Above elbow:</strong> Medial humerus, 10-12 cm from below-elbow
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Preferentially affected in Guyon's canal lesions. More sensitive for ulnar slowing across elbow than ADM. G2 MUST be on thumb MCP.</small>
+                            </div>
+                        </div>
+
+                        <!-- Radial Motor -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Radial Motor Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Radial Motor</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Extensor indicis proprius (EIP)<br>
+                                <strong style="color: #8b5cf6;">Position:</strong> Hand pronated, G1 two fingerbreadths proximal to ulnar styloid | G2 over ulnar styloid<br>
+                                <strong style="color: #8b5cf6;">Stimulation Sites:</strong><br>
+                                &nbsp;&nbsp;• <strong>Forearm:</strong> Over ulna, 4-6 cm proximal to recording (5-7 cm distance)<br>
+                                &nbsp;&nbsp;• <strong>Elbow:</strong> Between biceps & brachioradialis muscles<br>
+                                &nbsp;&nbsp;• <strong>Below spiral groove:</strong> Lateral midarm, between biceps & triceps<br>
+                                &nbsp;&nbsp;• <strong>Above spiral groove:</strong> Posterior proximal arm over humerus
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Initial positive deflection is normal. Use obstetric calipers for proximal distances. Useful for spiral groove and posterior interosseous neuropathy.</small>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
+                <!-- Sensory Studies Section -->
+                <div style="margin-bottom: 40px;">
+                    <h5 style="color: #8b5cf6; font-size: 1.4em; margin-bottom: 20px; font-weight: 700;">🔍 Sensory Studies</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+
+                        <!-- Median Sensory -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Sensory Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Median Sensory</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Index or middle finger (Digit 2 or 3)<br>
+                                <strong style="color: #8b5cf6;">Ring electrodes:</strong> G1 at MCP joint, G2 3-4 cm distally at DIP joint<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Wrist (between FCR & palmaris longus)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 14 cm (antidromic)
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Volume-conducted motor potential may obscure sensory - have patient spread fingers. Digits 1 & 4 can also be used.</small>
+                            </div>
+                        </div>
+
+                        <!-- Median Sensory Palmar -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Sensory Palmar Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Median Sensory Palmar</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Middle finger (G1 at PIP, G2 at DIP)<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Wrist (14 cm) + Palm (7 cm distal to wrist, toward middle finger)<br>
+                                <strong style="color: #8b5cf6;">Distances:</strong> Wrist 14 cm, Palm 7 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Palm/wrist ratio >1.6 = conduction block. Calculate wrist-palm CV for carpal tunnel assessment (segmental study). Rotate anode if artifact.</small>
+                            </div>
+                        </div>
+
+                        <!-- Ulnar Sensory -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Ulnar Sensory Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Ulnar Sensory</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Little finger (Digit 5)<br>
+                                <strong style="color: #8b5cf6;">Ring electrodes:</strong> G1 at MCP joint, G2 3-4 cm distally at DIP<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Wrist (medial, adjacent to FCU tendon)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 14 cm (antidromic)
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> May be abnormal in ulnar neuropathy or lower trunk plexopathy. Volume-conducted motor may obscure - spread fingers if needed.</small>
+                            </div>
+                        </div>
+
+                        <!-- Dorsal Ulnar Cutaneous -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Dorsal Ulnar Cutaneous Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Dorsal Ulnar Cutaneous</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Dorsal hand web space (D4-5)<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Between little & ring fingers | <strong style="color: #8b5cf6;">G2:</strong> 3-4 cm over little finger<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Proximal to ulnar styloid (hand pronated)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 8 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> ALWAYS spared in Guyon's canal lesions. May be abnormal in ulnar neuropathy at elbow. Low stim intensity (5-15 mA) sufficient.</small>
+                            </div>
+                        </div>
+
+                        <!-- Radial Sensory -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Radial Sensory Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Radial Sensory</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Superficial radial nerve over extensor tendons to thumb<br>
+                                <strong style="color: #8b5cf6;">Tip:</strong> Palpate nerve over thumb extensor tendon (have patient extend thumb)<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Distal-mid radius<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 14 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Abnormal in radial neuropathy, posterior cord, upper/middle trunk plexopathy. SPARED in posterior interosseous neuropathy.</small>
+                            </div>
+                        </div>
+
+                        <!-- Medial Antebrachial Cutaneous -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Medial Antebrachial Cutaneous Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Medial Antebrachial Cutaneous</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Medial forearm<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> 12 cm distal to stim (line to ulnar wrist) | <strong style="color: #8b5cf6;">G2:</strong> 3-4 cm distally<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Medial elbow (midpoint biceps tendon to medial epicondyle)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 12 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Abnormal in medial cord/lower trunk plexopathy. Absent/low in true neurogenic TOS. Side-to-side comparison helpful. Low stim (5-15 mA).</small>
+                            </div>
+                        </div>
+
+                        <!-- Lateral Antebrachial Cutaneous -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Lateral Antebrachial Cutaneous Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Lateral Antebrachial Cutaneous</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Lateral forearm<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> 12 cm distal to stim (line to radial wrist) | <strong style="color: #8b5cf6;">G2:</strong> 3-4 cm distally<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Antecubital fossa (lateral to biceps tendon)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 12 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Abnormal in musculocutaneous nerve, lateral cord, or upper trunk plexopathy. Low stim (5-15 mA). Avoid excessive stim → direct biceps activation.</small>
+                            </div>
+                        </div>
+
+                        <!-- Upper Extremity Proximal -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: UE Proximal Stimulation Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 UE Proximal Stimulation</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Any UE muscle (deltoid, infraspinatus, biceps, triceps)<br>
+                                <strong style="color: #8b5cf6;">Belly-tendon:</strong> G1 on muscle belly, G2 on tendon<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Erb's point (supraclavicular fossa posterior to SCM) OR Cervical roots (monopolar needle)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> Variable (use calipers)
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Supramax difficult. Side-to-side comparison essential. Use calipers for distances. CAUTION: Pneumothorax risk if needle too lateral at roots.</small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Comparison Studies Section -->
+                <div style="margin-bottom: 40px;">
+                    <h5 style="color: #8b5cf6; font-size: 1.4em; margin-bottom: 20px; font-weight: 700;">⚖️ Internal Comparison Studies</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+
+                        <!-- Lumbrical-Interossei -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Lumbrical-Interossei Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚖️ Lumbrical-Interossei</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> SAME electrodes for both<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Lateral to 3rd metacarpal midpoint | <strong style="color: #8b5cf6;">G2:</strong> D2 MCP joint<br>
+                                <strong style="color: #8b5cf6;">Median stim:</strong> 2nd lumbrical | <strong style="color: #8b5cf6;">Ulnar stim:</strong> 1st palmar interosseous<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 10 cm (SAME for both)
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Latency difference <0.5ms normal. Useful for CTS or Guyon's canal. Helpful when polyneuropathy present. Avoid co-stimulation. Interosseous amp > lumbrical amp.</small>
+                            </div>
+                        </div>
+
+                        <!-- Median vs Ulnar Digit 4 -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median vs Ulnar Digit 4 Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚖️ Median vs Ulnar - Digit 4</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Ring finger (same electrodes)<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> MCP joint | <strong style="color: #8b5cf6;">G2:</strong> 3-4 cm distally at DIP<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Median at wrist vs Ulnar at wrist<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 10 cm (SAME for both)
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Split innervation (lateral median, medial ulnar). Latency difference <0.5ms normal. Useful for CTS diagnosis. Avoid co-stimulation. Antidromic.</small>
+                            </div>
+                        </div>
+
+                        <!-- Median vs Radial Digit 1 -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median vs Radial Digit 1 Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚖️ Median vs Radial - Digit 1</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Thumb (same electrodes)<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> MCP joint | <strong style="color: #8b5cf6;">G2:</strong> Distally at DIP<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Median at wrist vs Radial at forearm (over radial bone)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 10 cm (SAME for both)
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Split innervation (lateral radial, medial median). Latency difference <0.5ms normal. Useful for CTS. Avoid co-stimulation. Antidromic.</small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Mixed Nerve Studies Section -->
+                <div style="margin-bottom: 40px;">
+                    <h5 style="color: #8b5cf6; font-size: 1.4em; margin-bottom: 20px; font-weight: 700;">🔄 Palmar Mixed Nerve Studies</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+
+                        <!-- Median Palmar Mixed -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Median Palmar Mixed Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Median Palmar Mixed</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Median nerve at wrist<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Between FCR & palmaris longus | <strong style="color: #8b5cf6;">G2:</strong> 3-4 cm proximally<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Palm (8 cm from G1, toward index/middle web space)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 8 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Median/ulnar palmar latency difference <0.4ms normal. Subtle CTS detection. VERY careful with 8cm measurement. Avoid co-stimulation.</small>
+                            </div>
+                        </div>
+
+                        <!-- Ulnar Palmar Mixed -->
+                        <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                                <span style="color: #8b5cf6; font-size: 0.9em;">📷 Image Placeholder: Ulnar Palmar Mixed Technique</span>
+                            </div>
+                            <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Ulnar Palmar Mixed</h6>
+                            <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
+                                <strong style="color: #8b5cf6;">Recording:</strong> Ulnar nerve at wrist<br>
+                                <strong style="color: #8b5cf6;">G1:</strong> Medial wrist adjacent to FCU | <strong style="color: #8b5cf6;">G2:</strong> 3-4 cm proximally<br>
+                                <strong style="color: #8b5cf6;">Stimulation:</strong> Palm (8 cm from G1, toward ring/little web space)<br>
+                                <strong style="color: #8b5cf6;">Distance:</strong> 8 cm
+                            </p>
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Compare with median palmar - difference <0.4ms normal. Useful for subtle median slowing across wrist (CTS). Precise 8cm measurement critical.</small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     `;
@@ -15597,5 +16027,55 @@ window.nextQuizQuestion = function(currentIndex, totalQuestions) {
 
 // Expose quiz generation function globally
 window.generateModuleQuiz = generateModuleQuiz;
+
+// NCS Techniques Videos/Pictures Toggle Function
+window.showNCSContentType = function(type) {
+    const videosBtn = document.getElementById('ncs-videos-btn');
+    const picturesBtn = document.getElementById('ncs-pictures-btn');
+    const videosSection = document.getElementById('ncs-videos-section');
+    const picturesSection = document.getElementById('ncs-pictures-section');
+
+    if (type === 'videos') {
+        // Activate Videos button
+        videosBtn.classList.add('active');
+        videosBtn.style.background = 'linear-gradient(135deg, #14b8a6, #06b6d4)';
+        videosBtn.style.color = 'white';
+        videosBtn.style.borderColor = 'transparent';
+        videosBtn.style.transform = 'scale(1.05)';
+        videosBtn.style.boxShadow = '0 8px 25px rgba(20, 184, 166, 0.4)';
+
+        // Deactivate Pictures button
+        picturesBtn.classList.remove('active');
+        picturesBtn.style.background = 'white';
+        picturesBtn.style.color = '#64748b';
+        picturesBtn.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+        picturesBtn.style.transform = '';
+        picturesBtn.style.boxShadow = '0 4px 15px rgba(139, 92, 246, 0.15)';
+
+        // Show Videos, hide Pictures
+        videosSection.style.display = 'block';
+        picturesSection.style.display = 'none';
+    } else if (type === 'pictures') {
+        // Activate Pictures button
+        picturesBtn.classList.add('active');
+        picturesBtn.style.background = 'linear-gradient(135deg, #8b5cf6, #6366f1)';
+        picturesBtn.style.color = 'white';
+        picturesBtn.style.borderColor = 'transparent';
+        picturesBtn.style.transform = 'scale(1.05)';
+        picturesBtn.style.boxShadow = '0 8px 25px rgba(139, 92, 246, 0.4)';
+
+        // Deactivate Videos button
+        videosBtn.classList.remove('active');
+        videosBtn.style.background = 'white';
+        videosBtn.style.color = '#64748b';
+        videosBtn.style.borderColor = 'rgba(20, 184, 166, 0.3)';
+        videosBtn.style.transform = '';
+        videosBtn.style.boxShadow = '0 4px 15px rgba(20, 184, 166, 0.15)';
+
+        // Show Pictures, hide Videos
+        picturesSection.style.display = 'block';
+        videosSection.style.display = 'none';
+    }
+};
 
 console.log('✅ Universal Module Quiz System loaded');

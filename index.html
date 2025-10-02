@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Enhanced Journey EMG/NCS Learning System - Full Integration</title>
     <!-- <link rel="icon" type="image/png" href="ERNEST.png"> -->
-    <link rel="stylesheet" href="css/enhanced-journey-candyland.css">
+    <link rel="stylesheet" href="css/enhanced-journey-candyland.css?v=20251002-stop-propagation">
     <link rel="stylesheet" href="css/professional-board-candyland.css">
     <style>
         /* Clean Medical Background System */
@@ -1443,9 +1443,38 @@
     <!-- Load EMG APP Complete System with all clinical cases -->
     <script src="js/emg-app-complete-system.js"></script>
     <!-- <script src="js/enhanced-journey-modal-content.js"></script> -->
-    <script src="js/enhanced-journey-modal-content.js?v=20251001-fix-blur-title"></script>
+    <script src="js/enhanced-journey-modal-content.js?v=20251002-final-fix"></script>
 
     <script>
+        // Minimal crash tracking
+        window.addEventListener('beforeunload', function(e) {
+            console.error('⚠️ PAGE UNLOAD - Something triggered navigation away from page');
+        });
+
+        window.addEventListener('pagehide', function(e) {
+            console.error('⚠️ PAGE HIDE - Page is being hidden/closed');
+        });
+
+        // Track if something is programmatically changing location
+        const originalLocationAssign = window.location.assign;
+        const originalLocationReplace = window.location.replace;
+        const originalLocationReload = window.location.reload;
+
+        window.location.assign = function() {
+            console.error('🚨 location.assign() called!', new Error().stack);
+            return originalLocationAssign.apply(this, arguments);
+        };
+
+        window.location.replace = function() {
+            console.error('🚨 location.replace() called!', new Error().stack);
+            return originalLocationReplace.apply(this, arguments);
+        };
+
+        window.location.reload = function() {
+            console.error('🚨 location.reload() called!', new Error().stack);
+            return originalLocationReload.apply(this, arguments);
+        };
+
         // Atrium Health Welcome Screen Function
         function startAtriumJourney() {
             console.log('🏥 Starting Atrium Health Journey');
@@ -2863,11 +2892,12 @@
         `;
         document.head.appendChild(modalStyles);
 
-        // Close modal when clicking outside
+        // Close modal when clicking outside overlay
         document.addEventListener('DOMContentLoaded', function() {
             const overlay = document.getElementById('modal-overlay');
             if (overlay) {
                 overlay.addEventListener('click', function(e) {
+                    // Only close if clicking directly on overlay (not modal content)
                     if (e.target === this) {
                         closeGeneralModal();
                     }
@@ -2900,21 +2930,81 @@
         };
 
         window.closeLearningObjectives = function() {
+            console.warn('🚨 closeLearningObjectives() CALLED');
+            console.warn('📍 Call stack:', new Error().stack);
+
             const modal = document.getElementById('learning-objectives-modal');
             if (modal) {
+                console.warn('✅ Learning objectives modal found, hiding it');
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
+            } else {
+                console.warn('❌ Learning objectives modal NOT found');
             }
         };
 
-        // Close modal when clicking outside content
+        // Close modal when clicking outside content (with zoom gesture detection + DEBUG LOGGING)
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('learning-objectives-modal');
             if (modal) {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        window.closeLearningObjectives();
+                let touchStartTime = 0;
+                let touchStartDistance = 0;
+
+                // Track touch start for gesture detection
+                modal.addEventListener('touchstart', function(e) {
+                    touchStartTime = Date.now();
+                    console.warn('📱 LEARNING-OBJ touchstart:', {
+                        touches: e.touches.length,
+                        target: e.target.tagName,
+                        targetClass: e.target.className,
+                        timestamp: touchStartTime
+                    });
+
+                    // If multi-touch, likely a zoom gesture
+                    if (e.touches && e.touches.length > 1) {
+                        const dx = e.touches[0].clientX - e.touches[1].clientX;
+                        const dy = e.touches[0].clientY - e.touches[1].clientY;
+                        touchStartDistance = Math.sqrt(dx * dx + dy * dy);
+                        console.warn('🔍 LEARNING-OBJ MULTI-TOUCH:', {
+                            distance: touchStartDistance,
+                            touches: e.touches.length
+                        });
+                    } else {
+                        touchStartDistance = 0;
                     }
+                }, { passive: true });
+
+                modal.addEventListener('click', function(e) {
+                    // Only close if:
+                    // 1. Click target is the modal overlay itself (not modal content)
+                    // 2. Touch duration was reasonable (< 300ms suggests intentional tap)
+                    // 3. No multi-touch detected (zoom gesture)
+                    const touchDuration = Date.now() - touchStartTime;
+                    const isModal = e.target === modal;
+                    const isQuickTap = touchDuration < 300;
+                    const isSingleTouch = touchStartDistance === 0;
+
+                    console.warn('👆 LEARNING-OBJ click event:', {
+                        target: e.target.tagName,
+                        targetClass: e.target.className,
+                        isModal: isModal,
+                        touchDuration: touchDuration,
+                        isQuickTap: isQuickTap,
+                        touchStartDistance: touchStartDistance,
+                        isSingleTouch: isSingleTouch,
+                        willClose: isModal && isQuickTap && isSingleTouch
+                    });
+
+                    if (isModal && isQuickTap && isSingleTouch) {
+                        console.warn('🚪 CLOSING learning objectives modal');
+                        window.closeLearningObjectives();
+                    } else {
+                        console.warn('✋ NOT closing learning objectives - conditions not met');
+                    }
+
+                    // Reset for next interaction
+                    touchStartTime = 0;
+                    touchStartDistance = 0;
                 });
             }
         });
