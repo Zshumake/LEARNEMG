@@ -14,6 +14,7 @@
 !images/
 !videos/
 !"Nerve Paths"/
+!"NCS images"/
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
