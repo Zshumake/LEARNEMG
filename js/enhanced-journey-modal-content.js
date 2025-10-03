@@ -14660,66 +14660,85 @@ window.EMGLocalizationDatabase = {
 // EMG Needle Localization Guide Function
 window.showEMGLocalizationGuide = function() {
     console.log('🔍 DEBUG: showEMGLocalizationGuide called');
+    console.log('✨ UI FACELIFT VERSION LOADED - EMG Needle Localization v20251002');
 
     const title = '💉 EMG Needle Localization Guide';
     const content = `
         <div class="emg-localization-container">
-            <!-- Header Section -->
-            <div class="emg-header">
-                <h3>📖 EMG Needle Placement Reference</h3>
-                <p>Comprehensive guide for precise electrode placement using anatomical landmarks</p>
-            </div>
-
-            <!-- Main Content Area -->
-            <div class="emg-main-content">
-                <!-- Left Panel: Muscle List -->
-                <div class="muscle-list-panel">
-                    <div class="region-header">
-                        <h4>🫱 Upper Extremity</h4>
-                    </div>
-                    <div class="muscle-list" id="upper-muscle-list">
-                        ${Object.keys(EMGLocalizationDatabase.upperExtremity).map(muscle =>
-                            `<div class="muscle-list-item" onclick="EMGLocalization.selectMuscle('${muscle}', 'upper')" data-muscle="${muscle}">
-                                <span class="muscle-name">${EMGLocalizationDatabase.upperExtremity[muscle].fullName}</span>
-                                <span class="muscle-abbrev">(${muscle})</span>
-                            </div>`
-                        ).join('')}
-                    </div>
-
-                    <div class="region-header">
-                        <h4>🦵 Lower Extremity</h4>
-                    </div>
-                    <div class="muscle-list" id="lower-muscle-list">
-                        ${Object.keys(EMGLocalizationDatabase.lowerExtremity).map(muscle =>
-                            `<div class="muscle-list-item" onclick="EMGLocalization.selectMuscle('${muscle}', 'lower')" data-muscle="${muscle}">
-                                <span class="muscle-name">${EMGLocalizationDatabase.lowerExtremity[muscle].fullName}</span>
-                                <span class="muscle-abbrev">(${muscle})</span>
-                            </div>`
-                        ).join('')}
+            <!-- Hero Section with Animated Gradient -->
+            <div class="emg-hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">💉 EMG Needle Localization Guide</h1>
+                    <p class="hero-subtitle">Precise electrode placement using anatomical landmarks</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">13</div>
+                            <div class="stat-label">Total Muscles</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Upper Extremity</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Lower Extremity</div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Right Panel: Muscle Details -->
-                <div class="muscle-detail-panel">
-                    <div class="detail-placeholder" id="muscle-detail-content">
-                        <div class="placeholder-content">
-                            <h4>🎯 Select a Muscle</h4>
-                            <p>Choose a muscle from the left panel to view detailed EMG needle localization information including:</p>
-                            <ul>
-                                <li>📍 <strong>Electrode Insertion</strong> - Precise needle placement instructions</li>
-                                <li>🧍 <strong>Patient Position</strong> - Optimal positioning for access</li>
-                                <li>💪 <strong>Test Maneuver</strong> - Activation technique for verification</li>
-                                <li>⚠️ <strong>Pitfalls</strong> - Common mistakes and warnings</li>
-                                <li>🧠 <strong>Clinical Notes</strong> - Important anatomical information</li>
-                                <li>🖼️ <strong>Image Placeholder</strong> - Space reserved for needle placement diagrams</li>
-                            </ul>
-                        </div>
+            <!-- Compact Control Bar -->
+            <div class="control-bar">
+                <div class="control-section">
+                    <h4>🎯 Select Region</h4>
+                    <div class="region-selector">
+                        <button class="region-btn active" id="upper-region-btn" onclick="EMGLocalization.switchRegion('upper')">
+                            🫱 Upper Extremity
+                        </button>
+                        <button class="region-btn" id="lower-region-btn" onclick="EMGLocalization.switchRegion('lower')">
+                            🦵 Lower Extremity
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Muscle Pill Selector -->
+            <div class="muscle-pill-container" id="muscle-pill-container">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Main Content Area (Full Width) -->
+            <div class="muscle-detail-panel">
+                <div class="detail-placeholder" id="muscle-detail-content">
+                    <div class="placeholder-content">
+                        <h4>🎯 Select a Muscle</h4>
+                        <p>Choose a muscle above to view detailed EMG needle localization information including:</p>
+                        <ul>
+                            <li>💉 <strong>Electrode Insertion</strong> - Precise needle placement instructions</li>
+                            <li>🧍 <strong>Patient Position</strong> - Optimal positioning for access</li>
+                            <li>💪 <strong>Test Maneuver</strong> - Activation technique for verification</li>
+                            <li>⚠️ <strong>Pitfalls</strong> - Common mistakes and warnings</li>
+                            <li>🧠 <strong>Innervation</strong> - Nerve supply details</li>
+                            <li>📝 <strong>Clinical Notes</strong> - Important anatomical information</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
 
         <style>
+            /* Advanced EMG Localization Styling */
+            @keyframes gradient-shift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+
             .emg-localization-container {
                 font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
                 max-width: 1400px;
@@ -14727,130 +14746,201 @@ window.showEMGLocalizationGuide = function() {
                 background: linear-gradient(135deg, #f8fafc, #f1f5f9);
                 border-radius: 20px;
                 overflow: hidden;
-                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
 
-            .emg-header {
-                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-                color: white;
-                padding: 30px;
+            /* Hero Section */
+            .emg-hero {
+                background: linear-gradient(135deg, #14b8a6, #06b6d4, #8b5cf6, #14b8a6);
+                background-size: 300% 300%;
+                animation: gradient-shift 15s ease infinite;
+                border-radius: 25px 25px 0 0;
+                padding: 40px;
+                margin: 0;
                 text-align: center;
+                box-shadow: 0 20px 60px rgba(20, 184, 166, 0.3);
                 position: relative;
                 overflow: hidden;
             }
 
-            .emg-header::before {
+            .emg-hero::before {
                 content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-                opacity: 0.3;
-            }
-
-            .emg-header h3 {
-                margin: 0 0 12px 0;
-                font-size: 2.2em;
-                font-weight: 700;
-                position: relative;
+                background: rgba(255, 255, 255, 0.05);
                 z-index: 1;
             }
 
-            .emg-header p {
-                margin: 0;
-                opacity: 0.95;
-                font-size: 1.2em;
+            .emg-hero .hero-content {
                 position: relative;
-                z-index: 1;
-                font-weight: 300;
+                z-index: 2;
             }
 
-            .emg-main-content {
-                display: flex;
-                min-height: 650px;
-                background: white;
-            }
-
-            /* Left Panel Styles */
-            .muscle-list-panel {
-                width: 380px;
-                background: linear-gradient(135deg, #fafbfc, #f1f5f9);
-                border-right: 3px solid #e2e8f0;
-                overflow-y: auto;
-                max-height: 650px;
-            }
-
-            .region-header {
-                background: linear-gradient(135deg, #1e293b, #334155);
+            .hero-title {
+                font-size: 2.5rem;
                 color: white;
-                padding: 18px 24px;
-                margin: 0;
-                position: sticky;
-                top: 0;
-                z-index: 10;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                margin-bottom: 15px;
+                font-weight: 700;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             }
 
-            .region-header h4 {
-                margin: 0;
-                font-size: 1.3em;
+            .hero-subtitle {
+                font-size: 1.1rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 25px;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+
+            .hero-stats {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+
+            .stat-card {
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 20px 30px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                min-width: 120px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            .stat-card:nth-child(1) { animation-delay: 0s; }
+            .stat-card:nth-child(2) { animation-delay: 0.2s; }
+            .stat-card:nth-child(3) { animation-delay: 0.4s; }
+
+            .stat-card:hover {
+                transform: translateY(-15px) scale(1.05);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            .stat-number {
+                font-size: 2rem;
                 font-weight: 700;
+                color: white;
+                margin-bottom: 5px;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.9);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Control Bar */
+            .control-bar {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 2px solid #e2e8f0;
+                padding: 20px 35px;
+            }
+
+            .control-section h4 {
+                color: #2c3e50;
+                font-size: 14px;
+                font-weight: 700;
+                margin-bottom: 12px;
+                text-transform: uppercase;
                 letter-spacing: 0.5px;
             }
 
-            .muscle-list {
-                padding: 0;
+            .region-selector {
+                display: flex;
+                gap: 15px;
             }
 
-            .muscle-list-item {
-                padding: 18px 24px;
-                border-bottom: 1px solid #e2e8f0;
+            .region-btn {
+                padding: 16px 35px;
+                border: 2px solid rgba(20, 184, 166, 0.3);
+                border-radius: 50px;
+                background: rgba(255, 255, 255, 0.9);
+                color: #0d9488;
+                font-weight: 600;
                 cursor: pointer;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                background: white;
-                border-left: 4px solid transparent;
+                transition: all 0.3s ease;
+                font-size: 1.1rem;
+                box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15);
             }
 
-            .muscle-list-item:hover {
-                background: linear-gradient(135deg, #eff6ff, #dbeafe);
-                border-left: 4px solid #3b82f6;
-                transform: translateX(4px);
-                box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+            .region-btn:hover {
+                background: rgba(20, 184, 166, 0.1);
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 6px 20px rgba(20, 184, 166, 0.25);
+                border-color: rgba(20, 184, 166, 0.5);
             }
 
-            .muscle-list-item.selected {
-                background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-                border-left: 4px solid #2563eb;
-                box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.25);
-                transform: translateX(2px);
-            }
-
-            .muscle-name {
-                display: block;
+            .region-btn.active {
+                background: linear-gradient(135deg, #14b8a6, #06b6d4);
+                color: white;
                 font-weight: 700;
-                color: #1e293b;
-                font-size: 1.05em;
-                margin-bottom: 6px;
-                line-height: 1.3;
+                box-shadow: 0 6px 25px rgba(20, 184, 166, 0.5);
+                border-color: transparent;
             }
 
-            .muscle-abbrev {
-                display: block;
-                color: #64748b;
-                font-size: 0.9em;
-                font-style: italic;
+            /* Muscle Pill Selector */
+            .muscle-pill-container {
+                padding: 25px 35px;
+                background: white;
+                border-bottom: 2px solid #e2e8f0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .muscle-pill {
+                padding: 12px 24px;
+                border: 2px solid rgba(139, 92, 246, 0.3);
+                border-radius: 25px;
+                background: white;
+                color: #8b5cf6;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 1rem;
+                box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
+            }
+
+            .muscle-pill:hover {
+                background: rgba(139, 92, 246, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+                border-color: #8b5cf6;
+            }
+
+            .muscle-pill.active {
+                background: linear-gradient(135deg, #8b5cf6, #6366f1);
+                color: white;
+                font-weight: 700;
+                box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+                border-color: transparent;
+            }
+
+            .muscle-pill-abbrev {
+                font-weight: 700;
+                margin-right: 6px;
+            }
+
+            .muscle-pill-name {
                 font-weight: 500;
+                opacity: 0.9;
             }
 
-            /* Right Panel Styles */
+            /* Content Panel */
             .muscle-detail-panel {
-                flex: 1;
                 padding: 35px;
-                overflow-y: auto;
-                max-height: 650px;
                 background: linear-gradient(135deg, #fefefe, #f9fafb);
+                min-height: 400px;
             }
 
             .placeholder-content {
@@ -14979,66 +15069,98 @@ window.showEMGLocalizationGuide = function() {
                 font-weight: 500;
             }
 
+            /* Electrode Insertion Section - RED HIGHLIGHT */
+            .detail-section.electrode-insertion {
+                border-left: 4px solid #dc2626;
+                background: linear-gradient(135deg, #ffffff, #fef2f2);
+                box-shadow: 0 6px 15px -3px rgba(220, 38, 38, 0.15);
+            }
+
+            .detail-section.electrode-insertion h5 {
+                color: #dc2626;
+            }
+
+            /* Pitfalls Section - ORANGE HIGHLIGHT */
+            .detail-section.pitfalls {
+                border-left: 4px solid #f59e0b;
+                background: linear-gradient(135deg, #ffffff, #fffbeb);
+                box-shadow: 0 6px 15px -3px rgba(245, 158, 11, 0.15);
+            }
+
+            .detail-section.pitfalls h5 {
+                color: #f59e0b;
+            }
+
             /* MOBILE RESPONSIVENESS */
             @media (max-width: 480px) {
                 .emg-localization-container {
                     border-radius: 10px;
                 }
 
-                /* Header adjustments */
-                .emg-header {
-                    padding: 20px 15px !important;
+                /* Hero section */
+                .emg-hero {
+                    padding: 25px 15px !important;
+                    border-radius: 10px 10px 0 0;
                 }
 
-                .emg-header h3 {
-                    font-size: 1.5em !important;
+                .hero-title {
+                    font-size: 1.5rem !important;
                 }
 
-                .emg-header p {
-                    font-size: 0.9em !important;
+                .hero-subtitle {
+                    font-size: 0.9rem !important;
                 }
 
-                /* CRITICAL: Stack left panel and right panel vertically */
-                .emg-main-content {
-                    flex-direction: column !important;
-                    min-height: auto !important;
+                .hero-stats {
+                    gap: 15px;
                 }
 
-                /* Left panel - full width on mobile */
-                .muscle-list-panel {
-                    width: 100% !important;
-                    max-height: 400px !important;
-                    border-right: none !important;
-                    border-bottom: 3px solid #e2e8f0;
+                .stat-card {
+                    padding: 15px 20px !important;
+                    min-width: 90px;
                 }
 
-                /* Region headers */
-                .region-header {
-                    padding: 12px 15px !important;
+                .stat-number {
+                    font-size: 1.5rem !important;
                 }
 
-                .region-header h4 {
-                    font-size: 1.1em !important;
+                .stat-label {
+                    font-size: 0.75rem !important;
                 }
 
-                /* Muscle list items - more compact */
-                .muscle-list-item {
-                    padding: 12px 15px !important;
-                    font-size: 0.9em;
+                /* Control bar */
+                .control-bar {
+                    padding: 15px 20px !important;
                 }
 
-                .muscle-name {
-                    font-size: 0.95em !important;
+                .control-section h4 {
+                    font-size: 12px !important;
                 }
 
-                .muscle-abbrev {
-                    font-size: 0.85em !important;
+                .region-selector {
+                    flex-direction: column;
+                    gap: 10px;
                 }
 
-                /* Right panel - full width on mobile */
+                .region-btn {
+                    padding: 12px 20px !important;
+                    font-size: 0.95rem !important;
+                    width: 100%;
+                }
+
+                /* Muscle pills */
+                .muscle-pill-container {
+                    padding: 15px 20px !important;
+                }
+
+                .muscle-pill {
+                    padding: 10px 18px !important;
+                    font-size: 0.9rem !important;
+                }
+
+                /* Content panel */
                 .muscle-detail-panel {
                     padding: 20px 15px !important;
-                    max-height: none !important;
                 }
 
                 /* Placeholder content */
@@ -15097,12 +15219,13 @@ window.showEMGLocalizationGuide = function() {
 
             /* Extra small phones */
             @media (max-width: 375px) {
-                .emg-header h3 {
-                    font-size: 1.3em !important;
+                .hero-title {
+                    font-size: 1.3rem !important;
                 }
 
-                .muscle-list-panel {
-                    max-height: 350px !important;
+                .stat-card {
+                    min-width: 80px;
+                    padding: 12px 15px !important;
                 }
             }
         </style>
@@ -15115,7 +15238,48 @@ window.showEMGLocalizationGuide = function() {
         if (!window.EMGLocalization) {
             window.EMGLocalization = {
                 selectedMuscle: null,
-                selectedRegion: null,
+                selectedRegion: 'upper', // Default to upper
+
+                switchRegion: function(region) {
+                    console.log(`🔄 Switching to ${region} extremity`);
+                    this.selectedRegion = region;
+
+                    // Update region button styles
+                    document.querySelectorAll('.region-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.getElementById(`${region}-region-btn`).classList.add('active');
+
+                    // Render muscle pills for selected region
+                    this.renderMusclePills(region);
+
+                    // Clear detail panel
+                    document.getElementById('muscle-detail-content').innerHTML = `
+                        <div class="placeholder-content">
+                            <h4>🎯 Select a Muscle</h4>
+                            <p>Choose a muscle above to view detailed EMG needle localization information</p>
+                        </div>
+                    `;
+                },
+
+                renderMusclePills: function(region) {
+                    const container = document.getElementById('muscle-pill-container');
+                    const muscles = region === 'upper'
+                        ? EMGLocalizationDatabase.upperExtremity
+                        : EMGLocalizationDatabase.lowerExtremity;
+
+                    const pillsHTML = Object.keys(muscles).map(abbrev => {
+                        const muscle = muscles[abbrev];
+                        return `
+                            <div class="muscle-pill" onclick="EMGLocalization.selectMuscle('${abbrev}', '${region}')" data-muscle="${abbrev}">
+                                <span class="muscle-pill-abbrev">${abbrev}</span>
+                                <span class="muscle-pill-name">${muscle.fullName}</span>
+                            </div>
+                        `;
+                    }).join('');
+
+                    container.innerHTML = pillsHTML;
+                },
 
                 selectMuscle: function(muscle, region) {
                     console.log(`🔍 Selecting muscle: ${muscle} from ${region} extremity`);
@@ -15125,14 +15289,14 @@ window.showEMGLocalizationGuide = function() {
                     this.selectedRegion = region;
 
                     // Remove previous selections
-                    document.querySelectorAll('.muscle-list-item').forEach(item => {
-                        item.classList.remove('selected');
+                    document.querySelectorAll('.muscle-pill').forEach(item => {
+                        item.classList.remove('active');
                     });
 
                     // Add selection to clicked item
-                    const selectedItem = document.querySelector(`[data-muscle="${muscle}"]`);
+                    const selectedItem = document.querySelector(`.muscle-pill[data-muscle="${muscle}"]`);
                     if (selectedItem) {
-                        selectedItem.classList.add('selected');
+                        selectedItem.classList.add('active');
                     }
 
                     // Get muscle data
@@ -15147,6 +15311,7 @@ window.showEMGLocalizationGuide = function() {
                 displayMuscleDetails: function(muscleData) {
                     const detailPanel = document.getElementById('muscle-detail-content');
 
+                    // REORDERED: Electrode insertion FIRST after image!
                     const detailHTML = `
                         <div class="muscle-detail">
                             <div class="muscle-title">
@@ -15158,6 +15323,26 @@ window.showEMGLocalizationGuide = function() {
                                 <div class="image-placeholder-icon">🖼️</div>
                                 <p><strong>EMG Needle Placement Image</strong></p>
                                 <p>Anatomical diagram for ${muscleData.fullName} needle insertion</p>
+                            </div>
+
+                            <div class="detail-section electrode-insertion">
+                                <h5>💉 Electrode Insertion</h5>
+                                <p class="detail-text"><strong>${muscleData.electrodeInsertion}</strong></p>
+                            </div>
+
+                            <div class="detail-section">
+                                <h5>🧍 Patient Position</h5>
+                                <p class="detail-text">${muscleData.position}</p>
+                            </div>
+
+                            <div class="detail-section">
+                                <h5>💪 Test Maneuver</h5>
+                                <p class="detail-text">${muscleData.testManeuver}</p>
+                            </div>
+
+                            <div class="detail-section pitfalls">
+                                <h5>⚠️ Pitfalls</h5>
+                                <p class="detail-text">${muscleData.pitfalls}</p>
                             </div>
 
                             <div class="detail-section">
@@ -15176,26 +15361,6 @@ window.showEMGLocalizationGuide = function() {
                             </div>
 
                             <div class="detail-section">
-                                <h5>🧍 Patient Position</h5>
-                                <p class="detail-text">${muscleData.position}</p>
-                            </div>
-
-                            <div class="detail-section" style="border-left: 4px solid #dc2626;">
-                                <h5>💉 Electrode Insertion</h5>
-                                <p class="detail-text"><strong>${muscleData.electrodeInsertion}</strong></p>
-                            </div>
-
-                            <div class="detail-section">
-                                <h5>💪 Test Maneuver</h5>
-                                <p class="detail-text">${muscleData.testManeuver}</p>
-                            </div>
-
-                            <div class="detail-section" style="border-left: 4px solid #f59e0b;">
-                                <h5>⚠️ Pitfalls</h5>
-                                <p class="detail-text">${muscleData.pitfalls}</p>
-                            </div>
-
-                            <div class="detail-section">
                                 <h5>📝 Clinical Comments</h5>
                                 <p class="detail-text">${muscleData.comments}</p>
                             </div>
@@ -15206,6 +15371,9 @@ window.showEMGLocalizationGuide = function() {
                 }
             };
         }
+
+        // Initialize with upper extremity muscles
+        EMGLocalization.renderMusclePills('upper');
     }, 100);
 };
 
