@@ -14070,7 +14070,10 @@ window.MuscleAnatomy = {
     },
 
     generateQuizOptions(muscle, correctAnswer) {
-        const allMuscles = Object.keys(this.muscleDatabase);
+        // Filter muscles to only include those from the same region (UE or LE) as the question muscle
+        const muscleRegion = this.muscleDatabase[muscle].region;
+        const allMuscles = Object.keys(this.muscleDatabase)
+            .filter(muscleName => this.muscleDatabase[muscleName].region === muscleRegion);
         const distractors = [];
 
         while (distractors.length < 3) {
@@ -14656,6 +14659,26 @@ window.EMGLocalizationDatabase = {
         }
     }
 };
+
+// Image filename mapping for EMG needle localization muscle keys
+function getMuscleImagePath(muscleKey) {
+    const imageMap = {
+        'APB': 'EMG IMAGES/APB EMG.png',
+        'Bicep': 'EMG IMAGES/Biceps.png',
+        'EIP': 'EMG IMAGES/Extensor Indicis EMG.png',
+        'FDI': 'EMG IMAGES/First Dorsal Interosseous.png',
+        'Middle Deltoid': 'EMG IMAGES/Deltoid.png',
+        'PT': 'EMG IMAGES/Pronator Teres EMG.png',
+        'Tricep': 'EMG IMAGES/Triceps.png',
+        'Extensor Hallucis': 'EMG IMAGES/Extensor Hallucis longus.png',
+        'Medial Gastroc': 'EMG IMAGES/Medial Gastroc.png',
+        'Peroneus Longus': 'EMG IMAGES/Fibularis longus.png',
+        'Tibialis Ant': 'EMG IMAGES/Tibialis Anterior.png',
+        'Tibialis Post': 'EMG IMAGES/Tibialis Posterior.png',
+        'Vastus Lateralis': 'EMG IMAGES/Vastus Lateralis.png'
+    };
+    return imageMap[muscleKey] || null;
+}
 
 // EMG Needle Localization Guide Function
 window.showEMGLocalizationGuide = function() {
@@ -15304,8 +15327,8 @@ window.showEMGLocalizationGuide = function() {
                         ? EMGLocalizationDatabase.upperExtremity[muscle]
                         : EMGLocalizationDatabase.lowerExtremity[muscle];
 
-                    // Update detail panel
-                    this.displayMuscleDetails(muscleData);
+                    // Update detail panel (pass muscle key for image lookup)
+                    this.displayMuscleDetails({ ...muscleData, key: muscle });
                 },
 
                 displayMuscleDetails: function(muscleData) {
@@ -15319,11 +15342,28 @@ window.showEMGLocalizationGuide = function() {
                                 <p class="muscle-subtitle">EMG Needle Localization Guide</p>
                             </div>
 
-                            <div class="image-placeholder" style="margin-bottom: 25px;">
-                                <div class="image-placeholder-icon">🖼️</div>
-                                <p><strong>EMG Needle Placement Image</strong></p>
-                                <p>Anatomical diagram for ${muscleData.fullName} needle insertion</p>
-                            </div>
+                            ${(() => {
+                                const imagePath = getMuscleImagePath(muscleData.key || '');
+                                if (imagePath) {
+                                    return `
+                                        <div style="margin-bottom: 25px; text-align: center;">
+                                            <img src="${imagePath}"
+                                                 alt="${muscleData.fullName} needle insertion"
+                                                 style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+                                                 onerror="this.parentElement.innerHTML='<div class=\\'image-placeholder\\'><div class=\\'image-placeholder-icon\\'>🖼️</div><p><strong>Image not found</strong></p><p>${muscleData.fullName}</p></div>'">
+                                        </div>
+                                    `;
+                                } else {
+                                    return `
+                                        <div class="image-placeholder" style="margin-bottom: 25px;">
+                                            <div class="image-placeholder-icon">🖼️</div>
+                                            <p><strong>EMG Needle Placement Image</strong></p>
+                                            <p>Anatomical diagram for ${muscleData.fullName} needle insertion</p>
+                                            <p style="font-size: 0.9em; color: #94a3b8; margin-top: 8px;">Image coming soon</p>
+                                        </div>
+                                    `;
+                                }
+                            })()}
 
                             <div class="detail-section electrode-insertion">
                                 <h5>💉 Electrode Insertion</h5>
