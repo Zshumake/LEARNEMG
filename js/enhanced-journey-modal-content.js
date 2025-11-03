@@ -14663,12 +14663,12 @@ window.EMGLocalizationDatabase = {
 // Image filename mapping for EMG needle localization muscle keys
 function getMuscleImagePath(muscleKey) {
     const imageMap = {
-        'APB': 'EMG IMAGES/APB EMG.png',
+        'APB': 'EMG IMAGES/Abductor Pollicus Brevis.png',
         'Bicep': 'EMG IMAGES/Biceps.png',
-        'EIP': 'EMG IMAGES/Extensor Indicis EMG.png',
+        'EIP': 'EMG IMAGES/Extensor Indicus.png',
         'FDI': 'EMG IMAGES/First Dorsal Interosseous.png',
         'Middle Deltoid': 'EMG IMAGES/Deltoid.png',
-        'PT': 'EMG IMAGES/Pronator Teres EMG.png',
+        'PT': 'EMG IMAGES/Pronator teres.png',
         'Tricep': 'EMG IMAGES/Triceps.png',
         'Extensor Hallucis': 'EMG IMAGES/Extensor Hallucis longus.png',
         'Medial Gastroc': 'EMG IMAGES/Medial Gastroc.png',
