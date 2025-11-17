@@ -3,21 +3,21 @@
 
 class ModuleLoader {
     constructor() {
-        // Module registry - maps module IDs to file paths
+        // Module registry - maps module IDs to file paths (relative to /js/ directory)
         this.moduleRegistry = {
-            'emg-introduction': 'js/modules/emg-introduction.js',
-            'plexus-anatomy': 'js/modules/plexus-anatomy.js',
-            'brachial-plexus-interactive': 'js/modules/brachial-plexus-interactive.js',
-            'radiculopathy-pathophysiology': 'js/modules/radiculopathy-pathophysiology.js',
-            'neuropathy-pathophysiology': 'js/modules/neuropathy-pathophysiology.js',
-            'ncs-fundamentals': 'js/modules/ncs-fundamentals.js',
-            'ncs-techniques': 'js/modules/ncs-techniques.js',
-            'emg-needle-localization': 'js/modules/emg-needle-localization.js',
-            'muscle-quiz': 'js/modules/muscle-quiz.js',
-            'basic-patterns': 'js/modules/basic-patterns.js',
-            'neuropathy-myopathy-basics': 'js/modules/neuropathy-myopathy-basics.js',
-            'simple-reports': 'js/modules/simple-reports.js',
-            'clinical-correlation': 'js/modules/clinical-correlation.js'
+            'emg-introduction': './modules/emg-introduction.js',
+            'plexus-anatomy': './modules/plexus-anatomy.js',
+            'brachial-plexus-interactive': './modules/brachial-plexus-interactive.js',
+            'radiculopathy-pathophysiology': './modules/radiculopathy-pathophysiology.js',
+            'neuropathy-pathophysiology': './modules/neuropathy-pathophysiology.js',
+            'ncs-fundamentals': './modules/ncs-fundamentals.js',
+            'ncs-techniques': './modules/ncs-techniques.js',
+            'emg-needle-localization': './modules/emg-needle-localization.js',
+            'muscle-quiz': './modules/muscle-quiz.js',
+            'basic-patterns': './modules/basic-patterns.js',
+            'neuropathy-myopathy-basics': './modules/neuropathy-myopathy-basics.js',
+            'simple-reports': './modules/simple-reports.js',
+            'clinical-correlation': './modules/clinical-correlation.js'
         };
 
         // Cache for loaded modules
