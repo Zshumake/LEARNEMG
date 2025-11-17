@@ -1512,6 +1512,10 @@
     <!-- <script src="js/enhanced-journey-modal-content.js"></script> -->
     <script src="js/enhanced-journey-modal-content.js?v=20251002-larger-text"></script>
 
+    <!-- Module Loading System (Phase 1: Infrastructure) -->
+    <script type="module" src="js/modules/core.js"></script>
+    <script type="module" src="js/module-loader.js"></script>
+
     <script>
         // Comprehensive iOS crash tracking
         // Check if isIOS already exists to prevent duplicate declaration
@@ -2704,7 +2708,7 @@
         }
 
         // Open Module with Modal Integration
-        function openAtriumModule(moduleNumber, moduleId) {
+        async function openAtriumModule(moduleNumber, moduleId) {
             console.log(`🎓 Opening Module ${moduleNumber}: ${moduleId}`);
 
             // iOS QUICK FIX: Open in new tab to avoid zoom crash
@@ -2714,27 +2718,59 @@
                 return;
             }
 
-            // Desktop: Use modal as normal
+            // Desktop: Use module loader for dynamic loading
             const module = { contentId: moduleId, id: moduleId };
 
             try {
-                // Use existing modal content generator
-                if (typeof generateLearningContentByType === 'function') {
-                    const content = generateLearningContentByType(module, moduleNumber - 1);
-                    if (content && typeof window.showModal === 'function') {
-                        window.showModal(`Module ${moduleNumber}: ${atriumModuleConfig[moduleNumber - 1].title}`, content);
-                        console.log(`✅ Module ${moduleNumber} opened successfully`);
+                // Try to load module dynamically
+                if (window.moduleLoader) {
+                    console.log(`📦 Loading module dynamically: ${moduleId}`);
+                    const loadedModule = await window.moduleLoader.loadModule(moduleId);
+
+                    if (loadedModule && loadedModule.generateContent) {
+                        const content = loadedModule.generateContent(module);
+                        if (content && typeof window.showModal === 'function') {
+                            window.showModal(`Module ${moduleNumber}: ${atriumModuleConfig[moduleNumber - 1].title}`, content);
+                            console.log(`✅ Module ${moduleNumber} loaded dynamically`);
+                        } else {
+                            throw new Error('No content generated');
+                        }
                     } else {
-                        console.error(`❌ No content generated for module ${moduleNumber}`);
-                        showFallbackContent(moduleNumber, moduleId);
+                        throw new Error('Module or generateContent not found');
                     }
                 } else {
-                    console.error('❌ generateLearningContentByType function not available');
-                    showFallbackContent(moduleNumber, moduleId);
+                    // Fallback to original method if module loader not available
+                    console.log('⚠️ Module loader not available, using fallback');
+                    if (typeof generateLearningContentByType === 'function') {
+                        const content = generateLearningContentByType(module, moduleNumber - 1);
+                        if (content && typeof window.showModal === 'function') {
+                            window.showModal(`Module ${moduleNumber}: ${atriumModuleConfig[moduleNumber - 1].title}`, content);
+                            console.log(`✅ Module ${moduleNumber} opened successfully (fallback)`);
+                        } else {
+                            showFallbackContent(moduleNumber, moduleId);
+                        }
+                    } else {
+                        showFallbackContent(moduleNumber, moduleId);
+                    }
                 }
             } catch (error) {
                 console.error(`❌ Error opening module ${moduleNumber}:`, error);
-                showFallbackContent(moduleNumber, moduleId);
+                // Fallback to original method on error
+                try {
+                    if (typeof generateLearningContentByType === 'function') {
+                        const content = generateLearningContentByType(module, moduleNumber - 1);
+                        if (content && typeof window.showModal === 'function') {
+                            window.showModal(`Module ${moduleNumber}: ${atriumModuleConfig[moduleNumber - 1].title}`, content);
+                        } else {
+                            showFallbackContent(moduleNumber, moduleId);
+                        }
+                    } else {
+                        showFallbackContent(moduleNumber, moduleId);
+                    }
+                } catch (fallbackError) {
+                    console.error('❌ Fallback also failed:', fallbackError);
+                    showFallbackContent(moduleNumber, moduleId);
+                }
             }
         }
 
