@@ -795,14 +795,24 @@
         }
 
         /* Module Items */
+        /* Pathway Row Container (holds paired modules) */
+        .pathway-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+            width: 100%;
+        }
+
         .pathway-module {
             display: flex;
             align-items: center;
-            margin: 40px 0;
             position: relative;
             z-index: 2;
             cursor: pointer;
             transition: all 0.3s ease;
+            flex: 0 0 auto;
         }
 
         .pathway-module:hover {
@@ -810,21 +820,18 @@
         }
 
         .pathway-module.left {
-            justify-content: flex-start;
-            padding-right: calc(50% + 30px);
+            justify-content: flex-end;
+            margin-right: 30px;
         }
 
         .pathway-module.right {
-            justify-content: flex-end;
-            padding-left: calc(50% + 30px);
+            justify-content: flex-start;
+            margin-left: 30px;
         }
 
-        /* Module Number Circle */
+        /* Module Number Circle - Positioned on center line */
         .module-number-circle {
             position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
             width: 45px;
             height: 45px;
             background: #6b9f78;
@@ -840,9 +847,22 @@
             transition: all 0.3s ease;
         }
 
+        /* Position circle between modules on center line */
+        .pathway-module.left .module-number-circle {
+            right: -52px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pathway-module.right .module-number-circle {
+            left: -52px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         .pathway-module:hover .module-number-circle {
             background: #5a8a67;
-            transform: translate(-50%, -50%) scale(1.1);
+            transform: translateY(-50%) scale(1.1);
         }
 
         /* Larger Background Box for Layered Effect */
@@ -2597,12 +2617,12 @@
                         <button class="learning-objectives-btn" onclick="showLearningObjectives()">See Learning Objectives</button>
                     </div>
 
-                    <!-- 13-Module Vertical Pathway -->
+                    <!-- 13-Module Vertical Pathway (Paired Layout) -->
                     <div class="modules-pathway">
                         <!-- Center Line -->
                         <div class="pathway-center-line"></div>
 
-                        ${atriumModuleConfig.map((module, index) => generateModuleHTML(module, index)).join('')}
+                        ${generatePairedModulesHTML()}
                     </div>
                 </div>
             `;
@@ -2633,9 +2653,31 @@
             console.log('✅ Atrium Health Pathway Generated Successfully!');
         }
 
+        // Generate Paired Modules HTML (2 icons per row)
+        function generatePairedModulesHTML() {
+            let html = '';
+            for (let i = 0; i < atriumModuleConfig.length; i += 2) {
+                const leftModule = atriumModuleConfig[i];
+                const rightModule = atriumModuleConfig[i + 1];
+
+                html += '<div class="pathway-row">';
+
+                // Left module
+                html += generateModuleHTML(leftModule, i, 'left');
+
+                // Right module (if exists)
+                if (rightModule) {
+                    html += generateModuleHTML(rightModule, i + 1, 'right');
+                }
+
+                html += '</div>';
+            }
+            return html;
+        }
+
         // Generate Individual Module HTML
-        function generateModuleHTML(module, index) {
-            const side = index % 2 === 0 ? 'left' : 'right';
+        function generateModuleHTML(module, index, forcedSide) {
+            const side = forcedSide || (index % 2 === 0 ? 'left' : 'right');
             const moduleNumber = index + 1;
 
             return `
