@@ -617,7 +617,8 @@
             display: block !important;
             visibility: visible !important;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: visible;
         }
 
         /* Prevent layout shifts during content loading */
@@ -730,20 +731,20 @@
         }
 
 
-        /* Vertical Pathway Layout */
-        .modules-pathway {
-            max-width: 1100px;
+        /* ========================================= */
+        /* NEW GRID LAYOUT SYSTEM */
+        /* ========================================= */
+
+        /* Main Container */
+        .modules-container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 40px 20px 120px 20px; /* Extra bottom padding for ERNEST dialogue */
             position: relative;
             z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 80px;
-            padding: 60px 0;
         }
 
-        /* Shimmer Background Animation */
+        /* Shimmer Background Animation (keep this - looks nice!) */
         .pathway-background-animation {
             position: absolute;
             top: 0;
@@ -766,177 +767,231 @@
         }
 
         @keyframes shimmer {
-            0% {
-                background-position: 0% 0%;
-            }
-            25% {
-                background-position: 100% 100%;
-            }
-            50% {
-                background-position: 100% 0%;
-            }
-            75% {
-                background-position: 0% 100%;
-            }
-            100% {
-                background-position: 0% 0%;
-            }
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 100%; }
+            50% { background-position: 100% 0%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
-        /* Center Line */
-        .pathway-center-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #6b9f78, #e2e8f0);
-            z-index: 1;
-        }
-
-        /* Module Items */
-        /* Pathway Row Container (holds paired modules) */
-        .pathway-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 40px 0;
-            position: relative;
-            width: 100%;
-        }
-
-        .pathway-module {
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 0 0 auto;
-        }
-
-        .pathway-module:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .pathway-module.left {
-            justify-content: flex-end;
-            margin-right: 30px;
-        }
-
-        .pathway-module.right {
-            justify-content: flex-start;
-            margin-left: 30px;
-        }
-
-        /* Module Number Circle - Positioned on center line */
-        .module-number-circle {
-            position: absolute;
-            width: 45px;
-            height: 45px;
-            background: #6b9f78;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 4px 12px rgba(107, 159, 120, 0.3);
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-
-        /* Position circle between modules on center line */
-        .pathway-module.left .module-number-circle {
-            right: -52px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .pathway-module.right .module-number-circle {
-            left: -52px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .pathway-module:hover .module-number-circle {
-            background: #5a8a67;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        /* Larger Background Box for Layered Effect */
-        .module-background-box {
-            background: rgba(107, 159, 120, 0.08);
-            border-radius: 35px;
-            padding: 20px;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(107, 159, 120, 0.1);
-            border: 2px solid rgba(107, 159, 120, 0.15);
-        }
-
-        /* Module Content Cards - Artwork Only Design */
-        .module-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 30px;
+        /* Hero Module (EMG Introduction) - Full Width Featured */
+        .hero-module {
+            background: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
             border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1),
-                        0 5px 15px rgba(107, 159, 120, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            max-width: 320px;
-            max-height: 320px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 60px rgba(20, 184, 166, 0.3);
+            cursor: pointer;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        /* Hover Effects for Layered Design */
-        .pathway-module:hover .module-background-box {
-            transform: scale(1.08);
-            background: rgba(107, 159, 120, 0.12);
-            box-shadow: 0 15px 40px rgba(107, 159, 120, 0.2);
+        .hero-module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
         }
 
-        .pathway-module:hover .module-card {
-            border-color: rgba(107, 159, 120, 0.6);
-            box-shadow: 0 20px 50px rgba(107, 159, 120, 0.3),
-                        0 10px 25px rgba(0, 0, 0, 0.15),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            transform: scale(1.02) translateY(-8px) rotate(3deg);
-            backdrop-filter: blur(15px);
+        .hero-module:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(20, 184, 166, 0.4);
         }
 
-        .module-custom-icon {
-            width: 240px;
-            height: 240px;
-            object-fit: contain;
-            border-radius: 20px;
-            transition: all 0.3s ease;
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        .pathway-module:hover .module-custom-icon {
-            filter: brightness(1.1) contrast(1.05);
+        .hero-icon {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
 
-        /* Remove text elements for clean artwork-only design */
-        .module-icon,
-        .module-title,
-        .module-description {
-            display: none;
+        .hero-text {
+            flex: 1;
+            color: white;
         }
 
-        /* Center alignment for all modules */
-        .pathway-module.left .module-card,
-        .pathway-module.right .module-card {
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-description {
+            font-size: 1.2em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Grid Container for Modules 2-13 (12 icons in 4 columns = 3 perfect rows) */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 55px;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.6s ease-out;
+            justify-items: center;
+            padding: 10px;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Individual Module Card */
+        .module-card {
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            position: relative;
+            border: 5px solid #6b9f78;
+            min-height: 200px;
+            width: 100%;
+            max-width: 240px;
         }
+
+        .module-card:hover {
+            transform: scale(1.15);
+            box-shadow: 0 25px 80px rgba(107, 159, 120, 0.5),
+                        0 0 30px rgba(107, 159, 120, 0.6);
+            border-color: #14b8a6;
+            animation: bounce-glow 0.6s ease-in-out;
+        }
+
+        @keyframes bounce-glow {
+            0%, 100% {
+                box-shadow: 0 25px 80px rgba(107, 159, 120, 0.5),
+                            0 0 30px rgba(107, 159, 120, 0.6);
+            }
+            50% {
+                box-shadow: 0 25px 80px rgba(20, 184, 166, 0.7),
+                            0 0 50px rgba(20, 184, 166, 0.9);
+            }
+        }
+
+        .module-icon {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover .module-icon {
+            filter: brightness(1.15) contrast(1.1);
+        }
+
+        /* Footer Module (Clinical Application) - Full Width Conclusion */
+        .footer-module {
+            background: linear-gradient(135deg, #6b9f78 0%, #5a8a67 100%);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(107, 159, 120, 0.3);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+        }
+
+        .footer-module:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(107, 159, 120, 0.4);
+        }
+
+        /* Responsive Grid - 12 items divides perfectly into 4, 3, 2, or 1 columns */
+        @media (max-width: 1200px) {
+            .modules-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .module-card {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-module {
+                padding: 30px;
+            }
+            .hero-title {
+                font-size: 1.8em;
+            }
+            .module-card {
+                max-width: 100%;
+            }
+        }
+
+        /* Old pathway styles removed - using new grid system */
 
         /* Dynamic Module Description System - Simplified */
         .module-description-panel {
@@ -1052,27 +1107,75 @@
             font-style: italic;
         }
 
-        /* New Pre-Positioned Description Boxes */
-        .ernest-description-box {
-            position: fixed;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(107, 159, 120, 0.8);
-            border-radius: 20px;
-            padding: 20px;
-            width: 350px;
-            max-width: 350px;
-            z-index: 9999;
-            opacity: 0;
-            transition: all 0.3s ease-out;
-            pointer-events: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* ========================================= */
+        /* ERNEST RPG-STYLE DIALOGUE BOX */
+        /* ========================================= */
+
+        .ernest-dialogue-box {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+            backdrop-filter: blur(20px);
+            border-top: 4px solid #6b9f78;
+            padding: 25px 40px;
+            z-index: 99999 !important;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            margin: 0 !important;
         }
 
-        .ernest-description-box.show {
-            opacity: 1 !important;
-            pointer-events: auto !important;
+        .ernest-dialogue-box.show {
+            transform: translateY(0);
+        }
+
+        .ernest-dialogue-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .ernest-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            border: 3px solid #6b9f78;
+            box-shadow: 0 5px 20px rgba(107, 159, 120, 0.3);
+            flex-shrink: 0;
+            object-fit: contain;
+            background: white;
+            padding: 5px;
+        }
+
+        .ernest-text {
+            flex: 1;
+        }
+
+        .ernest-name {
+            font-size: 1em;
+            font-weight: 700;
+            color: #6b9f78;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ernest-message {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .ernest-highlights {
+            font-size: 0.95em;
+            color: #64748b;
+            font-style: italic;
+            margin-top: 8px;
         }
 
         /* Speech bubble effect */
@@ -2595,9 +2698,9 @@
             // console.log(`Positioned description box ${moduleNumber} (${side}) at top: ${topPosition}px, left: ${leftPosition}px`);
         }
 
-        // Generate 13-Module Pathway
+        // Generate New Grid-Based Layout
         function generateAtriumPathway(pgyLevel) {
-            console.log('🏥 Generating Atrium Health 13-Module Pathway...');
+            console.log('🏥 Generating New Grid Layout...');
 
             const boardContainer = document.getElementById('learning-board');
             if (!boardContainer) {
@@ -2605,12 +2708,11 @@
                 return;
             }
 
-            // Progress tracking removed - simplified pathway generation
-
-            // Generate pathway HTML
-            const pathwayHTML = `
+            // Generate new grid layout HTML
+            const layoutHTML = `
                 <div class="atrium-pathway-container">
                     <div class="pathway-background-animation"></div>
+
                     <!-- Pathway Header -->
                     <div class="pathway-header">
                         <h1 class="pathway-title">
@@ -2621,88 +2723,120 @@
                         <button class="learning-objectives-btn" onclick="showLearningObjectives()">See Learning Objectives</button>
                     </div>
 
-                    <!-- 13-Module Vertical Pathway (Paired Layout) -->
-                    <div class="modules-pathway">
-                        <!-- Center Line -->
-                        <div class="pathway-center-line"></div>
+                    <!-- Main Modules Container -->
+                    <div class="modules-container">
+                        <!-- Hero Module (EMG Introduction) -->
+                        ${generateHeroModule()}
 
-                        ${generatePairedModulesHTML()}
+                        <!-- Grid of Modules 2-13 (12 icons in perfect 4x3 grid) -->
+                        <div class="modules-grid">
+                            ${generateGridModules()}
+                        </div>
                     </div>
                 </div>
             `;
 
-            console.log('🔍 DEBUG: Generated HTML length:', pathwayHTML.length);
-
-            // Add loading class for smooth transition
-            boardContainer.classList.add('pathway-loading');
+            console.log('🔍 DEBUG: Generated HTML length:', layoutHTML.length);
 
             // Set content
-            boardContainer.innerHTML = pathwayHTML;
+            boardContainer.innerHTML = layoutHTML;
 
-            // Trigger smooth loading animation
+            // Append ERNEST directly to body (not inside container)
+            // Remove any existing ERNEST dialogue first
+            const existingErnest = document.getElementById('ernest-dialogue');
+            if (existingErnest) {
+                existingErnest.remove();
+            }
+            // Add ERNEST to body
+            document.body.insertAdjacentHTML('beforeend', generateERNESTDialogue());
+
+            // Smooth fade-in animation
             setTimeout(() => {
-                boardContainer.classList.remove('pathway-loading');
                 boardContainer.classList.add('pathway-loaded');
-
-                // Create pre-positioned description boxes after modules are loaded
-                setTimeout(() => {
-                    createDescriptionBoxes();
-                }, 100);
             }, 50);
 
-            console.log('🔍 DEBUG: Board container innerHTML set with smooth loading');
-
-            // ERNEST welcome dialogue removed - now using dynamic descriptions
-
-            console.log('✅ Atrium Health Pathway Generated Successfully!');
+            console.log('✅ New Grid Layout Generated Successfully!');
         }
 
-        // Generate Paired Modules HTML (2 icons per row)
-        function generatePairedModulesHTML() {
+        // Generate Hero Module (Module 1 - EMG Introduction)
+        function generateHeroModule() {
+            const module = atriumModuleConfig[0]; // First module
+            const desc = moduleDescriptions[1] || { title: module.title, text: "Start your EMG/NCS learning journey here.", highlights: "" };
+
+            return `
+                <div class="hero-module"
+                     onmouseover="showModuleDescription(1)"
+                     onmouseout="hideModuleDescription()"
+                     onclick="openAtriumModule(1, '${module.id}')">
+                    <div class="hero-content">
+                        <img src="${module.customIcon}" alt="${module.title}" class="hero-icon">
+                        <div class="hero-text">
+                            <div class="hero-badge">🚀 START HERE - Module 1</div>
+                            <h2 class="hero-title">${module.title}</h2>
+                            <p class="hero-description">${desc.text}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate Grid Modules (Modules 2-12)
+        function generateGridModules() {
             let html = '';
-            for (let i = 0; i < atriumModuleConfig.length; i += 2) {
-                const leftModule = atriumModuleConfig[i];
-                const rightModule = atriumModuleConfig[i + 1];
+            // Modules 2-13 (indices 1-12) - All 12 icons for perfect 4x3 grid
+            for (let i = 1; i < atriumModuleConfig.length; i++) {
+                const module = atriumModuleConfig[i];
+                const moduleNumber = i + 1;
 
-                html += '<div class="pathway-row">';
-
-                // Left module
-                html += generateModuleHTML(leftModule, i, 'left');
-
-                // Right module (if exists)
-                if (rightModule) {
-                    html += generateModuleHTML(rightModule, i + 1, 'right');
-                }
-
-                html += '</div>';
+                html += `
+                    <div class="module-card"
+                         onmouseover="showModuleDescription(${moduleNumber})"
+                         onmouseout="hideModuleDescription()"
+                         onclick="openAtriumModule(${moduleNumber}, '${module.id}')">
+                        <img src="${module.customIcon}"
+                             alt="${module.title}"
+                             class="module-icon"
+                             onerror="this.style.display='none';">
+                    </div>
+                `;
             }
             return html;
         }
 
-        // Generate Individual Module HTML
-        function generateModuleHTML(module, index, forcedSide) {
-            const side = forcedSide || (index % 2 === 0 ? 'left' : 'right');
-            const moduleNumber = index + 1;
+        // Generate Footer Module (Module 13 - Clinical Application)
+        function generateFooterModule() {
+            const module = atriumModuleConfig[12]; // Last module
+            const desc = moduleDescriptions[13] || { title: module.title, text: "Apply your knowledge to real clinical scenarios.", highlights: "" };
 
             return `
-                <div class="pathway-module ${side}"
-                     onmouseover="showModuleDescription(${moduleNumber}, '${side}')"
+                <div class="footer-module"
+                     onmouseover="showModuleDescription(13)"
                      onmouseout="hideModuleDescription()"
-                     onclick="openAtriumModule(${moduleNumber}, '${module.id}')">
-
-                    <!-- Module Number Circle -->
-                    <div class="module-number-circle">
-                        ${moduleNumber}
-                    </div>
-
-                    <!-- Module Content with Layered Background Effect -->
-                    <div class="module-background-box">
-                        <div class="module-card">
-                            <img src="${module.customIcon}" alt="${module.title}" class="module-custom-icon"
-                                 onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\\'color:#6b9f78;font-size:2em;\\'>${moduleNumber}</div>';">
+                     onclick="openAtriumModule(13, '${module.id}')">
+                    <div class="hero-content">
+                        <img src="${module.customIcon}" alt="${module.title}" class="hero-icon">
+                        <div class="hero-text">
+                            <div class="hero-badge">🎓 FINAL MODULE - Module 13</div>
+                            <h2 class="hero-title">${module.title}</h2>
+                            <p class="hero-description">${desc.text}</p>
                         </div>
                     </div>
+                </div>
+            `;
+        }
 
+        // Generate ERNEST Dialogue Box
+        function generateERNESTDialogue() {
+            return `
+                <div id="ernest-dialogue" class="ernest-dialogue-box">
+                    <div class="ernest-dialogue-content">
+                        <img src="ERNEST.png" alt="ERNEST" class="ernest-avatar">
+                        <div class="ernest-text">
+                            <p class="ernest-name">ERNEST - Your EMG Guide</p>
+                            <p id="ernest-message" class="ernest-message">Hover over any module to learn more about it!</p>
+                            <p id="ernest-highlights" class="ernest-highlights"></p>
+                        </div>
+                    </div>
                 </div>
             `;
         }
@@ -3008,7 +3142,36 @@
         let hideTimer = null;
 
 
-        // Old single-panel functions removed - now using panel-specific functions
+        // NEW ERNEST RPG-STYLE DIALOGUE FUNCTIONS
+
+        function showModuleDescription(moduleNumber) {
+            // Cancel any pending hide timer
+            if (hideTimer) {
+                clearTimeout(hideTimer);
+                hideTimer = null;
+            }
+
+            // Get module description
+            const desc = moduleDescriptions[moduleNumber] || {
+                title: `Module ${moduleNumber}`,
+                text: "Hover over modules to learn more!",
+                highlights: ""
+            };
+
+            // Update ERNEST dialogue content
+            const ernestMessage = document.getElementById('ernest-message');
+            const ernestHighlights = document.getElementById('ernest-highlights');
+            const ernestDialogue = document.getElementById('ernest-dialogue');
+
+            if (ernestMessage && ernestDialogue) {
+                ernestMessage.textContent = desc.text;
+                if (ernestHighlights) {
+                    ernestHighlights.textContent = desc.highlights;
+                }
+                // Slide up ERNEST dialogue
+                ernestDialogue.classList.add('show');
+            }
+        }
 
         function hideModuleDescription() {
             // Clear any existing timer
@@ -3016,38 +3179,15 @@
                 clearTimeout(hideTimer);
             }
 
-            // Set 2-second delay for smooth user experience
+            // Set 2-second delay before hiding ERNEST
             hideTimer = setTimeout(() => {
-                // Hide all visible description boxes
-                const visibleBoxes = document.querySelectorAll('.ernest-description-box.show');
-                visibleBoxes.forEach(box => {
-                    box.classList.remove('show');
-                });
+                const ernestDialogue = document.getElementById('ernest-dialogue');
+                if (ernestDialogue) {
+                    // Slide down ERNEST dialogue
+                    ernestDialogue.classList.remove('show');
+                }
                 hideTimer = null;
-            }, 2000);
-        }
-
-        function showModuleDescription(moduleNumber, moduleSide) {
-            // Cancel any pending hide timer
-            if (hideTimer) {
-                clearTimeout(hideTimer);
-                hideTimer = null;
-            }
-
-            // Hide all other description boxes first
-            const allBoxes = document.querySelectorAll('.ernest-description-box');
-            allBoxes.forEach(box => {
-                box.classList.remove('show');
-            });
-
-            // Show the specific description box for this module
-            const targetBox = document.getElementById(`description-box-${moduleNumber}`);
-            if (targetBox) {
-                targetBox.classList.add('show');
-                // console.log(`Showing description for module ${moduleNumber}`);
-            } else {
-                console.error(`❌ Description box not found for module ${moduleNumber}`);
-            }
+            }, 2000); // 2 seconds - better timing
         }
 
 
