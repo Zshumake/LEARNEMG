@@ -3350,17 +3350,14 @@
 '</body>\n' +
 '</html>';
 
-                    // Open in new tab
-                    const newTab = window.open('', '_blank');
-                    if (newTab) {
-                        newTab.document.write(newTabHTML);
-                        newTab.document.close();
-                        console.log(`✅ Module ${moduleNumber} opened in new tab`);
-                    } else {
-                        alert('Please allow pop-ups to view learning modules on mobile.');
-                    }
+                // Open in new tab
+                const newTab = window.open('', '_blank');
+                if (newTab) {
+                    newTab.document.write(newTabHTML);
+                    newTab.document.close();
+                    console.log(`✅ Module ${moduleNumber} opened in new tab`);
                 } else {
-                    console.error('❌ generateLearningContentByType function not available');
+                    alert('Please allow pop-ups to view learning modules on mobile.');
                 }
             } catch (error) {
                 console.error(`❌ Error opening module ${moduleNumber} in new tab:`, error);
