@@ -2930,6 +2930,9 @@
                             ${generateGridModules()}
                         </div>
                     </div>
+
+                    <!-- Extra Topics Podcast Library -->
+                    ${generateExtraTopicsSection()}
                 </div>
             `;
 
@@ -3038,6 +3041,104 @@
             `;
         }
 
+        // Generate Extra Topics Podcast Section
+        function generateExtraTopicsSection() {
+            return `
+                <div class="extra-topics-section" style="margin-top: 60px; padding: 40px 0;">
+                    <!-- Section Header -->
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h2 style="color: #1e40af; font-size: 2.2em; margin-bottom: 15px; font-weight: 700;">
+                            🎧 Advanced Topics Podcast Library
+                        </h2>
+                        <p style="color: #64748b; font-size: 1.1em; max-width: 700px; margin: 0 auto;">
+                            Deep dives into specialized electrodiagnostic topics with Ernest. Expand your knowledge beyond the core curriculum.
+                        </p>
+                    </div>
+
+                    <!-- Podcast Cards Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+                        <!-- ALS and Mimics -->
+                        <div class="podcast-card" onclick="window.playExtraPodcast('extra-als')"
+                             style="background: linear-gradient(135deg, #fef2f2, #fee2e2);
+                                    border: 2px solid #dc2626;
+                                    border-radius: 15px;
+                                    padding: 30px;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);"
+                             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 25px rgba(220, 38, 38, 0.3)'"
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(220, 38, 38, 0.2)'">
+                            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                <img src="ERNEST.png" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px; border: 3px solid #dc2626;" alt="Ernest">
+                                <div>
+                                    <h3 style="color: #991b1b; margin: 0; font-size: 1.4em; font-weight: 600;">ALS and Mimics</h3>
+                                    <p style="color: #b91c1c; margin: 5px 0 0 0; font-size: 0.9em;">Duration: 26 minutes</p>
+                                </div>
+                            </div>
+                            <p style="color: #7f1d1d; line-height: 1.6; margin-bottom: 15px;">
+                                Explore motor neuron disease diagnosis and learn to differentiate ALS from treatable mimics using clinical and electrodiagnostic features.
+                            </p>
+                            <div style="display: flex; align-items: center; color: #dc2626; font-weight: 600;">
+                                <span style="margin-right: 8px;">▶</span> Listen Now
+                            </div>
+                        </div>
+
+                        <!-- Blink Reflex -->
+                        <div class="podcast-card" onclick="window.playExtraPodcast('extra-blink')"
+                             style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+                                    border: 2px solid #0ea5e9;
+                                    border-radius: 15px;
+                                    padding: 30px;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);"
+                             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 25px rgba(14, 165, 233, 0.3)'"
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(14, 165, 233, 0.2)'">
+                            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                <img src="ERNEST.png" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px; border: 3px solid #0ea5e9;" alt="Ernest">
+                                <div>
+                                    <h3 style="color: #075985; margin: 0; font-size: 1.4em; font-weight: 600;">Blink Reflex</h3>
+                                    <p style="color: #0369a1; margin: 5px 0 0 0; font-size: 0.9em;">Duration: 26 minutes</p>
+                                </div>
+                            </div>
+                            <p style="color: #0c4a6e; line-height: 1.6; margin-bottom: 15px;">
+                                Master this specialized NCS technique for evaluating trigeminal and facial nerve pathways. Learn technical aspects and clinical applications.
+                            </p>
+                            <div style="display: flex; align-items: center; color: #0ea5e9; font-weight: 600;">
+                                <span style="margin-right: 8px;">▶</span> Listen Now
+                            </div>
+                        </div>
+
+                        <!-- MG vs Lambert-Eaton -->
+                        <div class="podcast-card" onclick="window.playExtraPodcast('extra-mg-lems')"
+                             style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+                                    border: 2px solid #a855f7;
+                                    border-radius: 15px;
+                                    padding: 30px;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);"
+                             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 25px rgba(168, 85, 247, 0.3)'"
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(168, 85, 247, 0.2)'">
+                            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                <img src="ERNEST.png" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px; border: 3px solid #a855f7;" alt="Ernest">
+                                <div>
+                                    <h3 style="color: #6b21a8; margin: 0; font-size: 1.4em; font-weight: 600;">MG vs. Lambert-Eaton</h3>
+                                    <p style="color: #7e22ce; margin: 5px 0 0 0; font-size: 0.9em;">Duration: 29 minutes</p>
+                                </div>
+                            </div>
+                            <p style="color: #581c87; line-height: 1.6; margin-bottom: 15px;">
+                                Compare and contrast these neuromuscular junction disorders. Learn the distinctive clinical, electrodiagnostic, and treatment features of each.
+                            </p>
+                            <div style="display: flex; align-items: center; color: #a855f7; font-weight: 600;">
+                                <span style="margin-right: 8px;">▶</span> Listen Now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         // Open Module with Modal Integration
         async function openAtriumModule(moduleNumber, moduleId) {
             console.log(`🎓 Opening Module ${moduleNumber}: ${moduleId}`);
@@ -3045,7 +3146,7 @@
             // iOS QUICK FIX: Open in new tab to avoid zoom crash
             if (window.isIOS) {
                 console.log('📱 iOS detected - opening module in new tab');
-                openModuleInNewTab(moduleNumber, moduleId);
+                await openModuleInNewTab(moduleNumber, moduleId);
                 return;
             }
 
@@ -3106,13 +3207,30 @@
         }
 
         // Open module in new tab (iOS workaround for zoom crash)
-        function openModuleInNewTab(moduleNumber, moduleId) {
+        async function openModuleInNewTab(moduleNumber, moduleId) {
             const module = { contentId: moduleId, id: moduleId };
 
             try {
-                if (typeof generateLearningContentByType === 'function') {
-                    const content = generateLearningContentByType(module, moduleNumber - 1);
-                    const moduleTitle = atriumModuleConfig[moduleNumber - 1].title;
+                // Use module loader to get content dynamically
+                let content = '';
+                if (window.moduleLoader) {
+                    const loadedModule = await window.moduleLoader.loadModule(moduleId);
+                    if (loadedModule && loadedModule.generateContent) {
+                        content = loadedModule.generateContent(module);
+                    } else {
+                        throw new Error('Module not found or no content generator');
+                    }
+                } else if (typeof generateLearningContentByType === 'function') {
+                    content = generateLearningContentByType(module, moduleNumber - 1);
+                } else {
+                    throw new Error('No content generation method available');
+                }
+
+                if (!content) {
+                    throw new Error('No content generated');
+                }
+
+                const moduleTitle = atriumModuleConfig[moduleNumber - 1].title;
 
                     // Get base URL for script paths
                     const baseURL = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
@@ -3433,6 +3551,44 @@
             console.log('✅ EMG section switched to:', sectionName);
         }
 
+        // Play Extra Topics Podcast
+        function playExtraPodcast(episodeId) {
+            console.log(`🎧 Playing extra topic podcast: ${episodeId}`);
+
+            // Dynamically import podcast player and play the episode
+            import('./js/podcast-player.js').then(module => {
+                // Register extra-topics module
+                module.registerModulePodcasts('extra-topics');
+
+                // Open podcast player
+                if (typeof window.togglePodcastPlayer === 'function') {
+                    // If player is not visible, open it
+                    const player = document.getElementById('podcast-player-overlay');
+                    if (!player || player.style.display === 'none') {
+                        window.togglePodcastPlayer();
+                    }
+
+                    // Select the specific episode
+                    setTimeout(() => {
+                        const episodeSelector = document.getElementById('episode-selector');
+                        if (episodeSelector) {
+                            // Find and select the episode
+                            for (let i = 0; i < episodeSelector.options.length; i++) {
+                                if (episodeSelector.options[i].value === episodeId) {
+                                    episodeSelector.selectedIndex = i;
+                                    episodeSelector.dispatchEvent(new Event('change'));
+                                    break;
+                                }
+                            }
+                        }
+                    }, 100);
+                }
+            }).catch(error => {
+                console.error('❌ Error loading podcast player:', error);
+                alert('Error loading podcast player. Please try again.');
+            });
+        }
+
         // Make functions globally available
         window.generateAtriumPathway = generateAtriumPathway;
         window.openAtriumModule = openAtriumModule;
@@ -3440,6 +3596,7 @@
         window.hideModuleDescription = hideModuleDescription;
         window.showEMGSection = showEMGSection;
         window.returnToMainPage = returnToMainPage;
+        window.playExtraPodcast = playExtraPodcast;
 
         console.log('✨🎮 Enhanced Journey with Integrated Modal System - Ready!');
     </script>
