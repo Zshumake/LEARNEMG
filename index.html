@@ -1536,6 +1536,13 @@
             <!-- Main Title -->
             <h1 class="atrium-main-title">Atrium Health EMG/NCS Learning System</h1>
 
+            <!-- Version Marker -->
+            <div style="text-align: center; margin-top: 15px; margin-bottom: 10px;">
+                <div style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
+                    🎧 Ernest's Podcast Player - Module Integration Complete! (v2025.11.20 18:15)
+                </div>
+            </div>
+
             <!-- Content Area with ERNEST and Speech Bubble -->
             <div class="atrium-content-area">
                 <!-- ERNEST Character -->
@@ -1613,11 +1620,201 @@
     <!-- Load EMG APP Complete System with all clinical cases -->
     <script src="js/emg-app-complete-system.js"></script>
     <!-- <script src="js/enhanced-journey-modal-content.js"></script> -->
-    <script src="js/enhanced-journey-modal-content.js?v=20251002-larger-text"></script>
+    <!-- MONOLITHIC FILE REMOVED - Modules now load dynamically -->
+    <!-- <script src="js/enhanced-journey-modal-content.js?v=20251002-larger-text"></script> -->
 
-    <!-- Module Loading System (Phase 1: Infrastructure) -->
+    <!-- Module Loading System (Phase 2: Dynamic Module Loading Active) -->
     <script type="module" src="js/modules/core.js"></script>
     <script type="module" src="js/module-loader.js"></script>
+
+    <!-- Shared Quiz Utility Functions (used by multiple modules) -->
+    <script>
+        // Generate interactive quiz from questions array
+        function generateModuleQuiz(questions) {
+            if (!questions || questions.length === 0) return '';
+
+            const quizHTML = questions.map((q, index) => `
+                <div class="quiz-question-card" style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb; display: ${index === 0 ? 'block' : 'none'};" data-question="${index}">
+                    <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 20px; color: #1f2937;">
+                        <span style="background: #0d9488; color: white; padding: 4px 10px; border-radius: 6px; margin-right: 10px; font-size: 0.9em;">Question ${index + 1} of ${questions.length}</span>
+                        ${q.question}
+                    </p>
+                    <div class="quiz-options" style="display: grid; gap: 10px;">
+                        ${q.options.map((option, optIndex) => `
+                            <button class="quiz-option"
+                                    onclick="checkQuizAnswer(this, ${optIndex === q.correct}, '${q.explanation.replace(/'/g, "\\'")}', ${index}, ${questions.length})"
+                                    style="padding: 15px 20px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 1em; transition: all 0.3s; min-height: 48px;"
+                                    onmouseover="this.style.background='#f1f5f9'; this.style.borderColor='#cbd5e1';"
+                                    onmouseout="if(!this.classList.contains('correct') && !this.classList.contains('incorrect')) { this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'; }">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-feedback" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
+                    <button class="quiz-next-btn" style="margin-top: 20px; padding: 12px 24px; background: #0d9488; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; display: none; transition: all 0.3s;"
+                            onclick="nextQuizQuestion(${index}, ${questions.length})"
+                            onmouseover="this.style.background='#0f766e';"
+                            onmouseout="this.style.background='#0d9488';">
+                        ${index === questions.length - 1 ? 'View Results' : 'Next Question →'}
+                    </button>
+                </div>
+            `).join('');
+
+            return `
+                <div class="module-quiz-section" style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #e5e7eb;">
+                    <div style="background: linear-gradient(135deg, #0d9488, #0f766e); padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
+                        <h3 style="color: white; margin-bottom: 10px; font-size: 1.8em;">📝 Test Your Knowledge</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1.1em;">Answer ${questions.length} questions to reinforce your learning</p>
+                    </div>
+                    <div class="quiz-score-tracker" style="background: #f0fdfa; padding: 15px 20px; border-radius: 10px; margin-bottom: 25px; text-align: center; border: 2px solid #99f6e4;">
+                        <span style="font-size: 1.2em; font-weight: 600; color: #134e4a;">Score: <span id="quiz-score">0</span>/${questions.length}</span>
+                    </div>
+                    <div class="quiz-container">
+                        ${quizHTML}
+                    </div>
+                    <div id="quiz-complete" style="display: none; background: #ccfbf1; padding: 25px; border-radius: 12px; border: 2px solid #5eead4; text-align: center;">
+                        <h3 style="color: #115e59; margin-bottom: 15px;">🎉 Quiz Complete!</h3>
+                        <p style="color: #134e4a; font-size: 1.2em; margin: 0;">You scored <span id="final-score"></span> out of ${questions.length}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.checkQuizAnswer = function(button, isCorrect, explanation, questionIndex, totalQuestions) {
+            const questionCard = button.closest('.quiz-question-card');
+            const allButtons = questionCard.querySelectorAll('.quiz-option');
+            const feedbackDiv = questionCard.querySelector('.quiz-feedback');
+            const nextBtn = questionCard.querySelector('.quiz-next-btn');
+
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.cursor = 'not-allowed';
+                btn.style.opacity = '0.6';
+            });
+
+            if (isCorrect) {
+                button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                button.style.borderColor = '#059669';
+                button.style.color = 'white';
+                button.style.fontWeight = '600';
+                button.style.opacity = '1';
+                button.classList.add('correct');
+
+                const scoreEl = document.getElementById('quiz-score');
+                if (scoreEl) {
+                    scoreEl.textContent = parseInt(scoreEl.textContent) + 1;
+                }
+
+                feedbackDiv.style.display = 'block';
+                feedbackDiv.style.background = '#d1fae5';
+                feedbackDiv.style.borderLeft = '4px solid #10b981';
+                feedbackDiv.innerHTML = `
+                    <p style="margin: 0; color: #065f46; font-weight: 600; margin-bottom: 8px;">✅ Correct!</p>
+                    <p style="margin: 0; color: #047857; line-height: 1.6;">${explanation}</p>
+                `;
+            } else {
+                button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                button.style.borderColor = '#dc2626';
+                button.style.color = 'white';
+                button.style.fontWeight = '600';
+                button.style.opacity = '1';
+                button.classList.add('incorrect');
+
+                allButtons.forEach((btn) => {
+                    if (btn !== button && !btn.classList.contains('incorrect')) {
+                        const isThisCorrect = btn.onclick.toString().includes('true');
+                        if (isThisCorrect) {
+                            btn.style.background = '#d1fae5';
+                            btn.style.borderColor = '#10b981';
+                            btn.style.color = '#065f46';
+                            btn.style.fontWeight = '600';
+                            btn.style.opacity = '1';
+                        }
+                    }
+                });
+
+                feedbackDiv.style.display = 'block';
+                feedbackDiv.style.background = '#fee2e2';
+                feedbackDiv.style.borderLeft = '4px solid #ef4444';
+                feedbackDiv.innerHTML = `
+                    <p style="margin: 0; color: #991b1b; font-weight: 600; margin-bottom: 8px;">❌ Incorrect</p>
+                    <p style="margin: 0; color: #b91c1c; line-height: 1.6;">${explanation}</p>
+                `;
+            }
+
+            if (nextBtn) {
+                nextBtn.style.display = 'block';
+            }
+
+            feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+
+        window.nextQuizQuestion = function(currentIndex, totalQuestions) {
+            const currentCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex}"]`);
+            if (currentCard) {
+                currentCard.style.display = 'none';
+            }
+
+            if (currentIndex === totalQuestions - 1) {
+                const completeDiv = document.getElementById('quiz-complete');
+                const finalScoreSpan = document.getElementById('final-score');
+                const currentScore = document.getElementById('quiz-score').textContent;
+
+                if (completeDiv && finalScoreSpan) {
+                    finalScoreSpan.textContent = currentScore;
+                    completeDiv.style.display = 'block';
+                    completeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                const nextCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex + 1}"]`);
+                if (nextCard) {
+                    nextCard.style.display = 'block';
+                    nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        };
+
+        window.generateModuleQuiz = generateModuleQuiz;
+    </script>
+
+    <!-- Additional Support Functions for Modules -->
+    <script>
+        // Get muscle image path helper - Global utility function
+        function getMuscleImagePath(muscleKey) {
+            const imageMap = {
+                'APB': 'EMG IMAGES/Abductor Pollicus Brevis.png',
+                'Bicep': 'EMG IMAGES/Biceps.png',
+                'EIP': 'EMG IMAGES/Extensor Indicus.png',
+                'FDI': 'EMG IMAGES/First Dorsal Interosseous.png',
+                'Middle Deltoid': 'EMG IMAGES/Deltoid.png',
+                'PT': 'EMG IMAGES/Pronator teres.png',
+                'Tricep': 'EMG IMAGES/Triceps.png',
+                'Extensor Hallucis': 'EMG IMAGES/Extensor Hallucis longus.png',
+                'Medial Gastroc': 'EMG IMAGES/Medial Gastroc.png',
+                'Peroneus Longus': 'EMG IMAGES/Fibularis longus.png',
+                'Tibialis Ant': 'EMG IMAGES/Tibialis Anterior.png',
+                'Tibialis Post': 'EMG IMAGES/Tibialis Posterior.png',
+                'Vastus Lateralis': 'EMG IMAGES/Vastus Lateralis.png'
+            };
+            return imageMap[muscleKey] || null;
+        }
+        window.getMuscleImagePath = getMuscleImagePath;
+    </script>
+
+    <!-- Module 8: EMG Needle Localization System -->
+    <script src="js/emg-localization-system.js"></script>
+
+    <!-- Module 9: Muscle Study System (Study Cards + EMG Challenge) -->
+    <script src="js/muscle-study-system.js"></script>
+
+    <!-- Module 11: Neuropathy vs Myopathy Basics System -->
+    <script src="js/neuropathy-myopathy-system.js"></script>
+
+    <!-- Module 5: Neuropathy Pathophysiology Support Functions -->
+    <script src="js/neuropathy-pathophysiology-support.js"></script>
+
+    <!-- Module 7: NCS Techniques Support Functions -->
+    <script src="js/ncs-techniques-support.js"></script>
 
     <script>
         // Comprehensive iOS crash tracking
@@ -3248,7 +3445,7 @@
     </script>
 
     <!-- General Modal for Clinical Cases -->
-    <div id="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 999999; display: none; justify-content: center; align-items: center; overflow-y: auto;">
+    <div id="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; overflow-y: auto;">
         <div style="background: white; border-radius: 15px; width: 95%; max-width: 1200px; max-height: 95vh; overflow-y: auto; position: relative; margin: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
             <div style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0;">
                 <h2 id="modal-title" style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;"></h2>
@@ -3680,5 +3877,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Ernest's Podcast Player (Global System) -->
+    <script type="module" src="js/podcast-player.js"></script>
+
 </body>
 </html>

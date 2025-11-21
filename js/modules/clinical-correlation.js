@@ -25,4 +25,3 @@ export function generateContent(module) {
 }
 
 // Export for backward compatibility
-export default { generateContent };
