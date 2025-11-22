@@ -2933,6 +2933,9 @@
 
                     <!-- Extra Topics Podcast Library -->
                     ${generateExtraTopicsSection()}
+
+                    <!-- Complete Podcast Library -->
+                    ${generateCompletePodcastLibrary()}
                 </div>
             `;
 
@@ -3035,6 +3038,178 @@
                             <p class="ernest-name">ERNEST - Your EMG Guide</p>
                             <p id="ernest-message" class="ernest-message">Hover over any module to learn more about it!</p>
                             <p id="ernest-highlights" class="ernest-highlights"></p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate Complete Podcast Library Section (All Episodes)
+        function generateCompletePodcastLibrary() {
+            return `
+                <div class="complete-podcast-library" style="margin-top: 80px; padding: 50px 0; background: linear-gradient(135deg, #fafaf9, #f5f5f4); border-top: 3px solid #d4d4d8;">
+                    <!-- Section Header -->
+                    <div style="text-align: center; margin-bottom: 50px;">
+                        <h2 style="color: #18181b; font-size: 2.5em; margin-bottom: 15px; font-weight: 800;">
+                            🎙️ Complete Podcast Library
+                        </h2>
+                        <p style="color: #52525b; font-size: 1.2em; max-width: 800px; margin: 0 auto 10px;">
+                            All of Ernest's podcast episodes in one place. Listen and learn at your own pace.
+                        </p>
+                        <p style="color: #71717a; font-size: 1em; max-width: 600px; margin: 0 auto;">
+                            Total: 8 episodes • Combined duration: 4 hours 6 minutes
+                        </p>
+                    </div>
+
+                    <!-- Module Podcasts Section -->
+                    <div style="max-width: 1200px; margin: 0 auto 50px;">
+                        <h3 style="color: #3b82f6; font-size: 1.8em; margin-bottom: 25px; text-align: center; font-weight: 700;">
+                            📚 Core Module Podcasts
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                            <!-- Plexopathies -->
+                            <div class="podcast-list-card" onclick="openModulePodcast('brachial-plexus', 'brachial-ep1')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Plexopathies</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 3 • 25 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Brachial and lumbosacral plexus pathology, clinical syndromes, and electrodiagnostic evaluation
+                                </p>
+                            </div>
+
+                            <!-- Radiculopathy -->
+                            <div class="podcast-list-card" onclick="openModulePodcast('radiculopathy', 'radiculopathy-ep1')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Radiculopathy</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 4 • 19 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Nerve root compression mechanisms, classic patterns, and EMG findings
+                                </p>
+                            </div>
+
+                            <!-- Neuropathy Pathophysiology -->
+                            <div class="podcast-list-card" onclick="openModulePodcast('neuropathy-pathophysiology', 'neuropathy-ep1')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Neuropathy Pathophysiology</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 5 • 61 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Comprehensive exploration of peripheral neuropathy mechanisms and patterns
+                                </p>
+                            </div>
+
+                            <!-- EMG Interpretation -->
+                            <div class="podcast-list-card" onclick="openModulePodcast('basic-patterns', 'patterns-ep1')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">EMG Interpretation</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 7 • 28 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Systematic EMG interpretation and pattern recognition for common diagnoses
+                                </p>
+                            </div>
+
+                            <!-- Myopathy vs Neuropathy -->
+                            <div class="podcast-list-card" onclick="openModulePodcast('neuropathy-myopathy', 'neuro-myo-ep1')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Myopathy vs. Neuropathy</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 8 • 32 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Differentiate nerve and muscle disorders using clinical and EDX features
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Extra Topics Section -->
+                    <div style="max-width: 1200px; margin: 0 auto;">
+                        <h3 style="color: #a855f7; font-size: 1.8em; margin-bottom: 25px; text-align: center; font-weight: 700;">
+                            ⭐ Advanced Topics
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                            <!-- ALS and Mimics -->
+                            <div class="podcast-list-card" onclick="window.playExtraPodcast('extra-als')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #7e22ce; margin: 0; font-size: 1.2em; font-weight: 600;">ALS and Mimics</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Motor neuron disease diagnosis and differentiating ALS from treatable mimics
+                                </p>
+                            </div>
+
+                            <!-- Blink Reflex -->
+                            <div class="podcast-list-card" onclick="window.playExtraPodcast('extra-blink')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #7e22ce; margin: 0; font-size: 1.2em; font-weight: 600;">Blink Reflex</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Specialized NCS technique for evaluating trigeminal and facial nerve pathways
+                                </p>
+                            </div>
+
+                            <!-- MG vs Lambert-Eaton -->
+                            <div class="podcast-list-card" onclick="window.playExtraPodcast('extra-mg-lems')"
+                                 style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
+                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                    <div>
+                                        <h4 style="color: #7e22ce; margin: 0; font-size: 1.2em; font-weight: 600;">MG vs. Lambert-Eaton</h4>
+                                        <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 29 min</p>
+                                    </div>
+                                </div>
+                                <p style="color: #475569; line-height: 1.5; margin: 0; font-size: 0.9em;">
+                                    Compare and contrast these neuromuscular junction disorders
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3549,6 +3724,44 @@
         }
 
         // Play Extra Topics Podcast
+        // Open module podcast from Complete Podcast Library
+        function openModulePodcast(moduleId, episodeId) {
+            console.log(`🎧 Opening module podcast: ${moduleId} - ${episodeId}`);
+
+            // Dynamically import podcast player and play the episode
+            import('./js/podcast-player.js').then(module => {
+                // Register the module's podcasts
+                module.registerModulePodcasts(moduleId);
+
+                // Open podcast player
+                if (typeof window.togglePodcastPlayer === 'function') {
+                    // If player is not visible, open it
+                    const player = document.getElementById('podcast-player-overlay');
+                    if (!player || player.style.display === 'none') {
+                        window.togglePodcastPlayer();
+                    }
+
+                    // Select the specific episode
+                    setTimeout(() => {
+                        const episodeSelector = document.getElementById('episode-selector');
+                        if (episodeSelector) {
+                            // Find and select the episode
+                            for (let i = 0; i < episodeSelector.options.length; i++) {
+                                if (episodeSelector.options[i].value === episodeId) {
+                                    episodeSelector.selectedIndex = i;
+                                    episodeSelector.dispatchEvent(new Event('change'));
+                                    break;
+                                }
+                            }
+                        }
+                    }, 100);
+                }
+            }).catch(error => {
+                console.error('❌ Error loading podcast player:', error);
+                alert('Error loading podcast player. Please try again.');
+            });
+        }
+
         function playExtraPodcast(episodeId) {
             console.log(`🎧 Playing extra topic podcast: ${episodeId}`);
 
@@ -3593,6 +3806,7 @@
         window.hideModuleDescription = hideModuleDescription;
         window.showEMGSection = showEMGSection;
         window.returnToMainPage = returnToMainPage;
+        window.openModulePodcast = openModulePodcast;
         window.playExtraPodcast = playExtraPodcast;
 
         console.log('✨🎮 Enhanced Journey with Integrated Modal System - Ready!');
@@ -4033,7 +4247,7 @@
     </div>
 
     <!-- Ernest's Podcast Player (Global System) -->
-    <script type="module" src="js/podcast-player.js"></script>
+    <script type="module" src="js/podcast-player.js" defer></script>
 
 </body>
 </html>

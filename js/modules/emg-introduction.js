@@ -199,6 +199,33 @@ export function generateContent(module) {
                 <div style="background: linear-gradient(135deg, #fef3c7, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
                     <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.4em;">📚 Essential EMG Terminology</h4>
 
+                    <!-- Ernest's Terminology Podcast Callout -->
+                    <div onclick="playTerminologyPodcast()"
+                         style="background: linear-gradient(135deg, #7c3aed, #6d28d9);
+                                padding: 20px; border-radius: 12px; margin-bottom: 20px;
+                                cursor: pointer; transition: all 0.3s ease;
+                                box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);"
+                         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(124, 58, 237, 0.4)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124, 58, 237, 0.3)'">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <img src="ERNEST.png"
+                                 style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white;"
+                                 alt="Ernest">
+                            <div style="flex: 1; color: white;">
+                                <h5 style="color: white; margin: 0 0 8px 0; font-size: 1.3em; font-weight: 600;">
+                                    🎙️ Listen to Ernest's Essential Terminology Podcast
+                                </h5>
+                                <p style="color: #e9d5ff; margin: 0; font-size: 0.95em; line-height: 1.5;">
+                                    Deep dive into core EMG terminology concepts with detailed explanations and clinical context.
+                                    Duration: 28 minutes
+                                </p>
+                            </div>
+                            <div style="background: white; color: #7c3aed; padding: 12px 24px; border-radius: 8px; font-weight: 600; white-space: nowrap;">
+                                ▶ Play Now
+                            </div>
+                        </div>
+                    </div>
+
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                         <!-- Basic EMG Concepts -->
                         <div style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid #059669;">
@@ -594,8 +621,46 @@ function initializeEMGIntroduction() {
     }, 100);
 }
 
+// Play Terminology Podcast function
+function playTerminologyPodcast() {
+    console.log('🎧 Playing Essential Terminology podcast');
+
+    // Dynamically import podcast player and play the specific episode
+    import('../podcast-player.js').then(module => {
+        // Register emg-introduction module podcasts
+        module.registerModulePodcasts('emg-introduction');
+
+        // Open podcast player if not visible
+        if (typeof window.togglePodcastPlayer === 'function') {
+            const player = document.getElementById('podcast-player-overlay');
+            if (!player || player.style.display === 'none') {
+                window.togglePodcastPlayer();
+            }
+
+            // Select the terminology episode after a brief delay
+            setTimeout(() => {
+                const episodeSelector = document.getElementById('episode-selector');
+                if (episodeSelector) {
+                    // Find and select the terminology episode
+                    for (let i = 0; i < episodeSelector.options.length; i++) {
+                        if (episodeSelector.options[i].value === 'emg-terminology') {
+                            episodeSelector.selectedIndex = i;
+                            episodeSelector.dispatchEvent(new Event('change'));
+                            break;
+                        }
+                    }
+                }
+            }, 100);
+        }
+    }).catch(error => {
+        console.error('❌ Error loading podcast player:', error);
+        alert('Error loading podcast player. Please try again.');
+    });
+}
+
 // Make functions available globally
 window.showEMGSection = showEMGSection;
 window.initializeEMGIntroduction = initializeEMGIntroduction;
+window.playTerminologyPodcast = playTerminologyPodcast;
 
 

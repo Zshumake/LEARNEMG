@@ -1,14 +1,9 @@
 // NCS Fundamentals Module
 // Core nerve conduction study principles and measurements
 
-import { registerModulePodcasts, generateErnestButton } from '../podcast-player.js';
-
 export function generateContent(module) {
-    // Register podcast for this module
-    registerModulePodcasts('ncs-fundamentals');
-
     return `
-        <div class="interactive-content" style="position: relative;">${generateErnestButton()}
+        <div class="interactive-content" style="position: relative;">
             <!-- Learning Objective Banner -->
             <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #3b82f6;">
                 <h3 style="color: #1e40af; margin-bottom: 15px;">🎯 Learning Objectives</h3>

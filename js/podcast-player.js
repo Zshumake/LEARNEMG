@@ -73,8 +73,29 @@ export function registerModulePodcasts(moduleId) {
 // ============================================================================
 // ERNEST BUTTON GENERATOR (for modules to include)
 // ============================================================================
-export function generateErnestButton() {
+export function generateErnestButton(moduleTitle = 'this topic') {
     return `
+        <!-- Ernest Podcast Banner (at top of module) -->
+        <div style="background: linear-gradient(135deg, #f59e0b, #ea580c);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;">
+            <div style="font-size: 2em;">🎧</div>
+            <div style="flex: 1;">
+                <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 5px;">
+                    Listen to Ernest's Podcast on ${moduleTitle}
+                </div>
+                <div style="font-size: 0.9em; opacity: 0.95;">
+                    Click the Ernest button in the lower right corner to open the podcast player
+                </div>
+            </div>
+        </div>
+
         <!-- Ernest Podcast Button (Fixed to Window Corner) -->
         <div class="ernest-podcast-button"
              onclick="window.togglePodcastPlayer()"
@@ -554,6 +575,9 @@ function openPodcastPlayer() {
         miniPlayer.style.display = 'none';
         podcastState.isPlayerVisible = true;
         podcastState.isMinimized = false;
+
+        // Ensure episode selector is updated with current module's episodes
+        updateEpisodeSelector();
         updatePlayerDisplay();
     }
 }
