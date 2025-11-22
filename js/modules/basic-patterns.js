@@ -9,7 +9,7 @@ export function generateContent(module) {
 
     return `
         <div class="interactive-content" style="position: relative;">
-            ${generateErnestButton('EMG Interpretation')}
+            ${generateErnestButton('basic-patterns', 'Pattern Recognition')}
             <!-- Learning Objective Banner -->
             <div style="background: linear-gradient(135deg, #f0f9ff, #e0e7ff); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #6366f1;">
                 <h3 style="color: #4338ca; margin-bottom: 15px;">🎯 Learning Objectives</h3>

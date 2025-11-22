@@ -8,7 +8,7 @@ export function generateContent(module) {
     registerModulePodcasts('plexus-anatomy');
 
     return `
-        <div class="interactive-content" style="position: relative;">${generateErnestButton()}
+        <div class="interactive-content" style="position: relative;">${generateErnestButton('plexus-anatomy', 'Plexus Anatomy')}
             <!-- Learning Objective Banner -->
             <div style="background: linear-gradient(135deg, #fef2f2, #fee2e2); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #dc2626;">
                 <h3 style="color: #b91c1c; margin-bottom: 15px;">🎯 Learning Objectives</h3>

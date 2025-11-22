@@ -14,7 +14,7 @@ export function generateContent(module) {
     registerModulePodcasts('simple-reports');
 
     return `
-        <div class="interactive-content" style="max-width: 1400px; margin: 0 auto; position: relative;">${generateErnestButton()}
+        <div class="interactive-content" style="max-width: 1400px; margin: 0 auto; position: relative;">${generateErnestButton('simple-reports', 'Report Writing')}
 
             <!-- Tab Navigation -->
             <div style="display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 3px solid #e5e7eb; padding-bottom: 0;">

@@ -15,6 +15,15 @@
 !videos/
 !"Nerve Paths"/
 !"NCS images"/
+!Chapters/
+!Podcasts/
+!"NEW ICONS"/
+!*.pdf
+!*.png
+!*.jpg
+!*.jpeg
+!*.m4a
+!*.mp3
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html

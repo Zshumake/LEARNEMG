@@ -8,7 +8,7 @@ export function generateContent(module) {
     registerModulePodcasts('emg-introduction');
 
     return `
-        <div class="interactive-content" style="position: relative;">${generateErnestButton()}
+        <div class="interactive-content" style="position: relative;">${generateErnestButton('emg-introduction', 'EMG Introduction')}
             <!-- Learning Objective Banner -->
             <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #3b82f6;">
                 <h3 style="color: #1e40af; margin-bottom: 15px;">🎯 Learning Objectives</h3>

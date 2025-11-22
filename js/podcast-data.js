@@ -12,7 +12,7 @@ export const podcastEpisodes = {
         {
             id: 'emg-intro-main',
             title: 'EMG Introduction Fundamentals',
-            duration: '101:00',
+            duration: '52:27',
             audioFile: 'Podcasts/EMG Intro.m4a',
             description: 'Comprehensive introduction to electrodiagnostic medicine fundamentals',
             transcript: 'Episode transcript will appear here once available...',
@@ -32,7 +32,7 @@ export const podcastEpisodes = {
         {
             id: 'emg-terminology',
             title: 'Essential EMG Terminology',
-            duration: '28:30',
+            duration: '14:46',
             audioFile: 'Podcasts/Essential Terminology.m4a',
             description: 'Master the essential vocabulary and definitions used in electrodiagnostic medicine',
             transcript: 'Episode transcript will appear here once available...',
@@ -55,7 +55,7 @@ export const podcastEpisodes = {
         {
             id: 'plexus-peripheral',
             title: 'Peripheral Nerve Anatomy',
-            duration: '75:36',
+            duration: '39:07',
             audioFile: 'Podcasts/Peripheral Anatomy.m4a',
             description: 'Comprehensive exploration of peripheral nerve anatomy and organization',
             transcript: 'Episode transcript will appear here once available...',
@@ -75,7 +75,7 @@ export const podcastEpisodes = {
         {
             id: 'plexus-anomalous',
             title: 'Anomalous Anatomy',
-            duration: '28:36',
+            duration: '14:47',
             audioFile: 'Podcasts/Anamolous Anatomy.m4a',
             description: 'Explore anatomical variations and anomalies that can affect EDX interpretation',
             transcript: 'Episode transcript will appear here once available...',
@@ -94,11 +94,11 @@ export const podcastEpisodes = {
         }
     ],
 
-    'brachial-plexus': [
+    'brachial-plexus-interactive': [
         {
             id: 'brachial-ep1',
             title: 'Plexopathies',
-            duration: '25:00',
+            duration: '13:28',
             audioFile: 'Podcasts/Plexopathies.m4a',
             description: 'Ernest explores brachial and lumbosacral plexus pathology',
             transcript: 'Episode transcript will appear here once available...',
@@ -121,8 +121,8 @@ export const podcastEpisodes = {
         {
             id: 'radiculopathy-ep1',
             title: 'Radiculopathy Pathophysiology',
-            duration: '19:00',
-            audioFile: 'Podcasts/Radiculopathy Pathophysiology.m4a',
+            duration: '15:48',
+            audioFile: 'Podcasts/Radiculopathy.m4a',
             description: 'Ernest explains the pathophysiology of nerve root compression',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -144,7 +144,7 @@ export const podcastEpisodes = {
         {
             id: 'neuropathy-poly',
             title: 'Polyneuropathies',
-            duration: '32:12',
+            duration: '16:41',
             audioFile: 'Podcasts/Polyneuropathies.m4a',
             description: 'Comprehensive exploration of polyneuropathy patterns and mechanisms',
             transcript: 'Episode transcript will appear here once available...',
@@ -164,7 +164,7 @@ export const podcastEpisodes = {
         {
             id: 'neuropathy-mono',
             title: 'Mononeuropathy Pathophysiology',
-            duration: '64:24',
+            duration: '33:22',
             audioFile: 'Podcasts/Mononeuropathy pathophysiology.m4a',
             description: 'Detailed examination of focal neuropathies and mononeuropathy multiplex',
             transcript: 'Episode transcript will appear here once available...',
@@ -187,7 +187,7 @@ export const podcastEpisodes = {
         {
             id: 'patterns-ep1',
             title: 'Basic Pattern Recognition',
-            duration: '29:00',
+            duration: '14:59',
             audioFile: 'Podcasts/Basic Patter Recognition.m4a',
             description: 'Ernest teaches systematic EMG interpretation and pattern recognition',
             transcript: 'Episode transcript will appear here once available...',
@@ -207,11 +207,11 @@ export const podcastEpisodes = {
         }
     ],
 
-    'neuropathy-myopathy': [
+    'neuropathy-myopathy-basics': [
         {
             id: 'neuro-myo-ep1',
             title: 'Neuropathy vs. Myopathy',
-            duration: '32:00',
+            duration: '17:09',
             audioFile: 'Podcasts/Neuropathy vs. Myopathy.m4a',
             description: 'Ernest explains how to differentiate nerve and muscle disorders using clinical and EDX features',
             transcript: 'Episode transcript will appear here once available...',
@@ -235,7 +235,7 @@ export const podcastEpisodes = {
         {
             id: 'reports-ep1',
             title: 'Basic Report Writing',
-            duration: '23:06',
+            duration: '11:56',
             audioFile: 'Podcasts/Basic Report Writing.m4a',
             description: 'Ernest teaches the art of clear, effective electrodiagnostic report writing',
             transcript: 'Episode transcript will appear here once available...',
@@ -258,7 +258,7 @@ export const podcastEpisodes = {
         {
             id: 'extra-als',
             title: 'ALS and Mimics',
-            duration: '26:00',
+            duration: '13:54',
             audioFile: 'Podcasts/ALS and Mimics.m4a',
             description: 'Ernest explores motor neuron disease and conditions that can mimic ALS',
             transcript: 'Episode transcript will appear here once available...',
@@ -278,7 +278,7 @@ export const podcastEpisodes = {
         {
             id: 'extra-blink',
             title: 'The Blink Reflex Explained',
-            duration: '26:00',
+            duration: '14:14',
             audioFile: 'Podcasts/The Blink Reflex explained.m4a',
             description: 'Ernest explains the blink reflex study and its clinical applications',
             transcript: 'Episode transcript will appear here once available...',
@@ -298,7 +298,7 @@ export const podcastEpisodes = {
         {
             id: 'extra-nmj',
             title: 'Neuromuscular Junction Disorders',
-            duration: '29:00',
+            duration: '16:00',
             audioFile: 'Podcasts/Neuromuscular junction disorders.m4a',
             description: 'Ernest explores disorders affecting the neuromuscular junction',
             transcript: 'Episode transcript will appear here once available...',

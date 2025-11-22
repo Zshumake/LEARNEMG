@@ -11,6 +11,44 @@ console.log('🧠 Loading Neuropathy vs Myopathy Basics System...');
 function neuropathyVsMyopathyBasics() {
     const content = `
         <div style="max-width: 1000px; margin: 0 auto;">
+            <!-- Ernest's Podcast Banner -->
+            <div onclick="window.playModulePodcast('neuropathy-myopathy-basics', 'neuro-myo-ep1')"
+                 style="background: linear-gradient(135deg, #f59e0b, #ea580c);
+                        color: white;
+                        padding: 20px 25px;
+                        border-radius: 12px;
+                        margin-bottom: 20px;
+                        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;"
+                 onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(245, 158, 11, 0.4)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245, 158, 11, 0.3)'">
+                <img src="ERNEST.png"
+                     style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white; object-fit: cover;"
+                     alt="Ernest">
+                <div style="flex: 1;">
+                    <div style="font-weight: bold; font-size: 1.2em; margin-bottom: 5px;">
+                        🎧 Learn more with my Neuropathy vs. Myopathy podcast
+                    </div>
+                    <div style="font-size: 0.9em; opacity: 0.95;">
+                        Click to listen • Duration: 17:09
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.9);
+                           color: #ea580c;
+                           padding: 12px 24px;
+                           border-radius: 8px;
+                           font-weight: 600;
+                           font-size: 1.1em;">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="vertical-align: middle; margin-right: 4px;">
+                        <path d="M3 2L13 8L3 14V2Z" fill="currentColor"/>
+                    </svg> Play
+                </div>
+            </div>
+
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2 style="color: #2c3e50; margin-bottom: 10px;">🧠 Neuropathy vs Myopathy Basics</h2>
                 <p style="color: #5a6c7d; font-size: 16px;">Understanding EMG and NCS patterns in muscle and nerve disorders</p>

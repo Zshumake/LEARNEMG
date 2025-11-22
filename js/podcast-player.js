@@ -34,7 +34,7 @@ export function initializePodcastPlayer() {
     // Create audio element
     audioElement = new Audio();
     audioElement.volume = podcastState.volume;
-    audioElement.preload = 'metadata';
+    audioElement.preload = 'auto'; // Preload full audio for faster playback
 
     // Setup audio event listeners
     setupAudioEventListeners();
@@ -73,62 +73,154 @@ export function registerModulePodcasts(moduleId) {
 // ============================================================================
 // ERNEST BUTTON GENERATOR (for modules to include)
 // ============================================================================
-export function generateErnestButton(moduleTitle = 'this topic') {
-    return `
-        <!-- Ernest Podcast Banner (at top of module) -->
-        <div style="background: linear-gradient(135deg, #f59e0b, #ea580c);
-                    color: white;
-                    padding: 15px 20px;
-                    border-radius: 10px;
-                    margin-bottom: 20px;
-                    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;">
-            <div style="font-size: 2em;">🎧</div>
-            <div style="flex: 1;">
-                <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 5px;">
-                    Listen to Ernest's Podcast on ${moduleTitle}
+export function generateErnestButton(moduleId, moduleTitle = null) {
+    const episodes = getModuleEpisodes(moduleId);
+
+    if (!episodes || episodes.length === 0) {
+        console.warn(`No podcast episodes found for module: ${moduleId}`);
+        return ''; // No button if no episodes
+    }
+
+    const displayTitle = moduleTitle || moduleId;
+    const episodeCount = episodes.length;
+
+    // SPECIAL CASE: EMG Introduction - Show both episodes with separate buttons
+    if (moduleId === 'emg-introduction') {
+        return `
+            <div style="background: linear-gradient(135deg, #f59e0b, #ea580c);
+                        color: white;
+                        padding: 20px 25px;
+                        border-radius: 12px;
+                        margin-bottom: 20px;
+                        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <img src="ERNEST.png"
+                         style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white;"
+                         alt="Ernest">
+                    <div style="flex: 1;">
+                        <div style="font-weight: bold; font-size: 1.2em; margin-bottom: 5px;">
+                            🎧 Learn more with Ernest's EMG Podcasts
+                        </div>
+                        <div style="font-size: 0.9em; opacity: 0.95;">
+                            Choose which episode to listen to:
+                        </div>
+                    </div>
                 </div>
-                <div style="font-size: 0.9em; opacity: 0.95;">
-                    Click the Ernest button in the lower right corner to open the podcast player
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button onclick="window.playModulePodcast('emg-introduction', 'emg-intro-main')"
+                            style="flex: 1; min-width: 200px;
+                                   background: rgba(255,255,255,0.95);
+                                   color: #ea580c;
+                                   border: none;
+                                   padding: 12px 20px;
+                                   border-radius: 8px;
+                                   font-weight: 600;
+                                   font-size: 0.95em;
+                                   cursor: pointer;
+                                   transition: all 0.2s;
+                                   box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
+                        ▶ EMG Introduction<br><span style="font-size: 0.85em; opacity: 0.8;">101 min</span>
+                    </button>
+                    <button onclick="window.playModulePodcast('emg-introduction', 'emg-terminology')"
+                            style="flex: 1; min-width: 200px;
+                                   background: rgba(255,255,255,0.95);
+                                   color: #ea580c;
+                                   border: none;
+                                   padding: 12px 20px;
+                                   border-radius: 8px;
+                                   font-weight: 600;
+                                   font-size: 0.95em;
+                                   cursor: pointer;
+                                   transition: all 0.2s;
+                                   box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
+                        ▶ Essential Terminology<br><span style="font-size: 0.85em; opacity: 0.8;">28 min</span>
+                    </button>
                 </div>
             </div>
-        </div>
+        `;
+    }
 
-        <!-- Ernest Podcast Button (Fixed to Window Corner) -->
-        <div class="ernest-podcast-button"
-             onclick="window.togglePodcastPlayer()"
-             style="position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    width: 70px;
-                    height: 70px;
-                    border-radius: 50%;
-                    background: linear-gradient(135deg, #f59e0b, #ea580c);
-                    border: 4px solid white;
-                    box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+    // SINGLE EPISODE: Clickable banner with direct play
+    if (episodeCount === 1) {
+        const episode = episodes[0];
+        return `
+            <div onclick="window.playModulePodcast('${moduleId}', '${episode.id}')"
+                 style="background: linear-gradient(135deg, #f59e0b, #ea580c);
+                        color: white;
+                        padding: 20px 25px;
+                        border-radius: 12px;
+                        margin-bottom: 20px;
+                        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;"
+                 onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(245, 158, 11, 0.4)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245, 158, 11, 0.3)'">
+                <img src="ERNEST.png"
+                     style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white;"
+                     alt="Ernest">
+                <div style="flex: 1;">
+                    <div style="font-weight: bold; font-size: 1.2em; margin-bottom: 5px;">
+                        🎧 Learn more with my ${displayTitle} podcast
+                    </div>
+                    <div style="font-size: 0.9em; opacity: 0.95;">
+                        Click to listen • Duration: ${episode.duration}
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.9);
+                           color: #ea580c;
+                           padding: 12px 24px;
+                           border-radius: 8px;
+                           font-weight: 600;
+                           font-size: 1.1em;">
+                    ▶ Play
+                </div>
+            </div>
+        `;
+    }
+
+    // MULTIPLE EPISODES: Generic message, opens player with first episode
+    const firstEpisode = episodes[0];
+    return `
+        <div onclick="window.playModulePodcast('${moduleId}', '${firstEpisode.id}')"
+             style="background: linear-gradient(135deg, #f59e0b, #ea580c);
+                    color: white;
+                    padding: 20px 25px;
+                    border-radius: 12px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
                     cursor: pointer;
                     transition: all 0.3s ease;
-                    z-index: 100001;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    animation: podcastPulse 2s infinite;">
+                    gap: 15px;"
+             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(245, 158, 11, 0.4)'"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245, 158, 11, 0.3)'">
             <img src="ERNEST.png"
-                 style="width: 85%; height: 85%; border-radius: 50%; object-fit: cover;"
-                 alt="Ernest Podcast">
-            <div class="podcast-playing-indicator"
-                 style="position: absolute;
-                        top: -5px;
-                        right: -5px;
-                        width: 20px;
-                        height: 20px;
-                        background: #10b981;
-                        border: 3px solid white;
-                        border-radius: 50%;
-                        display: none;
-                        animation: podcastGlow 1s infinite;"></div>
+                 style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white;"
+                 alt="Ernest">
+            <div style="flex: 1;">
+                <div style="font-weight: bold; font-size: 1.2em; margin-bottom: 5px;">
+                    🎧 Learn more with my ${episodeCount} podcasts about ${displayTitle}
+                </div>
+                <div style="font-size: 0.9em; opacity: 0.95;">
+                    Click to open player and select episode
+                </div>
+            </div>
+            <div style="background: rgba(255,255,255,0.9);
+                       color: #ea580c;
+                       padding: 12px 24px;
+                       border-radius: 8px;
+                       font-weight: 600;
+                       font-size: 1.1em;">
+                ▶ Play
+            </div>
         </div>
     `;
 }
@@ -510,6 +602,7 @@ function attachEventListeners() {
     window.minimizePodcastPlayer = minimizePodcastPlayer;
     window.expandPodcastPlayer = expandPodcastPlayer;
     window.changeEpisode = changeEpisode;
+    window.playModulePodcast = playModulePodcast;
     window.togglePlayPause = togglePlayPause;
     window.seekAudio = seekAudio;
     window.setVolume = setVolume;
@@ -536,22 +629,57 @@ function setupAudioEventListeners() {
         hidePlayingIndicator();
     });
 
-    // Handle audio loading
+    // Handle audio loading - show metadata loaded
     audioElement.addEventListener('loadedmetadata', () => {
+        console.log('🎧 Audio metadata loaded');
         updateDurationDisplays();
+    });
+
+    // Handle audio buffering start
+    audioElement.addEventListener('waiting', () => {
+        console.log('🎧 Buffering audio...');
+        showBufferingIndicator();
+    });
+
+    // Handle audio can play through (enough buffered)
+    audioElement.addEventListener('canplaythrough', () => {
+        console.log('🎧 Audio ready to play');
+        hideBufferingIndicator();
+        showAudioControls();
+        hideAudioPlaceholder();
+    });
+
+    // When audio can start playing
+    audioElement.addEventListener('canplay', () => {
+        console.log('🎧 Audio can start playing');
+        hideBufferingIndicator();
+        showAudioControls();
+        hideAudioPlaceholder();
+    });
+
+    // Handle audio playing (resumed after buffering)
+    audioElement.addEventListener('playing', () => {
+        hideBufferingIndicator();
     });
 
     // Handle audio errors
     audioElement.addEventListener('error', (e) => {
         console.warn('🎧 Audio file not available:', e);
+        hideBufferingIndicator();
         showAudioPlaceholder();
         hideAudioControls();
     });
 
-    // When audio can play
-    audioElement.addEventListener('canplay', () => {
-        showAudioControls();
-        hideAudioPlaceholder();
+    // Handle audio loading progress
+    audioElement.addEventListener('progress', () => {
+        if (audioElement.buffered.length > 0) {
+            const bufferedEnd = audioElement.buffered.end(audioElement.buffered.length - 1);
+            const duration = audioElement.duration;
+            if (duration > 0) {
+                const percentBuffered = (bufferedEnd / duration) * 100;
+                console.log(`🎧 Buffered: ${percentBuffered.toFixed(1)}%`);
+            }
+        }
     });
 }
 
@@ -671,6 +799,33 @@ function changeEpisode(episodeId) {
 
     if (episode) {
         loadEpisode(episode);
+    }
+}
+
+// Play specific module podcast episode (called from top banner buttons)
+function playModulePodcast(moduleId, episodeId) {
+    console.log(`🎧 Playing module podcast: ${moduleId} - ${episodeId}`);
+
+    // Register module podcasts
+    registerModulePodcasts(moduleId);
+
+    // Find the episode
+    const episodes = getModuleEpisodes(moduleId);
+    const episode = episodes.find(ep => ep.id === episodeId);
+
+    if (episode) {
+        // Load the episode
+        loadEpisode(episode);
+
+        // Open the player if not already visible
+        if (!podcastState.isPlayerVisible) {
+            openPodcastPlayer();
+        }
+
+        // Update the episode selector to show the correct episode
+        setTimeout(() => {
+            updateEpisodeSelector();
+        }, 100);
     }
 }
 
@@ -841,6 +996,30 @@ function showAudioPlaceholder() {
 function hideAudioPlaceholder() {
     const placeholder = document.getElementById('audio-placeholder');
     if (placeholder) placeholder.style.display = 'none';
+}
+
+function showBufferingIndicator() {
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const miniPlayPauseBtn = document.getElementById('mini-play-pause-btn');
+
+    if (playPauseBtn) {
+        playPauseBtn.textContent = '⏳';
+        playPauseBtn.style.opacity = '0.6';
+    }
+    if (miniPlayPauseBtn) {
+        miniPlayPauseBtn.textContent = '⏳';
+        miniPlayPauseBtn.style.opacity = '0.6';
+    }
+}
+
+function hideBufferingIndicator() {
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const miniPlayPauseBtn = document.getElementById('mini-play-pause-btn');
+
+    if (playPauseBtn) playPauseBtn.style.opacity = '1';
+    if (miniPlayPauseBtn) miniPlayPauseBtn.style.opacity = '1';
+
+    updatePlayPauseButtons(); // Restore correct icon
 }
 
 function toggleShowNotes() {

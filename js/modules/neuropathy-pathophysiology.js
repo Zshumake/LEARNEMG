@@ -11,7 +11,7 @@ export function generateContent(module) {
 
     return `
         <div class="interactive-content" style="position: relative;">
-            ${generateErnestButton('Neuropathy Pathophysiology')}
+            ${generateErnestButton('neuropathy-pathophysiology', 'Neuropathy Pathophysiology')}
             <!-- Learning Objectives -->
             <div style="background: linear-gradient(135deg, #fff7ed, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
                 <h3 style="color: #c2410c; margin-bottom: 15px;">🎯 Learning Objectives</h3>

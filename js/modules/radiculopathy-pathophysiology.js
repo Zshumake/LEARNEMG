@@ -9,7 +9,7 @@ export function generateContent(module) {
 
     return `
         <div class="interactive-content" style="position: relative;">
-            ${generateErnestButton('Radiculopathy Pathophysiology')}
+            ${generateErnestButton('radiculopathy', 'Radiculopathy Pathophysiology')}
             <div style="background: linear-gradient(135deg, #fff7ed, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
                 <h3 style="color: #c2410c; margin-bottom: 15px;">🎯 Learning Objectives</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">

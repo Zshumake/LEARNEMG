@@ -1539,7 +1539,7 @@
             <!-- Version Marker -->
             <div style="text-align: center; margin-top: 15px; margin-bottom: 10px;">
                 <div style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
-                    🎧 Ernest's Podcast Player - Module Integration Complete! (v2025.11.20 18:15)
+                    🎧 Podcast System Enhanced & Brachial Plexus Embedded! (v2025.11.22 17:13)
                 </div>
             </div>
 
@@ -2918,6 +2918,281 @@
                         </h1>
                         <p class="pathway-subtitle">Comprehensive Electrodiagnostic Medicine Training</p>
                         <button class="learning-objectives-btn" onclick="showLearningObjectives()">See Learning Objectives</button>
+
+                        <!-- Collapsible Podcasts Button -->
+                        <button class="collapsible-podcasts-btn" onclick="togglePodcastsCollapsible()" style="
+                            background: linear-gradient(135deg, #f59e0b, #ea580c);
+                            color: white;
+                            border: none;
+                            border-radius: 12px;
+                            padding: 15px 25px;
+                            margin: 15px auto;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            max-width: 450px;">
+                            <img src="ERNEST.png" alt="Ernest" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white; object-fit: cover;">
+                            <span style="flex: 1;">Come Listen to My Podcasts!</span>
+                            <span id="podcast-toggle-icon" style="transition: transform 0.3s ease; font-size: 1.2em;">▼</span>
+                        </button>
+                    </div>
+
+                    <!-- Collapsible Podcasts Container -->
+                    <div id="podcasts-collapsible-container" class="podcasts-collapsible" style="
+                        display: none;
+                        max-width: 1200px;
+                        margin: 0 auto 40px;
+                        background: white;
+                        border-radius: 12px;
+                        padding: 25px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+
+                        <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 1.3em; text-align: center;">🎙️ All Podcast Episodes (14 Total)</h3>
+
+                        <!-- Module Podcasts Section -->
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #3b82f6; margin: 0 0 12px 0; font-size: 1em; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">📚 Module Podcasts</h4>
+
+                            <!-- 3-Column Grid -->
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                <!-- EMG Introduction Fundamentals -->
+                                <div onclick="openModulePodcast('emg-introduction', 'emg-intro-main')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">EMG Introduction</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">52:27</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Essential Terminology -->
+                                <div onclick="openModulePodcast('emg-introduction', 'emg-terminology')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Essential Terminology</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">14:46</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Peripheral Anatomy -->
+                                <div onclick="openModulePodcast('plexus-anatomy', 'plexus-peripheral')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Peripheral Anatomy</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">39:07</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Anomalous Anatomy -->
+                                <div onclick="openModulePodcast('plexus-anatomy', 'plexus-anomalous')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Anomalous Anatomy</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">14:47</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Plexopathies -->
+                                <div onclick="openModulePodcast('brachial-plexus', 'brachial-ep1')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Plexopathies</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">13:28</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Radiculopathy -->
+                                <div onclick="openModulePodcast('radiculopathy', 'radiculopathy-ep1')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Radiculopathy</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">15:48</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Polyneuropathies -->
+                                <div onclick="openModulePodcast('neuropathy-pathophysiology', 'neuropathy-poly')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Polyneuropathies</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">16:41</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Mononeuropathy -->
+                                <div onclick="openModulePodcast('neuropathy-pathophysiology', 'neuropathy-mono')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mononeuropathy</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">33:22</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Pattern Recognition -->
+                                <div onclick="openModulePodcast('basic-patterns', 'patterns-ep1')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pattern Recognition</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">14:59</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Neuropathy vs Myopathy -->
+                                <div onclick="openModulePodcast('neuropathy-myopathy', 'neuro-myo-ep1')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Neuropathy vs Myopathy</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">17:09</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Report Writing -->
+                                <div onclick="openModulePodcast('simple-reports', 'reports-ep1')" style="
+                                    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
+                                    onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Report Writing</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">11:56</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#f59e0b"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Extra Topics Section -->
+                        <div>
+                            <h4 style="color: #a855f7; margin: 0 0 12px 0; font-size: 1em; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">⭐ Advanced Topics</h4>
+
+                            <!-- 3-Column Grid for Extra Topics -->
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                <!-- ALS and Mimics -->
+                                <div onclick="window.playExtraPodcast('extra-als')" style="
+                                    background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"
+                                    onmouseout="this.style.background='#faf5ff'; this.style.borderColor='#e9d5ff'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #7e22ce; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">ALS and Mimics</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">13:54</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#a855f7"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Blink Reflex -->
+                                <div onclick="window.playExtraPodcast('extra-blink')" style="
+                                    background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"
+                                    onmouseout="this.style.background='#faf5ff'; this.style.borderColor='#e9d5ff'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #7e22ce; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Blink Reflex</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">14:14</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#a855f7"/>
+                                    </svg>
+                                </div>
+
+                                <!-- NMJ Disorders -->
+                                <div onclick="window.playExtraPodcast('extra-nmj')" style="
+                                    background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 6px; padding: 8px;
+                                    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
+                                    onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"
+                                    onmouseout="this.style.background='#faf5ff'; this.style.borderColor='#e9d5ff'">
+                                    <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-size: 0.8em; font-weight: 600; color: #7e22ce; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">NMJ Disorders</div>
+                                        <div style="font-size: 0.7em; color: #64748b;">16:00</div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                                        <path d="M3 2L13 8L3 14V2Z" fill="#a855f7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Main Modules Container -->
@@ -2930,12 +3205,6 @@
                             ${generateGridModules()}
                         </div>
                     </div>
-
-                    <!-- Extra Topics Podcast Library -->
-                    ${generateExtraTopicsSection()}
-
-                    <!-- Complete Podcast Library -->
-                    ${generateCompletePodcastLibrary()}
                 </div>
             `;
 
@@ -3073,7 +3342,7 @@
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6; object-fit: cover;" alt="Ernest">
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Plexopathies</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 3 • 25 min</p>
@@ -3090,7 +3359,7 @@
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6; object-fit: cover;" alt="Ernest">
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Radiculopathy</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 4 • 19 min</p>
@@ -3107,7 +3376,7 @@
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6; object-fit: cover;" alt="Ernest">
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Neuropathy Pathophysiology</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 5 • 61 min</p>
@@ -3124,7 +3393,7 @@
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6; object-fit: cover;" alt="Ernest">
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">EMG Interpretation</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 7 • 28 min</p>
@@ -3141,7 +3410,7 @@
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6;" alt="Ernest">
+                                    <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6; object-fit: cover;" alt="Ernest">
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Myopathy vs. Neuropathy</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 8 • 32 min</p>
@@ -3254,7 +3523,9 @@
                                 Explore motor neuron disease diagnosis and learn to differentiate ALS from treatable mimics using clinical and electrodiagnostic features.
                             </p>
                             <div style="display: flex; align-items: center; color: #dc2626; font-weight: 600;">
-                                <span style="margin-right: 8px;">▶</span> Listen Now
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="margin-right: 8px; vertical-align: middle;">
+                                    <path d="M3 2L13 8L3 14V2Z" fill="currentColor"/>
+                                </svg> Listen Now
                             </div>
                         </div>
 
@@ -3280,7 +3551,9 @@
                                 Master this specialized NCS technique for evaluating trigeminal and facial nerve pathways. Learn technical aspects and clinical applications.
                             </p>
                             <div style="display: flex; align-items: center; color: #0ea5e9; font-weight: 600;">
-                                <span style="margin-right: 8px;">▶</span> Listen Now
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="margin-right: 8px; vertical-align: middle;">
+                                    <path d="M3 2L13 8L3 14V2Z" fill="currentColor"/>
+                                </svg> Listen Now
                             </div>
                         </div>
 
@@ -3306,7 +3579,9 @@
                                 Compare and contrast these neuromuscular junction disorders. Learn the distinctive clinical, electrodiagnostic, and treatment features of each.
                             </p>
                             <div style="display: flex; align-items: center; color: #a855f7; font-weight: 600;">
-                                <span style="margin-right: 8px;">▶</span> Listen Now
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="margin-right: 8px; vertical-align: middle;">
+                                    <path d="M3 2L13 8L3 14V2Z" fill="currentColor"/>
+                                </svg> Listen Now
                             </div>
                         </div>
                     </div>
@@ -3799,6 +4074,24 @@
             });
         }
 
+        // Toggle Collapsible Podcasts Section
+        function togglePodcastsCollapsible() {
+            const container = document.getElementById('podcasts-collapsible-container');
+            const icon = document.getElementById('podcast-toggle-icon');
+
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+                icon.textContent = '▲';
+                icon.style.transform = 'rotate(180deg)';
+                console.log('🎧 Expanded podcast list');
+            } else {
+                container.style.display = 'none';
+                icon.textContent = '▼';
+                icon.style.transform = 'rotate(0deg)';
+                console.log('🎧 Collapsed podcast list');
+            }
+        }
+
         // Make functions globally available
         window.generateAtriumPathway = generateAtriumPathway;
         window.openAtriumModule = openAtriumModule;
@@ -3808,6 +4101,7 @@
         window.returnToMainPage = returnToMainPage;
         window.openModulePodcast = openModulePodcast;
         window.playExtraPodcast = playExtraPodcast;
+        window.togglePodcastsCollapsible = togglePodcastsCollapsible;
 
         console.log('✨🎮 Enhanced Journey with Integrated Modal System - Ready!');
     </script>
