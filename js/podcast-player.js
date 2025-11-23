@@ -252,7 +252,8 @@ function createPodcastHTML() {
              style="position: fixed;
                     bottom: 110px;
                     right: 20px;
-                    width: 380px;
+                    width: min(380px, calc(100vw - 40px));
+                    max-width: 380px;
                     max-height: 85vh;
                     background: rgba(255, 255, 255, 0.98);
                     backdrop-filter: blur(10px);
@@ -459,7 +460,8 @@ function createPodcastHTML() {
              style="position: fixed;
                     bottom: 110px;
                     right: 20px;
-                    width: 320px;
+                    width: min(320px, calc(100vw - 40px));
+                    max-width: 320px;
                     background: rgba(255, 255, 255, 0.98);
                     backdrop-filter: blur(10px);
                     border-radius: 15px;
@@ -587,6 +589,40 @@ function createPodcastHTML() {
             #podcast-player-overlay > div:first-of-type::-webkit-scrollbar-thumb:hover,
             #transcript-panel::-webkit-scrollbar-thumb:hover {
                 background: #94a3b8;
+            }
+
+            /* Mobile Responsive Styles */
+            @media (max-width: 480px) {
+                #podcast-player-overlay,
+                #podcast-mini-player {
+                    right: 10px !important;
+                    left: 10px !important;
+                    width: calc(100vw - 20px) !important;
+                    max-width: none !important;
+                    bottom: 10px !important;
+                }
+
+                #podcast-player-overlay {
+                    max-height: calc(100vh - 20px) !important;
+                    border-radius: 15px !important;
+                }
+
+                #podcast-mini-player {
+                    border-radius: 12px !important;
+                }
+            }
+
+            /* Tablet adjustments */
+            @media (max-width: 768px) and (min-width: 481px) {
+                #podcast-player-overlay {
+                    right: 15px !important;
+                    width: min(360px, calc(100vw - 30px)) !important;
+                }
+
+                #podcast-mini-player {
+                    right: 15px !important;
+                    width: min(300px, calc(100vw - 30px)) !important;
+                }
             }
         </style>
     `;
