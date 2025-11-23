@@ -230,6 +230,34 @@
         margin: 10px;
     }
 
+    /* Full-screen modals on phones */
+    @media (max-width: 480px) {
+        .learning-modal {
+            width: 100vw !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            /* iPhone notch support */
+            padding-top: env(safe-area-inset-top) !important;
+            padding-bottom: env(safe-area-inset-bottom) !important;
+            padding-left: env(safe-area-inset-left) !important;
+            padding-right: env(safe-area-inset-right) !important;
+        }
+
+        .modal-close,
+        .modal-close-btn {
+            /* Position close button safely away from notch */
+            top: max(16px, env(safe-area-inset-top)) !important;
+            right: max(16px, env(safe-area-inset-right)) !important;
+            z-index: 10001 !important;
+        }
+
+        .learning-modal-overlay {
+            background: rgba(0, 0, 0, 0.95) !important;
+        }
+    }
+
     .journey-context-bar {
         padding: 12px 20px;
         flex-direction: column;
