@@ -1786,73 +1786,141 @@
         white-space: nowrap !important;
     }
 
-    /* NUCLEAR OPTION: Remove ALL Boxes - Full Width Content */
+    /* FULL WIDTH + VIBRANT VISUAL DESIGN */
 
-    /* Strip ALL box styling from modal content */
+    /* Strip padding/margins but keep backgrounds for appeal */
     .modal-body div[style],
     .interactive-content div[style] {
-        padding: 6px 8px !important;
-        margin: 0 !important;
+        padding: 10px 8px !important;
+        margin: 6px 0 !important;
         border: none !important;
-        border-radius: 0 !important;
+        border-radius: 12px !important; /* Rounded for modern look */
         box-shadow: none !important;
-        background: transparent !important;
     }
 
-    /* Modal body full width */
+    /* Modal body full width with subtle background */
     .modal-body,
     .interactive-content {
         padding: 8px !important;
         margin: 0 !important;
+        background: #f8fafc !important;
     }
 
-    /* Section separation with background colors - every other section */
-    .modal-body > div:nth-child(even),
-    .interactive-content > div:nth-child(even) {
-        background: #f9fafb !important;
+    /* Vibrant section backgrounds - alternate colors */
+    .modal-body > div:nth-child(4n+1),
+    .interactive-content > div:nth-child(4n+1) {
+        background: linear-gradient(135deg, #eff6ff, #dbeafe) !important; /* Blue */
     }
 
-    /* Headers get colored backgrounds for visual hierarchy */
+    .modal-body > div:nth-child(4n+2),
+    .interactive-content > div:nth-child(4n+2) {
+        background: linear-gradient(135deg, #f3e8ff, #e9d5ff) !important; /* Purple */
+    }
+
+    .modal-body > div:nth-child(4n+3),
+    .interactive-content > div:nth-child(4n+3) {
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important; /* Green */
+    }
+
+    .modal-body > div:nth-child(4n),
+    .interactive-content > div:nth-child(4n) {
+        background: linear-gradient(135deg, #f0fdfa, #ccfbf1) !important; /* Teal */
+    }
+
+    /* Bold, vibrant headers */
     .modal-body h3,
+    .interactive-content h3 {
+        background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+        padding: 10px 12px !important;
+        margin: 8px 0 !important;
+        color: white !important;
+        font-weight: 700 !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        border-radius: 8px !important;
+    }
+
     .modal-body h4,
-    .interactive-content h3,
     .interactive-content h4 {
-        background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
         padding: 8px 10px !important;
-        margin: 4px 0 !important;
-        color: #1e40af !important;
+        margin: 6px 0 !important;
+        color: white !important;
+        font-weight: 600 !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        border-radius: 6px !important;
     }
 
     .modal-body h5,
     .interactive-content h5 {
-        background: linear-gradient(135deg, #f3e8ff, #e9d5ff) !important;
+        background: linear-gradient(135deg, #10b981, #059669) !important;
         padding: 6px 8px !important;
         margin: 4px 0 !important;
-        color: #6b21a8 !important;
+        color: white !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
     }
 
-    /* Lists and paragraphs minimal spacing */
+    /* Content with subtle styling */
     .modal-body p,
     .modal-body ul,
     .modal-body ol,
     .interactive-content p,
     .interactive-content ul,
     .interactive-content ol {
-        padding: 4px 8px !important;
+        padding: 6px 8px !important;
         margin: 4px 0 !important;
+        line-height: 1.5 !important;
     }
 
-    /* List items tight spacing */
+    /* List items with bullets visible */
     .modal-body li,
     .interactive-content li {
-        padding: 2px 0 !important;
-        margin: 2px 0 !important;
+        padding: 3px 0 !important;
+        margin: 2px 0 2px 16px !important;
     }
 
-    /* Remove gradient backgrounds that create boxes */
-    .modal-body div[style*="linear-gradient"],
-    .interactive-content div[style*="linear-gradient"] {
-        background: transparent !important;
+    /* Images - ensure visibility and responsiveness */
+    .modal-body img,
+    .interactive-content img {
+        display: block !important; /* Override any hiding */
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 8px auto !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Code blocks and highlights */
+    .modal-body code,
+    .interactive-content code {
+        background: #1e293b !important;
+        color: #10b981 !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        font-size: 0.9em !important;
+    }
+
+    /* Tables responsive */
+    .modal-body table,
+    .interactive-content table {
+        width: 100% !important;
+        margin: 8px 0 !important;
+        border-collapse: collapse !important;
+    }
+
+    .modal-body th,
+    .modal-body td,
+    .interactive-content th,
+    .interactive-content td {
+        padding: 6px 8px !important;
+        border: 1px solid #e5e7eb !important;
+    }
+
+    .modal-body th,
+    .interactive-content th {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: white !important;
+        font-weight: 600 !important;
     }
 
     /* Layout - More Compact */
