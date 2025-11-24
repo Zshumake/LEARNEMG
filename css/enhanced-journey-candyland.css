@@ -1786,54 +1786,73 @@
         white-space: nowrap !important;
     }
 
-    /* Nested Box Flattening - Recover 23-28% Screen Space */
+    /* NUCLEAR OPTION: Remove ALL Boxes - Full Width Content */
 
-    /* Reduce outer box padding drastically */
-    .modal-body > div[style*="padding: 25px"],
-    .modal-body > div[style*="padding: 35px"],
-    .modal-body > div[style*="padding: 45px"],
-    .interactive-content > div[style*="padding: 25px"],
-    .interactive-content > div[style*="padding: 35px"] {
-        padding: 12px 8px !important;
-    }
-
-    /* Remove middle white box styling - flatten to transparent */
-    .modal-body div[style*="background: white"][style*="padding: 20px"],
-    .modal-body div[style*="background: #ffffff"][style*="padding: 20px"],
-    .interactive-content div[style*="background: white"][style*="padding: 20px"] {
-        padding: 0 !important;
-        background: transparent !important;
+    /* Strip ALL box styling from modal content */
+    .modal-body div[style],
+    .interactive-content div[style] {
+        padding: 6px 8px !important;
+        margin: 0 !important;
         border: none !important;
+        border-radius: 0 !important;
         box-shadow: none !important;
-        margin: 12px 0 !important;
+        background: transparent !important;
     }
 
-    /* Inner boxes - keep but reduce padding */
-    .modal-body div div div[style*="padding: 15px"],
-    .interactive-content div div div[style*="padding: 15px"] {
-        padding: 10px 8px !important;
+    /* Modal body full width */
+    .modal-body,
+    .interactive-content {
+        padding: 8px !important;
+        margin: 0 !important;
     }
 
-    /* Use border separators instead of box nesting */
-    .modal-body > div > div:not(:last-child),
-    .interactive-content > div > div:not(:last-child) {
-        border-bottom: 2px solid #e5e7eb !important;
-        padding-bottom: 12px !important;
-        margin-bottom: 12px !important;
+    /* Section separation with background colors - every other section */
+    .modal-body > div:nth-child(even),
+    .interactive-content > div:nth-child(even) {
+        background: #f9fafb !important;
     }
 
-    /* Reduce border radius for tighter look */
-    .modal-body div[style*="border-radius: 15px"],
-    .modal-body div[style*="border-radius: 20px"],
-    .interactive-content div[style*="border-radius: 15px"] {
-        border-radius: 8px !important;
+    /* Headers get colored backgrounds for visual hierarchy */
+    .modal-body h3,
+    .modal-body h4,
+    .interactive-content h3,
+    .interactive-content h4 {
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+        padding: 8px 10px !important;
+        margin: 4px 0 !important;
+        color: #1e40af !important;
     }
 
-    /* Reduce margins between sections */
-    .modal-body div[style*="margin-bottom: 25px"],
-    .modal-body div[style*="margin-bottom: 30px"],
-    .interactive-content div[style*="margin-bottom: 25px"] {
-        margin-bottom: 15px !important;
+    .modal-body h5,
+    .interactive-content h5 {
+        background: linear-gradient(135deg, #f3e8ff, #e9d5ff) !important;
+        padding: 6px 8px !important;
+        margin: 4px 0 !important;
+        color: #6b21a8 !important;
+    }
+
+    /* Lists and paragraphs minimal spacing */
+    .modal-body p,
+    .modal-body ul,
+    .modal-body ol,
+    .interactive-content p,
+    .interactive-content ul,
+    .interactive-content ol {
+        padding: 4px 8px !important;
+        margin: 4px 0 !important;
+    }
+
+    /* List items tight spacing */
+    .modal-body li,
+    .interactive-content li {
+        padding: 2px 0 !important;
+        margin: 2px 0 !important;
+    }
+
+    /* Remove gradient backgrounds that create boxes */
+    .modal-body div[style*="linear-gradient"],
+    .interactive-content div[style*="linear-gradient"] {
+        background: transparent !important;
     }
 
     /* Layout - More Compact */
