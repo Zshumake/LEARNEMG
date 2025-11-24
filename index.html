@@ -3593,14 +3593,7 @@
         async function openAtriumModule(moduleNumber, moduleId) {
             console.log(`🎓 Opening Module ${moduleNumber}: ${moduleId}`);
 
-            // iOS QUICK FIX: Open in new tab to avoid zoom crash
-            if (window.isIOS) {
-                console.log('📱 iOS detected - opening module in new tab');
-                await openModuleInNewTab(moduleNumber, moduleId);
-                return;
-            }
-
-            // Desktop: Use module loader for dynamic loading
+            // Use module loader for dynamic loading on ALL devices (including iOS)
             const module = { contentId: moduleId, id: moduleId };
 
             try {
