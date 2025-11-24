@@ -1553,47 +1553,56 @@
 
 /* Small Phones (iPhone SE, small Android) */
 @media (max-width: 480px) {
-    /* Base Font Size - More Compact */
+    /* Base Font Size - News Article Density */
     body,
     html {
-        font-size: 14px !important; /* Down from 16px */
+        font-size: 13px !important; /* News article base size */
+        line-height: 1.5 !important;
     }
 
-    /* Typography - Much Smaller for Mobile */
+    /* Typography - Compact News Article Style */
     .main-title,
     .atrium-title,
     h1 {
-        font-size: 1.5em !important; /* ~21px - Down from 3.5em */
+        font-size: 1.4em !important; /* ~18px */
     }
 
     .pathway-title {
-        font-size: 1.6em !important; /* ~22px - Down from 3.8em */
+        font-size: 1.5em !important; /* ~19.5px */
     }
 
     .main-subtitle,
     .pathway-subtitle {
-        font-size: 0.9em !important; /* ~13px */
+        font-size: 0.85em !important; /* ~11px */
     }
 
     h2 {
-        font-size: 1.3em !important; /* ~18px */
+        font-size: 1.25em !important; /* ~16px */
     }
 
     h3 {
-        font-size: 1.1em !important; /* ~15px */
+        font-size: 1.1em !important; /* ~14px */
     }
 
     h4 {
-        font-size: 1em !important; /* ~14px */
+        font-size: 1em !important; /* ~13px */
     }
 
     h5, h6 {
-        font-size: 0.95em !important; /* ~13px */
+        font-size: 0.9em !important; /* ~12px */
     }
 
     p, li, span, div {
-        font-size: 0.9em !important; /* ~13px */
-        line-height: 1.4 !important;
+        font-size: 0.95em !important; /* ~12px */
+        line-height: 1.6 !important;
+    }
+
+    /* Module content - extra compact */
+    .modal-body,
+    .learning-content-area,
+    .interactive-content {
+        font-size: 0.9em !important; /* ~11.7px */
+        line-height: 1.65 !important;
     }
 
     /* Module Pathway - Fix Icon Overflow */
@@ -1626,7 +1635,7 @@
     /* Module Titles - Smaller Text & Center */
     .module-title,
     .module-name {
-        font-size: 0.85em !important; /* ~12px */
+        font-size: 0.7em !important; /* ~9px - very compact */
         max-width: 100% !important;
         text-align: center !important;
         margin: 0 auto !important;
@@ -1674,7 +1683,7 @@
         height: 90px !important;
         min-width: 90px !important;
         min-height: 90px !important;
-        font-size: 0.8em !important;
+        font-size: 0.7em !important; /* Smaller for more compact look */
     }
 
     .professional-board-square {
@@ -1693,8 +1702,8 @@
 
     button {
         min-height: 48px !important;
-        padding: 14px 20px !important;
-        font-size: 0.9em !important;
+        padding: 12px 16px !important;
+        font-size: 0.85em !important; /* ~11px - smaller for compactness */
         min-width: 48px !important;
     }
 

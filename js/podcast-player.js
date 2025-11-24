@@ -610,6 +610,34 @@ function createPodcastHTML() {
                 #podcast-mini-player {
                     border-radius: 12px !important;
                 }
+
+                /* Reduce text sizes for mobile */
+                #podcast-player-overlay h3 {
+                    font-size: 1.1rem !important;
+                }
+
+                #podcast-player-overlay p,
+                #podcast-player-overlay div,
+                #podcast-player-overlay span {
+                    font-size: 0.85rem !important;
+                }
+
+                #episode-title,
+                #mini-episode-title {
+                    font-size: 0.9rem !important;
+                }
+
+                .episode-description,
+                #show-notes-content {
+                    font-size: 0.8rem !important;
+                    line-height: 1.5 !important;
+                }
+
+                /* Smaller buttons in player */
+                #podcast-player-overlay button {
+                    font-size: 0.85rem !important;
+                    padding: 10px 14px !important;
+                }
             }
 
             /* Tablet adjustments */
