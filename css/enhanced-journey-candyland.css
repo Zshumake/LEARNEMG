@@ -1744,26 +1744,96 @@
         min-height: 44px !important;
     }
 
-    /* Tab Buttons in Modals - Optimized for Mobile */
+    /* Tab Buttons in Modals - Horizontal Scroll for Mobile */
     .muscle-lab-tabs,
     .tab-navigation,
     [class*="-tabs"],
     div[class*="tabs"] {
-        gap: 6px !important; /* Reduce from 10px */
+        gap: 6px !important;
         padding: 6px !important;
-        flex-wrap: wrap !important; /* Allow wrapping if needed */
+        flex-wrap: nowrap !important; /* PREVENT wrapping - single row */
+        overflow-x: auto !important; /* Enable horizontal scroll */
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important; /* Smooth scroll on iOS */
+        scroll-behavior: smooth !important;
+        scrollbar-width: thin !important; /* Firefox */
+    }
+
+    /* Hide scrollbar but keep functionality */
+    .muscle-lab-tabs::-webkit-scrollbar,
+    .tab-navigation::-webkit-scrollbar,
+    [class*="-tabs"]::-webkit-scrollbar {
+        height: 4px !important;
+    }
+
+    .muscle-lab-tabs::-webkit-scrollbar-thumb,
+    .tab-navigation::-webkit-scrollbar-thumb,
+    [class*="-tabs"]::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2) !important;
+        border-radius: 2px !important;
     }
 
     .muscle-tab,
     .tab-button,
     [class*="-tab"]:not(.module-card),
     button[data-tab] {
-        padding: 12px 20px !important; /* Reduce from 15px 30px */
-        font-size: 0.95rem !important; /* Reduce from 1.1rem */
-        min-height: 44px !important; /* Ensure touch target */
-        flex: 1 1 auto !important; /* Flexible sizing */
-        min-width: 100px !important; /* Prevent too-narrow buttons */
-        white-space: nowrap !important; /* Keep text on one line */
+        padding: 10px 16px !important; /* Slightly smaller for scroll */
+        font-size: 0.9rem !important;
+        min-height: 44px !important; /* Touch target */
+        flex: 0 0 auto !important; /* Fixed width, no grow/shrink */
+        min-width: 110px !important; /* Narrower tabs */
+        max-width: 140px !important; /* Prevent too wide */
+        white-space: nowrap !important;
+    }
+
+    /* Nested Box Flattening - Recover 23-28% Screen Space */
+
+    /* Reduce outer box padding drastically */
+    .modal-body > div[style*="padding: 25px"],
+    .modal-body > div[style*="padding: 35px"],
+    .modal-body > div[style*="padding: 45px"],
+    .interactive-content > div[style*="padding: 25px"],
+    .interactive-content > div[style*="padding: 35px"] {
+        padding: 12px 8px !important;
+    }
+
+    /* Remove middle white box styling - flatten to transparent */
+    .modal-body div[style*="background: white"][style*="padding: 20px"],
+    .modal-body div[style*="background: #ffffff"][style*="padding: 20px"],
+    .interactive-content div[style*="background: white"][style*="padding: 20px"] {
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 12px 0 !important;
+    }
+
+    /* Inner boxes - keep but reduce padding */
+    .modal-body div div div[style*="padding: 15px"],
+    .interactive-content div div div[style*="padding: 15px"] {
+        padding: 10px 8px !important;
+    }
+
+    /* Use border separators instead of box nesting */
+    .modal-body > div > div:not(:last-child),
+    .interactive-content > div > div:not(:last-child) {
+        border-bottom: 2px solid #e5e7eb !important;
+        padding-bottom: 12px !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Reduce border radius for tighter look */
+    .modal-body div[style*="border-radius: 15px"],
+    .modal-body div[style*="border-radius: 20px"],
+    .interactive-content div[style*="border-radius: 15px"] {
+        border-radius: 8px !important;
+    }
+
+    /* Reduce margins between sections */
+    .modal-body div[style*="margin-bottom: 25px"],
+    .modal-body div[style*="margin-bottom: 30px"],
+    .interactive-content div[style*="margin-bottom: 25px"] {
+        margin-bottom: 15px !important;
     }
 
     /* Layout - More Compact */
