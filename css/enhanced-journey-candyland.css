@@ -1810,50 +1810,6 @@
         margin-bottom: 6px !important;
     }
 
-    /* Parent Containers - Ensure Centering Hierarchy */
-    .atrium-main-container,
-    .atrium-content-area,
-    .board-container,
-    .atrium-welcome-container {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-
-    /* Module Grid - Center on Screen */
-    .modules-grid {
-        margin: 0 auto !important;
-        padding: 0 10px !important; /* Side padding for centering */
-        max-width: fit-content !important; /* Only as wide as needed */
-        width: fit-content !important; /* Force grid to shrink to content */
-        gap: 12px !important; /* Tighter gap from 18px */
-        justify-content: center !important;
-    }
-
-    /* Module Grid Cards - Ultra Compact & Centered */
-    .module-card {
-        max-width: 100% !important;
-        padding: 8px !important; /* Reduce from 12px */
-        margin: 0 auto !important;
-        min-height: 110px !important; /* Reduce from 140px */
-        border-width: 3px !important; /* Thinner border from 5px */
-        border-radius: 15px !important; /* Slightly smaller from 20px */
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    /* Module Icons - FORCE Smaller Size */
-    .module-icon {
-        width: 100px !important; /* More aggressive shrink from 150px */
-        height: 100px !important;
-        max-width: 100px !important;
-        max-height: 100px !important;
-        object-fit: contain !important;
-    }
-
     /* Ernest Character */
     .ernest-character-img,
     .ernest-img {
