@@ -21,9 +21,9 @@ export function generateContent(module) {
                     // Get current index by extracting relative path from src
                     let currentSrc = decodeURIComponent(imgElement.src);
 
-                    // Find the relative path by looking for 'NCS images/'
+                    // Find the relative path by looking for 'NCS Images/'
                     let relativeSrc = '';
-                    let ncsIndex = currentSrc.indexOf('NCS images/');
+                    let ncsIndex = currentSrc.indexOf('NCS Images/');
                     if (ncsIndex !== -1) {
                         relativeSrc = currentSrc.substring(ncsIndex);
                     } else {
@@ -455,8 +455,8 @@ export function generateContent(module) {
 
                         <!-- Median Motor -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Median motor at wrist.png", "NCS images/Median motor at elbow.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Median motor at wrist.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Median motor at wrist.png", "NCS Images/Median motor at elbow.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Median motor at wrist.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -476,8 +476,8 @@ export function generateContent(module) {
 
                         <!-- Median Motor Palmar -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Median motor at wrist.png", "NCS images/Median motor at elbow.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Median motor at wrist.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Median motor at wrist.png", "NCS Images/Median motor at elbow.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Median motor at wrist.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -497,8 +497,8 @@ export function generateContent(module) {
 
                         <!-- Ulnar Motor -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Ulnar motor at the wrist.png", "NCS images/Ulnar Motor NCS below the elbow.png", "NCS images/Ulnar Motor NCS above the elbow.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Ulnar motor at the wrist.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Ulnar motor at the wrist.png", "NCS Images/Ulnar Motor NCS below the elbow.png", "NCS Images/Ulnar Motor NCS above the elbow.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Ulnar motor at the wrist.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 3</div>
@@ -520,8 +520,8 @@ export function generateContent(module) {
 
                         <!-- Deep Ulnar Motor (FDI) -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Deep Ulnar Motor Branch.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Deep Ulnar Motor Branch.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Deep Ulnar Motor Branch.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Deep Ulnar Motor Branch.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Deep Ulnar Motor (FDI)</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -539,8 +539,8 @@ export function generateContent(module) {
 
                         <!-- Radial Motor -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Radial motor distal stim.png", "NCS images/Radial motor stim at elbow.png", "NCS images/Radial motor stim below spiral groove.png", "NCS images/Radial motor stim above spiral groove.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Radial motor distal stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Radial motor distal stim.png", "NCS Images/Radial motor stim at elbow.png", "NCS Images/Radial motor stim below spiral groove.png", "NCS Images/Radial motor stim above spiral groove.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Radial motor distal stim.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 4</div>
@@ -570,8 +570,8 @@ export function generateContent(module) {
 
                         <!-- Median Sensory -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Median Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Median Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Median Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Median Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Median Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -587,8 +587,8 @@ export function generateContent(module) {
 
                         <!-- Median Sensory Palmar -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Median Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Median Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Median Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Median Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Median Sensory Palmar</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -603,8 +603,8 @@ export function generateContent(module) {
 
                         <!-- Ulnar Sensory -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Ulnar Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Ulnar Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Ulnar Sensory NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Ulnar Sensory NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Ulnar Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -620,8 +620,8 @@ export function generateContent(module) {
 
                         <!-- Dorsal Ulnar Cutaneous -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Dorsal Ulnar Cutaneous NCS.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Dorsal Ulnar Cutaneous NCS.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Dorsal Ulnar Cutaneous NCS.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Dorsal Ulnar Cutaneous NCS.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Dorsal Ulnar Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -637,8 +637,8 @@ export function generateContent(module) {
 
                         <!-- Radial Sensory -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Radial Sensory study.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Radial Sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Radial Sensory study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Radial Sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Radial Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -654,8 +654,8 @@ export function generateContent(module) {
 
                         <!-- Medial Antebrachial Cutaneous -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Medial antebrachial cutaneous.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Medial antebrachial cutaneous.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Medial antebrachial cutaneous.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Medial antebrachial cutaneous.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Medial Antebrachial Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -671,8 +671,8 @@ export function generateContent(module) {
 
                         <!-- Lateral Antebrachial Cutaneous -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/lateral antebrachial cutaneous.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/lateral antebrachial cutaneous.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/lateral antebrachial cutaneous.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/lateral antebrachial cutaneous.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Lateral Antebrachial Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -713,8 +713,8 @@ export function generateContent(module) {
 
                         <!-- Lumbrical-Interossei -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Ulnar-median motor comparsion - median stim.png", "NCS images/Ulnar-median motor comparsion - ulnar stim.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Ulnar-median motor comparsion - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Ulnar-median motor comparsion - median stim.png", "NCS Images/Ulnar-median motor comparsion - ulnar stim.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Ulnar-median motor comparsion - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -733,8 +733,8 @@ export function generateContent(module) {
 
                         <!-- Median vs Ulnar Digit 4 -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/ulnar to median sensory comparison - median stim.png", "NCS images/ulnar to median sensory comparison - ulnar stim.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/ulnar to median sensory comparison - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/ulnar to median sensory comparison - median stim.png", "NCS Images/ulnar to median sensory comparison - ulnar stim.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/ulnar to median sensory comparison - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -753,8 +753,8 @@ export function generateContent(module) {
 
                         <!-- Median vs Radial Digit 1 -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Radian vs. median sensory comparison - median stim.png", "NCS images/Radian vs. median sensory comparison - radial stim.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Radian vs. median sensory comparison - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Radian vs. median sensory comparison - median stim.png", "NCS Images/Radian vs. median sensory comparison - radial stim.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Radian vs. median sensory comparison - median stim.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(139, 92, 246, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -781,8 +781,8 @@ export function generateContent(module) {
 
                         <!-- Median Palmar Mixed -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Median vs. ulnar palmar mixed  - median record.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Median vs. ulnar palmar mixed  - median record.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Median vs. ulnar palmar mixed  - median record.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Median vs. ulnar palmar mixed  - median record.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Median Palmar Mixed</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -798,8 +798,8 @@ export function generateContent(module) {
 
                         <!-- Ulnar Palmar Mixed -->
                         <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Median vs. ulnar palmar mixed  - ulnar record.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Median vs. ulnar palmar mixed  - ulnar record.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Median vs. ulnar palmar mixed  - ulnar record.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Median vs. ulnar palmar mixed  - ulnar record.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #8b5cf6; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Ulnar Palmar Mixed</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -837,8 +837,8 @@ export function generateContent(module) {
 
                         <!-- Tibial Motor (AHB) -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Tibial motor at the ankle.png", "NCS images/Tibial motor at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Tibial motor at the ankle.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Tibial motor at the ankle.png", "NCS Images/Tibial motor at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Tibial motor at the ankle.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -901,8 +901,8 @@ export function generateContent(module) {
 
                         <!-- Femoral Motor -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Femoral motor study..png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Femoral motor study..png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Femoral motor study..png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Femoral motor study..png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Femoral Motor</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -918,8 +918,8 @@ export function generateContent(module) {
 
                         <!-- Medial Plantar Motor -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Medial plantar motor study at medial malleolus.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Medial plantar motor study at medial malleolus.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Medial plantar motor study at medial malleolus.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Medial plantar motor study at medial malleolus.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Medial Plantar Motor</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -935,8 +935,8 @@ export function generateContent(module) {
 
                         <!-- Lateral Plantar Motor -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Lateral plantar motor.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Lateral plantar motor.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Lateral plantar motor.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Lateral plantar motor.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Lateral Plantar Motor</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -977,8 +977,8 @@ export function generateContent(module) {
 
                         <!-- Sural Sensory -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Sural Sensory Study.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Sural Sensory Study.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Sural Sensory Study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Sural Sensory Study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Sural Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -994,8 +994,8 @@ export function generateContent(module) {
 
                         <!-- Saphenous Sensory -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Saphenous sensory study.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Saphenous sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Saphenous sensory study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Saphenous sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Saphenous Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -1011,8 +1011,8 @@ export function generateContent(module) {
 
                         <!-- Lateral Femoral Cutaneous Sensory -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Lateral femoral cutaneous sensory study.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Lateral femoral cutaneous sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Lateral femoral cutaneous sensory study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Lateral femoral cutaneous sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Lateral Femoral Cutaneous</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -1029,8 +1029,8 @@ export function generateContent(module) {
 
                         <!-- Medial Plantar Sensory -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Medial plantar sensory.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Medial plantar sensory.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Medial plantar sensory.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Medial plantar sensory.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Medial Plantar Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -1046,8 +1046,8 @@ export function generateContent(module) {
 
                         <!-- Lateral Plantar Sensory -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Lateral plantar sensory .png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Lateral plantar sensory .png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Lateral plantar sensory .png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Lateral plantar sensory .png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Lateral Plantar Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -1071,8 +1071,8 @@ export function generateContent(module) {
 
                         <!-- Medial Plantar Mixed -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Medial plantar mixed study.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Medial plantar mixed study.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Medial plantar mixed study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Medial plantar mixed study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Medial Plantar Mixed</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -1088,8 +1088,8 @@ export function generateContent(module) {
 
                         <!-- Lateral Plantar Mixed -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Lateral plantar mixed study.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Lateral plantar mixed study.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Lateral plantar mixed study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Lateral plantar mixed study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔄 Lateral Plantar Mixed</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
@@ -1113,8 +1113,8 @@ export function generateContent(module) {
 
                         <!-- Soleus H Reflex -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Soleus H reflex.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Soleus H reflex.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Soleus H reflex.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Soleus H reflex.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
                             <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⏱️ Soleus H Reflex</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
