@@ -1,5 +1,5 @@
 import { registerModulePodcasts, generateErnestButton } from '../podcast-player.js';
-// import { generateContent as generateLumbosacral } from './lumbosacral-plexus-interactive.js'; // REMOVED to fix loading error
+import { generateContent as generateLumbosacral } from './lumbosacral-plexus-interactive.js';
 
 // Anatomical Data Structure - Linear Flow Layout Design
 const plexusData = {
@@ -331,7 +331,7 @@ const injuryPatterns = {
 
 export function generateContent(module) {
     registerModulePodcasts('brachial-plexus-interactive');
-    // const lumbosacralHTML = generateLumbosacral(module); // REMOVED to fix ReferenceError
+    const lumbosacralHTML = generateLumbosacral(module);
 
     const BrachialPlexus = {
         currentNerve: null,
@@ -1047,7 +1047,41 @@ export function generateContent(module) {
                     🦵 Lumbosacral Plexus
                 </button>
             </div>
+    // Define switchPlexusModule globally
+    window.switchPlexusModule = function(moduleName) {
+        const brachialContainer = document.getElementById('brachial-container');
+        const lumbosacralContainer = document.getElementById('lumbosacral-container');
+        const brachialTab = document.getElementById('tab-brachial');
+        const lumbosacralTab = document.getElementById('tab-lumbosacral');
 
+        if (moduleName === 'brachial') {
+            if (brachialContainer) brachialContainer.style.display = 'block';
+            if (lumbosacralContainer) lumbosacralContainer.style.display = 'none';
+            if (brachialTab) {
+                brachialTab.style.background = 'linear-gradient(135deg, #2563eb, #1d4ed8)';
+                brachialTab.style.color = 'white';
+                brachialTab.style.border = 'none';
+            }
+            if (lumbosacralTab) {
+                lumbosacralTab.style.background = 'white';
+                lumbosacralTab.style.color = '#64748b';
+                lumbosacralTab.style.border = '2px solid #e2e8f0';
+            }
+        } else {
+            if (brachialContainer) brachialContainer.style.display = 'none';
+            if (lumbosacralContainer) lumbosacralContainer.style.display = 'block';
+            if (brachialTab) {
+                brachialTab.style.background = 'white';
+                brachialTab.style.color = '#64748b';
+                brachialTab.style.border = '2px solid #e2e8f0';
+            }
+            if (lumbosacralTab) {
+                lumbosacralTab.style.background = 'linear-gradient(135deg, #059669, #047857)';
+                lumbosacralTab.style.color = 'white';
+                lumbosacralTab.style.border = 'none';
+            }
+        }
+    };
             <style>
                 .plexus-selector-btn.active {
                     background: #3b82f6 !important;
@@ -1347,7 +1381,7 @@ export function generateContent(module) {
                 </div>
 
                 <div id="lumbosacral-container" style="display: none;">
-                    <!-- Lumbosacral content temporarily removed to fix loading error -->
+                    ${lumbosacralHTML}
                 </div>
             </div>
         </div>
