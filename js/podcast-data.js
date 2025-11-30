@@ -55,7 +55,7 @@ export const podcastEpisodes = {
         {
             id: 'plexus-peripheral',
             title: 'Peripheral Nerve Anatomy',
-            duration: '39:07',
+            duration: '39:08',
             audioFile: 'Podcasts/Peripheral Anatomy.m4a',
             description: 'Comprehensive exploration of peripheral nerve anatomy and organization',
             transcript: 'Episode transcript will appear here once available...',
@@ -75,7 +75,7 @@ export const podcastEpisodes = {
         {
             id: 'plexus-anomalous',
             title: 'Anomalous Anatomy',
-            duration: '14:47',
+            duration: '14:48',
             audioFile: 'Podcasts/Anamolous Anatomy.m4a',
             description: 'Explore anatomical variations and anomalies that can affect EDX interpretation',
             transcript: 'Episode transcript will appear here once available...',
@@ -98,7 +98,7 @@ export const podcastEpisodes = {
         {
             id: 'brachial-ep1',
             title: 'Plexopathies',
-            duration: '13:28',
+            duration: '13:29',
             audioFile: 'Podcasts/Plexopathies.m4a',
             description: 'Ernest explores brachial and lumbosacral plexus pathology',
             transcript: 'Episode transcript will appear here once available...',
@@ -121,7 +121,7 @@ export const podcastEpisodes = {
         {
             id: 'radiculopathy-ep1',
             title: 'Radiculopathy Pathophysiology',
-            duration: '15:48',
+            duration: '15:49',
             audioFile: 'Podcasts/Radiculopathy.m4a',
             description: 'Ernest explains the pathophysiology of nerve root compression',
             transcript: 'Episode transcript will appear here once available...',
@@ -144,7 +144,7 @@ export const podcastEpisodes = {
         {
             id: 'neuropathy-poly',
             title: 'Polyneuropathies',
-            duration: '16:41',
+            duration: '16:03',
             audioFile: 'Podcasts/Polyneuropathies.m4a',
             description: 'Comprehensive exploration of polyneuropathy patterns and mechanisms',
             transcript: 'Episode transcript will appear here once available...',
@@ -187,7 +187,7 @@ export const podcastEpisodes = {
         {
             id: 'patterns-ep1',
             title: 'Basic Pattern Recognition',
-            duration: '14:59',
+            duration: '15:00',
             audioFile: 'Podcasts/Basic Patter Recognition.m4a',
             description: 'Ernest teaches systematic EMG interpretation and pattern recognition',
             transcript: 'Episode transcript will appear here once available...',
@@ -211,7 +211,7 @@ export const podcastEpisodes = {
         {
             id: 'neuro-myo-ep1',
             title: 'Neuropathy vs. Myopathy',
-            duration: '17:09',
+            duration: '17:10',
             audioFile: 'Podcasts/Neuropathy vs. Myopathy.m4a',
             description: 'Ernest explains how to differentiate nerve and muscle disorders using clinical and EDX features',
             transcript: 'Episode transcript will appear here once available...',
@@ -235,7 +235,7 @@ export const podcastEpisodes = {
         {
             id: 'reports-ep1',
             title: 'Basic Report Writing',
-            duration: '11:56',
+            duration: '11:57',
             audioFile: 'Podcasts/Basic Report Writing.m4a',
             description: 'Ernest teaches the art of clear, effective electrodiagnostic report writing',
             transcript: 'Episode transcript will appear here once available...',
@@ -258,7 +258,7 @@ export const podcastEpisodes = {
         {
             id: 'extra-als',
             title: 'ALS and Mimics',
-            duration: '13:54',
+            duration: '13:55',
             audioFile: 'Podcasts/ALS and Mimics.m4a',
             description: 'Ernest explores motor neuron disease and conditions that can mimic ALS',
             transcript: 'Episode transcript will appear here once available...',

@@ -8,6 +8,7 @@ class ModuleLoader {
             'emg-introduction': './modules/emg-introduction.js',
             'plexus-anatomy': './modules/plexus-anatomy.js',
             'brachial-plexus-interactive': './modules/brachial-plexus-interactive.js',
+            'lumbosacral-plexus-interactive': './modules/lumbosacral-plexus-interactive.js',
             'radiculopathy-pathophysiology': './modules/radiculopathy-pathophysiology.js',
             'neuropathy-pathophysiology': './modules/neuropathy-pathophysiology.js',
             'ncs-fundamentals': './modules/ncs-fundamentals.js',

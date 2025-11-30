@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>✨ Enhanced Journey EMG/NCS Learning System - Full Integration</title>
-    <!-- <link rel="icon" type="image/png" href="ERNEST.png"> -->
+    <link rel="icon" type="image/png" href="ERNEST.png">
+    <link rel="apple-touch-icon" href="ERNEST.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/enhanced-journey-candyland.css?v=20251002-memory-debug">
     <link rel="stylesheet" href="css/professional-board-candyland.css">
     <style>
@@ -50,14 +55,14 @@
             border-radius: 12px;
             padding: 20px;
             margin: 15px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .case-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
         .case-card-header {
@@ -156,8 +161,8 @@
             outline: none;
             border-color: #6b9f78;
         }
-            padding: 0;
-        }
+
+
 
         body::before {
             content: '';
@@ -207,23 +212,34 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg,
-                transparent,
-                rgba(34, 197, 94, 0.1),
-                rgba(168, 85, 247, 0.1),
-                rgba(234, 179, 8, 0.1),
-                transparent
-            );
+                    transparent,
+                    rgba(34, 197, 94, 0.1),
+                    rgba(168, 85, 247, 0.1),
+                    rgba(234, 179, 8, 0.1),
+                    transparent);
             animation: journeyShimmer 4s infinite;
         }
 
         @keyframes journeyShimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
         }
 
         @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .main-title {
@@ -371,12 +387,12 @@
             padding: 25px;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             border-color: rgba(107, 159, 120, 0.4);
         }
 
@@ -416,8 +432,13 @@
         }
 
         @keyframes badgeGlow {
-            0% { box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3); }
-            100% { box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5); }
+            0% {
+                box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+            }
+
+            100% {
+                box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+            }
         }
 
         .no-achievements {
@@ -498,10 +519,23 @@
         }
 
         @keyframes ernestFloat {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            25% { transform: translateY(-8px) translateX(3px); }
-            50% { transform: translateY(-4px) translateX(-3px); }
-            75% { transform: translateY(-12px) translateX(2px); }
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+            }
+
+            25% {
+                transform: translateY(-8px) translateX(3px);
+            }
+
+            50% {
+                transform: translateY(-4px) translateX(-3px);
+            }
+
+            75% {
+                transform: translateY(-12px) translateX(2px);
+            }
         }
 
         .ernest-label {
@@ -671,8 +705,15 @@
         }
 
         @keyframes pathwaySlideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .pathway-header {
@@ -700,6 +741,7 @@
                 transform: translateY(0px) scale(1);
                 text-shadow: 0 4px 12px rgba(107, 159, 120, 0.3);
             }
+
             100% {
                 transform: translateY(-8px) scale(1.02);
                 text-shadow: 0 8px 20px rgba(107, 159, 120, 0.4);
@@ -719,6 +761,7 @@
             0% {
                 transform: rotate(-12deg) scale(1);
             }
+
             100% {
                 transform: rotate(12deg) scale(1.05);
             }
@@ -739,7 +782,8 @@
         .modules-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px 120px 20px; /* Extra bottom padding for ERNEST dialogue */
+            padding: 40px 20px 120px 20px;
+            /* Extra bottom padding for ERNEST dialogue */
             position: relative;
             z-index: 1;
         }
@@ -754,24 +798,36 @@
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
-            background: linear-gradient(
-                45deg,
-                rgba(107, 159, 120, 0.03) 0%,
-                rgba(107, 159, 120, 0.08) 25%,
-                rgba(107, 159, 120, 0.03) 50%,
-                rgba(107, 159, 120, 0.08) 75%,
-                rgba(107, 159, 120, 0.03) 100%
-            );
+            background: linear-gradient(45deg,
+                    rgba(107, 159, 120, 0.03) 0%,
+                    rgba(107, 159, 120, 0.08) 25%,
+                    rgba(107, 159, 120, 0.03) 50%,
+                    rgba(107, 159, 120, 0.08) 75%,
+                    rgba(107, 159, 120, 0.03) 100%);
             background-size: 400% 400%;
             animation: shimmer 12s ease-in-out infinite;
         }
 
         @keyframes shimmer {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 100% 100%; }
-            50% { background-position: 100% 0%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
+            0% {
+                background-position: 0% 0%;
+            }
+
+            25% {
+                background-position: 100% 100%;
+            }
+
+            50% {
+                background-position: 100% 0%;
+            }
+
+            75% {
+                background-position: 0% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
         }
 
         /* Hero Module (EMG Introduction) - Full Width Featured */
@@ -794,7 +850,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
             pointer-events: none;
         }
 
@@ -815,7 +871,7 @@
             width: 200px;
             height: 200px;
             object-fit: contain;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
         }
 
         .hero-text {
@@ -825,7 +881,7 @@
 
         .hero-badge {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 0.9em;
@@ -838,7 +894,7 @@
             font-size: 2.5em;
             font-weight: 800;
             margin: 0 0 15px 0;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         }
 
         .hero-description {
@@ -866,6 +922,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -880,8 +937,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             cursor: pointer;
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-                        box-shadow 0.4s ease,
-                        border-color 0.4s ease;
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -896,20 +953,24 @@
 
         .module-card:hover {
             transform: scale(1.15);
+            z-index: 100;
             box-shadow: 0 25px 80px rgba(107, 159, 120, 0.5),
-                        0 0 30px rgba(107, 159, 120, 0.6);
+                0 0 30px rgba(107, 159, 120, 0.6);
             border-color: #14b8a6;
             animation: bounce-glow 0.6s ease-in-out;
         }
 
         @keyframes bounce-glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 25px 80px rgba(107, 159, 120, 0.5),
-                            0 0 30px rgba(107, 159, 120, 0.6);
+                    0 0 30px rgba(107, 159, 120, 0.6);
             }
+
             50% {
                 box-shadow: 0 25px 80px rgba(20, 184, 166, 0.7),
-                            0 0 50px rgba(20, 184, 166, 0.9);
+                    0 0 50px rgba(20, 184, 166, 0.9);
             }
         }
 
@@ -944,7 +1005,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
             pointer-events: none;
         }
 
@@ -966,10 +1027,12 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 40px;
             }
+
             .hero-content {
                 flex-direction: column;
                 text-align: center;
             }
+
             .module-card {
                 max-width: 280px;
             }
@@ -980,12 +1043,15 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
             .hero-module {
                 padding: 30px;
             }
+
             .hero-title {
                 font-size: 1.8em;
             }
+
             .module-card {
                 max-width: 100%;
             }
@@ -1007,7 +1073,7 @@
             opacity: 0 !important;
             transition: all 0.3s ease-out !important;
             pointer-events: none !important;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
             display: block !important;
             overflow-y: auto !important;
@@ -1035,6 +1101,7 @@
             margin-bottom: 15px !important;
             margin-right: 15px !important;
         }
+
         .description-title {
             font-size: 16px !important;
             font-weight: 700 !important;
@@ -1042,12 +1109,14 @@
             margin-bottom: 12px !important;
             line-height: 1.3 !important;
         }
+
         .description-text {
             font-size: 14px !important;
             color: #4b5563 !important;
             line-height: 1.5 !important;
             margin-bottom: 12px !important;
         }
+
         .description-highlights {
             font-size: 12px !important;
             color: #059669 !important;
@@ -1074,8 +1143,15 @@
         }
 
         @keyframes ernestPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
 
@@ -1208,9 +1284,11 @@
             .module-description-panel.position-right {
                 left: calc(50% + 150px);
             }
+
             .module-description-panel.position-left {
                 right: calc(50% + 150px);
             }
+
             .module-description-panel {
                 width: 280px;
                 max-width: 280px;
@@ -1221,17 +1299,21 @@
             .module-description-panel.position-right {
                 left: calc(50% + 100px);
             }
+
             .module-description-panel.position-left {
                 right: calc(50% + 100px);
             }
+
             .module-description-panel {
                 width: 250px;
                 max-width: 250px;
                 padding: 20px;
             }
+
             .description-title {
                 font-size: 1.1em;
             }
+
             .description-text {
                 font-size: 0.9em;
             }
@@ -1248,9 +1330,11 @@
                 max-width: 350px !important;
                 top: auto !important;
             }
+
             .module-description-panel.show {
                 transform: translateX(-50%) scale(1) !important;
             }
+
             .module-description-panel::before {
                 display: none;
             }
@@ -1480,7 +1564,7 @@
     <!-- Critical functions that need to be available immediately -->
     <script>
         // Define startAtriumJourney early so onclick handlers can use it
-        window.startAtriumJourney = function() {
+        window.startAtriumJourney = function () {
             console.log('🏥 Starting Atrium Health Journey');
 
             // Wait for DOM and all scripts to be ready
@@ -1524,6 +1608,7 @@
         };
     </script>
 </head>
+
 <body>
     <!-- Atrium Health Welcome Screen -->
     <div id="pgy-selection" class="atrium-welcome-screen">
@@ -1538,7 +1623,8 @@
 
             <!-- Version Marker -->
             <div style="text-align: center; margin-top: 15px; margin-bottom: 10px;">
-                <div style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
+                <div
+                    style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
                     🎧 Podcast System Enhanced & Brachial Plexus Embedded! (v2025.11.22 17:13)
                 </div>
             </div>
@@ -1598,17 +1684,7 @@
     </div>
 
     <!-- Navigation Controls -->
-    <div id="journey-controls" class="journey-controls hidden">
-        <button class="control-btn secondary" onclick="returnToMainPage()">
-            ← Return to Main Page
-        </button>
-        <button class="control-btn secondary" onclick="toggleProgressDashboard()">
-            📊 Progress Dashboard
-        </button>
-        <button class="control-btn primary" onclick="resetJourney()">
-            Reset Journey
-        </button>
-    </div>
+
 
     <!-- Load Enhanced Journey Systems -->
     <script src="js/enhanced-journey-candyland.js"></script>
@@ -1680,7 +1756,7 @@
             `;
         }
 
-        window.checkQuizAnswer = function(button, isCorrect, explanation, questionIndex, totalQuestions) {
+        window.checkQuizAnswer = function (button, isCorrect, explanation, questionIndex, totalQuestions) {
             const questionCard = button.closest('.quiz-question-card');
             const allButtons = questionCard.querySelectorAll('.quiz-option');
             const feedbackDiv = questionCard.querySelector('.quiz-feedback');
@@ -1749,7 +1825,7 @@
             feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
 
-        window.nextQuizQuestion = function(currentIndex, totalQuestions) {
+        window.nextQuizQuestion = function (currentIndex, totalQuestions) {
             const currentCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex}"]`);
             if (currentCard) {
                 currentCard.style.display = 'none';
@@ -1802,13 +1878,13 @@
     </script>
 
     <!-- Module 8: EMG Needle Localization System -->
-    <script src="js/emg-localization-system.js"></script>
+
 
     <!-- Module 9: Muscle Study System (Study Cards + EMG Challenge) -->
     <script src="js/muscle-study-system.js"></script>
 
     <!-- Module 11: Neuropathy vs Myopathy Basics System -->
-    <script src="js/neuropathy-myopathy-system.js"></script>
+
 
     <!-- Module 5: Neuropathy Pathophysiology Support Functions -->
     <script src="js/neuropathy-pathophysiology-support.js"></script>
@@ -1880,144 +1956,15 @@
         }
 
         // Minimal crash tracking
-        window.addEventListener('beforeunload', function(e) {
+        window.addEventListener('beforeunload', function (e) {
             console.error('⚠️ PAGE UNLOAD - Something triggered navigation away from page');
         });
 
-        window.addEventListener('pagehide', function(e) {
+        window.addEventListener('pagehide', function (e) {
             console.error('⚠️ PAGE HIDE - Page is being hidden/closed');
         });
 
         // Note: window.startAtriumJourney is now defined in the <head> section for immediate availability
-
-        // Enhanced journey interface with modal integration
-        function startJourney(pgyLevel) {
-            console.log(`🚀 Starting ${pgyLevel.toUpperCase()} Enhanced Learning Journey`);
-
-            // Try to load existing progress first
-            const progressLoaded = loadProgressFromStorage();
-
-            // Set global variables (use saved progress if available)
-            if (!progressLoaded || window.currentPGYLevel !== pgyLevel) {
-                window.currentPGYLevel = pgyLevel;
-                window.currentModuleIndex = 0;
-                window.completedModules = new Set();
-                saveProgressToStorage();
-            }
-
-            // Show learning board
-            document.getElementById('pgy-selection').classList.add('hidden');
-            document.getElementById('learning-board').classList.remove('hidden');
-            document.getElementById('journey-controls').classList.remove('hidden');
-
-            // Generate the enhanced journey board
-            if (typeof generateLearningBoard === 'function') {
-                generateLearningBoard(pgyLevel);
-            } else {
-                console.error('❌ generateLearningBoard function not found, waiting for scripts to load...');
-                setTimeout(() => {
-                    if (typeof generateLearningBoard === 'function') {
-                        generateLearningBoard(pgyLevel);
-                    } else {
-                        console.error('❌ generateLearningBoard function still not available after timeout');
-                    }
-                }, 500);
-            }
-
-            // Don't auto-open modal - let user click to start
-            console.log('📚 Journey ready - click any module to begin learning!');
-
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function returnToMainPage() {
-            // Hide pathway and controls
-            document.getElementById('learning-board').classList.add('hidden');
-            document.getElementById('journey-controls').classList.add('hidden');
-            document.getElementById('progress-dashboard').classList.add('hidden');
-
-            // Show welcome page
-            document.getElementById('pgy-selection').classList.remove('hidden');
-
-            // Hide ERNEST dialogue
-            hideERNESTDialogue();
-
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            console.log('🏠 Returned to Atrium Health Main Page');
-        }
-
-        function returnToSelection() {
-            returnToMainPage();
-        }
-
-        function resetJourney() {
-            window.completedModules = new Set();
-            window.currentModuleIndex = 0;
-            saveProgressToStorage();
-            if (window.currentPGYLevel) {
-                generateLearningBoard(window.currentPGYLevel);
-                updateProgressDashboard();
-                console.log('🔄 Journey Reset - Fresh Adventure Awaits!');
-            }
-        }
-
-        // Progress Dashboard Functions
-        function toggleProgressDashboard() {
-            const dashboard = document.getElementById('progress-dashboard');
-            const learningBoard = document.getElementById('learning-board');
-
-            if (dashboard.classList.contains('hidden')) {
-                dashboard.classList.remove('hidden');
-                learningBoard.classList.add('hidden');
-                updateProgressDashboard();
-                console.log('📊 Progress Dashboard opened');
-            } else {
-                dashboard.classList.add('hidden');
-                learningBoard.classList.remove('hidden');
-                console.log('📊 Progress Dashboard closed');
-            }
-        }
-
-        function updateProgressDashboard() {
-            if (!window.currentPGYLevel) return;
-
-            const modules = learningModulesConfig[window.currentPGYLevel];
-            const completedCount = window.completedModules.size;
-            const totalModules = modules.length;
-            const competencyPercentage = Math.round((completedCount / totalModules) * 100);
-
-            // Update stats
-            document.getElementById('completed-modules').textContent = `${completedCount}/${totalModules}`;
-            document.getElementById('current-level').textContent = `PGY-${window.currentPGYLevel.charAt(3)}`;
-            document.getElementById('competency-score').textContent = `${competencyPercentage}%`;
-
-            // Update achievements
-            updateAchievements(completedCount, totalModules);
-        }
-
-        function updateAchievements(completed, total) {
-            const achievementsDisplay = document.getElementById('achievements-display');
-            const achievements = [];
-
-            // Achievement logic
-            if (completed >= 1) achievements.push('🎯 First Steps');
-            if (completed >= 3) achievements.push('📚 Knowledge Seeker');
-            if (completed >= 5) achievements.push('🧠 Learning Expert');
-            if (completed >= Math.floor(total * 0.5)) achievements.push('🏃‍♂️ Halfway Hero');
-            if (completed >= Math.floor(total * 0.75)) achievements.push('🌟 Excellence Seeker');
-            if (completed === total) achievements.push('🏆 Master Complete');
-
-            if (achievements.length > 0) {
-                achievementsDisplay.innerHTML = achievements.map(badge =>
-                    `<div class="achievement-badge">${badge}</div>`
-                ).join('');
-            } else {
-                achievementsDisplay.innerHTML = '<div class="no-achievements">Complete your first module to unlock achievements!</div>';
-            }
-        }
 
         // Local Storage Functions
         function saveProgressToStorage() {
@@ -2047,6 +1994,50 @@
             }
             return false;
         }
+
+
+        // Enhanced journey interface with modal integration
+        function startJourney(pgyLevel) {
+            console.log(`🚀 Starting ${pgyLevel.toUpperCase()} Enhanced Learning Journey`);
+
+            // Try to load existing progress first
+            const progressLoaded = loadProgressFromStorage();
+
+            // Set global variables (use saved progress if available)
+            if (!progressLoaded || window.currentPGYLevel !== pgyLevel) {
+                window.currentPGYLevel = pgyLevel;
+                window.currentModuleIndex = 0;
+                window.completedModules = new Set();
+                saveProgressToStorage();
+            }
+
+            // Show learning board
+            document.getElementById('pgy-selection').classList.add('hidden');
+            document.getElementById('learning-board').classList.remove('hidden');
+            // document.getElementById('journey-controls').classList.remove('hidden'); // REMOVED - Legacy footer
+
+            // Generate the enhanced journey board
+            if (typeof generateLearningBoard === 'function') {
+                generateLearningBoard(pgyLevel);
+            } else {
+                console.error('❌ generateLearningBoard function not found, waiting for scripts to load...');
+                setTimeout(() => {
+                    if (typeof generateLearningBoard === 'function') {
+                        generateLearningBoard(pgyLevel);
+                    } else {
+                        console.error('❌ generateLearningBoard function still not available after timeout');
+                    }
+                }, 500);
+            }
+
+            // Don't auto-open modal - let user click to start
+            console.log('📚 Journey ready - click any module to begin learning!');
+
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
 
         // Enhanced startLearningModule function that uses our new modal system
         function startLearningModule(moduleIndex) {
@@ -2315,13 +2306,13 @@
         window.startLearningModule = startLearningModule;
 
         // Override showErnestDialogue to use our modal system instead
-        window.showErnestDialogue = function(moduleIndex) {
+        window.showErnestDialogue = function (moduleIndex) {
             console.log('🔍 DEBUG: showErnestDialogue called, redirecting to startLearningModule');
             startLearningModule(moduleIndex);
         };
 
         // Completely disable the old Ernest dialogue system
-        window.closeErnestDialogue = function() {
+        window.closeErnestDialogue = function () {
             console.log('🔍 DEBUG: closeErnestDialogue called (disabled)');
         };
 
@@ -2329,7 +2320,7 @@
         window.isModalOpen = false;
 
         // Global functions for nerve navigation (moved from modal content)
-        window.showNerveType = function(nerveType) {
+        window.showNerveType = function (nerveType) {
             console.log('🔍 DEBUG: showNerveType called with:', nerveType);
             // Hide all nerve content sections
             document.querySelectorAll('.nerve-content').forEach(section => {
@@ -2368,7 +2359,7 @@
             }
         };
 
-        window.showMedianSection = function(sectionId) {
+        window.showMedianSection = function (sectionId) {
             console.log('🔍 DEBUG: showMedianSection called with:', sectionId);
             // Hide all median sections
             document.querySelectorAll('.median-section').forEach(section => {
@@ -2401,7 +2392,7 @@
             }
         };
 
-        window.showUlnarSection = function(sectionId) {
+        window.showUlnarSection = function (sectionId) {
             console.log('🔍 DEBUG: showUlnarSection called with:', sectionId);
             // Hide all ulnar sections
             document.querySelectorAll('.ulnar-section').forEach(section => {
@@ -2435,7 +2426,7 @@
         };
 
         // Global quiz function for median nerve content
-        window.checkMedianAnswer = function(button, isCorrect) {
+        window.checkMedianAnswer = function (button, isCorrect) {
             console.log('🔍 DEBUG: checkMedianAnswer called with isCorrect:', isCorrect);
             const buttons = button.parentNode.querySelectorAll('.quiz-option');
             buttons.forEach(btn => btn.style.pointerEvents = 'none');
@@ -2466,13 +2457,13 @@
                 image: "Nerve Paths/Median Nerve.png",
                 story: "The Median Messenger starts his epic journey at the bustling Brachial Plexus Central Station (C6-T1), where lateral and medial cords shake hands to form our hero. He travels down the arm like a VIP, riding the bicipital groove limousine between the Biceps and Brachialis neighborhoods. At the Cubital Fossa rest stop, he takes a breather medial to the brachial artery before squeezing through the narrow Pronator Teres tunnel. His faithful sidekick, the Anterior Interosseous branch, splits off to handle the deep muscle work while our main character continues toward his final destination: the infamous Carpal Tunnel! After surviving this tight squeeze, he emerges victorious in the hand, ready to command the LOAF muscles like a general commanding his troops!",
                 steps: [
-                    {title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false},
-                    {title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false},
-                    {title: "Cubital Fossa", desc: "Passes medial to brachial artery", isInjurySite: false},
-                    {title: "Forearm Entry", desc: "Passes between heads of pronator teres (common entrapment site)", isInjurySite: true},
-                    {title: "AIN Branch", desc: "Gives off anterior interosseous nerve", isInjurySite: false},
-                    {title: "Carpal Tunnel", desc: "Passes through carpal tunnel under transverse carpal ligament (most common entrapment)", isInjurySite: true},
-                    {title: "Hand", desc: "Divides into branches for thenar muscles (LOAF)", isInjurySite: false}
+                    { title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false },
+                    { title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false },
+                    { title: "Cubital Fossa", desc: "Passes medial to brachial artery", isInjurySite: false },
+                    { title: "Forearm Entry", desc: "Passes between heads of pronator teres (common entrapment site)", isInjurySite: true },
+                    { title: "AIN Branch", desc: "Gives off anterior interosseous nerve", isInjurySite: false },
+                    { title: "Carpal Tunnel", desc: "Passes through carpal tunnel under transverse carpal ligament (most common entrapment)", isInjurySite: true },
+                    { title: "Hand", desc: "Divides into branches for thenar muscles (LOAF)", isInjurySite: false }
                 ]
             },
             ulnar: {
@@ -2481,13 +2472,13 @@
                 image: "Nerve Paths/Ulnar Nerve.png",
                 story: "The Ulnar Underdog begins as the lone ranger from the medial cord, carrying the pure power of C8 and T1. He travels down the arm, taking the scenic route around the medial epicondyle at the elbow - that famous 'funny bone' spot where everyone's felt his electric personality! He slides through Guyon's canal at the wrist like a secret agent, then splits his mission: the deep branch heads to the interossei (the hand's fine motor specialists), while the superficial branch handles sensation for the pinky side of life.",
                 steps: [
-                    {title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)", isInjurySite: false},
-                    {title: "Upper Arm", desc: "Travels down medial aspect of arm", isInjurySite: false},
-                    {title: "Cubital Tunnel", desc: "Passes through cubital tunnel under Osborne's band behind medial epicondyle (most common entrapment)", isInjurySite: true},
-                    {title: "Forearm", desc: "Travels between FCU and FDP in forearm", isInjurySite: false},
-                    {title: "Guyon's Canal", desc: "Passes through Guyon's canal at wrist (volar carpal ligament roof)", isInjurySite: true},
-                    {title: "Hand Division", desc: "Splits into superficial and deep branches", isInjurySite: false},
-                    {title: "Hand Muscles", desc: "Innervates intrinsic hand muscles and sensation", isInjurySite: false}
+                    { title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)", isInjurySite: false },
+                    { title: "Upper Arm", desc: "Travels down medial aspect of arm", isInjurySite: false },
+                    { title: "Cubital Tunnel", desc: "Passes through cubital tunnel under Osborne's band behind medial epicondyle (most common entrapment)", isInjurySite: true },
+                    { title: "Forearm", desc: "Travels between FCU and FDP in forearm", isInjurySite: false },
+                    { title: "Guyon's Canal", desc: "Passes through Guyon's canal at wrist (volar carpal ligament roof)", isInjurySite: true },
+                    { title: "Hand Division", desc: "Splits into superficial and deep branches", isInjurySite: false },
+                    { title: "Hand Muscles", desc: "Innervates intrinsic hand muscles and sensation", isInjurySite: false }
                 ]
             },
             radial: {
@@ -2496,12 +2487,12 @@
                 image: "Nerve Paths/Radial Nerve.png",
                 story: "The Radial Rebel is the strong, silent type from the posterior cord, packing the full power of C5-T1. This mighty nerve takes the back route down the arm, spiraling around the humerus in the famous spiral groove like a roller coaster. He's the extension expert, powering all the muscles that straighten the elbow, lift the wrist, and extend the fingers. His most vulnerable moment comes at the spiral groove, where a broken humerus can leave him bruised and beaten, causing the dreaded 'wrist drop.'",
                 steps: [
-                    {title: "Origin", desc: "Arises from posterior cord (C5-T1)", isInjurySite: false},
-                    {title: "Spiral Groove", desc: "Travels in spiral groove of humerus directly on bone (most vulnerable point for compression/fracture)", isInjurySite: true},
-                    {title: "Lateral Arm", desc: "Emerges laterally, pierces lateral intermuscular septum", isInjurySite: false},
-                    {title: "Elbow Division", desc: "Divides into superficial and deep (PIN) branches", isInjurySite: false},
-                    {title: "Posterior Forearm", desc: "PIN passes through arcade of Frohse at supinator (compression site)", isInjurySite: true},
-                    {title: "Dorsal Hand", desc: "Superficial branch provides dorsal hand sensation", isInjurySite: false}
+                    { title: "Origin", desc: "Arises from posterior cord (C5-T1)", isInjurySite: false },
+                    { title: "Spiral Groove", desc: "Travels in spiral groove of humerus directly on bone (most vulnerable point for compression/fracture)", isInjurySite: true },
+                    { title: "Lateral Arm", desc: "Emerges laterally, pierces lateral intermuscular septum", isInjurySite: false },
+                    { title: "Elbow Division", desc: "Divides into superficial and deep (PIN) branches", isInjurySite: false },
+                    { title: "Posterior Forearm", desc: "PIN passes through arcade of Frohse at supinator (compression site)", isInjurySite: true },
+                    { title: "Dorsal Hand", desc: "Superficial branch provides dorsal hand sensation", isInjurySite: false }
                 ]
             },
             musculocutaneous: {
@@ -2510,12 +2501,12 @@
                 image: "Nerve Paths/Musculocutaneous Nerve.png",
                 story: "The Musculocutaneous Marvel begins at the lateral cord headquarters in the brachial plexus, carrying orders from C5-C7. This sturdy nerve pierces through the coracobrachialis muscle like a determined warrior, then travels between the biceps brachii and brachialis muscles, supervising their every flex. As it approaches the elbow, it transforms into the lateral cutaneous nerve of the forearm, spreading its sensory network across the lateral forearm like a protective shield.",
                 steps: [
-                    {title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)", isInjurySite: false},
-                    {title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle", isInjurySite: false},
-                    {title: "Biceps Brachii", desc: "Innervates biceps brachii", isInjurySite: false},
-                    {title: "Brachialis", desc: "Innervates lateral part of brachialis", isInjurySite: false},
-                    {title: "Lateral Cutaneous", desc: "Becomes lateral cutaneous nerve of forearm", isInjurySite: false},
-                    {title: "Forearm Sensation", desc: "Provides sensation to lateral forearm", isInjurySite: false}
+                    { title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)", isInjurySite: false },
+                    { title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle", isInjurySite: false },
+                    { title: "Biceps Brachii", desc: "Innervates biceps brachii", isInjurySite: false },
+                    { title: "Brachialis", desc: "Innervates lateral part of brachialis", isInjurySite: false },
+                    { title: "Lateral Cutaneous", desc: "Becomes lateral cutaneous nerve of forearm", isInjurySite: false },
+                    { title: "Forearm Sensation", desc: "Provides sensation to lateral forearm", isInjurySite: false }
                 ]
             },
             axillary: {
@@ -2524,12 +2515,12 @@
                 image: "Nerve Paths/Axillary Nerve.png",
                 story: "The Axillary Ambassador emerges from the posterior cord, carrying the strength of C5 and C6. This diplomatic nerve travels posteriorly around the surgical neck of the humerus, navigating through the quadrilateral space like a secret agent. It has two important missions: powering the mighty deltoid muscle and providing sensation to the shoulder's badge of honor - that small patch of skin over the deltoid that soldiers call the 'regimental patch'.",
                 steps: [
-                    {title: "Origin", desc: "Arises from posterior cord (C5-C6)", isInjurySite: false},
-                    {title: "Quadrilateral Space", desc: "Passes through quadrilateral space", isInjurySite: false},
-                    {title: "Surgical Neck", desc: "Wraps around surgical neck of humerus (vulnerable to fracture)", isInjurySite: true},
-                    {title: "Deltoid Motor", desc: "Innervates deltoid muscle", isInjurySite: false},
-                    {title: "Teres Minor", desc: "Innervates teres minor muscle", isInjurySite: false},
-                    {title: "Cutaneous Branch", desc: "Provides sensation over deltoid (regimental patch)", isInjurySite: false}
+                    { title: "Origin", desc: "Arises from posterior cord (C5-C6)", isInjurySite: false },
+                    { title: "Quadrilateral Space", desc: "Passes through quadrilateral space", isInjurySite: false },
+                    { title: "Surgical Neck", desc: "Wraps around surgical neck of humerus (vulnerable to fracture)", isInjurySite: true },
+                    { title: "Deltoid Motor", desc: "Innervates deltoid muscle", isInjurySite: false },
+                    { title: "Teres Minor", desc: "Innervates teres minor muscle", isInjurySite: false },
+                    { title: "Cutaneous Branch", desc: "Provides sensation over deltoid (regimental patch)", isInjurySite: false }
                 ]
             },
             femoral: {
@@ -2538,12 +2529,12 @@
                 image: "Nerve Paths/Femoral Nerve.png",
                 story: "The Femoral General emerges from the lumbar plexus with the authority of L2-L4. This commanding nerve travels under the inguinal ligament like a VIP passing through customs, then spreads its influence across the anterior thigh. It's the knee extension expert, powering the mighty quadriceps muscle group while also providing sensation down the medial leg via its saphenous branch - the longest sensory nerve in the body!",
                 steps: [
-                    {title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false},
-                    {title: "Inguinal Ligament", desc: "Passes under inguinal ligament", isInjurySite: false},
-                    {title: "Femoral Triangle", desc: "Enters femoral triangle", isInjurySite: false},
-                    {title: "Quadriceps", desc: "Innervates quadriceps muscle group", isInjurySite: false},
-                    {title: "Saphenous Branch", desc: "Gives off saphenous nerve", isInjurySite: false},
-                    {title: "Medial Leg", desc: "Saphenous nerve provides sensation to medial leg", isInjurySite: false}
+                    { title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false },
+                    { title: "Inguinal Ligament", desc: "Passes under inguinal ligament", isInjurySite: false },
+                    { title: "Femoral Triangle", desc: "Enters femoral triangle", isInjurySite: false },
+                    { title: "Quadriceps", desc: "Innervates quadriceps muscle group", isInjurySite: false },
+                    { title: "Saphenous Branch", desc: "Gives off saphenous nerve", isInjurySite: false },
+                    { title: "Medial Leg", desc: "Saphenous nerve provides sensation to medial leg", isInjurySite: false }
                 ]
             },
             tibial: {
@@ -2552,12 +2543,12 @@
                 image: "Nerve Paths/Tibial Nerve.png",
                 story: "The Tibial Traveler is one half of the mighty sciatic nerve's legacy, carrying the plantarflexion power of L4-S3. After the sciatic nerve splits at the popliteal fossa, this nerve takes the deep route down the posterior leg, traveling through the tarsal tunnel at the ankle like a train through a mountain pass. It's the pointing-toes expert, controlling all the muscles that push the foot down and curl the toes.",
                 steps: [
-                    {title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)", isInjurySite: false},
-                    {title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation", isInjurySite: false},
-                    {title: "Posterior Leg", desc: "Travels down posterior compartment", isInjurySite: false},
-                    {title: "Plantarflexors", desc: "Innervates calf muscles and deep compartment", isInjurySite: false},
-                    {title: "Tarsal Tunnel", desc: "Passes through tarsal tunnel under flexor retinaculum at medial ankle (entrapment site)", isInjurySite: true},
-                    {title: "Foot Muscles", desc: "Divides into medial and lateral plantar nerves for intrinsic foot muscles", isInjurySite: false}
+                    { title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)", isInjurySite: false },
+                    { title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation", isInjurySite: false },
+                    { title: "Posterior Leg", desc: "Travels down posterior compartment", isInjurySite: false },
+                    { title: "Plantarflexors", desc: "Innervates calf muscles and deep compartment", isInjurySite: false },
+                    { title: "Tarsal Tunnel", desc: "Passes through tarsal tunnel under flexor retinaculum at medial ankle (entrapment site)", isInjurySite: true },
+                    { title: "Foot Muscles", desc: "Divides into medial and lateral plantar nerves for intrinsic foot muscles", isInjurySite: false }
                 ]
             },
             peroneal: {
@@ -2567,12 +2558,12 @@
                 deepImage: "Nerve Paths/Deep Fibular Nerve.png",
                 story: "The Peroneal Pioneer, also known as the Common Fibular nerve, is an adventurous branch of the mighty sciatic nerve. This nerve loves taking the scenic route around the fibular head, making it vulnerable but vital for foot function. It splits into two explorers: the superficial peroneal (the ankle evertor) and the deep peroneal (the toe lifter), each with their own important territories to govern in the lower leg and foot.",
                 steps: [
-                    {title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)", isInjurySite: false},
-                    {title: "Fibular Head", desc: "Wraps around fibular neck through fibular tunnel (most common lower extremity mononeuropathy)", isInjurySite: true},
-                    {title: "Superficial Branch", desc: "Gives off superficial peroneal nerve for ankle eversion", isInjurySite: false},
-                    {title: "Deep Branch", desc: "Continues as deep peroneal nerve for ankle dorsiflexion", isInjurySite: false},
-                    {title: "Anterior Tarsal Tunnel", desc: "Deep peroneal passes under inferior extensor retinaculum at ankle (rare entrapment)", isInjurySite: true},
-                    {title: "Foot", desc: "Provides motor to foot extensors and sensation to dorsal foot and first web space", isInjurySite: false}
+                    { title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)", isInjurySite: false },
+                    { title: "Fibular Head", desc: "Wraps around fibular neck through fibular tunnel (most common lower extremity mononeuropathy)", isInjurySite: true },
+                    { title: "Superficial Branch", desc: "Gives off superficial peroneal nerve for ankle eversion", isInjurySite: false },
+                    { title: "Deep Branch", desc: "Continues as deep peroneal nerve for ankle dorsiflexion", isInjurySite: false },
+                    { title: "Anterior Tarsal Tunnel", desc: "Deep peroneal passes under inferior extensor retinaculum at ankle (rare entrapment)", isInjurySite: true },
+                    { title: "Foot", desc: "Provides motor to foot extensors and sensation to dorsal foot and first web space", isInjurySite: false }
                 ]
             },
             sciatic: {
@@ -2581,12 +2572,12 @@
                 image: "Nerve Paths/Sciatic Nerve.png",
                 story: "The Sciatic Supreme is the body's largest and most powerful nerve, combining the might of the lumbar and sacral plexuses. This heavyweight champion travels through the greater sciatic foramen, then runs down the posterior thigh like a mighty river. At the popliteal fossa, it typically splits into its two famous branches: the tibial nerve (the plantarflexion powerhouse) and the common peroneal nerve (the dorsiflexion dynamo).",
                 steps: [
-                    {title: "Origin", desc: "Forms from sacral plexus (L4-S3)", isInjurySite: false},
-                    {title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen", isInjurySite: false},
-                    {title: "Posterior Thigh", desc: "Travels down posterior thigh", isInjurySite: false},
-                    {title: "Hamstring Muscles", desc: "Innervates hamstring muscles", isInjurySite: false},
-                    {title: "Popliteal Fossa", desc: "Reaches popliteal fossa", isInjurySite: false},
-                    {title: "Bifurcation", desc: "Splits into tibial and common peroneal nerves", isInjurySite: false}
+                    { title: "Origin", desc: "Forms from sacral plexus (L4-S3)", isInjurySite: false },
+                    { title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen", isInjurySite: false },
+                    { title: "Posterior Thigh", desc: "Travels down posterior thigh", isInjurySite: false },
+                    { title: "Hamstring Muscles", desc: "Innervates hamstring muscles", isInjurySite: false },
+                    { title: "Popliteal Fossa", desc: "Reaches popliteal fossa", isInjurySite: false },
+                    { title: "Bifurcation", desc: "Splits into tibial and common peroneal nerves", isInjurySite: false }
                 ]
             },
             obturator: {
@@ -2595,17 +2586,17 @@
                 image: "Nerve Paths/Obturator Nerve.png",
                 story: "The Obturator Officer is a specialized nerve with a unique mission: controlling hip adduction. Born from the lumbar plexus, this nerve takes an unusual route through the obturator foramen (hence its name), like a secret tunnel through the pelvis. It divides into anterior and posterior branches to command the adductor muscle army, helping bring the legs together and stabilize the hip during walking.",
                 steps: [
-                    {title: "Origin", desc: "Arises from lumbar plexus (L2-L4)", isInjurySite: false},
-                    {title: "Obturator Foramen", desc: "Passes through obturator foramen", isInjurySite: false},
-                    {title: "Anterior Branch", desc: "Splits into anterior branch", isInjurySite: false},
-                    {title: "Posterior Branch", desc: "Splits into posterior branch", isInjurySite: false},
-                    {title: "Adductor Muscles", desc: "Innervates adductor muscle group", isInjurySite: false},
-                    {title: "Hip Sensation", desc: "Provides sensation to medial thigh", isInjurySite: false}
+                    { title: "Origin", desc: "Arises from lumbar plexus (L2-L4)", isInjurySite: false },
+                    { title: "Obturator Foramen", desc: "Passes through obturator foramen", isInjurySite: false },
+                    { title: "Anterior Branch", desc: "Splits into anterior branch", isInjurySite: false },
+                    { title: "Posterior Branch", desc: "Splits into posterior branch", isInjurySite: false },
+                    { title: "Adductor Muscles", desc: "Innervates adductor muscle group", isInjurySite: false },
+                    { title: "Hip Sensation", desc: "Provides sensation to medial thigh", isInjurySite: false }
                 ]
             }
         };
 
-        window.selectNerve = function(nerveName) {
+        window.selectNerve = function (nerveName) {
             console.log('🧠 Selecting nerve:', nerveName);
             const explorer = window.pathwayExplorer;
             if (!explorer.nerveData[nerveName]) {
@@ -2636,10 +2627,10 @@
                 // Special case for peroneal nerve - show both superficial and deep fibular
                 if (nerveName === 'peroneal' && explorer.currentNerve.deepImage) {
                     imageHtml = '<div style="text-align: center;"><h6 style="color: #0c4a6e; margin-bottom: 15px; font-size: 1.1em;">' + explorer.currentNerve.name + '</h6><p style="color: #64748b; margin-bottom: 15px;">Nerve Roots: ' + explorer.currentNerve.roots + '</p>' +
-                    '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">' +
-                    '<div><h6 style="color: #0369a1; font-size: 1em; margin-bottom: 8px;">Superficial Fibular</h6><img src="' + explorer.currentNerve.image + '" alt="Superficial Fibular Nerve Pathway" style="width: 100%; height: auto; border-radius: 8px; border: 2px solid #bae6fd;"></div>' +
-                    '<div><h6 style="color: #0369a1; font-size: 1em; margin-bottom: 8px;">Deep Fibular</h6><img src="' + explorer.currentNerve.deepImage + '" alt="Deep Fibular Nerve Pathway" style="width: 100%; height: auto; border-radius: 8px; border: 2px solid #bae6fd;"></div>' +
-                    '</div></div>';
+                        '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">' +
+                        '<div><h6 style="color: #0369a1; font-size: 1em; margin-bottom: 8px;">Superficial Fibular</h6><img src="' + explorer.currentNerve.image + '" alt="Superficial Fibular Nerve Pathway" style="width: 100%; height: auto; border-radius: 8px; border: 2px solid #bae6fd;"></div>' +
+                        '<div><h6 style="color: #0369a1; font-size: 1em; margin-bottom: 8px;">Deep Fibular</h6><img src="' + explorer.currentNerve.deepImage + '" alt="Deep Fibular Nerve Pathway" style="width: 100%; height: auto; border-radius: 8px; border: 2px solid #bae6fd;"></div>' +
+                        '</div></div>';
                 } else if (explorer.currentNerve.image) {
                     // Regular nerve with single image
                     imageHtml = '<div style="text-align: center;"><h6 style="color: #0c4a6e; margin-bottom: 10px; font-size: 1.1em;">' + explorer.currentNerve.name + '</h6><p style="color: #64748b; margin-bottom: 15px;">Nerve Roots: ' + explorer.currentNerve.roots + '</p><img src="' + explorer.currentNerve.image + '" alt="' + explorer.currentNerve.name + ' Pathway" style="width: 100%; height: auto; border-radius: 8px; border: 2px solid #bae6fd;"></div>';
@@ -2668,7 +2659,7 @@
         };
 
         // Define showStep with RED/GREEN injury highlighting + click functionality
-        window.showStep = function(stepIndex) {
+        window.showStep = function (stepIndex) {
             const explorer = window.pathwayExplorer;
             if (!explorer.currentNerve || stepIndex < 0 || stepIndex >= explorer.maxSteps) return;
 
@@ -2729,13 +2720,13 @@
             } else {
                 pathwayBox.style.cursor = 'pointer';
                 pathwayBox.onclick = window.nextStep;
-                pathwayBox.onmouseover = function() {
+                pathwayBox.onmouseover = function () {
                     this.style.backgroundColor = '#f0f9ff';
                     this.style.borderColor = '#0ea5e9';
                     this.style.transform = 'translateY(-2px)';
                     this.style.boxShadow = '0 4px 12px rgba(14, 165, 233, 0.15)';
                 };
-                pathwayBox.onmouseout = function() {
+                pathwayBox.onmouseout = function () {
                     this.style.backgroundColor = 'white';
                     this.style.borderColor = '#bae6fd';
                     this.style.transform = 'translateY(0)';
@@ -2744,21 +2735,21 @@
             }
         };
 
-        window.nextStep = function() {
+        window.nextStep = function () {
             const explorer = window.pathwayExplorer;
             if (explorer.currentStep < explorer.maxSteps - 1) {
                 window.showStep(explorer.currentStep + 1);
             }
         };
 
-        window.previousStep = function() {
+        window.previousStep = function () {
             const explorer = window.pathwayExplorer;
             if (explorer.currentStep > 0) {
                 window.showStep(explorer.currentStep - 1);
             }
         };
 
-        window.resetPathway = function() {
+        window.resetPathway = function () {
             const explorer = window.pathwayExplorer;
             if (explorer.currentNerve) {
                 window.showStep(0);
@@ -2766,7 +2757,7 @@
         };
 
         // Function to close general modal
-        window.closeGeneralModal = function() {
+        window.closeGeneralModal = function () {
             const modalOverlay = document.getElementById('modal-overlay');
             if (modalOverlay) {
                 modalOverlay.style.display = 'none';
@@ -2800,8 +2791,8 @@
         function createDescriptionBoxes() {
             const boardContainer = document.getElementById('learning-board');
 
-            // Create 13 description boxes, one for each module
-            for (let moduleNumber = 1; moduleNumber <= 13; moduleNumber++) {
+            // Create 14 description boxes, one for each module
+            for (let moduleNumber = 1; moduleNumber <= 14; moduleNumber++) {
                 const desc = moduleDescriptions[moduleNumber] || {
                     title: `Module ${moduleNumber}`,
                     text: "Description coming soon.",
@@ -2836,7 +2827,7 @@
 
             // Add window resize handler to reposition boxes
             window.addEventListener('resize', () => {
-                for (let moduleNumber = 1; moduleNumber <= 13; moduleNumber++) {
+                for (let moduleNumber = 1; moduleNumber <= 14; moduleNumber++) {
                     const box = document.getElementById(`description-box-${moduleNumber}`);
                     const side = (moduleNumber - 1) % 2 === 0 ? 'left' : 'right';
                     if (box) {
@@ -3682,123 +3673,123 @@
 
                 const moduleTitle = atriumModuleConfig[moduleNumber - 1].title;
 
-                    // Get base URL for script paths
-                    const baseURL = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+                // Get base URL for script paths
+                const baseURL = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
 
-                    // Create standalone HTML page using string concatenation to avoid template literal issues
-                    const newTabHTML = '<!DOCTYPE html>\n' +
-'<html lang="en">\n' +
-'<head>\n' +
-'    <meta charset="UTF-8">\n' +
-'    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">\n' +
-'    <title>Module ' + moduleNumber + ': ' + moduleTitle + '</title>\n' +
-'    <base href="' + baseURL + '">\n' +
-'    <style>\n' +
-'        * { box-sizing: border-box; }\n' +
-'        body {\n' +
-'            font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;\n' +
-'            line-height: 1.8;\n' +
-'            color: #1f2937;\n' +
-'            background: linear-gradient(135deg, #fdfcf8 0%, #f9f7f1 100%);\n' +
-'            margin: 0;\n' +
-'            padding: 20px;\n' +
-'            font-size: 18px;\n' +
-'        }\n' +
-'        .module-header {\n' +
-'            background: linear-gradient(135deg, #4f46e5, #6366f1);\n' +
-'            color: white;\n' +
-'            padding: 25px;\n' +
-'            border-radius: 15px;\n' +
-'            margin-bottom: 25px;\n' +
-'            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);\n' +
-'        }\n' +
-'        .module-header h1 { margin: 0 0 10px 0; font-size: 1.8em; }\n' +
-'        .back-button {\n' +
-'            display: inline-block;\n' +
-'            background: white;\n' +
-'            color: #4f46e5;\n' +
-'            padding: 12px 24px;\n' +
-'            border-radius: 25px;\n' +
-'            text-decoration: none;\n' +
-'            font-weight: 600;\n' +
-'            margin-top: 15px;\n' +
-'            box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n' +
-'        }\n' +
-'        .content-wrapper {\n' +
-'            background: white;\n' +
-'            padding: 30px;\n' +
-'            border-radius: 15px;\n' +
-'            box-shadow: 0 2px 20px rgba(0,0,0,0.08);\n' +
-'            max-width: 900px;\n' +
-'            margin: 0 auto;\n' +
-'            overflow: hidden;\n' +
-'        }\n' +
-'        /* Mobile-optimized column layout - stack vertically */\n' +
-'        .content-wrapper .study-section,\n' +
-'        .content-wrapper .two-column-layout {\n' +
-'            display: block !important;\n' +
-'            width: 100% !important;\n' +
-'        }\n' +
-'        .content-wrapper .study-column,\n' +
-'        .content-wrapper [style*="flex: 1"],\n' +
-'        .content-wrapper [style*="width: 48%"],\n' +
-'        .content-wrapper [style*="width: 50%"] {\n' +
-'            display: block !important;\n' +
-'            width: 100% !important;\n' +
-'            max-width: 100% !important;\n' +
-'            margin-bottom: 20px !important;\n' +
-'            word-wrap: break-word;\n' +
-'            overflow-wrap: break-word;\n' +
-'        }\n' +
-'        /* Ensure flex and grid containers don\'t break */\n' +
-'        .content-wrapper [style*="display: grid"],\n' +
-'        .content-wrapper [style*="display: flex"] {\n' +
-'            display: block !important;\n' +
-'        }\n' +
-'        .content-wrapper img, .content-wrapper table { max-width: 100%; height: auto; }\n' +
-'    </style>\n' +
-'</head>\n' +
-'<body>\n' +
-'    <div class="module-header">\n' +
-'        <h1>📚 Module ' + moduleNumber + ': ' + moduleTitle + '</h1>\n' +
-'        <p style="margin: 0; opacity: 0.9;">EMG/NCS Learning Journey</p>\n' +
-'        <a href="#" onclick="window.close(); return false;" class="back-button">← Close & Return to Journey</a>\n' +
-'    </div>\n' +
-'    <div class="content-wrapper">\n' +
-        content +
-'\n    </div>\n' +
-'\n' +
-'    <!-- Lightweight interactive stubs for mobile - avoids loading 976KB file -->\n' +
-'    <script>\n' +
-'        // Stub functions that redirect back to main page for interactive features\n' +
-'        window.showStudyCards = function() {\n' +
-'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to use NCS Study Cards?\')) {\n' +
-'                window.close();\n' +
-'            }\n' +
-'        };\n' +
-'        \n' +
-'        window.showEMGChallenge = function() {\n' +
-'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to use the EMG Challenge?\')) {\n' +
-'                window.close();\n' +
-'            }\n' +
-'        };\n' +
-'        \n' +
-'        window.launchEMGApp = function(caseId) {\n' +
-'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to launch this EMG case?\')) {\n' +
-'                window.close();\n' +
-'            }\n' +
-'        };\n' +
-'        \n' +
-'        window.openBrachialPlexusModal = function() {\n' +
-'            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page for the interactive Brachial Plexus?\')) {\n' +
-'                window.close();\n' +
-'            }\n' +
-'        };\n' +
-'        \n' +
-'        console.log(\'📱 Mobile-optimized stubs loaded. Interactive features redirect to main page.\');\n' +
-'    </' + 'script>\n' +
-'</body>\n' +
-'</html>';
+                // Create standalone HTML page using string concatenation to avoid template literal issues
+                const newTabHTML = '<!DOCTYPE html>\n' +
+                    '<html lang="en">\n' +
+                    '<head>\n' +
+                    '    <meta charset="UTF-8">\n' +
+                    '    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">\n' +
+                    '    <title>Module ' + moduleNumber + ': ' + moduleTitle + '</title>\n' +
+                    '    <base href="' + baseURL + '">\n' +
+                    '    <style>\n' +
+                    '        * { box-sizing: border-box; }\n' +
+                    '        body {\n' +
+                    '            font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;\n' +
+                    '            line-height: 1.8;\n' +
+                    '            color: #1f2937;\n' +
+                    '            background: linear-gradient(135deg, #fdfcf8 0%, #f9f7f1 100%);\n' +
+                    '            margin: 0;\n' +
+                    '            padding: 20px;\n' +
+                    '            font-size: 18px;\n' +
+                    '        }\n' +
+                    '        .module-header {\n' +
+                    '            background: linear-gradient(135deg, #4f46e5, #6366f1);\n' +
+                    '            color: white;\n' +
+                    '            padding: 25px;\n' +
+                    '            border-radius: 15px;\n' +
+                    '            margin-bottom: 25px;\n' +
+                    '            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);\n' +
+                    '        }\n' +
+                    '        .module-header h1 { margin: 0 0 10px 0; font-size: 1.8em; }\n' +
+                    '        .back-button {\n' +
+                    '            display: inline-block;\n' +
+                    '            background: white;\n' +
+                    '            color: #4f46e5;\n' +
+                    '            padding: 12px 24px;\n' +
+                    '            border-radius: 25px;\n' +
+                    '            text-decoration: none;\n' +
+                    '            font-weight: 600;\n' +
+                    '            margin-top: 15px;\n' +
+                    '            box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n' +
+                    '        }\n' +
+                    '        .content-wrapper {\n' +
+                    '            background: white;\n' +
+                    '            padding: 30px;\n' +
+                    '            border-radius: 15px;\n' +
+                    '            box-shadow: 0 2px 20px rgba(0,0,0,0.08);\n' +
+                    '            max-width: 900px;\n' +
+                    '            margin: 0 auto;\n' +
+                    '            overflow: hidden;\n' +
+                    '        }\n' +
+                    '        /* Mobile-optimized column layout - stack vertically */\n' +
+                    '        .content-wrapper .study-section,\n' +
+                    '        .content-wrapper .two-column-layout {\n' +
+                    '            display: block !important;\n' +
+                    '            width: 100% !important;\n' +
+                    '        }\n' +
+                    '        .content-wrapper .study-column,\n' +
+                    '        .content-wrapper [style*="flex: 1"],\n' +
+                    '        .content-wrapper [style*="width: 48%"],\n' +
+                    '        .content-wrapper [style*="width: 50%"] {\n' +
+                    '            display: block !important;\n' +
+                    '            width: 100% !important;\n' +
+                    '            max-width: 100% !important;\n' +
+                    '            margin-bottom: 20px !important;\n' +
+                    '            word-wrap: break-word;\n' +
+                    '            overflow-wrap: break-word;\n' +
+                    '        }\n' +
+                    '        /* Ensure flex and grid containers don\'t break */\n' +
+                    '        .content-wrapper [style*="display: grid"],\n' +
+                    '        .content-wrapper [style*="display: flex"] {\n' +
+                    '            display: block !important;\n' +
+                    '        }\n' +
+                    '        .content-wrapper img, .content-wrapper table { max-width: 100%; height: auto; }\n' +
+                    '    </style>\n' +
+                    '</head>\n' +
+                    '<body>\n' +
+                    '    <div class="module-header">\n' +
+                    '        <h1>📚 Module ' + moduleNumber + ': ' + moduleTitle + '</h1>\n' +
+                    '        <p style="margin: 0; opacity: 0.9;">EMG/NCS Learning Journey</p>\n' +
+                    '        <a href="#" onclick="window.close(); return false;" class="back-button">← Close & Return to Journey</a>\n' +
+                    '    </div>\n' +
+                    '    <div class="content-wrapper">\n' +
+                    content +
+                    '\n    </div>\n' +
+                    '\n' +
+                    '    <!-- Lightweight interactive stubs for mobile - avoids loading 976KB file -->\n' +
+                    '    <script>\n' +
+                    '        // Stub functions that redirect back to main page for interactive features\n' +
+                    '        window.showStudyCards = function() {\n' +
+                    '            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to use NCS Study Cards?\')) {\n' +
+                    '                window.close();\n' +
+                    '            }\n' +
+                    '        };\n' +
+                    '        \n' +
+                    '        window.showEMGChallenge = function() {\n' +
+                    '            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to use the EMG Challenge?\')) {\n' +
+                    '                window.close();\n' +
+                    '            }\n' +
+                    '        };\n' +
+                    '        \n' +
+                    '        window.launchEMGApp = function(caseId) {\n' +
+                    '            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page to launch this EMG case?\')) {\n' +
+                    '                window.close();\n' +
+                    '            }\n' +
+                    '        };\n' +
+                    '        \n' +
+                    '        window.openBrachialPlexusModal = function() {\n' +
+                    '            if (confirm(\'📱 Interactive features work best on the main page.\\n\\nWould you like to close this tab and return to the main page for the interactive Brachial Plexus?\')) {\n' +
+                    '                window.close();\n' +
+                    '            }\n' +
+                    '        };\n' +
+                    '        \n' +
+                    '        console.log(\'📱 Mobile-optimized stubs loaded. Interactive features redirect to main page.\');\n' +
+                    '    </' + 'script>\n' +
+                    '</body>\n' +
+                    '</html>';
 
                 // Open in new tab
                 const newTab = window.open('', '_blank');
@@ -3843,9 +3834,9 @@
                 highlights: "Topics: Nerve anatomy, muscle innervation, anatomical variations"
             },
             3: {
-                title: "Brachial Plexus Interactive",
-                text: "Explore the most complex nerve network in the body! This interactive module helps you visualize brachial plexus anatomy, understand injury patterns, and correlate findings with clinical presentations.",
-                highlights: "Topics: Interactive anatomy, injury patterns, clinical correlations"
+                title: "Plexus Anatomy",
+                text: "Explore the complex nerve networks of the body! This interactive module covers both Brachial and Lumbosacral plexuses, helping you visualize anatomy, trace pathways, and understand injury patterns.",
+                highlights: "Topics: Brachial & Lumbosacral anatomy, interactive tracing, injury patterns"
             },
             4: {
                 title: "Radiculopathy Pathophysiology",
@@ -3998,81 +3989,7 @@
             console.log('✅ EMG section switched to:', sectionName);
         }
 
-        // Play Extra Topics Podcast
-        // Open module podcast from Complete Podcast Library
-        function openModulePodcast(moduleId, episodeId) {
-            console.log(`🎧 Opening module podcast: ${moduleId} - ${episodeId}`);
 
-            // Dynamically import podcast player and play the episode
-            import('./js/podcast-player.js').then(module => {
-                // Register the module's podcasts
-                module.registerModulePodcasts(moduleId);
-
-                // Open podcast player
-                if (typeof window.togglePodcastPlayer === 'function') {
-                    // If player is not visible, open it
-                    const player = document.getElementById('podcast-player-overlay');
-                    if (!player || player.style.display === 'none') {
-                        window.togglePodcastPlayer();
-                    }
-
-                    // Select the specific episode
-                    setTimeout(() => {
-                        const episodeSelector = document.getElementById('episode-selector');
-                        if (episodeSelector) {
-                            // Find and select the episode
-                            for (let i = 0; i < episodeSelector.options.length; i++) {
-                                if (episodeSelector.options[i].value === episodeId) {
-                                    episodeSelector.selectedIndex = i;
-                                    episodeSelector.dispatchEvent(new Event('change'));
-                                    break;
-                                }
-                            }
-                        }
-                    }, 100);
-                }
-            }).catch(error => {
-                console.error('❌ Error loading podcast player:', error);
-                alert('Error loading podcast player. Please try again.');
-            });
-        }
-
-        function playExtraPodcast(episodeId) {
-            console.log(`🎧 Playing extra topic podcast: ${episodeId}`);
-
-            // Dynamically import podcast player and play the episode
-            import('./js/podcast-player.js').then(module => {
-                // Register extra-topics module
-                module.registerModulePodcasts('extra-topics');
-
-                // Open podcast player
-                if (typeof window.togglePodcastPlayer === 'function') {
-                    // If player is not visible, open it
-                    const player = document.getElementById('podcast-player-overlay');
-                    if (!player || player.style.display === 'none') {
-                        window.togglePodcastPlayer();
-                    }
-
-                    // Select the specific episode
-                    setTimeout(() => {
-                        const episodeSelector = document.getElementById('episode-selector');
-                        if (episodeSelector) {
-                            // Find and select the episode
-                            for (let i = 0; i < episodeSelector.options.length; i++) {
-                                if (episodeSelector.options[i].value === episodeId) {
-                                    episodeSelector.selectedIndex = i;
-                                    episodeSelector.dispatchEvent(new Event('change'));
-                                    break;
-                                }
-                            }
-                        }
-                    }, 100);
-                }
-            }).catch(error => {
-                console.error('❌ Error loading podcast player:', error);
-                alert('Error loading podcast player. Please try again.');
-            });
-        }
 
         // Toggle Collapsible Podcasts Section
         function togglePodcastsCollapsible() {
@@ -4099,19 +4016,21 @@
         window.hideModuleDescription = hideModuleDescription;
         window.showEMGSection = showEMGSection;
         window.returnToMainPage = returnToMainPage;
-        window.openModulePodcast = openModulePodcast;
-        window.playExtraPodcast = playExtraPodcast;
         window.togglePodcastsCollapsible = togglePodcastsCollapsible;
 
         console.log('✨🎮 Enhanced Journey with Integrated Modal System - Ready!');
     </script>
 
     <!-- General Modal for Clinical Cases -->
-    <div id="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; overflow-y: auto;">
-        <div style="background: white; border-radius: 15px; width: 95%; max-width: 1200px; max-height: 95vh; overflow-y: auto; position: relative; margin: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-            <div style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0;">
+    <div id="modal-overlay"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; overflow-y: auto;">
+        <div
+            style="background: white; border-radius: 15px; width: 95%; max-width: 1200px; max-height: 95vh; overflow-y: auto; position: relative; margin: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <div
+                style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0;">
                 <h2 id="modal-title" style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;"></h2>
-                <button onclick="closeGeneralModal()" style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">×</button>
+                <button onclick="closeGeneralModal()"
+                    style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">×</button>
             </div>
             <div id="modal-body" style="padding: 30px; background: white; border-radius: 0 0 15px 15px;">
             </div>
@@ -4197,10 +4116,10 @@
         document.head.appendChild(modalStyles);
 
         // Close modal when clicking outside overlay
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const overlay = document.getElementById('modal-overlay');
             if (overlay) {
-                overlay.addEventListener('click', function(e) {
+                overlay.addEventListener('click', function (e) {
                     // Check if click came from modal content by traversing up the DOM
                     let element = e.target;
                     while (element && element !== overlay) {
@@ -4220,7 +4139,7 @@
         });
 
         // Add keyboard support for ESC key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const overlay = document.getElementById('modal-overlay');
                 if (overlay && overlay.style.display === 'flex') {
@@ -4230,7 +4149,7 @@
         });
 
         // Learning Objectives Modal Functions - Global Scope
-        window.showLearningObjectives = function() {
+        window.showLearningObjectives = function () {
             console.log('🎯 showLearningObjectives called');
             const modal = document.getElementById('learning-objectives-modal');
             console.log('📋 Modal element:', modal);
@@ -4243,7 +4162,7 @@
             }
         };
 
-        window.closeLearningObjectives = function() {
+        window.closeLearningObjectives = function () {
             console.warn('🚨 closeLearningObjectives() CALLED');
             console.warn('📍 Call stack:', new Error().stack);
 
@@ -4258,14 +4177,14 @@
         };
 
         // Close modal when clicking outside content (with zoom gesture detection + DEBUG LOGGING)
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('learning-objectives-modal');
             if (modal) {
                 let touchStartTime = 0;
                 let touchStartDistance = 0;
 
                 // Track touch start for gesture detection
-                modal.addEventListener('touchstart', function(e) {
+                modal.addEventListener('touchstart', function (e) {
                     touchStartTime = Date.now();
                     console.warn('📱 LEARNING-OBJ touchstart:', {
                         touches: e.touches.length,
@@ -4288,7 +4207,7 @@
                     }
                 }, { passive: true });
 
-                modal.addEventListener('click', function(e) {
+                modal.addEventListener('click', function (e) {
                     // Only close if:
                     // 1. Click target is the modal overlay itself (not modal content)
                     // 2. Touch duration was reasonable (< 300ms suggests intentional tap)
@@ -4465,7 +4384,8 @@
                         <div class="competency-group-compact">
                             <h4>NCS Patient Care</h4>
                             <ul>
-                                <li>Perform complex studies (blink reflex, repetitive nerve stimulation, proximal studies)</li>
+                                <li>Perform complex studies (blink reflex, repetitive nerve stimulation, proximal
+                                    studies)</li>
                             </ul>
                         </div>
 
@@ -4544,4 +4464,5 @@
     <script type="module" src="js/podcast-player.js" defer></script>
 
 </body>
+
 </html>
