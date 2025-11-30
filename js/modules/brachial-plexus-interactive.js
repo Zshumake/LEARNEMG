@@ -1347,7 +1347,7 @@ export function generateContent(module) {
                 </div>
 
                 <div id="lumbosacral-container" style="display: none;">
-                    ${lumbosacralHTML}
+                    <!-- Lumbosacral content temporarily removed to fix loading error -->
                 </div>
             </div>
         </div>
