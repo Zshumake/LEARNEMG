@@ -125,28 +125,25 @@ function navigateGallery(button, direction) {
 
     if (!imgElement || images.length <= 1) return;
 
-    // Decode the URL first, then extract relative path
+    // Decode the URL first
     let currentSrc = decodeURIComponent(imgElement.src);
 
-    // Find the relative path by looking for 'NCS images/' or 'NCS Images/'
-    let relativeSrc = '';
-    let ncsIndex = currentSrc.indexOf('NCS images/');
-    if (ncsIndex === -1) ncsIndex = currentSrc.indexOf('NCS Images/');
-
-    if (ncsIndex !== -1) {
-        relativeSrc = currentSrc.substring(ncsIndex);
-    } else {
-        // Fallback: assume we're already at a relative path
-        relativeSrc = currentSrc;
+    // Robustly find the current index by checking if the src ends with any of the image paths
+    let currentIndex = -1;
+    for (let i = 0; i < images.length; i++) {
+        // Handle both encoded and decoded comparisons and ensure we match the end of the string
+        // to avoid issues with absolute vs relative paths
+        if (currentSrc.endsWith(images[i]) || currentSrc.endsWith(encodeURI(images[i]))) {
+            currentIndex = i;
+            break;
+        }
     }
-
-    let currentIndex = images.indexOf(relativeSrc);
 
     // Debug logging
     console.log('🖼️ Gallery Navigation Debug:');
     console.log('  Original src:', imgElement.src);
     console.log('  Decoded src:', currentSrc);
-    console.log('  Relative src:', relativeSrc);
+
     console.log('  Images array:', images);
     console.log('  Current index:', currentIndex);
     console.log('  Direction:', direction);
