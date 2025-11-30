@@ -856,15 +856,15 @@ export function generateContent(module) {
                             </div>
                         </div>
 
-                        <!-- Peroneal Motor (EDB) -->
+                        <!-- Fibular Motor (EDB) -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Fibular (peroneal) motor at the ankle.png", "NCS images/Fibular (peronal motor at the fibular head.png", "NCS images/Fibular (peronal ) motor at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Fibular (peroneal) motor at the ankle.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Fibular motor at the ankle.png", "NCS Images/Fibular motor at the fibular head.png", "NCS Images/Fibular motor at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Fibular motor at the ankle.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 3</div>
                             </div>
-                            <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Peroneal Motor (EDB)</h6>
+                            <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Fibular Motor (EDB)</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
                                 <strong style="color: #10b981;">Recording:</strong> Extensor digitorum brevis (EDB) - dorsal lateral foot<br>
                                 <strong style="color: #10b981;">G1:</strong> Muscle belly | <strong style="color: #10b981;">G2:</strong> MTP joint of little toe<br>
@@ -874,19 +874,19 @@ export function generateContent(module) {
                                 &nbsp;&nbsp;• <strong>Lateral popliteal fossa:</strong> Adjacent to external hamstring, 10-12 cm from below-fibular
                             </p>
                             <div style="background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
-                                <small style="color: #6b7280;"><strong>Key Point:</strong> ALWAYS stim all 3 sites to detect fibular neck slowing. Higher current needed below fibular head (deep nerve). If below-fibular > ankle, consider accessory peroneal.</small>
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> ALWAYS stim all 3 sites to detect fibular neck slowing. Higher current needed below fibular head (deep nerve). If below-fibular > ankle, consider accessory fibular.</small>
                             </div>
                         </div>
 
-                        <!-- Peroneal Motor (TA) -->
+                        <!-- Fibular Motor (TA) -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS Images/tibialis fibular motor anterior at the fibular head.png", "NCS Images/fibular motor tibialis anterior at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS Images/tibialis fibular motor anterior at the fibular head.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/tibialis_fibular_motor_anterior_at_the_fibular_head.png", "NCS Images/fibular_motor_tibialis_anterior_at_the_popliteal_fossa.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/tibialis_fibular_motor_anterior_at_the_fibular_head.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
                             </div>
-                            <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Peroneal Motor (TA)</h6>
+                            <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">⚡ Fibular Motor (TA)</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
                                 <strong style="color: #10b981;">Recording:</strong> Tibialis anterior (TA) - mid-anterior lateral calf<br>
                                 <strong style="color: #10b981;">G1:</strong> Muscle belly | <strong style="color: #10b981;">G2:</strong> Anterior ankle<br>
@@ -895,7 +895,7 @@ export function generateContent(module) {
                                 &nbsp;&nbsp;• <strong>Lateral popliteal fossa:</strong> Adjacent to external hamstring, 10-12 cm from below-fibular
                             </p>
                             <div style="background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
-                                <small style="color: #6b7280;"><strong>Key Point:</strong> Especially valuable for peroneal neuropathy at fibular neck. Easier to demonstrate conduction block/focal slowing than with EDB recording. Higher stim current needed below fibular head.</small>
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Especially valuable for fibular neuropathy at fibular neck. Easier to demonstrate conduction block/focal slowing than with EDB recording. Higher stim current needed below fibular head.</small>
                             </div>
                         </div>
 
@@ -958,12 +958,12 @@ export function generateContent(module) {
                     <h5 style="color: #10b981; font-size: 1.4em; margin-bottom: 20px; font-weight: 700;">🔍 Sensory Studies</h5>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
 
-                        <!-- Superficial Peroneal Sensory -->
+                        <!-- Superficial Fibular Sensory -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Superficial Fibular (peroneal) sensory stud.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Superficial Fibular (peroneal) sensory stud.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/Superficial Fibular sensory study.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/Superficial Fibular sensory study.png" style="width: 100%; border-radius: 8px; display: block;">
                             </div>
-                            <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Superficial Peroneal Sensory</h6>
+                            <h6 style="color: #10b981; font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">🔍 Superficial Fibular Sensory</h6>
                             <p style="color: #64748b; margin: 8px 0; line-height: 1.6;">
                                 <strong style="color: #10b981;">Recording:</strong> Lateral ankle<br>
                                 <strong style="color: #10b981;">G1:</strong> Between tibialis anterior tendon & lateral malleolus | <strong style="color: #10b981;">G2:</strong> 3-4 cm distally<br>
@@ -971,7 +971,7 @@ export function generateContent(module) {
                                 <strong style="color: #10b981;">Distance:</strong> 14 cm standard (shorter 7-12 cm often easier)
                             </p>
                             <div style="background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
-                                <small style="color: #6b7280;"><strong>Key Point:</strong> Often easier at shorter distance (7-12 cm) with low stim (5-25mA). Use calculated CV from onset latency, not peak latency. Abnormal in peroneal, sciatic, or lumbosacral plexus lesions.</small>
+                                <small style="color: #6b7280;"><strong>Key Point:</strong> Often easier at shorter distance (7-12 cm) with low stim (5-25mA). Use calculated CV from onset latency, not peak latency. Abnormal in fibular, sciatic, or lumbosacral plexus lesions.</small>
                             </div>
                         </div>
 
@@ -1231,17 +1231,17 @@ export function generateContent(module) {
                 "Sural sensory",
                 "Saphenous sensory",
                 "Lateral Femoral Cutaneous sensory",
-                "Superficial Peroneal sensory"
+                "Superficial Fibular sensory"
             ],
             correct: 2,
             explanation: "The LATERAL FEMORAL CUTANEOUS sensory study is the diagnostic test for MERALGIA PARESTHETICA, which is an entrapment of this nerve at the inguinal ligament. The study records from the lateral thigh with stimulation at the inguinal ligament. Side-to-side comparison is essential due to anatomical variability."
         },
         {
-            question: "When performing a Fibular (Peroneal) Motor study recording from the Tibialis Anterior (TA), why is it valuable?",
+            question: "When performing a Fibular (Fibular) Motor study recording from the Tibialis Anterior (TA), why is it valuable?",
             options: [
                 "It is easier than recording from EDB",
                 "It is more sensitive for detecting conduction block/slowing at the fibular head than EDB recording",
-                "It assesses the deep peroneal nerve only",
+                "It assesses the deep fibular nerve only",
                 "It requires less stimulation intensity"
             ],
             correct: 1,

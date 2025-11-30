@@ -331,7 +331,7 @@ const injuryPatterns = {
 
 export function generateContent(module) {
     registerModulePodcasts('brachial-plexus-interactive');
-    const lumbosacralHTML = generateLumbosacral(module);
+    // const lumbosacralHTML = generateLumbosacral(module); // REMOVED to fix ReferenceError
 
     const BrachialPlexus = {
         currentNerve: null,
