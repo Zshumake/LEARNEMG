@@ -1,5 +1,5 @@
 import { registerModulePodcasts, generateErnestButton } from '../podcast-player.js';
-import { generateContent as generateLumbosacral } from './lumbosacral-plexus-interactive.js';
+// import { generateContent as generateLumbosacral } from './lumbosacral-plexus-interactive.js'; // REMOVED to fix loading error
 
 // Anatomical Data Structure - Linear Flow Layout Design
 const plexusData = {
