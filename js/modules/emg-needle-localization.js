@@ -8,14 +8,14 @@ export function generateContent(module) {
         upperExtremity: {
             "APB": {
                 fullName: "Abductor Pollicis Brevis",
-                innervation: "Ulnar Nerve, Medial Cord, Anterior Division, Lower Trunk, C8, T1",
-                origin: "Lateral border of the third metacarpal",
-                insertion: "Medial side of the base of the proximal phalanx",
-                position: "Hand in full pronation, thumb in radial abduction",
-                electrodeInsertion: "At the free edge of the first web space. The needle is directed toward the proximal end of the first metacarpal bone",
-                testManeuver: "Adduct the thumb",
-                pitfalls: "If the electrode is inserted too dorsally it will be in the first dorsal interosseus; if too volarly it will be in the opponens pollicis",
-                comments: "The most distal muscle innervated by the ulnar nerve. Paresis or paralysis of this muscle results in Froment's sign (substitution of flexor pollicis longus on attempted adduction of thumb). May be involved in ulnar entrapment syndromes (Guyon's Tunnel; cubital tunnel; tardy ulnar palsy; cervical rib) and Klumpke's palsy (avulsion of C8, T1 nerve roots). This muscle is a powerful adductor of the thumb and greatly contributes in the strength of the grasp."
+                innervation: "Median Nerve, Medial Cord, Anterior Division, Lower Trunk, C8, T1",
+                origin: "From the palmer retinaculum, the tubercle of the scaphoid and that of the trapezium",
+                insertion: "Lateral side of the base of the proximal phalanx of the thumb",
+                position: "Hand in full supination",
+                electrodeInsertion: "Midpoint of a line drawn between the volar aspect of the first metacarpophalangeal joint (MP-1) and the carpometacarpal joint (C-MC). Insert to depth of one-fourth to one-half inch",
+                testManeuver: "Palmar abduction of the thumb",
+                pitfalls: "If the electrode is inserted too deeply it will be in the opponens pollicis",
+                comments: "(a) Frequently used as recording muscle for median nerve motor conduction study. (b) May be involved in all median nerve entrapment syndromes (carpal tunnel; pronator teres, ligament of Struthers) except anterior interosseus syndrome. (c) Involved in Klumpke's palsy (avulsion of C8, T1 roots). (d) This is the most superficially located muscle in the thenar eminence. (e) Its function is to palmarly abduct the thumb to about 90-degree angle. (f) In comparative anatomy we found that this muscle is not present in the monkey's hand which cannot make terminal pinch with the other fingers. The monkey hand has 5 fingers, while the human hand has 4 fingers and 1 thumb."
             },
             "Bicep": {
                 fullName: "Biceps Brachii",
