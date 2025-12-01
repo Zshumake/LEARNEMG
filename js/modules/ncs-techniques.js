@@ -880,8 +880,8 @@ export function generateContent(module) {
 
                         <!-- Peroneal Motor (TA) -->
                         <div style="background: white; border: 2px solid rgba(16, 185, 129, 0.2); border-radius: 15px; padding: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div class="ncs-image-gallery" data-images='["NCS images/Fibular (peronal motor at the fibular head.png", "NCS images/Fibular (peronal ) motor at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
-                                <img class="ncs-gallery-image" src="NCS images/Fibular (peronal motor at the fibular head.png" style="width: 100%; border-radius: 8px; display: block;">
+                            <div class="ncs-image-gallery" data-images='["NCS Images/tibialis fibular motor anterior at the fibular head.png", "NCS Images/fibular motor tibialis anterior at the popliteal fossa.png"]' style="position: relative; margin-bottom: 15px;">
+                                <img class="ncs-gallery-image" src="NCS Images/tibialis fibular motor anterior at the fibular head.png" style="width: 100%; border-radius: 8px; display: block;">
                                 <button onclick="navigateGallery(this, -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: none;">‹</button>
                                 <button onclick="navigateGallery(this, 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(16, 185, 129, 0.9); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">›</button>
                                 <div class="gallery-counter" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.85em;">1 / 2</div>
@@ -1135,6 +1135,119 @@ export function generateContent(module) {
 
             </div>
             <!-- End Pictures Section -->
+            <!-- NCS Techniques Quiz -->
+            ${generateModuleQuiz([
+        {
+            question: "Where is the active recording electrode (G1) placed for a Median Motor study?",
+            options: [
+                "Over the Abductor Digiti Minimi (ADM)",
+                "Over the Abductor Pollicis Brevis (APB) muscle belly",
+                "Over the First Dorsal Interosseous (FDI)",
+                "Over the Flexor Carpi Radialis (FCR)"
+            ],
+            correct: 1,
+            explanation: "For the MEDIAN MOTOR study, the active recording electrode (G1) is placed over the belly of the ABDUCTOR POLLICIS BREVIS (APB) muscle in the thenar eminence. The reference electrode (G2) is placed distally on the 1st MCP joint. Correct placement is crucial for obtaining maximal amplitude and accurate latency."
+        },
+        {
+            question: "What is the standard distance between the stimulation site at the wrist and the recording electrode (G1) for a Median Motor study?",
+            options: [
+                "6 cm",
+                "8 cm",
+                "10 cm",
+                "14 cm"
+            ],
+            correct: 1,
+            explanation: "The standard distance for the MEDIAN MOTOR study from the cathode of the stimulator at the wrist to the active recording electrode (G1) on the APB is 8 CM. Standardizing this distance is essential for comparing distal latencies to normal values (typically <4.4 ms)."
+        },
+        {
+            question: "When performing an Ulnar Motor study, why is it important to stimulate at least 3-4 cm distal to the medial epicondyle for the 'below elbow' site?",
+            options: [
+                "To avoid stimulating the median nerve",
+                "To ensure the nerve is superficial enough",
+                "To minimize volume conduction errors and ensure the ulnar nerve is stimulated where it is not covered by muscle",
+                "To avoid the ulnar groove where the nerve is deep"
+            ],
+            correct: 2,
+            explanation: "Stimulating at least 3-4 CM DISTAL to the medial epicondyle is critical to avoid errors. At the elbow, the ulnar nerve dives deep into the flexor carpi ulnaris. Stimulating too proximally in the groove can lead to submaximal stimulation or measurement errors. The 'below elbow' site should be clearly distal to the groove."
+        },
+        {
+            question: "For a Sural Sensory study, where is the recording electrode typically placed?",
+            options: [
+                "Posterior to the lateral malleolus",
+                "Anterior to the medial malleolus",
+                "Over the dorsum of the foot",
+                "Posterior to the medial malleolus"
+            ],
+            correct: 0,
+            explanation: "For the SURAL SENSORY study, the active recording electrode (G1) is placed POSTERIOR TO THE LATERAL MALLEOLUS. The nerve runs superficially here. Stimulation is applied to the posterior-lateral calf, typically 14 cm proximal to the recording site."
+        },
+        {
+            question: "What is the primary utility of the Dorsal Ulnar Cutaneous (DUC) sensory study?",
+            options: [
+                "Diagnosing Carpal Tunnel Syndrome",
+                "Differentiating ulnar neuropathy at the wrist (Guyon's canal) from ulnar neuropathy at the elbow",
+                "Assessing C8 radiculopathy",
+                "Diagnosing brachial plexopathy"
+            ],
+            correct: 1,
+            explanation: "The DUC study is crucial for differentiating ULNAR NEUROPATHY AT THE WRIST vs. ELBOW. The DUC branch branches off the ulnar nerve PROXIMAL to the wrist (5-8 cm). Therefore, it is SPARED in wrist (Guyon's canal) lesions but AFFECTED in elbow lesions. If the ulnar sensory (digit 5) is abnormal but DUC is normal, the lesion is likely at the wrist."
+        },
+        {
+            question: "In a Radial Motor study recording from the Extensor Indicis Proprius (EIP), where is the 'below spiral groove' stimulation site?",
+            options: [
+                "Antecubital fossa",
+                "Lateral mid-arm between biceps and triceps",
+                "Posterior proximal arm",
+                "Forearm over the ulna"
+            ],
+            correct: 1,
+            explanation: "The 'BELOW SPIRAL GROOVE' stimulation site for the Radial Motor study is in the LATERAL MID-ARM, in the groove between the biceps and triceps muscles. This site is distal to where the nerve wraps around the humerus in the spiral groove. Comparison with the 'above spiral groove' site helps localize radial nerve entrapment (Saturday Night Palsy)."
+        },
+        {
+            question: "What is the significance of the 'Martin-Gruber Anastomosis' in NCS interpretation?",
+            options: [
+                "It causes a conduction block pattern",
+                "It results in a larger CMAP amplitude at the elbow compared to the wrist in median motor studies",
+                "It causes absent sensory responses",
+                "It is a sign of severe neuropathy"
+            ],
+            correct: 1,
+            explanation: "MARTIN-GRUBER ANASTOMOSIS is a common anatomical variant (15-20% of population) where motor fibers cross from the MEDIAN to ULNAR nerve in the forearm. In Median Motor studies, this results in a LARGER CMAP AMPLITUDE AT THE ELBOW (where all fibers are stimulated) than at the wrist (where crossing fibers have left). Recognizing this prevents misdiagnosis of conduction block."
+        },
+        {
+            question: "For the H-reflex study, what is the optimal stimulus duration?",
+            options: [
+                "0.1 ms",
+                "0.2 ms",
+                "0.5 ms",
+                "1.0 ms (1000 μs)"
+            ],
+            correct: 3,
+            explanation: "The optimal stimulus duration for H-REFLEX studies is LONG, typically 1.0 MS (1000 μs). This long duration preferentially activates the large Ia sensory afferent fibers that mediate the reflex arc, allowing the H-reflex to be elicited at lower stimulus intensities, often before the direct motor (M) response is seen."
+        },
+        {
+            question: "Which sensory study is most useful for diagnosing Meralgia Paresthetica?",
+            options: [
+                "Sural sensory",
+                "Saphenous sensory",
+                "Lateral Femoral Cutaneous sensory",
+                "Superficial Peroneal sensory"
+            ],
+            correct: 2,
+            explanation: "The LATERAL FEMORAL CUTANEOUS sensory study is the diagnostic test for MERALGIA PARESTHETICA, which is an entrapment of this nerve at the inguinal ligament. The study records from the lateral thigh with stimulation at the inguinal ligament. Side-to-side comparison is essential due to anatomical variability."
+        },
+        {
+            question: "When performing a Fibular (Peroneal) Motor study recording from the Tibialis Anterior (TA), why is it valuable?",
+            options: [
+                "It is easier than recording from EDB",
+                "It is more sensitive for detecting conduction block/slowing at the fibular head than EDB recording",
+                "It assesses the deep peroneal nerve only",
+                "It requires less stimulation intensity"
+            ],
+            correct: 1,
+            explanation: "Recording from the TIBIALIS ANTERIOR (TA) is often MORE SENSITIVE for detecting conduction block or focal slowing at the FIBULAR HEAD than recording from the EDB. In some cases of fibular neuropathy, the fibers to the EDB may be spared or less affected, while fibers to the TA are blocked. It also helps when the EDB is atrophied (e.g., L5 radiculopathy or polyneuropathy)."
+        }
+    ])}
         </div>
     `;
 }

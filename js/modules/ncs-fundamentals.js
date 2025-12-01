@@ -647,95 +647,117 @@ export function generateContent(module) {
 
             <!-- NCS Fundamentals Quiz -->
             ${generateModuleQuiz([
-                {
-                    question: "What is the primary physiological mechanism underlying saltatory conduction in myelinated nerve fibers?",
-                    options: [
-                        "Continuous depolarization along the entire axon membrane",
-                        "Action potentials 'jump' between nodes of Ranvier, depolarizing only at nodes",
-                        "Myelin increases the resistance of the axon membrane uniformly",
-                        "Schwann cells actively conduct the electrical signal"
-                    ],
-                    correct: 1,
-                    explanation: "SALTATORY CONDUCTION occurs when action potentials 'JUMP' between nodes of Ranvier in myelinated fibers. This mechanism: (1) increases conduction velocity 50x compared to unmyelinated fibers, (2) requires depolarization only at nodes rather than continuously, (3) is energy efficient by reducing the membrane area requiring active Na⁺/K⁺ pumping. Myelination by Schwann cells insulates internodal segments, concentrating voltage-gated channels at nodes. This is why demyelinating diseases dramatically slow conduction."
-                },
-                {
-                    question: "In nerve conduction studies, what does CMAP amplitude primarily reflect?",
-                    options: [
-                        "The speed of the fastest conducting motor fibers",
-                        "The number of functioning motor axons",
-                        "The degree of myelination of the nerve",
-                        "The distance between stimulation sites"
-                    ],
-                    correct: 1,
-                    explanation: "CMAP AMPLITUDE reflects the NUMBER OF FUNCTIONING MOTOR AXONS. When measured from baseline to negative peak (in millivolts), amplitude indicates how many motor units are contributing to the response. AXONAL LOSS causes amplitude reduction because fewer axons depolarize muscle fibers. This contrasts with: (1) LATENCY - reflects fastest fibers, (2) CONDUCTION VELOCITY - reflects myelination/fiber diameter, (3) DURATION - reflects synchrony. Amplitude is the key parameter for detecting axonal neuropathies."
-                },
-                {
-                    question: "What is the target limb temperature for nerve conduction studies, and why does temperature matter?",
-                    options: [
-                        "Target >37°C; higher temperature speeds conduction",
-                        "Target >32°C; every 1°C drop slows conduction by 2-5%",
-                        "Target <30°C; cold temperatures improve signal quality",
-                        "Temperature doesn't significantly affect NCS results"
-                    ],
-                    correct: 1,
-                    explanation: "Limb temperature must be >32°C because cold significantly affects conduction. For every 1°C DROP below normal, conduction velocity SLOWS by 2-5% and distal latency increases. Cold limbs can falsely suggest demyelinating neuropathy. Temperature effects occur because: (1) ion channel kinetics slow in cold, (2) membrane resistance increases, (3) enzyme activity decreases. Always warm cold limbs with heating lamps or warm water before testing to avoid false-positive results."
-                },
-                {
-                    question: "What is supramaximal stimulation, and why is it necessary in motor NCS?",
-                    options: [
-                        "Stimulation at the maximum tolerable intensity for the patient",
-                        "Stimulation 20-50% above threshold to ensure all axons depolarize",
-                        "The highest stimulus intensity the equipment can produce",
-                        "Stimulation that produces a painful sensation"
-                    ],
-                    correct: 1,
-                    explanation: "SUPRAMAXIMAL STIMULATION is 20-50% ABOVE the stimulus intensity that produces maximum CMAP amplitude. This ensures ALL motor axons in the nerve are depolarized. Verification: further increasing stimulus intensity produces NO amplitude increase. Submaximal stimulation causes errors: (1) underestimates amplitude (appears falsely reduced), (2) overestimates conduction velocity (only fastest fibers activated). This is a fundamental technical requirement - failure to achieve supramaximal stimulation is a common source of false-positive findings."
-                },
-                {
-                    question: "What is the key difference in how CMAP amplitude versus SNAP amplitude is measured?",
-                    options: [
-                        "CMAP: baseline-to-peak (mV); SNAP: peak-to-peak (μV)",
-                        "CMAP: peak-to-peak (mV); SNAP: baseline-to-peak (μV)",
-                        "Both are measured peak-to-peak in the same units",
-                        "Both are measured baseline-to-peak in the same units"
-                    ],
-                    correct: 0,
-                    explanation: "CMAP amplitude is measured BASELINE-TO-NEGATIVE PEAK in millivolts (mV), while SNAP amplitude is measured PEAK-TO-PEAK in microvolts (μV). This difference exists because: (1) CMAPs are large (several mV), uniphasic/biphasic waveforms from muscle with clear baseline, (2) SNAPs are small (μV range), often triphasic with baseline drift, making peak-to-peak more reliable, (3) SNAPs are 1000x smaller than CMAPs. Understanding proper measurement technique is crucial for accurate amplitude interpretation."
-                },
-                {
-                    question: "In conduction velocity calculations, if the wrist latency is 3.2ms, elbow latency is 4.8ms, and distance is 8cm, what is the forearm conduction velocity?",
-                    options: [
-                        "25 m/s",
-                        "40 m/s",
-                        "50 m/s",
-                        "64 m/s"
-                    ],
-                    correct: 2,
-                    explanation: "CALCULATION: Distance ÷ (Latency difference) = 8cm ÷ (4.8ms - 3.2ms) = 8 ÷ 1.6 = 50 m/s. This is NORMAL for median motor nerve. The formula is: Conduction Velocity (m/s) = Distance (cm) ÷ Time difference (ms) × 10. Key points: (1) use ONSET latencies for motor studies, (2) distance must be measured accurately between stimulation sites, (3) normal motor CV is typically >49-50 m/s in upper extremity. Values <70% of lower limit suggest demyelination."
-                },
-                {
-                    question: "What pattern distinguishes demyelinating neuropathy from axonal neuropathy on NCS?",
-                    options: [
-                        "Demyelinating: reduced amplitude with normal CV; Axonal: slow CV with preserved amplitude",
-                        "Demyelinating: slow CV with conduction blocks; Axonal: reduced amplitude with normal/mildly slow CV",
-                        "Both show identical NCS patterns",
-                        "Demyelinating: absent responses; Axonal: prolonged latencies"
-                    ],
-                    correct: 1,
-                    explanation: "DEMYELINATING pattern: (1) Significantly SLOWED CV (<70% of LLN), (2) Markedly prolonged DL (>130% of ULN), (3) Amplitudes relatively preserved early, (4) Temporal dispersion and conduction blocks, (5) Affects myelin/Schwann cells. AXONAL pattern: (1) Normal or mildly slow CV (>80% of LLN), (2) REDUCED AMPLITUDES (<50% of LLN), (3) Normal duration, (4) Length-dependent distribution, (5) Affects axons directly. This fundamental distinction guides diagnosis, prognosis, and treatment."
-                },
-                {
-                    question: "What is the F-wave, and what does it assess?",
-                    options: [
-                        "A direct motor response that assesses distal nerve segments",
-                        "A sensory response that evaluates dorsal root function",
-                        "A late response traveling antidromically to anterior horn cells then returning orthodromically, assessing entire motor pathway",
-                        "A reflex response through the dorsal root ganglion"
-                    ],
-                    correct: 2,
-                    explanation: "The F-WAVE is a LATE MOTOR RESPONSE that assesses the ENTIRE MOTOR PATHWAY. Pathway: (1) Antidromic stimulation travels UP motor axon to anterior horn cell, (2) ~5% of cells 'backfire', (3) Orthodromic impulse returns DOWN to muscle. Clinical utility: (1) Assesses PROXIMAL conduction (plexus, roots), (2) Useful in radiculopathy and proximal neuropathies, (3) Normal values: median <31ms, tibial <56ms. Prolonged or absent F-waves suggest proximal demyelination or axonal loss."
-                }
-            ])}
+        {
+            question: "What is the primary physiological mechanism underlying saltatory conduction in myelinated nerve fibers?",
+            options: [
+                "Continuous depolarization along the entire axon membrane",
+                "Action potentials 'jump' between nodes of Ranvier, depolarizing only at nodes",
+                "Myelin increases the resistance of the axon membrane uniformly",
+                "Schwann cells actively conduct the electrical signal"
+            ],
+            correct: 1,
+            explanation: "SALTATORY CONDUCTION occurs when action potentials 'JUMP' between nodes of Ranvier in myelinated fibers. This mechanism: (1) increases conduction velocity 50x compared to unmyelinated fibers, (2) requires depolarization only at nodes rather than continuously, (3) is energy efficient by reducing the membrane area requiring active Na⁺/K⁺ pumping. Myelination by Schwann cells insulates internodal segments, concentrating voltage-gated channels at nodes. This is why demyelinating diseases dramatically slow conduction."
+        },
+        {
+            question: "In nerve conduction studies, what does CMAP amplitude primarily reflect?",
+            options: [
+                "The speed of the fastest conducting motor fibers",
+                "The number of functioning motor axons",
+                "The degree of myelination of the nerve",
+                "The distance between stimulation sites"
+            ],
+            correct: 1,
+            explanation: "CMAP AMPLITUDE reflects the NUMBER OF FUNCTIONING MOTOR AXONS. When measured from baseline to negative peak (in millivolts), amplitude indicates how many motor units are contributing to the response. AXONAL LOSS causes amplitude reduction because fewer axons depolarize muscle fibers. This contrasts with: (1) LATENCY - reflects fastest fibers, (2) CONDUCTION VELOCITY - reflects myelination/fiber diameter, (3) DURATION - reflects synchrony. Amplitude is the key parameter for detecting axonal neuropathies."
+        },
+        {
+            question: "What is the target limb temperature for nerve conduction studies, and why does temperature matter?",
+            options: [
+                "Target >37°C; higher temperature speeds conduction",
+                "Target >32°C; every 1°C drop slows conduction by 2-5%",
+                "Target <30°C; cold temperatures improve signal quality",
+                "Temperature doesn't significantly affect NCS results"
+            ],
+            correct: 1,
+            explanation: "Limb temperature must be >32°C because cold significantly affects conduction. For every 1°C DROP below normal, conduction velocity SLOWS by 2-5% and distal latency increases. Cold limbs can falsely suggest demyelinating neuropathy. Temperature effects occur because: (1) ion channel kinetics slow in cold, (2) membrane resistance increases, (3) enzyme activity decreases. Always warm cold limbs with heating lamps or warm water before testing to avoid false-positive results."
+        },
+        {
+            question: "What is supramaximal stimulation, and why is it necessary in motor NCS?",
+            options: [
+                "Stimulation at the maximum tolerable intensity for the patient",
+                "Stimulation 20-50% above threshold to ensure all axons depolarize",
+                "The highest stimulus intensity the equipment can produce",
+                "Stimulation that produces a painful sensation"
+            ],
+            correct: 1,
+            explanation: "SUPRAMAXIMAL STIMULATION is 20-50% ABOVE the stimulus intensity that produces maximum CMAP amplitude. This ensures ALL motor axons in the nerve are depolarized. Verification: further increasing stimulus intensity produces NO amplitude increase. Submaximal stimulation causes errors: (1) underestimates amplitude (appears falsely reduced), (2) overestimates conduction velocity (only fastest fibers activated). This is a fundamental technical requirement - failure to achieve supramaximal stimulation is a common source of false-positive findings."
+        },
+        {
+            question: "What is the key difference in how CMAP amplitude versus SNAP amplitude is measured?",
+            options: [
+                "CMAP: baseline-to-peak (mV); SNAP: peak-to-peak (μV)",
+                "CMAP: peak-to-peak (mV); SNAP: baseline-to-peak (μV)",
+                "Both are measured peak-to-peak in the same units",
+                "Both are measured baseline-to-peak in the same units"
+            ],
+            correct: 0,
+            explanation: "CMAP amplitude is measured BASELINE-TO-NEGATIVE PEAK in millivolts (mV), while SNAP amplitude is measured PEAK-TO-PEAK in microvolts (μV). This difference exists because: (1) CMAPs are large (several mV), uniphasic/biphasic waveforms from muscle with clear baseline, (2) SNAPs are small (μV range), often triphasic with baseline drift, making peak-to-peak more reliable, (3) SNAPs are 1000x smaller than CMAPs. Understanding proper measurement technique is crucial for accurate amplitude interpretation."
+        },
+        {
+            question: "In conduction velocity calculations, if the wrist latency is 3.2ms, elbow latency is 4.8ms, and distance is 8cm, what is the forearm conduction velocity?",
+            options: [
+                "25 m/s",
+                "40 m/s",
+                "50 m/s",
+                "64 m/s"
+            ],
+            correct: 2,
+            explanation: "CALCULATION: Distance ÷ (Latency difference) = 8cm ÷ (4.8ms - 3.2ms) = 8 ÷ 1.6 = 50 m/s. This is NORMAL for median motor nerve. The formula is: Conduction Velocity (m/s) = Distance (cm) ÷ Time difference (ms) × 10. Key points: (1) use ONSET latencies for motor studies, (2) distance must be measured accurately between stimulation sites, (3) normal motor CV is typically >49-50 m/s in upper extremity. Values <70% of lower limit suggest demyelination."
+        },
+        {
+            question: "What pattern distinguishes demyelinating neuropathy from axonal neuropathy on NCS?",
+            options: [
+                "Demyelinating: reduced amplitude with normal CV; Axonal: slow CV with preserved amplitude",
+                "Demyelinating: slow CV with conduction blocks; Axonal: reduced amplitude with normal/mildly slow CV",
+                "Both show identical NCS patterns",
+                "Demyelinating: absent responses; Axonal: prolonged latencies"
+            ],
+            correct: 1,
+            explanation: "DEMYELINATING pattern: (1) Significantly SLOWED CV (<70% of LLN), (2) Markedly prolonged DL (>130% of ULN), (3) Amplitudes relatively preserved early, (4) Temporal dispersion and conduction blocks, (5) Affects myelin/Schwann cells. AXONAL pattern: (1) Normal or mildly slow CV (>80% of LLN), (2) REDUCED AMPLITUDES (<50% of LLN), (3) Normal duration, (4) Length-dependent distribution, (5) Affects axons directly. This fundamental distinction guides diagnosis, prognosis, and treatment."
+        },
+        {
+            question: "What is the F-wave, and what does it assess?",
+            options: [
+                "A direct motor response that assesses distal nerve segments",
+                "A sensory response that evaluates dorsal root function",
+                "A late response traveling antidromically to anterior horn cells then returning orthodromically, assessing entire motor pathway",
+                "A reflex response through the dorsal root ganglion"
+            ],
+            correct: 2,
+            explanation: "The F-WAVE is a LATE MOTOR RESPONSE that assesses the ENTIRE MOTOR PATHWAY. Pathway: (1) Antidromic stimulation travels UP motor axon to anterior horn cell, (2) ~5% of cells 'backfire', (3) Orthodromic impulse returns DOWN to muscle. Clinical utility: (1) Assesses PROXIMAL conduction (plexus, roots), (2) Useful in radiculopathy and proximal neuropathies, (3) Normal values: median <31ms, tibial <56ms. Prolonged or absent F-waves suggest proximal demyelination or axonal loss."
+        },
+        {
+            question: "What is temporal dispersion, and what does it signify?",
+            options: [
+                "Increased amplitude of the proximal response",
+                "Reduced duration of the proximal response",
+                "Increased duration and reduced amplitude of the proximal response compared to distal",
+                "A complete block of conduction"
+            ],
+            correct: 2,
+            explanation: "TEMPORAL DISPERSION is the desynchronization of nerve impulses as they travel along a nerve. It manifests as INCREASED DURATION and REDUCED AMPLITUDE of the proximal CMAP compared to the distal CMAP. While mild dispersion is physiological, significant dispersion suggests acquired demyelination (uneven slowing of different fibers)."
+        },
+        {
+            question: "How does the H-reflex differ from the F-wave?",
+            options: [
+                "H-reflex is a true reflex arc (sensory afferent, motor efferent); F-wave is purely motor",
+                "H-reflex is purely motor; F-wave is a reflex",
+                "H-reflex is seen in all nerves; F-wave only in tibial nerve",
+                "There is no difference"
+            ],
+            correct: 0,
+            explanation: "The H-REFLEX is a TRUE REFLEX ARC involving Ia sensory afferents synapsing on alpha motor neurons (monosynaptic). It is the electrical equivalent of the ankle jerk reflex. The F-WAVE is NOT a reflex; it is a purely motor antidromic backfiring of the anterior horn cell. H-reflex is typically recorded only from the soleus (S1) in adults."
+        }
+    ])}
 
         </div>
     `;

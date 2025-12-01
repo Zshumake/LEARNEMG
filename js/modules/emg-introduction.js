@@ -523,62 +523,117 @@ export function generateContent(module) {
             </div>
 
             ${generateModuleQuiz([
-                {
-                    question: "What is the PRIMARY goal of every electrodiagnostic (EDX) study?",
-                    options: [
-                        "To diagnose a specific disease",
-                        "To localize the disorder",
-                        "To determine prognosis",
-                        "To measure nerve conduction velocity"
-                    ],
-                    correct: 1,
-                    explanation: "The principal goal of every EDX study is to LOCALIZE the disorder. Once localized, the differential diagnosis is dramatically narrowed. EDX studies help determine whether a disorder is neuropathic, myopathic, at the neuromuscular junction, or central."
-                },
-                {
-                    question: "Why must NCS and needle EMG always be performed together during the same session?",
-                    options: [
-                        "For billing purposes",
-                        "To save time",
-                        "They are complementary and yield the greatest diagnostic information together",
-                        "Insurance requirements mandate it"
-                    ],
-                    correct: 2,
-                    explanation: "NCS and needle EMG are COMPLEMENTARY examinations that must always be performed together during the same setting because they yield the greatest diagnostic information when combined. They evaluate different aspects of neuromuscular function."
-                },
-                {
-                    question: "What is a critical principle when planning an EDX study?",
-                    options: [
-                        "Study every available nerve and muscle systematically",
-                        "Focus only on the symptomatic area",
-                        "Individualize the study based on exam findings and differential diagnosis",
-                        "Always follow a standardized protocol regardless of presentation"
-                    ],
-                    correct: 2,
-                    explanation: "The study must be INDIVIDUALIZED based on the neurologic examination and differential diagnosis, and modified in real time as the study progresses. It is neither desirable nor practical to study all nerves and muscles - a directed exam is most appropriate."
-                },
-                {
-                    question: "In neuropathic localization, what distinguishes a plexopathy from a radiculopathy on EDX?",
-                    options: [
-                        "Plexopathy shows normal paraspinal muscles, radiculopathy shows abnormal paraspinals",
-                        "Radiculopathy affects only sensory fibers",
-                        "Plexopathy never shows sensory changes",
-                        "They cannot be distinguished electrodiagnostically"
-                    ],
-                    correct: 0,
-                    explanation: "A key differentiator is that RADICULOPATHY shows abnormal paraspinal muscles (serratus anterior, rhomboids) because the lesion is proximal to these nerve branches, while PLEXOPATHY shows NORMAL paraspinals because the lesion is distal to where these nerves branch off from the roots."
-                },
-                {
-                    question: "What is a fundamental principle regarding the interpretation of subclinical EDX findings?",
-                    options: [
-                        "All abnormalities found should be reported regardless of symptoms",
-                        "Subclinical findings should drive treatment decisions",
-                        "Abnormal findings without corresponding clinical symptoms should not drive clinical decision-making",
-                        "Age-related changes are always pathological"
-                    ],
-                    correct: 2,
-                    explanation: "Age-related changes, anatomical variants, and subclinical findings should NOT drive clinical decision-making without corresponding symptoms and signs. The clinical examination and patient symptoms must guide interpretation - EDX studies are an extension of the clinical exam, not a replacement for it."
-                }
-            ])}
+        {
+            question: "What is the PRIMARY goal of every electrodiagnostic (EDX) study?",
+            options: [
+                "To diagnose a specific disease",
+                "To localize the disorder",
+                "To determine prognosis",
+                "To measure nerve conduction velocity"
+            ],
+            correct: 1,
+            explanation: "The principal goal of every EDX study is to LOCALIZE the disorder. Once localized, the differential diagnosis is dramatically narrowed. EDX studies help determine whether a disorder is neuropathic, myopathic, at the neuromuscular junction, or central."
+        },
+        {
+            question: "Why must NCS and needle EMG always be performed together during the same session?",
+            options: [
+                "For billing purposes",
+                "To save time",
+                "They are complementary and yield the greatest diagnostic information together",
+                "Insurance requirements mandate it"
+            ],
+            correct: 2,
+            explanation: "NCS and needle EMG are COMPLEMENTARY examinations that must always be performed together during the same setting because they yield the greatest diagnostic information when combined. They evaluate different aspects of neuromuscular function."
+        },
+        {
+            question: "What is a critical principle when planning an EDX study?",
+            options: [
+                "Study every available nerve and muscle systematically",
+                "Focus only on the symptomatic area",
+                "Individualize the study based on exam findings and differential diagnosis",
+                "Always follow a standardized protocol regardless of presentation"
+            ],
+            correct: 2,
+            explanation: "The study must be INDIVIDUALIZED based on the neurologic examination and differential diagnosis, and modified in real time as the study progresses. It is neither desirable nor practical to study all nerves and muscles - a directed exam is most appropriate."
+        },
+        {
+            question: "In neuropathic localization, what distinguishes a plexopathy from a radiculopathy on EDX?",
+            options: [
+                "Plexopathy shows normal paraspinal muscles, radiculopathy shows abnormal paraspinals",
+                "Radiculopathy affects only sensory fibers",
+                "Plexopathy never shows sensory changes",
+                "They cannot be distinguished electrodiagnostically"
+            ],
+            correct: 0,
+            explanation: "A key differentiator is that RADICULOPATHY shows abnormal paraspinal muscles (serratus anterior, rhomboids) because the lesion is proximal to these nerve branches, while PLEXOPATHY shows NORMAL paraspinals because the lesion is distal to where these nerves branch off from the roots."
+        },
+        {
+            question: "What is a fundamental principle regarding the interpretation of subclinical EDX findings?",
+            options: [
+                "All abnormalities found should be reported regardless of symptoms",
+                "Subclinical findings should drive treatment decisions",
+                "Abnormal findings without corresponding clinical symptoms should not drive clinical decision-making",
+                "Age-related changes are always pathological"
+            ],
+            correct: 2,
+            explanation: "Age-related changes, anatomical variants, and subclinical findings should NOT drive clinical decision-making without corresponding symptoms and signs. The clinical examination and patient symptoms must guide interpretation - EDX studies are an extension of the clinical exam, not a replacement for it."
+        },
+        {
+            question: "What does prolonged insertional activity typically indicate?",
+            options: [
+                "Normal muscle tissue",
+                "Muscle membrane instability or denervation",
+                "Myopathy only",
+                "Technical artifact"
+            ],
+            correct: 1,
+            explanation: "Prolonged insertional activity (>300-500ms) indicates MUSCLE MEMBRANE INSTABILITY. This is often an early sign of denervation, appearing before fibrillation potentials, but can also be seen in myotonic disorders and some myopathies."
+        },
+        {
+            question: "Which spontaneous activity is characterized by a regular firing pattern and a 'rain on a tin roof' sound?",
+            options: [
+                "Fasciculations",
+                "Fibrillation potentials",
+                "Complex Repetitive Discharges (CRDs)",
+                "Myokymia"
+            ],
+            correct: 1,
+            explanation: "FIBRILLATION POTENTIALS (and positive sharp waves) fire at a REGULAR rate and produce a characteristic 'rain on a tin roof' sound. In contrast, fasciculations fire irregularly ('popcorn' sound)."
+        },
+        {
+            question: "What is the effect of cold temperature (limb cooling) on Nerve Conduction Studies?",
+            options: [
+                "Decreased amplitude and shortened latency",
+                "Increased amplitude and prolonged latency (slowing)",
+                "No significant effect",
+                "Decreased amplitude and prolonged latency"
+            ],
+            correct: 1,
+            explanation: "Cold temperature causes SLOWING of nerve conduction (prolonged latency, slowed velocity) and INCREASED AMPLITUDE (due to synchronized firing/less phase cancellation). This is a common technical artifact that must be controlled for by warming the limb to >32°C."
+        },
+        {
+            question: "Why is supramaximal stimulation important in motor NCS?",
+            options: [
+                "To cause pain to the patient",
+                "To ensure all motor axons are depolarized for accurate amplitude measurement",
+                "To speed up the study",
+                "To avoid stimulating sensory fibers"
+            ],
+            correct: 1,
+            explanation: "Supramaximal stimulation (20-30% above the level where amplitude plateaus) ensures that ALL available motor axons are depolarized. Submaximal stimulation leads to underestimation of CMAP amplitude and can falsely suggest conduction block or low amplitude."
+        },
+        {
+            question: "What does a reduced CMAP amplitude with normal conduction velocity typically suggest?",
+            options: [
+                "Demyelinating neuropathy",
+                "Axonal loss neuropathy",
+                "Conduction block",
+                "Temporal dispersion"
+            ],
+            correct: 1,
+            explanation: "Reduced CMAP amplitude with preserved (or only mildly slowed) conduction velocity is the hallmark of AXONAL LOSS. Demyelinating neuropathies are characterized by significant slowing of conduction velocity and prolonged distal latencies."
+        }
+    ])}
 
         </div>
     `;

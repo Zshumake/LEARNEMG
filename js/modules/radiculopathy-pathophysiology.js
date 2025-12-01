@@ -284,95 +284,117 @@ export function generateContent(module) {
 
             <!-- Radiculopathy Pathophysiology Quiz -->
             ${generateModuleQuiz([
-                {
-                    question: "Why are sensory nerve conduction studies (SNAPs) always normal in radiculopathy?",
-                    options: [
-                        "The sensory fibers are not affected in radiculopathy",
-                        "The lesion is proximal to the dorsal root ganglion",
-                        "Sensory symptoms are purely subjective and don't affect NCS",
-                        "The compression only affects motor roots"
-                    ],
-                    correct: 1,
-                    explanation: "In radiculopathy, sensory NCS remain ALWAYS NORMAL because the lesion occurs PROXIMAL to the dorsal root ganglion (DRG). Since the DRG contains the sensory nerve cell bodies, and NCS recordings measure distal to the DRG, the recorded potentials appear normal even though the patient may have sensory symptoms. This is a crucial distinguishing feature from peripheral nerve lesions where SNAPs are reduced."
-                },
-                {
-                    question: "A patient has neuropathic changes in triceps (radial nerve), flexor carpi radialis (median nerve), and C7 paraspinal muscles. What is the diagnosis?",
-                    options: [
-                        "Radial neuropathy",
-                        "Median neuropathy",
-                        "C7 radiculopathy",
-                        "Brachial plexopathy"
-                    ],
-                    correct: 2,
-                    explanation: "This is C7 RADICULOPATHY. The key features are: (1) MYOTOMAL PATTERN - neuropathic changes in muscles innervated by the same nerve root (C7) but different peripheral nerves (triceps via radial, FCR via median), (2) PARASPINAL INVOLVEMENT - C7 paraspinal abnormalities confirm the lesion is at the root level, (3) Normal sensory NCS (implied). This myotomal distribution pattern distinguishes radiculopathy from single peripheral nerve lesions."
-                },
-                {
-                    question: "What is the most common cause of radiculopathy in a 35-year-old patient?",
-                    options: [
-                        "Spinal stenosis",
-                        "Degenerative spondylosis",
-                        "Herniated nucleus pulposus (disc herniation)",
-                        "Malignancy"
-                    ],
-                    correct: 2,
-                    explanation: "In patients YOUNGER than 50 years, HERNIATED NUCLEUS PULPOSUS (disc herniation) is the most common cause of radiculopathy. The nucleus pulposus herniates through the annulus fibrosus and compresses the nerve root. In contrast, patients OLDER than 50 years more commonly have SPINAL STENOSIS due to degenerative changes. This age-related pattern is clinically important for differential diagnosis."
-                },
-                {
-                    question: "How long after acute radiculopathy onset do abnormal spontaneous potentials (fibrillations) typically appear in limb muscles?",
-                    options: [
-                        "Immediately (Day 0)",
-                        "1 week after onset",
-                        "2-3 weeks after onset",
-                        "5-6 weeks after onset"
-                    ],
-                    correct: 2,
-                    explanation: "Abnormal spontaneous activity (fibrillations and positive sharp waves) appears in LIMB muscles approximately 2-3 WEEKS after acute radiculopathy onset. Timeline: Day 0 = decreased recruitment and abnormal F-waves (immediate), 1 week = paraspinal abnormalities appear FIRST, 2-3 weeks = limb muscle abnormalities begin, 3+ weeks = full pattern in both paraspinals and limbs. This timeline is crucial for timing of EDX studies."
-                },
-                {
-                    question: "Which reflex is associated with L4 radiculopathy?",
-                    options: [
-                        "Achilles reflex",
-                        "Patellar reflex",
-                        "Biceps reflex",
-                        "Medial hamstring reflex"
-                    ],
-                    correct: 1,
-                    explanation: "L4 radiculopathy affects the PATELLAR (knee jerk) reflex. Key L4 findings include: patellar reflex loss, knee extension weakness, ankle dorsiflexion weakness, and sensory changes in anterolateral thigh and anteromedial calf. The reflex patterns are: L4 = patellar, L5 = medial hamstring, S1 = Achilles. C8 has NO associated reflex. Understanding reflex-root relationships aids clinical localization."
-                },
-                {
-                    question: "A 60-year-old patient presents with progressive back pain and bilateral leg weakness. What is the most likely etiology?",
-                    options: [
-                        "Disc herniation",
-                        "Spinal stenosis",
-                        "Inflammatory radiculitis",
-                        "Athletic injury"
-                    ],
-                    correct: 1,
-                    explanation: "In patients OLDER than 50 years, SPINAL STENOSIS is the most common cause of radiculopathy. Spinal stenosis results from degenerative spondylosis causing foraminal narrowing and progressive nerve root compression. Bilateral involvement with progressive symptoms is typical. In contrast, younger patients (<50 years) typically have acute disc herniation, often with unilateral presentation."
-                },
-                {
-                    question: "What percentage of radiculopathy cases may have paraspinal abnormalities as the ONLY EMG finding?",
-                    options: [
-                        "0-5% (very rare)",
-                        "10-30% (not uncommon)",
-                        "50-70% (majority)",
-                        "90-100% (almost always)"
-                    ],
-                    correct: 1,
-                    explanation: "Paraspinal abnormalities can be the ONLY EMG finding in 10-30% of radiculopathy cases. This makes paraspinal examination CRUCIAL and emphasizes why it must never be skipped. Paraspinal muscles are innervated by the posterior rami directly from the nerve root, so they are often the earliest and sometimes the only muscles showing denervation. Missing paraspinal examination can result in false-negative studies."
-                },
-                {
-                    question: "What does the 'HI MADAM' mnemonic help remember in radiculopathy evaluation?",
-                    options: [
-                        "Timeline of EMG changes",
-                        "Myotomal muscle patterns",
-                        "Non-mechanical causes of radiculopathy",
-                        "Nerve root reflex associations"
-                    ],
-                    correct: 2,
-                    explanation: "'HI MADAM' helps recall NON-MECHANICAL causes of radiculopathy: H=Herpes zoster, I=Inflammatory (TB, Lyme, HIV, sarcoid), M=Metastasis, A=Arachnoiditis, D=Diabetes mellitus, A=Abscess, M=Mass (neurofibroma, meningioma). While most radiculopathies are mechanical (disc herniation, stenosis), this mnemonic reminds clinicians to consider infectious, inflammatory, and neoplastic etiologies, especially when presentation is atypical or progressive despite treatment."
-                }
-            ])}
+        {
+            question: "Why are sensory nerve conduction studies (SNAPs) always normal in radiculopathy?",
+            options: [
+                "The sensory fibers are not affected in radiculopathy",
+                "The lesion is proximal to the dorsal root ganglion",
+                "Sensory symptoms are purely subjective and don't affect NCS",
+                "The compression only affects motor roots"
+            ],
+            correct: 1,
+            explanation: "In radiculopathy, sensory NCS remain ALWAYS NORMAL because the lesion occurs PROXIMAL to the dorsal root ganglion (DRG). Since the DRG contains the sensory nerve cell bodies, and NCS recordings measure distal to the DRG, the recorded potentials appear normal even though the patient may have sensory symptoms. This is a crucial distinguishing feature from peripheral nerve lesions where SNAPs are reduced."
+        },
+        {
+            question: "A patient has neuropathic changes in triceps (radial nerve), flexor carpi radialis (median nerve), and C7 paraspinal muscles. What is the diagnosis?",
+            options: [
+                "Radial neuropathy",
+                "Median neuropathy",
+                "C7 radiculopathy",
+                "Brachial plexopathy"
+            ],
+            correct: 2,
+            explanation: "This is C7 RADICULOPATHY. The key features are: (1) MYOTOMAL PATTERN - neuropathic changes in muscles innervated by the same nerve root (C7) but different peripheral nerves (triceps via radial, FCR via median), (2) PARASPINAL INVOLVEMENT - C7 paraspinal abnormalities confirm the lesion is at the root level, (3) Normal sensory NCS (implied). This myotomal distribution pattern distinguishes radiculopathy from single peripheral nerve lesions."
+        },
+        {
+            question: "What is the most common cause of radiculopathy in a 35-year-old patient?",
+            options: [
+                "Spinal stenosis",
+                "Degenerative spondylosis",
+                "Herniated nucleus pulposus (disc herniation)",
+                "Malignancy"
+            ],
+            correct: 2,
+            explanation: "In patients YOUNGER than 50 years, HERNIATED NUCLEUS PULPOSUS (disc herniation) is the most common cause of radiculopathy. The nucleus pulposus herniates through the annulus fibrosus and compresses the nerve root. In contrast, patients OLDER than 50 years more commonly have SPINAL STENOSIS due to degenerative changes. This age-related pattern is clinically important for differential diagnosis."
+        },
+        {
+            question: "How long after acute radiculopathy onset do abnormal spontaneous potentials (fibrillations) typically appear in limb muscles?",
+            options: [
+                "Immediately (Day 0)",
+                "1 week after onset",
+                "2-3 weeks after onset",
+                "5-6 weeks after onset"
+            ],
+            correct: 2,
+            explanation: "Abnormal spontaneous activity (fibrillations and positive sharp waves) appears in LIMB muscles approximately 2-3 WEEKS after acute radiculopathy onset. Timeline: Day 0 = decreased recruitment and abnormal F-waves (immediate), 1 week = paraspinal abnormalities appear FIRST, 2-3 weeks = limb muscle abnormalities begin, 3+ weeks = full pattern in both paraspinals and limbs. This timeline is crucial for timing of EDX studies."
+        },
+        {
+            question: "Which reflex is associated with L4 radiculopathy?",
+            options: [
+                "Achilles reflex",
+                "Patellar reflex",
+                "Biceps reflex",
+                "Medial hamstring reflex"
+            ],
+            correct: 1,
+            explanation: "L4 radiculopathy affects the PATELLAR (knee jerk) reflex. Key L4 findings include: patellar reflex loss, knee extension weakness, ankle dorsiflexion weakness, and sensory changes in anterolateral thigh and anteromedial calf. The reflex patterns are: L4 = patellar, L5 = medial hamstring, S1 = Achilles. C8 has NO associated reflex. Understanding reflex-root relationships aids clinical localization."
+        },
+        {
+            question: "A 60-year-old patient presents with progressive back pain and bilateral leg weakness. What is the most likely etiology?",
+            options: [
+                "Disc herniation",
+                "Spinal stenosis",
+                "Inflammatory radiculitis",
+                "Athletic injury"
+            ],
+            correct: 1,
+            explanation: "In patients OLDER than 50 years, SPINAL STENOSIS is the most common cause of radiculopathy. Spinal stenosis results from degenerative spondylosis causing foraminal narrowing and progressive nerve root compression. Bilateral involvement with progressive symptoms is typical. In contrast, younger patients (<50 years) typically have acute disc herniation, often with unilateral presentation."
+        },
+        {
+            question: "What percentage of radiculopathy cases may have paraspinal abnormalities as the ONLY EMG finding?",
+            options: [
+                "0-5% (very rare)",
+                "10-30% (not uncommon)",
+                "50-70% (majority)",
+                "90-100% (almost always)"
+            ],
+            correct: 1,
+            explanation: "Paraspinal abnormalities can be the ONLY EMG finding in 10-30% of radiculopathy cases. This makes paraspinal examination CRUCIAL and emphasizes why it must never be skipped. Paraspinal muscles are innervated by the posterior rami directly from the nerve root, so they are often the earliest and sometimes the only muscles showing denervation. Missing paraspinal examination can result in false-negative studies."
+        },
+        {
+            question: "What does the 'HI MADAM' mnemonic help remember in radiculopathy evaluation?",
+            options: [
+                "Timeline of EMG changes",
+                "Myotomal muscle patterns",
+                "Non-mechanical causes of radiculopathy",
+                "Nerve root reflex associations"
+            ],
+            correct: 2,
+            explanation: "'HI MADAM' helps recall NON-MECHANICAL causes of radiculopathy: H=Herpes zoster, I=Inflammatory (TB, Lyme, HIV, sarcoid), M=Metastasis, A=Arachnoiditis, D=Diabetes mellitus, A=Abscess, M=Mass (neurofibroma, meningioma). While most radiculopathies are mechanical (disc herniation, stenosis), this mnemonic reminds clinicians to consider infectious, inflammatory, and neoplastic etiologies, especially when presentation is atypical or progressive despite treatment."
+        },
+        {
+            question: "Which nerve root is most commonly affected in cervical radiculopathy?",
+            options: [
+                "C5",
+                "C6",
+                "C7",
+                "C8"
+            ],
+            correct: 2,
+            explanation: "C7 is the most commonly affected nerve root in cervical radiculopathy (approx 70% of cases). It typically presents with weakness in elbow extension (triceps), wrist flexion, and finger extension, along with sensory loss in the middle finger. C6 is the second most common."
+        },
+        {
+            question: "In an S1 radiculopathy, which finding is most expected?",
+            options: [
+                "Weakness of ankle dorsiflexion",
+                "Loss of patellar reflex",
+                "Loss of Achilles reflex",
+                "Sensory loss on the medial calf"
+            ],
+            correct: 2,
+            explanation: "S1 radiculopathy classically presents with LOSS OF THE ACHILLES REFLEX. Motor weakness typically affects plantar flexion (gastrocnemius/soleus) and eversion. Sensory loss is in the posterolateral calf and lateral foot (little toe). Ankle dorsiflexion weakness is L5; patellar reflex loss is L4."
+        }
+    ])}
         </div>
     `;
 }

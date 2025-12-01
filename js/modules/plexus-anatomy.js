@@ -406,62 +406,117 @@ export function generateContent(module) {
         </script>
 
         ${generateModuleQuiz([
-            {
-                question: "Through which anatomical structure does the median nerve pass at the wrist?",
-                options: [
-                    "Carpal tunnel",
-                    "Guyon's canal",
-                    "Cubital tunnel",
-                    "Quadrilateral space"
-                ],
-                correct: 0,
-                explanation: "The median nerve passes through the CARPAL TUNNEL at the wrist. After traveling down the arm through the bicipital groove and passing between the heads of pronator teres in the forearm, it enters this narrow passage before dividing into branches for the thenar muscles (LOAF)."
-            },
-            {
-                question: "Where does the ulnar nerve pass at the elbow, traveling under Osborne's band behind the medial epicondyle?",
-                options: [
-                    "Through the carpal tunnel",
-                    "Through the cubital tunnel (most common ulnar entrapment site)",
-                    "Through the spiral groove",
-                    "Between the heads of pronator teres"
-                ],
-                correct: 1,
-                explanation: "The ulnar nerve passes through the CUBITAL TUNNEL under Osborne's band (the roof of the tunnel) behind the medial epicondyle at the elbow - the famous 'funny bone' spot. This is the most common site of ulnar nerve entrapment, with compression occurring at multiple potential sites including the arcade of Struthers, medial intermuscular septum, cubital tunnel proper, and the aponeurosis between FCU heads."
-            },
-            {
-                question: "What is the most vulnerable anatomical location for radial nerve injury, particularly with humeral fractures?",
-                options: [
-                    "Guyon's canal",
-                    "Carpal tunnel",
-                    "Spiral groove of the humerus",
-                    "Cubital tunnel"
-                ],
-                correct: 2,
-                explanation: "The radial nerve travels in the SPIRAL GROOVE of the humerus like a roller coaster. This is the most vulnerable location - a humeral fracture at this site can cause the dreaded 'wrist drop' due to loss of wrist and finger extension."
-            },
-            {
-                question: "After passing through Guyon's canal at the wrist, how does the ulnar nerve divide in the hand?",
-                options: [
-                    "Into superficial and deep branches",
-                    "Into medial and lateral branches",
-                    "Into anterior and posterior branches",
-                    "It does not divide"
-                ],
-                correct: 0,
-                explanation: "After sliding through Guyon's canal at the wrist like a secret agent, the ulnar nerve splits into SUPERFICIAL and DEEP branches. The deep branch heads to the interossei (fine motor specialists), while the superficial branch handles sensation for the pinky side."
-            },
-            {
-                question: "The axillary nerve wraps around which anatomical structure and provides sensation to which area?",
-                options: [
-                    "Surgical neck of humerus; sensation over deltoid (regimental patch)",
-                    "Spiral groove; dorsal hand",
-                    "Medial epicondyle; pinky finger",
-                    "Carpal tunnel; thenar eminence"
-                ],
-                correct: 0,
-                explanation: "The axillary nerve wraps around the SURGICAL NECK OF THE HUMERUS after passing through the quadrilateral space. It innervates the deltoid muscle and provides sensation to that small patch of skin over the deltoid - the 'REGIMENTAL PATCH.'"
-            }
-        ])}
+        {
+            question: "Through which anatomical structure does the median nerve pass at the wrist?",
+            options: [
+                "Carpal tunnel",
+                "Guyon's canal",
+                "Cubital tunnel",
+                "Quadrilateral space"
+            ],
+            correct: 0,
+            explanation: "The median nerve passes through the CARPAL TUNNEL at the wrist. After traveling down the arm through the bicipital groove and passing between the heads of pronator teres in the forearm, it enters this narrow passage before dividing into branches for the thenar muscles (LOAF)."
+        },
+        {
+            question: "Where does the ulnar nerve pass at the elbow, traveling under Osborne's band behind the medial epicondyle?",
+            options: [
+                "Through the carpal tunnel",
+                "Through the cubital tunnel (most common ulnar entrapment site)",
+                "Through the spiral groove",
+                "Between the heads of pronator teres"
+            ],
+            correct: 1,
+            explanation: "The ulnar nerve passes through the CUBITAL TUNNEL under Osborne's band (the roof of the tunnel) behind the medial epicondyle at the elbow - the famous 'funny bone' spot. This is the most common site of ulnar nerve entrapment, with compression occurring at multiple potential sites including the arcade of Struthers, medial intermuscular septum, cubital tunnel proper, and the aponeurosis between FCU heads."
+        },
+        {
+            question: "What is the most vulnerable anatomical location for radial nerve injury, particularly with humeral fractures?",
+            options: [
+                "Guyon's canal",
+                "Carpal tunnel",
+                "Spiral groove of the humerus",
+                "Cubital tunnel"
+            ],
+            correct: 2,
+            explanation: "The radial nerve travels in the SPIRAL GROOVE of the humerus like a roller coaster. This is the most vulnerable location - a humeral fracture at this site can cause the dreaded 'wrist drop' due to loss of wrist and finger extension."
+        },
+        {
+            question: "After passing through Guyon's canal at the wrist, how does the ulnar nerve divide in the hand?",
+            options: [
+                "Into superficial and deep branches",
+                "Into medial and lateral branches",
+                "Into anterior and posterior branches",
+                "It does not divide"
+            ],
+            correct: 0,
+            explanation: "After sliding through Guyon's canal at the wrist like a secret agent, the ulnar nerve splits into SUPERFICIAL and DEEP branches. The deep branch heads to the interossei (fine motor specialists), while the superficial branch handles sensation for the pinky side."
+        },
+        {
+            question: "The axillary nerve wraps around which anatomical structure and provides sensation to which area?",
+            options: [
+                "Surgical neck of humerus; sensation over deltoid (regimental patch)",
+                "Spiral groove; dorsal hand",
+                "Medial epicondyle; pinky finger",
+                "Carpal tunnel; thenar eminence"
+            ],
+            correct: 0,
+            explanation: "The axillary nerve wraps around the SURGICAL NECK OF THE HUMERUS after passing through the quadrilateral space. It innervates the deltoid muscle and provides sensation to that small patch of skin over the deltoid - the 'REGIMENTAL PATCH.'"
+        },
+        {
+            question: "Which muscle is pierced by the Musculocutaneous nerve?",
+            options: [
+                "Biceps Brachii",
+                "Brachialis",
+                "Coracobrachialis",
+                "Triceps"
+            ],
+            correct: 2,
+            explanation: "The Musculocutaneous nerve pierces the CORACOBRACHIALIS muscle shortly after leaving the lateral cord. It then travels between the biceps and brachialis."
+        },
+        {
+            question: "The Common Peroneal nerve is most vulnerable to compression at which site?",
+            options: [
+                "Popliteal Fossa",
+                "Fibular Head",
+                "Tarsal Tunnel",
+                "Inguinal Ligament"
+            ],
+            correct: 1,
+            explanation: "The Common Peroneal nerve wraps around the FIBULAR HEAD (neck of the fibula), making it highly susceptible to compression (e.g., from crossing legs) or trauma."
+        },
+        {
+            question: "Which nerve passes through the Tarsal Tunnel?",
+            options: [
+                "Deep Peroneal Nerve",
+                "Superficial Peroneal Nerve",
+                "Tibial Nerve",
+                "Sural Nerve"
+            ],
+            correct: 2,
+            explanation: "The TIBIAL NERVE passes through the TARSAL TUNNEL at the medial ankle, along with the posterior tibial artery and tendons (Tom, Dick, and Harry)."
+        },
+        {
+            question: "The Femoral nerve travels under which ligament to enter the thigh?",
+            options: [
+                "Inguinal Ligament",
+                "Transverse Carpal Ligament",
+                "Laciniate Ligament",
+                "Arcuate Ligament"
+            ],
+            correct: 0,
+            explanation: "The Femoral nerve travels under the INGUINAL LIGAMENT to enter the femoral triangle in the anterior thigh."
+        },
+        {
+            question: "At what anatomical level does the Sciatic nerve typically bifurcate into the Tibial and Common Peroneal nerves?",
+            options: [
+                "Gluteal region",
+                "Mid-thigh",
+                "Popliteal Fossa",
+                "Ankle"
+            ],
+            correct: 2,
+            explanation: "The Sciatic nerve typically bifurcates at the apex of the POPLITEAL FOSSA, although high bifurcations can occur."
+        }
+    ])}
     `;
 }
 

@@ -393,94 +393,118 @@ export function generateContent(module) {
                 </div>
             </div>
 
-            <!-- Interactive Quiz Section -->
-            <div class="quiz-section" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                <h3 style="color: #6366f1; margin-bottom: 20px;">🧠 Advanced Pattern Recognition Quiz</h3>
-
-                <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 2px solid rgba(99, 102, 241, 0.2); margin-bottom: 20px;">
-                    <p style="font-size: 1.1em; margin-bottom: 15px; color: #1f2937;">
-                        You observe a regular "machine-like" sound with perfectly repetitive, multi-serrated discharges at 50Hz.
-                        Individual spikes are discernible and time-linked. This pattern most likely represents:
-                    </p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, true)">Complex repetitive discharges</button>
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, false)">Myokymic discharges</button>
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, false)">Polyphasic motor unit potentials</button>
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, false)">Neuromyotonic discharges</button>
-                    </div>
-                </div>
-
-                <div style="background: #f0f9ff; padding: 20px; border-radius: 12px; border: 2px solid rgba(59, 130, 246, 0.2);">
-                    <p style="font-size: 1.1em; margin-bottom: 15px; color: #1f2937;">
-                        A patient with suspected motor neuron disease shows abundant spontaneous activity.
-                        Which combination of findings would be MOST supportive of this diagnosis?
-                    </p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, true)">Fibrillations + large polyphasic MUAPs + fasciculations + reduced recruitment</button>
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, false)">Myotonic discharges + small MUAPs + early recruitment</button>
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, false)">Complex repetitive discharges + normal MUAPs</button>
-                        <button class="quiz-option" onclick="checkPatternAnswer(this, false)">Endplate spikes + normal recruitment</button>
-                    </div>
-                </div>
-            </div>
-
             ${generateModuleQuiz([
-                {
-                    question: "In systematic EMG pattern analysis, what are the THREE key parameters that must be evaluated?",
-                    options: [
-                        "Morphology, Stability, and Firing Characteristics",
-                        "Amplitude, Duration, and Frequency",
-                        "Sound, Shape, and Speed",
-                        "Recruitment, Rhythm, and Rate"
-                    ],
-                    correct: 0,
-                    explanation: "The three key parameters for systematic EMG pattern analysis are: (1) MORPHOLOGY (duration, amplitude, phases, initial deflection, shape), (2) STABILITY (consistent vs. waxing/waning), and (3) FIRING CHARACTERISTICS (rate, pattern, rhythm, recruitment, voluntary control)."
-                },
-                {
-                    question: "What is the characteristic sound of fibrillation potentials on EMG?",
-                    options: [
-                        "Machine-like regular pattern",
-                        "Rain on tin roof",
-                        "Marching soldiers",
-                        "Seashell sound"
-                    ],
-                    correct: 1,
-                    explanation: "Fibrillations produce a characteristic 'rain on tin roof' sound. These are brief spikes (1-5ms duration) firing regularly at 0.5-10Hz, indicating active denervation from radiculopathy, neuropathy, or motor neuron disease. They appear 1-3 weeks post-denervation."
-                },
-                {
-                    question: "Complex repetitive discharges (CRDs) are characterized by what distinctive feature?",
-                    options: [
-                        "Grouped bursts with inter-burst intervals",
-                        "Perfectly regular machine-like discharges at 5-100Hz",
-                        "Waxing and waning amplitude",
-                        "Brief duration less than 1ms"
-                    ],
-                    correct: 1,
-                    explanation: "CRDs are characterized by perfectly regular 'machine-like' discharges at 5-100Hz. They result from ephaptic transmission between time-linked denervated muscle fibers and are seen in chronic neuropathic/myopathic conditions."
-                },
-                {
-                    question: "What is the clinical significance of myokymic discharges?",
-                    options: [
-                        "Always indicate motor neuron disease",
-                        "Grouped repetitive discharges of the same MUAP often associated with radiation plexopathy, MS, or Guillain-Barré",
-                        "Normal finding in healthy muscle",
-                        "Only seen in myopathies"
-                    ],
-                    correct: 1,
-                    explanation: "Myokymic discharges are grouped repetitive discharges of the same motor unit with a characteristic 'marching soldiers' sound. They fire at 1-5Hz (interburst) and 5-60Hz (intraburst), and are commonly associated with radiation plexopathy, MS (facial), and Guillain-Barré syndrome."
-                },
-                {
-                    question: "How can you distinguish endplate spikes (normal) from pathologic fibrillations?",
-                    options: [
-                        "Endplate spikes have initial negative deflection; fibrillations have initial positive deflection",
-                        "Endplate spikes are larger in amplitude",
-                        "Endplate spikes fire faster",
-                        "There is no difference"
-                    ],
-                    correct: 0,
-                    explanation: "The KEY DIFFERENTIATOR is the initial deflection: Endplate spikes have an INITIAL NEGATIVE deflection (needle-induced terminal nerve twig irritation at NMJ), while pathologic fibrillations have an INITIAL POSITIVE deflection. Both are brief and regular, making this distinction critical."
-                }
-            ])}
+        {
+            question: "In systematic EMG pattern analysis, what are the THREE key parameters that must be evaluated?",
+            options: [
+                "Morphology, Stability, and Firing Characteristics",
+                "Amplitude, Duration, and Frequency",
+                "Sound, Shape, and Speed",
+                "Recruitment, Rhythm, and Rate"
+            ],
+            correct: 0,
+            explanation: "The three key parameters for systematic EMG pattern analysis are: (1) MORPHOLOGY (duration, amplitude, phases, initial deflection, shape), (2) STABILITY (consistent vs. waxing/waning), and (3) FIRING CHARACTERISTICS (rate, pattern, rhythm, recruitment, voluntary control)."
+        },
+        {
+            question: "You observe a regular 'machine-like' sound with perfectly repetitive, multi-serrated discharges at 50Hz. Individual spikes are discernible and time-linked. This pattern most likely represents:",
+            options: [
+                "Complex repetitive discharges",
+                "Myokymic discharges",
+                "Polyphasic motor unit potentials",
+                "Neuromyotonic discharges"
+            ],
+            correct: 0,
+            explanation: "Complex repetitive discharges (CRDs) are characterized by a regular 'machine-like' sound and perfectly repetitive discharges (usually 5-100Hz). They are caused by ephaptic transmission between adjacent muscle fibers."
+        },
+        {
+            question: "A patient with suspected motor neuron disease shows abundant spontaneous activity. Which combination of findings would be MOST supportive of this diagnosis?",
+            options: [
+                "Fibrillations + large polyphasic MUAPs + fasciculations + reduced recruitment",
+                "Myotonic discharges + small MUAPs + early recruitment",
+                "Complex repetitive discharges + normal MUAPs",
+                "Endplate spikes + normal recruitment"
+            ],
+            correct: 0,
+            explanation: "Motor Neuron Disease (ALS) typically presents with widespread active denervation (fibrillations/PSWs), chronic reinnervation changes (large, polyphasic MUAPs), fasciculations (motor neuron irritability), and reduced recruitment due to loss of motor units."
+        },
+        {
+            question: "What is the characteristic sound of fibrillation potentials on EMG?",
+            options: [
+                "Machine-like regular pattern",
+                "Rain on tin roof",
+                "Marching soldiers",
+                "Seashell sound"
+            ],
+            correct: 1,
+            explanation: "Fibrillations produce a characteristic 'rain on tin roof' sound. These are brief spikes (1-5ms duration) firing regularly at 0.5-10Hz, indicating active denervation."
+        },
+        {
+            question: "What is the clinical significance of myokymic discharges?",
+            options: [
+                "Always indicate motor neuron disease",
+                "Grouped repetitive discharges of the same MUAP often associated with radiation plexopathy, MS, or Guillain-Barré",
+                "Normal finding in healthy muscle",
+                "Only seen in myopathies"
+            ],
+            correct: 1,
+            explanation: "Myokymic discharges are grouped repetitive discharges of the same motor unit with a characteristic 'marching soldiers' sound. They are commonly associated with radiation plexopathy, MS (facial), and Guillain-Barré syndrome."
+        },
+        {
+            question: "How can you distinguish endplate spikes (normal) from pathologic fibrillations?",
+            options: [
+                "Endplate spikes have initial negative deflection; fibrillations have initial positive deflection",
+                "Endplate spikes are larger in amplitude",
+                "Endplate spikes fire faster",
+                "There is no difference"
+            ],
+            correct: 0,
+            explanation: "The KEY DIFFERENTIATOR is the initial deflection: Endplate spikes have an INITIAL NEGATIVE deflection (needle-induced terminal nerve twig irritation), while pathologic fibrillations have an INITIAL POSITIVE deflection."
+        },
+        {
+            question: "Which pattern is characterized by a 'dive bomber' sound and waxing/waning amplitude and frequency?",
+            options: [
+                "Myotonic discharges",
+                "Complex repetitive discharges",
+                "Neuromyotonic discharges",
+                "Fasciculations"
+            ],
+            correct: 0,
+            explanation: "Myotonic discharges are characterized by a distinctive 'dive bomber' or 'revving engine' sound due to the waxing and waning of both amplitude and frequency. This is seen in myotonic dystrophy and myotonia congenita."
+        },
+        {
+            question: "What constitutes a 'polyphasic' motor unit potential?",
+            options: [
+                "Greater than 4 phases (baseline crossings + 1)",
+                "Greater than 2 phases",
+                "Any potential with a negative onset",
+                "A potential with high amplitude"
+            ],
+            correct: 0,
+            explanation: "A motor unit potential is considered polyphasic if it has more than 4 phases. While up to 10% of MUAPs can be polyphasic in normal muscle, an increase suggests desynchronization of muscle fiber firing, seen in both myopathy and reinnervation."
+        },
+        {
+            question: "In a patient with severe myopathy, what recruitment pattern would you expect?",
+            options: [
+                "Early recruitment (full interference pattern at low force)",
+                "Reduced recruitment (fast firing rate of few units)",
+                "Normal recruitment ratio (5:1)",
+                "Poor activation"
+            ],
+            correct: 0,
+            explanation: "Myopathy leads to 'early recruitment'. Because each motor unit produces less force (due to loss of muscle fibers), the CNS recruits many more units than normal for a given level of force, leading to a full interference pattern with minimal effort."
+        },
+        {
+            question: "Neuromyotonic discharges are characterized by:",
+            options: [
+                "Very high frequency (150-300Hz) decrementing bursts with a 'pinging' sound",
+                "Slow, regular firing at 1-2Hz",
+                "Waxing and waning amplitude only",
+                "Irregular firing with 'popcorn' sound"
+            ],
+            correct: 0,
+            explanation: "Neuromyotonic discharges are high-frequency (150-300Hz) bursts that typically decrement in amplitude, producing a characteristic high-pitched 'pinging' sound. They are seen in syndromes of peripheral nerve hyperexcitability (Isaac's syndrome)."
+        }
+    ])}
 
         </div>
     `;
