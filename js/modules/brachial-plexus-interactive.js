@@ -1,5 +1,5 @@
 import { registerModulePodcasts, generateErnestButton } from '../podcast-player.js';
-import { generateContent as generateLumbosacral } from './lumbosacral-plexus-interactive.js';
+import { generateContent as generateLumbosacral } from './lumbosacral-plexus.js';
 
 // Anatomical Data Structure - Linear Flow Layout Design
 const plexusData = {
@@ -1000,6 +1000,42 @@ export function generateContent(module) {
     };
 
     setTimeout(() => BrachialPlexus.init(), 100);
+
+    // Define switchPlexusModule globally
+    window.switchPlexusModule = function (moduleName) {
+        const brachialContainer = document.getElementById('brachial-container');
+        const lumbosacralContainer = document.getElementById('lumbosacral-container');
+        const brachialTab = document.getElementById('tab-brachial');
+        const lumbosacralTab = document.getElementById('tab-lumbosacral');
+
+        if (moduleName === 'brachial') {
+            if (brachialContainer) brachialContainer.style.display = 'block';
+            if (lumbosacralContainer) lumbosacralContainer.style.display = 'none';
+            if (brachialTab) {
+                brachialTab.style.background = 'linear-gradient(135deg, #2563eb, #1d4ed8)';
+                brachialTab.style.color = 'white';
+                brachialTab.style.border = 'none';
+            }
+            if (lumbosacralTab) {
+                lumbosacralTab.style.background = 'white';
+                lumbosacralTab.style.color = '#64748b';
+                lumbosacralTab.style.border = '2px solid #e2e8f0';
+            }
+        } else {
+            if (brachialContainer) brachialContainer.style.display = 'none';
+            if (lumbosacralContainer) lumbosacralContainer.style.display = 'block';
+            if (brachialTab) {
+                brachialTab.style.background = 'white';
+                brachialTab.style.color = '#64748b';
+                brachialTab.style.border = '2px solid #e2e8f0';
+            }
+            if (lumbosacralTab) {
+                lumbosacralTab.style.background = 'linear-gradient(135deg, #059669, #047857)';
+                lumbosacralTab.style.color = 'white';
+                lumbosacralTab.style.border = 'none';
+            }
+        }
+    };
 
     return `
         <style>
