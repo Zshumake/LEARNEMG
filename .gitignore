@@ -3,14 +3,19 @@
 
 # Include only these files
 !index.html
+!www/
 !README.md
 !LICENSE
 !.gitignore
 !ERNEST.png
 !manifest.json
+!package.json
+!package-lock.json
+!capacitor.config.json
 !brachial-plexus-prototype.html
 !css/
 !js/
+!ios/
 !manifest.json
 !audio/
 !images/
@@ -26,6 +31,8 @@
 !*.jpeg
 !*.m4a
 !*.mp3
+!extract_pdf.py
+!pdf_content.txt
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
