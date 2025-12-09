@@ -1,0 +1,30 @@
+import pypdf
+import os
+import json
+
+def extract_text_from_pdf(pdf_path, output_path):
+    try:
+        reader = pypdf.PdfReader(pdf_path)
+        text_content = []
+        for page in reader.pages:
+            text = page.extract_text()
+            if text:
+                text_content.append(text)
+        
+        full_text = '\n\n'.join(text_content)
+        
+        # Write as a JS file with a string variable to avoid gitignore
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write('const pdfContent = `\n')
+            f.write(full_text.replace('`', '\\`').replace('${', '\\${'))
+            f.write('\n`;\n')
+            
+        print(f"Successfully extracted text to {output_path}")
+    except Exception as e:
+        print(f"Error extracting text: {e}")
+
+if __name__ == "__main__":
+    # PDF is in current dir (since we run from root)
+    pdf_path = 'Preston and Shapiro Needle EMG.pdf'
+    output_path = 'www/pdf_content.js'
+    extract_text_from_pdf(pdf_path, output_path)

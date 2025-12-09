@@ -1778,7 +1778,7 @@
             <div style="text-align: center; margin-top: 15px; margin-bottom: 10px;">
                 <div
                     style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
-                    📱 Mobile UI Optimized - 2 Column Grid & Compact Layout! (v2025.11.23 20:45)
+                    🦶 Sural Nerve Added & Pathway Images! (v2025.12.09 13:15)
                 </div>
             </div>
 
@@ -1795,8 +1795,8 @@
                     <p class="lead-text"
                         style="font-size: 1.25em; color: #475569; margin-bottom: 30px; line-height: 1.6;">
                         Join Ernest on an interactive adventure through the peripheral nervous system.
-                        Master complex anatomy, conquer clinical patterns, and build the skills
-                        that will transform you into a confident electrodiagnostician. Ready to begin your journey?
+                        Master complex anatomy, conquer clinical patterns, and build the skills that will
+                        help you become a confident electrodiagnostician. Ready to begin your journey?
                     </p>
                 </div>
             </div>
@@ -2746,6 +2746,19 @@
                     { title: "Adductor Muscles", desc: "Innervates adductor muscle group", isInjurySite: false },
                     { title: "Hip Sensation", desc: "Provides sensation to medial thigh", isInjurySite: false }
                 ]
+            },
+            sural: {
+                name: "Sural Nerve",
+                roots: "S1-S2",
+                image: "Nerve Paths/Sural Nerve.png",
+                story: "The Sural Scout is the faithful sensory companion of the lower leg. Formed by the union of the medial sural cutaneous nerve (from the tibial) and the communicating branch (from the common peroneal), this nerve travels down the back of the calf like a dedicated rear guard. It passes behind the lateral malleolus - a key landmark! - and continues along the side of the foot, providing sensation to the postero-lateral leg and the lateral side of the foot and little toe.",
+                steps: [
+                    { title: "Origin", desc: "Formed by union of medial sural cutaneous (tibial) and sural communicating branch (common peroneal) (S1-S2)", isInjurySite: false },
+                    { title: "Posterior Leg", desc: "Travels down midline of posterior calf with small saphenous vein", isInjurySite: false },
+                    { title: "Lateral Malleolus", desc: "Passes posterior to lateral malleolus (key landmark)", isInjurySite: false },
+                    { title: "Foot", desc: "Travels along lateral side of foot", isInjurySite: false },
+                    { title: "Innervation", desc: "Sensation to posterolateral leg, lateral foot, and lateral aspect of 5th toe", isInjurySite: false }
+                ]
             }
         };
 
@@ -2924,7 +2937,7 @@
         // Module Configuration with Custom Artwork Integration
         const atriumModuleConfig = [
             { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: 'NEW ICONS/EMG:NCS Intro.png' },
-            { id: 'plexus-anatomy', title: 'Peripheral Anatomy', customIcon: 'NEW ICONS/Peripheral Anatomy.png' },
+            { id: 'plexus-anatomy', title: 'Plexus Anatomy', customIcon: 'NEW ICONS/Peripheral Anatomy.png' },
             { id: 'brachial-plexus-interactive', title: 'Brachial Plexus Interactive', customIcon: 'NEW ICONS/Brachial Plexus Anatomy.png' },
             { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: 'NEW ICONS/Radiculopathy Pathophysiology.png' },
             { id: 'neuropathy-pathophysiology', title: 'Neuropathy Pathophysiology', customIcon: 'NEW ICONS/Neuropathy Pathophysiology.png' },
@@ -3375,6 +3388,7 @@
         }
 
         // Generate Hero Module (Module 1 - EMG Introduction)
+        // Generate Hero Module (Module 1 - EMG Introduction)
         function generateHeroModule() {
             const module = atriumModuleConfig[0]; // First module
             const desc = moduleDescriptions[1] || { title: module.title, text: "Start your EMG/NCS learning journey here.", highlights: "" };
@@ -3396,12 +3410,15 @@
             `;
         }
 
-        // Generate Grid Modules (Modules 2-12)
+        // Generate Grid Modules (Modules 2-13)
         function generateGridModules() {
+            console.log('DEBUG: generateGridModules called');
+            console.log('DEBUG: Config length:', atriumModuleConfig.length);
             let html = '';
             // Modules 2-13 (indices 1-12) - All 12 icons for perfect 4x3 grid
             for (let i = 1; i < atriumModuleConfig.length; i++) {
                 const module = atriumModuleConfig[i];
+                console.log(`DEBUG: Generating card for index ${i}: ${module.id}`);
                 const moduleNumber = i + 1;
 
                 html += `
