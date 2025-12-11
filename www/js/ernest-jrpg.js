@@ -381,6 +381,14 @@ class ErnestJRPG {
             this.ui.resetBtn.addEventListener('click', () => this.resetApiKey());
         }
 
+        // Event Delegation for Setup Button (Robust handling)
+        this.ui.wrapper.addEventListener('click', (e) => {
+            if (e.target && e.target.id === 'jrpg-ernest-setup') {
+                console.log("Setup Key Button Clicked via Delegation");
+                this.promptApiKey();
+            }
+        });
+
         this.ui.closeBtn.addEventListener('click', () => this.toggleDialogue());
 
         // Chat Inputs
@@ -991,6 +999,7 @@ class ErnestJRPG {
     }
 
     promptApiKey() {
+        console.log("promptApiKey triggered!");
         // Open the key generation page for them
         window.open('https://aistudio.google.com/app/apikey', '_blank');
 
