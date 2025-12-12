@@ -693,54 +693,71 @@ class ErnestJRPG {
         // 5. Remove lingering $ signs
         html = html.replace(/\$/g, '');
 
-        // 3. Table Parsing
-        // Detect if table exists (lines starting with |)
+        // 3. Table Parsing (Relaxed GFM Support)
         const lines = html.split('\n');
         let inTable = false;
         let tableHtml = '';
         let resultLines = [];
 
+        // Helper: Check if line looks like a separator row (--- | ---)
+        const isSeparator = (str) => {
+            return str.trim().match(/^\|?[\s-:]+\|[\s-:]+\|?$/) || str.trim().match(/^[\s-:]+\|[\s-:]+$/);
+        };
+
+        // Helper: Check if line is a table row (has pipe)
+        const isTableRow = (str) => {
+            return str.trim().includes('|');
+        };
+
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i].trim();
 
-            if (line.match(/^\|.*\|$/)) {
-                if (!inTable) {
-                    // Start of table
-                    inTable = true;
-                    tableHtml = '<div class="jrpg-table-wrapper"><table class="jrpg-table">';
+            // Detect start of table: Current line has pipe AND next line is separator
+            const nextLine = lines[i + 1] ? lines[i + 1].trim() : '';
 
-                    // Header row
-                    const headers = line.split('|').filter(cell => cell.trim().length > 0);
-                    tableHtml += '<thead><tr>';
-                    headers.forEach(h => tableHtml += `<th>${h.trim()}</th>`);
-                    tableHtml += '</tr></thead><tbody>';
+            if (!inTable && isTableRow(line) && isSeparator(nextLine)) {
+                // Formatting Table Start
+                inTable = true;
+                tableHtml = '<div class="jrpg-table-wrapper"><table class="jrpg-table">';
 
-                    // Skip separator line (|---|---|)
-                    if (lines[i + 1] && lines[i + 1].trim().match(/^\|[\s-]+\|/)) {
-                        i++;
-                    }
+                // Header Processing
+                // handle optional outer pipes
+                let cleanLine = line;
+                if (cleanLine.startsWith('|')) cleanLine = cleanLine.substring(1);
+                if (cleanLine.endsWith('|')) cleanLine = cleanLine.substring(0, cleanLine.length - 1);
+
+                const headers = cleanLine.split('|').map(h => h.trim());
+                tableHtml += '<thead><tr>';
+                headers.forEach(h => tableHtml += `<th>${h}</th>`);
+                tableHtml += '</tr></thead><tbody>';
+
+                // Skip the separator line (i+1)
+                i++;
+            } else if (inTable) {
+                if (isTableRow(line) && !isSeparator(line)) {
+                    // Body Row
+                    let cleanLine = line;
+                    if (cleanLine.startsWith('|')) cleanLine = cleanLine.substring(1);
+                    if (cleanLine.endsWith('|')) cleanLine = cleanLine.substring(0, cleanLine.length - 1);
+
+                    const cells = cleanLine.split('|').map(c => c.trim());
+                    tableHtml += '<tr>';
+                    cells.forEach(c => tableHtml += `<td>${c}</td>`);
+                    tableHtml += '</tr>';
                 } else {
-                    // Body row
-                    const cells = line.split('|').filter(cell => cell.trim().length > 0);
-                    // Check for separator line just in case
-                    if (!line.match(/^\|[\s-]+\|/)) {
-                        tableHtml += '<tr>';
-                        cells.forEach(c => tableHtml += `<td>${c.trim()}</td>`);
-                        tableHtml += '</tr>';
-                    }
-                }
-            } else {
-                if (inTable) {
-                    // End of table
+                    // End of table (non-row line)
                     inTable = false;
                     tableHtml += '</tbody></table></div>';
                     resultLines.push(tableHtml);
                     tableHtml = '';
+                    resultLines.push(line);
                 }
+            } else {
                 resultLines.push(line);
             }
         }
-        // If still in table at end
+
+        // Close table if still open
         if (inTable) {
             tableHtml += '</tbody></table></div>';
             resultLines.push(tableHtml);
