@@ -128,9 +128,9 @@ function navigateGallery(button, direction) {
     // Decode the URL first, then extract relative path
     let currentSrc = decodeURIComponent(imgElement.src);
 
-    // Find the relative path by looking for 'NCS images/'
+    // Find the relative path by looking for 'NCS Images/'
     let relativeSrc = '';
-    let ncsIndex = currentSrc.indexOf('NCS images/');
+    let ncsIndex = currentSrc.indexOf('NCS Images/');
     if (ncsIndex !== -1) {
         relativeSrc = currentSrc.substring(ncsIndex);
     } else {
