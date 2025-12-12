@@ -670,8 +670,28 @@ class ErnestJRPG {
         html = html.replace(/_\{([^\}]+)\}/g, '<sub>$1</sub>');  // Complex subscript _{...}
 
         // Clean up LaTeX artifacts
-        html = html.replace(/\$\\text\{([^\}]+)\}/g, '$1'); // Remove $\text{...} wrapper
-        html = html.replace(/\$/g, ''); // Remove remaining $ signs
+        // 1. Text wrappers: \text{something} -> something
+        html = html.replace(/\\text\{([^\}]+)\}/g, '$1');
+
+        // 2. Fractions: \frac{a}{b} -> (a / b)
+        // Simple case (no nested braces in numerator/denominator)
+        html = html.replace(/\\frac\{([^\}]+)\}\{([^\}]+)\}/g, '($1 / $2)');
+
+        // 3. Greek/Math Symbols (Extended)
+        html = html.replace(/\\approx/g, '≈')
+            .replace(/\\rightarrow/g, '→')
+            .replace(/\\leftarrow/g, '←')
+            .replace(/\\times/g, '×')
+            .replace(/\\cdot/g, '·')
+            .replace(/\\le/g, '≤')
+            .replace(/\\ge/g, '≥');
+
+        // 4. Brackets: \left( ... \right) -> ( ... )
+        html = html.replace(/\\left\(/g, '(').replace(/\\right\)/g, ')');
+        html = html.replace(/\\left\[/g, '[').replace(/\\right\]/g, ']');
+
+        // 5. Remove lingering $ signs
+        html = html.replace(/\$/g, '');
 
         // 3. Table Parsing
         // Detect if table exists (lines starting with |)
