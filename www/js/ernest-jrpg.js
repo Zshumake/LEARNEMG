@@ -187,6 +187,43 @@ class ErnestJRPG {
                 border: 1px solid #dcfce7;
             }
 
+            /* Table Styles */
+            .jrpg-table-wrapper {
+                overflow-x: auto;
+                margin: 10px 0;
+                border-radius: 8px;
+                border: 1px solid #e2e8f0;
+            }
+
+            .jrpg-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.9em;
+                background: white;
+            }
+
+            .jrpg-table th {
+                background: #6b9f78;
+                color: white;
+                padding: 8px 12px;
+                text-align: left;
+                font-weight: 600;
+            }
+
+            .jrpg-table td {
+                padding: 8px 12px;
+                border-bottom: 1px solid #f1f5f9;
+                color: #334155;
+            }
+
+            .jrpg-table tr:last-child td {
+                border-bottom: none;
+            }
+
+            .jrpg-table tr:nth-child(even) {
+                background-color: #f8fafc;
+            }
+
             .jrpg-ernest-input-area {
                 display: flex;
                 gap: 10px;
@@ -571,30 +608,8 @@ class ErnestJRPG {
             // Clear interval if it exists
             if (this.loadingInterval) clearInterval(this.loadingInterval);
 
-            // Simple Markdown Parsing for Bold
-            // 1. Escape HTML to prevent XSS
-            let safeText = displayText
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-
-            // 2. Parse Headers (### Title)
-            safeText = safeText.replace(/### (.*?)(?:\n|$)/g, '<h3>$1</h3>');
-
-            // 3. Parse **bold** to <strong>bold</strong>
-            safeText = safeText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-            // 4. Parse *italic* to <em>italic</em>
-            safeText = safeText.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
-            // 5. Convert Newlines to <br> (Crucial for formatting)
-            safeText = safeText.replace(/\n/g, '<br>');
-
-            // 6. Styled Bullet Points (simple replacement)
-            safeText = safeText.replace(/<br>\* /g, '<br>• ');
-            safeText = safeText.replace(/<br>- /g, '<br>• ');
+            // Advanced Markdown Parsing
+            let safeText = this.parseMarkdown(displayText);
 
             // Apply Typewriter effect for Ernest, instant for User
             if (role === 'ernest') {
@@ -612,10 +627,112 @@ class ErnestJRPG {
         // Remember context
         if (displayText !== '...') {
             const contextContent = saveText || displayText;
+            if (!this.conversationHistory) this.conversationHistory = [];
             this.conversationHistory.push({ role: role === 'user' ? 'user' : 'model', parts: [{ text: contextContent }] });
-            // Keep history manageable (last 10 turns)
+            // Keep history manageable (last 20 turns)
             if (this.conversationHistory.length > 20) this.conversationHistory.shift();
         }
+    }
+
+    parseMarkdown(text) {
+        if (!text) return '';
+
+        // 1. Initial Cleanup & Safety
+        let html = text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        // 2. Math & Physics Symbol Parsing (Custom Heuristics for Ernest/Earl)
+        // Greek Letters
+        html = html.replace(/\\mu/g, 'μ')
+            .replace(/\\alpha/g, 'α')
+            .replace(/\\beta/g, 'β')
+            .replace(/\\Delta/g, 'Δ')
+            .replace(/\\theta/g, 'θ');
+
+        // Subscripts (R_m -> Rm, Na^+ -> Na⁺)
+        html = html.replace(/_([a-zA-Z0-9]+)/g, '<sub>$1</sub>'); // Simple subscript
+        html = html.replace(/\^([\+0-9]+)/g, '<sup>$1</sup>');    // Simple superscript (charges)
+        html = html.replace(/\^\{([^\}]+)\}/g, '<sup>$1</sup>'); // Complex superscript ^{...}
+        html = html.replace(/_\{([^\}]+)\}/g, '<sub>$1</sub>');  // Complex subscript _{...}
+
+        // Clean up LaTeX artifacts
+        html = html.replace(/\$\\text\{([^\}]+)\}/g, '$1'); // Remove $\text{...} wrapper
+        html = html.replace(/\$/g, ''); // Remove remaining $ signs
+
+        // 3. Table Parsing
+        // Detect if table exists (lines starting with |)
+        const lines = html.split('\n');
+        let inTable = false;
+        let tableHtml = '';
+        let resultLines = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+
+            if (line.match(/^\|.*\|$/)) {
+                if (!inTable) {
+                    // Start of table
+                    inTable = true;
+                    tableHtml = '<div class="jrpg-table-wrapper"><table class="jrpg-table">';
+
+                    // Header row
+                    const headers = line.split('|').filter(cell => cell.trim().length > 0);
+                    tableHtml += '<thead><tr>';
+                    headers.forEach(h => tableHtml += `<th>${h.trim()}</th>`);
+                    tableHtml += '</tr></thead><tbody>';
+
+                    // Skip separator line (|---|---|)
+                    if (lines[i + 1] && lines[i + 1].trim().match(/^\|[\s-]+\|/)) {
+                        i++;
+                    }
+                } else {
+                    // Body row
+                    const cells = line.split('|').filter(cell => cell.trim().length > 0);
+                    // Check for separator line just in case
+                    if (!line.match(/^\|[\s-]+\|/)) {
+                        tableHtml += '<tr>';
+                        cells.forEach(c => tableHtml += `<td>${c.trim()}</td>`);
+                        tableHtml += '</tr>';
+                    }
+                }
+            } else {
+                if (inTable) {
+                    // End of table
+                    inTable = false;
+                    tableHtml += '</tbody></table></div>';
+                    resultLines.push(tableHtml);
+                    tableHtml = '';
+                }
+                resultLines.push(line);
+            }
+        }
+        // If still in table at end
+        if (inTable) {
+            tableHtml += '</tbody></table></div>';
+            resultLines.push(tableHtml);
+        }
+
+        html = resultLines.join('\n');
+
+        // 4. Standard Markdown Formatting
+        html = html
+            .replace(/### (.*?)(?:\n|$)/g, '<h3>$1</h3>')
+            .replace(/## (.*?)(?:\n|$)/g, '<h4>$1</h4>') // Map ## to h4 for chat size
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/`(.*?)`/g, '<code>$1</code>');
+
+        // 5. Lists & Newlines
+        // Convert bullet points * or - at start of line
+        html = html.replace(/^\s*[\*•-]\s+(.*)$/gm, '• $1');
+
+        // Convert newlines to <br>, but NOT inside tables or after headers
+        html = html.replace(/<\/h[34]>\n/g, '</h$1>'); // Remove newline after headers
+        html = html.replace(/\n/g, '<br>');
+
+        return html;
     }
 
     typeMessage(element, htmlContent) {
