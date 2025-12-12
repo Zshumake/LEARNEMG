@@ -699,9 +699,10 @@ class ErnestJRPG {
         let tableHtml = '';
         let resultLines = [];
 
-        // Helper: Check if line looks like a separator row (--- | ---)
+        // Helper: Check if line looks like a separator row (--- | --- | ---)
         const isSeparator = (str) => {
-            return str.trim().match(/^\|?[\s-:]+\|[\s-:]+\|?$/) || str.trim().match(/^[\s-:]+\|[\s-:]+$/);
+            // Support 2 or more columns (repetition of "content |")
+            return str.trim().match(/^\|?([\s-:]+\|)+[\s-:]+\|?$/);
         };
 
         // Helper: Check if line is a table row (has pipe)
