@@ -1028,15 +1028,20 @@ class ErnestJRPG {
             }
         }
 
+
         // Proceed to API if no reflex triggered
+        this.showLoadingMessage();
+        this.isThinking = true;
+
         if (!this.apiKey) {
+            this.removeLoadingMessage();
             this.addToChat('ernest', "My circuits require an API Key to function. Please configure it below.");
             return;
         }
 
 
         try {
-            const response = await this.callGeminiAPI(text);
+            const response = await this.callGeminiAPI(query);
             this.removeLoadingMessage();
             this.addToChat('ernest', response);
         } catch (error) {
