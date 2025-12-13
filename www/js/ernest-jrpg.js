@@ -1063,7 +1063,7 @@ class ErnestJRPG {
                 this.addToChat('ernest', this.currentPersonaId === 'earl' ? "Model missing. Finding backup..." : "Signal lost! Re-scanning...");
                 const workingModel = await this.discoverWorkingModel();
                 if (workingModel) {
-                    const retryExp = await this.callGeminiAPI(text, workingModel);
+                    const retryExp = await this.callGeminiAPI(query, workingModel);
                     this.addToChat('ernest', retryExp);
                     this.preferredModel = workingModel;
                     localStorage.setItem('ernest_preferred_model', workingModel);
@@ -1100,11 +1100,13 @@ class ErnestJRPG {
             this.toggleDialogue(); // Auto-open
         }
 
-        // Show user message (clean)
+        // Show user message (clean), but save the Context Prompt for the AI
+        const finalQuery = isContext ? `[APP_CONTEXT_SOURCE]: "${query}"\n(Instruction: This is text from the application validation logic. Analyze/Explain it. DO NOT ROAST THE USER for writing this, they selected it to ask about it.)` : query;
+
         if (isContext) {
-            this.addToChat('user', `<em>"${query}"</em>`);
+            this.addToChat('user', `<em>"${query}"</em>`, finalQuery);
         } else {
-            this.addToChat('user', query);
+            this.addToChat('user', query, finalQuery);
         }
 
         this.showLoadingMessage();
@@ -1112,9 +1114,6 @@ class ErnestJRPG {
         this.isThinking = true;
 
         try {
-            // If context, wrap it for the LLM so it knows not to roast the user
-            const finalQuery = isContext ? `[APP_CONTEXT_SOURCE]: "${query}"\n(Instruction: This is text from the application validation logic. Analyze/Explain it. DO NOT ROAST THE USER for writing this, they selected it to ask about it.)` : query;
-
             const explanation = await this.callGeminiAPI(finalQuery);
             this.removeLoadingMessage();
             this.addToChat('ernest', explanation);
