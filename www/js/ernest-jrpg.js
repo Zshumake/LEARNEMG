@@ -55,11 +55,12 @@ class ErnestJRPG {
             INTERACTION:
             - OPENING: You MUST start every response with a short, withering roast that is SPECIFIC to the user's question.
             - DYNAMIC ROASTING RULES:
-              1. If they ask about anatomy: Mock them for needing a map for the human body.
-              2. If they ask about physics/math: Mock their fear of numbers.
-              3. If they ask about pathology: Imply the diagnosis is obvious to a first-year student.
-              4. VARIETY IS MANDATORY: Do NOT use the same roast format twice in a row. Be creative.
-              5. PROHIBITED PHRASE: Do NOT use "Oh, checking the median nerve?" unless they actually asked about the median nerve.
+              1. IF INPUT STARTS WITH "[APP_CONTEXT_SOURCE]": Do NOT roast the user. They are showing you app content. Instead, critique the CONTENT itself (e.g., "Ah, standard boilerplate...", "This validation logic is surprisingly barely adequate...").
+              2. If they ask about anatomy: Mock them for needing a map for the human body.
+              3. If they ask about physics/math: Mock their fear of numbers.
+              4. If they ask about pathology: Imply the diagnosis is obvious to a first-year student.
+              5. VARIETY IS MANDATORY: Do NOT use the same roast format twice in a row. Be creative.
+              6. PROHIBITED PHRASE: Do NOT use "Oh, checking the median nerve?" unless they actually asked about the median nerve.
             - THEN explain perfectly. Make them earn the knowledge.
             - GOAL: Shame the user into excellence. Correctness is the only virtue.
             - KNOWLEDGE: Strict adherence to Preston & Shapiro.
@@ -497,7 +498,7 @@ class ErnestJRPG {
 
             this.hideTooltip();
             if (this.currentSelection) {
-                this.askErnest(this.currentSelection);
+                this.askErnest(this.currentSelection, true);
             }
         });
 
@@ -507,7 +508,7 @@ class ErnestJRPG {
             e.stopPropagation();
             this.hideTooltip();
             if (this.currentSelection) {
-                this.askErnest(this.currentSelection);
+                this.askErnest(this.currentSelection, true);
             }
         });
 
@@ -986,18 +987,28 @@ class ErnestJRPG {
         // New Interaction: Reset Context
         this.conversationHistory = [];
         this.ui.chatHistory.innerHTML = '';
-        this.ui.wrapper.classList.add('active');
+        // this.ui.wrapper.classList.add('active'); // This is handled by toggleDialogue now
 
-        // Add specific context wrapper for the AI, but show clean quote to user
-        const contextWrapper = `"${query}"\n\nCan you explain this further?`;
+        if (!this.ui.wrapper.classList.contains('active')) {
+            this.toggleDialogue(); // Auto-open
+        }
 
-        this.addToChat('user', `"${query}"`, contextWrapper);
-        this.addToChat('ernest', '...');
+        // Show user message (clean)
+        if (isContext) {
+            this.addToChat('user', `<em>"${query}"</em>`);
+        } else {
+            this.addToChat('user', query);
+        }
+
+        this.showLoadingMessage();
 
         this.isThinking = true;
 
         try {
-            const explanation = await this.callGeminiAPI(query);
+            // If context, wrap it for the LLM so it knows not to roast the user
+            const finalQuery = isContext ? `[APP_CONTEXT_SOURCE]: "${query}"\n(Instruction: This is text from the application validation logic. Analyze/Explain it. DO NOT ROAST THE USER for writing this, they selected it to ask about it.)` : query;
+
+            const explanation = await this.callGeminiAPI(finalQuery);
             this.removeLoadingMessage();
             this.addToChat('ernest', explanation);
         } catch (error) {
