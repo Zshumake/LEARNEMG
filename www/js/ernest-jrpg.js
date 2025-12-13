@@ -1022,7 +1022,7 @@ class ErnestJRPG {
                 const response = responses[this.currentPersonaId];
                 // Simulate "thinking" briefly for realism (300ms)
                 setTimeout(() => {
-                    this.addToChat(this.currentPersonaId, `*[SYSTEM REFLEX]:* ${response}`);
+                    this.addToChat(this.currentPersonaId, response);
                 }, 400);
                 return; // SKIP API CALL
             }
