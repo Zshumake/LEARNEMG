@@ -534,6 +534,15 @@ class ErnestJRPG {
         }
     }
 
+    createTooltip() {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'jrpg-ernest-tooltip';
+        tooltip.innerHTML = `<img src="${this.characterImage}" id="jrpg-tooltip-face"> <span>Ask ${this.currentPersonaId === 'earl' ? 'Earl' : 'Ernest'}</span>`;
+        tooltip.id = 'jrpg-ernest-tooltip';
+        document.body.appendChild(tooltip);
+        this.ui.tooltip = tooltip;
+    }
+
     attachEventListeners() {
         // Text Selection Listener
         document.addEventListener('mouseup', (e) => this.handleSelection(e));
