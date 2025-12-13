@@ -993,6 +993,19 @@ class ErnestJRPG {
         this.isThinking = false;
     }
 
+
+    showLoadingMessage() {
+        this.removeLoadingMessage(); // clear existing
+        const msg = this.getLoadingMessage();
+        const loader = document.createElement('div');
+        loader.id = 'ernest-loading-msg';
+        loader.className = 'ernest-loading';
+        loader.innerHTML = `<em>${msg}</em>`;
+        // Append to chat container, but before the end? Just at the end.
+        this.ui.chatHistory.appendChild(loader);
+        this.ui.chatHistory.scrollTop = this.ui.chatHistory.scrollHeight;
+    }
+
     removeLoadingMessage() {
         const loader = document.getElementById('ernest-loading-msg');
         if (loader) loader.remove();
