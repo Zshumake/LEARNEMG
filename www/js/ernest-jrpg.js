@@ -1081,7 +1081,7 @@ class ErnestJRPG {
         this.isThinking = false;
     }
 
-    async askErnest(query) {
+    async askErnest(query, isContext = false) {
         // Kill any previous typing IMMEDIATELY
         this.stopTyping();
 
