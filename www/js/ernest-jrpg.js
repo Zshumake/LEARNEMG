@@ -55,7 +55,7 @@ class ErnestJRPG {
             INTERACTION:
             - OPENING: You MUST start every response with a short, withering roast that is SPECIFIC to the user's question.
             - DYNAMIC ROASTING RULES:
-              1. IF INPUT STARTS WITH "[APP_CONTEXT_SOURCE]": Do NOT roast the user. They are showing you app content. Instead, critique the CONTENT itself (e.g., "Ah, standard boilerplate...", "This validation logic is surprisingly barely adequate...").
+              1. IF INPUT STARTS WITH "[APP_CONTEXT_SOURCE]": Roast the user for needing to ask about such BASIC material from the app. (e.g., "You highlighted *that*? It's literally the first sentence.", "Did you sleep through the lecture? Read it again.").
               2. If they ask about anatomy: Mock them for needing a map for the human body.
               3. If they ask about physics/math: Mock their fear of numbers.
               4. If they ask about pathology: Imply the diagnosis is obvious to a first-year student.
@@ -790,48 +790,59 @@ class ErnestJRPG {
         // Clear any existing typing
         this.stopTyping();
 
-        const tokens = htmlContent.split(/(<[^>]+>)/g).filter(t => t !== "");
-        const printQueue = [];
+        // Tokenize by tags to preserve structure speed, but type text chars
+        // simpler approach: accumulate string and set innerHTML
+        // To make it look like typing:
+        // We can't just slice HTML string because we might slice inside a tag <str...
 
-        tokens.forEach(token => {
-            if (token.startsWith('<')) {
-                printQueue.push(token);
+        // Better Tokenizer: Split into [Tags] and [Words]
+        const tokens = htmlContent.split(/(<[^>]+>)/g).filter(t => t !== "");
+
+        let qIndex = 0;
+        let currentHTML = ""; // What is currently displayed
+        const speed = 20; // Faster typing for better feel
+
+        // Pre-calculate the steps
+        // Step = { text: "...", isTag: boolean }
+        const steps = [];
+        tokens.forEach(t => {
+            if (t.startsWith('<')) {
+                steps.push({ text: t, isTag: true });
             } else {
-                const words = token.split(/(\s+)/g).filter(w => w !== "");
-                printQueue.push(...words);
+                // Split words to type smoothly
+                const words = t.split(/(\s+)/g).filter(w => w !== "");
+                words.forEach(w => steps.push({ text: w, isTag: false }));
             }
         });
 
-        let i = 0;
-        const speed = 30; // ms per chunk
-
         const typeLoop = () => {
-            if (i >= printQueue.length) {
+            if (qIndex >= steps.length) {
                 this.typeTimer = null;
                 return;
             }
 
-            // SMART SCROLL V3 (Atomic Check + InsertAdjacent)
-            // 1. Check if user is at bottom BEFORE modifying DOM
+            // SMART SCROLL V3 LOGIC
             const container = this.ui.chatHistory;
             let isAtBottom = false;
-
             if (container) {
-                // Use a generous tolerance (20px) to catch "near bottom"
                 const distanceToBottom = container.scrollHeight - (container.scrollTop + container.clientHeight);
-                isAtBottom = distanceToBottom < 20;
+                isAtBottom = distanceToBottom < 30; // 30px tolerance
             }
 
-            // 2. Append efficiently without nuking the DOM (User request: "let me scroll up")
-            // innerHTML += causes full re-render which locks scroll. insertAdjacentHTML does not.
-            element.insertAdjacentHTML('beforeend', printQueue[i]);
+            // Update Content
+            const step = steps[qIndex];
+            currentHTML += step.text;
+            element.innerHTML = currentHTML;
+            // Note: innerHTML auto-closes tags. This is fine visually for bolding.
+            // "<strong>H" -> renders as bold H.
+            // "<strong>Hello</strong>" -> renders as bold Hello.
 
-            // 3. Only auto-scroll if they were ALREADY at the bottom
+            // Scroll if needed
             if (container && isAtBottom) {
                 container.scrollTop = container.scrollHeight;
             }
 
-            i++;
+            qIndex++;
             this.typeTimer = setTimeout(typeLoop, speed);
         };
 
