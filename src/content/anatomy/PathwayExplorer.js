@@ -10,7 +10,7 @@ export const PathwayExplorer = {
                 name: "Median Nerve",
                 roots: "C6-T1",
                 story: "The Median Messenger starts his epic journey at the bustling Brachial Plexus Central Station (C6-T1), where lateral and medial cords shake hands to form our hero. He travels down the arm like a VIP, riding the bicipital groove limousine between the Biceps and Brachialis neighborhoods. At the Cubital Fossa rest stop, he takes a breather medial to the brachial artery before squeezing through the narrow Pronator Teres tunnel. His faithful sidekick, the Anterior Interosseous branch, splits off to handle the deep muscle work while our main character continues toward his final destination: the infamous Carpal Tunnel! After surviving this tight squeeze, he emerges victorious in the hand, ready to command the LOAF muscles like a general commanding his troops!",
-                imagePath: "Nerve Paths/Median Nerve.png",
+                imagePath: "images/pathways/Median Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false },
                     { title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false },
@@ -25,7 +25,7 @@ export const PathwayExplorer = {
                 name: "Ulnar Nerve",
                 roots: "C8-T1",
                 story: "The Ulnar Underdog begins as the lone ranger from the medial cord, carrying the pure power of C8 and T1. He travels down the arm, taking the scenic route around the medial epicondyle at the elbow - that famous 'funny bone' spot where everyone's felt his electric personality! He slides through Guyon's canal at the wrist like a secret agent, then splits his mission: the deep branch heads to the interossei (the hand's fine motor specialists), while the superficial branch handles sensation for the pinky side of life.",
-                imagePath: "Nerve Paths/Ulnar Nerve.png",
+                imagePath: "images/pathways/Ulnar Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)", isInjurySite: false },
                     { title: "Upper Arm", desc: "Travels down medial aspect of arm", isInjurySite: false },
@@ -40,7 +40,7 @@ export const PathwayExplorer = {
                 name: "Radial Nerve",
                 roots: "C5-T1",
                 story: "The Radial Rebel is the strong, silent type from the posterior cord, packing the full power of C5-T1. This mighty nerve takes the back route down the arm, spiraling around the humerus in the famous spiral groove like a roller coaster. He's the extension expert, powering all the muscles that straighten the elbow, lift the wrist, and extend the fingers. His most vulnerable moment comes at the spiral groove, where a broken humerus can leave him bruised and beaten, causing the dreaded 'wrist drop.'",
-                imagePath: "Nerve Paths/Radial Nerve.png",
+                imagePath: "images/pathways/Radial Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from posterior cord (C5-T1)", isInjurySite: false },
                     { title: "Spiral Groove", desc: "Travels in spiral groove of humerus directly on bone (most vulnerable point for compression/fracture)", isInjurySite: true },
@@ -54,7 +54,7 @@ export const PathwayExplorer = {
                 name: "Musculocutaneous Nerve",
                 roots: "C5-C7",
                 story: "The Musculocutaneous Marvel begins at the lateral cord headquarters in the brachial plexus, carrying orders from C5-C7. This sturdy nerve pierces through the coracobrachialis muscle like a determined warrior, then travels between the biceps brachii and brachialis muscles, supervising their every flex. As it approaches the elbow, it transforms into the lateral cutaneous nerve of the forearm, spreading its sensory network across the lateral forearm like a protective shield.",
-                imagePath: "Nerve Paths/Musculocutaneous Nerve.png",
+                imagePath: "images/pathways/Musculocutaneous Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)", isInjurySite: false },
                     { title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle", isInjurySite: false },
@@ -68,7 +68,7 @@ export const PathwayExplorer = {
                 name: "Axillary Nerve",
                 roots: "C5-C6",
                 story: "The Axillary Ambassador emerges from the posterior cord, carrying the strength of C5 and C6. This diplomatic nerve travels posteriorly around the surgical neck of the humerus, navigating through the quadrilateral space like a secret agent. It has two important missions: powering the mighty deltoid muscle and providing sensation to the shoulder's badge of honor - that small patch of skin over the deltoid that soldiers call the 'regimental patch'.",
-                imagePath: "Nerve Paths/Axillary Nerve.png",
+                imagePath: "images/pathways/Axillary Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from posterior cord (C5-C6)", isInjurySite: false },
                     { title: "Quadrilateral Space", desc: "Passes through quadrilateral space", isInjurySite: false },
@@ -82,7 +82,7 @@ export const PathwayExplorer = {
                 name: "Femoral Nerve",
                 roots: "L2-L4",
                 story: "The Femoral General emerges from the lumbar plexus with the authority of L2-L4. This commanding nerve travels under the inguinal ligament like a VIP passing through customs, then spreads its influence across the anterior thigh. It's the knee extension expert, powering the mighty quadriceps muscle group while also providing sensation down the medial leg via its saphenous branch - the longest sensory nerve in the body!",
-                imagePath: "Nerve Paths/Femoral Nerve.png",
+                imagePath: "images/pathways/Femoral Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false },
                     { title: "Inguinal Ligament", desc: "Passes under inguinal ligament", isInjurySite: false },
@@ -96,7 +96,7 @@ export const PathwayExplorer = {
                 name: "Tibial Nerve",
                 roots: "L4-S3",
                 story: "The Tibial Traveler is one half of the mighty sciatic nerve's legacy, carrying the plantarflexion power of L4-S3. After the sciatic nerve splits at the popliteal fossa, this nerve takes the deep route down the posterior leg, traveling through the tarsal tunnel at the ankle like a train through a mountain pass. It's the pointing-toes expert, controlling all the muscles that push the foot down and curl the toes.",
-                imagePath: "Nerve Paths/Tibial Nerve.png",
+                imagePath: "images/pathways/Tibial Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)", isInjurySite: false },
                     { title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation", isInjurySite: false },
@@ -110,7 +110,7 @@ export const PathwayExplorer = {
                 name: "Peroneal (Fibular) Nerve",
                 roots: "L4-S2",
                 story: "The Peroneal Pioneer, also known as the Common Fibular nerve, is an adventurous branch of the mighty sciatic nerve. This nerve loves taking the scenic route around the fibular head, making it vulnerable but vital for foot function. It splits into two explorers: the superficial peroneal (the ankle evertor) and the deep peroneal (the toe lifter), each with their own important territories to govern in the lower leg and foot.",
-                imagePath: "Nerve Paths/Peroneal Nerve.png",
+                imagePath: "images/pathways/Peroneal Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)", isInjurySite: false },
                     { title: "Fibular Head", desc: "Wraps around fibular neck through fibular tunnel (most common lower extremity mononeuropathy)", isInjurySite: true },
@@ -124,7 +124,7 @@ export const PathwayExplorer = {
                 name: "Sciatic Nerve",
                 roots: "L4-S3",
                 story: "The Sciatic Supreme is the body's largest and most powerful nerve, combining the might of the lumbar and sacral plexuses. This heavyweight champion travels through the greater sciatic foramen, then runs down the posterior thigh like a mighty river. At the popliteal fossa, it typically splits into its two famous branches: the tibial nerve (the plantarflexion powerhouse) and the common peroneal nerve (the dorsiflexion dynamo).",
-                imagePath: "Nerve Paths/Sciatic Nerve.png",
+                imagePath: "images/pathways/Sciatic Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from sacral plexus (L4-S3)", isInjurySite: false },
                     { title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen", isInjurySite: false },
@@ -136,7 +136,7 @@ export const PathwayExplorer = {
                 name: "Obturator Nerve",
                 roots: "L2-L4",
                 story: "The Obturator Operator is the adduction specialist of the thigh. Emerging from L2-L4, this nerve navigates through the obturator canal like a precise instrument. It's the 'squeeze' expert, controlling the muscles that pull the legs together (adduction) and acting as a guardian of hip stability.",
-                imagePath: "Nerve Paths/Obturator Nerve.png",
+                imagePath: "images/pathways/Obturator Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false },
                     { title: "Obturator Canal", desc: "Passes through obturator canal", isInjurySite: true },
@@ -149,7 +149,7 @@ export const PathwayExplorer = {
                 name: "Sural Nerve",
                 roots: "S1-S2",
                 story: "The Sural Scout is the faithful sensory companion of the lower leg. Formed by the union of the medial sural cutaneous nerve (from the tibial) and the communicating branch (from the common peroneal), this nerve travels down the back of the calf like a dedicated rear guard. It passes behind the lateral malleolus - a key landmark! - and continues along the side of the foot, providing sensation to the postero-lateral leg and the lateral side of the foot and little toe.",
-                imagePath: "Nerve Paths/Sural Nerve.png",
+                imagePath: "images/pathways/Sural Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Formed by union of medial sural cutaneous (tibial) and sural communicating branch (common peroneal) (S1-S2)", isInjurySite: false },
                     { title: "Posterior Leg", desc: "Travels down midline of posterior calf with small saphenous vein", isInjurySite: false },
