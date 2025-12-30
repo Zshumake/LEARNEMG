@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://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@github.com/Zshumake/PROEMG.git"
+    "url": "git+https://github.com/Zshumake/LEARNEMG.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zshumake/PROEMG/issues"
+    "url": "https://github.com/Zshumake/LEARNEMG/issues"
   },
-  "homepage": "https://github.com/Zshumake/PROEMG#readme",
+  "homepage": "https://zshumake.github.io/LEARNEMG/",
   "dependencies": {
     "@capacitor/core": "^7.4.4",
     "puppeteer": "^24.20.0"
