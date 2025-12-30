@@ -1944,6 +1944,17 @@
 
         async function generateAtriumPathway(pgy = 'pgy2') {
             console.log('🚀 Generating Atrium Pathway via Module System...', pgy);
+
+            // Retry mechanism to wait for modules to initialize
+            const maxRetries = 20; // 2 seconds
+            let retries = 0;
+
+            while (!(window.appComponents && window.appComponents.candyland) && retries < maxRetries) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                retries++;
+                if (retries === 1) console.log('⏳ Waiting for Candyland module initialization...');
+            }
+
             if (window.appComponents && window.appComponents.candyland) {
                 // Ensure the component has the data it needs or uses correct method
                 if (typeof window.appComponents.candyland.generateLearningBoard === 'function') {
@@ -1955,7 +1966,7 @@
                     console.error("❌ Candyland Component missing required methods!");
                 }
             } else {
-                console.error("❌ Candyland Component not loaded!");
+                console.error("❌ Candyland Component not loaded after 2 seconds!");
             }
         }
 
