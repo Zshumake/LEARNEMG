@@ -1,38 +1,22 @@
-# Exclude everything except essential files
-*
+# Project Excludes
+node_modules/
+dist/
+.DS_Store
+*.log
+*backup*
+*test*
+*debug*
+backup-*/
+_archive/
+_legacy_archive/
+backups/
+Archive/
+backup-module-extraction-20251118/
 
-# Include only these files
-!index.html
-!www/
-!README.md
-!LICENSE
-!.gitignore
-!ERNEST.png
-!manifest.json
-!package.json
-!package-lock.json
-!capacitor.config.json
-!brachial-plexus-prototype.html
-!css/
-!js/
-!ios/
-!manifest.json
-!audio/
-!images/
-!videos/
-!"Nerve Paths"/
-!"NCS images"/
-!Chapters/
-!Podcasts/
-!"NEW ICONS"/
-!*.pdf
-!*.png
-!*.jpg
-!*.jpeg
-!*.m4a
-!*.mp3
-!extract_pdf.py
-!pdf_content.txt
+# Mobile / Capacitor
+ios/App/App/public/
+ios/App/Pods/
+ios/App/.bundle/
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
