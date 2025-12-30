@@ -2,11 +2,6 @@
 node_modules/
 dist/
 .DS_Store
-*.log
-*backup*
-*test*
-*debug*
-backup-*/
 _archive/
 _legacy_archive/
 backups/
@@ -20,9 +15,6 @@ ios/App/.bundle/
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
-*backup*
-*test*
-*debug*
 *.log
 *.txt
 *.py
