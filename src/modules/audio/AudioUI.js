@@ -60,7 +60,7 @@ export class AudioUI {
                     <div class="header-content">
                         <div class="brand-container">
                             <div class="avatar-wrapper">
-                                <img src="ERNEST.png" alt="Ernest">
+                                <img src="images/ui/ERNEST.png" alt="Ernest">
                                 <div class="status-dot"></div>
                             </div>
                             <div class="brand-text">

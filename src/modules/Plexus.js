@@ -1,7 +1,7 @@
 
 export class Plexus {
-    constructor(store) {
-        this.store = store;
+    constructor() {
+        this.currentRegion = 'brachial';
         this.currentQuiz = null;
 
         // Bind methods for onclick events
@@ -16,7 +16,7 @@ export class Plexus {
         // Initialize plexus quiz with appropriate difficulty
         const quizData = this.createQuizData(pgyLevel);
         this.showQuizModal(quizData, pgyLevel);
-        console.log(`Plexus quiz started for: ${pgyLevel}`);
+        console.log(`Plexus quiz started for: ${pgyLevel} `);
     }
 
     createQuizData(pgyLevel) {
@@ -105,7 +105,7 @@ export class Plexus {
 
     showQuizModal(questions, pgyLevel) {
         const content = `
-            <div class="plexus-quiz-container">
+    < div class="plexus-quiz-container" >
                 <div class="quiz-header">
                     <div class="quiz-progress">
                         <span id="plexus-question-counter">Question 1 of ${questions.length}</span>
@@ -125,21 +125,21 @@ export class Plexus {
                     <button id="plexus-next" class="quiz-button primary" style="display:none;" onclick="window.appComponents.plexus.nextQuestion()">Next Question</button>
                     <button id="plexus-finish" class="quiz-button success" style="display:none;" onclick="window.appComponents.plexus.finishQuiz()">View Results</button>
                 </div>
-            </div>
+            </div >
 
-            <style>
-                .plexus-quiz-container { font-family: Arial, sans-serif; }
-                .plexus-diagram { max-width: 100%; height: auto; border: 2px solid #e0e7e9; border-radius: 8px; margin: 15px 0; background: white; }
-                .diagram-container { text-align: center; margin: 20px 0; }
-                .plexus-badge { display: inline-block; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8em; font-weight: 600; margin-bottom: 15px; }
-                .visual-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
-                .visual-option { padding: 10px; background: #f8f9fa; border: 2px solid transparent; border-radius: 8px; cursor: pointer; text-align: center; font-weight: bold; transition: all 0.2s ease; }
-                .visual-option:hover { background: #e9ecef; border-color: #6b9f78; }
-                .visual-option.selected { background: #d1ecf1; border-color: #3498db; }
-                .visual-option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
-                .visual-option.incorrect { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-            </style>
-        `;
+    <style>
+        .plexus-quiz-container {font - family: Arial, sans-serif; }
+        .plexus-diagram {max - width: 100%; height: auto; border: 2px solid #e0e7e9; border-radius: 8px; margin: 15px 0; background: white; }
+        .diagram-container {text - align: center; margin: 20px 0; }
+        .plexus-badge {display: inline-block; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8em; font-weight: 600; margin-bottom: 15px; }
+        .visual-options {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+        .visual-option {padding: 10px; background: #f8f9fa; border: 2px solid transparent; border-radius: 8px; cursor: pointer; text-align: center; font-weight: bold; transition: all 0.2s ease; }
+        .visual-option:hover {background: #e9ecef; border-color: #6b9f78; }
+        .visual-option.selected {background: #d1ecf1; border-color: #3498db; }
+        .visual-option.correct {background: #d4edda; border-color: #28a745; color: #155724; }
+        .visual-option.incorrect {background: #f8d7da; border-color: #dc3545; color: #721c24; }
+    </style>
+`;
 
         if (window.showModal) {
             window.showModal('🧠 Plexus Anatomy Challenge', content);
@@ -169,46 +169,47 @@ export class Plexus {
         if (!questionContainer) return;
 
         let questionHTML = `
-            <div class="quiz-question">
+    < div class="quiz-question" >
                 <div class="plexus-badge">${question.plexus.toUpperCase()} PLEXUS</div>
                 <div class="question-text">${question.question}</div>
-        `;
+`;
 
         // Add visual diagram for visual identification questions
         if (question.type === 'visual_identification') {
             questionHTML += `
-            <div class="diagram-container">
-                ${this.createBrachialPlexusDiagram()}
-            </div>
-            <div class="visual-options">
-                ${question.options.map((option, index) => `
+    < div class="diagram-container" >
+        ${this.createBrachialPlexusDiagram()}
+            </div >
+    <div class="visual-options">
+        ${question.options.map((option, index) => `
                     <div class="visual-option" data-value="${index}">
                         ${option}
                     </div>
                 `).join('')}
-            </div>
-            `;
+    </div>
+`;
         } else {
             questionHTML += `
-            <ul class="quiz-options">
-                ${question.options.map((option, index) => `
+    < ul class="quiz-options" >
+        ${question.options.map((option, index) => `
                     <li>
                         <label>
                             <input type="radio" name="plexus-answer" value="${index}">
                             ${option}
                         </label>
                     </li>
-                `).join('')}
-            </ul>
-            `;
+                `).join('')
+                }
+            </ul >
+    `;
         }
 
-        questionHTML += `</div>`;
+        questionHTML += `</div > `;
         questionContainer.innerHTML = questionHTML;
 
         // Update progress
-        document.getElementById('plexus-question-counter').textContent = `Question ${quiz.currentQuestion + 1} of ${quiz.questions.length}`;
-        document.getElementById('plexus-progress-fill').style.width = `${((quiz.currentQuestion + 1) / quiz.questions.length) * 100}%`;
+        document.getElementById('plexus-question-counter').textContent = `Question ${quiz.currentQuestion + 1} of ${quiz.questions.length} `;
+        document.getElementById('plexus-progress-fill').style.width = `${((quiz.currentQuestion + 1) / quiz.questions.length) * 100}% `;
 
         // Show submit button
         document.getElementById('plexus-submit').style.display = 'inline-block';
@@ -240,14 +241,14 @@ export class Plexus {
 
     createBrachialPlexusDiagram() {
         return `
-            <svg class="plexus-diagram" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background -->
+    < svg class="plexus-diagram" viewBox = "0 0 600 400" xmlns = "http://www.w3.org/2000/svg" >
+                < !--Background -->
                 <rect width="600" height="400" fill="#fafafa" stroke="#ddd" stroke-width="1"/>
                 
-                <!-- Title -->
+                <!--Title -->
                 <text x="300" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">Brachial Plexus - Simplified Diagram</text>
                 
-                <!-- Nerve Roots -->
+                <!--Nerve Roots-- >
                 <g stroke="#3498db" stroke-width="3" fill="none">
                     <line x1="50" y1="80" x2="150" y2="120" /> <!-- C5 -->
                     <line x1="50" y1="110" x2="150" y2="120" /> <!-- C6 -->
@@ -256,14 +257,14 @@ export class Plexus {
                     <line x1="50" y1="200" x2="150" y2="240" /> <!-- T1 -->
                 </g>
                 
-                <!-- Trunks -->
+                <!--Trunks -->
                 <g stroke="#27ae60" stroke-width="4" fill="none">
                     <line x1="150" y1="120" x2="250" y2="140" /> <!-- Upper Trunk -->
                     <line x1="150" y1="180" x2="250" y2="180" /> <!-- Middle Trunk -->
                     <line x1="150" y1="240" x2="250" y2="220" /> <!-- Lower Trunk -->
                 </g>
                 
-                <!-- Divisions (simplified) -->
+                <!--Divisions(simplified) -->
                 <g stroke="#f39c12" stroke-width="2" fill="none">
                     <line x1="250" y1="140" x2="350" y2="120" /> <!-- Upper anterior -->
                     <line x1="250" y1="140" x2="350" y2="160" /> <!-- Upper posterior -->
@@ -273,14 +274,14 @@ export class Plexus {
                     <line x1="250" y1="220" x2="350" y2="240" /> <!-- Lower posterior -->
                 </g>
                 
-                <!-- Cords -->
+                <!--Cords -->
                 <g stroke="#e74c3c" stroke-width="5" fill="none">
                     <line x1="350" y1="120" x2="450" y2="130" /> <!-- Lateral Cord (A) -->
                     <line x1="350" y1="160" x2="450" y2="180" /> <!-- Posterior Cord (C) -->
                     <line x1="350" y1="200" x2="450" y2="230" /> <!-- Medial Cord (B) -->
                 </g>
                 
-                <!-- Terminal Nerves -->
+                <!--Terminal Nerves-- >
                 <g stroke="#9b59b6" stroke-width="3" fill="none">
                     <line x1="450" y1="130" x2="550" y2="120" /> <!-- From Lateral -->
                     <line x1="450" y1="130" x2="550" y2="150" /> <!-- From Lateral -->
@@ -290,7 +291,7 @@ export class Plexus {
                     <line x1="450" y1="230" x2="550" y2="240" /> <!-- From Medial -->
                 </g>
                 
-                <!-- Labels -->
+                <!--Labels -->
                 <g font-size="12" text-anchor="middle" fill="#2c3e50">
                     <!-- Roots -->
                     <text x="30" y="85">C5</text>
@@ -316,20 +317,20 @@ export class Plexus {
                     <text x="430" y="210" font-size="10">Medial</text>
                 </g>
                 
-                <!-- Legend -->
-                <g font-size="10" fill="#666">
-                    <text x="50" y="350">Legend:</text>
-                    <line x1="50" y1="365" x2="70" y2="365" stroke="#3498db" stroke-width="3" />
-                    <text x="75" y="369">Roots</text>
-                    <line x1="120" y1="365" x2="140" y2="365" stroke="#27ae60" stroke-width="4" />
-                    <text x="145" y="369">Trunks</text>
-                    <line x1="190" y1="365" x2="210" y2="365" stroke="#e74c3c" stroke-width="5" />
-                    <text x="215" y="369">Cords</text>
-                    <line x1="260" y1="365" x2="280" y2="365" stroke="#9b59b6" stroke-width="3" />
-                    <text x="285" y="369">Terminal Nerves</text>
-                </g>
-            </svg>
-        `;
+                <!--Legend -->
+    <g font-size="10" fill="#666">
+        <text x="50" y="350">Legend:</text>
+        <line x1="50" y1="365" x2="70" y2="365" stroke="#3498db" stroke-width="3" />
+        <text x="75" y="369">Roots</text>
+        <line x1="120" y1="365" x2="140" y2="365" stroke="#27ae60" stroke-width="4" />
+        <text x="145" y="369">Trunks</text>
+        <line x1="190" y1="365" x2="210" y2="365" stroke="#e74c3c" stroke-width="5" />
+        <text x="215" y="369">Cords</text>
+        <line x1="260" y1="365" x2="280" y2="365" stroke="#9b59b6" stroke-width="3" />
+        <text x="285" y="369">Terminal Nerves</text>
+    </g>
+            </svg >
+    `;
     }
 
     submitAnswer() {
@@ -394,10 +395,10 @@ export class Plexus {
         const questionContainer = document.querySelector('.quiz-question');
         if (questionContainer) {
             questionContainer.innerHTML += `
-                <div class="quiz-explanation">
-                    <strong>Explanation:</strong> ${question.explanation}
-                </div>
-            `;
+    < div class="quiz-explanation" >
+        <strong>Explanation:</strong> ${question.explanation}
+                </div >
+    `;
         }
 
         // Show appropriate next button
@@ -434,7 +435,7 @@ export class Plexus {
         }
 
         const content = `
-            <div class="quiz-final-score">
+    < div class="quiz-final-score" >
                 <h3>🧠 Plexus Quiz Complete!</h3>
                 <div class="${scoreClass}" style="font-size: 2em; font-weight: bold; margin: 20px 0;">
                     ${quiz.score}/${quiz.questions.length} (${percentage}%)
@@ -452,8 +453,8 @@ export class Plexus {
                 </div>
                 
                 <p><strong>Continue Learning:</strong> Use the Interactive Plexus Anatomy tab and muscle lab for hands-on practice with nerve pathways and clinical correlations.</p>
-            </div>
-        `;
+            </div >
+    `;
 
         if (window.showModal) {
             window.showModal('🧠 Plexus Anatomy Results', content);

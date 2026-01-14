@@ -245,6 +245,13 @@ class IntroductionModule extends BaseContent {
 
 const introModule = new IntroductionModule();
 
+// --- GLOBAL LEGACY INTERFACE ---
+// These are exposed to ensure that legacy scripts in index.html or other untracked files
+// can still call the EMG introduction logic without a ReferenceError.
+window.generateEMGIntroductionContent = () => introModule.generateContent();
+window.initializeEMGIntroduction = () => introModule.initialize();
+window.showEMGSection = (sectionId) => introModule.showTab(sectionId); // Mapping showEMGSection to showTab
+
 export default {
     initialize() { introModule.initialize(); },
     generateContent() { return introModule.generateContent(); }

@@ -154,7 +154,7 @@ export class BoardRenderer {
                 font-size: 1.1em;
                 font-weight: 600;
                 max-width: 450px;">
-                <img src="ERNEST.png" alt="Ernest" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white; object-fit: cover;">
+                <img src="images/ui/ERNEST.png" alt="Ernest" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white; object-fit: cover;">
                 <span style="flex: 1;">Come Listen to My Podcasts!</span>
                 <span id="podcast-toggle-icon" style="transition: transform 0.3s ease; font-size: 1.2em;">▼</span>
             </button>
@@ -183,7 +183,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Essential Terminology</div>
                                 <div style="font-size: 0.7em; color: #64748b;">14:46</div>
@@ -199,7 +199,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Peripheral Anatomy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">39:07</div>
@@ -215,7 +215,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Plexopathies</div>
                                 <div style="font-size: 0.7em; color: #64748b;">13:28</div>
@@ -231,7 +231,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Radiculopathy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">15:48</div>
@@ -247,7 +247,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Polyneuropathies</div>
                                 <div style="font-size: 0.7em; color: #64748b;">16:41</div>
@@ -263,7 +263,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mononeuropathy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">33:22</div>
@@ -279,7 +279,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pattern Recognition</div>
                                 <div style="font-size: 0.7em; color: #64748b;">14:59</div>
@@ -295,7 +295,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Neuropathy vs Myopathy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">17:09</div>
@@ -311,7 +311,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Report Writing</div>
                                 <div style="font-size: 0.7em; color: #64748b;">11:56</div>
@@ -335,7 +335,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">ALS and Mimics</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
@@ -352,7 +352,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">Blink Reflex</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
@@ -369,7 +369,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">MG vs. Lambert-Eaton</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 29 min</p>
@@ -386,6 +386,7 @@ export class BoardRenderer {
     }
 
     generateHeroModule(module, index) {
+        if (!module) return '';
         // Fallback description if not found in data
         const desc = (module.description) ? module.description : "Start your journey here.";
 
@@ -395,10 +396,10 @@ export class BoardRenderer {
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
                  onclick="window.appComponents.candyland.handleModuleClick('${module.id}', ${index - 1})">
                 <div class="hero-content">
-                    <img src="${module.customIcon}" alt="${module.title}" class="hero-icon">
+                    <img src="${module.customIcon || ''}" alt="${module.title || ''}" class="hero-icon">
                     <div class="hero-text">
                         <div class="hero-badge">🚀 START HERE - Module ${index}</div>
-                        <h2 class="hero-title">${module.title}</h2>
+                        <h2 class="hero-title">${module.title || ''}</h2>
                         <p class="hero-description">${desc}</p>
                     </div>
                 </div>
@@ -407,6 +408,7 @@ export class BoardRenderer {
     }
 
     generateGridModule(module, index) {
+        if (!module) return '';
         // Note: onclick index is 0-based index in the FULL modules array?
         // handleModuleClick expects ID and Index. legacy used openAtriumModule(moduleNumber, id).
         // I will align handleModuleClick to take ID.
@@ -415,8 +417,8 @@ export class BoardRenderer {
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
                  onclick="window.appComponents.candyland.handleModuleClick('${module.id}', ${index - 1})">
-                <img src="${module.customIcon}"
-                     alt="${module.title}"
+                <img src="${module.customIcon || ''}"
+                     alt="${module.title || ''}"
                      class="module-icon"
                      style="width: 115px; height: 115px;">
             </div>
@@ -436,7 +438,7 @@ export class BoardRenderer {
                 cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                 onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"
                 onmouseout="this.style.background='#faf5ff'; this.style.borderColor='#e9d5ff'">
-                <img src="ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
                 <div style="flex: 1; min-width: 0;">
                     <div style="font-size: 0.8em; font-weight: 600; color: #7e22ce; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${topic.title}</div>
                     <div style="font-size: 0.7em; color: #64748b;">${topic.time}</div>
@@ -455,7 +457,7 @@ export class BoardRenderer {
         const html = `
             <div id="ernest-dialogue" class="ernest-dialogue-box">
                 <div class="ernest-dialogue-content">
-                    <img src="ERNEST.png" alt="ERNEST" class="ernest-avatar">
+                    <img src="images/ui/ERNEST.png" alt="ERNEST" class="ernest-avatar">
                     <div class="ernest-text">
                         <p class="ernest-name">ERNEST - Your EMG Guide</p>
                         <p id="ernest-message" class="ernest-message">Hover over any module to learn more about it!</p>
@@ -468,16 +470,30 @@ export class BoardRenderer {
     }
 
     updateErnestDescription(title, text, highlights) {
+        const dialogueBox = document.getElementById('ernest-dialogue');
         const msgEl = document.getElementById('ernest-message');
         const highEl = document.getElementById('ernest-highlights');
+
         if (msgEl) msgEl.textContent = text;
         if (highEl) highEl.textContent = highlights || "";
+
+        if (dialogueBox) {
+            dialogueBox.classList.add('show');
+        }
     }
 
     resetErnestDescription() {
+        const dialogueBox = document.getElementById('ernest-dialogue');
         const msgEl = document.getElementById('ernest-message');
         const highEl = document.getElementById('ernest-highlights');
-        if (msgEl) msgEl.textContent = "Hover over any module to learn more about it!";
-        if (highEl) highEl.textContent = "";
+
+        if (dialogueBox) {
+            dialogueBox.classList.remove('show');
+        }
+
+        setTimeout(() => {
+            if (msgEl) msgEl.textContent = "Hover over any module to learn more about it!";
+            if (highEl) highEl.textContent = "";
+        }, 300);
     }
 }

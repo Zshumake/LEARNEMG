@@ -1,19 +1,19 @@
 
 // Custom Icon Mappings from index.html (verified)
 export const CUSTOM_ICON_MAPPING = {
-    'emg-introduction': 'NEW ICONS/EMG:NCS Intro.png',
-    'plexus-anatomy': 'NEW ICONS/Peripheral Anatomy.png',
-    'brachial-plexus-interactive': 'NEW ICONS/Brachial Plexus Anatomy.png',
-    'radiculopathy-pathophysiology': 'NEW ICONS/Radiculopathy Pathophysiology.png',
-    'neuropathy-pathophysiology': 'NEW ICONS/Neuropathy Pathophysiology.png',
-    'ncs-fundamentals': 'NEW ICONS/NCS Fundamentals.png',
-    'ncs-techniques': 'NEW ICONS/NCS Techniques.png',
-    'emg-needle-localization': 'NEW ICONS/EMG Needle localization.png',
-    'muscle-quiz': 'NEW ICONS/muscle study lab.png',
-    'basic-patterns': 'NEW ICONS/Basic Pattern Recognition.png',
-    'neuropathy-myopathy-basics': 'NEW ICONS/Neuropathy vs. Myopathy Basics.png',
-    'simple-reports': 'NEW ICONS/Basic report writing.png',
-    'clinical-correlation': 'NEW ICONS/Clinical application.png'
+    'emg-introduction': 'images/icons/EMG-NCS Intro.png',
+    'plexus-anatomy': 'images/icons/Peripheral Anatomy.png',
+    'brachial-plexus-interactive': 'images/icons/Brachial Plexus Anatomy.png',
+    'radiculopathy-pathophysiology': 'images/icons/Radiculopathy Pathophysiology.png',
+    'neuropathy-pathophysiology': 'images/icons/Neuropathy Pathophysiology.png',
+    'ncs-fundamentals': 'images/icons/NCS Fundamentals.png',
+    'ncs-techniques': 'images/icons/NCS Techniques.png',
+    'emg-needle-localization': 'images/icons/EMG Needle localization.png',
+    'muscle-quiz': 'images/icons/muscle study lab.png',
+    'basic-patterns': 'images/icons/Basic Pattern Recognition.png',
+    'neuropathy-myopathy-basics': 'images/icons/Neuropathy vs. Myopathy Basics.png',
+    'simple-reports': 'images/icons/Basic report writing.png',
+    'clinical-correlation': 'images/icons/Clinical application.png'
 };
 
 // Module Descriptions (1-based index to match module Number)
@@ -103,8 +103,7 @@ const standardModules = [
     { id: 'clinical-correlation', title: 'Clinical Application', customIcon: CUSTOM_ICON_MAPPING['clinical-correlation'] }
 ];
 
-// Base Module Configuration (Unified List)
+// Export module configuration
 export const learningModulesConfig = {
-    pgy2: standardModules,
     all: standardModules
 };

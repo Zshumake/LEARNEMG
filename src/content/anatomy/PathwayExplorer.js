@@ -1,16 +1,458 @@
+const generateContent = () => `
+    <style>
+        .pathway-app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+            height: calc(100vh - 120px); /* Adjust based on your header height */
+            min-height: 600px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* SIDEBAR styling */
+        .pathway-sidebar {
+            background: #f8fafc;
+            border-right: 1px solid #e2e8f0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nerve-list-group {
+            padding: 10px;
+        }
+
+        .nerve-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            margin: 15px 10px 5px;
+            font-weight: 700;
+        }
+
+        .nerve-item {
+            padding: 12px 15px;
+            margin-bottom: 6px; /* Increased separation */
+            border-radius: 8px; /* Softer corners */
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent; /* default border */
+            font-size: 0.95rem;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle hover effect for all */
+        .nerve-item:hover {
+            transform: translateX(4px);
+            background: #f1f5f9;
+        }
+
+        /* Active State Base */
+        .nerve-item.active {
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: none;
+        }
+        
+        .nerve-item.active .root-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .nerve-item.active::before { display: none; } /* Remove the old bar indicator */
+
+        /* SPECIFIC COLORS - Active Backgrounds */
+        .nerve-item[data-nerve="median"].active { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .nerve-item[data-nerve="ulnar"].active { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+        .nerve-item[data-nerve="radial"].active { background: linear-gradient(135deg, #ea580c, #c2410c); }
+        .nerve-item[data-nerve="musculocutaneous"].active { background: linear-gradient(135deg, #059669, #047857); }
+        .nerve-item[data-nerve="axillary"].active { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        
+        /* Lower Extremity Colors - Differentiated */
+        .nerve-item[data-nerve="sciatic"].active { background: linear-gradient(135deg, #0f172a, #1e293b); }
+        .nerve-item[data-nerve="tibial"].active { background: linear-gradient(135deg, #0891b2, #0e7490); } /* Cyan/Teal */
+        .nerve-item[data-nerve="peroneal"].active { background: linear-gradient(135deg, #d97706, #b45309); } /* Amber */
+        .nerve-item[data-nerve="femoral"].active { background: linear-gradient(135deg, #4f46e5, #4338ca); } /* Indigo */
+        .nerve-item[data-nerve="obturator"].active { background: linear-gradient(135deg, #be185d, #9d174d); } /* Pink */
+        .nerve-item[data-nerve="sural"].active { background: linear-gradient(135deg, #059669, #047857); } /* Emerald match */
+
+        /* Hover Colors (Subtle tints) */
+        .nerve-item[data-nerve="median"]:not(.active):hover { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+        .nerve-item[data-nerve="ulnar"]:not(.active):hover { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+        .nerve-item[data-nerve="radial"]:not(.active):hover { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+        .nerve-item[data-nerve="musculocutaneous"]:not(.active):hover { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+        .nerve-item[data-nerve="axillary"]:not(.active):hover { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+        .nerve-item[data-nerve="sciatic"]:not(.active):hover { background: #f8fafc; color: #0f172a; border-color: #cbd5e1; }
+        
+        
+        /* Roots Badge */
+        .root-badge {
+            font-size: 0.75em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        /* MAIN CONTENT styling */
+        .pathway-main {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+            background: #fff;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* HERO HEADER in main view */
+        .nerve-hero {
+            padding: 30px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        /* Dynamic Gradients */
+        .bg-median { background: linear-gradient(135deg, #2563eb, #1e40af); }
+        .bg-ulnar { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+        .bg-radial { background: linear-gradient(135deg, #f59e0b, #b45309); }
+        .bg-musculocutaneous { background: linear-gradient(135deg, #10b981, #047857); }
+        .bg-axillary { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+        .bg-sciatic { background: linear-gradient(135deg, #0f172a, #334155); } 
+        .bg-default { background: linear-gradient(135deg, #64748b, #475569); }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Fixed timeline width, rest for visuals */
+            gap: 0;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Left Split: Timeline */
+        .steps-container {
+            padding: 25px;
+            border-right: 1px solid #f1f5f9;
+            overflow-y: auto;
+            background: #fcfcfc;
+            min-width: 320px; /* Prevent shrinking */
+        }
+
+        .step-timeline-item {
+            position: relative;
+            padding-left: 30px;
+            padding-bottom: 25px;
+            border-left: 2px solid #e2e8f0;
+            cursor: pointer;
+        }
+        .step-timeline-item:last-child { border-left-color: transparent; }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #cbd5e1;
+            transition: all 0.3s;
+        }
+        .step-timeline-item.active .timeline-dot {
+            background: currentColor; /* Inherits from parent color */
+            border-color: currentColor;
+            transform: scale(1.4);
+            box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+        }
+        .step-timeline-item.past .timeline-dot {
+            background: currentColor;
+            border-color: currentColor;
+        }
+
+        .step-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            margin-top: -5px;
+        }
+        .step-timeline-item.active .step-card {
+            border-color: currentColor;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        
+        /* Hover Effect for steps */
+        .step-timeline-item:hover .step-card {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+        
+        .entrapment-label {
+            display: inline-block;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #fee2e2;
+            color: #991b1b;
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Right Split: Visuals & Lore */
+        .visual-container {
+            padding: 25px;
+            overflow-y: auto;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Ensure full height usage */
+        }
+
+        .story-box {
+            background: #f0fdf4; /* Light green/fresh background */
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            flex-shrink: 0; /* Don't shrink the story */
+        }
+        
+        .img-wrapper {
+            flex: 1; /* Take remaining space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px;
+            min-height: 400px; /* Force minimum height for image */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        
+        .controls-footer {
+            background: white;
+            padding: 15px 25px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .nav-btn.secondary { background: #f1f5f9; color: #475569; }
+        .nav-btn.secondary:hover { background: #e2e8f0; }
+        
+        .nav-btn.primary { background: #0f172a; color: white; }
+        .nav-btn.primary:hover { background: #1e293b; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        @media (max-width: 900px) {
+            .pathway-app-container { grid-template-columns: 1fr; height: auto; }
+            .pathway-sidebar { height: 200px; border-bottom: 1px solid #e2e8f0; border-right: none; }
+            .content-grid { grid-template-columns: 1fr; }
+            .steps-container { min-width: auto; }
+        }
+    </style>
+
+    <div class="pathway-app-container">
+        <!-- SIDEBAR -->
+        <div class="pathway-sidebar">
+            <div class="sidebar-header">
+                <h3 style="margin: 0; font-size: 1.1em; color: #1e293b; font-weight: 800;">Nerve Explorer</h3>
+                <p style="margin: 5px 0 0; font-size: 0.85em; color: #64748b;">Select a pathway to begin</p>
+            </div>
+            
+            <div class="nerve-list-group">
+                <div class="nerve-group-title">Upper Extremity</div>
+                <div class="nerve-item" data-nerve="median" onclick="selectNerve('median')">
+                    <span>Median Nerve</span>
+                    <span class="root-badge">C6-T1</span>
+                </div>
+                <div class="nerve-item" data-nerve="ulnar" onclick="selectNerve('ulnar')">
+                    <span>Ulnar Nerve</span>
+                    <span class="root-badge">C8-T1</span>
+                </div>
+                <div class="nerve-item" data-nerve="radial" onclick="selectNerve('radial')">
+                    <span>Radial Nerve</span>
+                    <span class="root-badge">C5-T1</span>
+                </div>
+                <div class="nerve-item" data-nerve="musculocutaneous" onclick="selectNerve('musculocutaneous')">
+                    <span>Musculocutaneous</span>
+                    <span class="root-badge">C5-C7</span>
+                </div>
+                <div class="nerve-item" data-nerve="axillary" onclick="selectNerve('axillary')">
+                    <span>Axillary Nerve</span>
+                    <span class="root-badge">C5-C6</span>
+                </div>
+            </div>
+
+            <div class="nerve-list-group">
+                <div class="nerve-group-title">Lower Extremity</div>
+                <div class="nerve-item" data-nerve="sciatic" onclick="selectNerve('sciatic')">
+                    <span>Sciatic Nerve</span>
+                    <span class="root-badge">L4-S3</span>
+                </div>
+                <div class="nerve-item" data-nerve="tibial" onclick="selectNerve('tibial')">
+                    <span>Tibial Nerve</span>
+                    <span class="root-badge">L4-S3</span>
+                </div>
+                <div class="nerve-item" data-nerve="peroneal" onclick="selectNerve('peroneal')">
+                    <span>Peroneal Nerve</span>
+                    <span class="root-badge">L4-S2</span>
+                </div>
+                <div class="nerve-item" data-nerve="femoral" onclick="selectNerve('femoral')">
+                    <span>Femoral Nerve</span>
+                    <span class="root-badge">L2-L4</span>
+                </div>
+                <div class="nerve-item" data-nerve="obturator" onclick="selectNerve('obturator')">
+                    <span>Obturator Nerve</span>
+                    <span class="root-badge">L2-L4</span>
+                </div>
+                <div class="nerve-item" data-nerve="sural" onclick="selectNerve('sural')">
+                    <span>Sural Nerve</span>
+                    <span class="root-badge">S1-S2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="pathway-main" id="main-content-area">
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state">
+                <div style="width: 60px; height: 60px; background: #f1f5f9; border-radius: 50%; margin-bottom: 20px;"></div>
+                <h3 style="color: #475569;">No Nerve Selected</h3>
+                <p>Choose a nerve from the sidebar to view its anatomical pathway.</p>
+            </div>
+
+            <!-- Active Content (Hidden by default) -->
+            <div id="active-nerve-content" style="display: none; height: 100%; flex-direction: column;">
+                
+                <!-- Hero Header -->
+                <div id="nerve-hero" class="nerve-hero bg-default">
+                    <h2 id="hero-title" style="margin: 0; font-size: 1.8em; font-weight: 800;">Nerve Name</h2>
+                    <p id="hero-roots" style="margin: 5px 0 0; opacity: 0.9;">Roots Information</p>
+                </div>
+
+                <!-- Split Content -->
+                <div class="content-grid">
+                    <!-- Left: Timeline -->
+                    <div class="steps-container">
+                        <div style="font-size: 0.8em; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Pathway Steps</div>
+                        <div id="timeline-steps">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+
+                    <!-- Right: Visuals -->
+                    <div class="visual-container">
+                        <div style="font-size: 0.8em; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Clinical Context</div>
+                        
+                        <div class="story-box" id="story-box">
+                            <!-- Story injected -->
+                        </div>
+
+                        <div class="img-wrapper">
+                            <div id="nerve-image-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                                <!-- Image injected -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation -->
+                <div class="controls-footer">
+                    <button class="nav-btn secondary" id="prev-btn" onclick="previousStep()">Previous</button>
+                    <div style="color: #94a3b8; font-size: 0.9em;">Step <span id="current-step-num">1</span> of <span id="total-step-num">5</span></div>
+                    <button class="nav-btn primary" id="next-btn" onclick="nextStep()">Next Step</button>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
 
 export const PathwayExplorer = {
+    generateContent,
+
     // Initial State
     state: {
         currentNerve: null,
         currentStep: 0,
         maxSteps: 0,
+        // Theme mapping
+        themeColors: {
+            median: '#2563eb', // blue
+            ulnar: '#7c3aed', // purple
+            radial: '#ea580c', // orange
+            musculocutaneous: '#059669', // green
+            axillary: '#dc2626', // red
+            sciatic: '#0f172a', // slate
+            tibial: '#0f172a',
+            peroneal: '#0f172a',
+            femoral: '#0f172a',
+            obturator: '#0f172a',
+            sural: '#0f172a'
+        },
         nerveData: {
             median: {
                 name: "Median Nerve",
                 roots: "C6-T1",
-                story: "The Median Messenger starts his epic journey at the bustling Brachial Plexus Central Station (C6-T1), where lateral and medial cords shake hands to form our hero. He travels down the arm like a VIP, riding the bicipital groove limousine between the Biceps and Brachialis neighborhoods. At the Cubital Fossa rest stop, he takes a breather medial to the brachial artery before squeezing through the narrow Pronator Teres tunnel. His faithful sidekick, the Anterior Interosseous branch, splits off to handle the deep muscle work while our main character continues toward his final destination: the infamous Carpal Tunnel! After surviving this tight squeeze, he emerges victorious in the hand, ready to command the LOAF muscles like a general commanding his troops!",
-                imagePath: "images/pathways/Median Nerve.png",
+                story: "The Median nerve originates from the lateral and medial cords of the brachial plexus. It travels down the arm medial to the humerus, passes through the cubital fossa, and enters the forearm between the heads of the pronator teres. It supplies the flexor compartment of the forearm before passing through the carpal tunnel to innervate the thenar muscles and provide sensation to the lateral 3.5 digits.",
+                imagePath: "images/pathways/Median%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false },
                     { title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false },
@@ -24,8 +466,8 @@ export const PathwayExplorer = {
             ulnar: {
                 name: "Ulnar Nerve",
                 roots: "C8-T1",
-                story: "The Ulnar Underdog begins as the lone ranger from the medial cord, carrying the pure power of C8 and T1. He travels down the arm, taking the scenic route around the medial epicondyle at the elbow - that famous 'funny bone' spot where everyone's felt his electric personality! He slides through Guyon's canal at the wrist like a secret agent, then splits his mission: the deep branch heads to the interossei (the hand's fine motor specialists), while the superficial branch handles sensation for the pinky side of life.",
-                imagePath: "images/pathways/Ulnar Nerve.png",
+                story: "The Ulnar nerve arises from the medial cord. It descends the medial arm, passing behind the medial epicondyle (cubital tunnel) where it is superficial and vulnerable. It enters the forearm between heads of the FCU, descends to the wrist, and passes through Guyon's canal to innervate intrinsic hand muscles.",
+                imagePath: "images/pathways/Ulnar%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from medial cord of brachial plexus (C8-T1)", isInjurySite: false },
                     { title: "Upper Arm", desc: "Travels down medial aspect of arm", isInjurySite: false },
@@ -39,8 +481,8 @@ export const PathwayExplorer = {
             radial: {
                 name: "Radial Nerve",
                 roots: "C5-T1",
-                story: "The Radial Rebel is the strong, silent type from the posterior cord, packing the full power of C5-T1. This mighty nerve takes the back route down the arm, spiraling around the humerus in the famous spiral groove like a roller coaster. He's the extension expert, powering all the muscles that straighten the elbow, lift the wrist, and extend the fingers. His most vulnerable moment comes at the spiral groove, where a broken humerus can leave him bruised and beaten, causing the dreaded 'wrist drop.'",
-                imagePath: "images/pathways/Radial Nerve.png",
+                story: "The Radial nerve originates from the posterior cord. It winds around the humerus in the spiral groove (vulnerable to fracture), pierces the lateral intermuscular septum, and divides at the elbow into superficial (sensory) and deep (PIN - motor) branches.",
+                imagePath: "images/pathways/Radial%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from posterior cord (C5-T1)", isInjurySite: false },
                     { title: "Spiral Groove", desc: "Travels in spiral groove of humerus directly on bone (most vulnerable point for compression/fracture)", isInjurySite: true },
@@ -53,8 +495,8 @@ export const PathwayExplorer = {
             musculocutaneous: {
                 name: "Musculocutaneous Nerve",
                 roots: "C5-C7",
-                story: "The Musculocutaneous Marvel begins at the lateral cord headquarters in the brachial plexus, carrying orders from C5-C7. This sturdy nerve pierces through the coracobrachialis muscle like a determined warrior, then travels between the biceps brachii and brachialis muscles, supervising their every flex. As it approaches the elbow, it transforms into the lateral cutaneous nerve of the forearm, spreading its sensory network across the lateral forearm like a protective shield.",
-                imagePath: "images/pathways/Musculocutaneous Nerve.png",
+                story: "Arising from the lateral cord, this nerve pierces the coracobrachialis muscle and travels between the biceps and brachialis, supplying the anterior arm flexors. It terminates as the lateral antebrachial cutaneous nerve.",
+                imagePath: "images/pathways/Musculocutaneous%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from lateral cord of brachial plexus (C5-C7)", isInjurySite: false },
                     { title: "Coracobrachialis", desc: "Pierces coracobrachialis muscle", isInjurySite: false },
@@ -67,8 +509,8 @@ export const PathwayExplorer = {
             axillary: {
                 name: "Axillary Nerve",
                 roots: "C5-C6",
-                story: "The Axillary Ambassador emerges from the posterior cord, carrying the strength of C5 and C6. This diplomatic nerve travels posteriorly around the surgical neck of the humerus, navigating through the quadrilateral space like a secret agent. It has two important missions: powering the mighty deltoid muscle and providing sensation to the shoulder's badge of honor - that small patch of skin over the deltoid that soldiers call the 'regimental patch'.",
-                imagePath: "images/pathways/Axillary Nerve.png",
+                story: "From the posterior cord, the Axillary nerve passes posteriorly through the quadrilateral space with the posterior circumflex humeral artery. It winds around the surgical neck of the humerus to innervate the deltoid and teres minor.",
+                imagePath: "images/pathways/Axillary%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Arises from posterior cord (C5-C6)", isInjurySite: false },
                     { title: "Quadrilateral Space", desc: "Passes through quadrilateral space", isInjurySite: false },
@@ -81,8 +523,8 @@ export const PathwayExplorer = {
             femoral: {
                 name: "Femoral Nerve",
                 roots: "L2-L4",
-                story: "The Femoral General emerges from the lumbar plexus with the authority of L2-L4. This commanding nerve travels under the inguinal ligament like a VIP passing through customs, then spreads its influence across the anterior thigh. It's the knee extension expert, powering the mighty quadriceps muscle group while also providing sensation down the medial leg via its saphenous branch - the longest sensory nerve in the body!",
-                imagePath: "images/pathways/Femoral Nerve.png",
+                story: "The Femoral nerve arises from the lumbar plexus, passes deep to the inguinal ligament, and enters the femoral triangle lateral to the femoral artery. It branches extensively to supply the quadriceps and anterior thigh skin.",
+                imagePath: "images/pathways/Femoral%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false },
                     { title: "Inguinal Ligament", desc: "Passes under inguinal ligament", isInjurySite: false },
@@ -95,8 +537,8 @@ export const PathwayExplorer = {
             tibial: {
                 name: "Tibial Nerve",
                 roots: "L4-S3",
-                story: "The Tibial Traveler is one half of the mighty sciatic nerve's legacy, carrying the plantarflexion power of L4-S3. After the sciatic nerve splits at the popliteal fossa, this nerve takes the deep route down the posterior leg, traveling through the tarsal tunnel at the ankle like a train through a mountain pass. It's the pointing-toes expert, controlling all the muscles that push the foot down and curl the toes.",
-                imagePath: "images/pathways/Tibial Nerve.png",
+                story: "The medial division of the sciatic nerve. It traverses the popliteal fossa, descends the posterior leg supplying plantarflexors, and passes through the tarsal tunnel behind the medial malleolus to innervate the foot.",
+                imagePath: "images/pathways/Tibial%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Medial division of sciatic nerve (L4-S3)", isInjurySite: false },
                     { title: "Popliteal Fossa", desc: "Continues from sciatic bifurcation", isInjurySite: false },
@@ -109,8 +551,8 @@ export const PathwayExplorer = {
             peroneal: {
                 name: "Peroneal (Fibular) Nerve",
                 roots: "L4-S2",
-                story: "The Peroneal Pioneer, also known as the Common Fibular nerve, is an adventurous branch of the mighty sciatic nerve. This nerve loves taking the scenic route around the fibular head, making it vulnerable but vital for foot function. It splits into two explorers: the superficial peroneal (the ankle evertor) and the deep peroneal (the toe lifter), each with their own important territories to govern in the lower leg and foot.",
-                imagePath: "images/pathways/Peroneal Nerve.png",
+                story: "The Common Peroneal nerve (lateral sciatic division) winds around the fibular neck (highly vulnerable). It divides into superficial (lateral compartment, eversion) and deep (anterior compartment, dorsiflexion) branches.",
+                imagePath: "images/pathways/Deep%20Fibular%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Lateral division of sciatic nerve (L4-S2)", isInjurySite: false },
                     { title: "Fibular Head", desc: "Wraps around fibular neck through fibular tunnel (most common lower extremity mononeuropathy)", isInjurySite: true },
@@ -123,8 +565,8 @@ export const PathwayExplorer = {
             sciatic: {
                 name: "Sciatic Nerve",
                 roots: "L4-S3",
-                story: "The Sciatic Supreme is the body's largest and most powerful nerve, combining the might of the lumbar and sacral plexuses. This heavyweight champion travels through the greater sciatic foramen, then runs down the posterior thigh like a mighty river. At the popliteal fossa, it typically splits into its two famous branches: the tibial nerve (the plantarflexion powerhouse) and the common peroneal nerve (the dorsiflexion dynamo).",
-                imagePath: "images/pathways/Sciatic Nerve.png",
+                story: "The largest nerve in the body, leaving the pelvis via the greater sciatic foramen. It descends the posterior thigh, innervating hamstrings, before splitting into tibial and common peroneal nerves.",
+                imagePath: "images/pathways/Sciatic%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from sacral plexus (L4-S3)", isInjurySite: false },
                     { title: "Greater Sciatic Foramen", desc: "Exits pelvis through greater sciatic foramen", isInjurySite: false },
@@ -135,8 +577,8 @@ export const PathwayExplorer = {
             obturator: {
                 name: "Obturator Nerve",
                 roots: "L2-L4",
-                story: "The Obturator Operator is the adduction specialist of the thigh. Emerging from L2-L4, this nerve navigates through the obturator canal like a precise instrument. It's the 'squeeze' expert, controlling the muscles that pull the legs together (adduction) and acting as a guardian of hip stability.",
-                imagePath: "images/pathways/Obturator Nerve.png",
+                story: "Arising from the lumbar plexus, it passes through the obturator canal to innervate the medial thigh adductor muscles and cutaneous distribution.",
+                imagePath: "images/pathways/Obturator%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lumbar plexus (L2-L4)", isInjurySite: false },
                     { title: "Obturator Canal", desc: "Passes through obturator canal", isInjurySite: true },
@@ -148,8 +590,8 @@ export const PathwayExplorer = {
             sural: {
                 name: "Sural Nerve",
                 roots: "S1-S2",
-                story: "The Sural Scout is the faithful sensory companion of the lower leg. Formed by the union of the medial sural cutaneous nerve (from the tibial) and the communicating branch (from the common peroneal), this nerve travels down the back of the calf like a dedicated rear guard. It passes behind the lateral malleolus - a key landmark! - and continues along the side of the foot, providing sensation to the postero-lateral leg and the lateral side of the foot and little toe.",
-                imagePath: "images/pathways/Sural Nerve.png",
+                story: "A pure sensory nerve formed by branches of the tibial and common peroneal nerves. It runs distally with the small saphenous vein, passing posterior to the lateral malleolus to supply the lateral foot.",
+                imagePath: "images/pathways/Sural%20Nerve.png",
                 steps: [
                     { title: "Origin", desc: "Formed by union of medial sural cutaneous (tibial) and sural communicating branch (common peroneal) (S1-S2)", isInjurySite: false },
                     { title: "Posterior Leg", desc: "Travels down midline of posterior calf with small saphenous vein", isInjurySite: false },
@@ -162,20 +604,23 @@ export const PathwayExplorer = {
     },
 
     initialize() {
-        if (!window.pathwayExplorer) {
-            window.pathwayExplorer = this.state;
-        } else {
-            // If it exists, merge data to ensure we have everything
-            Object.assign(window.pathwayExplorer.nerveData, this.state.nerveData);
-        }
+        // FORCE RESET STATE to avoid stale window objects from previous versions
+        window.pathwayExplorer = this.state;
+
+        // Expose functions globally with proper context binding
+        window.selectNerve = this.selectNerve.bind(this);
+        window.showStep = this.showStep.bind(this);
+        window.nextStep = this.nextStep.bind(this);
+        window.previousStep = this.previousStep.bind(this);
+
+        console.log("PathwayExplorer initialized and state reset.");
     },
 
     selectNerve(nerveName) {
-        console.log('DEBUG: PathwayExplorer.selectNerve called with:', nerveName);
-        const explorer = window.pathwayExplorer || this.state;
-
-        if (!explorer.nerveData[nerveName]) {
-            console.error('DEBUG: Nerve data MISSING for:', nerveName);
+        // Always read from window.pathwayExplorer to ensure single source of truth
+        const explorer = window.pathwayExplorer;
+        if (!explorer || !explorer.nerveData[nerveName]) {
+            console.error("Nerve data not found for:", nerveName);
             return;
         }
 
@@ -183,139 +628,132 @@ export const PathwayExplorer = {
         explorer.currentStep = 0;
         explorer.maxSteps = explorer.currentNerve.steps.length;
 
-        // Show pathway container
-        const container = document.getElementById('pathway-container');
-        if (container) container.style.display = 'block';
+        // UI Updates
+        document.getElementById('empty-state').style.display = 'none';
+        const activeContainer = document.getElementById('active-nerve-content');
+        if (activeContainer) {
+            activeContainer.style.display = 'flex';
+        }
 
-        // Update story
-        const storyText = document.getElementById('story-text');
-        if (storyText) storyText.innerHTML = explorer.currentNerve.story;
+        // Sidebar active state
+        document.querySelectorAll('.nerve-item').forEach(el => el.classList.remove('active'));
+        const activeItem = document.querySelector(`.nerve-item[data-nerve="${nerveName}"]`);
+        if (activeItem) activeItem.classList.add('active');
 
-        // Update image
-        let imageContent;
-        if (explorer.currentNerve.imagePath) {
-            imageContent = `
-                <div style="text-align: center;">
-                    <h6 style="color: #0c4a6e; margin-bottom: 15px; font-size: 1.1em;">${explorer.currentNerve.name}</h6>
-                    <img src="${explorer.currentNerve.imagePath}" style="max-width: 100%; max-height: 400px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;" alt="${explorer.currentNerve.name} Pathway" onerror="this.src=''; this.alt='Image not found'; this.parentElement.innerHTML+='<br><small style=\\'color:#94a3b8\\'>Image missing (check paths)</small>';">
-                    <p style="color: #64748b; margin-top: 10px; font-size: 0.9em;">Nerve Roots: ${explorer.currentNerve.roots}</p>
+        // Hero Update
+        const heroTitle = document.getElementById('hero-title');
+        if (heroTitle) heroTitle.innerText = explorer.currentNerve.name;
+
+        const heroRoots = document.getElementById('hero-roots');
+        if (heroRoots) heroRoots.innerText = explorer.currentNerve.roots;
+
+        // Hero Background
+        const hero = document.getElementById('nerve-hero');
+        if (hero) {
+            hero.className = 'nerve-hero'; // reset
+            const themeClass = `bg-${nerveName}` in {
+                'bg-median': 1, 'bg-ulnar': 1, 'bg-radial': 1, 'bg-musculocutaneous': 1, 'bg-axillary': 1, 'bg-sciatic': 1
+            } ? `bg-${nerveName}` : 'bg-default';
+            hero.classList.add(themeClass);
+        }
+
+        // Update Theme Color CSS VAR for timeline
+        const themeColor = explorer.themeColors[nerveName] || '#64748b';
+        if (activeContainer) {
+            activeContainer.style.color = themeColor;
+        }
+
+        // Story
+        const storyBox = document.getElementById('story-box');
+        if (storyBox) {
+            storyBox.innerHTML = `
+                <div style="font-weight:700; color:#065f46; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                    Pathway Story
                 </div>
-            `;
-        } else {
-            imageContent = `
-                <div style="text-align: center;">
-                    <div style="font-size: 3em; margin-bottom: 15px; color: #0ea5e9;">🧠</div>
-                    <h6 style="color: #0c4a6e; margin-bottom: 10px; font-size: 1.1em;">${explorer.currentNerve.name}</h6>
-                    <p style="color: #64748b;">Nerve Roots: ${explorer.currentNerve.roots}</p>
-                    <p style="color: #94a3b8; font-size: 0.9em; margin-top: 15px; padding: 10px; background: #f1f5f9; border-radius: 6px;">[Anatomical pathway diagram placeholder]</p>
-                </div>
+                <div style="font-size:0.95em; line-height:1.6; color:#1e293b;">${explorer.currentNerve.story}</div>
             `;
         }
-        const imageContainer = document.getElementById('nerve-pathway-image');
-        if (imageContainer) imageContainer.innerHTML = imageContent;
 
-        // Reset and show first step
-        PathwayExplorer.showStep(0);
-
-        // Update button states
-        document.querySelectorAll('.nerve-btn').forEach(btn => {
-            btn.style.background = 'white';
-            btn.style.color = '#0c4a6e';
-        });
-        // Note: Event handling might need adjustment if calling from non-event context
-        if (typeof event !== 'undefined' && event && event.target && event.target.classList.contains('nerve-btn')) {
-            event.target.style.background = '#0ea5e9';
-            event.target.style.color = 'white';
+        // Image
+        const imgContainer = document.getElementById('nerve-image-container');
+        if (imgContainer) {
+            if (explorer.currentNerve.imagePath) {
+                imgContainer.innerHTML = `<img src="${explorer.currentNerve.imagePath}" style="max-width:100%; max-height:100%; object-fit:contain;" alt="Pathway Diagram">`;
+            } else {
+                imgContainer.innerHTML = `<div style="color:#cbd5e1;">Image Unavailable</div>`;
+            }
         }
+
+        const totalStepNum = document.getElementById('total-step-num');
+        if (totalStepNum) totalStepNum.innerText = explorer.maxSteps;
+
+        this.showStep(0);
     },
 
     showStep(stepIndex) {
-        const explorer = window.pathwayExplorer || this.state;
+        const explorer = window.pathwayExplorer;
+        if (!explorer || !explorer.currentNerve) return;
+
         const steps = explorer.currentNerve.steps;
         explorer.currentStep = stepIndex;
 
-        const stepsHtml = steps.map((s, i) => {
-            const isPast = i < stepIndex;
-            const isCurrent = i === stepIndex;
-            const isFuture = i > stepIndex;
-
-            let bgColor = isCurrent ? '#f0f9ff' : (isPast ? '#f8fafc' : 'white');
-            let borderColor = isCurrent ? '#0ea5e9' : (isPast ? '#cbd5e1' : '#e2e8f0');
-            let textColor = isCurrent ? '#0369a1' : (isPast ? '#64748b' : '#94a3b8');
-
-            // Injury site highlighting
-            if (s.isInjurySite && (isCurrent || isPast)) {
-                borderColor = '#ef4444';
-                if (isCurrent) bgColor = '#fef2f2';
-            }
-
-            let icon = isPast ? '✓' : (i + 1) + '.';
-            if (s.isInjurySite) icon = '⚠️';
-
-            return `
-                <div style="padding: 10px; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid ${borderColor}; background: ${bgColor}; transition: all 0.3s ease;">
-                    <div style="font-weight: 600; color: ${textColor}; margin-bottom: 4px;">
-                        ${icon} ${s.title}
-                    </div>
-                    <div style="color: ${isFuture ? '#9ca3af' : '#374151'}; font-size: 0.95em;">
-                        ${s.desc}
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        const stepsContainer = document.getElementById('pathway-steps');
+        // Update Timeline
+        const stepsContainer = document.getElementById('timeline-steps');
         if (stepsContainer) {
-            stepsContainer.innerHTML = stepsHtml;
+            stepsContainer.innerHTML = steps.map((s, i) => {
+                let stateClass = '';
+                if (i < stepIndex) stateClass = 'past';
+                else if (i === stepIndex) stateClass = 'active';
 
-            // Add click handler to advance
-            if (explorer.currentStep < explorer.maxSteps - 1) {
-                stepsContainer.style.cursor = 'pointer';
-                stepsContainer.onclick = function () { PathwayExplorer.nextStep(); };
-                stepsContainer.title = "Click to advance to next step";
-            } else {
-                stepsContainer.style.cursor = 'default';
-                stepsContainer.onclick = null;
-                stepsContainer.title = "";
-            }
+                const injuryBadge = s.isInjurySite ? `<span class="entrapment-label">Entrapment Site</span>` : '';
+
+                return `
+                    <div class="step-timeline-item ${stateClass}" onclick="showStep(${i})">
+                        <div class="timeline-dot"></div>
+                        <div class="step-card">
+                            <div style="font-weight:600; font-size:0.95em; margin-bottom:4px; color:#1e293b;">${s.title} ${injuryBadge}</div>
+                            <div style="color:#64748b; font-size:0.9em; line-height:1.4;">${s.desc}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        // Update buttons
+        // Update Footer Controls
+        const currentStepNum = document.getElementById('current-step-num');
+        if (currentStepNum) currentStepNum.innerText = stepIndex + 1;
+
         const prevBtn = document.getElementById('prev-btn');
-        if (prevBtn) {
-            prevBtn.disabled = stepIndex === 0;
-            prevBtn.style.opacity = stepIndex === 0 ? '0.5' : '1';
+        if (prevBtn) prevBtn.disabled = stepIndex === 0;
+
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) {
+            if (stepIndex === explorer.maxSteps - 1) {
+                nextBtn.innerText = 'Completed';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.innerText = 'Next Step';
+                nextBtn.disabled = false;
+            }
         }
     },
 
     nextStep() {
-        const explorer = window.pathwayExplorer || this.state;
-        if (explorer.currentStep < explorer.maxSteps - 1) {
-            PathwayExplorer.showStep(explorer.currentStep + 1);
+        const explorer = window.pathwayExplorer;
+        if (explorer && explorer.currentStep < explorer.maxSteps - 1) {
+            this.showStep(explorer.currentStep + 1);
         }
     },
 
     previousStep() {
-        const explorer = window.pathwayExplorer || this.state;
-        if (explorer.currentStep > 0) {
-            PathwayExplorer.showStep(explorer.currentStep - 1);
-        }
-    },
-
-    resetPathway() {
-        const explorer = window.pathwayExplorer || this.state;
-        if (explorer.currentNerve) {
-            PathwayExplorer.showStep(0);
+        const explorer = window.pathwayExplorer;
+        if (explorer && explorer.currentStep > 0) {
+            this.showStep(explorer.currentStep - 1);
         }
     }
 };
 
-// Expose to window for backward compatibility
-window.selectNerve = PathwayExplorer.selectNerve;
-window.showStep = PathwayExplorer.showStep;
-window.nextStep = PathwayExplorer.nextStep;
-window.previousStep = PathwayExplorer.previousStep;
-window.resetPathway = PathwayExplorer.resetPathway;
+window.generatePathwayExplorerContent = PathwayExplorer.generateContent;
+window.initializePathwayExplorer = PathwayExplorer.initialize;
 
-// Initialize on load to ensure data is present
-PathwayExplorer.initialize();
+export default PathwayExplorer;

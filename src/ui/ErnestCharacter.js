@@ -2,8 +2,9 @@
 // Manages the Ernest Character (The "Frog" Cursor/Guide)
 
 export class ErnestCharacter {
-    constructor(store) {
-        this.store = store;
+    constructor() {
+        this.element = null;
+        this.messageTimeout = null;
         this.setupEventListeners();
     }
 

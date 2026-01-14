@@ -11,8 +11,8 @@ import { AudioUI } from './AudioUI.js';
 import { getModuleEpisodes, generateErnestButton } from './AudioData.js';
 
 export class AudioController {
-    constructor(store) {
-        this.store = store; // Optional: If we want to persist playback state to Store
+    constructor() {
+        // Optional: If we want to persist playback state to Store
 
         // Initialize Core Components
         this.player = new AudioPlayer((state) => this.onPlayerStateChange(state));

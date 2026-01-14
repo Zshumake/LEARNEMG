@@ -1,34 +1,18 @@
-
 import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js';
 import { BoardRenderer } from './BoardRenderer.js';
 
 export class CandylandCore {
-    constructor(store) {
-        this.store = store;
+    constructor() {
         this.renderer = new BoardRenderer(this);
         this.config = learningModulesConfig;
         this.descriptions = MODULE_DESCRIPTIONS;
 
-        this.currentPGYLevel = null;
+        this.currentPGYLevel = 'all';
         this.completedModules = new Set();
 
         // Sync with global legacy state
         if (typeof window.completedModules !== 'undefined' && window.completedModules instanceof Set) {
             this.completedModules = window.completedModules;
-        }
-
-        // Listen for store updates
-        if (this.store) {
-            this.store.subscribe((state, key, value) => {
-                if (key === 'pgyLevel') {
-                    this.generateLearningBoard(value);
-                } else if (key === 'completedModules') {
-                    this.completedModules = value;
-                    if (this.currentPGYLevel) {
-                        this.renderer.render('learning-board', this.enrichModules(this.currentPGYLevel), this.currentPGYLevel, this.completedModules);
-                    }
-                }
-            });
         }
 
         // Expose for Renderer's onclick
@@ -82,45 +66,78 @@ export class CandylandCore {
         this.generateLearningBoard(pgyLevel);
     }
 
-    handleModuleClick(moduleId, index) {
+    async handleModuleClick(moduleId, index) {
         console.log(`🎯 Module clicked: ${moduleId} (Index: ${index})`);
 
-        // Use module loader for dynamic loading on ALL devices (including iOS)
-        const module = { contentId: moduleId, id: moduleId };
+        const module = {
+            contentId: moduleId,
+            id: moduleId,
+            title: this.descriptions[index + 1]?.title || moduleId
+        };
         const moduleNumber = index + 1;
+        const title = `Module ${moduleNumber}`;
 
-        // Legacy Module Loading Logic preserved from index.html
+        // Approach 1: Try Module Loader (Dynamic Logic)
         if (window.moduleLoader) {
-            console.log(`📦 Loading module dynamically: ${moduleId}`);
-            window.moduleLoader.loadModule(moduleId).then(loadedModule => {
-                if (loadedModule && loadedModule.generateContent) {
-                    const content = loadedModule.generateContent(module);
-                    if (content && typeof window.showModal === 'function') {
-                        window.showModal(`Module ${moduleNumber}: ${module.title || moduleId}`, content);
+            try {
+                console.log(`📦 Attempting module load: ${moduleId}`);
+                const loadedModule = await window.moduleLoader.loadModule(moduleId);
+
+                if (loadedModule) {
+                    // Initialize if available (fixes script execution for fresh modules)
+                    if (typeof loadedModule.initialize === 'function') {
+                        console.log(`🚀 Initializing module: ${moduleId}`);
+                        loadedModule.initialize();
+                    }
+
+                    if (loadedModule.generateContent) {
+                        console.log(`✨ Calling generateContent for: ${moduleId}`);
+                        const content = loadedModule.generateContent(module);
+
+                        // If generateContent returns anything (including null), we assume it handled its own display
+                        // or returned content for us to show.
+                        if (content !== undefined) {
+                            if (content && window.showModal) {
+                                window.showModal(`${title}: ${module.title}`, content);
+                            }
+                            return; // Found and handled
+                        }
                     }
                 }
-            }).catch(err => {
-                console.error("Module load failed", err);
-                this.fallbackLoad(module, moduleNumber);
-            });
-        } else {
-            console.log('⚠️ Module loader not available, using fallback');
-            this.fallbackLoad(module, moduleNumber);
-        }
-    }
-
-    fallbackLoad(module, moduleNumber) {
-        if (typeof window.generateLearningContentByType === 'function') {
-            const content = window.generateLearningContentByType(module, moduleNumber - 1);
-            if (content && typeof window.showModal === 'function') {
-                window.showModal(`Module ${moduleNumber}: ${module.id}`, content);
+            } catch (err) {
+                console.warn(`Module load failed for ${moduleId}, trying static content`, err);
             }
-        } else {
-            console.error("No fallback loader available");
+        }
+
+        // Approach 2: Static Content Loader Deprecated
+        // If ModuleLoader logic fails, we proceed to error handling.
+        // The remaining logic previously here is removed to force migration.
+
+        // Approach 3: Handling Special Cases (Quizzes)
+        // Check if it's a quiz module which might need special handling via QuizSystem
+        // (This part assumes QuizSystem is globally available or integrated)
+
+        console.error(`❌ No content found for module: ${moduleId} `);
+        if (window.showModal) {
+            const errorContent = `
+                <div style="padding: 20px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
+                    <h3>Content Not Found</h3>
+                    <p>Unable to load content for module: ${moduleId}</p>
+                    <p>Please contact support if this persists.</p>
+                </div>
+            `;
+            window.showModal('Error', errorContent);
         }
     }
 
     showModuleDescription(moduleNumber) {
+        // Clear any pending hide timer
+        if (this.hideTimer) {
+            clearTimeout(this.hideTimer);
+            this.hideTimer = null;
+        }
+
         const desc = this.descriptions[moduleNumber];
         if (desc) {
             this.renderer.updateErnestDescription(desc.title, desc.text, desc.highlights);
@@ -128,6 +145,9 @@ export class CandylandCore {
     }
 
     hideModuleDescription() {
-        this.renderer.resetErnestDescription();
+        // Add a delay before hiding to prevent flickering/accidental mouseout
+        this.hideTimer = setTimeout(() => {
+            this.renderer.resetErnestDescription();
+        }, 300); // 300ms grace period
     }
 }

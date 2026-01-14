@@ -1,6 +1,5 @@
 export class CompetencyManager {
-    constructor(store) {
-        this.store = store;
+    constructor() {
         this.currentCompetencyArea = 'all';
 
         // Competency Area Descriptions
@@ -59,11 +58,7 @@ export class CompetencyManager {
             this.setupProgressInteractions();
 
             // Load and display saved progress
-            // Access global currentPGYLevel if available, or check store
-            const pgyLevel = this.store.getPGYLevel();
-            if (pgyLevel && pgyLevel !== 'all') {
-                this.updateDashboard();
-            }
+            this.updateDashboard();
         }, 100);
     }
 
@@ -201,12 +196,11 @@ export class CompetencyManager {
         }
 
         if (completedSpan) {
-            const pgyLevel = this.store.getPGYLevel() || 'all';
-            const targetLevels = this.getTargetLevelsForPGY(pgyLevel);
+            // Target levels are unified now, default to Level 2 for 'completed' status
+            const targetLevel = 2;
             let completedCount = 0;
 
             Object.entries(progress).forEach(([competency, level]) => {
-                const targetLevel = targetLevels[competency] || 0;
                 if (level >= targetLevel) {
                     completedCount++;
                 }

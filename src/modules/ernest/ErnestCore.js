@@ -15,7 +15,7 @@ export class ErnestCore {
             'ernest': {
                 description: "Join Ernest on an interactive adventure through the peripheral nervous system. Master complex anatomy, conquer clinical patterns, and build the skills that will help you become a confident electrodiagnostician. Ready to begin your journey?",
                 name: "Ernest (StimTroller Plus™)",
-                image: "ERNEST.png",
+                image: "images/ui/ERNEST.png",
                 color: "#6b9f78",
                 prompt: `
             PERSONA: "THE MANIC LAB PARTNER"
@@ -36,7 +36,7 @@ export class ErnestCore {
             'earl': {
                 description: "Oh, you're back? Fine. I suppose I can verify your attempts at 'diagnostics.' Try not to confuse volume conduction with actual pathology this time. Ready to be corrected?",
                 name: "Earl",
-                image: "EARL.png",
+                image: "images/ui/EARL.png",
                 color: "#b91c1c",
                 bg: "#fef2f2",
                 prompt: `
@@ -130,7 +130,8 @@ export class ErnestCore {
     updateGlobalImages(newSrc) {
         const allImages = document.querySelectorAll('img');
         allImages.forEach(img => {
-            if (img.src.includes('ERNEST.png') || img.src.includes('EARL.png')) {
+            // Updated check to handle new path structure
+            if (img.src.includes('images/ui/ERNEST.png') || img.src.includes('images/ui/EARL.png')) {
                 const oldFilename = img.src.split('/').pop();
                 if (oldFilename === 'ERNEST.png' || oldFilename === 'EARL.png') {
                     img.src = newSrc;

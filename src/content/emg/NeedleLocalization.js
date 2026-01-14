@@ -1,7 +1,10 @@
 /**
  * EMG Needle Localization Content Module
+ * EMG Needle Localization Content Module
  * Restored from legacy archives.
  */
+import { generateErnestButton } from '../../utils/ButtonGenerator.js';
+
 
 const EMGLocalizationDatabase = {
     upperExtremity: {
@@ -172,14 +175,168 @@ function getMuscleImagePath(muscleKey) {
     return imageMap[muscleKey] || null;
 }
 
+// Define the global handler for interactions
+if (!window.EMGLocalization) {
+    window.EMGLocalization = {
+        selectedMuscle: null,
+        selectedRegion: 'upper', // Default to upper
+
+        switchRegion: function (region) {
+            console.log(`🔄 Switching to ${region} extremity`);
+            this.selectedRegion = region;
+
+            // Update region button styles
+            document.querySelectorAll('.region-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeBtn = document.getElementById(`${region}-region-btn`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Render muscle pills for selected region
+            this.renderMusclePills(region);
+
+            // Clear detail panel
+            const detailPanel = document.getElementById('muscle-detail-content');
+            if (detailPanel) {
+                detailPanel.innerHTML = `
+                    <div class="placeholder-content">
+                        <h4>🎯 Select a Muscle</h4>
+                        <p>Choose a muscle above to view detailed EMG needle localization information</p>
+                    </div>
+                `;
+            }
+        },
+
+        renderMusclePills: function (region) {
+            const container = document.getElementById('muscle-pill-container');
+            if (!container) return;
+
+            const muscles = region === 'upper'
+                ? EMGLocalizationDatabase.upperExtremity
+                : EMGLocalizationDatabase.lowerExtremity;
+
+            const pillsHTML = Object.keys(muscles).map(abbrev => {
+                const muscle = muscles[abbrev];
+                return `
+                    <div class="muscle-pill" onclick="EMGLocalization.selectMuscle('${abbrev}', '${region}')" data-muscle="${abbrev}">
+                        <span class="muscle-pill-abbrev">${abbrev}</span>
+                        <span class="muscle-pill-name">${muscle.fullName}</span>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = pillsHTML;
+        },
+
+        selectMuscle: function (muscle, region) {
+            console.log(`🔍 Selecting muscle: ${muscle} from ${region} extremity`);
+
+            // Update selection state
+            this.selectedMuscle = muscle;
+            this.selectedRegion = region;
+
+            // Remove previous selections
+            document.querySelectorAll('.muscle-pill').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add selection to clicked item
+            const selectedItem = document.querySelector(`.muscle-pill[data-muscle="${muscle}"]`);
+            if (selectedItem) {
+                selectedItem.classList.add('active');
+            }
+
+            // Get muscle data
+            const muscleData = region === 'upper'
+                ? EMGLocalizationDatabase.upperExtremity[muscle]
+                : EMGLocalizationDatabase.lowerExtremity[muscle];
+
+            // Update detail panel (pass muscle key for image lookup)
+            this.displayMuscleDetails({ ...muscleData, key: muscle });
+        },
+
+        displayMuscleDetails: function (muscleData) {
+            const detailPanel = document.getElementById('muscle-detail-content');
+            if (!detailPanel) return;
+
+            const imagePath = getMuscleImagePath(muscleData.key || '');
+            const imageHTML = imagePath ? `
+                <div style="margin-bottom: 25px; text-align: center;">
+                    <img src="${imagePath}"
+                            alt="${muscleData.fullName} needle insertion"
+                            style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+                            onerror="this.parentElement.innerHTML='<div class=\\'image-placeholder\\'><div class=\\'image-placeholder-icon\\'>🖼️</div><p><strong>Image not found</strong></p><p>${muscleData.fullName}</p></div>'">
+                </div>
+            ` : `
+                <div class="image-placeholder" style="margin-bottom: 25px;">
+                    <div class="image-placeholder-icon">🖼️</div>
+                    <p><strong>EMG Needle Placement Image</strong></p>
+                    <p>Anatomical diagram for ${muscleData.fullName} needle insertion</p>
+                    <p style="font-size: 0.9em; color: #94a3b8; margin-top: 8px;">Image coming soon</p>
+                </div>
+            `;
+
+            const detailHTML = `
+                <div class="muscle-detail">
+                    <div class="muscle-title">
+                        <h4>${muscleData.fullName}</h4>
+                        <p class="muscle-subtitle">EMG Needle Localization Guide</p>
+                    </div>
+
+                    ${imageHTML}
+
+                    <div class="detail-section electrode-insertion">
+                        <h5>💉 Electrode Insertion</h5>
+                        <p class="detail-text"><strong>${muscleData.electrodeInsertion}</strong></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h5>🧍 Patient Position</h5>
+                        <p class="detail-text">${muscleData.position}</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h5>💪 Test Maneuver</h5>
+                        <p class="detail-text">${muscleData.testManeuver}</p>
+                    </div>
+
+                    <div class="detail-section pitfalls">
+                        <h5>⚠️ Pitfalls</h5>
+                        <p class="detail-text">${muscleData.pitfalls}</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h5>🧠 Innervation</h5>
+                        <p class="detail-text">${muscleData.innervation}</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h5>📝 Clinical Comments</h5>
+                        <p class="detail-text">${muscleData.comments}</p>
+                    </div>
+                </div>
+            `;
+
+            detailPanel.innerHTML = detailHTML;
+        }
+    };
+}
+
 export const NeedleLocalization = {
-    showGuide() {
-        console.log('🔍 DEBUG: showEMGLocalizationGuide called via Module');
+    generateContent(module) {
         console.log('✨ UI FACELIFT VERSION LOADED - EMG Needle Localization v20251002');
 
-        const title = '💉 EMG Needle Localization Guide';
-        const content = `
+        // Define helpers locally if not global yet (though we defined them above)
+        // Ensure initialization triggers
+        setTimeout(() => {
+            if (window.EMGLocalization) {
+                window.EMGLocalization.switchRegion('upper');
+            }
+        }, 100);
+
+        return `
         <div class="emg-localization-container">
+            ${generateErnestButton('emg-needle-localization', 'EMG Needle Localization')}
             <!-- Hero Section with Animated Gradient -->
             <div class="emg-hero">
                 <div class="hero-content">
@@ -239,6 +396,120 @@ export const NeedleLocalization = {
                     </div>
                 </div>
             </div>
+            
+            <!-- Quiz Section -->
+            ${generateModuleQuiz([
+            {
+                question: "Which nerve innervates the Abductor Pollicis Brevis (APB)?",
+                options: [
+                    "Ulnar Nerve",
+                    "Radial Nerve",
+                    "Median Nerve",
+                    "Musculocutaneous Nerve"
+                ],
+                correct: 2,
+                explanation: "The APB is innervated by the MEDIAN NERVE (C8, T1). It is the most distal muscle innervated by the median nerve and is critical for thumb abduction."
+            },
+            {
+                question: "What are the primary root levels for the Tibialis Anterior?",
+                options: [
+                    "L2, L3",
+                    "L3, L4",
+                    "L4, L5",
+                    "S1, S2"
+                ],
+                correct: 2,
+                explanation: "The Tibialis Anterior is primarily innervated by the L4 and L5 nerve roots (Deep Peroneal Nerve). It is a key muscle for dorsiflexion."
+            },
+            {
+                question: "The Medial Head of the Gastrocnemius is innervated by which nerve?",
+                options: [
+                    "Common Peroneal Nerve",
+                    "Tibial Nerve",
+                    "Femoral Nerve",
+                    "Obturator Nerve"
+                ],
+                correct: 1,
+                explanation: "The Gastrocnemius (both heads) is innervated by the TIBIAL NERVE (S1, S2). It is a powerful plantar flexor."
+            },
+            {
+                question: "Where is the correct electrode insertion point for the Middle Deltoid?",
+                options: [
+                    "At the coracoid process",
+                    "Halfway between the acromion and the deltoid tubercle",
+                    "At the deltoid tubercle",
+                    "Posterior to the acromion"
+                ],
+                correct: 1,
+                explanation: "The needle should be inserted into the bulk of the muscle, HALFWAY between the tip of the acromion and the deltoid tubercle."
+            },
+            {
+                question: "Which nerve innervates the Pronator Teres?",
+                options: [
+                    "Ulnar Nerve",
+                    "Radial Nerve",
+                    "Median Nerve",
+                    "Musculocutaneous Nerve"
+                ],
+                correct: 2,
+                explanation: "The Pronator Teres is innervated by the MEDIAN NERVE (C6, C7). It is the most proximal muscle innervated by the median nerve in the forearm."
+            },
+            {
+                question: "The First Dorsal Interosseous (FDI) is innervated by:",
+                options: [
+                    "Median Nerve (C8, T1)",
+                    "Ulnar Nerve (C8, T1)",
+                    "Radial Nerve (C7, C8)",
+                    "Axillary Nerve (C5, C6)"
+                ],
+                correct: 1,
+                explanation: "The FDI is innervated by the ULNAR NERVE (C8, T1). It is the most distal ulnar-innervated muscle and is used to test ulnar nerve integrity."
+            },
+            {
+                question: "Which nerve supplies the Vastus Lateralis?",
+                options: [
+                    "Sciatic Nerve",
+                    "Obturator Nerve",
+                    "Femoral Nerve",
+                    "Tibial Nerve"
+                ],
+                correct: 2,
+                explanation: "The Vastus Lateralis (part of the Quadriceps) is innervated by the FEMORAL NERVE (L2, L3, L4)."
+            },
+            {
+                question: "What is a potential pitfall when inserting the needle too deeply into the Pronator Teres?",
+                options: [
+                    "Hitting the Brachial Artery",
+                    "Entering the Flexor Digitorum Sublimis",
+                    "Entering the Biceps Brachii",
+                    "Hitting the Radius bone"
+                ],
+                correct: 1,
+                explanation: "If the needle is inserted too deeply into the Pronator Teres, it may enter the FLEXOR DIGITORUM SUBLIMIS, which lies deep to it."
+            },
+            {
+                question: "What is the correct patient position for examining the Biceps Brachii?",
+                options: [
+                    "Prone with arm abducted",
+                    "Sitting with arm flexed",
+                    "Supine with arm extended",
+                    "Side-lying"
+                ],
+                correct: 2,
+                explanation: "The patient should be SUPINE with the arm EXTENDED. This relaxes the muscle and allows for proper localization."
+            },
+            {
+                question: "Which maneuver tests the Tibialis Posterior?",
+                options: [
+                    "Dorsiflexion of the foot",
+                    "Eversion of the foot",
+                    "Inversion of the foot in plantar flexion",
+                    "Extension of the big toe"
+                ],
+                correct: 2,
+                explanation: "The Tibialis Posterior is tested by asking the patient to INVERT the foot while it is in PLANTAR FLEXION. It is the primary inverter of the foot."
+            }
+        ])}
         </div>
 
         <style>
@@ -657,176 +928,6 @@ export const NeedleLocalization = {
                 }
             }
         </style>
-    `;
-
-        if (window.showModal) window.showModal(title, content);
-
-        // Define the global handler for interactions
-        // We attach it to window because the HTML string uses onclick attributes
-        setTimeout(() => {
-            if (!window.EMGLocalization) {
-                window.EMGLocalization = {
-                    selectedMuscle: null,
-                    selectedRegion: 'upper', // Default to upper
-
-                    switchRegion: function (region) {
-                        console.log(`🔄 Switching to ${region} extremity`);
-                        this.selectedRegion = region;
-
-                        // Update region button styles
-                        document.querySelectorAll('.region-btn').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        const activeBtn = document.getElementById(`${region}-region-btn`);
-                        if (activeBtn) activeBtn.classList.add('active');
-
-                        // Render muscle pills for selected region
-                        this.renderMusclePills(region);
-
-                        // Clear detail panel
-                        const detailPanel = document.getElementById('muscle-detail-content');
-                        if (detailPanel) {
-                            detailPanel.innerHTML = `
-                                <div class="placeholder-content">
-                                    <h4>🎯 Select a Muscle</h4>
-                                    <p>Choose a muscle above to view detailed EMG needle localization information</p>
-                                </div>
-                            `;
-                        }
-                    },
-
-                    renderMusclePills: function (region) {
-                        const container = document.getElementById('muscle-pill-container');
-                        if (!container) return;
-
-                        const muscles = region === 'upper'
-                            ? EMGLocalizationDatabase.upperExtremity
-                            : EMGLocalizationDatabase.lowerExtremity;
-
-                        const pillsHTML = Object.keys(muscles).map(abbrev => {
-                            const muscle = muscles[abbrev];
-                            return `
-                                <div class="muscle-pill" onclick="EMGLocalization.selectMuscle('${abbrev}', '${region}')" data-muscle="${abbrev}">
-                                    <span class="muscle-pill-abbrev">${abbrev}</span>
-                                    <span class="muscle-pill-name">${muscle.fullName}</span>
-                                </div>
-                            `;
-                        }).join('');
-
-                        container.innerHTML = pillsHTML;
-                    },
-
-                    selectMuscle: function (muscle, region) {
-                        console.log(`🔍 Selecting muscle: ${muscle} from ${region} extremity`);
-
-                        // Update selection state
-                        this.selectedMuscle = muscle;
-                        this.selectedRegion = region;
-
-                        // Remove previous selections
-                        document.querySelectorAll('.muscle-pill').forEach(item => {
-                            item.classList.remove('active');
-                        });
-
-                        // Add selection to clicked item
-                        const selectedItem = document.querySelector(`.muscle-pill[data-muscle="${muscle}"]`);
-                        if (selectedItem) {
-                            selectedItem.classList.add('active');
-                        }
-
-                        // Get muscle data
-                        const muscleData = region === 'upper'
-                            ? EMGLocalizationDatabase.upperExtremity[muscle]
-                            : EMGLocalizationDatabase.lowerExtremity[muscle];
-
-                        // Update detail panel (pass muscle key for image lookup)
-                        this.displayMuscleDetails({ ...muscleData, key: muscle });
-                    },
-
-                    displayMuscleDetails: function (muscleData) {
-                        const detailPanel = document.getElementById('muscle-detail-content');
-                        if (!detailPanel) return;
-
-                        const imagePath = getMuscleImagePath(muscleData.key || '');
-                        const imageHTML = imagePath ? `
-                            <div style="margin-bottom: 25px; text-align: center;">
-                                <img src="${imagePath}"
-                                     alt="${muscleData.fullName} needle insertion"
-                                     style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-                                     onerror="this.parentElement.innerHTML='<div class=\\'image-placeholder\\'><div class=\\'image-placeholder-icon\\'>🖼️</div><p><strong>Image not found</strong></p><p>${muscleData.fullName}</p></div>'">
-                            </div>
-                        ` : `
-                            <div class="image-placeholder" style="margin-bottom: 25px;">
-                                <div class="image-placeholder-icon">🖼️</div>
-                                <p><strong>EMG Needle Placement Image</strong></p>
-                                <p>Anatomical diagram for ${muscleData.fullName} needle insertion</p>
-                                <p style="font-size: 0.9em; color: #94a3b8; margin-top: 8px;">Image coming soon</p>
-                            </div>
-                        `;
-
-                        const detailHTML = `
-                            <div class="muscle-detail">
-                                <div class="muscle-title">
-                                    <h4>${muscleData.fullName}</h4>
-                                    <p class="muscle-subtitle">EMG Needle Localization Guide</p>
-                                </div>
-
-                                ${imageHTML}
-
-                                <div class="detail-section electrode-insertion">
-                                    <h5>💉 Electrode Insertion</h5>
-                                    <p class="detail-text"><strong>${muscleData.electrodeInsertion}</strong></p>
-                                </div>
-
-                                <div class="detail-section">
-                                    <h5>🧍 Patient Position</h5>
-                                    <p class="detail-text">${muscleData.position}</p>
-                                </div>
-
-                                <div class="detail-section">
-                                    <h5>💪 Test Maneuver</h5>
-                                    <p class="detail-text">${muscleData.testManeuver}</p>
-                                </div>
-
-                                <div class="detail-section pitfalls">
-                                    <h5>⚠️ Pitfalls</h5>
-                                    <p class="detail-text">${muscleData.pitfalls}</p>
-                                </div>
-
-                                <div class="detail-section">
-                                    <h5>🧠 Innervation</h5>
-                                    <p class="detail-text">${muscleData.innervation}</p>
-                                </div>
-
-                                <div class="detail-section">
-                                    <h5>📍 Origin</h5>
-                                    <p class="detail-text">${muscleData.origin}</p>
-                                </div>
-
-                                <div class="detail-section">
-                                    <h5>🎯 Insertion</h5>
-                                    <p class="detail-text">${muscleData.insertion}</p>
-                                </div>
-
-                                <div class="detail-section">
-                                    <h5>📝 Clinical Comments</h5>
-                                    <p class="detail-text">${muscleData.comments}</p>
-                                </div>
-                            </div>
-                        `;
-
-                        detailPanel.innerHTML = detailHTML;
-                    }
-                };
-            }
-
-            // Initialize with upper extremity muscles
-            if (window.EMGLocalization) {
-                window.EMGLocalization.renderMusclePills('upper');
-            }
-        }, 100);
+        `;
     }
 };
-
-// Global Alias
-window.EMGNeedleLocalization = NeedleLocalization;

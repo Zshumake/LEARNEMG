@@ -1,7 +1,6 @@
 
 export class NCS {
-    constructor(store) {
-        this.store = store;
+    constructor() {
         this.currentLandmarkQuiz = null;
 
         // Bind methods
@@ -9,6 +8,123 @@ export class NCS {
         this.submitLandmarkAnswer = this.submitLandmarkAnswer.bind(this);
         this.nextLandmarkQuestion = this.nextLandmarkQuestion.bind(this);
         this.finishLandmarkQuiz = this.finishLandmarkQuiz.bind(this);
+
+        // Bind new gallery and toggle methods
+        this.navigateGallery = this.navigateGallery.bind(this);
+        this.showNCSContentType = this.showNCSContentType.bind(this);
+
+        // Expose globally for legacy support
+        window.navigateGallery = this.navigateGallery;
+        window.showNCSContentType = this.showNCSContentType;
+        window.showNCSExtremity = this.showNCSExtremity.bind(this);
+    }
+
+    /**
+     * NCS Image Gallery Navigation Function
+     */
+    navigateGallery(button, direction) {
+        const gallery = button.closest('.ncs-image-gallery');
+        if (!gallery) return;
+
+        const img = gallery.querySelector('.ncs-gallery-image');
+        const imagesAttr = gallery.getAttribute('data-images');
+        if (!imagesAttr) return;
+
+        const images = JSON.parse(imagesAttr);
+        const counter = gallery.querySelector('.gallery-counter');
+        const buttons = gallery.querySelectorAll('button');
+        const leftBtn = buttons[0];
+        const rightBtn = buttons[1];
+
+        let currentIndex = parseInt(gallery.getAttribute('data-current-index') || '0');
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        gallery.setAttribute('data-current-index', currentIndex);
+
+        if (img) img.src = images[currentIndex];
+        if (counter) counter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+        // Show/hide arrows based on position
+        if (leftBtn) leftBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+        if (rightBtn) rightBtn.style.display = currentIndex === images.length - 1 ? 'none' : 'block';
+    }
+
+    /**
+     * NCS Techniques Videos/Pictures Toggle Function
+     */
+    showNCSContentType(type) {
+        const videosBtn = document.getElementById('ncs-videos-btn');
+        const picturesBtn = document.getElementById('ncs-pictures-btn');
+        const videosSection = document.getElementById('ncs-videos-section');
+        const picturesSection = document.getElementById('ncs-pictures-section');
+
+        if (!videosBtn || !picturesBtn || !videosSection || !picturesSection) return;
+
+        if (type === 'videos') {
+            // Activate Videos button
+            videosBtn.classList.add('active');
+            videosBtn.style.background = 'linear-gradient(135deg, #14b8a6, #06b6d4)';
+            videosBtn.style.color = 'white';
+            videosBtn.style.borderColor = 'transparent';
+            videosBtn.style.transform = 'scale(1.05)';
+            videosBtn.style.boxShadow = '0 8px 25px rgba(20, 184, 166, 0.4)';
+
+            // Deactivate Pictures button
+            picturesBtn.classList.remove('active');
+            picturesBtn.style.background = 'white';
+            picturesBtn.style.color = '#64748b';
+            picturesBtn.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+            picturesBtn.style.transform = '';
+            picturesBtn.style.boxShadow = '0 4px 15px rgba(139, 92, 246, 0.15)';
+
+            // Show Videos, hide Pictures
+            videosSection.style.display = 'block';
+            picturesSection.style.display = 'none';
+        } else if (type === 'pictures') {
+            // Activate Pictures button
+            picturesBtn.classList.add('active');
+            picturesBtn.style.background = 'linear-gradient(135deg, #8b5cf6, #6366f1)';
+            picturesBtn.style.color = 'white';
+            picturesBtn.style.borderColor = 'transparent';
+            picturesBtn.style.transform = 'scale(1.05)';
+            picturesBtn.style.boxShadow = '0 8px 25px rgba(139, 92, 246, 0.4)';
+
+            // Deactivate Videos button
+            videosBtn.classList.remove('active');
+            videosBtn.style.background = 'white';
+            videosBtn.style.color = '#64748b';
+            videosBtn.style.borderColor = 'rgba(20, 184, 166, 0.3)';
+            videosBtn.style.transform = '';
+            videosBtn.style.boxShadow = '0 4px 15px rgba(20, 184, 166, 0.15)';
+
+            // Show Pictures, hide Videos
+            picturesSection.style.display = 'block';
+            videosSection.style.display = 'none';
+        }
+    }
+
+
+    /**
+     * Helper to show/hide UE vs LE sections in NCS Techniques
+     */
+    showNCSExtremity(extremity) {
+        const ueSection = document.getElementById('ncs-ue-pictures');
+        const leSection = document.getElementById('ncs-le-pictures');
+        const ueBtn = document.getElementById('ncs-ue-btn');
+        const leBtn = document.getElementById('ncs-le-btn');
+
+        if (!ueSection || !leSection) return;
+
+        if (extremity === 'ue') {
+            ueSection.style.display = 'block';
+            leSection.style.display = 'none';
+            if (ueBtn) ueBtn.classList.add('active');
+            if (leBtn) leBtn.classList.remove('active');
+        } else if (extremity === 'le') {
+            ueSection.style.display = 'none';
+            leSection.style.display = 'block';
+            if (ueBtn) ueBtn.classList.remove('active');
+            if (leBtn) leBtn.classList.add('active');
+        }
     }
 
     renderVideos(containerId = 'video-grid') {

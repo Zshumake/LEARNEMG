@@ -1,6 +1,6 @@
 {
   "appId": "com.ernest.emg",
   "appName": "Ernest EMG",
-  "webDir": "www",
+  "webDir": ".",
   "bundledWebRuntime": false
 }

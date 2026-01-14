@@ -25,95 +25,46 @@
 
     <!-- Critical functions that need to be available immediately -->
     <script>
-        // Define startAtriumJourney early so onclick handlers can use it
+        // Modernized startAtriumJourney - Bypasses PGY selection
         window.startAtriumJourney = function () {
-            console.log('🏥 Starting Atrium Health Journey');
+            console.log('🚀 Launching EMG/NCS Modular System');
 
-            // Wait for DOM and all scripts to be ready
-            function executeStart() {
-                // Smooth fade out welcome screen
-                const welcomeScreen = document.getElementById('pgy-selection');
-                if (welcomeScreen) {
-                    welcomeScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                    welcomeScreen.style.opacity = '0';
-                    welcomeScreen.style.transform = 'translateY(-20px)';
+            const welcomeScreen = document.getElementById('pgy-selection');
+            if (welcomeScreen) {
+                welcomeScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                welcomeScreen.style.opacity = '0';
+                welcomeScreen.style.transform = 'translateY(-20px)';
 
-                    // Start the 13-module PGY-2 journey after transition
-                    setTimeout(() => {
-                        // Retry logic: wait for startJourney to be available
-                        let retryCount = 0;
-                        const maxRetries = 50; // 5 seconds max
-
-                        const tryStart = setInterval(() => {
-                            if (typeof startJourney === 'function') {
-                                clearInterval(tryStart);
-                                startJourney('pgy2');
-                            } else {
-                                retryCount++;
-                                if (retryCount >= maxRetries) {
-                                    clearInterval(tryStart);
-                                    console.error('❌ startJourney function failed to load after 5 seconds');
-                                    alert('Error loading journey system. Please refresh the page.');
-                                }
-                            }
-                        }, 100);
-                    }, 800);
-                }
-            }
-
-            // Wait for DOM if still loading
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', executeStart);
-            } else {
-                executeStart();
+                setTimeout(() => {
+                    welcomeScreen.classList.add('hidden');
+                    if (typeof startJourney === 'function') {
+                        startJourney('all'); // Default to 'all' level
+                    }
+                }, 800);
             }
         };
     </script>
 </head>
 
 <body>
-    <!-- Atrium Health Welcome Screen -->
+    <!-- Initial Loading State / Splash -->
     <div id="pgy-selection" class="atrium-welcome-screen">
         <div class="atrium-main-container">
-            <!-- Atrium Health Logo -->
             <div class="atrium-logo-container">
                 <img src="images/ui/atrium.jpeg" alt="Atrium Health" class="atrium-logo-img">
             </div>
-
-            <!-- Main Title -->
             <h1 class="atrium-main-title">Atrium Health EMG/NCS Learning System</h1>
-
-            <!-- Version Marker -->
-            <div style="text-align: center; margin-top: 15px; margin-bottom: 10px;">
-                <div
-                    style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);">
-                    🦶 Sural Nerve Added & Pathway Images! (v2025.12.09 13:15)
-                </div>
-            </div>
-
-            <!-- Content Area with ERNEST and Speech Bubble -->
             <div class="atrium-content-area">
-                <!-- ERNEST Character -->
                 <div class="ernest-container">
-                    <img src="images/ui/ERNEST.png" alt="ERNEST EMG Device" class="ernest-character-img">
-                    <div class="ernest-label">ERNEST</div>
+                    <img src="images/ui/ERNEST.png" alt="ERNEST" class="ernest-character-img">
                 </div>
-
-                <!-- Speech Bubble -->
                 <div class="speech-bubble">
-                    <p class="lead-text"
-                        style="font-size: 1.25em; color: #475569; margin-bottom: 30px; line-height: 1.6;">
-                        Join Ernest on an interactive adventure through the peripheral nervous system.
-                        Master complex anatomy, conquer clinical patterns, and build the skills that will
-                        help you become a confident electrodiagnostician. Ready to begin your journey?
-                    </p>
+                    <p class="lead-text" style="font-size: 1.25em; text-align: center;">Welcome, future
+                        Electrodiagnostician! I'm Ernest, your guide to the electrifying world of EMG & NCS! We're going
+                        to master nerves, muscles, and waveforms together. Ready to spark your learning?</p>
                 </div>
             </div>
-
-            <!-- Call to Action Button -->
-            <button class="atrium-cta-button" onclick="startAtriumJourney()">
-                Begin Journey
-            </button>
+            <button class="atrium-cta-button" onclick="startAtriumJourney()">Begin Learning</button>
         </div>
     </div>
 
@@ -125,10 +76,6 @@
                 <div class="stat-card">
                     <div class="stat-number" id="completed-modules">0</div>
                     <div class="stat-label">Modules Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="current-level">PGY-</div>
-                    <div class="stat-label">Current Level</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="competency-score">0%</div>
@@ -151,165 +98,18 @@
 
     <!-- Load Enhanced Journey Systems -->
     <!-- Core System -->
-    <script src="js/emg-challenge-fix.js"></script>
-    <script type="module" src="src/state/Store.js"></script>
-    <script src="js/emg-app-main.js"></script>
-    <script type="module" src="src/utils/ContentLoader.js"></script>
+
+
     <script type="module" src="src/ui/ViewHelpers.js"></script>
-    <script src="js/enhanced-journey-modal-content.js?v=refactored"></script>
+
     <script type="module" src="src/modules/Initialization.js?v=fix3"></script>
 
     <!-- Support Scripts -->
     <script src="js/neuropathy-pathophysiology-support.js"></script>
-    <script src="js/ncs-techniques-support.js?v=img_sanitize_final"></script>
+
     <!-- Shared Quiz Utility Functions (used by multiple modules) -->
     <script>
-        // Generate interactive quiz from questions array
-        function generateModuleQuiz(questions) {
-            if (!questions || questions.length === 0) return '';
-
-            const quizHTML = questions.map((q, index) => `
-                <div class="quiz-question-card" style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb; display: ${index === 0 ? 'block' : 'none'};" data-question="${index}">
-                    <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 20px; color: #1f2937;">
-                        <span style="background: #0d9488; color: white; padding: 4px 10px; border-radius: 6px; margin-right: 10px; font-size: 0.9em;">Question ${index + 1} of ${questions.length}</span>
-                        ${q.question}
-                    </p>
-                    <div class="quiz-options" style="display: grid; gap: 10px;">
-                        ${q.options.map((option, optIndex) => `
-                            <button class="quiz-option"
-                                    onclick="checkQuizAnswer(this, ${optIndex === q.correct}, '${q.explanation.replace(/'/g, "\\'")}', ${index}, ${questions.length})"
-                                    style="padding: 15px 20px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 1em; transition: all 0.3s; min-height: 48px;"
-                                    onmouseover="this.style.background='#f1f5f9'; this.style.borderColor='#cbd5e1';"
-                                    onmouseout="if(!this.classList.contains('correct') && !this.classList.contains('incorrect')) { this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'; }">
-                                ${option}
-                            </button>
-                        `).join('')}
-                    </div>
-                    <div class="quiz-feedback" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
-                    <button class="quiz-next-btn" style="margin-top: 20px; padding: 12px 24px; background: #0d9488; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; display: none; transition: all 0.3s;"
-                            onclick="nextQuizQuestion(${index}, ${questions.length})"
-                            onmouseover="this.style.background='#0f766e';"
-                            onmouseout="this.style.background='#0d9488';">
-                        ${index === questions.length - 1 ? 'View Results' : 'Next Question →'}
-                    </button>
-                </div>
-            `).join('');
-
-            return `
-                <div class="module-quiz-section" style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #e5e7eb;">
-                    <div style="background: linear-gradient(135deg, #0d9488, #0f766e); padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                        <h3 style="color: white; margin-bottom: 10px; font-size: 1.8em;">📝 Test Your Knowledge</h3>
-                        <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1.1em;">Answer ${questions.length} questions to reinforce your learning</p>
-                    </div>
-                    <div class="quiz-score-tracker" style="background: #f0fdfa; padding: 15px 20px; border-radius: 10px; margin-bottom: 25px; text-align: center; border: 2px solid #99f6e4;">
-                        <span style="font-size: 1.2em; font-weight: 600; color: #134e4a;">Score: <span id="quiz-score">0</span>/${questions.length}</span>
-                    </div>
-                    <div class="quiz-container">
-                        ${quizHTML}
-                    </div>
-                    <div id="quiz-complete" style="display: none; background: #ccfbf1; padding: 25px; border-radius: 12px; border: 2px solid #5eead4; text-align: center;">
-                        <h3 style="color: #115e59; margin-bottom: 15px;">🎉 Quiz Complete!</h3>
-                        <p style="color: #134e4a; font-size: 1.2em; margin: 0;">You scored <span id="final-score"></span> out of ${questions.length}</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        window.checkQuizAnswer = function (button, isCorrect, explanation, questionIndex, totalQuestions) {
-            const questionCard = button.closest('.quiz-question-card');
-            const allButtons = questionCard.querySelectorAll('.quiz-option');
-            const feedbackDiv = questionCard.querySelector('.quiz-feedback');
-            const nextBtn = questionCard.querySelector('.quiz-next-btn');
-
-            allButtons.forEach(btn => {
-                btn.disabled = true;
-                btn.style.cursor = 'not-allowed';
-                btn.style.opacity = '0.6';
-            });
-
-            if (isCorrect) {
-                button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                button.style.borderColor = '#059669';
-                button.style.color = 'white';
-                button.style.fontWeight = '600';
-                button.style.opacity = '1';
-                button.classList.add('correct');
-
-                const scoreEl = document.getElementById('quiz-score');
-                if (scoreEl) {
-                    scoreEl.textContent = parseInt(scoreEl.textContent) + 1;
-                }
-
-                feedbackDiv.style.display = 'block';
-                feedbackDiv.style.background = '#d1fae5';
-                feedbackDiv.style.borderLeft = '4px solid #10b981';
-                feedbackDiv.innerHTML = `
-                    <p style="margin: 0; color: #065f46; font-weight: 600; margin-bottom: 8px;">✅ Correct!</p>
-                    <p style="margin: 0; color: #047857; line-height: 1.6;">${explanation}</p>
-                `;
-            } else {
-                button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                button.style.borderColor = '#dc2626';
-                button.style.color = 'white';
-                button.style.fontWeight = '600';
-                button.style.opacity = '1';
-                button.classList.add('incorrect');
-
-                allButtons.forEach((btn) => {
-                    if (btn !== button && !btn.classList.contains('incorrect')) {
-                        const isThisCorrect = btn.onclick.toString().includes('true');
-                        if (isThisCorrect) {
-                            btn.style.background = '#d1fae5';
-                            btn.style.borderColor = '#10b981';
-                            btn.style.color = '#065f46';
-                            btn.style.fontWeight = '600';
-                            btn.style.opacity = '1';
-                        }
-                    }
-                });
-
-                feedbackDiv.style.display = 'block';
-                feedbackDiv.style.background = '#fee2e2';
-                feedbackDiv.style.borderLeft = '4px solid #ef4444';
-                feedbackDiv.innerHTML = `
-                    <p style="margin: 0; color: #991b1b; font-weight: 600; margin-bottom: 8px;">❌ Incorrect</p>
-                    <p style="margin: 0; color: #b91c1c; line-height: 1.6;">${explanation}</p>
-                `;
-            }
-
-            if (nextBtn) {
-                nextBtn.style.display = 'block';
-            }
-
-            feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        };
-
-        window.nextQuizQuestion = function (currentIndex, totalQuestions) {
-            const currentCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex}"]`);
-            if (currentCard) {
-                currentCard.style.display = 'none';
-            }
-
-            if (currentIndex === totalQuestions - 1) {
-                const completeDiv = document.getElementById('quiz-complete');
-                const finalScoreSpan = document.getElementById('final-score');
-                const currentScore = document.getElementById('quiz-score').textContent;
-
-                if (completeDiv && finalScoreSpan) {
-                    finalScoreSpan.textContent = currentScore;
-                    completeDiv.style.display = 'block';
-                    completeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            } else {
-                const nextCard = document.querySelector(`.quiz-question-card[data-question="${currentIndex + 1}"]`);
-                if (nextCard) {
-                    nextCard.style.display = 'block';
-                    nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-        };
-
-        window.generateModuleQuiz = generateModuleQuiz;
+        <!-- Shared Quiz Utility Functions (Replaced by src/modules/quiz/QuizSystem.js) -->
     </script>
 
     <!-- Additional Support Functions for Modules -->
@@ -317,19 +117,19 @@
         // Get muscle image path helper - Global utility function
         function getMuscleImagePath(muscleKey) {
             const imageMap = {
-                'APB': 'EMG IMAGES/Abductor Pollicus Brevis.png',
-                'Bicep': 'EMG IMAGES/Biceps.png',
-                'EIP': 'EMG IMAGES/Extensor Indicus.png',
-                'FDI': 'EMG IMAGES/First Dorsal Interosseous.png',
-                'Middle Deltoid': 'EMG IMAGES/Deltoid.png',
-                'PT': 'EMG IMAGES/Pronator teres.png',
-                'Tricep': 'EMG IMAGES/Triceps.png',
-                'Extensor Hallucis': 'EMG IMAGES/Extensor Hallucis longus.png',
-                'Medial Gastroc': 'EMG IMAGES/Medial Gastroc.png',
-                'Peroneus Longus': 'EMG IMAGES/Fibularis longus.png',
-                'Tibialis Ant': 'EMG IMAGES/Tibialis Anterior.png',
-                'Tibialis Post': 'EMG IMAGES/Tibialis Posterior.png',
-                'Vastus Lateralis': 'EMG IMAGES/Vastus Lateralis.png'
+                'APB': 'images/muscles/Abductor Pollicus Brevis.png',
+                'Bicep': 'images/muscles/Biceps.png',
+                'EIP': 'images/muscles/Extensor Indicus.png',
+                'FDI': 'images/muscles/First Dorsal Interosseous.png',
+                'Middle Deltoid': 'images/muscles/Deltoid.png',
+                'PT': 'images/muscles/Pronator teres.png',
+                'Tricep': 'images/muscles/Triceps.png',
+                'Extensor Hallucis': 'images/muscles/Extensor Hallucis longus.png',
+                'Medial Gastroc': 'images/muscles/Medial Gastroc.png',
+                'Peroneus Longus': 'images/muscles/Fibularis longus.png',
+                'Tibialis Ant': 'images/muscles/Tibialis Anterior.png',
+                'Tibialis Post': 'images/muscles/Tibialis Posterior.png',
+                'Vastus Lateralis': 'images/muscles/Vastus Lateralis.png'
             };
             return imageMap[muscleKey] || null;
         }
@@ -346,10 +146,10 @@
 
 
     <!-- Module 5: Neuropathy Pathophysiology Support Functions -->
-    <script src="js/neuropathy-pathophysiology-support.js"></script>
+
 
     <!-- Module 7: NCS Techniques Support Functions -->
-    <script src="js/ncs-techniques-support.js?v=img_sanitize_final"></script>
+
 
     <script>
         // Comprehensive iOS crash tracking
@@ -455,65 +255,51 @@
         }
 
 
-        // Enhanced journey interface with modal integration
-        function startJourney(pgyLevel) {
-            console.log(`🚀 Starting ${pgyLevel.toUpperCase()} Enhanced Learning Journey`);
+        // Unified journey interface
+        function startJourney() {
+            console.log(`🚀 Starting Modular EMG/NCS Learning Journey`);
 
-            // Try to load existing progress first
-            const progressLoaded = loadProgressFromStorage();
-
-            // Set global variables (use saved progress if available)
-            if (!progressLoaded || window.currentPGYLevel !== pgyLevel) {
-                window.currentPGYLevel = pgyLevel;
-                window.currentModuleIndex = 0;
-                window.completedModules = new Set();
-                saveProgressToStorage();
-            }
+            // Try to load state (completed modules)
+            loadProgressFromStorage();
 
             // Show learning board
-            document.getElementById('pgy-selection').classList.add('hidden');
-            document.getElementById('learning-board').classList.remove('hidden');
-            // document.getElementById('journey-controls').classList.remove('hidden'); // REMOVED - Legacy footer
+            const pgySelection = document.getElementById('pgy-selection');
+            if (pgySelection) pgySelection.classList.add('hidden');
 
-            // Generate the enhanced journey board
-            if (typeof generateLearningBoard === 'function') {
-                generateLearningBoard(pgyLevel);
-            } else {
-                console.error('❌ generateLearningBoard function not found, waiting for scripts to load...');
-                setTimeout(() => {
-                    if (typeof generateLearningBoard === 'function') {
-                        generateLearningBoard(pgyLevel);
-                    } else {
-                        console.error('❌ generateLearningBoard function still not available after timeout');
-                    }
-                }, 500);
+            document.getElementById('learning-board').classList.remove('hidden');
+
+            // Generate the unified journey board
+            if (window.appComponents && window.appComponents.candyland) {
+                window.appComponents.candyland.generateLearningBoard('all');
+            } else if (typeof generateLearningBoard === 'function') {
+                generateLearningBoard('all');
             }
 
-            // Don't auto-open modal - let user click to start
             console.log('📚 Journey ready - click any module to begin learning!');
-
-            // Smooth scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
 
 
-        // Enhanced startLearningModule function that uses our new modal system
+        // Launch learning module via unified system
         function startLearningModule(moduleIndex) {
-            console.log('🔍 DEBUG: startLearningModule called with index:', moduleIndex);
+            console.log('🔍 Launching module:', moduleIndex);
 
-            // Prevent duplicate calls
-            if (window.isModalOpen) {
-                console.log('⚠️ DEBUG: Modal already open, ignoring duplicate call');
+            if (window.isModalOpen) return;
+
+            // Use modular system if available
+            if (window.appComponents && window.appComponents.candyland) {
+                window.appComponents.candyland.handleModuleClick('module-' + moduleIndex, moduleIndex);
                 return;
             }
 
-            if (typeof window.currentPGYLevel === 'undefined' || typeof learningModulesConfig === 'undefined') {
+            // Fallback for legacy calls
+            if (typeof learningModulesConfig === 'undefined') {
                 console.error('❌ Journey system not properly initialized');
                 return;
             }
 
-            const modules = learningModulesConfig[window.currentPGYLevel];
+            const modules = learningModulesConfig['all'] || learningModulesConfig['pgy2'];
             const module = modules[moduleIndex];
 
             if (!module) {
@@ -521,29 +307,23 @@
                 return;
             }
 
-            console.log(`🎓 Starting learning module: ${module.title}`);
-
-            // Set flag to prevent duplicate opens
             window.isModalOpen = true;
 
-            // Close ERNEST dialogue first
-            if (typeof closeErnestDialogue === 'function') {
-                closeErnestDialogue();
-            }
-
-            // Animate the selected square
+            // Animate selection
             if (typeof animateSquareSelection === 'function') {
                 animateSquareSelection(moduleIndex);
             }
 
-            // Show enhanced learning modal after brief animation
+            // Provide short delay for animation
             setTimeout(() => {
-                showEnhancedLearningModal(module, moduleIndex);
+                if (typeof showEnhancedLearningModal === 'function') {
+                    showEnhancedLearningModal(module, moduleIndex);
+                }
             }, 300);
         }
 
         // Enhanced modal function with our new system integration
-        function showEnhancedLearningModal(module, moduleIndex) {
+        async function showEnhancedLearningModal(module, moduleIndex) {
             const terrain = getTerrainTheme(moduleIndex, learningModulesConfig[window.currentPGYLevel].length);
 
             // Create beautiful modal HTML using our new system
@@ -606,84 +386,90 @@
                 overlay.classList.add('active');
             });
 
-            // Load content using our enhanced system
-            setTimeout(() => {
-                console.log('🔍 DEBUG: Starting content loading process...');
-                console.log('🔍 DEBUG: Module:', module);
-                console.log('🔍 DEBUG: Module Index:', moduleIndex);
+            console.log('🔍 DEBUG: Starting content loading process...');
+            console.log('🔍 DEBUG: Module:', module);
 
-                if (typeof generateLearningContentByType === 'function') {
-                    console.log('✅ DEBUG: generateLearningContentByType function exists');
+            const contentArea = document.getElementById(`enhanced-content-${moduleIndex}`);
+            if (!contentArea) {
+                console.error('❌ DEBUG: Content area not found');
+                return;
+            }
 
-                    const contentArea = document.getElementById(`enhanced-content-${moduleIndex}`);
-                    console.log('🔍 DEBUG: Content area found:', !!contentArea);
+            try {
+                // Determine module ID
+                const moduleId = module.contentId || module.id;
+                console.log(`🔍 DEBUG: Loading module: ${moduleId}`);
 
-                    if (!contentArea) {
-                        console.error('❌ DEBUG: Content area not found');
-                        return;
-                    }
+                // Load module content using ModuleLoader
+                let contentHTML = '';
 
-                    const loadingDiv = contentArea.querySelector('.content-loading');
-                    console.log('🔍 DEBUG: Loading div found:', !!loadingDiv);
-
+                if (window.moduleLoader) {
                     try {
-                        console.log('🔍 DEBUG: Calling generateLearningContentByType...');
-                        const contentHTML = generateLearningContentByType(module, moduleIndex);
-                        console.log('✅ DEBUG: Content generated successfully');
-                        console.log('🔍 DEBUG: Content HTML length:', contentHTML ? contentHTML.length : 'null/undefined');
-                        console.log('🔍 DEBUG: Content preview:', contentHTML ? contentHTML.substring(0, 200) : 'no content');
-
-                        if (!contentHTML) {
-                            console.error('❌ DEBUG: Generated content is empty');
-                            return;
+                        const loadedModule = await window.moduleLoader.loadModule(moduleId);
+                        if (loadedModule && typeof loadedModule.generateContent === 'function') {
+                            contentHTML = loadedModule.generateContent(module);
+                        } else {
+                            console.warn(`⚠️ Module ${moduleId} loaded but generateContent not found`);
                         }
+                    } catch (e) {
+                        console.error(`💥 Error loading module ${moduleId}:`, e);
+                    }
+                }
 
-                        // Replace loading with actual content more quickly
-                        setTimeout(() => {
-                            console.log('🔍 DEBUG: Starting loading transition...');
+                // Fallback to legacy generator if available and module loader failed
+                if (!contentHTML && typeof generateLearningContentByType === 'function') {
+                    console.log('🔄 DEBUG: Falling back to legacy generateLearningContentByType');
+                    contentHTML = generateLearningContentByType(module, moduleIndex);
+                }
 
-                            // Immediately replace content
-                            const newContent = `
-                                <div class="content-header">
-                                    <div class="content-icon">${module.icon}</div>
-                                    <h2 class="content-title">${module.title}</h2>
-                                    <div class="content-competency">${module.competency}</div>
-                                    <p class="content-description">${module.description}</p>
-                                </div>
-                                ${contentHTML}
-                            `;
+                if (!contentHTML) {
+                    contentHTML = `
+                        <div class="error-msg" style="padding: 40px; text-align: center; color: #64748b;">
+                            <div style="font-size: 3em; margin-bottom: 20px;">🚧</div>
+                            <h3>Content Under Construction</h3>
+                            <p>We're currently preparing the interactive content for ${module.title}.</p>
+                        </div>
+                    `;
+                }
 
-                            // Clear everything and add new content
-                            contentArea.innerHTML = newContent;
-                            contentArea.style.opacity = '1';
+                // Replace loading with actual content
+                setTimeout(() => {
+                    const newContent = `
+                        <div class="content-header">
+                            <div class="content-icon">${module.icon}</div>
+                            <h2 class="content-title">${module.title}</h2>
+                            <div class="content-competency">${module.competency}</div>
+                            <p class="content-description">${module.description}</p>
+                        </div>
+                        ${contentHTML}
+                    `;
 
-                            console.log('✅ DEBUG: Content replaced and made visible');
-                            console.log('🔍 DEBUG: Remaining loading elements:', contentArea.querySelectorAll('.content-loading, .loading-spinner').length);
-                        }, 500);
+                    contentArea.innerHTML = newContent;
+                    contentArea.style.opacity = '1';
 
-                        // Enable completion button after content loads
-                        setTimeout(() => {
-                            console.log('🔍 DEBUG: Enabling completion button...');
-                            const completeBtn = document.getElementById(`complete-enhanced-btn-${moduleIndex}`);
-                            if (completeBtn) {
-                                completeBtn.disabled = false;
-                                completeBtn.style.opacity = '1';
-                                console.log('✅ DEBUG: Completion button enabled');
-                            } else {
-                                console.log('⚠️ DEBUG: Completion button not found');
-                            }
-                        }, 3000);
-
-                    } catch (error) {
-                        console.error('💥 DEBUG: Error in content generation:', error);
-                        console.error('💥 DEBUG: Error stack:', error.stack);
+                    // Initialize module if needed
+                    if (window.moduleLoader) {
+                        const loadedModule = window.moduleLoader.cache[moduleId];
+                        if (loadedModule && typeof loadedModule.initialize === 'function') {
+                            console.log(`🎯 Initializing module: ${moduleId}`);
+                            loadedModule.initialize();
+                        }
+                    } else if (typeof initializeEMGIntroduction === 'function' && moduleId === 'emg-introduction') {
+                        initializeEMGIntroduction();
                     }
 
-                } else {
-                    console.error('❌ DEBUG: generateLearningContentByType function not available');
-                    console.log('🔍 DEBUG: Available functions:', Object.keys(window).filter(key => key.includes('generate')));
-                }
-            }, 600);
+                    // Enable completion button
+                    const completeBtn = document.getElementById(`complete-enhanced-btn-${moduleIndex}`);
+                    if (completeBtn) {
+                        completeBtn.disabled = false;
+                        completeBtn.style.opacity = '1';
+                    }
+                }, 400);
+
+            } catch (error) {
+                console.error('💥 DEBUG: Error in content generation:', error);
+                contentArea.innerHTML = `<p style="padding: 20px; color: #ef4444;">Error loading content: ${error.message}</p>`;
+            }
         }
 
         function closeEnhancedModal(moduleIndex) {
@@ -1243,7 +1029,7 @@
         // Module Configuration with Custom Artwork Integration
         const atriumModuleConfig = [
             { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: 'NEW ICONS/EMG:NCS Intro.png' },
-            { id: 'plexus-anatomy', title: 'Plexus Anatomy', customIcon: 'NEW ICONS/Peripheral Anatomy.png' },
+            { id: 'plexus-anatomy', title: 'Peripheral Nerve Anatomy', customIcon: 'NEW ICONS/Peripheral Anatomy.png' },
             { id: 'brachial-plexus-interactive', title: 'Brachial Plexus Interactive', customIcon: 'NEW ICONS/Brachial Plexus Anatomy.png' },
             { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: 'NEW ICONS/Radiculopathy Pathophysiology.png' },
             { id: 'neuropathy-pathophysiology', title: 'Neuropathy Pathophysiology', customIcon: 'NEW ICONS/Neuropathy Pathophysiology.png' },
@@ -2523,6 +2309,7 @@
             opacity: 1 !important;
         }
     </style>
+    <!-- Report Writing & Podcast Modules -->
 </body>
 
 </html>

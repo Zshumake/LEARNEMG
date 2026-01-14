@@ -1584,6 +1584,12 @@ export const LumbosacralPlexusInteractive = {
 
 // Define the module wrapper
 export const BrachialPlexus = {
+    generateContent() {
+        console.log('🧠 BrachialPlexus: generateContent called');
+        this.showExplain('brachial');
+        return null; // Legacy showModal used
+    },
+
     showExplain(initialModule = 'brachial') {
         console.log(`🧠 Launching Combined Plexus Module: ${initialModule}`);
 
@@ -1832,27 +1838,6 @@ export const BrachialPlexus = {
             window.BrachialPlexus = BrachialPlexusInteractive;
             window.LumbosacralPlexus = LumbosacralPlexusInteractive;
 
-            window.switchPlexusModule = function (module) {
-                const bBtn = document.getElementById('btn-brachial');
-                const lBtn = document.getElementById('btn-lumbosacral');
-                const bCon = document.getElementById('brachial-container');
-                const lCon = document.getElementById('lumbosacral-container');
-
-                if (module === 'brachial') {
-                    if (bBtn) { bBtn.style.background = '#3b82f6'; bBtn.style.color = 'white'; bBtn.style.borderColor = '#3b82f6'; }
-                    if (lBtn) { lBtn.style.background = 'white'; lBtn.style.color = '#64748b'; lBtn.style.borderColor = '#e2e8f0'; }
-                    if (bCon) bCon.style.display = 'block';
-                    if (lCon) lCon.style.display = 'none';
-                    setTimeout(() => window.BrachialPlexus.init(), 50);
-                } else {
-                    if (lBtn) { lBtn.style.background = '#3b82f6'; lBtn.style.color = 'white'; lBtn.style.borderColor = '#3b82f6'; }
-                    if (bBtn) { bBtn.style.background = 'white'; bBtn.style.color = '#64748b'; bBtn.style.borderColor = '#e2e8f0'; }
-                    if (lCon) lCon.style.display = 'block';
-                    if (bCon) bCon.style.display = 'none';
-                    setTimeout(() => window.LumbosacralPlexus.init(), 50);
-                }
-            };
-
             // Initialize default
             setTimeout(() => {
                 if (initialModule === 'lumbosacral') {
@@ -1862,6 +1847,31 @@ export const BrachialPlexus = {
                 }
             }, 100);
         }
+    }
+};
+
+window.switchPlexusModule = function (module) {
+    const bBtn = document.getElementById('btn-brachial');
+    const lBtn = document.getElementById('btn-lumbosacral');
+    const bCon = document.getElementById('brachial-container');
+    const lCon = document.getElementById('lumbosacral-container');
+
+    if (module === 'brachial') {
+        if (bBtn) { bBtn.style.background = '#3b82f6'; bBtn.style.color = 'white'; bBtn.style.borderColor = '#3b82f6'; }
+        if (lBtn) { lBtn.style.background = 'white'; lBtn.style.color = '#64748b'; lBtn.style.borderColor = '#e2e8f0'; }
+        if (bCon) bCon.style.display = 'block';
+        if (lCon) lCon.style.display = 'none';
+        setTimeout(() => {
+            if (window.BrachialPlexus && window.BrachialPlexus.init) window.BrachialPlexus.init();
+        }, 50);
+    } else {
+        if (lBtn) { lBtn.style.background = '#3b82f6'; lBtn.style.color = 'white'; lBtn.style.borderColor = '#3b82f6'; }
+        if (bBtn) { bBtn.style.background = 'white'; bBtn.style.color = '#64748b'; bBtn.style.borderColor = '#e2e8f0'; }
+        if (lCon) lCon.style.display = 'block';
+        if (bCon) bCon.style.display = 'none';
+        setTimeout(() => {
+            if (window.LumbosacralPlexus && window.LumbosacralPlexus.init) window.LumbosacralPlexus.init();
+        }, 50);
     }
 };
 

@@ -1,5 +1,4 @@
-
-import { MuscleDatabase, LesionSites } from './MuscleData.js';
+import { MuscleDatabase, LesionSites } from '../../data/MuscleDatabase.js';
 
 export class EMGChallengeSystem {
     constructor() {

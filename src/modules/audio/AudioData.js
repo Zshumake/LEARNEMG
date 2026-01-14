@@ -350,7 +350,7 @@ export function generateErnestButton(moduleId, moduleTitle = null) {
                         box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);">
                 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
                     <div style="position: relative;">
-                        <img src="ERNEST.png"
+                        <img src="images/ui/ERNEST.png"
                              style="width: 64px; height: 64px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: cover;"
                              alt="Ernest">
                         <div style="position: absolute; bottom: 0; right: 0; background: #10b981; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>
@@ -438,7 +438,7 @@ export function generateErnestButton(moduleId, moduleTitle = null) {
                 <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
 
                 <div style="position: relative;">
-                    <img src="ERNEST.png"
+                    <img src="images/ui/ERNEST.png"
                          style="width: 72px; height: 72px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: cover;"
                          alt="Ernest">
                     <div style="position: absolute; bottom: 2px; right: 2px; background: #10b981; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white;"></div>
@@ -493,7 +493,7 @@ export function generateErnestButton(moduleId, moduleTitle = null) {
             <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
 
             <div style="position: relative;">
-                <img src="ERNEST.png"
+                <img src="images/ui/ERNEST.png"
                      style="width: 72px; height: 72px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: cover;"
                      alt="Ernest">
                 <div style="position: absolute; bottom: 2px; right: 2px; background: #10b981; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white;"></div>

@@ -22,10 +22,21 @@ emg_ncs_resident_tool.html
 *.webloc
 *.command
 *.db
+*.pdf
 
-# Exclude directories
+# Exclude specific directories
 EMG_flashcards/
 Universal Scheduler/
 SCH APP/
 SVG/
 Photos-*/
+Medical texts/
+BACKUP_PRE_LEGACY_REMOVAL/
+
+# Tempoary Files
+temp_*.html
+lumbo_backup_temp.js
+ncs_backup_temp.js
+audio_audit.mjs
+construct_patho.js
+preston_shapiro_chapters.md
