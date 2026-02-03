@@ -16,6 +16,49 @@ export class ClinicalCases {
         this.makeEMGDecision = this.makeEMGDecision.bind(this);
     }
 
+    // --- Interaction Methods ---
+    analyzeDifferential() {
+        const inputEl = document.getElementById('user-differential');
+        if (!inputEl) return;
+
+        const userInput = inputEl.value;
+        this.userDifferential = userInput;
+
+        // Ensure differentialDiagnosis is an array of objects or strings, handle both
+        let expected = this.currentCase.differentialDiagnosis || [];
+
+        const results = ClinicalEvaluator.analyzeDifferential(userInput, expected);
+
+        const feedbackDiv = document.getElementById('differential-feedback');
+        if (feedbackDiv) {
+            feedbackDiv.innerHTML = ClinicalRenderer.renderDifferentialFeedback(results, expected);
+            feedbackDiv.style.display = 'block';
+        }
+
+        const nextBtn = document.getElementById('continue-to-studies');
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+    }
+
+    makeEMGDecision(decision) {
+        this.userEMGDecision = decision;
+        const evaluation = ClinicalEvaluator.evaluateEMGDecision(decision, this.currentCase);
+
+        const feedbackDiv = document.getElementById('emg-decision-feedback');
+        if (feedbackDiv) {
+            feedbackDiv.innerHTML = ClinicalRenderer.renderEMGDecisionFeedback(evaluation);
+            feedbackDiv.style.display = 'block';
+        }
+
+        const continueBtn = document.getElementById('continue-after-decision');
+        if (continueBtn) {
+            continueBtn.style.display = 'inline-block';
+        }
+    }
+
+    proceedAfterDecision() {
+        this.showNCSResults();
+    }
+
     // --- Main Entry ---
     showClinicalCases() {
         console.log(`🏥 ClinicalCases triggered`);
@@ -58,6 +101,38 @@ export class ClinicalCases {
     }
 
     // --- Step Navigation & Rendering ---
+    transitionToStep(stepId, percentage) {
+        const steps = ['case-selection', 'case-presentation-step', 'physical-exam-step', 'differential-step', 'emg-decision-step', 'results-step', 'diagnosis-step'];
+
+        steps.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                if (id === stepId) {
+                    el.classList.add('active-step');
+                    el.style.display = 'block';
+                    // Trigger reflow for animation
+                    void el.offsetWidth;
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                } else {
+                    el.classList.remove('active-step');
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(10px)';
+                    // Delay hiding to allow transition
+                    setTimeout(() => {
+                        if (!el.classList.contains('active-step')) {
+                            el.style.display = 'none';
+                        }
+                    }, 400);
+                }
+            }
+        });
+
+        if (percentage !== undefined) {
+            this.updateProgress(percentage);
+        }
+    }
+
     populateCaseDetails() {
         const detailsDiv = document.getElementById('case-details');
         if (detailsDiv) detailsDiv.innerHTML = ClinicalRenderer.renderCaseDetails(this.currentCase);
@@ -71,79 +146,24 @@ export class ClinicalCases {
         if (bar) bar.style.width = percentage + '%';
     }
 
-    hideAllSteps() {
-        const steps = ['case-presentation-step', 'physical-exam-step', 'differential-step', 'emg-decision-step', 'results-step', 'diagnosis-step'];
-        steps.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = 'none';
-        });
-    }
-
     showCasePresentation() {
-        this.hideAllSteps();
-        document.getElementById('case-presentation-step').style.display = 'block';
-        this.updateProgress(20);
+        this.transitionToStep('case-presentation-step', 20);
     }
 
     showPhysicalExam() {
-        this.hideAllSteps();
-        document.getElementById('physical-exam-step').style.display = 'block';
-        this.updateProgress(40);
+        this.transitionToStep('physical-exam-step', 40);
     }
 
     showDifferentialBuilder() {
-        this.hideAllSteps();
-        document.getElementById('differential-step').style.display = 'block';
-        this.updateProgress(60);
+        this.transitionToStep('differential-step', 60);
     }
 
     showEMGDecision() {
-        this.hideAllSteps();
-        document.getElementById('emg-decision-step').style.display = 'block';
-        this.updateProgress(70);
-    }
-
-    // --- Interaction Logic (Delegated) ---
-    analyzeDifferential() {
-        const userInput = document.getElementById('user-differential').value;
-        const feedbackDiv = document.getElementById('differential-feedback');
-
-        if (!userInput.trim()) {
-            feedbackDiv.innerHTML = '<div class="feedback-card error"><h4>🤔 Missing Input</h4><p>Please enter your differential!</p></div>';
-            return;
-        }
-
-        const expected = this.currentCase.expectedDifferential || [];
-        const results = ClinicalEvaluator.analyzeDifferential(userInput, expected);
-
-        feedbackDiv.innerHTML = ClinicalRenderer.renderDifferentialFeedback(results, expected);
-        document.getElementById('continue-to-studies').style.display = 'inline-block';
-    }
-
-    makeEMGDecision(indicatedDecision) {
-        this.userEMGDecision = indicatedDecision;
-        const evaluation = ClinicalEvaluator.evaluateEMGDecision(indicatedDecision, this.currentCase);
-
-        const feedbackDiv = document.getElementById('emg-decision-feedback');
-        feedbackDiv.innerHTML = ClinicalRenderer.renderEMGDecisionFeedback(evaluation);
-
-        const continueBtn = document.getElementById('continue-after-decision');
-        continueBtn.style.display = 'inline-block';
-        continueBtn.textContent = evaluation.type.includes('correct') ? 'Proceed →' : 'Proceed (Educational) →';
-    }
-
-    proceedAfterDecision() {
-        const isEMGIndicated = this.currentCase.emgIndication !== "NOT INDICATED";
-        if (this.userEMGDecision === true || (this.userEMGDecision === false && isEMGIndicated)) {
-            this.showNCSResults();
-        } else {
-            this.showFinalDiagnosis();
-        }
+        this.transitionToStep('emg-decision-step', 70);
     }
 
     showNCSResults() {
-        this.hideAllSteps();
-        document.getElementById('results-step').style.display = 'block';
+        this.transitionToStep('results-step', 80);
 
         const ncsDiv = document.getElementById('ncs-results');
         ncsDiv.innerHTML = ClinicalTables.generateNCSTable(this.currentCase);
@@ -158,14 +178,10 @@ export class ClinicalCases {
             emgTitle.style.display = 'none';
             emgDetailDiv.innerHTML = '';
         }
-
-        this.updateProgress(80);
     }
 
     showFinalDiagnosis() {
-        this.hideAllSteps();
-        document.getElementById('diagnosis-step').style.display = 'block';
-        this.updateProgress(100);
+        this.transitionToStep('diagnosis-step', 100);
     }
 
     checkFinalDiagnosis() {

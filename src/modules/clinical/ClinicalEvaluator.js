@@ -31,10 +31,11 @@ export const ClinicalEvaluator = {
         const unmatchedDiagnoses = [];
 
         expectedDifferentials.forEach(expected => {
-            if (this.isMatch(expected, inputLower) || inputLower.includes(expected.toLowerCase())) {
-                matchedDiagnoses.push(expected);
+            const expectedName = typeof expected === 'string' ? expected : expected.name;
+            if (this.isMatch(expectedName, inputLower) || inputLower.includes(expectedName.toLowerCase())) {
+                matchedDiagnoses.push(expectedName);
             } else {
-                unmatchedDiagnoses.push(expected);
+                unmatchedDiagnoses.push(expectedName);
             }
         });
 

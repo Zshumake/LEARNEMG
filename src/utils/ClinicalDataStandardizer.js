@@ -24,8 +24,15 @@ export class ClinicalDataStandardizer {
     static standardizeCase(caseData) {
         if (!caseData) return;
 
+        // Handle NCS Studies (Support both array and categorized object)
         if (caseData.ncsStudies) {
-            caseData.ncsStudies = caseData.ncsStudies.map(s => this.standardizeNCS(s));
+            if (Array.isArray(caseData.ncsStudies)) {
+                caseData.ncsStudies = caseData.ncsStudies.map(s => this.standardizeNCS(s));
+            } else {
+                // Categorized object (sensory, motor, comparison)
+                if (caseData.ncsStudies.sensory) caseData.ncsStudies.sensory = caseData.ncsStudies.sensory.map(s => this.standardizeNCS(s, 'sensory'));
+                if (caseData.ncsStudies.motor) caseData.ncsStudies.motor = caseData.ncsStudies.motor.map(s => this.standardizeNCS(s, 'motor'));
+            }
         }
 
         if (caseData.emgStudies) {
@@ -35,9 +42,9 @@ export class ClinicalDataStandardizer {
         return caseData;
     }
 
-    static standardizeNCS(study) {
-        const type = study.type || (study.name && study.name.toLowerCase().includes('motor') ? 'motor' : 'sensory');
-        const nerve = this.identifyNerve(study.name);
+    static standardizeNCS(study, forceType = null) {
+        const type = forceType || study.type || (study.name && study.name.toLowerCase().includes('motor') ? 'motor' : 'sensory');
+        const nerve = this.identifyNerve(study.name || study.nerve);
         const ref = REFERENCE_VALUES[type] ? REFERENCE_VALUES[type][nerve] : null;
 
         if (study.result === 'normal') {
