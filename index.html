@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/legendary-pathway-styles.css">
     <!-- Main Layout CSS (Extracted) -->
     <link rel="stylesheet" href="css/main-layout.css">
+    <!-- Clinical Tool Overhaul Styles -->
+    <link rel="stylesheet" href="src/modules/clinical/Clinical.css">
     <style>
         /* Essential overrides or dynamic styles can remain here if absolute necessary, 
            otherwise keep empty or for critical path CSS */
@@ -449,7 +451,7 @@
 
                     // Initialize module if needed
                     if (window.moduleLoader) {
-                        const loadedModule = window.moduleLoader.cache[moduleId];
+                        const loadedModule = window.moduleLoader.loadedModules.get(moduleId);
                         if (loadedModule && typeof loadedModule.initialize === 'function') {
                             console.log(`🎯 Initializing module: ${moduleId}`);
                             loadedModule.initialize();
@@ -1732,7 +1734,7 @@
             console.log('🚀 Generating Atrium Pathway via Module System...', pgy);
 
             // Retry mechanism to wait for modules to initialize
-            const maxRetries = 20; // 2 seconds
+            const maxRetries = 50; // 5 seconds (100ms * 50)
             let retries = 0;
 
             while (!(window.appComponents && window.appComponents.candyland) && retries < maxRetries) {
@@ -1826,7 +1828,7 @@
 
         window.togglePodcastsCollapsible = togglePodcastsCollapsible;
 
-        console.log('✨🎮 Enhanced Journey with Integrated Modal System - Ready!');
+        console.log('✨🎮 Enhanced Journey with Integrated Modal Systemeady!');
     </script>
 
     <!-- General Modal for Clinical Cases -->
@@ -2047,8 +2049,7 @@
                     touchStartTime = 0;
                     touchStartDistance = 0;
                 });
-            }
-        });
+            }     });
     </script>
 
     <!-- Learning Objectives Modal -->
@@ -2294,8 +2295,7 @@
                 if (window.closeModalWithTransition) {
                     window.closeModalWithTransition();
                 }
-            };
-        }
+                   }
     </script>
 
     <!-- Injection for smooth overlay transitions -->

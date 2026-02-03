@@ -106,42 +106,61 @@
     letter-spacing: 1px;
 }
 
-/* Professional Clinical Report Styling */
+/* Cadwell Sierra Style Theme */
+.cadwell-table-container {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #94a3b8;
+    margin-bottom: 25px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 .clinical-report-table {
     width: 100%;
     border-collapse: collapse;
     background-color: white !important;
-    color: black !important;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #1e293b !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 11px;
-    margin-bottom: 20px;
-    border: 1px solid black;
+    margin-bottom: 10px;
+    border: 1px solid #64748b;
 }
 
 .clinical-report-table th {
-    background-color: #e5e7eb !important;
-    color: black !important;
-    font-weight: bold;
+    background: linear-gradient(to bottom, #475569, #1e293b) !important;
+    color: white !important;
+    font-weight: 600;
     text-align: center;
-    border: 1px solid black;
-    padding: 4px 6px;
+    border: 1px solid #1e293b;
+    padding: 5px 8px;
+    text-transform: uppercase;
+    font-size: 10px;
 }
 
 .clinical-report-table td {
-    border: 1px solid black;
-    padding: 3px 6px;
+    border: 1px solid #cbd5e1;
+    padding: 4px 8px;
     text-align: center;
     background-color: white !important;
-    color: black !important;
+    color: #334155 !important;
 }
 
-.clinical-report-table .text-left {
-    text-align: left;
+.clinical-report-table tr:nth-child(even) td {
+    background-color: #f8fafc !important;
 }
 
 .clinical-report-table .abnormal-value {
-    font-weight: bold;
-    color: #b91c1c !important;
+    font-weight: 800;
+    color: #dc2626 !important;
+    background-color: #fef2f2 !important;
+}
+
+.clinical-report-table .normal-limit {
+    color: #64748b;
+    font-style: italic;
+    font-size: 9px;
+    display: block;
 }
 
 .clinical-report-header {

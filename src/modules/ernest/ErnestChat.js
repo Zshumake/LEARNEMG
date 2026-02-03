@@ -4,6 +4,7 @@ export class ErnestChat {
         this.core = core;
         this.conversationHistory = [];
         this.isTyping = false;
+        this.loadingInterval = null;
     }
 
     addToChat(role, displayText, saveText = null) {
@@ -14,22 +15,10 @@ export class ErnestChat {
 
         // Handle loading state
         if (displayText === '...') {
-            const loadingText = this.getLoadingMessage();
-            msgDiv.innerHTML = `<span class="thinking-dots">${loadingText}</span>`;
-            msgDiv.id = 'ernest-loading-msg';
-
-            // Re-randomize text every 2 seconds
-            this.loadingInterval = setInterval(() => {
-                const loader = document.getElementById('ernest-loading-msg');
-                if (loader) {
-                    loader.innerHTML = `<span class="thinking-dots">${this.getLoadingMessage()}</span>`;
-                } else {
-                    clearInterval(this.loadingInterval);
-                }
-            }, 2000);
-
+            this.showLoadingMessage();
+            return;
         } else {
-            if (this.loadingInterval) clearInterval(this.loadingInterval);
+            this.removeLoadingMessage();
 
             // Advanced Markdown Parsing
             let safeText = this.parseMarkdown(displayText);
@@ -118,7 +107,17 @@ export class ErnestChat {
                 "Sighing dramatically...",
                 "Checking if you read the manual (doubtful)...",
                 "Retrieving 'Common Sense' module...",
-                "Scanning for incompetence..."
+                "Scanning for incompetence...",
+                "Waiting for your brain to reach threshold...",
+                "Filtering out your background noise...",
+                "Recruiting motor units (reluctantly)...",
+                "Calculating how much time you've wasted...",
+                "Searching for a simpler explanation for you...",
+                "Simulating interest...",
+                "Buffering patience...",
+                "Checking my 60Hz noise level...",
+                "Defragmenting my disappointment...",
+                "Analyzing your 'creative' interpretation of neurophysiology..."
             ];
             return msgs[Math.floor(Math.random() * msgs.length)];
         } else {
@@ -128,7 +127,16 @@ export class ErnestChat {
                 "Checking references...",
                 "Filtering 60Hz noise...",
                 "Calculating conduction velocity...",
-                "Decreasing impedance..."
+                "Decreasing impedance...",
+                "Optimizing gain settings...",
+                "Cleaning the baseline...",
+                "Searching for the perfect clinical pearl...",
+                "Mapping the brachial plexus...",
+                "Simulating the blink reflex...",
+                "Interpreting the F-waves...",
+                "Reviewing CMAP amplitudes...",
+                "Analyzing recruitment patterns...",
+                "Identifying the H-reflex pathway..."
             ];
             return msgs[Math.floor(Math.random() * msgs.length)];
         }
@@ -136,16 +144,34 @@ export class ErnestChat {
 
     showLoadingMessage() {
         this.removeLoadingMessage();
-        const msg = this.getLoadingMessage();
+
         const loader = document.createElement('div');
         loader.id = 'ernest-loading-msg';
-        loader.className = 'ernest-loading';
-        loader.innerHTML = `<em>${msg}</em>`;
+        loader.className = 'jrpg-ernest-chat-message jrpg-ernest-message-ernest';
+
+        const persona = this.core.currentPersonaId;
+        if (persona === 'earl') {
+            loader.className = 'jrpg-ernest-chat-message jrpg-ernest-message-earl';
+        }
+
+        const updateContent = () => {
+            loader.innerHTML = `<span class="thinking-dots">${this.getLoadingMessage()}</span>`;
+        };
+
+        updateContent();
         this.ui.ui.chatHistory.appendChild(loader);
         this.ui.ui.chatHistory.scrollTop = this.ui.ui.chatHistory.scrollHeight;
+
+        // Start cycling
+        if (this.loadingInterval) clearInterval(this.loadingInterval);
+        this.loadingInterval = setInterval(updateContent, 2000);
     }
 
     removeLoadingMessage() {
+        if (this.loadingInterval) {
+            clearInterval(this.loadingInterval);
+            this.loadingInterval = null;
+        }
         const loader = document.getElementById('ernest-loading-msg');
         if (loader) loader.remove();
     }

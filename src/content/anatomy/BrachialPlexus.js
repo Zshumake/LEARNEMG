@@ -8,88 +8,122 @@ import { generateErnestButton } from '../../modules/audio/AudioData.js';
 
 const brachialPlexusData = {
     roots: [
-        { id: 'C5', x: 80, y: 120, label: 'C5', description: 'Fifth cervical nerve root' },
-        { id: 'C6', x: 80, y: 180, label: 'C6', description: 'Sixth cervical nerve root' },
+        { id: 'C5', x: 80, y: 100, label: 'C5', description: 'Fifth cervical nerve root' },
+        { id: 'C6', x: 80, y: 160, label: 'C6', description: 'Sixth cervical nerve root' },
         { id: 'C7', x: 80, y: 280, label: 'C7', description: 'Seventh cervical nerve root' },
-        { id: 'C8', x: 80, y: 380, label: 'C8', description: 'Eighth cervical nerve root' },
-        { id: 'T1', x: 80, y: 440, label: 'T1', description: 'First thoracic nerve root' }
-    ],
-    junctions: [
-        { id: 'musc-junction', x: 300, y: 100, pathways: ['C5', 'C6', 'C7'] },
-        { id: 'axil-junction', x: 400, y: 130, pathways: ['C5', 'C6'] },
-        { id: 'median-junction1', x: 350, y: 190, pathways: ['C6', 'C7'] },
-        { id: 'median-junction2', x: 450, y: 190, pathways: ['C8', 'T1'] },
-        { id: 'radial-junction', x: 400, y: 250, pathways: ['C5', 'C6', 'C7', 'C8', 'T1'] },
-        { id: 'ulnar-junction', x: 350, y: 300, pathways: ['C8', 'T1'] }
+        { id: 'C8', x: 80, y: 400, label: 'C8', description: 'Eighth cervical nerve root' },
+        { id: 'T1', x: 80, y: 460, label: 'T1', description: 'First thoracic nerve root' }
     ],
     nerves: [
         {
             id: 'musculocutaneous',
-            x: 630, y: 160,
+            x: 1050, y: 130,
             label: 'Musculocutaneous',
-            description: 'C5-C7 • Lateral Cord • Elbow Flexion',
-            pathway: 'musc-junction',
+            description: 'C5-C7 • Lateral Cord',
             roots: ['C5', 'C6', 'C7'],
-            muscles: ['Biceps', 'Brachialis', 'Coracobrachialis'],
-            sensory: 'Lateral forearm'
+            muscles: ['Biceps brachii', 'Brachialis', 'Coracobrachialis'],
+            sensory: 'Lateral forearm (Lat. Antebrachial Cutaneous)',
+            pearl: 'Primary elbow flexor; testing focuses on biceps strength.'
         },
         {
             id: 'axillary',
-            x: 500, y: 240,
+            x: 1050, y: 200,
             label: 'Axillary',
-            description: 'C5-C6 • Posterior Cord • Shoulder Abduction',
-            pathway: 'axil-junction',
+            description: 'C5-C6 • Posterior Cord',
             roots: ['C5', 'C6'],
             muscles: ['Deltoid', 'Teres minor'],
-            sensory: 'Lateral arm'
+            sensory: 'Regimental badge area (lateral shoulder)',
+            pearl: 'Vulnerable in humeral neck fractures and shoulder dislocations.'
         },
         {
             id: 'median',
-            x: 630, y: 280,
+            x: 1050, y: 280,
             label: 'Median',
-            description: 'C6-T1 • Lateral & Medial Cords • Precision Grip Master',
-            pathway: ['median-junction1', 'median-junction2'],
-            roots: ['C6', 'C7', 'C8', 'T1'],
-            muscles: ['APB', 'OP', 'FPB', 'Lumb 1&2', 'Pronator Teres', 'FCR'],
-            sensory: 'Thumb, index, middle, lateral ring'
+            description: 'C5-T1 • Lateral & Medial Cords',
+            roots: ['C5', 'C6', 'C7', 'C8', 'T1'],
+            muscles: ['LOAF muscles', 'Forearm flexors (except ulnar half)', 'Pronators'],
+            sensory: 'Palmar side of thumb, index, middle, and half of ring finger.',
+            pearl: 'The "laborer\'s nerve"; essential for precision grip and opposition.'
         },
         {
             id: 'radial',
-            x: 500, y: 320,
+            x: 1050, y: 360,
             label: 'Radial',
-            description: 'C5-T1 • Posterior Cord • Extension Powerhouse',
-            pathway: 'radial-junction',
+            description: 'C5-T1 • Posterior Cord',
             roots: ['C5', 'C6', 'C7', 'C8', 'T1'],
-            muscles: ['Extensors', 'Triceps', 'Brachioradialis'],
-            sensory: 'First web space, posterior forearm'
+            muscles: ['Triceps', 'Extensors of wrist and fingers', 'Brachioradialis'],
+            sensory: 'Dorsum of hand (first web space).',
+            pearl: 'Key for wrist/finger extension; "Wrist Drop" is the classic lesion.'
         },
         {
             id: 'ulnar',
-            x: 630, y: 410,
+            x: 1050, y: 430,
             label: 'Ulnar',
-            description: 'C8-T1 • Medial Cord • Grip Strength & Fine Motor Control',
-            pathway: 'ulnar-junction',
+            description: 'C8-T1 • Medial Cord',
             roots: ['C8', 'T1'],
-            muscles: ['Hand intrinsics', 'FCU', 'FDP (4,5)'],
-            sensory: 'Ring, little finger + dorsal hand'
+            muscles: ['Intrinsic hand muscles (except LOAF)', 'FCU', 'Medial FDP'],
+            sensory: 'Small finger and medial half of ring finger (palmar and dorsal).',
+            pearl: 'The "musician\'s nerve"; essential for fine finger movements.'
         },
         {
             id: 'suprascapular',
-            x: 290, y: 130,
+            x: 325, y: 90,
             label: 'Suprascapular',
-            description: 'C5-C6 • Upper Trunk • Supraspinatus & Infraspinatus',
+            description: 'C5-C6 • Upper Trunk',
             roots: ['C5', 'C6'],
             muscles: ['Supraspinatus', 'Infraspinatus'],
-            sensory: 'None'
+            sensory: 'None',
+            pearl: 'Initiates abduction (first 15°) and external rotation.'
+        },
+        {
+            id: 'thoracodorsal',
+            x: 1050, y: 500,
+            label: 'Thoracodorsal',
+            description: 'C6-C8 • Posterior Cord • Lats',
+            roots: ['C6', 'C7', 'C8'],
+            muscles: ['Latissimus dorsi (Shoulder extension, adduction, internal rotation)'],
+            sensory: 'None',
+            pearl: 'Crucial for "pulling" motions; vulnerable during axillary surgery.'
+        },
+        {
+            id: 'long_thoracic',
+            x: 1050, y: 640,
+            label: 'Long Thoracic',
+            description: 'C5-C7 • Serratus Anterior',
+            roots: ['C5', 'C6', 'C7'],
+            muscles: ['Serratus anterior (Scapular protraction/stabilization)'],
+            sensory: 'None',
+            pearl: 'Injury causes "Scapular Winging" when pushing against a wall.'
+        },
+        {
+            id: 'mac',
+            x: 1050, y: 570,
+            label: 'MAC (Med. Antebrachial)',
+            description: 'C8-T1 • Medial Cord',
+            roots: ['C8', 'T1'],
+            muscles: ['None'],
+            sensory: 'Medial forearm sensation down to the wrist.',
+            pearl: 'Often confused with ulnar neuropathy but spares the hand.'
+        },
+        {
+            id: 'lac',
+            x: 1050, y: 80,
+            label: 'LAC (Lat. Antebrachial)',
+            description: 'C5-C7 • Terminal branch of Musculocutaneous',
+            roots: ['C5', 'C6', 'C7'],
+            muscles: ['None'],
+            sensory: 'Lateral forearm sensation.',
+            pearl: 'Purely sensory branch used for some nerve biopsies.'
         },
         {
             id: 'dorsal_scapular',
-            x: 160, y: 110,
+            x: 180, y: 40,
             label: 'Dorsal Scapular',
-            description: 'C5 root directly • Rhomboids',
+            description: 'C5 • Rhomboids/Levator Scapulae',
             roots: ['C5'],
-            muscles: ['Rhomboids', 'Levator scapulae'],
-            sensory: 'None'
+            muscles: ['Rhomboid major/minor', 'Levator scapulae'],
+            sensory: 'None',
+            pearl: 'Check for "scapular winging" (medial) and weakened retraction.'
         }
     ],
     proximalNerves: [
@@ -130,8 +164,9 @@ const brachialInjuryPatterns = {
             'nerve-musc',
             'median-lateral-root',
             'nerve-axillary', 'nerve-radial',
-            'nerve-median', // Added for visual continuity
-            'nerve-suprascapular'
+            'nerve-median',
+            'nerve-suprascapular',
+            'nerve-lac'
         ],
         downstreamPathways: ['musculocutaneous', 'axillary', 'suprascapular', 'radial', 'median'],
         affectedNerves: ['musculocutaneous', 'axillary', 'suprascapular', 'radial'],
@@ -160,7 +195,8 @@ const brachialInjuryPatterns = {
             'cord-medial',
             'nerve-ulnar',
             'median-medial-root',
-            'nerve-median'
+            'nerve-median',
+            'nerve-mac'
         ],
         downstreamPathways: ['ulnar', 'median'],
         affectedNerves: ['ulnar', 'median'],
@@ -367,17 +403,16 @@ export const BrachialPlexusInteractive = {
 
         // Define coordinates
         const coords = {
-            rootsX: 80,
-            trunksX: 200,
-            divisionsX: 300,
-            cordsX: 500,
-            terminalsX: 630,
-            upperLine: 160,
+            upperLine: 130,
             middleLine: 280,
-            lowerLine: 410,
-            middlePlexus: 400,
-            terminalStart: 570,
-            rootConvergence: 200
+            lowerLine: 430,
+
+            rootEnd: 200,
+            trunkEnd: 350,
+            divisionMid: 450,
+            cordEnd: 600,
+
+            terminalX: 750
         };
 
         // 1. Draw Roots (Boxes)
@@ -412,364 +447,359 @@ export const BrachialPlexusInteractive = {
             svg.appendChild(group);
         });
 
-        // 2. Draw C5 and C6 converging to upper horizontal line
+        // 2. Trunk Formation (Y-shapes)
         const c5Root = brachialPlexusData.roots.find(r => r.id === 'C5');
         const c6Root = brachialPlexusData.roots.find(r => r.id === 'C6');
-        const upperTrunkStart = { x: 200, y: 160 };
+        const c7Root = brachialPlexusData.roots.find(r => r.id === 'C7');
+        const c8Root = brachialPlexusData.roots.find(r => r.id === 'C8');
+        const t1Root = brachialPlexusData.roots.find(r => r.id === 'T1');
 
+        // Upper Trunk Formation
         [c5Root, c6Root].forEach(root => {
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', root.x + 50);
             line.setAttribute('y1', root.y + 15);
-            line.setAttribute('x2', upperTrunkStart.x);
-            line.setAttribute('y2', upperTrunkStart.y);
+            line.setAttribute('x2', coords.rootEnd);
+            line.setAttribute('y2', coords.upperLine);
             line.setAttribute('stroke', '#374151');
             line.setAttribute('stroke-width', '3');
             line.classList.add('plexus-connection');
-            line.setAttribute('data-nerve', 'musculocutaneous,axillary,radial,median,suprascapular');
+            line.setAttribute('data-nerve', 'musculocutaneous,axillary,radial,median,suprascapular,lac');
             line.setAttribute('data-segment', 'trunk-upper');
             svg.appendChild(line);
         });
 
-        // 3. Draw upper horizontal line in segments
-        const suprascapularBranchPoint = 290;
-        const axillaryDiagonalStart = 380; // rightX
+        // Middle Trunk (Straight C7)
+        const c7Line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        c7Line.setAttribute('x1', c7Root.x + 50);
+        c7Line.setAttribute('y1', c7Root.y + 15);
+        c7Line.setAttribute('x2', coords.trunkEnd);
+        c7Line.setAttribute('y2', coords.middleLine);
+        c7Line.setAttribute('stroke', '#374151');
+        c7Line.setAttribute('stroke-width', '3');
+        c7Line.classList.add('plexus-connection');
+        c7Line.setAttribute('data-nerve', 'median,radial,thoracodorsal,lac,musculocutaneous');
+        c7Line.setAttribute('data-segment', 'trunk-middle');
+        svg.appendChild(c7Line);
 
-        // Segment 1: From convergence to suprascapular branch
-        const upperHorizontal1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        upperHorizontal1.setAttribute('x1', upperTrunkStart.x);
-        upperHorizontal1.setAttribute('y1', coords.upperLine);
-        upperHorizontal1.setAttribute('x2', suprascapularBranchPoint);
-        upperHorizontal1.setAttribute('y2', coords.upperLine);
-        upperHorizontal1.setAttribute('stroke', '#374151');
-        upperHorizontal1.setAttribute('stroke-width', '3');
-        upperHorizontal1.classList.add('plexus-connection');
-        upperHorizontal1.setAttribute('data-nerve', 'musculocutaneous,axillary,radial,median,suprascapular');
-        upperHorizontal1.setAttribute('data-segment', 'trunk-upper');
-        svg.appendChild(upperHorizontal1);
-
-        // Suprascapular nerve branch (upward)
-        const supraNerve = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        supraNerve.setAttribute('x1', suprascapularBranchPoint);
-        supraNerve.setAttribute('y1', coords.upperLine);
-        supraNerve.setAttribute('x2', suprascapularBranchPoint);
-        supraNerve.setAttribute('y2', coords.upperLine - 30);
-        supraNerve.setAttribute('stroke', '#374151');
-        supraNerve.setAttribute('stroke-width', '3');
-        supraNerve.classList.add('plexus-connection');
-        supraNerve.setAttribute('data-nerve', 'suprascapular');
-        supraNerve.setAttribute('data-segment', 'nerve-suprascapular');
-        svg.appendChild(supraNerve);
-
-        // Segment 2a: From suprascapular branch to diagonal split point (Posterior Division takeoff)
-        const diagonalSplitPoint = 320; // leftX
-        const upperHorizontal2a = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        upperHorizontal2a.setAttribute('x1', suprascapularBranchPoint);
-        upperHorizontal2a.setAttribute('y1', coords.upperLine);
-        upperHorizontal2a.setAttribute('x2', diagonalSplitPoint);
-        upperHorizontal2a.setAttribute('y2', coords.upperLine);
-        upperHorizontal2a.setAttribute('stroke', '#374151');
-        upperHorizontal2a.setAttribute('stroke-width', '3');
-        upperHorizontal2a.classList.add('plexus-connection');
-        upperHorizontal2a.setAttribute('data-nerve', 'musculocutaneous,median,radial,axillary');
-        upperHorizontal2a.setAttribute('data-segment', 'trunk-upper');
-        svg.appendChild(upperHorizontal2a);
-
-        // Segment 2b: From diagonal split point to axillary diagonal start (Anterior Division)
-        const upperHorizontal2b = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        upperHorizontal2b.setAttribute('x1', diagonalSplitPoint);
-        upperHorizontal2b.setAttribute('y1', coords.upperLine);
-        upperHorizontal2b.setAttribute('x2', axillaryDiagonalStart);
-        upperHorizontal2b.setAttribute('y2', coords.upperLine);
-        upperHorizontal2b.setAttribute('stroke', '#374151');
-        upperHorizontal2b.setAttribute('stroke-width', '3');
-        upperHorizontal2b.classList.add('plexus-connection');
-        upperHorizontal2b.setAttribute('data-nerve', 'musculocutaneous,median'); // No axillary/radial here!
-        upperHorizontal2b.setAttribute('data-segment', 'div-upper-ant');
-        svg.appendChild(upperHorizontal2b);
-
-        // Segment 3a: From diagonal connection toward terminals (includes median)
-        const medianSplitPoint = coords.terminalStart - 80;
-        const upperHorizontal3a = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        upperHorizontal3a.setAttribute('x1', axillaryDiagonalStart);
-        upperHorizontal3a.setAttribute('y1', coords.upperLine);
-        upperHorizontal3a.setAttribute('x2', coords.terminalStart - 30);
-        upperHorizontal3a.setAttribute('y2', coords.upperLine);
-        upperHorizontal3a.setAttribute('stroke', '#374151');
-        upperHorizontal3a.setAttribute('stroke-width', '3');
-        upperHorizontal3a.classList.add('plexus-connection');
-        upperHorizontal3a.setAttribute('data-nerve', 'median,musculocutaneous');
-        upperHorizontal3a.setAttribute('data-segment', 'cord-lateral');
-        svg.appendChild(upperHorizontal3a);
-
-        // Segment 3b: From split point to musculocutaneous terminal (musculocutaneous only)
-        const upperHorizontal3b = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        upperHorizontal3b.setAttribute('x1', coords.terminalStart - 30);
-        upperHorizontal3b.setAttribute('y1', coords.upperLine);
-        upperHorizontal3b.setAttribute('x2', coords.terminalStart);
-        upperHorizontal3b.setAttribute('y2', coords.upperLine);
-        upperHorizontal3b.setAttribute('stroke', '#374151');
-        upperHorizontal3b.setAttribute('stroke-width', '3');
-        upperHorizontal3b.classList.add('plexus-connection');
-        upperHorizontal3b.setAttribute('data-nerve', 'musculocutaneous');
-        upperHorizontal3b.setAttribute('data-segment', 'nerve-musc');
-        svg.appendChild(upperHorizontal3b);
-
-        // 4. Draw C7 horizontal line in segments
-        const c7Root = brachialPlexusData.roots.find(r => r.id === 'C7');
-        const c7CrossingPoint = coords.middlePlexus;
-        const c7BranchPoint = coords.middlePlexus + 60;
-
-        // Segment 1a: From C7 root to right diagonal connection (includes median)
-        const c7Horizontal1a = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        c7Horizontal1a.setAttribute('x1', c7Root.x + 50);
-        c7Horizontal1a.setAttribute('y1', c7Root.y + 15);
-        c7Horizontal1a.setAttribute('x2', 320);
-        c7Horizontal1a.setAttribute('y2', coords.middleLine);
-        c7Horizontal1a.setAttribute('stroke', '#374151');
-        c7Horizontal1a.setAttribute('stroke-width', '3');
-        c7Horizontal1a.classList.add('plexus-connection');
-        c7Horizontal1a.setAttribute('data-nerve', 'median,radial');
-        c7Horizontal1a.setAttribute('data-segment', 'trunk-middle');
-        svg.appendChild(c7Horizontal1a);
-
-        // Segment 1b: From right diagonal connection to crossing point (radial only)
-        const c7Horizontal1b = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        c7Horizontal1b.setAttribute('x1', 320);
-        c7Horizontal1b.setAttribute('y1', coords.middleLine);
-        c7Horizontal1b.setAttribute('x2', c7CrossingPoint);
-        c7Horizontal1b.setAttribute('y2', coords.middleLine);
-        c7Horizontal1b.setAttribute('stroke', '#374151');
-        c7Horizontal1b.setAttribute('stroke-width', '3');
-        c7Horizontal1b.classList.add('plexus-connection');
-        c7Horizontal1b.setAttribute('data-nerve', 'radial');
-        c7Horizontal1b.setAttribute('data-segment', 'div-middle-post');
-        svg.appendChild(c7Horizontal1b);
-
-        // Segment 2: From crossing point to axillary/radial branch point
-        const c7Horizontal2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        c7Horizontal2.setAttribute('x1', c7CrossingPoint);
-        c7Horizontal2.setAttribute('y1', coords.middleLine);
-        c7Horizontal2.setAttribute('x2', c7BranchPoint);
-        c7Horizontal2.setAttribute('y2', coords.middleLine);
-        c7Horizontal2.setAttribute('stroke', '#374151');
-        c7Horizontal2.setAttribute('stroke-width', '3');
-        c7Horizontal2.classList.add('plexus-connection');
-        c7Horizontal2.setAttribute('data-nerve', 'radial');
-        c7Horizontal2.setAttribute('data-segment', 'cord-posterior');
-        svg.appendChild(c7Horizontal2);
-
-        // 5. Draw C8 and T1 converging to lower horizontal line
-        const c8Root = brachialPlexusData.roots.find(r => r.id === 'C8');
-        const t1Root = brachialPlexusData.roots.find(r => r.id === 'T1');
-        const lowerJunction = { x: 200, y: 410 };
-
+        // Lower Trunk Formation
+        const lowerJunction = { x: coords.rootEnd, y: coords.lowerLine };
         [c8Root, t1Root].forEach(root => {
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', root.x + 50);
             line.setAttribute('y1', root.y + 15);
             line.setAttribute('x2', lowerJunction.x);
-            line.setAttribute('y2', lowerJunction.y);
+            line.setAttribute('y2', coords.lowerLine);
             line.setAttribute('stroke', '#374151');
             line.setAttribute('stroke-width', '3');
             line.classList.add('plexus-connection');
-            line.setAttribute('data-nerve', 'ulnar,median,radial');
+            line.setAttribute('data-nerve', 'ulnar,median,radial,mac,thoracodorsal');
             line.setAttribute('data-segment', 'trunk-lower');
             svg.appendChild(line);
         });
 
-        // 6. Calculate diagonal positions
-        const leftX = coords.middlePlexus - 80; // 320
-        const rightX = coords.middlePlexus - 20; // 380
+        // 3. Trunk Extensions
+        const upperExt = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        upperExt.setAttribute('x1', coords.rootEnd);
+        upperExt.setAttribute('y1', coords.upperLine);
+        upperExt.setAttribute('x2', coords.trunkEnd);
+        upperExt.setAttribute('y2', coords.upperLine);
+        upperExt.setAttribute('stroke', '#374151');
+        upperExt.setAttribute('stroke-width', '3');
+        upperExt.classList.add('plexus-connection');
+        upperExt.setAttribute('data-nerve', 'musculocutaneous,axillary,radial,median,suprascapular,lac');
+        upperExt.setAttribute('data-segment', 'trunk-upper');
+        svg.appendChild(upperExt);
 
-        // 7. Draw lower horizontal line in segments (C8+T1 pathway)
-        const bottomDiagonalConnectionPoint = leftX;
-        const medianConvergencePoint = coords.terminalStart - 50;
+        const lowerExt = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        lowerExt.setAttribute('x1', coords.rootEnd);
+        lowerExt.setAttribute('y1', coords.lowerLine);
+        lowerExt.setAttribute('x2', coords.trunkEnd);
+        lowerExt.setAttribute('y2', coords.lowerLine);
+        lowerExt.setAttribute('stroke', '#374151');
+        lowerExt.setAttribute('stroke-width', '3');
+        lowerExt.classList.add('plexus-connection');
+        lowerExt.setAttribute('data-nerve', 'ulnar,median,radial,mac,thoracodorsal');
+        lowerExt.setAttribute('data-segment', 'trunk-lower');
+        svg.appendChild(lowerExt);
 
-        // Segment 1: From lower convergence to bottom diagonal connection (includes radial)
-        const lowerHorizontal1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        lowerHorizontal1.setAttribute('x1', lowerJunction.x);
-        lowerHorizontal1.setAttribute('y1', coords.lowerLine);
-        lowerHorizontal1.setAttribute('x2', bottomDiagonalConnectionPoint);
-        lowerHorizontal1.setAttribute('y2', coords.lowerLine);
-        lowerHorizontal1.setAttribute('stroke', '#374151');
-        lowerHorizontal1.setAttribute('stroke-width', '3');
-        lowerHorizontal1.classList.add('plexus-connection');
-        lowerHorizontal1.setAttribute('data-nerve', 'ulnar,median,radial');
-        lowerHorizontal1.setAttribute('data-segment', 'trunk-lower');
-        svg.appendChild(lowerHorizontal1);
+        // 4. Divisions (Balanced X-Pattern)
+        // Posterior Divisions (Converge to Middle Line)
+        [coords.upperLine, coords.middleLine, coords.lowerLine].forEach((y, i) => {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', coords.trunkEnd);
+            line.setAttribute('y1', y);
+            line.setAttribute('x2', coords.divisionMid);
+            line.setAttribute('y2', coords.middleLine);
+            line.setAttribute('stroke', '#374151');
+            line.setAttribute('stroke-width', '3');
+            line.classList.add('plexus-connection');
+            line.setAttribute('data-nerve', 'radial,axillary,thoracodorsal');
+            line.setAttribute('data-segment', i === 0 ? 'div-upper-post' : (i === 1 ? 'div-middle-post' : 'div-lower-post'));
+            svg.appendChild(line);
+        });
 
-        // Segment 2: From bottom diagonal connection to median convergence (no radial)
-        const lowerHorizontal2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        lowerHorizontal2.setAttribute('x1', bottomDiagonalConnectionPoint);
-        lowerHorizontal2.setAttribute('y1', coords.lowerLine);
-        lowerHorizontal2.setAttribute('x2', medianConvergencePoint);
-        lowerHorizontal2.setAttribute('y2', coords.lowerLine);
-        lowerHorizontal2.setAttribute('stroke', '#374151');
-        lowerHorizontal2.setAttribute('stroke-width', '3');
-        lowerHorizontal2.classList.add('plexus-connection');
-        lowerHorizontal2.setAttribute('data-nerve', 'ulnar,median');
-        lowerHorizontal2.setAttribute('data-segment', 'cord-medial'); // Anterior division of lower trunk becomes medial cord
-        svg.appendChild(lowerHorizontal2);
+        // Anterior Divisions
+        // Upper + Middle -> Lateral Cord
+        [coords.upperLine, coords.middleLine].forEach((y, i) => {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', coords.trunkEnd);
+            line.setAttribute('y1', y);
+            line.setAttribute('x2', coords.cordEnd - 50);
+            line.setAttribute('y2', coords.upperLine);
+            line.setAttribute('stroke', '#374151');
+            line.setAttribute('stroke-width', '3');
+            line.classList.add('plexus-connection');
+            line.setAttribute('data-nerve', 'musculocutaneous,median,lac');
+            line.setAttribute('data-segment', i === 0 ? 'div-upper-ant' : 'div-middle-ant');
+            svg.appendChild(line);
+        });
 
-        // Segment 3: From median convergence to ulnar terminal (ulnar only)
-        const lowerHorizontal3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        lowerHorizontal3.setAttribute('x1', medianConvergencePoint);
-        lowerHorizontal3.setAttribute('y1', coords.lowerLine);
-        lowerHorizontal3.setAttribute('x2', coords.terminalStart);
-        lowerHorizontal3.setAttribute('y2', coords.lowerLine);
-        lowerHorizontal3.setAttribute('stroke', '#374151');
-        lowerHorizontal3.setAttribute('stroke-width', '3');
-        lowerHorizontal3.classList.add('plexus-connection');
-        lowerHorizontal3.setAttribute('data-nerve', 'ulnar');
-        lowerHorizontal3.setAttribute('data-segment', 'nerve-ulnar');
-        svg.appendChild(lowerHorizontal3);
+        // Lower Trunk -> Medial Cord
+        const lowerAntDiv = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        lowerAntDiv.setAttribute('x1', coords.trunkEnd);
+        lowerAntDiv.setAttribute('y1', coords.lowerLine);
+        lowerAntDiv.setAttribute('x2', coords.cordEnd - 50);
+        lowerAntDiv.setAttribute('y2', coords.lowerLine);
+        lowerAntDiv.setAttribute('stroke', '#374151');
+        lowerAntDiv.setAttribute('stroke-width', '3');
+        lowerAntDiv.classList.add('plexus-connection');
+        lowerAntDiv.setAttribute('data-nerve', 'ulnar,median,mac');
+        lowerAntDiv.setAttribute('data-segment', 'div-lower-ant');
+        svg.appendChild(lowerAntDiv);
 
-        // 8. Draw simple straight diagonal lines that cross
-        // Left diagonal: straight line from upper-left DOWN and RIGHT to middle-right
-        const leftDiagonal = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        leftDiagonal.setAttribute('x1', leftX);
-        leftDiagonal.setAttribute('y1', coords.upperLine);
-        leftDiagonal.setAttribute('x2', rightX);
-        leftDiagonal.setAttribute('y2', coords.middleLine);
-        leftDiagonal.setAttribute('stroke', '#374151');
-        leftDiagonal.setAttribute('stroke-width', '3');
-        leftDiagonal.classList.add('plexus-connection');
-        leftDiagonal.setAttribute('data-nerve', 'axillary,radial');
-        leftDiagonal.setAttribute('data-segment', 'div-upper-post');
-        svg.appendChild(leftDiagonal);
+        // 5. Cords & Branches
+        // Posterior Cord
+        const postCord = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        postCord.setAttribute('x1', coords.divisionMid);
+        postCord.setAttribute('y1', coords.middleLine);
+        postCord.setAttribute('x2', coords.cordEnd);
+        postCord.setAttribute('y2', coords.middleLine);
+        postCord.setAttribute('stroke', '#374151');
+        postCord.setAttribute('stroke-width', '3');
+        postCord.classList.add('plexus-connection');
+        postCord.setAttribute('data-nerve', 'radial,axillary,thoracodorsal');
+        postCord.setAttribute('data-segment', 'cord-posterior');
+        svg.appendChild(postCord);
 
-        // Right diagonal: straight line from upper-right DOWN and LEFT to middle-left
-        const rightDiagonal = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        rightDiagonal.setAttribute('x1', rightX);
-        rightDiagonal.setAttribute('y1', coords.upperLine);
-        rightDiagonal.setAttribute('x2', leftX);
-        rightDiagonal.setAttribute('y2', coords.middleLine);
-        rightDiagonal.setAttribute('stroke', '#374151');
-        rightDiagonal.setAttribute('stroke-width', '3');
-        rightDiagonal.classList.add('plexus-connection');
-        rightDiagonal.setAttribute('data-nerve', 'median');
-        rightDiagonal.setAttribute('data-segment', 'div-middle-ant');
-        svg.appendChild(rightDiagonal);
+        // Terminal Highlighting Fixes
+        const medianStartX = coords.cordEnd + 50;
 
-        // Bottom diagonal: from bottom line (C8-T1) UP and RIGHT to middle line
-        const bottomDiagonal = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        bottomDiagonal.setAttribute('x1', leftX);
-        bottomDiagonal.setAttribute('y1', coords.lowerLine);
-        bottomDiagonal.setAttribute('x2', rightX);
-        bottomDiagonal.setAttribute('y2', coords.middleLine);
-        bottomDiagonal.setAttribute('stroke', '#374151');
-        bottomDiagonal.setAttribute('stroke-width', '3');
-        bottomDiagonal.classList.add('plexus-connection');
-        bottomDiagonal.setAttribute('data-nerve', 'radial');
-        bottomDiagonal.setAttribute('data-segment', 'div-lower-post');
-        svg.appendChild(bottomDiagonal);
+        // 6. Median Nerve Formation
+        // Lateral head
+        const latHead = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        latHead.setAttribute('x1', coords.cordEnd - 50);
+        latHead.setAttribute('y1', coords.upperLine);
+        latHead.setAttribute('x2', medianStartX);
+        latHead.setAttribute('y2', coords.middleLine);
+        latHead.setAttribute('stroke', '#374151');
+        latHead.setAttribute('stroke-width', '4');
+        latHead.classList.add('plexus-connection');
+        latHead.setAttribute('data-nerve', 'median');
+        latHead.setAttribute('data-segment', 'median-lateral-root');
+        svg.appendChild(latHead);
 
-        // 9. Draw two median nerve convergence diagonals
-        // Upper diagonal: from upper line (C6 pathway) down to median nerve
-        const medianUpperDiagonal = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        medianUpperDiagonal.setAttribute('x1', coords.terminalStart - 30);
-        medianUpperDiagonal.setAttribute('y1', coords.upperLine);
-        medianUpperDiagonal.setAttribute('x2', coords.terminalStart);
-        medianUpperDiagonal.setAttribute('y2', coords.middleLine);
-        medianUpperDiagonal.setAttribute('stroke', '#374151');
-        medianUpperDiagonal.setAttribute('stroke-width', '3');
-        medianUpperDiagonal.classList.add('plexus-connection');
-        medianUpperDiagonal.setAttribute('data-nerve', 'median');
-        medianUpperDiagonal.setAttribute('data-segment', 'median-lateral-root');
-        svg.appendChild(medianUpperDiagonal);
+        // Medial head
+        const medHead = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        medHead.setAttribute('x1', coords.cordEnd - 50);
+        medHead.setAttribute('y1', coords.lowerLine);
+        medHead.setAttribute('x2', medianStartX);
+        medHead.setAttribute('y2', coords.middleLine);
+        medHead.setAttribute('stroke', '#374151');
+        medHead.setAttribute('stroke-width', '4');
+        medHead.classList.add('plexus-connection');
+        medHead.setAttribute('data-nerve', 'median');
+        medHead.setAttribute('data-segment', 'median-medial-root');
+        svg.appendChild(medHead);
 
-        // Lower diagonal: from lower line (C8-T1 pathway) up to median nerve
-        const medianLowerDiagonal = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        medianLowerDiagonal.setAttribute('x1', medianConvergencePoint);
-        medianLowerDiagonal.setAttribute('y1', coords.lowerLine);
-        medianLowerDiagonal.setAttribute('x2', coords.terminalStart);
-        medianLowerDiagonal.setAttribute('y2', coords.middleLine);
-        medianLowerDiagonal.setAttribute('stroke', '#374151');
-        medianLowerDiagonal.setAttribute('stroke-width', '3');
-        medianLowerDiagonal.classList.add('plexus-connection');
-        medianLowerDiagonal.setAttribute('data-nerve', 'median');
-        medianLowerDiagonal.setAttribute('data-segment', 'median-medial-root');
-        svg.appendChild(medianLowerDiagonal);
+        // 7. Small Branches
+        // Suprascapular
+        const supraPoint = coords.rootEnd + 75;
+        const supraLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        supraLine.setAttribute('x1', supraPoint);
+        supraLine.setAttribute('y1', coords.upperLine);
+        supraLine.setAttribute('x2', supraPoint);
+        supraLine.setAttribute('y2', coords.upperLine - 40);
+        supraLine.setAttribute('stroke', '#374151');
+        supraLine.setAttribute('stroke-width', '3');
+        supraLine.classList.add('plexus-connection');
+        supraLine.setAttribute('data-nerve', 'suprascapular');
+        svg.appendChild(supraLine);
 
-        // Median Nerve Extension (to label)
-        const medianExtension = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        medianExtension.setAttribute('x1', coords.terminalStart);
-        medianExtension.setAttribute('y1', coords.middleLine);
-        medianExtension.setAttribute('x2', '630'); // Connects to the label box
-        medianExtension.setAttribute('y2', coords.middleLine);
-        medianExtension.setAttribute('stroke', '#374151');
-        medianExtension.setAttribute('stroke-width', '3');
-        medianExtension.classList.add('plexus-connection');
-        medianExtension.setAttribute('data-nerve', 'median');
-        medianExtension.setAttribute('data-segment', 'nerve-median');
-        svg.appendChild(medianExtension);
+        // Dorsal Scapular path
+        const dsPoint = c5Root.x + 100;
+        const dsLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        dsLine.setAttribute('x1', dsPoint);
+        dsLine.setAttribute('y1', c5Root.y + 15);
+        dsLine.setAttribute('x2', dsPoint + 30);
+        dsLine.setAttribute('y2', c5Root.y - 60);
+        dsLine.setAttribute('stroke', '#374151');
+        dsLine.setAttribute('stroke-width', '3');
+        dsLine.classList.add('plexus-connection');
+        dsLine.setAttribute('data-nerve', 'dorsal_scapular');
+        svg.appendChild(dsLine);
 
-        // 10. Draw Axillary horizontal connection
-        const axillaryHorizontalConnection = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        axillaryHorizontalConnection.setAttribute('x1', '380');
-        axillaryHorizontalConnection.setAttribute('y1', coords.middleLine);
-        axillaryHorizontalConnection.setAttribute('x2', c7BranchPoint);
-        axillaryHorizontalConnection.setAttribute('y2', coords.middleLine);
-        axillaryHorizontalConnection.setAttribute('stroke', '#374151');
-        axillaryHorizontalConnection.setAttribute('stroke-width', '3');
-        axillaryHorizontalConnection.classList.add('plexus-connection');
-        axillaryHorizontalConnection.setAttribute('data-nerve', 'axillary,radial');
-        axillaryHorizontalConnection.setAttribute('data-segment', 'cord-posterior');
-        svg.appendChild(axillaryHorizontalConnection);
+        // 8. Terminal Extensions
+        // Musculocutaneous
+        const mcLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        mcLine.setAttribute('x1', coords.cordEnd - 50);
+        mcLine.setAttribute('y1', coords.upperLine);
+        mcLine.setAttribute('x2', coords.terminalX);
+        mcLine.setAttribute('y2', 130);
+        mcLine.setAttribute('stroke', '#374151');
+        mcLine.setAttribute('stroke-width', '3');
+        mcLine.classList.add('plexus-connection');
+        mcLine.setAttribute('data-nerve', 'musculocutaneous');
+        svg.appendChild(mcLine);
 
-        // 11. Draw Axillary branch
-        const axillaryBranch = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        axillaryBranch.setAttribute('x1', c7BranchPoint);
-        axillaryBranch.setAttribute('y1', coords.middleLine);
-        axillaryBranch.setAttribute('x2', c7BranchPoint + 30);
-        axillaryBranch.setAttribute('y2', coords.middleLine - 40);
-        axillaryBranch.setAttribute('stroke', '#374151');
-        axillaryBranch.setAttribute('stroke-width', '3');
-        axillaryBranch.classList.add('plexus-connection');
-        axillaryBranch.setAttribute('data-nerve', 'axillary');
-        axillaryBranch.setAttribute('data-segment', 'nerve-axillary');
-        svg.appendChild(axillaryBranch);
+        // Ulnar
+        const ulnarLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        ulnarLine.setAttribute('x1', coords.cordEnd - 50);
+        ulnarLine.setAttribute('y1', coords.lowerLine);
+        ulnarLine.setAttribute('x2', coords.terminalX);
+        ulnarLine.setAttribute('y2', 430);
+        ulnarLine.setAttribute('stroke', '#374151');
+        ulnarLine.setAttribute('stroke-width', '3');
+        ulnarLine.classList.add('plexus-connection');
+        ulnarLine.setAttribute('data-nerve', 'ulnar');
+        svg.appendChild(ulnarLine);
 
-        // 12. Draw Radial branch
-        const radialBranch = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        radialBranch.setAttribute('x1', c7BranchPoint);
-        radialBranch.setAttribute('y1', coords.middleLine);
-        radialBranch.setAttribute('x2', '500');
-        radialBranch.setAttribute('y2', '320');
-        radialBranch.setAttribute('stroke', '#374151');
-        radialBranch.setAttribute('stroke-width', '3');
-        radialBranch.classList.add('plexus-connection');
-        radialBranch.setAttribute('data-nerve', 'radial');
-        radialBranch.setAttribute('data-segment', 'nerve-radial');
-        svg.appendChild(radialBranch);
+        // Axillary & Radial Split
+        const axyLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        axyLine.setAttribute('x1', coords.cordEnd);
+        axyLine.setAttribute('y1', coords.middleLine);
+        axyLine.setAttribute('x2', coords.terminalX - 100);
+        axyLine.setAttribute('y2', 200);
+        axyLine.setAttribute('stroke', '#374151');
+        axyLine.setAttribute('stroke-width', '4');
+        axyLine.classList.add('plexus-connection');
+        axyLine.setAttribute('data-nerve', 'axillary');
+        svg.appendChild(axyLine);
 
-        // 13. Draw Terminal Nerves
+        const radLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        radLine.setAttribute('x1', coords.cordEnd);
+        radLine.setAttribute('y1', coords.middleLine);
+        radLine.setAttribute('x2', coords.terminalX - 100);
+        radLine.setAttribute('y2', 360);
+        radLine.setAttribute('stroke', '#374151');
+        radLine.setAttribute('stroke-width', '4');
+        radLine.classList.add('plexus-connection');
+        radLine.setAttribute('data-nerve', 'radial');
+        svg.appendChild(radLine);
+
+        // Median Extension
+        const mLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        mLine.setAttribute('x1', medianStartX);
+        mLine.setAttribute('y1', coords.middleLine);
+        mLine.setAttribute('x2', coords.terminalX);
+        mLine.setAttribute('y2', 280);
+        mLine.setAttribute('stroke', '#374151');
+        mLine.setAttribute('stroke-width', '4');
+        mLine.classList.add('plexus-connection');
+        mLine.setAttribute('data-nerve', 'median');
+        svg.appendChild(mLine);
+
+        // Thoracodorsal path
+        const tdStart = coords.cordEnd - 20;
+        const tdLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tdLine.setAttribute('x1', tdStart);
+        tdLine.setAttribute('y1', coords.middleLine);
+        tdLine.setAttribute('x2', coords.terminalX);
+        tdLine.setAttribute('y2', 500);
+        tdLine.setAttribute('stroke', '#374151');
+        tdLine.setAttribute('stroke-width', '3');
+        tdLine.classList.add('plexus-connection');
+        tdLine.setAttribute('data-nerve', 'thoracodorsal');
+        svg.appendChild(tdLine);
+
+        // MAC path
+        const macLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        macLine.setAttribute('x1', coords.cordEnd - 50);
+        macLine.setAttribute('y1', coords.lowerLine);
+        macLine.setAttribute('x2', coords.terminalX);
+        macLine.setAttribute('y2', 570);
+        macLine.setAttribute('stroke', '#374151');
+        macLine.setAttribute('stroke-width', '3');
+        macLine.classList.add('plexus-connection');
+        macLine.setAttribute('data-nerve', 'mac');
+        svg.appendChild(macLine);
+
+        // LAC path (Upper diagonal from Lateral Cord area)
+        const lacLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        lacLine.setAttribute('x1', coords.cordEnd - 50);
+        lacLine.setAttribute('y1', coords.upperLine);
+        lacLine.setAttribute('x2', coords.terminalX);
+        lacLine.setAttribute('y2', 80);
+        lacLine.setAttribute('stroke', '#374151');
+        lacLine.setAttribute('stroke-width', '3');
+        lacLine.classList.add('plexus-connection');
+        lacLine.setAttribute('data-nerve', 'lac');
+        svg.appendChild(lacLine);
+
+        // Long Thoracic (The Left-most L-shape)
+        const ltX = 30;
+        ['C5', 'C6', 'C7'].forEach(id => {
+            const root = brachialPlexusData.roots.find(r => r.id === id);
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', root.x);
+            line.setAttribute('y1', root.y + 15);
+            line.setAttribute('x2', ltX);
+            line.setAttribute('y2', root.y + 15);
+            line.setAttribute('stroke', '#374151');
+            line.setAttribute('stroke-width', '3');
+            line.classList.add('plexus-connection');
+            line.setAttribute('data-nerve', 'long_thoracic');
+            svg.appendChild(line);
+        });
+        const ltVertical = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        ltVertical.setAttribute('x1', ltX);
+        ltVertical.setAttribute('y1', c5Root.y + 15);
+        ltVertical.setAttribute('x2', ltX);
+        ltVertical.setAttribute('y2', 640);
+        ltVertical.setAttribute('stroke', '#374151');
+        ltVertical.setAttribute('stroke-width', '3');
+        ltVertical.classList.add('plexus-connection');
+        ltVertical.setAttribute('data-nerve', 'long_thoracic');
+        svg.appendChild(ltVertical);
+
+        const ltHorizontal = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        ltHorizontal.setAttribute('x1', ltX);
+        ltHorizontal.setAttribute('y1', 640);
+        ltHorizontal.setAttribute('x2', coords.terminalX);
+        ltHorizontal.setAttribute('y2', 640);
+        ltHorizontal.setAttribute('stroke', '#374151');
+        ltHorizontal.setAttribute('stroke-width', '3');
+        ltHorizontal.classList.add('plexus-connection');
+        ltHorizontal.setAttribute('data-nerve', 'long_thoracic');
+        svg.appendChild(ltHorizontal);
+
+        // 9. Draw Terminal Nerve Labels
         brachialPlexusData.nerves.forEach(nerve => {
             const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
             group.setAttribute('class', 'plexus-element');
             group.setAttribute('data-id', nerve.id);
+            group.onclick = () => this.traceNerve(nerve.id);
 
+            const rectWidth = (nerve.label || '').length > 15 ? 170 : 150;
             const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            rect.setAttribute('x', nerve.x);
-            rect.setAttribute('y', nerve.y - 15);
-            rect.setAttribute('width', '120');
-            rect.setAttribute('height', '30');
-            rect.setAttribute('rx', '5');
-            rect.setAttribute('fill', '#eff6ff');
+            rect.setAttribute('x', nerve.x - rectWidth / 2);
+            rect.setAttribute('y', nerve.y - 18);
+            rect.setAttribute('width', rectWidth);
+            rect.setAttribute('height', '36');
+            rect.setAttribute('rx', '8');
+            rect.setAttribute('fill', 'white');
             rect.setAttribute('stroke', '#3b82f6');
             rect.setAttribute('stroke-width', '2');
+            group.appendChild(rect);
 
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', nerve.x + 60);
-            text.setAttribute('y', nerve.y + 5);
+            text.setAttribute('x', nerve.x);
+            text.setAttribute('y', nerve.y + 6);
             text.setAttribute('text-anchor', 'middle');
-            text.setAttribute('font-size', '12px');
-            text.setAttribute('font-weight', '600');
             text.setAttribute('fill', '#1e40af');
+            text.setAttribute('font-weight', 'bold');
+            text.setAttribute('font-size', '12');
             text.textContent = nerve.label;
-
-            group.appendChild(rect);
             group.appendChild(text);
             svg.appendChild(group);
         });
@@ -777,193 +807,125 @@ export const BrachialPlexusInteractive = {
 
     traceNerve: function (nerveId) {
         this.currentNerve = brachialPlexusData.nerves.find(n => n.id === nerveId);
+        if (!this.currentNerve) return;
         this.updateNerveInfo(this.currentNerve);
 
         // Reset all
         document.querySelectorAll('#brachial-container .plexus-connection').forEach(line => {
             line.style.opacity = '0.1';
             line.style.strokeWidth = '3';
-            line.style.filter = 'none';
+            line.style.stroke = '#374151';
         });
         document.querySelectorAll('#brachial-container .plexus-element').forEach(el => {
             el.style.opacity = '0.3';
-            el.style.filter = 'none';
         });
 
-        // Highlight selected nerve
+        // Highlight selected
         const nerveEl = document.querySelector(`#brachial-container [data-id="${nerveId}"]`);
-        if (nerveEl) {
-            nerveEl.style.opacity = '1';
-            nerveEl.style.filter = 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))';
-        }
+        if (nerveEl) nerveEl.style.opacity = '1';
 
         // Highlight roots
-        this.currentNerve.roots.forEach(rootId => {
-            const rootEl = document.querySelector(`#brachial-container [data-id="${rootId}"]`);
-            if (rootEl) {
-                rootEl.style.opacity = '1';
-                rootEl.style.filter = 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))';
-            }
-        });
+        if (this.currentNerve.roots) {
+            this.currentNerve.roots.forEach(rId => {
+                const rootEl = document.querySelector(`#brachial-container [data-id="${rId}"]`);
+                if (rootEl) rootEl.style.opacity = '1';
+            });
+        }
 
         // Highlight pathways
-        const nerve = this.currentNerve;
-
-        // Helper to highlight by data-nerve attribute
-        const highlightPath = (nerveName) => {
-            document.querySelectorAll('#brachial-container .plexus-connection').forEach(line => {
-                const nerves = line.getAttribute('data-nerve').split(',');
-                if (nerves.includes(nerveName)) {
-                    line.style.opacity = '1';
-                    line.style.stroke = '#3b82f6';
-                    line.style.strokeWidth = '4';
-                    line.style.filter = 'drop-shadow(0 0 4px rgba(59, 130, 246, 0.5))';
-                }
-            });
-        };
-
-        // If tracing median, we need complex logic for multiple roots/pathways
-        // Or simpler: The SVG data-nerve attributes already list "median" on shared segments
-        // So we can just checking includes() works!
-        highlightPath(nerve.id);
+        document.querySelectorAll('#brachial-container .plexus-connection').forEach(line => {
+            const nerves = (line.getAttribute('data-nerve') || '').split(',');
+            if (nerves.includes(nerveId)) {
+                line.style.opacity = '1';
+                line.style.stroke = '#3b82f6';
+                line.style.strokeWidth = '5';
+            }
+        });
     },
 
     updateNerveInfo: function (nerve) {
-        const infoPanel = document.getElementById('nerve-info');
-        if (infoPanel) {
-            infoPanel.innerHTML = `
-                <h4 style="color: #1e40af; margin-bottom: 15px;">${nerve.label} Nerve</h4>
-                <p style="color: #64748b; margin-bottom: 12px; line-height: 1.5;">${nerve.description}</p>
-                <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; margin-bottom: 10px;">
-                    <strong style="color: #1e40af;">Motor:</strong> ${nerve.muscles.join(', ')}
-                </div>
-                <div style="background: #f0fdf4; padding: 12px; border-radius: 8px;">
-                    <strong style="color: #059669;">Sensory:</strong> ${nerve.sensory}
-                </div>
-            `;
-        }
+        const info = document.getElementById('nerve-info');
+        if (!info) return;
+
+        info.innerHTML = `
+            <h4 style="margin: 0 0 10px 0; color: #1e40af;">${nerve.label}</h4>
+            <p style="margin: 0 0 10px 0; font-weight: 500;">${nerve.description}</p>
+            <div style="margin-bottom: 15px;">
+                <strong style="color: #475569; font-size: 0.9em;">Muscles:</strong><br>
+                <span style="font-size: 0.9em;">${nerve.muscles.join(', ')}</span>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <strong style="color: #475569; font-size: 0.9em;">Sensory:</strong><br>
+                <span style="font-size: 0.9em;">${nerve.sensory}</span>
+            </div>
+            <div style="background: #eff6ff; padding: 10px; border-radius: 6px; border-left: 3px solid #3b82f6;">
+                <strong style="color: #1e40af; font-size: 0.8em; text-transform: uppercase;">Clinical Pearl:</strong><br>
+                <span style="font-size: 0.85em;">${nerve.pearl}</span>
+            </div>
+        `;
     },
 
     clearTracing: function () {
-        this.currentNerve = null;
-
-        // Clear connections
         document.querySelectorAll('#brachial-container .plexus-connection').forEach(line => {
             line.style.opacity = '1';
             line.style.strokeWidth = '3';
+            line.style.stroke = '#374151';
             line.style.filter = 'none';
-            line.classList.remove('injury-active');
-            line.style.stroke = '#374151'; // Reset color
         });
-
-        // Clear elements
         document.querySelectorAll('#brachial-container .plexus-element').forEach(el => {
             el.style.opacity = '1';
             el.style.filter = 'none';
             el.classList.remove('injury-active');
         });
-
-        // Remove injury markers
+        document.querySelectorAll('#brachial-container .nerve-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
         document.querySelectorAll('#brachial-container .injury-marker').forEach(el => el.remove());
 
         const nerveInfo = document.getElementById('nerve-info');
         if (nerveInfo) {
-            nerveInfo.innerHTML = `
-                <p style="margin: 0; color: #64748b;">Select a nerve to view its pathway, roots, and function.</p>
-            `;
+            nerveInfo.innerHTML = '<p style="margin: 0; color: #64748b;">Select a nerve to view its pathway, roots, and function.</p>';
         }
     },
 
-    showInjury: function (injuryType) {
-        const injury = brachialInjuryPatterns[injuryType];
-        const detailsDiv = document.getElementById('injury-details');
+    showInjury: function (injuryId) {
+        const injury = brachialInjuryPatterns[injuryId];
+        if (!injury) return;
 
-        document.querySelectorAll('#brachial-container .injury-card').forEach(card => card.classList.remove('active'));
-        const activeCard = document.querySelector(`#brachial-container .injury-card[onclick*="${injuryType}"]`);
-        if (activeCard) activeCard.classList.add('active');
+        this.clearTracing();
 
-        if (detailsDiv) {
-            detailsDiv.innerHTML = `
-                <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-top: 20px;">
-                    <h3 style="color: #1e40af; margin-bottom: 15px; font-size: 1.4em;">${injury.title}</h3>
-                    <p style="color: #64748b; margin-bottom: 20px; font-size: 1.0em; line-height: 1.6;">${injury.description}</p>
+        // Dim all
+        document.querySelectorAll('#brachial-container .plexus-connection, #brachial-container .plexus-element').forEach(el => {
+            el.style.opacity = '0.1';
+        });
 
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 10px;">
-                        <div class="clinical-pattern">
-                            <h4 style="color: #d97706; margin-bottom: 10px;">🎯 Clinical Pattern</h4>
-                            <div style="margin-bottom: 8px;"><strong>Mechanism:</strong> ${injury.mechanism}</div>
-                            ${injury.clinicalPattern.weakness ? `<div style="margin-bottom: 8px;"><strong>Weakness:</strong> ${injury.clinicalPattern.weakness}</div>` : ''}
-                            ${injury.clinicalPattern.sensory ? `<div style="margin-bottom: 8px;"><strong>Sensory Loss:</strong> ${injury.clinicalPattern.sensory}</div>` : ''}
-                        </div>
+        // Highlight affected
+        injury.affectedSegments.forEach(segId => {
+            document.querySelectorAll(`#brachial-container [data-segment="${segId}"]`).forEach(el => {
+                el.style.opacity = '1';
+                el.style.stroke = '#ef4444';
+                el.style.strokeWidth = '5';
+            });
+        });
 
-                        <div class="emg-section">
-                            <h4 style="color: #059669; margin-bottom: 10px;">📈 EMG Findings</h4>
-                            ${injury.emgFindings.snaps ? `<div style="margin-bottom: 8px;"><strong>SNAPs:</strong> ${injury.emgFindings.snaps}</div>` : ''}
-                            ${injury.emgFindings.needleEMG ? `<div><strong>Needle EMG:</strong> ${injury.emgFindings.needleEMG}</div>` : ''}
-                        </div>
-                    </div>
+        const info = document.getElementById('nerve-info');
+        if (info) {
+            info.innerHTML = `
+                <h4 style="margin: 0 0 10px 0; color: #b91c1c;">⚠️ ${injury.name}</h4>
+                <p style="margin: 0 0 10px 0; font-weight: 500;">${injury.description}</p>
+                <div style="margin-bottom: 10px; font-size: 0.85em;">
+                    <strong>Pattern:</strong> ${injury.pattern}
                 </div>
             `;
         }
-
-        this.highlightInjuryPattern(injury);
     },
 
     highlightInjuryPattern: function (injury) {
-        this.clearTracing();
-
-        // 1. Draw Injury Marker
-        if (injury.location) {
-            this.drawInjuryMarker(injury.location.x, injury.location.y);
-        }
-
-        // 2. Highlight Downstream Pathways
-        if (injury.affectedSegments) {
-            injury.affectedSegments.forEach(segmentId => {
-                document.querySelectorAll(`#brachial-container [data-segment="${segmentId}"]`).forEach(el => {
-                    el.classList.add('injury-active');
-                    el.style.opacity = '1';
-                    el.style.stroke = '#ef4444'; // Red for injury
-                    el.style.strokeWidth = '4';
-                });
-            });
-        }
+        // Implementation for highlighting injury patterns
     },
 
     drawInjuryMarker: function (x, y) {
-        const svg = document.getElementById('plexus-svg');
-        if (!svg) return;
-
-        const size = 15;
-        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        group.setAttribute('class', 'injury-marker');
-
-        // Line 1 of X
-        const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line1.setAttribute('x1', x - size);
-        line1.setAttribute('y1', y - size);
-        line1.setAttribute('x2', x + size);
-        line1.setAttribute('y2', y + size);
-        line1.setAttribute('stroke', '#dc2626');
-        line1.setAttribute('stroke-width', '4');
-        line1.setAttribute('stroke-linecap', 'round');
-
-        // Line 2 of X
-        const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line2.setAttribute('x1', x + size);
-        line2.setAttribute('y1', y - size);
-        line2.setAttribute('x2', x - size);
-        line2.setAttribute('y2', y + size);
-        line2.setAttribute('stroke', '#dc2626');
-        line2.setAttribute('stroke-width', '4');
-        line2.setAttribute('stroke-linecap', 'round');
-
-        // Glow effect
-        group.style.filter = 'drop-shadow(0 0 4px rgba(220, 38, 38, 0.8))';
-
-        group.appendChild(line1);
-        group.appendChild(line2);
-        svg.appendChild(group);
+        // Implementation for drawing injury markers
     }
 };
 
@@ -1623,27 +1585,38 @@ export const BrachialPlexus = {
             .tab-content.active {
                 display: block;
             }
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
+            @keyframes slideIn {
+                from { opacity: 0; transform: translateX(10px); }
+                to { opacity: 1; transform: translateX(0); }
             }
-            .plexus-element {
-                transition: all 0.3s ease;
+            .nerve-btn {
+                text-align: left;
+                font-size: 0.85em;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 6px;
             }
-            .plexus-element:hover {
-                transform: scale(1.02);
-                filter: brightness(1.05);
+            .nerve-btn:hover {
+                background: #eff6ff !important;
+                border-color: #3b82f6 !important;
+                color: #1e40af;
             }
-            .plexus-connection {
-                transition: all 0.5s ease;
-                stroke-linecap: round;
-                stroke-linejoin: round;
+            .nerve-btn.active {
+                background: #3b82f6 !important;
+                color: white !important;
+                border-color: #2563eb !important;
             }
-            .injury-card.active {
-                border-color: #ef4444 !important;
-                background: #fef2f2 !important;
-                transform: scale(1.02);
-                box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            .nerve-category-title {
+                font-size: 0.75em;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #64748b;
+                margin: 15px 0 8px 0;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 5px;
             }
         `;
 
@@ -1679,8 +1652,8 @@ export const BrachialPlexus = {
                 <div style="display: grid; grid-template-columns: 1fr 350px; gap: 20px; margin-bottom: 30px;">
                     
                     <!-- Left: Interactive Diagram -->
-                    <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; min-height: 600px; display: flex; align-items: center; justify-content: center;">
-                        <svg id="plexus-svg" viewBox="0 0 800 500" style="width: 100%; height: 100%; overflow: visible;"></svg>
+                    <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: auto;">
+                        <svg id="plexus-svg" viewBox="0 0 1200 700" style="width: 1000px; height: 600px; overflow: visible;"></svg>
                     </div>
 
                     <!-- Right: Controls & Info -->
@@ -1694,20 +1667,34 @@ export const BrachialPlexus = {
 
                         <!-- Anatomy Tab Content -->
                         <div id="anatomy-tab" class="tab-content active" style="height: 100%;">
-                            <div style="background: white; padding: 20px; border-radius: 15px; border: 1px solid #e5e7eb; height: 100%;">
-                                <h4 style="color: #0f172a; margin-top: 0;">Select Nerve to Trace</h4>
-                                <div id="nerve-buttons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
-                                    <!-- Buttons injected by drawPlexus or static list -->
-                                    <button onclick="BrachialPlexus.traceNerve('musculocutaneous')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Musculocutaneous</button>
-                                    <button onclick="BrachialPlexus.traceNerve('axillary')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Axillary</button>
-                                    <button onclick="BrachialPlexus.traceNerve('median')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Median</button>
-                                    <button onclick="BrachialPlexus.traceNerve('radial')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Radial</button>
-                                    <button onclick="BrachialPlexus.traceNerve('ulnar')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Ulnar</button>
-                                    <button onclick="BrachialPlexus.traceNerve('suprascapular')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Suprascapular</button>
+                            <div style="background: white; padding: 20px; border-radius: 15px; border: 1px solid #e5e7eb; height: 100%; display: flex; flex-direction: column;">
+                                <div style="flex: 1; overflow-y: auto; margin-bottom: 15px; padding-right: 5px;">
+                                    <div class="nerve-category-title">📍 Terminal Nerves</div>
+                                    <div id="nerve-buttons-main" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <button onclick="BrachialPlexus.traceNerve('musculocutaneous')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Musculocutaneous</button>
+                                        <button onclick="BrachialPlexus.traceNerve('axillary')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Axillary</button>
+                                        <button onclick="BrachialPlexus.traceNerve('median')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Median</button>
+                                        <button onclick="BrachialPlexus.traceNerve('radial')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Radial</button>
+                                        <button onclick="BrachialPlexus.traceNerve('ulnar')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Ulnar</button>
+                                    </div>
+
+                                    <div class="nerve-category-title">🌿 Branching Nerves</div>
+                                    <div id="nerve-buttons-branches" style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                                        <button onclick="BrachialPlexus.traceNerve('suprascapular')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Suprascapular</button>
+                                        <button onclick="BrachialPlexus.traceNerve('long_thoracic')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Long Thoracic</button>
+                                        <button onclick="BrachialPlexus.traceNerve('thoracodorsal')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Thoracodorsal</button>
+                                        <button onclick="BrachialPlexus.traceNerve('mac')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Med. Antebrachial Cut.</button>
+                                        <button onclick="BrachialPlexus.traceNerve('lac')" class="nerve-btn" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer;">Lat. Antebrachial Cut.</button>
+                                    </div>
                                 </div>
-                                <div id="nerve-info" style="background: #f8fafc; padding: 15px; border-radius: 10px; font-size: 0.9em; border-left: 4px solid #3b82f6;">
+
+                                <div id="nerve-info" style="background: #f8fafc; padding: 15px; border-radius: 10px; font-size: 0.9em; border-left: 4px solid #3b82f6; min-height: 200px;">
                                     <p style="margin: 0; color: #64748b;">Select a nerve to view its pathway, roots, and function.</p>
                                 </div>
+                                
+                                <button onclick="BrachialPlexus.clearTracing()" style="margin-top: 15px; padding: 10px; background: #f1f5f9; color: #475569; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%;">
+                                    🔄 Reset View
+                                </button>
                             </div>
                         </div>
 

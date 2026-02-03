@@ -257,7 +257,7 @@ const generateContent = () => `
         }
         
         .img-wrapper {
-            flex: 1; /* Take remaining space */
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -265,16 +265,87 @@ const generateContent = () => `
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 10px;
-            min-height: 400px; /* Force minimum height for image */
+            min-height: 400px;
             position: relative;
             overflow: hidden;
+        }
+
+        .image-coord-space {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .image-coord-space img {
+            display: block;
+            max-width: 100%;
+            max-height: 80vh; /* Prevent it from being too tall */
+            object-fit: contain;
         }
 
         .img-wrapper img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            transition: transform 0.3s;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* SVG Overlay Styling */
+        .nerve-svg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .nerve-path-animated {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+            transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s;
+        }
+
+        .nerve-path-shadow {
+            fill: none;
+            stroke: rgba(0, 0, 0, 0.1);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Zoom Container */
+        .zoom-stage {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: center center;
+        }
+
+        .entrapment-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid #ef4444;
+            border-radius: 50%;
+            display: none;
+            animation: pulse-red 2s infinite;
+            z-index: 6;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
         
         .controls-footer {
@@ -406,11 +477,19 @@ const generateContent = () => `
                             <!-- Story injected -->
                         </div>
 
-                        <div class="img-wrapper">
-                            <div id="nerve-image-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                <!-- Image injected -->
+                        <div class="img-wrapper" id="zoom-viewport">
+                            <div class="zoom-stage" id="nerve-zoom-stage">
+                                <div id="nerve-image-container" class="image-coord-space">
+                                    <svg class="nerve-svg-overlay" id="nerve-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                        <path class="nerve-path-shadow" id="path-shadow" d=""></path>
+                                        <path class="nerve-path-animated" id="path-main" d=""></path>
+                                    </svg>
+                                    <div class="entrapment-marker" id="zoom-marker"></div>
+                                    <img id="main-pathway-img" src="" alt="Pathway Diagram">
+                                </div>
                             </div>
                         </div>
+        </div>
                     </div>
                 </div>
 
@@ -452,7 +531,7 @@ export const PathwayExplorer = {
                 name: "Median Nerve",
                 roots: "C6-T1",
                 story: "The Median nerve originates from the lateral and medial cords of the brachial plexus. It travels down the arm medial to the humerus, passes through the cubital fossa, and enters the forearm between the heads of the pronator teres. It supplies the flexor compartment of the forearm before passing through the carpal tunnel to innervate the thenar muscles and provide sensation to the lateral 3.5 digits.",
-                imagePath: "images/pathways/Median%20Nerve.png",
+                imagePath: "images/pathways/Median Nerve Optimized.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false },
                     { title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false },
@@ -612,8 +691,45 @@ export const PathwayExplorer = {
         window.showStep = this.showStep.bind(this);
         window.nextStep = this.nextStep.bind(this);
         window.previousStep = this.previousStep.bind(this);
+        window.pickCoordinate = this.pickCoordinate.bind(this);
 
-        console.log("PathwayExplorer initialized and state reset.");
+        // Add coordinate picker listener
+        const container = document.getElementById('nerve-image-container');
+        if (container) {
+            container.onclick = (e) => this.pickCoordinate(e);
+        }
+
+        console.log("%cNERVE PATHWAY CALIBRATOR", "color: #3b82f6; font-size: 20px; font-weight: bold;");
+        console.log("1. Click anywhere on the image to get {x, y} coordinates.");
+        console.log("2. Use these coordinates in PathwayExplorer.js nerveData.");
+        console.log("3. The blue dot shows exactly where your point will land.");
+    },
+
+    pickCoordinate(event) {
+        const container = document.getElementById('nerve-image-container');
+        if (!container) return;
+
+        const rect = container.getBoundingClientRect();
+        // Calculate relative to the image container
+        const x = ((event.clientX - rect.left) / rect.width * 100).toFixed(1);
+        const y = ((event.clientY - rect.top) / rect.height * 100).toFixed(1);
+
+        console.log(`%cCOORDINATE: {x: ${x}, y: ${y}}`, "color: #10b981; font-weight: bold;");
+
+        // Visual feedback
+        const marker = document.createElement('div');
+        marker.style.position = 'absolute';
+        marker.style.left = `${x}%`;
+        marker.style.top = `${y}%`;
+        marker.style.width = '8px';
+        marker.style.height = '8px';
+        marker.style.background = '#3b82f6';
+        marker.style.borderRadius = '50%';
+        marker.style.transform = 'translate(-50%, -50%)';
+        marker.style.zIndex = '100';
+        marker.style.pointerEvents = 'none';
+        container.appendChild(marker);
+        setTimeout(() => marker.remove(), 2000);
     },
 
     selectNerve(nerveName) {
@@ -675,19 +791,35 @@ export const PathwayExplorer = {
         }
 
         // Image
-        const imgContainer = document.getElementById('nerve-image-container');
-        if (imgContainer) {
+        const img = document.getElementById('main-pathway-img');
+        if (img) {
             if (explorer.currentNerve.imagePath) {
-                imgContainer.innerHTML = `<img src="${explorer.currentNerve.imagePath}" style="max-width:100%; max-height:100%; object-fit:contain;" alt="Pathway Diagram">`;
+                img.src = explorer.currentNerve.imagePath;
+                img.style.display = 'block';
             } else {
-                imgContainer.innerHTML = `<div style="color:#cbd5e1;">Image Unavailable</div>`;
+                img.style.display = 'none';
             }
         }
 
         const totalStepNum = document.getElementById('total-step-num');
         if (totalStepNum) totalStepNum.innerText = explorer.maxSteps;
 
+        // Reset Visualization
+        this.resetVisualization();
+
         this.showStep(0);
+    },
+
+    resetVisualization() {
+        const pathMain = document.getElementById('path-main');
+        const pathShadow = document.getElementById('path-shadow');
+        const zoomStage = document.getElementById('nerve-zoom-stage');
+        const zoomMarker = document.getElementById('zoom-marker');
+
+        if (pathMain) pathMain.setAttribute('d', '');
+        if (pathShadow) pathShadow.setAttribute('d', '');
+        if (zoomStage) zoomStage.style.transform = 'scale(1) translate(0, 0)';
+        if (zoomMarker) zoomMarker.style.display = 'none';
     },
 
     showStep(stepIndex) {
@@ -696,6 +828,9 @@ export const PathwayExplorer = {
 
         const steps = explorer.currentNerve.steps;
         explorer.currentStep = stepIndex;
+
+        // Update Visualization (Nerve growth and Zoom)
+        this.updateNerveVisualization(stepIndex);
 
         // Update Timeline
         const stepsContainer = document.getElementById('timeline-steps');
@@ -734,6 +869,60 @@ export const PathwayExplorer = {
             } else {
                 nextBtn.innerText = 'Next Step';
                 nextBtn.disabled = false;
+            }
+        }
+    },
+
+    updateNerveVisualization(stepIndex) {
+        const explorer = window.pathwayExplorer;
+        const steps = explorer.currentNerve.steps;
+        const currentStep = steps[stepIndex];
+
+        const pathMain = document.getElementById('path-main');
+        const pathShadow = document.getElementById('path-shadow');
+        const zoomStage = document.getElementById('nerve-zoom-stage');
+        const zoomMarker = document.getElementById('zoom-marker');
+
+        // 1. Build & Update Path
+        const coords = steps.slice(0, stepIndex + 1)
+            .filter(s => s.coord)
+            .map(s => `${s.coord.x},${s.coord.y}`);
+
+        if (coords.length > 0) {
+            const d = `M ${coords.join(' L ')}`;
+            if (pathMain) {
+                pathMain.setAttribute('d', d);
+                // Color path based on nerve theme
+                const activeNerve = Object.keys(explorer.nerveData).find(key => explorer.nerveData[key] === explorer.currentNerve);
+                pathMain.style.stroke = explorer.themeColors[activeNerve] || '#64748b';
+            }
+            if (pathShadow) pathShadow.setAttribute('d', d);
+        }
+
+        // 2. Handle Zoom & Marker
+        if (currentStep && currentStep.coord) {
+            if (currentStep.isInjurySite) {
+                // Zoom calculation: Center the coordinate
+                // We shift the stage so the coordinate (x,y) moves to the center (50,50)
+                const scale = 2.5;
+                // Percentage based transforms can be tricky with scaling
+                // Better approach: Calculate pixel-like offsets or use percentage centers
+                const tx = (50 - currentStep.coord.x) * scale;
+                const ty = (50 - currentStep.coord.y) * scale;
+
+                if (zoomStage) {
+                    zoomStage.style.transform = `scale(${scale}) translate(${tx / scale}%, ${ty / scale}%)`;
+                }
+
+                if (zoomMarker) {
+                    zoomMarker.style.display = 'block';
+                    zoomMarker.style.left = `${currentStep.coord.x}%`;
+                    zoomMarker.style.top = `${currentStep.coord.y}%`;
+                }
+            } else {
+                // Normal view - slightly zoomed out to see context
+                if (zoomStage) zoomStage.style.transform = 'scale(1) translate(0, 0)';
+                if (zoomMarker) zoomMarker.style.display = 'none';
             }
         }
     },
