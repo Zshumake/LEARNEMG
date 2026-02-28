@@ -1,5 +1,5 @@
-import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js';
-import { BoardRenderer } from './BoardRenderer.js';
+import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js?v=podcastRefactor1';
+import { BoardRenderer } from './BoardRenderer.js?v=podcastRefactor1';
 
 export class CandylandCore {
     constructor() {
@@ -69,65 +69,20 @@ export class CandylandCore {
     async handleModuleClick(moduleId, index) {
         console.log(`🎯 Module clicked: ${moduleId} (Index: ${index})`);
 
-        const module = {
-            contentId: moduleId,
-            id: moduleId,
-            title: this.descriptions[index + 1]?.title || moduleId
-        };
-        const moduleNumber = index + 1;
-        const title = `Module ${moduleNumber}`;
+        if (window.appComponents && window.appComponents.modal) {
+            const modules = this.config[this.currentPGYLevel] || this.config['all'] || [];
+            const module = modules[index];
 
-        // Approach 1: Try Module Loader (Dynamic Logic)
-        if (window.moduleLoader) {
-            try {
-                console.log(`📦 Attempting module load: ${moduleId}`);
-                const loadedModule = await window.moduleLoader.loadModule(moduleId);
-
-                if (loadedModule) {
-                    // Initialize if available (fixes script execution for fresh modules)
-                    if (typeof loadedModule.initialize === 'function') {
-                        console.log(`🚀 Initializing module: ${moduleId}`);
-                        loadedModule.initialize();
-                    }
-
-                    if (loadedModule.generateContent) {
-                        console.log(`✨ Calling generateContent for: ${moduleId}`);
-                        const content = loadedModule.generateContent(module);
-
-                        // If generateContent returns anything (including null), we assume it handled its own display
-                        // or returned content for us to show.
-                        if (content !== undefined) {
-                            if (content && window.showModal) {
-                                window.showModal(`${title}: ${module.title}`, content);
-                            }
-                            return; // Found and handled
-                        }
-                    }
-                }
-            } catch (err) {
-                console.warn(`Module load failed for ${moduleId}, trying static content`, err);
+            if (module) {
+                window.appComponents.modal.showLearningModal(module, index, this.currentPGYLevel);
+            } else {
+                console.error(`❌ Module not found for index: ${index} in PGY: ${this.currentPGYLevel}`);
             }
-        }
-
-        // Approach 2: Static Content Loader Deprecated
-        // If ModuleLoader logic fails, we proceed to error handling.
-        // The remaining logic previously here is removed to force migration.
-
-        // Approach 3: Handling Special Cases (Quizzes)
-        // Check if it's a quiz module which might need special handling via QuizSystem
-        // (This part assumes QuizSystem is globally available or integrated)
-
-        console.error(`❌ No content found for module: ${moduleId} `);
-        if (window.showModal) {
-            const errorContent = `
-                <div style="padding: 20px; text-align: center;">
-                    <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
-                    <h3>Content Not Found</h3>
-                    <p>Unable to load content for module: ${moduleId}</p>
-                    <p>Please contact support if this persists.</p>
-                </div>
-            `;
-            window.showModal('Error', errorContent);
+        } else if (window.startLearningModule) {
+            // Legacy fallback
+            window.startLearningModule(index);
+        } else {
+            console.error("❌ Modal system not available!");
         }
     }
 

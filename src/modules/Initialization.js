@@ -1,189 +1,104 @@
-// Core Modules
-import { ErnestCharacter } from '../ui/ErnestCharacter.js';
-import { ClinicalCases } from './clinical/ClinicalCaseEngine.js';
-import { Plexus } from './Plexus.js';
-import { NCS } from './NCS.js';
-import { CompetencyManager } from './competency/CompetencyManager.js?v=fix2';
-import { ReportWriter } from './ReportWriter.js';
-import { DiagnosisReference } from './DiagnosisReference.js';
-import { ErnestCore } from './ernest/ErnestCore.js';
-import { CandylandCore } from './candyland/CandylandCore.js';
+import { moduleLoader } from '../utils/ModuleLoader.js?v=quizFix1';
+import { Bootstrapper } from './core/Bootstrapper.js?v=podcastRefactor1';
+import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=podcastRefactor1';
+import { PlexusManager } from './plexus/PlexusManager.js?v=podcastRefactor1';
+import { ModalSystem } from './ui/ModalSystem.js?v=podcastRefactor1';
+import { CandylandCore } from './candyland/CandylandCore.js?v=podcastRefactor1';
+import { QuizSystem } from './quiz/QuizSystem.js';
+import { NCSData } from './ncs/NCSData.js';
+import { NCSEngine } from './ncs/NCSEngine.js';
+import { NCSUI } from './ncs/NCSUI.js';
+import { clinicalCasesData } from '../data/ClinicalCorrelationCases.js';
+import { ClinicalEngine } from './clinical/ClinicalEngine.js';
+import { ClinicalUI } from './clinical/ClinicalUI.js';
+import { MuscleLab } from './muscle-lab/MuscleLab.js';
 import { AudioController } from './audio/AudioController.js';
-import { Diagnostics } from './core/Diagnostics.js';
-import { moduleLoader } from '../utils/ModuleLoader.js';
-import { Router } from './core/Router.js';
 
-// Initialize Core Systems
-const diagnostics = new Diagnostics();
+class AppInitializer {
+    constructor() {
+        this.moduleLoader = moduleLoader;
+        this.ernest = new ErnestCharacter();
+        this.plexus = null; // Lazy load
+        this.modal = new ModalSystem();
+        this.candyland = new CandylandCore();
+        this.quiz = new QuizSystem();
 
-// Initialize Components
-const ernest = new ErnestCharacter();
-// ModuleRouter deprecated
-const competencyManager = new CompetencyManager();
-const clinicalCases = new ClinicalCases();
-const plexus = new Plexus();
-const ncs = new NCS();
-const reportWriter = new ReportWriter(competencyManager);
-const diagnosisReference = new DiagnosisReference();
-const candyland = new CandylandCore();
-const audioController = new AudioController();
+        // --- Modular Dependency Injection ---
+        const clinicalEngine = new ClinicalEngine(clinicalCasesData);
+        this.clinicalCases = new ClinicalUI(clinicalEngine);
 
-// Initialize Router
-const router = new Router(window.appComponents);
+        const ncsEngine = new NCSEngine(NCSData);
+        this.ncs = new NCSUI(ncsEngine);
+        // ------------------------------------
 
-// Muscle Lab Modules
-import './muscle-lab/MuscleLab.js';
-import { initializeCandylandBoard } from './board/CandylandBoard.js';
-import { initializeDebugTools } from '../utils/Debug.js';
-import { generateErnestButton } from '../utils/ButtonGenerator.js';
-import { generateModuleQuiz } from '../utils/QuizGenerator.js';
 
-// Expose generators globally for legacy modules
-window.generateErnestButton = generateErnestButton;
-window.generateModuleQuiz = generateModuleQuiz;
-
-// Candyland Board Logic (Legacy)
-initializeCandylandBoard();
-
-const ernestCore = new ErnestCore();
-
-// Expose globally for legacy code interactions
-window.appComponents = {
-    dashboardRenderer: null, // Placeholder to avoid breaking other scripts immediately
-    ernest,
-    ernestCore,
-    clinicalCases,
-    plexus,
-    ncs,
-    competencyManager,
-    reportWriter,
-    diagnosisReference,
-    candyland,
-    audio: audioController,
-    moduleLoader,
-    router
-};
-
-// Also expose directly to window for legacy compatibility or easier access
-window.moduleLoader = moduleLoader;
-// ContentLoader deprecated
-
-// Global Alias for Clinical Cases (Legacy Support)
-window.showClinicalCases = () => {
-    console.log(`🎯 showClinicalCases called globally`);
-    if (clinicalCases) {
-        clinicalCases.showClinicalCases();
-    } else {
-        console.error("❌ clinicalCases instance is undefined in global scope");
+        this.audio = new AudioController();
     }
-};
 
-// Global Interactive Plexus Anatomy Wrapper
-window.showInteractivePlexusAnatomy = () => {
-    console.log('🧠 showInteractivePlexusAnatomy called');
-    if (window.BrachialPlexus && typeof window.BrachialPlexus.showExplain === 'function') {
-        window.BrachialPlexus.showExplain();
-    } else if (window.LumbosacralPlexus && typeof window.LumbosacralPlexus.showExplain === 'function') {
-        window.LumbosacralPlexus.showExplain();
-    } else {
-        console.error("❌ Plexus interactive module not found or showExplain missing");
-        if (window.showModal) {
-            window.showModal('Error', '<p>Interactive Plexus module could not be initialized. Please try again.</p>');
+    async init() {
+        console.log('🚀 Initializing Application Components...');
+
+        // Expose components globally for legacy compatibility
+        // This is crucial for the "Hybrid" phase of the architecture
+        window.appComponents = {
+            moduleLoader: this.moduleLoader,
+            ernest: this.ernest,
+            modal: this.modal,
+            candyland: this.candyland,
+            quiz: this.quiz,
+            ncs: this.ncs,       // Legacy compat alias
+            ncsUI: this.ncs,     // Explicit UI alias for onclick handlers
+            clinicalCases: this.clinicalCases,
+            muscleLab: MuscleLab,
+            audio: this.audio,
+            plexus: null
+        };
+        window.moduleLoader = this.moduleLoader; // Legacy alias
+
+        // Legacy global shims for decoupled HTML elements
+        window.showEMGChallenge = window.showEMGChallenge || (() => {
+            console.warn('showEMGChallenge called but MuscleLab is not fully initialized');
+            alert('EMG Challenge module is loading or not available in this context.');
+        });
+        window.showStudyCards = window.showStudyCards || (() => {
+            console.warn('showStudyCards called but Flashcards are not fully initialized');
+            alert('Study Cards are loading or not available in this context.');
+        });
+
+        // Initialize Core Systems
+        try {
+            await this.ernest.init();
+            console.log('✅ Ernest Character Initialized');
+
+            // Initialize Domain Systems
+            this.candyland.init();
+            this.quiz.init();
+            // NCS doesn't have an async init, but we'll instantiate it
+            console.log('✅ Domain Systems Initialized');
+
+            // Pre-load Plexus Manager (lightweight wrapper)
+            this.plexus = new PlexusManager();
+            window.appComponents.plexus = this.plexus;
+
+        } catch (error) {
+            console.error('❌ Initialization Error:', error);
         }
     }
-};
-
-// Global NCS Feature Wrappers
-window.showNCSLandmarks = () => {
-    console.log('📍 showNCSLandmarks called');
-    if (window.appComponents.ncs) {
-        window.appComponents.ncs.startLandmarkQuiz();
-    }
-};
-
-window.showNCSTechniqueVideos = () => {
-    console.log('🎥 showNCSTechniqueVideos called');
-    if (window.appComponents.ncs) {
-        if (window.showModal) {
-            window.showModal('🎥 NCS Technique Videos', '<div id="video-grid" class="video-grid"></div>');
-            window.appComponents.ncs.renderVideos('video-grid');
-        }
-    }
-};
-
-window.showBasicNCSPrinciples = () => {
-    console.log('⚡ showBasicNCSPrinciples called');
-    if (window.appComponents.ncs) {
-        window.appComponents.ncs.showBasicPrinciples();
-    }
-};
-
-// Main Initialization
-async function initApp() {
-    console.log('🚀 App Initialization Started');
-
-    // Ensure main interface is visible
-    const mainInterface = document.getElementById('main-interface-container');
-    if (mainInterface) mainInterface.style.display = 'block';
-
-    // Initialize Router basics
-    router.init();
-
-    // Initialize Competency Manager interactions
-    competencyManager.initialize();
-
-    // Initialize Legendary Board System
-    if (window.appComponents.candyland) {
-        window.appComponents.candyland.init();
-    }
-
-    // Initialize (Legacy) Candyland Board Logic
-    initializeCandylandBoard();
-
-    // Initialize Legacy Navigation Wrapper
-    if (window.appComponents && !window.appComponents.legacyNavigator) {
-        const { LegacyNavigator } = await import('./core/LegacyNavigator.js');
-        const legacyNav = new LegacyNavigator();
-        legacyNav.init();
-        window.appComponents.legacyNavigator = legacyNav;
-    }
-
-    // Initialize Debug Tools
-    initializeDebugTools();
-
-    // Initialize Quiz Placeholders
-    if (window.appComponents && !window.appComponents.quizPlaceholders) {
-        const { QuizPlaceholders } = await import('./quiz/QuizPlaceholders.js');
-        const placeholders = new QuizPlaceholders();
-        placeholders.init();
-        window.appComponents.quizPlaceholders = placeholders;
-    }
-
-    // Initialize Quiz System (Legacy Quiz Logic Replacement)
-    if (window.appComponents && !window.appComponents.quizSystem) {
-        const { QuizSystem } = await import('./quiz/QuizSystem.js');
-        const quizSystem = new QuizSystem();
-        quizSystem.init();
-        window.appComponents.quizSystem = quizSystem;
-    }
-
-    // Initialize Videos
-    if (window.appComponents?.ncs) {
-        window.appComponents.ncs.renderVideos('video-grid');
-    }
-
-    // Initialize Default Ernest Description
-    // This ensures he introduces the app instead of saying "Initializing..."
-    if (window.appComponents?.candyland && window.appComponents.candyland.renderer) {
-        window.appComponents.candyland.renderer.updateErnestDescription(
-            "Welcome to the EMG/NCS Pathway!",
-            "I'm Ernest, your AI guide. Hover over any module to learn what it's about, or click to begin your training!",
-            "Let's master electrodiagnostics together!"
-        );
-    }
-
-    console.log('✅ App Initialization Complete');
 }
 
-// Bind to DOMContentLoaded
-document.addEventListener('DOMContentLoaded', initApp);
+// Create and initialize the application
+const app = new AppInitializer();
+app.init().then(() => {
+    const bootstrapper = new Bootstrapper();
+    bootstrapper.start();
+});
+
+// Global Interactive Plexus Anatomy Wrapper (Legacy Adapter)
+// Used by index.html buttons
+window.showInteractivePlexusAnatomy = () => {
+    if (window.appComponents && window.appComponents.plexus) {
+        window.appComponents.plexus.showInteractiveAnatomy();
+    } else {
+        console.error("❌ Plexus module not initialized");
+    }
+};

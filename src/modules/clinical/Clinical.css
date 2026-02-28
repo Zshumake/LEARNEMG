@@ -309,7 +309,7 @@
 
 /* Feedback Cards */
 .feedback-card {
-    background: var(--clinical-glass);
+    background: var(--clinical-glass) !important;
     border-radius: 12px;
     padding: 20px;
     margin-top: 20px;
@@ -327,6 +327,13 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.feedback-card.success,
+.feedback-card.info,
+.feedback-card.error,
+.feedback-card.warning {
+    background: var(--clinical-glass) !important;
 }
 
 .feedback-card.success {

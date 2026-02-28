@@ -3,60 +3,78 @@
 // ============================================================================
 // The "Brain" of the Audio System.
 // Coordinates data, player logic, and UI updates.
-// also handles global implementation for legacy support.
+// Now uses modular UI architecture and supports EDX Booklet mode.
 // ============================================================================
 
 import { AudioPlayer } from './AudioPlayer.js';
-import { AudioUI } from './AudioUI.js';
 import { getModuleEpisodes, generateErnestButton } from './AudioData.js';
+
+// Modular UI Components
+import { PlayerOverlay } from './ui/PlayerOverlay.js';
+import { PlayerControls } from './ui/PlayerControls.js';
+import { ProgressBar } from './ui/ProgressBar.js';
+import { VolumeControl } from './ui/VolumeControl.js';
+import { EpisodeInfo } from './ui/EpisodeInfo.js';
+
 
 export class AudioController {
     constructor() {
-        // Optional: If we want to persist playback state to Store
-
-        // Initialize Core Components
+        // Initialize Core Player
         this.player = new AudioPlayer((state) => this.onPlayerStateChange(state));
-        this.ui = new AudioUI(this);
+
+        // Initialize UI Components
+        this.overlay = new PlayerOverlay(this);
+        this.controls = new PlayerControls(this);
+        this.progressBar = new ProgressBar(this);
+        this.volumeControl = new VolumeControl(this);
+        this.episodeInfo = new EpisodeInfo(this);
+
 
         // State Tracking
         this.currentModuleId = null;
         this.currentEpisodeId = null;
         this.currentEpisode = null;
 
-        // Initialize
-        this.ui.inject();
-        this.exposeGlobalAPI();
+
+        // Initialize UI
+        this.initUI();
+        this.bindGlobalEvents();
+    }
+
+    initUI() {
+        // 1. Inject Standard Overlay & Components
+        this.overlay.inject();
+        this.episodeInfo.inject();
+        this.controls.inject();
+        this.progressBar.inject();
+        this.volumeControl.inject();
+
+
     }
 
     // ========================================================================
-    // PUBLIC API (Exposed to Window)
+    // GLOBAL EVENT BINDINGS (Replaces legacy window methods)
     // ========================================================================
-    exposeGlobalAPI() {
-        console.log('🎧 Exposing Audio API to window...');
+    bindGlobalEvents() {
+        console.log('🎧 Setting up Audio Event Listeners...');
 
-        // Main Entry Point
-        window.playModulePodcast = (moduleId, episodeId) => {
-            if (episodeId) {
-                this.playSpecificEpisode(moduleId, episodeId);
-            } else {
-                this.openModuleLibrary(moduleId);
+        document.body.addEventListener('click', (e) => {
+            const podcastTrigger = e.target.closest('[data-podcast-trigger="true"]');
+            if (podcastTrigger) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const moduleId = podcastTrigger.getAttribute('data-module-id');
+                const episodeId = podcastTrigger.getAttribute('data-episode-id');
+
+                // If episode ID is strictly 'undefined' string or empty, it means we just open the library
+                if (episodeId && episodeId !== 'undefined' && episodeId !== 'null') {
+                    this.playSpecificEpisode(moduleId, episodeId);
+                } else {
+                    this.openModuleLibrary(moduleId);
+                }
             }
-        };
-
-        // Legacy/Alias Support
-        window.playExtraPodcast = window.playModulePodcast;
-
-        // UI Controls exposed for inline HTML onclicks (if UI uses window calls)
-        window.togglePodcastPlayer = () => this.togglePlayer();
-        window.closePodcastPlayer = () => this.close();
-        window.minimizePodcastPlayer = () => this.minimize();
-        window.expandPodcastPlayer = () => this.expand();
-        // window.togglePlayPause handled by UI binding directly or window
-        window.togglePlayPause = () => this.togglePlayPause();
-        window.seekAudio = (val) => this.seekToPercentage(val);
-        window.setVolume = (val) => this.setVolume(val / 100);
-        window.skipAudio = (sec) => this.skip(sec);
-        window.changeEpisode = (epId) => this.loadEpisode(epId);
+        });
     }
 
     // ========================================================================
@@ -64,8 +82,10 @@ export class AudioController {
     // ========================================================================
 
     playSpecificEpisode(moduleId, episodeId) {
+        console.log(`▶️ playSpecificEpisode called: module=${moduleId}, episode=${episodeId}`);
         // If switching modules or first load
         if (this.currentModuleId !== moduleId) {
+            console.log(`   Switching module from ${this.currentModuleId} to ${moduleId}`);
             this.loadModule(moduleId);
         }
 
@@ -84,34 +104,48 @@ export class AudioController {
 
     loadModule(moduleId) {
         this.currentModuleId = moduleId;
+
         const episodes = getModuleEpisodes(moduleId);
 
-        // Update UI Selector
-        this.ui.populateEpisodeSelector(episodes, this.currentEpisodeId);
+        // Populate Standard UI (always kept in sync just in case)
+        this.overlay.populateSelector(episodes, this.currentEpisodeId);
 
-        // Default to first episode if none selected
+        // Default to first if none
         if (!this.currentEpisodeId && episodes.length > 0) {
             this.loadEpisode(episodes[0].id, false);
         }
     }
 
     loadEpisode(episodeId, autoPlay = false) {
+        console.log(`   Loading episode: ${episodeId}`);
         const episodes = getModuleEpisodes(this.currentModuleId);
         const episode = episodes.find(e => e.id === episodeId);
 
         if (!episode) {
-            console.error(`Episode ${episodeId} not found in module ${this.currentModuleId}`);
+            console.error(`❌ Episode not found: ${episodeId} in module ${this.currentModuleId}`);
             return;
         }
 
         this.currentEpisodeId = episodeId;
         this.currentEpisode = episode;
 
-        // Update UI Info
-        this.ui.updateEpisodeInfo(episode);
-
         // Load Audio
         this.player.loadSource(episode.audioFile);
+
+        // Update Media Session
+        this.player.updateMediaSession({
+            title: episode.title,
+            artist: 'Ernest\'s Podcast',
+            album: this.currentModuleId
+        });
+
+        // Update UI Logic
+        // We update BOTH UIs so state is consistent if they switch contexts,
+        // but the user only sees the active one.
+        this.episodeInfo.update(episode);
+        this.overlay.populateSelector(episodes, episodeId);
+
+
 
         if (autoPlay) {
             this.player.play();
@@ -122,25 +156,11 @@ export class AudioController {
     // PLAYER CONTROLS (Called by UI)
     // ========================================================================
 
-    togglePlayPause() {
-        this.player.togglePlayPause();
-    }
-
-    seekToPercentage(percent) {
-        this.player.seekToPercentage(percent);
-    }
-
-    skip(seconds) {
-        this.player.skip(seconds);
-    }
-
-    setVolume(value) {
-        this.player.setVolume(value);
-    }
-
-    setSpeed(speed) {
-        this.player.setPlaybackRate(speed);
-    }
+    togglePlayPause() { this.player.togglePlayPause(); }
+    seekToPercentage(percent) { this.player.seekToPercentage(percent); }
+    skip(seconds) { this.player.skip(seconds); }
+    setVolume(value) { this.player.setVolume(value); }
+    setSpeed(speed) { this.player.setPlaybackRate(speed); }
 
     nextEpisode() {
         const episodes = getModuleEpisodes(this.currentModuleId);
@@ -162,21 +182,23 @@ export class AudioController {
     // VISIBILITY CONTROLS
     // ========================================================================
     expand() {
-        this.ui.showPlayer();
+        this.overlay.show();
     }
 
     minimize() {
-        this.ui.minimizePlayer();
+        // If in EDX mode, minimizing might just mean closing the book but keeping audio?
+        // Or reverting to mini player?
+        // Let's assume minimize reverts to standard Mini Player.
+
+        this.overlay.minimize(); // This shows the mini player
     }
 
     close() {
         this.player.pause();
-        this.ui.hidePlayer();
+        this.overlay.hide();
     }
 
     togglePlayer() {
-        // Logic to determine if we open or close based on state
-        // For now, we just expand
         this.expand();
     }
 
@@ -185,19 +207,31 @@ export class AudioController {
     // EVENT HANDLING (From Player)
     // ========================================================================
     onPlayerStateChange(state) {
+        // Update Standard UI
         if (state.isPlaying !== undefined) {
-            this.ui.updatePlayState(state.isPlaying);
+            this.controls.updatePlayState(state.isPlaying);
+
         }
 
         if (state.currentTime !== undefined || state.duration !== undefined) {
-            // Calculate percentage for UI
             const percent = (state.currentTime / (state.duration || 1)) * 100;
-            this.ui.updateTime(state.currentTime, state.duration, percent);
+
+            // Standard UI
+            this.progressBar.update(state.currentTime, state.duration, percent);
+
+
+
+            // Mini Player Sync
+            const miniBar = document.getElementById('mini-progress-bar');
+            if (miniBar) {
+                miniBar.value = percent;
+                miniBar.style.background = `linear-gradient(to right, #f59e0b 0%, #f59e0b ${percent}%, #e2e8f0 ${percent}%, #e2e8f0 100%)`;
+            }
         }
 
         if (state.hasEnded) {
-            // Auto-play next logic could go here
             this.nextEpisode();
         }
     }
 }
+

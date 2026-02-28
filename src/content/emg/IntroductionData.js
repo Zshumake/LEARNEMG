@@ -13,6 +13,7 @@ export const IntroductionData = {
     tabs: [
         { id: 'philosophy', label: 'Clinical Philosophy' },
         { id: 'basics', label: 'EDX Basics' },
+        { id: 'instrumentation', label: 'Instrumentation' },
         { id: 'technical', label: 'Technical Excellence' },
         { id: 'localization', label: 'Localization Patterns' },
         { id: 'terminology', label: 'Mastery Glossary' }

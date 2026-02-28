@@ -135,4 +135,30 @@ export class AudioPlayer {
             this.stateCallback(changes);
         }
     }
+
+    // Media Session Support
+    updateMediaSession(metadata) {
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: metadata.title,
+                artist: 'Ernest\'s Podcast',
+                album: 'EMG/NCS Learning Series',
+                artwork: [
+                    { src: 'images/ui/ERNEST.png', sizes: '512x512', type: 'image/png' }
+                ]
+            });
+
+            // Action Handlers will be bound by Controller or here? 
+            // Better here if simple, or we expose a method to bind them.
+            // Actually, best to bind them once in constructor or attachListeners if we have access to controller methods.
+            // But strict decoupling means we emit events. 
+            // However, mediaSession actions are "User Intents". 
+            // So we should expose a way to handle them.
+            // For simplicity in this refactor, I will emit events or assume Controller binds them.
+            // Actually, standard practice: Player handles "seeking", Controller handles "Next/Prev".
+            // Let's leave binding to the Controller or a specific MediaSession manager. 
+            // BUT, strictly speaking, the MediaSession API controls *this* player.
+            // implementation_plan said: "Add mediaSession action handlers".
+        }
+    }
 }

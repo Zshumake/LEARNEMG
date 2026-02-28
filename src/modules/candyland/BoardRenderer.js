@@ -1,3 +1,4 @@
+import { podcastEpisodes } from '../audio/AudioData.js';
 
 export class BoardRenderer {
     constructor(core) {
@@ -121,6 +122,11 @@ export class BoardRenderer {
         if (!window.showLearningObjectives) {
             window.showLearningObjectives = () => console.log('Show Learning Objectives clicked');
         }
+
+        // Ensure showStudyCards is safe
+        if (!window.showStudyCards) {
+            window.showStudyCards = () => console.log('Show Study Cards clicked (Module not loaded yet)');
+        }
     }
 
 
@@ -160,6 +166,7 @@ export class BoardRenderer {
             </button>
 
             <!-- Collapsible Podcasts Container -->
+
             <div id="podcasts-collapsible-container" class="podcasts-collapsible" style="
                 display: none;
                 max-width: 1200px;
@@ -175,10 +182,13 @@ export class BoardRenderer {
                 <div style="margin-bottom: 40px;">
                     <h4 style="color: #3b82f6; margin: 0 0 12px 0; font-size: 1em; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">📚 Module Podcasts</h4>
 
+
                     <!-- 3-Column Grid -->
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+
+
                         <!-- Essential Terminology -->
-                         <div onclick="window.openModulePodcast('emg-introduction', 'emg-terminology')" style="
+                         <div data-podcast-trigger="true" data-module-id="emg-introduction" data-episode-id="emg-terminology" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -194,7 +204,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Peripheral Anatomy -->
-                        <div onclick="window.openModulePodcast('plexus-anatomy', 'plexus-peripheral')" style="
+                        <div data-podcast-trigger="true" data-module-id="plexus-anatomy" data-episode-id="plexus-peripheral" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -210,7 +220,7 @@ export class BoardRenderer {
                         </div>
 
                          <!-- Plexopathies -->
-                        <div onclick="window.openModulePodcast('brachial-plexus', 'brachial-ep1')" style="
+                        <div data-podcast-trigger="true" data-module-id="brachial-plexus-interactive" data-episode-id="brachial-ep1" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -226,7 +236,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Radiculopathy -->
-                         <div onclick="window.openModulePodcast('radiculopathy', 'radiculopathy-ep1')" style="
+                         <div data-podcast-trigger="true" data-module-id="radiculopathy" data-episode-id="radiculopathy-ep1" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -242,7 +252,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Polyneuropathies -->
-                        <div onclick="window.openModulePodcast('neuropathy-pathophysiology', 'neuropathy-poly')" style="
+                        <div data-podcast-trigger="true" data-module-id="neuropathy-pathophysiology" data-episode-id="neuropathy-poly" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -258,7 +268,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Mononeuropathy -->
-                         <div onclick="window.openModulePodcast('neuropathy-pathophysiology', 'neuropathy-mono')" style="
+                         <div data-podcast-trigger="true" data-module-id="neuropathy-pathophysiology" data-episode-id="neuropathy-mono" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -274,7 +284,7 @@ export class BoardRenderer {
                         </div>
 
                          <!-- Pattern Recognition -->
-                        <div onclick="window.openModulePodcast('basic-patterns', 'patterns-ep1')" style="
+                        <div data-podcast-trigger="true" data-module-id="basic-patterns" data-episode-id="patterns-ep1" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -290,7 +300,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Neuropathy vs Myopathy -->
-                        <div onclick="window.openModulePodcast('neuropathy-myopathy', 'neuro-myo-ep1')" style="
+                        <div data-podcast-trigger="true" data-module-id="neuropathy-myopathy-basics" data-episode-id="neuro-myo-ep1" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -306,7 +316,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Report Writing -->
-                        <div onclick="window.openModulePodcast('simple-reports', 'reports-ep1')" style="
+                        <div data-podcast-trigger="true" data-module-id="simple-reports" data-episode-id="reports-ep1" style="
                             background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px;
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
@@ -322,6 +332,73 @@ export class BoardRenderer {
                         </div>
                     </div>
                 </div>
+
+                <!-- EDX Series Section -->
+                <div style="margin-bottom: 40px;">
+                    <h4 style="color: #ea580c; margin: 0 0 12px 0; font-size: 1em; border-bottom: 2px solid #fdba74; padding-bottom: 8px;">
+                        📚 Electrodiagnostic Medicine Series
+                    </h4>
+                    
+                    <style>
+                        summary::-webkit-details-marker { display: none; }
+                        details.edx-episode-card > summary { list-style: none; }
+                        details.edx-episode-card[open] .dropdown-icon { transform: rotate(180deg); }
+                        .dropdown-icon { transition: transform 0.2s; }
+                    </style>
+
+                    <div class="edx-list-container">
+                        ${(podcastEpisodes['edx-series'] || []).map((ep, index) => `
+                            <details class="edx-episode-card" style="
+                                background: #fff;
+                                border: 1px solid #e2e8f0;
+                                border-radius: 8px;
+                                margin-bottom: 8px;
+                                overflow: hidden;
+                                transition: all 0.2s ease;">
+                                <summary style="
+                                    padding: 12px 16px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    color: #1e293b;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    background: #f8fafc;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="color: #ea580c; font-weight: 700;">${index + 1}.</span>
+                                        <span>${ep.title.replace('EDX Series: ', '')}</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                         <span style="font-size: 0.85em; color: #64748b; font-weight: normal;">${ep.duration}</span>
+                                         <span class="dropdown-icon" style="font-size: 0.8em; color: #94a3b8;">▼</span>
+                                    </div>
+                                </summary>
+                                
+                                <div style="padding: 16px; background: #fff; border-top: 1px solid #e2e8f0;">
+                                    <div style="margin-bottom: 15px; color: #475569; line-height: 1.6; font-size: 0.95em;">
+                                        ${ep.showNotes || ep.description}
+                                    </div>
+                                    <button data-podcast-trigger="true" data-module-id="edx-series" data-episode-id="${ep.id}" style="
+                                        background: linear-gradient(135deg, #f59e0b, #ea580c);
+                                        color: white;
+                                        border: none;
+                                        padding: 8px 20px;
+                                        border-radius: 20px;
+                                        font-weight: 600;
+                                        cursor: pointer;
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 8px;
+                                        box-shadow: 0 4px 6px rgba(234, 88, 12, 0.2);
+                                        transition: transform 0.1s;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                        Play Episode
+                                    </button>
+                                </div>
+                            </details>
+                        `).join('')}
+                    </div>
+                </div>
                 
                 <!-- Advanced Topics Section -->
                 <div>
@@ -330,7 +407,7 @@ export class BoardRenderer {
                     </h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
                         <!-- ALS and Mimics -->
-                        <div onclick="window.playExtraPodcast('extra-als')"
+                        <div data-podcast-trigger="true" data-module-id="extra-topics" data-episode-id="extra-als"
                              style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 15px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
@@ -347,7 +424,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- Blink Reflex -->
-                        <div onclick="window.playExtraPodcast('extra-blink')"
+                        <div data-podcast-trigger="true" data-module-id="extra-topics" data-episode-id="extra-blink"
                              style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 15px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
@@ -364,7 +441,7 @@ export class BoardRenderer {
                         </div>
 
                         <!-- MG vs Lambert-Eaton -->
-                        <div onclick="window.playExtraPodcast('extra-mg-lems')"
+                        <div data-podcast-trigger="true" data-module-id="extra-topics" data-episode-id="extra-nmj"
                              style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 15px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">

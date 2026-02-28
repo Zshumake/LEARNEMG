@@ -234,7 +234,7 @@ export const ClinicalRenderer = {
     renderDifferentialFeedback: function (results, expected) {
         let html = `
             <div class="feedback-card info">
-                <h4 style="margin: 0 0 10px 0;">📊 Clinical Analysis Result</h4>
+                <h4 style="margin: 0 0 10px 0; color: #3b82f6 !important; font-weight: 800;">📊 Clinical Analysis Result</h4>
                 <p>Diagnostic capture: <strong>${results.matched.length}</strong> / <strong>${results.totalExpected}</strong> key considerations.</p>
             </div>
         `;
@@ -242,7 +242,7 @@ export const ClinicalRenderer = {
         if (results.matched.length > 0) {
             html += `
                 <div class="feedback-card success">
-                    <h4 style="margin: 0 0 5px 0;">✅ Valid Considerations</h4>
+                    <h4 style="margin: 0 0 5px 0; color: #10b981 !important; font-weight: 800;">✅ Valid Considerations</h4>
                     <p>${results.matched.join(', ')}</p>
                 </div>
             `;

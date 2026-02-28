@@ -50,7 +50,11 @@ export class Router {
                 if (window.showModule) window.showModule('emg-introduction');
                 break;
             case 'plexus':
-                if (window.showInteractivePlexusAnatomy) window.showInteractivePlexusAnatomy();
+                if (window.appComponents && window.appComponents.plexus) {
+                    window.appComponents.plexus.showInteractiveAnatomy();
+                } else if (window.showInteractivePlexusAnatomy) {
+                    window.showInteractivePlexusAnatomy();
+                }
                 break;
             case 'ncs':
                 if (window.showBasicNCSPrinciples) window.showBasicNCSPrinciples();

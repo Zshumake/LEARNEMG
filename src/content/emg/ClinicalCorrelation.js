@@ -16,7 +16,7 @@ const generateContent = function (module) {
     setTimeout(() => {
         if (window.appComponents && window.appComponents.clinicalCases) {
             const currentPGY = (window.store && window.store.getPGYLevel) ? window.store.getPGYLevel() : 'pgy2';
-            window.appComponents.clinicalCases.showClinicalCases(currentPGY);
+            window.appComponents.clinicalCases.renderDashboard(currentPGY);
         } else {
             console.error('❌ Clinical Cases engine not ready');
         }

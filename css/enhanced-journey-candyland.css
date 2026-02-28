@@ -72,9 +72,9 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
     max-width: 95vw;
     max-height: 90vh;
-    width: 95vw;
-    /* Changed from fixed 1000px to responsive */
-    max-width: 1000px;
+    width: 96vw;
+    /* Increased from 1400px to utilize more screen real estate */
+    max-width: 1800px;
     /* Limit on desktop */
     overflow: hidden;
     position: relative;
@@ -1131,8 +1131,8 @@ body {
     background: linear-gradient(135deg, #fefcf3, #f8fafc);
     border: 3px solid rgba(34, 197, 94, 0.3);
     border-radius: 25px;
-    max-width: 900px;
-    width: 100%;
+    max-width: 1800px;
+    width: 96vw;
     max-height: 90vh;
     display: flex;
     flex-direction: column;

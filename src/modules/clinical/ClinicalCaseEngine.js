@@ -63,7 +63,28 @@ export class ClinicalCases {
     showClinicalCases() {
         console.log(`🏥 ClinicalCases triggered`);
         const content = ClinicalRenderer.renderDashboard('all', caseDatabase);
-        if (window.showModal) window.showModal('Clinical Cases', content);
+
+        // 1. Candyland Core Integration Check: If we are already inside a Candyland modal, inject directly into it.
+        const activeCandylandModal = document.querySelector('.learning-modal-overlay.active .learning-modal');
+
+        if (activeCandylandModal) {
+            console.log('🏥 Injecting directly into active Candyland module...');
+
+            // Overwrite the entire inner modal to remove the header and close button, providing a unified experience.
+            activeCandylandModal.innerHTML = `
+                <div style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0; position: relative;">
+                    <h2 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;">🏥 Clinical Cases</h2>
+                    <button class="modal-close-btn" onclick="document.querySelector('.learning-modal-overlay.active').remove()" style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">×</button>
+                </div>
+                <div style="padding: 30px; background: white; border-radius: 0 0 15px 15px; overflow-y: auto; max-height: 80vh;">
+                    ${content}
+                </div>
+            `;
+        }
+        // 2. Fallback to global modal
+        else if (window.showModal) {
+            window.showModal('Clinical Cases', content);
+        }
     }
 
     // --- Case Lifecycle ---

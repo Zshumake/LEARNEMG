@@ -6,6 +6,7 @@ import { BaseContent } from '../BaseContent.js';
 import { IntroductionData } from './IntroductionData.js';
 import { UIComponents } from '../../ui/UIComponents.js';
 import { DesignTokens } from '../../ui/DesignTokens.js';
+import { EMGMachine } from './EMGMachine.js';
 
 class IntroductionModule extends BaseContent {
     constructor() {
@@ -19,6 +20,7 @@ class IntroductionModule extends BaseContent {
         const tabColors = {
             'philosophy': DesignTokens.gradients.foundations,
             'basics': DesignTokens.gradients.anatomy,
+            'instrumentation': 'linear-gradient(135deg, #0ea5e9, #0284c7)',
             'technical': DesignTokens.gradients.technical,
             'localization': DesignTokens.gradients.localization,
             'terminology': DesignTokens.gradients.terminology
@@ -133,7 +135,12 @@ class IntroductionModule extends BaseContent {
                                 <p style="font-size: 0.9em;">${this.data.basics.equipment.filters}</p>
                             </div>
                         </div>
-                    `, { title: "The EDX Machine", borderLeftColor: '#6366f1' })}
+                    `, { title: "EDX Machine Fundamentals", borderLeftColor: '#6366f1' })}
+                </div>
+
+                <!-- 2b. Cadwell Instrumentation (Detailed) -->
+                <div id="intro-instrumentation-section" class="emg-intro-section" style="display: none;">
+                    ${EMGMachine.generateContent()}
                 </div>
 
                 <!-- 3. Technical Excellence -->
@@ -223,20 +230,22 @@ class IntroductionModule extends BaseContent {
                     <div id="glossary-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
                         ${this.renderGlossary()}
                     </div>
-                </div>
 
-                <!-- Global Mastery Terms (Always Visible at bottom) -->
-                <div style="margin-top: 50px; border-top: 2px solid #e2e8f0; padding-top: 30px;">
-                    <h5 style="color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9em; margin-bottom: 20px;">Mastery Terms</h5>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                        ${this.data.masteryTerms.map(g => `
-                            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                                <strong style="color: #1e293b; display: block; margin-bottom: 5px;">${g.term}</strong>
-                                <p style="color: #64748b; font-size: 0.85em; margin: 0;">${g.definition}</p>
-                            </div>
-                        `).join('')}
+                    <!-- Moved Mastery Terms here -->
+                    <div style="margin-top: 50px; border-top: 2px solid #fce7f3; padding-top: 30px;">
+                        <h5 style="color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9em; margin-bottom: 20px;">High-Yield Mastery Concepts</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                            ${this.data.masteryTerms.map(g => `
+                                <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #fce7f3; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                                    <strong style="color: #be185d; display: block; margin-bottom: 5px;">${g.term}</strong>
+                                    <p style="color: #64748b; font-size: 0.85em; margin: 0;">${g.definition}</p>
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
                 </div>
+
+
 
             </div>
         `;
