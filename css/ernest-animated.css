@@ -1,0 +1,528 @@
+/* Cartoony Rubber-Hose Ernest CSS */
+.ernest-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px auto;
+    width: 380px;
+    height: 480px;
+}
+
+.ernest-svg-char {
+    width: 500px !important;
+    height: 550px !important;
+    min-width: 500px;
+    min-height: 550px;
+    transform-origin: top center;
+    transform: scale(0.76);
+    overflow: visible;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ernest-svg-char:hover {
+    transform: scale(0.78);
+}
+
+/* Rubber-Hose Bouncy Body (Awake) */
+.ernest-container.awake .ernest-svg-char {
+    animation: ernest-bounce 3s infinite ease-in-out;
+}
+
+@keyframes ernest-bounce {
+
+    0%,
+    100% {
+        transform: scale(0.76) scaleY(1) translateY(0);
+    }
+
+    50% {
+        transform: scale(0.76) scaleY(0.96) translateY(10px);
+    }
+}
+
+/* Sleeping Breathing Body (Sleeping) */
+.ernest-container.sleeping .ernest-svg-char {
+    animation: ernest-breathe 4s infinite ease-in-out;
+}
+
+@keyframes ernest-breathe {
+
+    0%,
+    100% {
+        transform: scale(0.76) scaleY(1) translateY(0);
+    }
+
+    50% {
+        transform: scale(0.76) scaleY(0.98) translateY(6px);
+    }
+}
+
+/* Snoring Zs */
+.ernest-container.sleeping .ernest-z1 {
+    animation: float-z 3s infinite;
+    opacity: 0;
+}
+
+.ernest-container.sleeping .ernest-z2 {
+    animation: float-z 3s infinite 1s;
+    opacity: 0;
+}
+
+.ernest-container.sleeping .ernest-z3 {
+    animation: float-z 3s infinite 2s;
+    opacity: 0;
+}
+
+@keyframes float-z {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(15px, -25px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Expressive Blinking Eyes */
+.ernest-container.awake .ernest-eyes {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: cartoon-blink 4s infinite;
+}
+
+.ernest-container.sleeping .ernest-eyes-open,
+.ernest-container.sleeping .ernest-mouth-open {
+    display: none;
+}
+
+.ernest-container:not(.sleeping) .ernest-eyes-closed,
+.ernest-container:not(.sleeping) .ernest-mouth-closed,
+.ernest-container:not(.sleeping) .ernest-z-group {
+    display: none;
+}
+
+@keyframes cartoon-blink {
+
+    0%,
+    46%,
+    50%,
+    96%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    48%,
+    98% {
+        transform: scaleY(0.1);
+    }
+}
+
+/* Rayman Floating Hands Animations - ELIPTICAL & ASYNC */
+/* Apply micro-float globally to any character state that is NOT sleeping */
+/* This works on the child group so it composes WITH parent translate animations */
+
+.ernest-container:not(.sleeping) .ernest-float-hand-right {
+    animation: rayman-float-idle-r 3.6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.ernest-container:not(.sleeping) .ernest-float-hand-left {
+    animation: rayman-float-idle-l 4.5s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes rayman-float-idle-r {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+
+    33% {
+        transform: translate(4px, -15px) rotate(3deg) scale(0.98);
+    }
+
+    66% {
+        transform: translate(-2px, -8px) rotate(-2deg) scale(0.99);
+    }
+}
+
+@keyframes rayman-float-idle-l {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+
+    33% {
+        transform: translate(-5px, -12px) rotate(-4deg) scale(0.97);
+    }
+
+    66% {
+        transform: translate(3px, -20px) rotate(2deg) scale(0.98);
+    }
+}
+
+/* Hands resting pose when sleeping (Tucked way behind hips/body) */
+.ernest-container.sleeping .ernest-hand-pos-right {
+    transform: translate(90px, 350px) rotate(-30deg);
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ernest-container:not(.sleeping) .ernest-hand-pos-right {
+    transform: translate(20px, 320px) rotate(0deg);
+    /* WIDE Viewer Left */
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ernest-container.sleeping .ernest-hand-pos-left {
+    transform: translate(330px, 350px) rotate(30deg);
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ernest-container:not(.sleeping) .ernest-hand-pos-left {
+    transform: translate(430px, 320px) rotate(0deg);
+    /* WIDE Viewer Right */
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Bouncing Eyebrows */
+.ernest-container.awake .ernest-eyebrow {
+    animation: eyebrow-bop 4s infinite;
+}
+
+@keyframes eyebrow-bop {
+
+    0%,
+    90%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    95% {
+        transform: translateY(-4px);
+    }
+}
+
+/* Zaps with Cartoony Snap */
+.ernest-zap-line {
+    stroke-dasharray: 10, 15;
+    animation: cartoon-zap 0.4s steps(3) infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.ernest-container.awake .ernest-zap-line {
+    opacity: 1;
+}
+
+@keyframes cartoon-zap {
+    0% {
+        stroke-dashoffset: 25;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Simple LED Blink */
+.ernest-led {
+    fill: #008f25;
+}
+
+.ernest-container.awake .ernest-led {
+    animation: cartoon-led 1s infinite steps(2);
+}
+
+@keyframes cartoon-led {
+    0% {
+        fill: #008f25;
+    }
+
+    100% {
+        fill: #00ff4c;
+    }
+}
+
+/* --- Hand Gesture Visibility Logic --- */
+/* By default, hide all gesture images */
+.ernest-gesture-palm,
+.ernest-gesture-fist,
+.ernest-gesture-point,
+.ernest-gesture-thumb,
+.ernest-gesture-palm-l,
+.ernest-gesture-fist-l,
+.ernest-gesture-point-l,
+.ernest-gesture-thumb-l {
+    display: none;
+}
+
+/* Default state if no data attribute is provided (Palm Right, Fist Left) */
+.ernest-container:not([data-gesture-r]) .ernest-gesture-palm {
+    display: block;
+}
+
+.ernest-container:not([data-gesture-l]) .ernest-gesture-fist-l {
+    display: block;
+}
+
+/* Right Hand Explicit States */
+.ernest-container[data-gesture-r="palm"] .ernest-gesture-palm {
+    display: block;
+}
+
+.ernest-container[data-gesture-r="fist"] .ernest-gesture-fist {
+    display: block;
+}
+
+.ernest-container[data-gesture-r="point"] .ernest-gesture-point {
+    display: block;
+}
+
+.ernest-container[data-gesture-r="thumb"] .ernest-gesture-thumb {
+    display: block;
+}
+
+/* Left Hand Explicit States */
+.ernest-container[data-gesture-l="palm"] .ernest-gesture-palm-l {
+    display: block;
+}
+
+.ernest-container[data-gesture-l="fist"] .ernest-gesture-fist-l {
+    display: block;
+}
+
+.ernest-container[data-gesture-l="point"] .ernest-gesture-point-l {
+    display: block;
+}
+
+.ernest-container[data-gesture-l="thumb"] .ernest-gesture-thumb-l {
+    display: block;
+}
+
+/* --- Fun Composited Character Animations --- */
+
+/* 1. Thinking */
+#ernest-character.thinking .ernest-svg-char {
+    animation: anim-thinking-body 3s infinite ease-in-out;
+}
+
+#ernest-character.thinking .ernest-hand-pos-right {
+    /* Character Right / Viewer Left - Hand moves to chin */
+    transform: translate(180px, 305px) rotate(-15deg) !important;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#ernest-character.thinking .ernest-hand-pos-left {
+    transform: translate(390px, 340px) rotate(10deg) !important;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes anim-thinking-body {
+
+    0%,
+    100% {
+        transform: scale(0.76) rotate(0deg) translateY(0);
+    }
+
+    50% {
+        transform: scale(0.76) rotate(4deg) translateY(-5px) scaleY(0.98);
+    }
+}
+
+/* 2. Excited (Rapid Jumps with Hands Up) */
+#ernest-character.excited .ernest-svg-char {
+    animation: anim-excited-body 0.6s infinite ease-in-out;
+}
+
+#ernest-character.excited .ernest-hand-pos-right {
+    transform: translate(40px, 140px) rotate(-30deg) !important;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#ernest-character.excited .ernest-hand-pos-left {
+    transform: translate(410px, 140px) rotate(30deg) !important;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes anim-excited-body {
+
+    0%,
+    100% {
+        transform: scale(0.76) translateY(0px) scaleY(1);
+    }
+
+    50% {
+        transform: scale(0.76) translateY(-35px) scaleY(1.08);
+    }
+}
+
+/* 3. Lecturing / Pointing */
+#ernest-character.lecturing .ernest-svg-char {
+    animation: anim-lecturing-body 2s infinite ease-in-out;
+}
+
+#ernest-character.lecturing .ernest-hand-pos-right {
+    transform: translate(20px, 320px) rotate(0deg) !important;
+}
+
+#ernest-character.lecturing .ernest-hand-pos-left {
+    transform: translate(440px, 200px) rotate(-20deg) !important;
+    animation: anim-pointing-hand 1.4s infinite ease-in-out;
+}
+
+@keyframes anim-lecturing-body {
+
+    0%,
+    100% {
+        transform: scale(0.76) translateY(0px) rotate(0deg);
+    }
+
+    30% {
+        transform: scale(0.76) translateY(-5px) rotate(-2deg);
+    }
+
+    70% {
+        transform: scale(0.76) translateY(-2px) rotate(-1deg);
+    }
+}
+
+@keyframes anim-pointing-hand {
+
+    0%,
+    100% {
+        transform: translate(440px, 200px) rotate(-20deg);
+    }
+
+    50% {
+        transform: translate(460px, 190px) rotate(-30deg);
+    }
+}
+
+/* 4. Dancing (Jazz Hands) */
+#ernest-character.dancing .ernest-svg-char {
+    animation: anim-dancing-body 1s infinite alternate ease-in-out;
+}
+
+#ernest-character.dancing .ernest-hand-pos-right {
+    transform: translate(20px, 320px) !important;
+    animation: rayman-jazz-r 0.6s infinite alternate ease-in-out;
+}
+
+#ernest-character.dancing .ernest-hand-pos-left {
+    transform: translate(430px, 320px) !important;
+    animation: rayman-jazz-l 0.6s infinite alternate ease-in-out;
+}
+
+@keyframes anim-dancing-body {
+    0% {
+        transform: scale(0.76) rotate(-5deg) translateY(0);
+    }
+
+    100% {
+        transform: scale(0.76) rotate(5deg) translateY(0);
+    }
+}
+
+@keyframes rayman-jazz-r {
+    0% {
+        transform: translate(0px, 320px) rotate(15deg) scale(1);
+    }
+
+    100% {
+        transform: translate(40px, 280px) rotate(-5deg) scale(1.1);
+    }
+}
+
+@keyframes rayman-jazz-l {
+    0% {
+        transform: translate(450px, 320px) rotate(-15deg) scale(1);
+    }
+
+    100% {
+        transform: translate(410px, 280px) rotate(5deg) scale(1.1);
+    }
+}
+
+/* 5. Jumping */
+#ernest-character.jumping .ernest-svg-char {
+    animation: anim-jumping-body 0.8s infinite ease-in-out;
+}
+
+#ernest-character.jumping .ernest-hand-pos-right {
+    transform: translate(40px, 340px) !important;
+    animation: rayman-pump-r 0.8s infinite ease-in-out;
+}
+
+#ernest-character.jumping .ernest-hand-pos-left {
+    transform: translate(410px, 340px) !important;
+    animation: rayman-pump-l 0.8s infinite ease-in-out;
+}
+
+@keyframes anim-jumping-body {
+
+    0%,
+    100% {
+        transform: scale(0.76) translateY(0px) scaleY(1);
+    }
+
+    50% {
+        transform: scale(0.76) translateY(-30px) scaleY(1.05);
+    }
+}
+
+@keyframes rayman-pump-r {
+
+    0%,
+    100% {
+        transform: translate(40px, 340px) scale(1);
+    }
+
+    50% {
+        transform: translate(40px, 180px) scale(1.1);
+    }
+}
+
+@keyframes rayman-pump-l {
+
+    0%,
+    100% {
+        transform: translate(410px, 340px) scale(1);
+    }
+
+    50% {
+        transform: translate(410px, 180px) scale(1.1);
+    }
+}
+
+/* 6. Waving */
+#ernest-character.waving .ernest-svg-char {
+    animation: ernest-bounce 3s infinite ease-in-out;
+}
+
+#ernest-character.waving .ernest-hand-pos-left {
+    transform: translate(430px, 320px) rotate(0deg) !important;
+    animation: rayman-wave-l 1s infinite alternate ease-in-out;
+}
+
+@keyframes rayman-wave-l {
+    0% {
+        transform: translate(410px, 300px) rotate(-25deg);
+    }
+
+    100% {
+        transform: translate(450px, 300px) rotate(25deg);
+    }
+}

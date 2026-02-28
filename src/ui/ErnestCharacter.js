@@ -12,6 +12,12 @@ export class ErnestCharacter {
         // Any specific listeners if needed
     }
 
+    async init() {
+        // Initialization logic for Ernest Character
+        console.log('🐸 Ernest Character is ready.');
+        return Promise.resolve();
+    }
+
     // Navigate to a specific module (allows clicking any accessible square)
     navigateToModule(targetIndex) {
         // Access globals for now (Hybrid Mode)
@@ -152,6 +158,56 @@ export class ErnestCharacter {
                 ernst.classList.add('idle');
             }, 1500);
         }, 800);
+    }
+
+    playAnimation(animationName, duration = 3000) {
+        const ernst = document.getElementById('ernest-character');
+        if (!ernst) return;
+
+        const container = ernst.querySelector('.ernest-container');
+        if (!container) return;
+
+        // Clear existing states
+        ernst.classList.remove('idle', 'celebrating', 'hopping', 'thinking', 'excited', 'lecturing');
+        ernst.classList.add(animationName);
+
+        // Apply specific gestures for animations
+        switch (animationName) {
+            case 'thinking':
+                // Hand to chin (using point hand in CSS)
+                container.setAttribute('data-gesture-r', 'point');
+                container.setAttribute('data-gesture-l', 'palm');
+                break;
+            case 'excited':
+            case 'jumping':
+                // Double fists for jumping/pumping
+                container.setAttribute('data-gesture-r', 'fist');
+                container.setAttribute('data-gesture-l', 'fist');
+                break;
+            case 'lecturing':
+                // Pointing character's left hand out (viewer's right)
+                container.setAttribute('data-gesture-r', 'palm');
+                container.setAttribute('data-gesture-l', 'point');
+                break;
+            default:
+                // Reset to default (Right Palm, Left Fist)
+                container.removeAttribute('data-gesture-r');
+                container.removeAttribute('data-gesture-l');
+                if (animationName === 'idle') {
+                    ernst.classList.add('idle');
+                }
+                break;
+        }
+
+        // Auto-revert if duration > 0
+        if (duration > 0) {
+            setTimeout(() => {
+                // If it hasn't changed to another animation
+                if (ernst.classList.contains(animationName)) {
+                    this.playAnimation('idle', 0);
+                }
+            }, duration);
+        }
     }
 
     speak(message, duration = 2000) {

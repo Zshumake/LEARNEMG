@@ -48,17 +48,28 @@ export class ErnestAPI {
         return null;
     }
 
-    async generateContent(query, systemPrompt, conversationHistory = [], modelOverride = null) {
-        const modelToUse = modelOverride || this.preferredModel || 'gemini-flash-latest';
+    async generateContent(query, systemPrompt, conversationHistory = [], modelOverride = null, imageData = null) {
+        const modelToUse = modelOverride || this.preferredModel || (imageData ? 'gemini-1.5-flash' : 'gemini-flash-latest');
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelToUse}:generateContent?key=${this.apiKey}`;
 
         // Deep copy history
         let apiContents = JSON.parse(JSON.stringify(conversationHistory));
 
         if (apiContents.length === 0) {
+            const userParts = [{ text: query }];
+
+            if (imageData) {
+                userParts.push({
+                    inline_data: {
+                        mime_type: imageData.mimeType,
+                        data: imageData.data // Base64 string
+                    }
+                });
+            }
+
             apiContents = [{
                 role: 'user',
-                parts: [{ text: query }]
+                parts: userParts
             }];
         }
 
