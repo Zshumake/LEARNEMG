@@ -23,6 +23,10 @@ emg_ncs_resident_tool.html
 *.command
 *.db
 *.pdf
+*.bak
+*.tmp
+*.legacy.js
+*.backup.js
 
 # Exclude specific directories
 EMG_flashcards/
@@ -32,6 +36,7 @@ SVG/
 Photos-*/
 Medical texts/
 BACKUP_PRE_LEGACY_REMOVAL/
+tasks/
 
 # Tempoary Files
 temp_*.html
@@ -40,3 +45,4 @@ ncs_backup_temp.js
 audio_audit.mjs
 construct_patho.js
 preston_shapiro_chapters.md
+index.html._bak
