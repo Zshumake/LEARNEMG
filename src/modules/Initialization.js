@@ -13,6 +13,9 @@ import { ClinicalEngine } from './clinical/ClinicalEngine.js';
 import { ClinicalUI } from './clinical/ClinicalUI.js';
 import { MuscleLab } from './muscle-lab/MuscleLab.js';
 import { AudioController } from './audio/AudioController.js';
+import { ErnestCore } from './ernest/ErnestCore.js?v=podcastRefactor1';
+import { LEARNING_MODULES_CONFIG } from '../data/ModuleConfig.js';
+
 
 class AppInitializer {
     constructor() {
@@ -33,6 +36,7 @@ class AppInitializer {
 
 
         this.audio = new AudioController();
+        this.ernestAI = new ErnestCore();
     }
 
     async init() {
@@ -51,9 +55,11 @@ class AppInitializer {
             clinicalCases: this.clinicalCases,
             muscleLab: MuscleLab,
             audio: this.audio,
+            ernestAI: this.ernestAI,
             plexus: null
         };
         window.moduleLoader = this.moduleLoader; // Legacy alias
+        window.learningModulesConfig = LEARNING_MODULES_CONFIG;
 
         // Legacy global shims for decoupled HTML elements
         window.showEMGChallenge = window.showEMGChallenge || (() => {
@@ -100,5 +106,17 @@ window.showInteractivePlexusAnatomy = () => {
         window.appComponents.plexus.showInteractiveAnatomy();
     } else {
         console.error("❌ Plexus module not initialized");
+    }
+};
+
+window.showErnestDialogue = () => {
+    if (window.appComponents && window.appComponents.ernestAI) {
+        window.appComponents.ernestAI.ui.toggleDialogue();
+    }
+};
+
+window.explainPage = () => {
+    if (window.appComponents && window.appComponents.ernestAI) {
+        window.appComponents.ernestAI.explainVisiblePage();
     }
 };

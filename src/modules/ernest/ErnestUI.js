@@ -388,6 +388,7 @@ export class ErnestUI {
 
         // Global Event Listeners for Tooltips
         document.addEventListener('mouseup', (e) => this.handleSelection(e));
+        document.addEventListener('touchend', (e) => this.handleSelection(e));
         document.addEventListener('mousedown', (e) => {
             if (e.target.id !== 'jrpg-ernest-tooltip' && !e.target.closest('#jrpg-ernest-tooltip')) {
                 this.hideTooltip();
@@ -426,7 +427,7 @@ export class ErnestUI {
             e.stopPropagation();
             this.hideTooltip();
             if (this.currentSelection) {
-                this.core.askErnest(this.currentSelection, true);
+                this.core.handleSelectionExplanation(this.currentSelection);
             }
         });
 
@@ -466,7 +467,18 @@ export class ErnestUI {
 
     handleSelection() {
         if (this.selectionTimeout) clearTimeout(this.selectionTimeout);
-        this.selectionTimeout = setTimeout(() => this.showTooltip(), 300);
+        this.selectionTimeout = setTimeout(() => {
+            this.showTooltip();
+
+            // Auto-populate input if chat is already open
+            const selection = window.getSelection();
+            const selectedText = selection.toString().trim();
+            if (selectedText.length > 5 && this.ui.wrapper.classList.contains('active')) {
+                if (this.ui.input) {
+                    this.ui.input.value = `Can you explain: "${selectedText}"?`;
+                }
+            }
+        }, 300);
     }
 
     hideTooltip() {

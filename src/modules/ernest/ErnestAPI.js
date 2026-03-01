@@ -28,15 +28,14 @@ export class ErnestAPI {
                 const names = data.models.map(m => m.name.replace('models/', ''));
                 console.log('Available Models:', names);
 
-                const best = names.find(n => n === 'gemini-flash-latest') ||
+                const best = names.find(n => n === 'gemini-1.5-flash') ||
                     names.find(n => n === 'gemini-1.5-flash-latest') ||
-                    names.find(n => n === 'gemini-pro-latest') ||
                     names.find(n => n === 'gemini-2.0-flash') ||
                     names.find(n => n === 'gemini-2.0-flash-001') ||
-                    names.find(n => n === 'gemini-1.5-flash') ||
-                    names.find(n => n === 'gemini-1.5-pro') ||
-                    names.find(n => n.includes('flash') && n.includes('2.0')) ||
+                    names.find(n => n === 'gemini-flash-latest') ||
                     names.find(n => n.includes('flash') && n.includes('1.5')) ||
+                    names.find(n => n.includes('flash') && n.includes('2.0')) ||
+                    names.find(n => n === 'gemini-pro-latest') ||
                     names.find(n => n.includes('flash')) ||
                     names.find(n => n.includes('gemini'));
 

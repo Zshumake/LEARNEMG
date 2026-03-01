@@ -47,10 +47,6 @@ export class ModalSystem {
                         </div>
                     </div>
 
-                    <!-- ERNEST Helper -->
-                    <div class="modal-ernest-guide" onclick="console.log('Ernest clicked')">
-                        <div class="ernest-face">🤖</div>
-                    </div>
 
                     <!-- Module Completion Footer -->
                     <div style="padding: 20px; border-top: 1px solid rgba(107, 159, 120, 0.2); background: #f8fafc;">

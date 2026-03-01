@@ -223,9 +223,19 @@ export class ErnestCore {
         this.chat.showLoadingMessage();
         this.isThinking = true;
 
+        // Trigger ErnestCharacter thinking animation
+        if (window.appComponents && window.appComponents.ernest) {
+            window.appComponents.ernest.playAnimation('thinking', 0); // No auto-duration, we'll manually reset
+        }
+
         if (!this.api.apiKey) {
             this.chat.removeLoadingMessage();
             this.chat.addToChat('ernest', "My circuits require an API Key to function. Please configure it below.");
+
+            // Reset to idle
+            if (window.appComponents && window.appComponents.ernest) {
+                window.appComponents.ernest.playAnimation('idle');
+            }
             return;
         }
 
@@ -245,6 +255,28 @@ export class ErnestCore {
         }
 
         this.isThinking = false;
+
+        // Restore to idle animation
+        if (window.appComponents && window.appComponents.ernest) {
+            window.appComponents.ernest.playAnimation('idle');
+        }
+    }
+
+    /**
+     * Specifically handles text selection from the UI tooltip
+     */
+    async handleSelectionExplanation(selectedText) {
+        const persona = this.personas[this.currentPersonaId];
+        const highYieldPrompt = `[HIGHLIGHT_MODE]: "${selectedText}"\n(Instruction: The user has highlighted this technical medical term or phrase. Provide a concise, 2-3 sentence clinical high-yield explanation in your ${persona.name} persona. Be helpful and professional.)`;
+
+        // Open dialogue if closed
+        if (!this.ui.ui.wrapper.classList.contains('active')) {
+            this.ui.toggleDialogue();
+        }
+
+        // Add to chat and process
+        this.chat.addToChat('user', `<em>"${selectedText}"</em>`, highYieldPrompt);
+        return this.processQuery(highYieldPrompt);
     }
 
     async handleError(error, query) {
@@ -274,10 +306,23 @@ export class ErnestCore {
             this.chat.addToChat(this.currentPersonaId, isEarl
                 ? "Connection severed. Are you in a lead-lined room? Check your Wi-Fi."
                 : "Signal lost! I can't reach the cloud! Check your connection!");
-        } else if (error.message.includes('503') || error.message.includes('overloaded')) {
-            this.chat.addToChat(this.currentPersonaId, isEarl
-                ? "The server is currently overwhelmed by incompetence. Please wait a moment."
-                : "Brain freeze! Too much data! (Server overloaded, please try again in 5s).");
+        } else if (error.message.toLowerCase().includes('503') || error.message.toLowerCase().includes('overloaded') || error.message.toLowerCase().includes('demand')) {
+            const msg = isEarl
+                ? "The server is currently overwhelmed by your presence. Searching for a neural pathway that can handle the burden..."
+                : "Brain freeze! Too much demand on my primary sector! Let me switch neural pathways...";
+            this.chat.addToChat(this.currentPersonaId, msg);
+
+            // AUTO-RECOVERY: Try to find a new model and retry immediately
+            const workingModel = await this.api.discoverWorkingModel();
+            if (workingModel && workingModel !== this.api.preferredModel) {
+                this.chat.addToChat(this.currentPersonaId, `Neural shift complete! Retrying with ${workingModel}...`);
+                this.api.setModel(workingModel);
+                this.processQuery(query);
+            } else {
+                this.chat.addToChat(this.currentPersonaId, isEarl
+                    ? "Every pathway is clogged. Give me 10 seconds before you bother me again."
+                    : "Phew! All my circuits are busy right now. Give me about 10 seconds to cool down and try again!");
+            }
         } else if (error.message.includes('Quota') || error.message.includes('429')) {
             this.chat.addToChat(this.currentPersonaId, isEarl
                 ? "You've exhausted my patience (and your API quota). Silence for 60 seconds."

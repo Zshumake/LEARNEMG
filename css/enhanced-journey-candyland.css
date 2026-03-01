@@ -233,33 +233,6 @@
     box-shadow: 0 10px 30px rgba(107, 159, 120, 0.08);
 }
 
-/* ERNEST Integration within Modals */
-.modal-ernest-guide {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #6b9f78 0%, #4a6d52 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 15px 30px rgba(107, 159, 120, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.modal-ernest-guide:hover {
-    transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 20px 40px rgba(107, 159, 120, 0.4);
-}
-
-.modal-ernest-guide .ernest-face {
-    color: white;
-    font-size: 2em;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -311,12 +284,6 @@
         font-size: 2em;
     }
 
-    .modal-ernest-guide {
-        bottom: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-    }
 }
 
 /* Beautiful Journey Header */

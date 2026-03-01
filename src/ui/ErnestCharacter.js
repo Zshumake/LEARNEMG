@@ -22,9 +22,9 @@ export class ErnestCharacter {
     navigateToModule(targetIndex) {
         // Access globals for now (Hybrid Mode)
         const currentModuleIndex = window.currentModuleIndex || 0;
-        const currentPGYLevel = this.store.getPGYLevel();
+        const currentPGYLevel = window.currentPGYLevel || 'all';
         const modules = this.getModules(currentPGYLevel);
-        const completedModules = this.store.getCompletedModules();
+        const completedModules = window.completedModules || new Set();
 
         if (!modules || !modules[targetIndex]) return;
 
@@ -99,7 +99,7 @@ export class ErnestCharacter {
         const ernst = document.getElementById('ernest-character');
         if (!ernst) return;
 
-        const pgyLevel = this.store.getPGYLevel();
+        const pgyLevel = window.currentPGYLevel || 'all';
         const modules = this.getModules(pgyLevel);
         if (!modules || modules.length === 0) return;
 
@@ -253,7 +253,7 @@ export class ErnestCharacter {
     }
 
     showModuleDescription(moduleIndex) {
-        const pgyLevel = this.store.getPGYLevel();
+        const pgyLevel = window.currentPGYLevel || 'all';
         const modules = this.getModules(pgyLevel);
         const module = modules[moduleIndex];
         if (!module) return;
