@@ -63,7 +63,7 @@ const MODULE_MAP = {
     'plexus-anatomy': () => import('../content/anatomy/PathwayExplorer.js'),
     'ncs-fundamentals': () => import('../content/ncs/Fundamentals.js'),
     'ncs-techniques': () => import('../content/ncs/Techniques.js'),
-    'neuropathy-pathophysiology': () => import('../content/pathology/Pathophysiology.js?v=quizFix1'),
+    'neuropathy-pathophysiology': () => import('../content/pathology/NeuropathyPathophysiology.js'),
     'radiculopathy-pathophysiology': () => import('../content/pathology/Radiculopathy.js'),
     'muscle-quiz': () => import('../content/emg/MuscleQuiz.js'),
     'carpal-tunnel': () => import('../content/nerves/CarpalTunnel.js'),
@@ -71,7 +71,7 @@ const MODULE_MAP = {
     'ulnar-elbow': () => import('../content/nerves/UlnarNerve.js').then(m => ({ generateContent: m.UlnarNerve.generateElbowContent })),
     'ulnar-wrist': () => import('../content/nerves/UlnarNerve.js').then(m => ({ generateContent: m.UlnarNerve.generateWristContent })),
     'master-nerve-chart': () => import('../content/reference/MasterNerveChart.js'),
-    'neuropathy': () => import('../content/pathology/Pathophysiology.js?v=quizFix1'),
+    'neuropathy': () => import('../content/pathology/NeuropathyPathophysiology.js'),
     'radiculopathy': () => import('../content/pathology/Radiculopathy.js'),
     'emg-basics': () => import('../content/emg/Introduction.js'),
 };
