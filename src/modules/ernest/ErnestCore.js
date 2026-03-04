@@ -1,6 +1,6 @@
-import { ErnestAPI } from './ErnestAPI.js';
-import { ErnestUI } from './ErnestUI.js?v=svgErnest1';
-import { ErnestChat } from './ErnestChat.js';
+import { ErnestAPI } from './ErnestAPI.js?v=20260304-v1';
+import { ErnestUI } from './ErnestUI.js?v=20260304-v1';
+import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
 
 export class ErnestCore {
     constructor() {
