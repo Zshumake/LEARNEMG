@@ -2,8 +2,6 @@
 // Mentorship-style guide for residents on injuries, localization, and EDX patterns.
 
 import { generateErnestButton } from '../../modules/audio/AudioData.js';
-import { generateModuleQuiz } from '../../utils/QuizGenerator.js';
-
 export function generatePlexopathyContent() {
     return `
         <div class="plexopathy-clinical-content" style="padding: 30px; line-height: 1.7; color: #334155; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
@@ -135,7 +133,7 @@ export function generatePlexopathyContent() {
             </div>
 
             <!-- Quiz Section -->
-            ${generateModuleQuiz([
+            ${window.generateModuleQuiz ? window.generateModuleQuiz([
         {
             question: "A newborn presents with the arm hanging by the side, medially rotated, with the forearm extended and pronated ('waiter\\'s tip' posture). Which roots are most typically injured?",
             options: ["C8-T1 (Klumpke\\'s Palsy)", "C5-C6 (Erb\\'s Palsy)", "C7-C8", "Pan-plexus"],
@@ -196,7 +194,7 @@ export function generatePlexopathyContent() {
             correct: 2,
             explanation: "Nerves regenerate at approximately 1mm per day (or 1 inch per month). Therefore, muscles geographically closest to the injury site (proximal shoulder/arm muscles) will receive their repairing axons and show reinnervation long before distal muscles like the hand intrinsics."
         }
-    ])}
+    ]) : '<p class="error-text">Quiz module not loaded</p>'}
         </div>
     `;
 }

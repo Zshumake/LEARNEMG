@@ -1,9 +1,7 @@
 // Basic Patterns Module
 // Comprehensive EMG pattern recognition with multimedia content
 
-import { generateErnestButton } from '../../modules/audio/AudioData.js';
-import { generateModuleQuiz } from '../../utils/QuizGenerator.js';
-// Note: The original code used a global generateModuleQuiz. I might need to clarify where this comes from.
+import { generateErnestButton } from '../../modules/audio/AudioData.js';// Note: The original code used a global generateModuleQuiz. I might need to clarify where this comes from.
 // Looking at other files, it seems generating HTML strings is the pattern. 
 // If generateModuleQuiz is global, I should probably keep it global or import it if I can find it.
 // Wait, I saw generateModuleQuiz in src/content/ncs/Fundamentals.js? No, checking...
