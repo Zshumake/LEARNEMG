@@ -127,11 +127,11 @@ class IntroductionModule extends BaseContent {
                     ${UIComponents.renderCard(`
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
-                                <h6 style="color: #1e3a8a; margin-bottom: 10px;">📡 Signal Processing</h6>
+                                <h6 style="color: #1e3a8a; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-radio"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path></svg> Signal Processing</h6>
                                 <p style="font-size: 0.9em;">${this.data.basics.equipment.amplifiers}</p>
                             </div>
                             <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
-                                <h6 style="color: #1e3a8a; margin-bottom: 10px;">🎛️ Filter Settings</h6>
+                                <h6 style="color: #1e3a8a; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg> Filter Settings</h6>
                                 <p style="font-size: 0.9em;">${this.data.basics.equipment.filters}</p>
                             </div>
                         </div>
