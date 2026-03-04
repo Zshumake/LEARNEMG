@@ -1,20 +1,20 @@
-import { moduleLoader } from '../utils/ModuleLoader.js?v=20260304-v1';
-import { Bootstrapper } from './core/Bootstrapper.js?v=20260304-v1';
-import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260304-v1';
-import { PlexusManager } from './plexus/PlexusManager.js?v=20260304-v1';
-import { ModalSystem } from './ui/ModalSystem.js?v=20260304-v1';
-import { CandylandCore } from './candyland/CandylandCore.js?v=20260304-v1';
-import { QuizSystem } from './quiz/QuizSystem.js?v=20260304-v1';
-import { NCSData } from './ncs/NCSData.js?v=20260304-v1';
-import { NCSEngine } from './ncs/NCSEngine.js?v=20260304-v1';
-import { NCSUI } from './ncs/NCSUI.js?v=20260304-v1';
-import { clinicalCasesData } from '../data/ClinicalCorrelationCases.js?v=20260304-v1';
-import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260304-v1';
-import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260304-v1';
-import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260304-v1';
-import { AudioController } from './audio/AudioController.js?v=20260304-v1';
-import { ErnestCore } from './ernest/ErnestCore.js?v=20260304-v1';
-import { LEARNING_MODULES_CONFIG } from '../data/ModuleConfig.js?v=20260304-v1';
+import { moduleLoader } from '../utils/ModuleLoader.js?v=20260304-v2';
+import { Bootstrapper } from './core/Bootstrapper.js?v=20260304-v2';
+import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260304-v2';
+import { PlexusManager } from './plexus/PlexusManager.js?v=20260304-v2';
+import { ModalSystem } from './ui/ModalSystem.js?v=20260304-v2';
+import { CandylandCore } from './candyland/CandylandCore.js?v=20260304-v2';
+import { QuizSystem } from './quiz/QuizSystem.js?v=20260304-v2';
+import { NCSData } from './ncs/NCSData.js?v=20260304-v2';
+import { NCSEngine } from './ncs/NCSEngine.js?v=20260304-v2';
+import { NCSUI } from './ncs/NCSUI.js?v=20260304-v2';
+import { clinicalCasesData } from '../data/ClinicalCorrelationCases.js?v=20260304-v2';
+import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260304-v2';
+import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260304-v2';
+import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260304-v2';
+import { AudioController } from './audio/AudioController.js?v=20260304-v2';
+import { ErnestCore } from './ernest/ErnestCore.js?v=20260304-v2';
+import { LEARNING_MODULES_CONFIG } from '../data/ModuleConfig.js?v=20260304-v2';
 
 
 class AppInitializer {
