@@ -29,7 +29,7 @@ export const NCSFundamentalsData = {
         ],
         conduction: {
             process: "Saltatory Conduction",
-            detail: "APs 'jump' between Nodes of Ranvier. Myelin acts as insulation (high resistance) and capacitor (low capacitance), drastically increasing speed.",
+            detail: "Action Potentials (APs) 'jump' between Nodes of Ranvier. Myelin acts as insulation (high resistance) and a capacitor (low capacitance), drastically increasing speed.",
             staircase: "Distance/Latency graph is a 'staircase': latency increases at nodes (depolarization time) but stays flat across internodes."
         },
         fiberTypes: [
@@ -87,25 +87,25 @@ export const NCSFundamentalsData = {
         ],
         supramaximal: {
             definition: "Stimulation 20-25% beyond maximal response.",
-            reason: "Ensures ALL axons are recruited. Failure to reach this simulated axonal loss or conduction block."
+            reason: "Ensures ALL axons are recruited. Failure to reach this simulates axonal loss or conduction block."
         }
     },
 
     technicalFactors: {
         temperature: {
             title: "Temperature (Most Important)",
-            effects: "Cold = Slowed CV, Prolonged Latency, Paradoxically Higher Amplitude (less phase cancellation).",
+            effects: "Cold = Slowed Conduction Velocity (CV), Prolonged Latency, Paradoxically Higher Amplitude (due to less phase cancellation, meaning the signals overlap better instead of canceling each other out).",
             correction: "Velocity: 1.5 - 2.5 m/s per 1°C drop | Latency: 0.2 ms per 1°C increase.",
             ideal: "Target skin temp: 32-34°C."
         },
         noise: {
             type: "60 Hz Interference",
-            cause: "Electrode Impedance Mismatch (G1 and G2 have different resistances).",
+            cause: "Electrode Impedance Mismatch (Active [G1] and Reference [G2] electrodes have different skin resistances).",
             solution: "Clean skin (alcohol/acetone), use conducting jelly, ensure identical electrode types."
         },
         filters: [
-            { type: "Motor Filter", lff: "10 Hz", hff: "10 kHz", note: "Higher HFF allows faithful recording of large CMAPs." },
-            { type: "Sensory Filter", lff: "20 Hz", hff: "2 kHz", note: "Lower HFF (2kHz) reduces high-frequency noise for tiny SNAPs." }
+            { type: "Motor Filter", lff: "10 Hz", hff: "10 kHz", note: "Higher High Frequency Filter (HFF) allows faithful recording of large Compound Muscle Action Potentials (CMAPs)." },
+            { type: "Sensory Filter", lff: "20 Hz", hff: "2 kHz", note: "Lower High Frequency Filter (2kHz) reduces high-frequency noise for tiny Sensory Nerve Action Potentials (SNAPs)." }
         ],
         artifact: {
             trailing: "Stimulus Artifact",
@@ -116,18 +116,18 @@ export const NCSFundamentalsData = {
     interpretation: {
         axonalLoss: {
             title: "Axonal Loss (e.g., Trauma, Vasculitis)",
-            primary: "Reduced Amplitude (lowered CMAP/SNAP peak-to-peak).",
-            secondary: "Relatively preserved CV (>75% LLN) and Latency (<130% ULN).",
+            primary: "Reduced Amplitude (lowered Compound Muscle Action Potential [CMAP] or Sensory Nerve Action Potential [SNAP] peak-to-peak).",
+            secondary: "Relatively preserved Conduction Velocity (>75% Lower Limit of Normal [LLN]) and Latency (<130% Upper Limit of Normal [ULN]).",
             note: "Wallerian degeneration takes 3-5 days (motor) and 6-10 days (sensory) to show amplitude drop."
         },
         demyelination: {
             title: "Demyelination (e.g., GBS, CIDP, Entrapment)",
             primary: "Marked slowing (CV < 70-75% LLN) or Prolonged Latency (>130% ULN).",
-            secondary: "Increased Duration (due to temporal dispersion)."
+            secondary: "Increased Duration (due to temporal dispersion: signals spread out over time because different fibers conduct at varying slower speeds)."
         },
         conductionBlock: {
             title: "Conduction Block vs Dispersion",
-            block: "Focal Demyelination: Abrupt >50% drop in CMAP Area/Amplitude between proximal and distal sites with MINIMAL duration change.",
+            block: "Focal Demyelination: Abrupt >50% drop in Compound Muscle Action Potential (CMAP) Area/Amplitude between proximal and distal sites with MINIMAL duration change.",
             dispersion: "Different fiber speeds: Drop in amplitude but INCREASING duration (>15-20% increase)."
         }
     },
@@ -153,15 +153,15 @@ export const NCSFundamentalsData = {
     glossary: [
         { term: "Common Mode Rejection", definition: "Differential amplifier's ability to subtract out identical noise present at G1 and G2." },
         { term: "Volume Conduction", definition: "Passive spread of electrical current through tissue/fluids." },
-        { term: "Near-field Potential", definition: "Recorded close to the source (e.g., standard SNAP/CMAP)." },
-        { term: "Far-field Potential", definition: "Recorded at a distance, appears instantly (e.g., Stimulus Artifact, F-wave components)." },
+        { term: "Near-field Potential", definition: "Recorded close to the source (e.g., standard sensory or motor responses)." },
+        { term: "Far-field Potential", definition: "Recorded at a distance, appears instantly at all electrodes simultaneously (e.g., Stimulus Artifact, early F-wave sections)." },
         { term: "Supramaximal", definition: "Intensity reaching beyond the recruitment of all axons to ensure stability." }
     ],
 
     quiz: [
         {
             id: 1,
-            question: "Which setting change would likely increase a measured CMAP amplitude?",
+            question: "Which setting change would likely increase a measured Compound Muscle Action Potential (CMAP) amplitude?",
             options: [
                 { text: "Raising the LFF (Low Frequency Filter)", correct: false },
                 { text: "Lowering the limb temperature", correct: true, feedback: "Correct! Cold increases individual fiber duration and reduces phase cancellation, paradoxically raising amplitudes." },
@@ -179,7 +179,7 @@ export const NCSFundamentalsData = {
         },
         {
             id: 3,
-            question: "True Conduction Block is best defined as a proximal/distal CMAP area drop of:",
+            question: "True Conduction Block is best defined as a proximal/distal Compound Muscle Action Potential (CMAP) area drop of:",
             options: [
                 { text: ">20%", correct: false },
                 { text: ">50% with minimal temporal dispersion", correct: true, feedback: "Correct! A >50% drop without significant spreading suggests focal block." },
@@ -188,7 +188,7 @@ export const NCSFundamentalsData = {
         },
         {
             id: 4,
-            question: "Why is the LFF higher for sensory (20Hz) vs motor (10Hz) studies?",
+            question: "Why is the Low Frequency Filter (LFF) higher for sensory (20Hz) vs motor (10Hz) studies?",
             options: [
                 { text: "To increase amplitude", correct: false },
                 { text: "To stabilize the baseline against low-frequency artifacts", correct: true, feedback: "Correct! Helping isolate the small pulse from baseline wander." },

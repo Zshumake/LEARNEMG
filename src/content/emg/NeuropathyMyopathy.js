@@ -12,34 +12,36 @@ const generateContent = function (module) {
             <!-- Pathophysiology Card -->
             <div class="nm-card nm-border-left-primary" style="border-left: 5px solid hsl(var(--purple));">
                 <div class="nm-card-header">
-                    <h4 style="color: hsl(var(--purple));">🧬 What is Myopathy?</h4>
+                    <h4 style="color: hsl(var(--purple)); display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        What is Myopathy?
+                    </h4>
                 </div>
                 <div class="nm-card-body">
                     <p class="nm-text">
-                        <strong>Myopathy</strong> refers to diseases of muscle tissue where the primary pathology affects the muscle fibers themselves,
-                        not the nerves that innervate them. The disorder involves dysfunction of the muscle cell membrane, contractile proteins,
-                        or cellular metabolism.
+                        <strong>Myopathy</strong> refers to diseases of muscle tissue where the primary pathology affects the <strong>muscle fibers</strong> themselves,
+                        rather than the nerves that control them. In a myopathy, the structural integrity or metabolic function of the muscle cell is compromised.
                     </p>
 
                     <div class="nm-grid-2">
                         <div class="nm-sub-card">
                             <h5 style="color: hsl(var(--purple));">Common Causes</h5>
                             <ul class="nm-list">
-                                <li><strong>Inflammatory:</strong> Polymyositis, dermatomyositis</li>
-                                <li><strong>Metabolic:</strong> Thyroid disorders, steroid myopathy</li>
-                                <li><strong>Genetic:</strong> Muscular dystrophies</li>
-                                <li><strong>Toxic:</strong> Statins, alcohol</li>
-                                <li><strong>Infectious:</strong> Viral myositis</li>
+                                <li><strong>Inflammatory:</strong> Polymyositis, dermatomyositis (immune system attacks muscle)</li>
+                                <li><strong>Metabolic:</strong> Thyroid disorders, steroid-induced muscle loss</li>
+                                <li><strong>Genetic:</strong> Muscular dystrophies (inherited structural defects)</li>
+                                <li><strong>Toxic:</strong> Statins, alcohol-induced damage</li>
+                                <li><strong>Infectious:</strong> Viral-induced inflammation (myositis)</li>
                             </ul>
                         </div>
                         <div class="nm-sub-card">
                             <h5 style="color: hsl(var(--purple));">Typical Symptoms</h5>
                             <ul class="nm-list">
-                                <li><strong>Proximal weakness</strong> (shoulders, hips)</li>
-                                <li><strong>Symmetric</strong> muscle involvement</li>
-                                <li><strong>No sensory symptoms</strong></li>
-                                <li><strong>Muscle pain/tenderness</strong> (inflammatory)</li>
-                                <li><strong>Difficulty climbing stairs</strong></li>
+                                <li><strong>Proximal weakness</strong> (Difficulty with shoulders and hips)</li>
+                                <li><strong>Symmetric</strong> involvement (Affects both sides equally)</li>
+                                <li><strong>No sensory symptoms</strong> (Numbness/tingling are absent)</li>
+                                <li><strong>Muscle pain/tenderness</strong> (Especially in inflammatory types)</li>
+                                <li><strong>Functional impact:</strong> Difficulty climbing stairs or rising from a chair</li>
                             </ul>
                         </div>
                     </div>
@@ -51,25 +53,27 @@ const generateContent = function (module) {
                 <!-- EMG Findings -->
                 <div class="nm-card nm-border-left-primary">
                     <div class="nm-card-header">
-                        <h4 style="color: hsl(var(--primary));">📈 Classic EMG Findings</h4>
+                        <h4 style="color: hsl(var(--primary)); display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            Classic Electromyography (EMG) Findings
+                        </h4>
                     </div>
                     <div class="nm-card-body">
                         <div class="nm-highlight-box margin-bottom">
-                            <h5 style="color: hsl(var(--red));">MUAP Characteristics</h5>
+                            <h5 style="color: hsl(var(--red));">Motor Unit Action Potential (MUAP)</h5>
+                            <p style="font-size: 0.85em; color: #64748b; margin-bottom: 10px;">The MUAP represents the collective electrical activity of muscle fibers controlled by one nerve.</p>
                             <ul class="nm-list">
-                                <li><strong>Short duration</strong> (↓)</li>
-                                <li><strong>Small amplitude</strong> (↓)</li>
-                                <li><strong>Polyphasic</strong> (>5 phases)</li>
-                                <li><strong>Early recruitment</strong></li>
+                                <li><strong>Short duration:</strong> Indicates fewer functioning muscle fibers per unit</li>
+                                <li><strong>Small amplitude:</strong> Lower total voltage output from the unit</li>
+                                <li><strong>Polyphasic:</strong> (>5 baseline crossings) due to asynchronous fiber firing</li>
                             </ul>
                         </div>
                         <div class="nm-highlight-box">
                             <h5 style="color: hsl(var(--green));">Recruitment Pattern</h5>
                             <ul class="nm-list">
-                                <li><strong>Early/rapid recruitment</strong></li>
-                                <li><strong>Full interference pattern</strong></li>
-                                <li><strong>Low amplitude</strong></li>
-                                <li><strong>Normal firing frequency</strong></li>
+                                <li><strong>Early/Rapid recruitment:</strong> CNS activates "too many" units for small tasks to compensate for unit weakness</li>
+                                <li><strong>Full interference pattern:</strong> Screen fills with activity even with minimal effort</li>
+                                <li><strong>Low amplitude:</strong> The busy screen remains "short" in height</li>
                             </ul>
                         </div>
                     </div>
@@ -78,16 +82,20 @@ const generateContent = function (module) {
                 <!-- NCS Findings -->
                 <div class="nm-card nm-border-left-primary" style="border-left-color: hsl(var(--green));">
                     <div class="nm-card-header">
-                        <h4 style="color: hsl(var(--green-dark));">⚡ NCS Findings</h4>
+                        <h4 style="color: hsl(var(--green-dark)); display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3-4 5h8l-4 5M8 11l-4 5h8l-4 5"/></svg>
+                            Nerve Conduction Study (NCS)
+                        </h4>
                     </div>
                     <div class="nm-card-body" style="display: flex; align-items: center; justify-content: center; height: 100%;">
                         <div class="nm-status-box success">
-                            <p class="nm-status-main">
-                                ✅ <strong>Usually Normal</strong>
-                            </p>
+                            <div class="nm-status-main" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Usually Normal</strong>
+                            </div>
                             <p class="nm-status-sub">
-                                Nerves are intact in pure myopathy.<br>
-                                <span style="font-size: 0.85em; opacity: 0.8;">(Severe cases may show reduced CMAP amp)</span>
+                                Because the pathology is in the muscle, the nerves themselves typically conduct signals at normal speeds and amplitudes.
+                                <br><span style="font-size: 0.85em; opacity: 0.8;">(Exceptionally severe cases may show low CMAP amplitudes)</span>
                             </p>
                         </div>
                     </div>
@@ -97,39 +105,45 @@ const generateContent = function (module) {
             <!-- Specific Patterns -->
             <div class="nm-card">
                 <div class="nm-card-header">
-                    <h4>🎯 Specific Myopathy Patterns</h4>
+                    <h4 style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        Specific Myopathy Sub-types
+                    </h4>
                 </div>
                 <div class="nm-card-body">
                     <div class="nm-info-row warning">
-                        <strong>Inflammatory Myopathy:</strong> Spontaneous activity (fibs, PSWs, CRDs)
+                        <strong>Inflammatory Myopathy:</strong> Often shows "irritable" spontaneous activity (Fibrillations, Positive Sharp Waves).
                     </div>
                     <div class="nm-info-row danger">
-                        <strong>Inclusion Body Myositis:</strong> Mixed pattern (myopathic + neurogenic features)
+                        <strong>Inclusion Body Myositis (IBM):</strong> A unique "mixed" pattern showing both myopathic and chronic neurogenic features.
                     </div>
                     <div class="nm-info-row info">
-                        <strong>Steroid Myopathy:</strong> Type II fiber atrophy (may have minimal EMG changes)
+                        <strong>Steroid Myopathy:</strong> Affects specific fiber types; may result in a surprisingly normal-looking EMG despite clinical weakness.
                     </div>
                 </div>
             </div>
 
              <!-- Clinical Correlation -->
             <div class="nm-gradient-card purple">
-                <h4 class="nm-gradient-title">🩺 Clinical Correlation</h4>
+                <h4 class="nm-gradient-title" style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h1a.3.3 0 1 0 .2-.3"/><path d="M13 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="3 9 2 9 7 14"/><path d="M10.2 3.2C12 3.2 13.4 4.5 13.5 6.2a4.6 4.6 0 0 1 2.1-.8c2 .2 3.4 2 3.4 4 0 .2 0 .5-.1.7.9.5 1.5 1.5 1.5 2.6a2.8 2.8 0 0 1-2.8 2.8H13"/><path d="M12 9.8V15"/></svg>
+                    Clinical Summary
+                </h4>
                 <div class="nm-grid-2">
                     <div>
                         <h5>Typical Presentation:</h5>
                         <ul class="nm-white-list">
-                            <li>Proximal weakness</li>
-                            <li>Preserved reflexes (early)</li>
-                            <li>No sensory loss</li>
+                            <li>Proximal muscle weakness</li>
+                            <li>Preserved reflexes (until late stages)</li>
+                            <li>Absence of sensory loss</li>
                         </ul>
                     </div>
                     <div>
                         <h5>EMG Strategy:</h5>
                         <ul class="nm-white-list">
-                            <li>Sample proximal muscles</li>
-                            <li>Look for spontaneous activity</li>
-                            <li>Assess MUAP morphology</li>
+                            <li>Focus on proximal muscles (e.g., Deltoid, Iliopsoas)</li>
+                            <li>Listen for "irritable" spontaneous sounds</li>
+                            <li>Measure MUAP duration and phases carefully</li>
                         </ul>
                     </div>
                 </div>
@@ -142,38 +156,42 @@ const generateContent = function (module) {
              <!-- Pathophysiology Card -->
             <div class="nm-card nm-border-left-secondary">
                 <div class="nm-card-header">
-                    <h4 style="color: hsl(var(--secondary-dark));">⚡ What is Neuropathy?</h4>
+                    <h4 style="color: hsl(var(--secondary-dark)); display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        What is Neuropathy?
+                    </h4>
                 </div>
                 <div class="nm-card-body">
                     <p class="nm-text">
-                        <strong>Neuropathy</strong> refers to disorders affecting peripheral nerves (motor, sensory, autonomic).
-                        Pathology involves <strong>axonal damage</strong> (fiber loss) or <strong>demyelination</strong> (myelin loss).
+                        <strong>Neuropathy</strong> refers to disorders affecting the peripheral nerves (motor, sensory, or autonomic).
+                        The damage typically falls into two categories: <strong>Axonal damage</strong> (physical loss of nerve fibers) or 
+                        <strong>Demyelination</strong> (loss of the protective myelin sheath).
                     </p>
 
                     <div class="nm-grid-2">
                         <div class="nm-sub-card">
                              <h5 style="color: hsl(var(--secondary-dark));">Common Causes</h5>
                             <ul class="nm-list">
-                                <li><strong>Metabolic:</strong> Diabetes</li>
-                                <li><strong>Autoimmune:</strong> CIDP, GBS</li>
-                                <li><strong>Toxic:</strong> Chemo, Alcohol</li>
-                                <li><strong>Compression:</strong> CTS, Une</li>
+                                <li><strong>Metabolic:</strong> Diabetes Mellitus (most common distal neuropathy)</li>
+                                <li><strong>Autoimmune:</strong> Chronic Inflammatory Demyelinating Polyneuropathy (CIDP), Guillain-Barré Syndrome (GBS)</li>
+                                <li><strong>Toxic/Drug:</strong> Chemotherapy agents, excessive Alcohol intake</li>
+                                <li><strong>Compression:</strong> Carpal Tunnel Syndrome (Wrist), Ulnar Neuropathy (Elbow)</li>
                             </ul>
                         </div>
                         <div class="nm-sub-card">
                              <h5 style="color: hsl(var(--secondary-dark));">Typical Symptoms</h5>
                             <ul class="nm-list">
-                                <li><strong>Distal weakness</strong> (hands/feet)</li>
-                                <li><strong>Sensory loss</strong> (stocking-glove)</li>
-                                <li><strong>Reduced reflexes</strong></li>
-                                <li><strong>Length-dependent</strong></li>
+                                <li><strong>Distal weakness:</strong> Weakness begins in the hands and feet</li>
+                                <li><strong>Sensory loss:</strong> "Stocking-glove" distribution of numbness</li>
+                                <li><strong>Reduced reflexes:</strong> Diminished deep tendon reflexes</li>
+                                <li><strong>Length-dependent:</strong> The longest nerves (to the feet) are usually affected first</li>
                             </ul>
                         </div>
                     </div>
                      <div class="nm-highlight-box margin-top" style="background: hsl(var(--secondary-light)); border-left: 3px solid hsl(var(--secondary));">
                         <div class="nm-grid-2">
-                            <div><strong style="color: hsl(var(--secondary-dark));">Axonal:</strong> Nerve fiber damage → ↓ Amplitude</div>
-                            <div><strong style="color: hsl(var(--secondary-dark));">Demyelinating:</strong> Myelin damage → ↓ Velocity</div>
+                            <div><strong style="color: hsl(var(--secondary-dark));">Axonal:</strong> Nerve "wire" breaks → <strong>Decreased Amplitude</strong></div>
+                            <div><strong style="color: hsl(var(--secondary-dark));">Demyelinating:</strong> "Insulation" lost → <strong>Decreased Speed</strong></div>
                         </div>
                     </div>
                 </div>
@@ -184,23 +202,26 @@ const generateContent = function (module) {
                 <!-- NCS Findings -->
                 <div class="nm-card nm-border-left-secondary">
                     <div class="nm-card-header">
-                        <h4 style="color: hsl(var(--secondary-dark));">📊 Primary NCS Abnormalities</h4>
+                        <h4 style="color: hsl(var(--secondary-dark)); display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            Primary NCS Abnormalities
+                        </h4>
                     </div>
                     <div class="nm-card-body">
                          <div class="nm-highlight-box margin-bottom">
                             <h5 style="color: hsl(var(--red));">Axonal Pattern</h5>
                             <ul class="nm-list">
-                                <li><strong>↓ Amplitude</strong> (CMAP/SNAP)</li>
-                                <li><strong>Normal velocity</strong></li>
-                                <li><strong>Normal latency</strong></li>
+                                <li><strong>Decreased Amplitude</strong> (CMAP and SNAP)</li>
+                                <li><strong>Normal Conduction Velocity</strong> (Nerve still runs fast on few fibers)</li>
+                                <li><strong>Normal Latency</strong> (Signal starts on time)</li>
                             </ul>
                         </div>
                         <div class="nm-highlight-box">
                             <h5 style="color: hsl(var(--green-dark));">Demyelinating Pattern</h5>
                             <ul class="nm-list">
-                                <li><strong>↓ Velocity</strong> (CV)</li>
-                                <li><strong>↑ Latency</strong></li>
-                                <li><strong>Conduction block</strong></li>
+                                <li><strong>Decreased Velocity</strong> (Signals take longer to travel)</li>
+                                <li><strong>Increased Latency</strong> (Delayed onset of signal)</li>
+                                <li><strong>Conduction Block:</strong> Signal drops out across a specific point</li>
                             </ul>
                         </div>
                     </div>
@@ -209,17 +230,20 @@ const generateContent = function (module) {
                 <!-- EMG Findings -->
                 <div class="nm-card nm-border-left-secondary" style="border-left-color: hsl(var(--green));">
                     <div class="nm-card-header">
-                        <h4 style="color: hsl(var(--green-dark));">📈 EMG Changes (Chronic)</h4>
+                        <h4 style="color: hsl(var(--green-dark)); display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            EMG Findings (Chronic / Reinnervation)
+                        </h4>
                     </div>
                     <div class="nm-card-body">
                         <div class="nm-highlight-box success-light">
                              <h5 style="color: hsl(var(--green-dark));">Neurogenic Pattern</h5>
                              <ul class="nm-list">
-                                <li><strong>Large amplitude</strong> MUAPs</li>
-                                <li><strong>Long duration</strong> MUAPs</li>
-                                <li><strong>Reduced recruitment</strong></li>
-                                <li><strong>High firing frequency</strong></li>
-                                <li><strong>Fibs/PSWs</strong> (denervation)</li>
+                                <li><strong>Large amplitude MUAPs:</strong> Remaining nerves adopt homeless muscle fibers</li>
+                                <li><strong>Long duration MUAPs:</strong> Larger units take longer to fire</li>
+                                <li><strong>Reduced recruitment:</strong> Fewer motor units are available to fire</li>
+                                <li><strong>High firing frequency:</strong> Units fire faster to compensate for lack of peers</li>
+                                <li><strong>Spontaneous Activity:</strong> Fibrillations and Positive Sharp Waves (active injury)</li>
                             </ul>
                         </div>
                     </div>
@@ -229,39 +253,45 @@ const generateContent = function (module) {
             <!-- Specific Patterns -->
             <div class="nm-card">
                 <div class="nm-card-header">
-                    <h4>🎯 Common Neuropathy Patterns</h4>
+                    <h4 style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        Common Neuropathy Patterns
+                    </h4>
                 </div>
                 <div class="nm-card-body">
                     <div class="nm-info-row warning">
-                        <strong>Diabetic Polyneuropathy:</strong> Distal, symmetric, length-dependent, axonal.
+                        <strong>Diabetic Polyneuropathy:</strong> Typically a distal, symmetric, length-dependent axonal process.
                     </div>
                     <div class="nm-info-row danger">
-                        <strong>Carpal Tunnel Syndrome:</strong> Focal demyelinating (median nerve at wrist).
+                        <strong>Carpal Tunnel Syndrome:</strong> Focal demyelination (slowing) of the median nerve at the wrist.
                     </div>
                     <div class="nm-info-row info">
-                         <strong>CIDP:</strong> Acquired demyelinating, multifocal conduction blocks.
+                         <strong>CIDP:</strong> An acquired demyelinating process characterized by multi-focal conduction blocks.
                     </div>
                 </div>
             </div>
 
              <!-- Clinical Correlation -->
             <div class="nm-gradient-card orange">
-                <h4 class="nm-gradient-title">🩺 Clinical Correlation</h4>
+                <h4 class="nm-gradient-title" style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h1a.3.3 0 1 0 .2-.3"/><path d="M13 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="3 9 2 9 7 14"/><path d="M10.2 3.2C12 3.2 13.4 4.5 13.5 6.2a4.6 4.6 0 0 1 2.1-.8c2 .2 3.4 2 3.4 4 0 .2 0 .5-.1.7.9.5 1.5 1.5 1.5 2.6a2.8 2.8 0 0 1-2.8 2.8H13"/><path d="M12 9.8V15"/></svg>
+                    Clinical Summary
+                </h4>
                 <div class="nm-grid-2">
                     <div>
                         <h5>Typical Presentation:</h5>
                         <ul class="nm-white-list">
-                            <li>Distal weakness (usually)</li>
-                            <li>Sensory symptoms</li>
-                            <li>Reduced/absent reflexes</li>
+                            <li>Distal weakness (Heels/Toes/Hands)</li>
+                            <li>Sensory changes (Numbness/Tingling)</li>
+                            <li>Reduced or absent deep tendon reflexes</li>
                         </ul>
                     </div>
                     <div>
                         <h5>NCS Strategy:</h5>
                         <ul class="nm-white-list">
-                            <li>Multiple nerves</li>
-                            <li>Distal and proximal sites</li>
-                            <li>F-waves and H-reflexes</li>
+                            <li>Test multiple nerves in upper and lower limbs</li>
+                            <li>Compare distal vs. proximal stimulation sites</li>
+                            <li>Evaluate late responses (F-waves and H-reflexes)</li>
                         </ul>
                     </div>
                 </div>
@@ -273,7 +303,10 @@ const generateContent = function (module) {
         <div class="nm-content-fade-in">
              <div class="nm-card">
                  <div class="nm-card-header centered">
-                    <h3 style="color: hsl(var(--accent));">📊 Side-by-Side Comparison</h3>
+                    <h3 style="color: hsl(var(--accent)); display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        Side-by-Side Comparison
+                    </h3>
                     <p style="color: #64748b; font-size: 0.9em; margin-top: 5px;">Key electrodiagnostic differences between neurogenic and myopathic disorders</p>
                 </div>
                 <div class="nm-table-container">
@@ -281,8 +314,8 @@ const generateContent = function (module) {
                         <thead>
                             <tr>
                                 <th>Feature</th>
-                                <th class="col-myo">🔬 Myopathy</th>
-                                <th class="col-neuro">⚡ Neuropathy</th>
+                                <th class="col-myo">Myopathy</th>
+                                <th class="col-neuro">Neuropathy</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -291,25 +324,25 @@ const generateContent = function (module) {
                                 <td colspan="3" style="padding: 10px 15px; font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0;">Nerve Conduction Studies (NCS)</td>
                             </tr>
                             <tr>
-                                <td class="fw-bold">CMAP Amplitude</td>
+                                <td class="fw-bold">Motor CMAP Amplitude</td>
                                 <td class="success-text">
-                                    <span style="display: block;">✅ Usually Normal</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Reduced only in severe cases</span>
+                                    <span style="display: block;">Usually Normal</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Reduced only in severe/late cases</span>
                                 </td>
                                 <td class="danger-text">
-                                    <span style="display: block;">⬇️ Reduced (Axonal)</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Normal in demyelinating</span>
+                                    <span style="display: block;">Decreased (Axonal)</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Normal in pure demyelinating</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-bold">Sensory NCS (SNAP)</td>
+                                <td class="fw-bold">Sensory SNAP Amplitude</td>
                                 <td class="success-text">
-                                    <span style="display: block;">✅ Always Normal</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Primary muscle pathology</span>
+                                    <span style="display: block;">Always Normal</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Muscle diseases don't affect sensory nerves</span>
                                 </td>
                                 <td class="danger-text">
-                                    <span style="display: block;">❌ Often Abnormal</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">If lesion is post-ganglionic</span>
+                                    <span style="display: block;">Often Abnormal</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">If the lesion is post-ganglionic (most neuropathies)</span>
                                 </td>
                             </tr>
 
@@ -321,72 +354,50 @@ const generateContent = function (module) {
                                 <td class="fw-bold">Spontaneous Activity</td>
                                 <td style="color: #ea580c; font-weight: 600;">
                                     <span style="display: block;">Variable</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Seen in inflammatory types</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Seen in inflammatory or necrotizing types</span>
                                 </td>
                                 <td class="danger-text">
                                     <span style="display: block;">Common (Fibs/PSWs)</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Denervation pattern after 3+ weeks</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Denervation pattern after 3+ weeks of axonal injury</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">MUAP Duration</td>
                                 <td class="primary-text">
-                                    <span style="display: block;">⬇️ Short Duration</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Loss of muscle fibers</span>
+                                    <span style="display: block;">Short Duration</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Due to loss of muscle fibers in the unit</span>
                                 </td>
                                 <td class="danger-text">
-                                    <span style="display: block;">⬆️ Long Duration</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Chronic reinnervation</span>
+                                    <span style="display: block;">Long Duration</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">From chronic reinnervation (wire-switching)</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">MUAP Amplitude</td>
                                 <td class="primary-text">
-                                    <span style="display: block;">⬇️ Low (Small)</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Reduced fiber density</span>
+                                    <span style="display: block;">Low (Small)</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Reduced total fiber density</span>
                                 </td>
                                 <td class="danger-text">
-                                    <span style="display: block;">⬆️ High (Giant)</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Increased fiber/MU ratio</span>
+                                    <span style="display: block;">High (Giant)</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Units expand via reinnervation</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-bold">Polyphasia</td>
-                                <td class="primary-text">
-                                    <span style="display: block;">⬆️ Increased</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Loss of fiber synchrony</span>
-                                </td>
-                                <td class="danger-text">
-                                    <span style="display: block;">⬆️ Increased</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Imperfect reinnervation</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Recruitment</td>
+                                <td class="fw-bold">Recruitment Pattern</td>
                                 <td class="success-text">
-                                    <span style="display: block;">⚡ Early / Rapid</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Full pattern at low effort</span>
+                                    <span style="display: block;">Early / Rapid</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Screen fills with activity at low effort</span>
                                 </td>
                                 <td class="danger-text">
-                                    <span style="display: block;">🔽 Reduced (Discrete)</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Too few units available</span>
+                                    <span style="display: block;">Reduced (Fast Firing)</span>
+                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Too few units available to fill the screen</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-bold">Firing Frequency</td>
-                                <td class="text-muted">
-                                    <span style="display: block;">➡️ Usually Normal</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Stable firing rate</span>
-                                </td>
-                                <td class="danger-text">
-                                    <span style="display: block;">⬆️ Increased (Fast)</span>
-                                    <span style="font-size: 0.8em; font-weight: 400; opacity: 0.8;">Units fire faster to compensate</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Localization</td>
-                                <td class="primary-text">🏠 Proximal</td>
-                                <td class="danger-text">👣 Distal (Usually)</td>
+                                <td class="fw-bold">Clinical Localization</td>
+                                <td class="primary-text">Proximal (Shoulders/Hips)</td>
+                                <td class="danger-text">Distal (Hands/Feet)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -396,13 +407,40 @@ const generateContent = function (module) {
             <!-- Summary Pro-Tip -->
             <div class="nm-gradient-card orange-light text-dark margin-top" style="border-left: 5px solid hsl(var(--secondary));">
                 <div style="display: flex; align-items: flex-start; gap: 15px;">
-                    <span style="font-size: 24px;">💡</span>
+                    <div style="background: white; padding: 10px; border-radius: 50%; box-shadow: var(--shadow-sm);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: hsl(var(--secondary-dark));"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/></svg>
+                    </div>
                     <div>
                         <h4 style="color: hsl(var(--secondary-dark)); margin: 0 0 5px 0;">Electrophysiological Rule of Thumb</h4>
                         <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">
-                            In <strong>Neuropathy</strong>, think "Too Few units firing Too Fast".<br>
-                            In <strong>Myopathic</strong> disorders, think "Too Many units for Too Little force".
+                            In <strong>Neuropathy</strong>, it's a "Labor Shortage": <strong>Too Few</strong> units firing <strong>Too Fast</strong> to compensate.
+                            <br>In <strong>Myopathic</strong> disorders, it's a "Weak Workforce": <strong>Too Many</strong> units working for <strong>Too Little</strong> actual force production.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const getMasteryTermsContent = () => `
+        <div class="nm-card margin-top" style="border-top: 4px solid hsl(var(--primary));">
+            <div class="nm-card-header">
+                <h4 style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5"/><path d="M4 19.5L6.5 17"/><path d="M6.5 2v15"/></svg>
+                    Glossary: Mastery Terms
+                </h4>
+            </div>
+            <div class="nm-card-body">
+                <div class="nm-grid-2">
+                    <div>
+                        <p><strong>MUAP (Motor Unit Action Potential):</strong> The summated electrical activity of all muscle fibers belonging to a single motor unit.</p>
+                        <p><strong>Recruitment:</strong> The process by which the nervous system increases the number of active motor units to increase muscle force.</p>
+                        <p><strong>Polyphasia:</strong> A MUAP with more than 4 phases (crossings of the baseline). Suggests asynchronous firing of muscle fibers.</p>
+                    </div>
+                    <div>
+                        <p><strong>Fibrillations / PSWs:</strong> Spontaneous electrical activity of a single muscle fiber that has lost its nerve supply (denervation).</p>
+                        <p><strong>Interference Pattern:</strong> The chaotic density of electrical activity seen on the screen during maximal voluntary contraction.</p>
+                        <p><strong>Conduction Block:</strong> A failure of the nerve impulse to propagate past a point, despite the axon behind it being healthy.</p>
                     </div>
                 </div>
             </div>
@@ -659,20 +697,26 @@ const generateContent = function (module) {
             ${generateErnestButton('neuropathy-myopathy-basics', 'Neuropathy vs Myopathy')}
 
             <div class="nm-gradient-header">
-                <h2 style="margin: 0; font-size: 2.2em; font-weight: 800; letter-spacing: -0.025em;">🧠 Neuropathy vs Myopathy</h2>
+                <h2 style="margin: 0; font-size: 2.2em; font-weight: 800; letter-spacing: -0.025em; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/><path d="M12 6a4 4 0 0 0-4 4h2a2 2 0 1 1 4 0h2a4 4 0 0 0-4-4z"/><path d="M12 14v2h.01"/></svg>
+                    Neuropathy vs Myopathy
+                </h2>
                 <p style="margin: 10px 0 0 0; opacity: 0.8; font-size: 1.1em; font-weight: 500;">Differential Localization Masterclass</p>
             </div>
 
             <!-- Tab Navigation -->
             <div class="nm-tabs-container">
                 <button id="myopathy-tab" onclick="window.showTab('myopathy')" class="nm-tab active">
-                    <span style="font-size: 1.2em;">🔬</span> Myopathy
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 0-4 0v6"/><path d="M11 10.5V11"/></svg>
+                    Myopathy
                 </button>
                 <button id="neuropathy-tab" onclick="window.showTab('neuropathy')" class="nm-tab">
-                    <span style="font-size: 1.2em;">⚡</span> Neuropathy
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    Neuropathy
                 </button>
                 <button id="comparison-tab" onclick="window.showTab('comparison')" class="nm-tab">
-                    <span style="font-size: 1.2em;">📊</span> Deep Comparison
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    Comparison
                 </button>
             </div>
 
@@ -796,6 +840,9 @@ const generateContent = function (module) {
         }
     ])}
             </div>
+
+            <!-- Mastery Glossary -->
+            ${getMasteryTermsContent()}
         </div>
     `;
 }

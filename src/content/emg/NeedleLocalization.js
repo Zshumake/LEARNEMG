@@ -158,19 +158,19 @@ const EMGLocalizationDatabase = {
 
 function getMuscleImagePath(muscleKey) {
     const imageMap = {
-        'APB': 'images/muscles/Abductor Pollicus Brevis.png',
-        'Bicep': 'images/muscles/Biceps.png',
-        'EIP': 'images/muscles/Extensor Indicus.png',
-        'FDI': 'images/muscles/First Dorsal Interosseous.png',
-        'Middle Deltoid': 'images/muscles/Deltoid.png',
-        'PT': 'images/muscles/Pronator teres.png',
-        'Tricep': 'images/muscles/Triceps.png',
-        'Extensor Hallucis': 'images/muscles/Extensor Hallucis longus.png',
-        'Medial Gastroc': 'images/muscles/Medial Gastroc.png',
-        'Peroneus Longus': 'images/muscles/Fibularis longus.png',
-        'Tibialis Ant': 'images/muscles/Tibialis Anterior.png',
-        'Tibialis Post': 'images/muscles/Tibialis Posterior.png',
-        'Vastus Lateralis': 'images/muscles/Vastus Lateralis.png'
+        'APB': 'images/Abductor Pollicus Brevis.png',
+        'Bicep': 'images/Biceps.png',
+        'EIP': 'images/Extensor Indicus.png',
+        'FDI': 'images/First Dorsal Interosseous.png',
+        'Middle Deltoid': 'images/Deltoid.png',
+        'PT': 'images/Pronator teres.png',
+        'Tricep': 'images/Triceps.png',
+        'Extensor Hallucis': 'images/Extensor Hallucis longus.png',
+        'Medial Gastroc': 'images/Medial Gastroc.png',
+        'Peroneus Longus': 'images/Fibularis longus.png',
+        'Tibialis Ant': 'images/Tibialis Anterior.png',
+        'Tibialis Post': 'images/Tibialis Posterior.png',
+        'Vastus Lateralis': 'images/Vastus Lateralis.png'
     };
     return imageMap[muscleKey] || null;
 }

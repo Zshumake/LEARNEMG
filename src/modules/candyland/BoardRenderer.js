@@ -1,4 +1,5 @@
 import { podcastEpisodes } from '../audio/AudioData.js';
+import { ErnestIcon } from '../../utils/ErnestIcon.js';
 
 export class BoardRenderer {
     constructor(core) {
@@ -25,7 +26,14 @@ export class BoardRenderer {
 
 
 
-            <div class="atrium-pathway-container" style="position: relative; padding: 40px 60px; background: linear-gradient(to bottom, #f8fafc, #f1f5f9); min-height: 100vh;">
+            <div class="atrium-pathway-container" style="
+                    position: relative; 
+                    padding: 40px 5%; 
+                    background: linear-gradient(to bottom, #f8fafc, #f1f5f9); 
+                    min-height: 100vh; 
+                    width: 100%; 
+                    box-sizing: border-box; 
+                    overflow-x: hidden;">
                 <!-- Podcast Header Section (Banner Style) -->
                 <div class="pathway-header" style="
                     position: relative;
@@ -143,7 +151,6 @@ export class BoardRenderer {
                 See Learning Objectives
             </button>
 
-            <!-- Collapsible Podcasts Button -->
             <button class="collapsible-podcasts-btn" onclick="togglePodcastsCollapsible()" style="
                 background: linear-gradient(135deg, #f59e0b, #ea580c);
                 color: white;
@@ -159,8 +166,9 @@ export class BoardRenderer {
                 box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
                 font-size: 1.1em;
                 font-weight: 600;
+                width: 100%;
                 max-width: 450px;">
-                <img src="images/ui/ERNEST.png" alt="Ernest" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid white; object-fit: cover;">
+                ${ErnestIcon.getHTML({ size: '50px' })}
                 <span style="flex: 1;">Come Listen to My Podcasts!</span>
                 <span id="podcast-toggle-icon" style="transition: transform 0.3s ease; font-size: 1.2em;">▼</span>
             </button>
@@ -169,12 +177,15 @@ export class BoardRenderer {
 
             <div id="podcasts-collapsible-container" class="podcasts-collapsible" style="
                 display: none;
+                width: 100%;
                 max-width: 1200px;
                 margin: 0 auto 40px;
                 background: white;
                 border-radius: 12px;
                 padding: 25px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); text-align: left;">
+                box-sizing: border-box;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); text-align: left;
+                overflow: hidden;">
 
                 <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 1.3em; text-align: center;">🎙️ All Podcast Episodes (14 Total)</h3>
 
@@ -183,8 +194,8 @@ export class BoardRenderer {
                     <h4 style="color: #3b82f6; margin: 0 0 12px 0; font-size: 1em; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">📚 Module Podcasts</h4>
 
 
-                    <!-- 3-Column Grid -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                    <!-- Responsive Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
 
 
                         <!-- Essential Terminology -->
@@ -193,7 +204,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Essential Terminology</div>
                                 <div style="font-size: 0.7em; color: #64748b;">14:46</div>
@@ -209,7 +220,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Peripheral Anatomy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">39:07</div>
@@ -225,7 +236,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Plexopathies</div>
                                 <div style="font-size: 0.7em; color: #64748b;">13:28</div>
@@ -241,7 +252,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Radiculopathy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">15:48</div>
@@ -257,7 +268,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Polyneuropathies</div>
                                 <div style="font-size: 0.7em; color: #64748b;">16:41</div>
@@ -273,7 +284,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mononeuropathy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">33:22</div>
@@ -289,7 +300,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pattern Recognition</div>
                                 <div style="font-size: 0.7em; color: #64748b;">14:59</div>
@@ -305,7 +316,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${ErnestIcon.getHTML({ size: '28px' })}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Neuropathy vs Myopathy</div>
                                 <div style="font-size: 0.7em; color: #64748b;">17:09</div>
@@ -321,7 +332,7 @@ export class BoardRenderer {
                             cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                             onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'"
                             onmouseout="this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'">
-                            <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                            ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '28px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/Ernest-mini-placeholder.png" style="width: 28px; height: 28px;">'}
                             <div style="flex: 1; min-width: 0;">
                                 <div style="font-size: 0.8em; font-weight: 600; color: #1e40af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Report Writing</div>
                                 <div style="font-size: 0.7em; color: #64748b;">11:56</div>
@@ -412,7 +423,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                ${ErnestIcon.getHTML({ size: '40px' })}
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">ALS and Mimics</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
@@ -429,7 +440,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                ${ErnestIcon.getHTML({ size: '40px' })}
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">Blink Reflex</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
@@ -446,7 +457,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">MG vs. Lambert-Eaton</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 29 min</p>
@@ -515,7 +526,7 @@ export class BoardRenderer {
                 cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                 onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"
                 onmouseout="this.style.background='#faf5ff'; this.style.borderColor='#e9d5ff'">
-                <img src="images/ui/ERNEST.png" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; object-fit: cover;" alt="Ernest">
+                ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '28px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/Ernest-mini-placeholder.png" style="width: 28px; height: 28px;">'}
                 <div style="flex: 1; min-width: 0;">
                     <div style="font-size: 0.8em; font-weight: 600; color: #7e22ce; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${topic.title}</div>
                     <div style="font-size: 0.7em; color: #64748b;">${topic.time}</div>
@@ -534,7 +545,7 @@ export class BoardRenderer {
         const html = `
             <div id="ernest-dialogue" class="ernest-dialogue-box">
                 <div class="ernest-dialogue-content">
-                    <img src="images/ui/ERNEST.png" alt="ERNEST" class="ernest-avatar">
+                    ${ErnestIcon.getHTML({ size: '60px' })}
                     <div class="ernest-text">
                         <p class="ernest-name">ERNEST - Your EMG Guide</p>
                         <p id="ernest-message" class="ernest-message">Hover over any module to learn more about it!</p>

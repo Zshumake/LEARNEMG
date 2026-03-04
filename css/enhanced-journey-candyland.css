@@ -43,7 +43,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(8px);
@@ -245,7 +245,7 @@
     /* Full-screen modals on phones */
     @media (max-width: 480px) {
         .learning-modal {
-            width: 100vw !important;
+            width: 100% !important;
             height: 100vh !important;
             max-height: 100vh !important;
             margin: 0 !important;
@@ -481,10 +481,7 @@ body {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
-    padding-top: var(--sat);
-    padding-bottom: var(--sab);
-    padding-left: var(--sal);
-    padding-right: var(--sar);
+    /* Safe-area insets removed — caused asymmetrical body padding in Safari */
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -2412,8 +2409,8 @@ body {
 
     /* Maximize Content Width */
     .learning-modal {
-        width: 100vw !important;
-        max-width: 100vw !important;
+        width: 100% !important;
+        max-width: 100% !important;
         margin: 0 !important;
         border-radius: 0 !important;
         height: 100vh !important;

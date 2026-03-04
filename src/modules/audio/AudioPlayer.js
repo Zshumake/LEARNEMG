@@ -144,7 +144,10 @@ export class AudioPlayer {
                 artist: 'Ernest\'s Podcast',
                 album: 'EMG/NCS Learning Series',
                 artwork: [
-                    { src: 'images/ui/ERNEST.png', sizes: '512x512', type: 'image/png' }
+                    {
+                        src: "images/ui/ERNEST.png", // Legacy fallback
+                        sizes: '512x512', type: 'image/png'
+                    }
                 ]
             });
 

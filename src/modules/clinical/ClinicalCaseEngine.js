@@ -10,10 +10,17 @@ export class ClinicalCases {
         this.currentStep = 1;
         this.userDifferential = '';
         this.userEMGDecision = null;
+        this.currentFilter = 'all';
 
         // Bind methods
         this.analyzeDifferential = this.analyzeDifferential.bind(this);
         this.makeEMGDecision = this.makeEMGDecision.bind(this);
+        this.setFilter = this.setFilter.bind(this);
+    }
+
+    setFilter(difficulty) {
+        this.currentFilter = difficulty;
+        this.showClinicalCases();
     }
 
     // --- Interaction Methods ---
@@ -60,9 +67,9 @@ export class ClinicalCases {
     }
 
     // --- Main Entry ---
-    showClinicalCases() {
-        console.log(`🏥 ClinicalCases triggered`);
-        const content = ClinicalRenderer.renderDashboard('all', caseDatabase);
+    showClinicalCases(pgyLevel = 'all') {
+        console.log(`🏥 ClinicalCases triggered with filter: ${this.currentFilter}`);
+        const content = ClinicalRenderer.renderDashboard(pgyLevel, caseDatabase, this.currentFilter);
 
         // 1. Candyland Core Integration Check: If we are already inside a Candyland modal, inject directly into it.
         const activeCandylandModal = document.querySelector('.learning-modal-overlay.active .learning-modal');

@@ -1,5 +1,5 @@
 import { ErnestAPI } from './ErnestAPI.js';
-import { ErnestUI } from './ErnestUI.js';
+import { ErnestUI } from './ErnestUI.js?v=svgErnest1';
 import { ErnestChat } from './ErnestChat.js';
 
 export class ErnestCore {

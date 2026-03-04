@@ -1,10 +1,11 @@
+import { ErnestIcon } from './ErnestIcon.js';
 
 export function generateErnestButton(moduleId, title) {
     return `
         <div class="ernest-module-header">
             <div class="ernest-btn-content">
                 <div class="ernest-avatar">
-                   <img src="images/ui/ERNEST.png" alt="Ernest" />
+                   ${ErnestIcon.getHTML({ size: '45px' })}
                 </div>
                 <div class="module-info">
                     <span class="module-id">Module: ${moduleId}</span>

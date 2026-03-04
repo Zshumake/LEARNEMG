@@ -14,6 +14,8 @@ html {
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -22,8 +24,8 @@ body {
     color: #1f2937;
     background: transparent;
     min-height: 100vh;
-    width: 100%;
     position: relative;
+    width: 100%;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -472,6 +474,8 @@ body::before {
     padding: 60px;
     max-width: 1000px;
     width: 100%;
+    margin: 0 auto;
+    /* Explicit centering safety */
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
     text-align: center;
     position: relative;
@@ -508,7 +512,7 @@ body::before {
 }
 
 /* ERNEST Silhouette Container */
-.ernest-container {
+.at-ernest-container {
     position: relative;
     flex-shrink: 0;
     text-align: center;

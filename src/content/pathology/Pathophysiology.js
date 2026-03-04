@@ -1,7 +1,7 @@
 
 export const Pathophysiology = {
     generateContent(module) {
-        console.log('🧠 Pathophysiology (Module 5) generated');
+        console.log('<svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path><path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path><path d="M19.938 10.5a4 4 0 0 1 .585.396"></path><path d="M6 18a4 4 0 0 1-1.967-.516"></path><path d="M19.967 17.484A4 4 0 0 1 18 18"></path></svg> Pathophysiology (Module 5) generated');
         // Initialize support functions if they exist (delayed to ensure DOM is ready)
         if (window.initializePathophysiology) {
             setTimeout(window.initializePathophysiology, 100);
@@ -31,9 +31,7 @@ export const Pathophysiology = {
             <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
 
             <div style="position: relative;">
-                <img src="images/ui/ERNEST.png"
-                     style="width: 72px; height: 72px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: cover;"
-                     alt="Ernest">
+                ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '72px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 72px; height: 72px;">'}
                 <div style="position: absolute; bottom: 2px; right: 2px; background: #10b981; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white;"></div>
             </div>
 
@@ -62,7 +60,7 @@ export const Pathophysiology = {
     
             <!-- Learning Objectives -->
             <div style="background: linear-gradient(135deg, #fff7ed, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
-                <h3 style="color: #c2410c; margin-bottom: 15px;">🎯 Learning Objectives</h3>
+                <h3 style="color: #c2410c; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Learning Objectives</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #9a3412; font-weight: 500;">• Master median and ulnar nerve anatomy and compression points</p>
@@ -77,7 +75,7 @@ export const Pathophysiology = {
 
             <!-- Neuropathy Pathophysiology & Clinical Applications Section -->
             <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); padding: 25px; border-radius: 15px; margin-bottom: 25px; border: 2px solid #8b5cf6;">
-                <h4 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.4em;">🧠 Neuropathy Pathophysiology & Clinical Applications</h4>
+                <h4 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.4em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path><path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path><path d="M19.938 10.5a4 4 0 0 1 .585.396"></path><path d="M6 18a4 4 0 0 1-1.967-.516"></path><path d="M19.967 17.484A4 4 0 0 1 18 18"></path></svg> Neuropathy Pathophysiology & Clinical Applications</h4>
                 <p style="color: #7c3aed; margin-bottom: 25px; font-style: italic;">From fundamental mechanisms to clinical diagnosis of peripheral nerve disorders</p>
 
                 <!-- Pathophysiology Tab Navigation -->
@@ -86,48 +84,48 @@ export const Pathophysiology = {
                         background: #8b5cf6; color: white; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
-                        🔬 Anatomy & Function
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Anatomy & Function
                     </button>
                     <button onclick="showPathophysSection('mechanisms')" id="patho-mechanisms-tab" class="patho-tab" style="
                         background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
-                        ⚡ Injury Mechanisms
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Injury Mechanisms
                     </button>
                     <button onclick="showPathophysSection('injury-classification')" id="patho-injury-classification-tab" class="patho-tab" style="
                         background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
-                        🔀 Injury Classification
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M16 3h5v5"></path><path d="M4 20L21 3"></path><path d="M21 16v5h-5"></path><path d="M15 15l6 6"></path><path d="M4 4l5 5"></path></svg> Injury Classification
                     </button>
                     <button onclick="showPathophysSection('correlations')" id="patho-correlations-tab" class="patho-tab" style="
                         background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
-                        📊 EDX Correlations
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> EDX Correlations
                     </button>
                     <button onclick="showPathophysSection('classification')" id="patho-classification-tab" class="patho-tab" style="
                         background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
-                        🧪 Fiber Classification
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M8.5 2h7"></path><path d="M12 2v20"></path><path d="M6.5 22h11"></path><path d="M8.5 2v10l-4 8v2h15v-2l-4-8V2"></path></svg> Fiber Classification
                     </button>
                     <button onclick="showPathophysSection('atlas')" id="patho-atlas-tab" class="patho-tab" style="
                         background: transparent; color: #8b5cf6; border: none; border-radius: 8px; padding: 12px 16px; cursor: pointer;
                         transition: all 0.3s; font-weight: 600; font-size: 0.9em; flex: 1; min-width: 120px;
                     ">
-                        🗺️ Clinical Atlas
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg> Clinical Atlas
                     </button>
                 </div>
 
                 <!-- Anatomy & Function Section -->
                 <div id="patho-anatomy-content" class="patho-content" style="display: block;">
                     <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb;">
-                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;">🔬 Fundamental Nerve Anatomy & Function</h5>
+                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Fundamental Nerve Anatomy & Function</h5>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                                <h6 style="color: #1e40af; margin-bottom: 15px; font-size: 1.1em;">📍 Peripheral Nervous System Components</h6>
+                                <h6 style="color: #1e40af; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Peripheral Nervous System Components</h6>
                                 <ul style="color: #475569; line-height: 1.6;">
                                     <li><strong>Nerve Roots:</strong> Motor (anterior) and sensory (dorsal) origins</li>
                                     <li><strong>Plexuses:</strong> Brachial (C5-T1) and lumbosacral (L1-S4) intermixing</li>
@@ -138,7 +136,7 @@ export const Pathophysiology = {
                             </div>
 
                             <div style="background: #f0fdf4; padding: 20px; border-radius: 10px; border-left: 4px solid #22c55e;">
-                                <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;">🧬 Schwann Cells & Myelin</h6>
+                                <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M2 15c6.667-6 13.333 0 20-6"></path><path d="M9 22c1.798-1.998 2.518-3.995 2.808-5.993"></path><path d="M15 2c-1.798 1.998-2.518 3.995-2.808 5.993"></path><path d="m17 4-5 5"></path><path d="m7 16-5 5"></path></svg> Schwann Cells & Myelin</h6>
                                 <ul style="color: #475569; line-height: 1.6;">
                                     <li><strong>Myelin Formation:</strong> Concentric spirals of Schwann cell membrane</li>
                                     <li><strong>Internodes:</strong> Myelinated segments (~1mm length)</li>
@@ -150,7 +148,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #fef3c7; padding: 20px; border-radius: 10px; border-left: 4px solid #f59e0b; margin-bottom: 20px;">
-                            <h6 style="color: #d97706; margin-bottom: 15px; font-size: 1.1em;">⚡ Action Potential Propagation</h6>
+                            <h6 style="color: #d97706; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Action Potential Propagation</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #92400e; margin-bottom: 10px;"><strong>Saltatory Conduction (Myelinated):</strong></p>
@@ -174,7 +172,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #ecfdf5; padding: 20px; border-radius: 10px; border: 2px solid #22c55e;">
-                            <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;">🔑 Key Physiological Principles</h6>
+                            <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Key Physiological Principles</h6>
                             <div style="color: #166534; line-height: 1.6;">
                                 <p><strong>Resting Membrane Potential:</strong> -70 to -90mV maintained by Na+/K+ pump</p>
                                 <p><strong>Threshold Activation:</strong> 10-30mV depolarization triggers all-or-none response</p>
@@ -188,11 +186,11 @@ export const Pathophysiology = {
                 <!-- Injury Mechanisms Section -->
                 <div id="patho-mechanisms-content" class="patho-content" style="display: none;">
                     <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb;">
-                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;">⚡ Nerve Injury Mechanisms</h5>
+                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nerve Injury Mechanisms</h5>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div style="background: #fef2f2; padding: 20px; border-radius: 10px; border-left: 4px solid #ef4444;">
-                                <h6 style="color: #dc2626; margin-bottom: 15px; font-size: 1.1em;">🛡️ Demyelinating Neuropathies</h6>
+                                <h6 style="color: #dc2626; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Demyelinating Neuropathies</h6>
                                 <div style="color: #7f1d1d; line-height: 1.6;">
                                     <p><strong>Primary Pathology:</strong> Myelin sheath damage/loss</p>
                                     <p><strong>Mechanisms:</strong></p>
@@ -213,7 +211,7 @@ export const Pathophysiology = {
                             </div>
 
                             <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                                <h6 style="color: #1d4ed8; margin-bottom: 15px; font-size: 1.1em;">🔗 Axonal Neuropathies</h6>
+                                <h6 style="color: #1d4ed8; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> Axonal Neuropathies</h6>
                                 <div style="color: #1e3a8a; line-height: 1.6;">
                                     <p><strong>Primary Pathology:</strong> Axon degeneration</p>
                                     <p><strong>Mechanisms:</strong></p>
@@ -235,7 +233,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #fefce8; padding: 20px; border-radius: 10px; border-left: 4px solid #eab308; margin-bottom: 20px;">
-                            <h6 style="color: #a16207; margin-bottom: 15px; font-size: 1.1em;">🔄 Mixed Neuropathies</h6>
+                            <h6 style="color: #a16207; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg> Mixed Neuropathies</h6>
                             <div style="color: #854d0e; line-height: 1.6;">
                                 <p><strong>Combined Pathology:</strong> Both axonal and demyelinating features</p>
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
@@ -262,7 +260,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #f3e8ff; padding: 20px; border-radius: 10px; border: 2px solid #8b5cf6;">
-                            <h6 style="color: #6b21a8; margin-bottom: 15px; font-size: 1.1em;">🗜️ Compression Neuropathies</h6>
+                            <h6 style="color: #6b21a8; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M12 12v9"></path><path d="m8 17 4 4 4-4"></path></svg> Compression Neuropathies</h6>
                             <div style="color: #581c87; line-height: 1.6;">
                                 <p><strong>Pathophysiology Stages:</strong></p>
                                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px;">
@@ -299,12 +297,12 @@ export const Pathophysiology = {
                 <!-- Injury Classification Section -->
                 <div id="patho-injury-classification-content" class="patho-content" style="display: none;">
                     <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb;">
-                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;">🔀 Nerve Injury Classification Systems</h5>
+                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M16 3h5v5"></path><path d="M4 20L21 3"></path><path d="M21 16v5h-5"></path><path d="M15 15l6 6"></path><path d="M4 4l5 5"></path></svg> Nerve Injury Classification Systems</h5>
 
                         <!-- Nerve Regeneration Info Box -->
                         <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 20px; border-radius: 10px; border-left: 4px solid #10b981; margin-bottom: 25px;">
                             <h6 style="color: #047857; margin-bottom: 12px; font-size: 1.1em; display: flex; align-items: center;">
-                                <span style="font-size: 24px; margin-right: 10px;">⏱️</span>
+                                <span style="font-size: 24px; margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3L2 6"></path><path d="M19 3l3 3"></path><path d="M10 1h4"></path></svg></span>
                                 Key Principle: Nerve Regeneration Rate
                             </h6>
                             <div style="color: #065f46; line-height: 1.6;">
@@ -325,7 +323,7 @@ export const Pathophysiology = {
 
                         <!-- Seddon Classification -->
                         <div style="background: #fef2f2; padding: 20px; border-radius: 10px; border: 2px solid #dc2626; margin-bottom: 25px;">
-                            <h6 style="color: #991b1b; margin-bottom: 20px; font-size: 1.2em;">📋 Seddon Classification (1943)</h6>
+                            <h6 style="color: #991b1b; margin-bottom: 20px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 14h6"></path><path d="M9 10h6"></path><path d="M9 18h6"></path></svg> Seddon Classification (1943)</h6>
                             <p style="color: #7f1d1d; margin-bottom: 20px; font-style: italic;">Simple 3-category system based on structural damage and prognosis</p>
 
                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
@@ -345,7 +343,7 @@ export const Pathophysiology = {
                                     <p style="color: #78350f; font-size: 0.9em; margin-bottom: 10px;"><strong>Etiology:</strong> Nerve crush injury</p>
                                     <p style="color: #78350f; font-size: 0.9em; margin-bottom: 10px;"><strong>Pathology:</strong> Axonal interruption, endoneurial tubes intact</p>
                                     <p style="color: #78350f; font-size: 0.9em; margin-bottom: 10px;"><strong>Conduction:</strong> Wallerian degeneration</p>
-                                    <p style="color: #d97706; font-size: 0.9em; font-weight: bold;">⚠ Intermediate prognosis</p>
+                                    <p style="color: #d97706; font-size: 0.9em; font-weight: bold;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Intermediate prognosis</p>
                                     <p style="color: #d97706; font-size: 0.85em;">Recovery: Months (1mm/day)</p>
                                 </div>
 
@@ -363,7 +361,7 @@ export const Pathophysiology = {
 
                         <!-- Sunderland Classification -->
                         <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; border: 2px solid #3b82f6; margin-bottom: 25px;">
-                            <h6 style="color: #1e40af; margin-bottom: 20px; font-size: 1.2em;">📊 Sunderland Classification (1951)</h6>
+                            <h6 style="color: #1e40af; margin-bottom: 20px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Sunderland Classification (1951)</h6>
                             <p style="color: #1e3a8a; margin-bottom: 20px; font-style: italic;">Detailed 5-type system based on specific structural components damaged</p>
 
                             <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px;">
@@ -446,7 +444,7 @@ export const Pathophysiology = {
 
                         <!-- Comprehensive Comparison Table -->
                         <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #8b5cf6; margin-bottom: 25px;">
-                            <h6 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.2em;">📊 Detailed Electrodiagnostic & Clinical Comparison</h6>
+                            <h6 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Detailed Electrodiagnostic & Clinical Comparison</h6>
                             <div style="overflow-x: auto;">
                                 <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
                                     <thead>
@@ -507,14 +505,14 @@ export const Pathophysiology = {
 
                         <!-- Wallerian Degeneration Timeline -->
                         <div style="background: #faf5ff; padding: 20px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
-                            <h6 style="color: #6b21a8; margin-bottom: 15px; font-size: 1.1em;">⏳ Wallerian Degeneration & Recovery Timeline</h6>
+                            <h6 style="color: #6b21a8; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3L2 6"></path><path d="M19 3l3 3"></path><path d="M10 1h4"></path></svg> Wallerian Degeneration & Recovery Timeline</h6>
                             <div style="color: #581c87; line-height: 1.6;">
                                 <p style="margin-bottom: 10px;"><strong>Acute Phase (0-7 days):</strong> Axon degenerates distally, NCS may appear normal initially</p>
                                 <p style="margin-bottom: 10px;"><strong>Subacute Phase (7-21 days):</strong> CMAP/SNAP amplitudes drop, fibrillations begin appearing on EMG (distal muscles first)</p>
                                 <p style="margin-bottom: 10px;"><strong>Chronic Phase (>3 weeks):</strong> Complete denervation pattern, reinnervation potentials if recovery occurring</p>
                                 <p style="margin-bottom: 10px;"><strong>Regeneration:</strong> Axons regenerate at ~1mm/day from injury site toward target. Proximal lesions take longer to recover.</p>
                                 <p style="margin-top: 15px; padding: 12px; background: white; border-radius: 8px; font-weight: 600; color: #6b21a8;">
-                                    💡 Clinical Pearl: Serial EMG studies every 3-4 weeks can track reinnervation progress by detecting nascent motor unit potentials.
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Clinical Pearl: Serial EMG studies every 3-4 weeks can track reinnervation progress by detecting nascent motor unit potentials.
                                 </p>
                             </div>
                         </div>
@@ -524,10 +522,10 @@ export const Pathophysiology = {
                 <!-- EDX Correlations Section -->
                 <div id="patho-correlations-content" class="patho-content" style="display: none;">
                     <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb;">
-                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;">📊 Electrodiagnostic Correlations</h5>
+                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Electrodiagnostic Correlations</h5>
 
                         <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border-left: 4px solid #475569; margin-bottom: 25px;">
-                            <h6 style="color: #334155; margin-bottom: 15px; font-size: 1.1em;">🔬 Volume Conduction Principles</h6>
+                            <h6 style="color: #334155; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Volume Conduction Principles</h6>
                             <div style="color: #475569; line-height: 1.6;">
                                 <p><strong>Near-field Potentials:</strong> Recorded close to source (NCS, EMG), amplitude depends on distance</p>
                                 <p><strong>Triphasic Waveforms:</strong> Positive → Negative → Positive as action potential passes electrode</p>
@@ -538,7 +536,7 @@ export const Pathophysiology = {
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div style="background: #fef2f2; padding: 20px; border-radius: 10px; border-left: 4px solid #ef4444;">
-                                <h6 style="color: #dc2626; margin-bottom: 15px; font-size: 1.1em;">🐌 Demyelinating Patterns</h6>
+                                <h6 style="color: #dc2626; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg> Demyelinating Patterns</h6>
                                 <div style="color: #7f1d1d; line-height: 1.5;">
                                     <p><strong>NCS Findings:</strong></p>
                                     <ul style="font-size: 0.9em; margin-left: 15px;">
@@ -558,7 +556,7 @@ export const Pathophysiology = {
                             </div>
 
                             <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                                <h6 style="color: #1d4ed8; margin-bottom: 15px; font-size: 1.1em;">📉 Axonal Patterns</h6>
+                                <h6 style="color: #1d4ed8; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg> Axonal Patterns</h6>
                                 <div style="color: #1e3a8a; line-height: 1.5;">
                                     <p><strong>NCS Findings:</strong></p>
                                     <ul style="font-size: 0.9em; margin-left: 15px;">
@@ -580,7 +578,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #ecfdf5; padding: 20px; border-radius: 10px; border: 2px solid #22c55e;">
-                            <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;">🎯 Clinical Correlation Guidelines</h6>
+                            <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Clinical Correlation Guidelines</h6>
                             <div style="color: #166534; line-height: 1.6;">
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                                     <div>
@@ -608,10 +606,10 @@ export const Pathophysiology = {
                 <!-- Fiber Classification Section -->
                 <div id="patho-classification-content" class="patho-content" style="display: none;">
                     <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb;">
-                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;">🧪 Nerve Fiber Classification & Clinical Relevance</h5>
+                        <h5 style="color: #6b21a8; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M8.5 2h7"></path><path d="M12 2v20"></path><path d="M6.5 22h11"></path><path d="M8.5 2v10l-4 8v2h15v-2l-4-8V2"></path></svg> Nerve Fiber Classification & Clinical Relevance</h5>
 
                         <div style="background: #f1f5f9; padding: 20px; border-radius: 10px; border-left: 4px solid #334155; margin-bottom: 25px;">
-                            <h6 style="color: #1e293b; margin-bottom: 15px; font-size: 1.1em;">📊 Fiber Type Classification Table</h6>
+                            <h6 style="color: #1e293b; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Fiber Type Classification Table</h6>
                             <div style="overflow-x: auto;">
                                 <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden;">
                                     <thead>
@@ -666,7 +664,7 @@ export const Pathophysiology = {
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div style="background: #fef3c7; padding: 20px; border-radius: 10px; border-left: 4px solid #f59e0b;">
-                                <h6 style="color: #d97706; margin-bottom: 15px; font-size: 1.1em;">🎯 Large Fiber Neuropathies</h6>
+                                <h6 style="color: #d97706; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Large Fiber Neuropathies</h6>
                                 <div style="color: #92400e; line-height: 1.5;">
                                     <p><strong>Fibers Affected:</strong> Aα, Aβ (large myelinated)</p>
                                     <p><strong>Clinical Features:</strong></p>
@@ -686,7 +684,7 @@ export const Pathophysiology = {
                             </div>
 
                             <div style="background: #fef2f2; padding: 20px; border-radius: 10px; border-left: 4px solid #ef4444;">
-                                <h6 style="color: #dc2626; margin-bottom: 15px; font-size: 1.1em;">🔥 Small Fiber Neuropathies</h6>
+                                <h6 style="color: #dc2626; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="6 2 3 8 7 8 2 16 10 11 5 11 12 2"></polygon><polygon points="18 2 21 8 17 8 22 16 14 11 19 11 12 2" transform="matrix(-1 0 0 1 34 0)"></polygon></svg> Small Fiber Neuropathies</h6>
                                 <div style="color: #7f1d1d; line-height: 1.5;">
                                     <p><strong>Fibers Affected:</strong> Aδ, C (small unmyelinated)</p>
                                     <p><strong>Clinical Features:</strong></p>
@@ -707,7 +705,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #f0fdf4; padding: 20px; border-radius: 10px; border: 2px solid #22c55e;">
-                            <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;">🔑 Key Clinical Correlations</h6>
+                            <h6 style="color: #15803d; margin-bottom: 15px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Key Clinical Correlations</h6>
                             <div style="color: #166534; line-height: 1.6;">
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                                     <div>
@@ -739,7 +737,7 @@ export const Pathophysiology = {
 
             <!-- Common Peripheral Neuropathies Atlas -->
             <div style="background: linear-gradient(135deg, #e0f2fe, #b3e5fc); padding: 25px; border-radius: 15px; margin-bottom: 25px; border: 2px solid #0ea5e9;">
-                <h4 style="color: #0c4a6e; margin-bottom: 10px; font-size: 1.4em;">🗺️ Common Peripheral Neuropathies Atlas</h4>
+                <h4 style="color: #0c4a6e; margin-bottom: 10px; font-size: 1.4em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg> Common Peripheral Neuropathies Atlas</h4>
                 <p style="color: #0369a1; margin-bottom: 20px; font-style: italic;">Interactive guide to specific nerve entrapments and compression neuropathies</p>
 
                 <!-- Nerve Type Selector -->
@@ -755,7 +753,7 @@ export const Pathophysiology = {
                         color: #1e40af;
                         font-size: 0.95em;
                     ">
-                        🖐️ Median
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg> Median
                     </button>
                     <button class="nerve-type-btn" onclick="showNerveType('ulnar')" data-nerve="ulnar" style="
                         background: #f8fafc;
@@ -768,7 +766,7 @@ export const Pathophysiology = {
                         color: #64748b;
                         font-size: 0.95em;
                     ">
-                        🤏 Ulnar
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l3.6 3.6"></path><path d="M15 14h2a2 2 0 1 0 0-4h-2"></path><path d="M18 14h1a2 2 0 1 0 0-4h-1"></path><path d="M4.6 21H18M4.6 3H18"></path><path d="M8.6 15c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l2 2v0a2 2 0 0 0 2.8 0l8.2-8.2a2.8 2.8 0 0 0-4-4l-6.8 6.8"></path></svg> Ulnar
                     </button>
                     <button class="nerve-type-btn" onclick="showNerveType('radial')" data-nerve="radial" style="
                         background: #f8fafc;
@@ -781,7 +779,7 @@ export const Pathophysiology = {
                         color: #64748b;
                         font-size: 0.95em;
                     ">
-                        👍 Radial
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> Radial
                     </button>
                     <button class="nerve-type-btn" onclick="showNerveType('peroneal')" data-nerve="peroneal" style="
                         background: #f8fafc;
@@ -794,7 +792,7 @@ export const Pathophysiology = {
                         color: #64748b;
                         font-size: 0.95em;
                     ">
-                        🦶 Peroneal
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M3 17V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M11 10h4a2 2 0 0 1 2 2v2"></path><path d="M17 12h2a2 2 0 0 1 2 2v3"></path><path d="M19 19v1a2 2 0 0 1-2 2H3"></path></svg> Peroneal
                     </button>
                     <button class="nerve-type-btn" onclick="showNerveType('tibial')" data-nerve="tibial" style="
                         background: #f8fafc;
@@ -807,7 +805,7 @@ export const Pathophysiology = {
                         color: #64748b;
                         font-size: 0.95em;
                     ">
-                        🦵 Tibial
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M10 21V9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v7.5A3.5 3.5 0 0 1 14.5 20H12"></path><path d="M14 7V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path></svg> Tibial
                     </button>
                     <button class="nerve-type-btn" onclick="showNerveType('overview')" data-nerve="overview" style="
                         background: #fef3c7;
@@ -820,7 +818,7 @@ export const Pathophysiology = {
                         color: #d97706;
                         font-size: 0.95em;
                     ">
-                        📊 Master Chart
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Master Chart
                     </button>
                 </div>
 
@@ -829,7 +827,7 @@ export const Pathophysiology = {
 
                     <!-- Header -->
                     <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                        <div style="font-size: 3em; margin-bottom: 15px;">🖐️</div>
+                        <div style="font-size: 3em; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg></div>
                         <h3 style="margin: 0 0 10px 0; font-size: 1.8em; font-weight: 700;">Median Nerve Pathophysiology</h3>
                         <p style="margin: 0; font-size: 1.1em; opacity: 0.9;">C6-T1 • Lateral & Medial Cords • Precision Grip Master</p>
                     </div>
@@ -847,7 +845,7 @@ export const Pathophysiology = {
                                 text-align: left;
                             ">
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <span style="font-size: 24px; margin-right: 10px;">🖐️</span>
+                                    <span style="font-size: 24px; margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg></span>
                                     <h5 style="color: #1e40af; margin: 0; font-size: 1.1em;">Carpal Tunnel Syndrome</h5>
                                 </div>
                                 <p style="color: #64748b; margin: 0; font-size: 0.9em;">Most common entrapment - median nerve at wrist</p>
@@ -863,7 +861,7 @@ export const Pathophysiology = {
                                 text-align: left;
                             ">
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <span style="font-size: 24px; margin-right: 10px;">💪</span>
+                                    <span style="font-size: 24px; margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
                                     <h5 style="color: #64748b; margin: 0; font-size: 1.1em;">Proximal Median Neuropathies</h5>
                                 </div>
                                 <p style="color: #64748b; margin: 0; font-size: 0.9em;">Pronator syndrome, anterior interosseous syndrome</p>
@@ -875,11 +873,11 @@ export const Pathophysiology = {
                     <div id="carpal-tunnel" class="median-section" style="display: block;">
                         
         <div style="background: white; padding: 20px; border-radius: 12px;">
-            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">🖐️ Carpal Tunnel Syndrome - Median Nerve at Wrist</h5>
+            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg> Carpal Tunnel Syndrome - Median Nerve at Wrist</h5>
 
             <!-- Anatomy Section -->
             <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #3730a3; margin-bottom: 10px;">🔬 Anatomy & Compression Site</h6>
+                <h6 style="color: #3730a3; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Anatomy & Compression Site</h6>
                 <ul style="color: #374151; line-height: 1.6; margin: 0;">
                     <li><strong>Location:</strong> Median nerve within carpal tunnel</li>
                     <li><strong>Boundaries:</strong> Carpal bones (floor/sides), transverse carpal ligament (roof)</li>
@@ -890,7 +888,7 @@ export const Pathophysiology = {
 
             <!-- Clinical Presentation -->
             <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #92400e; margin-bottom: 10px;">📋 Clinical Presentation</h6>
+                <h6 style="color: #92400e; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 14h6"></path><path d="M9 10h6"></path><path d="M9 18h6"></path></svg> Clinical Presentation</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #78350f; font-weight: 500; margin-bottom: 5px;">Classic Symptoms:</p>
@@ -915,7 +913,7 @@ export const Pathophysiology = {
 
             <!-- EDX Findings -->
             <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #065f46; margin-bottom: 10px;">⚡ Electrodiagnostic Findings</h6>
+                <h6 style="color: #065f46; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Electrodiagnostic Findings</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #047857; font-weight: 500; margin-bottom: 5px;">NCS Abnormalities:</p>
@@ -940,12 +938,12 @@ export const Pathophysiology = {
 
             <!-- Key Teaching Points -->
             <div style="background: #fdf2f8; padding: 15px; border-radius: 8px;">
-                <h6 style="color: #be185d; margin-bottom: 10px;">💡 Key Teaching Points</h6>
+                <h6 style="color: #be185d; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Key Teaching Points</h6>
                 <div style="color: #831843; font-size: 0.9em; line-height: 1.6;">
-                    <p style="margin-bottom: 8px;"><strong>🔑 Localization Key:</strong> Normal thenar sensation (palmar cutaneous branch spared)</p>
-                    <p style="margin-bottom: 8px;"><strong>📊 EDX Strategy:</strong> Use comparison studies when routine tests normal</p>
-                    <p style="margin-bottom: 8px;"><strong>⚠️ Pitfall:</strong> Forearm slowing in severe CTS doesn't indicate proximal lesion</p>
-                    <p style="margin: 0;"><strong>🎯 Clinical Pearl:</strong> Symptoms worse at night and with sustained grip</p>
+                    <p style="margin-bottom: 8px;"><strong><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Localization Key:</strong> Normal thenar sensation (palmar cutaneous branch spared)</p>
+                    <p style="margin-bottom: 8px;"><strong><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> EDX Strategy:</strong> Use comparison studies when routine tests normal</p>
+                    <p style="margin-bottom: 8px;"><strong><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Pitfall:</strong> Forearm slowing in severe CTS doesn't indicate proximal lesion</p>
+                    <p style="margin: 0;"><strong><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Clinical Pearl:</strong> Symptoms worse at night and with sustained grip</p>
                 </div>
             </div>
         </div>
@@ -955,11 +953,11 @@ export const Pathophysiology = {
                     <div id="proximal-median" class="median-section" style="display: none;">
                         
         <div style="background: white; padding: 20px; border-radius: 12px;">
-            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">💪 Proximal Median Neuropathies</h5>
+            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Proximal Median Neuropathies</h5>
 
             <!-- Anatomical Overview -->
             <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #3730a3; margin-bottom: 10px;">🔬 Anatomical Compression Sites</h6>
+                <h6 style="color: #3730a3; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Anatomical Compression Sites</h6>
                 <div style="color: #374151; line-height: 1.6; margin: 0;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
@@ -985,7 +983,7 @@ export const Pathophysiology = {
 
             <!-- Ligament of Struthers -->
             <div style="background: #fefbeb; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #f59e0b;">
-                <h6 style="color: #92400e; margin-bottom: 10px;">⚠️ Ligament of Struthers Entrapment (Very Rare)</h6>
+                <h6 style="color: #92400e; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Ligament of Struthers Entrapment (Very Rare)</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #78350f; font-weight: 500; margin-bottom: 5px;">Anatomy & Prevalence:</p>
@@ -1010,7 +1008,7 @@ export const Pathophysiology = {
 
             <!-- Pronator Syndrome -->
             <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #92400e; margin-bottom: 10px;">🔧 Pronator Syndrome (Most Common Proximal)</h6>
+                <h6 style="color: #92400e; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg> Pronator Syndrome (Most Common Proximal)</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
                     <div>
                         <p style="color: #78350f; font-weight: 500; margin-bottom: 5px;">Three Compression Sites:</p>
@@ -1033,7 +1031,7 @@ export const Pathophysiology = {
 
                 <!-- Provocative Tests -->
                 <div style="background: #fff8db; padding: 12px; border-radius: 6px; border: 1px solid #fbbf24;">
-                    <p style="color: #92400e; font-weight: 600; margin-bottom: 8px;">🧪 Provocative Tests (Pain + Paresthesias):</p>
+                    <p style="color: #92400e; font-weight: 600; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M8.5 2h7"></path><path d="M12 2v20"></path><path d="M6.5 22h11"></path><path d="M8.5 2v10l-4 8v2h15v-2l-4-8V2"></path></svg> Provocative Tests (Pain + Paresthesias):</p>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 0.85em;">
                         <div style="text-align: center; color: #78350f;">
                             <strong>Pronator Teres:</strong><br>
@@ -1048,13 +1046,13 @@ export const Pathophysiology = {
                             Resisted elbow flexion in supination
                         </div>
                     </div>
-                    <p style="color: #b45309; font-size: 0.8em; margin: 8px 0 0 0; font-style: italic;">⚠️ Note: Pain alone is unreliable unless accompanied by median paresthesias</p>
+                    <p style="color: #b45309; font-size: 0.8em; margin: 8px 0 0 0; font-style: italic;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Note: Pain alone is unreliable unless accompanied by median paresthesias</p>
                 </div>
             </div>
 
             <!-- AIN Syndrome -->
             <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #065f46; margin-bottom: 10px;">🎯 Anterior Interosseous Nerve (AIN) Syndrome</h6>
+                <h6 style="color: #065f46; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Anterior Interosseous Nerve (AIN) Syndrome</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
                     <div>
                         <p style="color: #047857; font-weight: 500; margin-bottom: 5px;">Motor Loss Pattern:</p>
@@ -1078,7 +1076,7 @@ export const Pathophysiology = {
 
                 <!-- Special Considerations -->
                 <div style="background: #f0fdf4; padding: 12px; border-radius: 6px; border: 1px solid #22c55e;">
-                    <p style="color: #065f46; font-weight: 600; margin-bottom: 8px;">⚠️ Special Considerations:</p>
+                    <p style="color: #065f46; font-weight: 600; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Special Considerations:</p>
                     <ul style="color: #14532d; font-size: 0.9em; margin: 0;">
                         <li><strong>Anatomical variant:</strong> Some patients have ulnar innervation to FDP digit 3</li>
                         <li><strong>Martin-Gruber anastomosis:</strong> Can cause ulnar hand muscle weakness with AIN</li>
@@ -1089,7 +1087,7 @@ export const Pathophysiology = {
 
             <!-- EDX Findings -->
             <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
-                <h6 style="color: #4f46e5; margin-bottom: 10px;">⚡ Electrodiagnostic Patterns</h6>
+                <h6 style="color: #4f46e5; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Electrodiagnostic Patterns</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #3730a3; font-weight: 500; margin-bottom: 5px;">NCS Findings:</p>
@@ -1114,7 +1112,7 @@ export const Pathophysiology = {
 
             <!-- Differential Diagnosis -->
             <div style="background: #fdf2f8; padding: 15px; border-radius: 8px;">
-                <h6 style="color: #be185d; margin-bottom: 10px;">🔍 Differential Diagnosis</h6>
+                <h6 style="color: #be185d; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Differential Diagnosis</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #831843; font-weight: 500; margin-bottom: 5px;">vs Carpal Tunnel:</p>
@@ -1141,7 +1139,7 @@ export const Pathophysiology = {
                     <!-- Comparison Table for Median Nerve Lesions -->
                     <div style="background: white; padding: 20px; border-radius: 15px; margin-top: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <h3 style="color: #1e40af; margin-bottom: 15px; display: flex; align-items: center;">
-                            <span style="font-size: 24px; margin-right: 10px;">📊</span>
+                            <span style="font-size: 24px; margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg></span>
                             Quick Comparison: Median Nerve Lesions
                         </h3>
                         <div style="overflow-x: auto;">
@@ -1184,7 +1182,7 @@ export const Pathophysiology = {
 
                     <!-- Header -->
                     <div style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                        <div style="font-size: 3em; margin-bottom: 15px;">🤏</div>
+                        <div style="font-size: 3em; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l3.6 3.6"></path><path d="M15 14h2a2 2 0 1 0 0-4h-2"></path><path d="M18 14h1a2 2 0 1 0 0-4h-1"></path><path d="M4.6 21H18M4.6 3H18"></path><path d="M8.6 15c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l2 2v0a2 2 0 0 0 2.8 0l8.2-8.2a2.8 2.8 0 0 0-4-4l-6.8 6.8"></path></svg></div>
                         <h3 style="margin: 0 0 10px 0; font-size: 1.8em; font-weight: 700;">Ulnar Nerve Pathophysiology</h3>
                         <p style="margin: 0; font-size: 1.1em; opacity: 0.9;">C8-T1 • Medial Cord • Grip Strength & Fine Motor Control</p>
                     </div>
@@ -1202,7 +1200,7 @@ export const Pathophysiology = {
                                 text-align: left;
                             ">
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <span style="font-size: 24px; margin-right: 10px;">🤏</span>
+                                    <span style="font-size: 24px; margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l3.6 3.6"></path><path d="M15 14h2a2 2 0 1 0 0-4h-2"></path><path d="M18 14h1a2 2 0 1 0 0-4h-1"></path><path d="M4.6 21H18M4.6 3H18"></path><path d="M8.6 15c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l2 2v0a2 2 0 0 0 2.8 0l8.2-8.2a2.8 2.8 0 0 0-4-4l-6.8 6.8"></path></svg></span>
                                     <h5 style="color: #1e40af; margin: 0; font-size: 1.1em;">Ulnar Neuropathy at Elbow (UNE)</h5>
                                 </div>
                                 <p style="color: #64748b; margin: 0; font-size: 0.9em;">Most common ulnar entrapment - cubital tunnel syndrome</p>
@@ -1218,7 +1216,7 @@ export const Pathophysiology = {
                                 text-align: left;
                             ">
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <span style="font-size: 24px; margin-right: 10px;">✋</span>
+                                    <span style="font-size: 24px; margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg></span>
                                     <h5 style="color: #64748b; margin: 0; font-size: 1.1em;">Ulnar Neuropathy at Wrist (UNW)</h5>
                                 </div>
                                 <p style="color: #64748b; margin: 0; font-size: 0.9em;">Guyon's canal syndrome and ulnar tunnel syndrome</p>
@@ -1230,10 +1228,10 @@ export const Pathophysiology = {
                     <div id="ulnar-elbow" class="ulnar-section" style="display: block;">
                         
         <div style="background: white; padding: 20px; border-radius: 12px;">
-            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">🤏 Ulnar Neuropathy at Elbow (UNE)</h5>
+            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l3.6 3.6"></path><path d="M15 14h2a2 2 0 1 0 0-4h-2"></path><path d="M18 14h1a2 2 0 1 0 0-4h-1"></path><path d="M4.6 21H18M4.6 3H18"></path><path d="M8.6 15c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l2 2v0a2 2 0 0 0 2.8 0l8.2-8.2a2.8 2.8 0 0 0-4-4l-6.8 6.8"></path></svg> Ulnar Neuropathy at Elbow (UNE)</h5>
 
             <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #3730a3; margin-bottom: 10px;">🔬 Cubital Tunnel Anatomy</h6>
+                <h6 style="color: #3730a3; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Cubital Tunnel Anatomy</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #1e3a8a; font-weight: 500; margin-bottom: 5px;">Compression Sites:</p>
@@ -1257,7 +1255,7 @@ export const Pathophysiology = {
             </div>
 
             <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #92400e; margin-bottom: 10px;">🎯 Clinical Presentation</h6>
+                <h6 style="color: #92400e; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Clinical Presentation</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #78350f; font-weight: 500; margin-bottom: 5px;">Sensory Symptoms:</p>
@@ -1279,7 +1277,7 @@ export const Pathophysiology = {
             </div>
 
             <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #065f46; margin-bottom: 10px;">⚡ EDX Findings</h6>
+                <h6 style="color: #065f46; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> EDX Findings</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #047857; font-weight: 500; margin-bottom: 5px;">NCS Key Findings:</p>
@@ -1306,10 +1304,10 @@ export const Pathophysiology = {
                     <div id="ulnar-wrist" class="ulnar-section" style="display: none;">
                         
         <div style="background: white; padding: 20px; border-radius: 12px;">
-            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">✋ Ulnar Neuropathy at Wrist (UNW)</h5>
+            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg> Ulnar Neuropathy at Wrist (UNW)</h5>
 
             <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #3730a3; margin-bottom: 10px;">🔬 Guyon's Canal Anatomy</h6>
+                <h6 style="color: #3730a3; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Guyon's Canal Anatomy</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #1e3a8a; font-weight: 500; margin-bottom: 5px;">Canal Boundaries:</p>
@@ -1332,7 +1330,7 @@ export const Pathophysiology = {
             </div>
 
             <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #92400e; margin-bottom: 10px;">🎯 Clinical Presentations by Zone</h6>
+                <h6 style="color: #92400e; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Clinical Presentations by Zone</h6>
                 <div style="background: #fff8db; padding: 12px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid #f59e0b;">
                     <strong style="color: #92400e;">Zone 1:</strong> Motor + sensory loss (all ulnar hand muscles + ring/little finger)
                 </div>
@@ -1345,7 +1343,7 @@ export const Pathophysiology = {
             </div>
 
             <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h6 style="color: #065f46; margin-bottom: 10px;">🔑 Key Differentiating Features from UNE</h6>
+                <h6 style="color: #065f46; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Key Differentiating Features from UNE</h6>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <p style="color: #047857; font-weight: 500; margin-bottom: 5px;">Preserved Functions:</p>
@@ -1375,7 +1373,7 @@ export const Pathophysiology = {
 
                     <!-- Header -->
                     <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                        <div style="font-size: 3em; margin-bottom: 15px;">👍</div>
+                        <div style="font-size: 3em; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg></div>
                         <h3 style="margin: 0 0 10px 0; font-size: 1.8em; font-weight: 700;">Radial Nerve Pathophysiology</h3>
                         <p style="margin: 0; font-size: 1.1em; opacity: 0.9;">C5-T1 • Posterior Cord • Extension Powerhouse</p>
                     </div>
@@ -1383,13 +1381,13 @@ export const Pathophysiology = {
                     <!-- Spiral Groove Syndrome -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #dc2626; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fee2e2; padding: 8px; border-radius: 50%; margin-right: 12px;">💥</span>
+                            <span style="background: #fee2e2; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="6 2 3 8 7 8 2 16 10 11 5 11 12 2"></polygon><polygon points="18 2 21 8 17 8 22 16 14 11 19 11 12 2" transform="matrix(-1 0 0 1 34 0)"></polygon></svg></span>
                             Spiral Groove Syndrome ("Saturday Night Palsy")
                         </h4>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div>
-                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;">🎯 Anatomy & Vulnerability</h5>
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Anatomy & Vulnerability</h5>
                                 <ul style="color: #451a03; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li>Radial nerve travels in <strong>spiral groove</strong> of mid-humerus</li>
                                     <li>Nerve lies directly against bone with minimal protection</li>
@@ -1398,7 +1396,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;">⚡ Common Causes</h5>
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Common Causes</h5>
                                 <ul style="color: #451a03; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Humeral fractures</strong> (most serious)</li>
                                     <li><strong>Prolonged compression</strong> (arm over chair)</li>
@@ -1409,7 +1407,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #dc2626; margin-bottom: 10px; font-size: 1em;">🔍 Classic Clinical Presentation</h6>
+                            <h6 style="color: #dc2626; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Classic Clinical Presentation</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #7f1d1d; font-weight: 600; margin-bottom: 8px; font-size: 0.9em;">Motor Signs:</p>
@@ -1433,7 +1431,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;">📊 Electrodiagnostic Findings</h6>
+                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Electrodiagnostic Findings</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #1e3a8a; font-weight: 600; margin-bottom: 5px; font-size: 0.9em;">NCS Findings:</p>
@@ -1458,13 +1456,13 @@ export const Pathophysiology = {
                     <!-- Posterior Interosseous Nerve (PIN) Syndrome -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #059669; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #d1fae5; padding: 8px; border-radius: 50%; margin-right: 12px;">🎯</span>
+                            <span style="background: #d1fae5; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
                             Posterior Interosseous Nerve (PIN) Syndrome
                         </h4>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div>
-                                <h5 style="color: #065f46; margin-bottom: 12px; font-size: 1.1em;">📍 Anatomy & Location</h5>
+                                <h5 style="color: #065f46; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Anatomy & Location</h5>
                                 <ul style="color: #064e3b; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li>PIN = deep motor branch of radial nerve</li>
                                     <li>Passes through <strong>supinator muscle</strong></li>
@@ -1473,7 +1471,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #065f46; margin-bottom: 12px; font-size: 1.1em;">⚡ Causes</h5>
+                                <h5 style="color: #065f46; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Causes</h5>
                                 <ul style="color: #064e3b; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Repetitive supination</strong></li>
                                     <li>Rheumatoid synovitis</li>
@@ -1484,7 +1482,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #ecfdf5; border-left: 4px solid #059669; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #059669; margin-bottom: 10px; font-size: 1em;">🔍 Clinical Features</h6>
+                            <h6 style="color: #059669; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Clinical Features</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #065f46; font-weight: 600; margin-bottom: 8px; font-size: 0.9em;">Key Motor Signs:</p>
@@ -1508,7 +1506,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;">📊 Electrodiagnostic Pattern</h6>
+                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Electrodiagnostic Pattern</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #1e3a8a; font-weight: 600; margin-bottom: 5px; font-size: 0.9em;">NCS:</p>
@@ -1533,7 +1531,7 @@ export const Pathophysiology = {
                     <!-- Differential Diagnosis -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #7c2d12; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;">🤔</span>
+                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                             Differential Diagnosis
                         </h4>
 
@@ -1585,7 +1583,7 @@ export const Pathophysiology = {
                     <!-- Clinical Pearls -->
                     <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 20px; border-radius: 15px;">
                         <h4 style="margin-bottom: 15px; display: flex; align-items: center; color: #78350f; font-size: 1.3em;">
-                            <span style="margin-right: 10px;">💎</span>
+                            <span style="margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="m19 5-14 14"></path><path d="m5 5 14 14"></path></svg></span>
                             Clinical Pearls
                         </h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -1612,7 +1610,7 @@ export const Pathophysiology = {
 
                     <!-- Header -->
                     <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                        <div style="font-size: 3em; margin-bottom: 15px;">🦶</div>
+                        <div style="font-size: 3em; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M3 17V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M11 10h4a2 2 0 0 1 2 2v2"></path><path d="M17 12h2a2 2 0 0 1 2 2v3"></path><path d="M19 19v1a2 2 0 0 1-2 2H3"></path></svg></div>
                         <h3 style="margin: 0 0 10px 0; font-size: 1.8em; font-weight: 700;">Peroneal/Fibular Nerve Pathophysiology</h3>
                         <p style="margin: 0; font-size: 1.1em; opacity: 0.9;">L4-S1 • Sciatic Division • Foot Drop Expert</p>
                     </div>
@@ -1620,12 +1618,12 @@ export const Pathophysiology = {
                     <!-- Common Peroneal Neuropathy at Fibular Neck -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #dc2626; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fee2e2; padding: 8px; border-radius: 50%; margin-right: 12px;">⚡</span>
+                            <span style="background: #fee2e2; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
                             Common Peroneal Neuropathy at Fibular Neck
                         </h4>
 
                         <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #dc2626; margin-bottom: 10px; font-size: 1em;">📍 Most Common Lower Extremity Mononeuropathy</h6>
+                            <h6 style="color: #dc2626; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Most Common Lower Extremity Mononeuropathy</h6>
                             <p style="color: #7f1d1d; margin: 0; font-size: 0.9em; line-height: 1.5;">
                                 <strong>Both names are commonly used:</strong> "Peroneal" (traditional) and "Fibular" (modern anatomical terminology).
                                 The nerve is most vulnerable at the fibular neck where it's superficial and lies directly against bone.
@@ -1634,7 +1632,7 @@ export const Pathophysiology = {
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div>
-                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;">🎯 Anatomy & Vulnerability</h5>
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Anatomy & Vulnerability</h5>
                                 <ul style="color: #451a03; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li>Nerve winds around <strong>fibular neck</strong></li>
                                     <li>Passes through <strong>fibular tunnel</strong> (peroneus longus)</li>
@@ -1643,7 +1641,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;">⚡ Common Causes</h5>
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Common Causes</h5>
                                 <ul style="color: #451a03; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Prolonged positioning</strong> (anesthesia)</li>
                                     <li><strong>Habitual leg crossing</strong></li>
@@ -1654,7 +1652,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #f0f9ff; border-left: 4px solid #1e40af; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;">🔍 Classic Clinical Presentation: "Foot Drop"</h6>
+                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Classic Clinical Presentation: "Foot Drop"</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #1e3a8a; font-weight: 600; margin-bottom: 8px; font-size: 0.9em;">Motor Signs:</p>
@@ -1678,7 +1676,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #ecfdf5; padding: 15px; border-radius: 8px;">
-                            <h6 style="color: #059669; margin-bottom: 10px; font-size: 1em;">📊 Key Diagnostic Features</h6>
+                            <h6 style="color: #059669; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Key Diagnostic Features</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #065f46; font-weight: 600; margin-bottom: 5px; font-size: 0.9em;">Preserved Functions:</p>
@@ -1705,13 +1703,13 @@ export const Pathophysiology = {
                     <!-- Anterior Tarsal Tunnel Syndrome -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #7c2d12; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;">🦶</span>
+                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M3 17V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M11 10h4a2 2 0 0 1 2 2v2"></path><path d="M17 12h2a2 2 0 0 1 2 2v3"></path><path d="M19 19v1a2 2 0 0 1-2 2H3"></path></svg></span>
                             Anterior Tarsal Tunnel Syndrome (ATTS)
                         </h4>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div>
-                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;">📍 Deep Peroneal at Ankle</h5>
+                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Deep Peroneal at Ankle</h5>
                                 <ul style="color: #78350f; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li>Compression under <strong>inferior extensor retinaculum</strong></li>
                                     <li>Rare entrapment neuropathy</li>
@@ -1720,7 +1718,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;">⚡ Causes</h5>
+                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Causes</h5>
                                 <ul style="color: #78350f; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Tight shoes</strong> (especially dancers)</li>
                                     <li>Trauma to anterior ankle</li>
@@ -1731,7 +1729,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px;">
-                            <h6 style="color: #92400e; margin-bottom: 10px; font-size: 1em;">🔍 Clinical Features</h6>
+                            <h6 style="color: #92400e; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Clinical Features</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #78350f; font-weight: 600; margin-bottom: 8px; font-size: 0.9em;">Symptoms:</p>
@@ -1758,7 +1756,7 @@ export const Pathophysiology = {
                     <!-- Differential Diagnosis -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #1d4ed8; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #dbeafe; padding: 8px; border-radius: 50%; margin-right: 12px;">🤔</span>
+                            <span style="background: #dbeafe; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                             Differential Diagnosis of Foot Drop
                         </h4>
 
@@ -1818,13 +1816,13 @@ export const Pathophysiology = {
                     <!-- Electrodiagnostic Patterns -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #7c2d12; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;">📊</span>
+                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg></span>
                             Electrodiagnostic Patterns
                         </h4>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div>
-                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;">🔬 Nerve Conduction Studies</h5>
+                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Nerve Conduction Studies</h5>
                                 <ul style="color: #78350f; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Peroneal motor:</strong> Record EDB & TA</li>
                                     <li><strong>Conduction block</strong> across fibular neck</li>
@@ -1833,7 +1831,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;">⚡ EMG Findings</h5>
+                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> EMG Findings</h5>
                                 <ul style="color: #78350f; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Denervation:</strong> TA, EHL, peroneus longus</li>
                                     <li><strong>Normal:</strong> Tibialis posterior</li>
@@ -1847,7 +1845,7 @@ export const Pathophysiology = {
                     <!-- Clinical Pearls -->
                     <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 20px; border-radius: 15px;">
                         <h4 style="margin-bottom: 15px; display: flex; align-items: center; color: #78350f; font-size: 1.3em;">
-                            <span style="margin-right: 10px;">💎</span>
+                            <span style="margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="m19 5-14 14"></path><path d="m5 5 14 14"></path></svg></span>
                             Clinical Pearls
                         </h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -1876,7 +1874,7 @@ export const Pathophysiology = {
 
                     <!-- Header -->
                     <div style="background: linear-gradient(135deg, #7c2d12 0%, #dc2626 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                        <div style="font-size: 3em; margin-bottom: 15px;">🦵</div>
+                        <div style="font-size: 3em; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M10 21V9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v7.5A3.5 3.5 0 0 1 14.5 20H12"></path><path d="M14 7V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path></svg></div>
                         <h3 style="margin: 0 0 10px 0; font-size: 1.8em; font-weight: 700;">Tibial Nerve Pathophysiology</h3>
                         <p style="margin: 0; font-size: 1.1em; opacity: 0.9;">L4-S3 • Sciatic Division • Plantar Flexion Master</p>
                     </div>
@@ -1884,12 +1882,12 @@ export const Pathophysiology = {
                     <!-- Tarsal Tunnel Syndrome -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #dc2626; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fee2e2; padding: 8px; border-radius: 50%; margin-right: 12px;">🔒</span>
+                            <span style="background: #fee2e2; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
                             Tarsal Tunnel Syndrome (TTS)
                         </h4>
 
                         <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #dc2626; margin-bottom: 10px; font-size: 1em;">⚠️ Important Clinical Reality</h6>
+                            <h6 style="color: #dc2626; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Important Clinical Reality</h6>
                             <p style="color: #7f1d1d; margin: 0; font-size: 0.9em; line-height: 1.5;">
                                 <strong>Unlike carpal tunnel syndrome, TTS is exceptionally rare.</strong> Most patients referred for "TTS" have either
                                 normal studies (orthopedic problems) or mild distal polyneuropathy. True TTS requires careful electrodiagnostic confirmation.
@@ -1898,7 +1896,7 @@ export const Pathophysiology = {
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                             <div>
-                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;">📍 Anatomy & Location</h5>
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Anatomy & Location</h5>
                                 <ul style="color: #451a03; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li>Tibial nerve passes under <strong>flexor retinaculum</strong></li>
                                     <li>Travels through <strong>tarsal tunnel</strong> at medial ankle</li>
@@ -1907,7 +1905,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;">⚡ Causes</h5>
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Causes</h5>
                                 <ul style="color: #451a03; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Trauma</strong> (sprains, fractures)</li>
                                     <li><strong>Mass lesions</strong> (ganglions, lipomas)</li>
@@ -1918,7 +1916,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #f0f9ff; border-left: 4px solid #1e40af; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;">🔍 Clinical Presentation</h6>
+                            <h6 style="color: #1e40af; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Clinical Presentation</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #1e3a8a; font-weight: 600; margin-bottom: 8px; font-size: 0.9em;">Primary Symptoms:</p>
@@ -1942,7 +1940,7 @@ export const Pathophysiology = {
                         </div>
 
                         <div style="background: #ecfdf5; padding: 15px; border-radius: 8px;">
-                            <h6 style="color: #059669; margin-bottom: 10px; font-size: 1em;">🎯 Sensory Distribution</h6>
+                            <h6 style="color: #059669; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Sensory Distribution</h6>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <p style="color: #065f46; font-weight: 600; margin-bottom: 5px; font-size: 0.9em;">Medial Plantar Nerve:</p>
@@ -1967,12 +1965,12 @@ export const Pathophysiology = {
                     <!-- Electrodiagnostic Challenges -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #7c2d12; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;">⚠️</span>
+                            <span style="background: #fed7aa; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                             Electrodiagnostic Challenges
                         </h4>
 
                         <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <h6 style="color: #92400e; margin-bottom: 10px; font-size: 1em;">🚨 Technical Difficulties</h6>
+                            <h6 style="color: #92400e; margin-bottom: 10px; font-size: 1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path><path d="M14 6L10 6"></path></svg> Technical Difficulties</h6>
                             <ul style="color: #78350f; font-size: 0.9em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                 <li><strong>Plantar responses are extremely small</strong> - often require averaging</li>
                                 <li><strong>May be absent in normal subjects</strong> - especially older patients</li>
@@ -1983,7 +1981,7 @@ export const Pathophysiology = {
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div>
-                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;">🔬 Required Studies</h5>
+                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg> Required Studies</h5>
                                 <ul style="color: #78350f; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Bilateral tibial motor</strong> to AHB & ADQP</li>
                                     <li><strong>Plantar mixed responses</strong> (medial & lateral)</li>
@@ -1992,7 +1990,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div>
-                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;">⚡ EMG Limitations</h5>
+                                <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> EMG Limitations</h5>
                                 <ul style="color: #78350f; font-size: 0.95em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Intrinsic foot muscles painful</strong> to examine</li>
                                     <li><strong>Difficult to activate</strong> muscles</li>
@@ -2006,7 +2004,7 @@ export const Pathophysiology = {
                     <!-- Differential Diagnosis -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #1d4ed8; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #dbeafe; padding: 8px; border-radius: 50%; margin-right: 12px;">🤔</span>
+                            <span style="background: #dbeafe; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                             Differential Diagnosis
                         </h4>
 
@@ -2065,13 +2063,13 @@ export const Pathophysiology = {
                     <!-- Diagnostic Strategy -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
                         <h4 style="color: #059669; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.4em;">
-                            <span style="background: #d1fae5; padding: 8px; border-radius: 50%; margin-right: 12px;">📋</span>
+                            <span style="background: #d1fae5; padding: 8px; border-radius: 50%; margin-right: 12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 14h6"></path><path d="M9 10h6"></path><path d="M9 18h6"></path></svg></span>
                             Diagnostic Strategy
                         </h4>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                                <h5 style="color: #1e40af; margin-bottom: 12px; font-size: 1.1em;">✅ Criteria for TTS</h5>
+                                <h5 style="color: #1e40af; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Criteria for TTS</h5>
                                 <ul style="color: #1e3a8a; font-size: 0.9em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Asymmetric plantar responses</strong> (>50% difference)</li>
                                     <li><strong>Prolonged distal latencies</strong></li>
@@ -2080,7 +2078,7 @@ export const Pathophysiology = {
                                 </ul>
                             </div>
                             <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
-                                <h5 style="color: #dc2626; margin-bottom: 12px; font-size: 1.1em;">❌ Red Flags</h5>
+                                <h5 style="color: #dc2626; margin-bottom: 12px; font-size: 1.1em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg> Red Flags</h5>
                                 <ul style="color: #7f1d1d; font-size: 0.9em; line-height: 1.6; margin: 0; padding-left: 18px;">
                                     <li><strong>Abnormal sural</strong> → polyneuropathy</li>
                                     <li><strong>Bilateral absent plantar</strong> → normal variant</li>
@@ -2094,7 +2092,7 @@ export const Pathophysiology = {
                     <!-- Clinical Pearls -->
                     <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 20px; border-radius: 15px;">
                         <h4 style="margin-bottom: 15px; display: flex; align-items: center; color: #78350f; font-size: 1.3em;">
-                            <span style="margin-right: 10px;">💎</span>
+                            <span style="margin-right: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="m19 5-14 14"></path><path d="m5 5 14 14"></path></svg></span>
                             Clinical Pearls
                         </h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -2122,12 +2120,12 @@ export const Pathophysiology = {
                 <div id="overview-content" class="nerve-content" style="display: none;">
                     
         <div style="background: white; padding: 20px; border-radius: 12px;">
-            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.3em;">📊 Master Peripheral Nerve Pathophysiology Chart</h5>
+            <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg> Master Peripheral Nerve Pathophysiology Chart</h5>
 
             <!-- Introduction -->
             <div style="background: linear-gradient(135deg, #fef3c7, #fed7aa); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
                 <p style="color: #92400e; font-weight: 500; margin: 0; font-size: 1.05em;">
-                    🎯 Comprehensive comparison of all major peripheral nerve entrapments and their clinical patterns
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Comprehensive comparison of all major peripheral nerve entrapments and their clinical patterns
                 </p>
             </div>
 
@@ -2147,7 +2145,7 @@ export const Pathophysiology = {
                     <tbody>
                         <!-- Median Nerve Group -->
                         <tr style="background: #f0fdf4;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #065f46;">🖐️ Median</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #065f46;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg> Median</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #047857;"><strong>Carpal Tunnel</strong></td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">APB, OP, FPB, Lumb 1&2</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">Thumb, index, middle, lateral ring</td>
@@ -2155,7 +2153,7 @@ export const Pathophysiology = {
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">Nocturnal symptoms, Phalen's</td>
                         </tr>
                         <tr style="background: #f8f9fa;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #065f46;">🖐️ Median</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #065f46;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg> Median</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #047857;"><strong>Pronator Syndrome</strong></td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">CTS muscles + proximal</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">CTS + thenar eminence</td>
@@ -2163,7 +2161,7 @@ export const Pathophysiology = {
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">Activity-related, not nocturnal</td>
                         </tr>
                         <tr style="background: #f0fdf4;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #065f46;">🖐️ Median</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #065f46;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V3a2 2 0 0 0-4 0v9.5"></path><path d="M6 14v-2a2 2 0 0 0-4 0v4.5A7.5 7.5 0 0 0 9.5 24h3A7.5 7.5 0 0 0 20 16.5V13a2 2 0 0 0-4 0v1"></path></svg> Median</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #047857;"><strong>AIN Syndrome</strong></td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">FPL, FDP (2,3), PQ</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #064e3b;">None (pure motor)</td>
@@ -2173,7 +2171,7 @@ export const Pathophysiology = {
 
                         <!-- Ulnar Nerve Group -->
                         <tr style="background: #fef3c7;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #92400e;">🤏 Ulnar</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #92400e;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l3.6 3.6"></path><path d="M15 14h2a2 2 0 1 0 0-4h-2"></path><path d="M18 14h1a2 2 0 1 0 0-4h-1"></path><path d="M4.6 21H18M4.6 3H18"></path><path d="M8.6 15c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l2 2v0a2 2 0 0 0 2.8 0l8.2-8.2a2.8 2.8 0 0 0-4-4l-6.8 6.8"></path></svg> Ulnar</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #78350f;"><strong>Cubital Tunnel (UNE)</strong></td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #451a03;">FCU, FDP (4,5), hand intrinsics</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #451a03;">Ring, little finger + dorsal hand</td>
@@ -2181,7 +2179,7 @@ export const Pathophysiology = {
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #451a03;">Froment's sign, Wartenberg's</td>
                         </tr>
                         <tr style="background: #fff8db;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #92400e;">🤏 Ulnar</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #92400e;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l3.6 3.6"></path><path d="M15 14h2a2 2 0 1 0 0-4h-2"></path><path d="M18 14h1a2 2 0 1 0 0-4h-1"></path><path d="M4.6 21H18M4.6 3H18"></path><path d="M8.6 15c-.6 0-1.2.2-1.6.6v0c-.8.8-.8 2 0 2.8l2 2v0a2 2 0 0 0 2.8 0l8.2-8.2a2.8 2.8 0 0 0-4-4l-6.8 6.8"></path></svg> Ulnar</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #78350f;"><strong>Guyon's Canal (UNW)</strong></td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #451a03;">Hand intrinsics only</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #451a03;">Variable (by zone)</td>
@@ -2191,7 +2189,7 @@ export const Pathophysiology = {
 
                         <!-- Radial Nerve Group -->
                         <tr style="background: #f0f9ff;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #1d4ed8;">👍 Radial</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #1d4ed8;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> Radial</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #2563eb;"><strong>Spiral Groove</strong> • PIN Syndrome</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #1e3a8a;">Extensors, wrist drop</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #1e3a8a;">First web space</td>
@@ -2201,7 +2199,7 @@ export const Pathophysiology = {
 
                         <!-- Lower Extremity Nerves -->
                         <tr style="background: #fef2f2;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #dc2626;">🦶 Peroneal</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #dc2626;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M3 17V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M11 10h4a2 2 0 0 1 2 2v2"></path><path d="M17 12h2a2 2 0 0 1 2 2v3"></path><path d="M19 19v1a2 2 0 0 1-2 2H3"></path></svg> Peroneal</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #991b1b;"><strong>Fibular Head</strong> • Anterior Tarsal Tunnel</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #7f1d1d;">Dorsiflexors, foot drop</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #7f1d1d;">Dorsal foot</td>
@@ -2210,7 +2208,7 @@ export const Pathophysiology = {
                         </tr>
 
                         <tr style="background: #f3e8ff;">
-                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #7c3aed;">🦵 Tibial</td>
+                            <td style="border: 1px solid #cbd5e1; padding: 10px; font-weight: bold; color: #7c3aed;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M10 21V9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v7.5A3.5 3.5 0 0 1 14.5 20H12"></path><path d="M14 7V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path></svg> Tibial</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #6d28d9;"><strong>Tarsal Tunnel Syndrome</strong></td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #553c9a;">Intrinsic foot muscles</td>
                             <td style="border: 1px solid #cbd5e1; padding: 10px; color: #553c9a;">Plantar foot</td>
@@ -2224,7 +2222,7 @@ export const Pathophysiology = {
             <!-- Quick Reference Tips -->
             <div style="margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981;">
-                    <h6 style="color: #065f46; margin-bottom: 10px;">🔑 Localization Keys</h6>
+                    <h6 style="color: #065f46; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg> Localization Keys</h6>
                     <ul style="color: #064e3b; font-size: 0.9em; margin: 0;">
                         <li><strong>Sensory sparing:</strong> Look for pure motor syndromes</li>
                         <li><strong>Timing patterns:</strong> Nocturnal vs activity-related</li>
@@ -2233,7 +2231,7 @@ export const Pathophysiology = {
                     </ul>
                 </div>
                 <div style="background: #fef2f2; padding: 15px; border-radius: 8px; border-left: 4px solid #ef4444;">
-                    <h6 style="color: #991b1b; margin-bottom: 10px;">⚠️ Common Pitfalls</h6>
+                    <h6 style="color: #991b1b; margin-bottom: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Common Pitfalls</h6>
                     <ul style="color: #7f1d1d; font-size: 0.9em; margin: 0;">
                         <li><strong>Anatomical variants:</strong> Martin-Gruber, Riche-Cannieu</li>
                         <li><strong>Double crush:</strong> Multiple compression sites</li>
@@ -2246,7 +2244,7 @@ export const Pathophysiology = {
             <!-- Status Update -->
             <div style="margin-top: 20px; background: #f0f9ff; padding: 15px; border-radius: 8px; text-align: center;">
                 <p style="color: #3730a3; font-weight: 500; margin: 0;">
-                    📚 <strong>System Status:</strong> Median, Ulnar, Radial, Peroneal/Fibular & Tibial content complete - comprehensive clinical protocols ready.
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> <strong>System Status:</strong> Median, Ulnar, Radial, Peroneal/Fibular & Tibial content complete - comprehensive clinical protocols ready.
                 </p>
             </div>
 

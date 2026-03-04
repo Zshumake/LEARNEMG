@@ -1,5 +1,5 @@
 /* Cartoony Rubber-Hose Ernest CSS */
-.ernest-container {
+.at-ernest-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -33,11 +33,11 @@
 
     0%,
     100% {
-        transform: scale(0.76) scaleY(1) translateY(0);
+        transform: scale(0.76) translateY(0);
     }
 
     50% {
-        transform: scale(0.76) scaleY(0.96) translateY(10px);
+        transform: scale(0.76) translateY(12px);
     }
 }
 
@@ -50,11 +50,12 @@
 
     0%,
     100% {
-        transform: scale(0.76) scaleY(1) translateY(0);
+        transform: scale(0.76) translateY(0);
     }
 
     50% {
-        transform: scale(0.76) scaleY(0.98) translateY(6px);
+        transform: scale(0.76) translateY(18px);
+        /* Deeper breathing */
     }
 }
 
@@ -95,21 +96,21 @@
 }
 
 /* Expressive Blinking Eyes */
-.ernest-container.awake .ernest-eyes {
+.at-ernest-container.awake .ernest-eyes {
     transform-origin: center;
     transform-box: fill-box;
     animation: cartoon-blink 4s infinite;
 }
 
-.ernest-container.sleeping .ernest-eyes-open,
-.ernest-container.sleeping .ernest-mouth-open {
-    display: none;
+.at-ernest-container.sleeping .ernest-eyes-open,
+.at-ernest-container.sleeping .ernest-mouth-open {
+    display: none !important;
 }
 
-.ernest-container:not(.sleeping) .ernest-eyes-closed,
-.ernest-container:not(.sleeping) .ernest-mouth-closed,
-.ernest-container:not(.sleeping) .ernest-z-group {
-    display: none;
+.at-ernest-container:not(.sleeping) .ernest-eyes-closed,
+.at-ernest-container:not(.sleeping) .ernest-mouth-closed,
+.at-ernest-container:not(.sleeping) .ernest-z-group {
+    display: none !important;
 }
 
 @keyframes cartoon-blink {
@@ -128,77 +129,10 @@
     }
 }
 
-/* Rayman Floating Hands Animations - ELIPTICAL & ASYNC */
-/* Apply micro-float globally to any character state that is NOT sleeping */
-/* This works on the child group so it composes WITH parent translate animations */
 
-.ernest-container:not(.sleeping) .ernest-float-hand-right {
-    animation: rayman-float-idle-r 3.6s ease-in-out infinite;
-    transform-origin: center;
-}
-
-.ernest-container:not(.sleeping) .ernest-float-hand-left {
-    animation: rayman-float-idle-l 4.5s ease-in-out infinite;
-    transform-origin: center;
-}
-
-@keyframes rayman-float-idle-r {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-
-    33% {
-        transform: translate(4px, -15px) rotate(3deg) scale(0.98);
-    }
-
-    66% {
-        transform: translate(-2px, -8px) rotate(-2deg) scale(0.99);
-    }
-}
-
-@keyframes rayman-float-idle-l {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-
-    33% {
-        transform: translate(-5px, -12px) rotate(-4deg) scale(0.97);
-    }
-
-    66% {
-        transform: translate(3px, -20px) rotate(2deg) scale(0.98);
-    }
-}
-
-/* Hands resting pose when sleeping (Tucked way behind hips/body) */
-.ernest-container.sleeping .ernest-hand-pos-right {
-    transform: translate(90px, 350px) rotate(-30deg);
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ernest-container:not(.sleeping) .ernest-hand-pos-right {
-    transform: translate(20px, 320px) rotate(0deg);
-    /* WIDE Viewer Left */
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ernest-container.sleeping .ernest-hand-pos-left {
-    transform: translate(330px, 350px) rotate(30deg);
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ernest-container:not(.sleeping) .ernest-hand-pos-left {
-    transform: translate(430px, 320px) rotate(0deg);
-    /* WIDE Viewer Right */
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 /* Bouncing Eyebrows */
-.ernest-container.awake .ernest-eyebrow {
+.at-ernest-container.awake .ernest-eyebrow {
     animation: eyebrow-bop 4s infinite;
 }
 
@@ -215,26 +149,40 @@
     }
 }
 
-/* Zaps with Cartoony Snap */
-.ernest-zap-line {
-    stroke-dasharray: 10, 15;
-    animation: cartoon-zap 0.4s steps(3) infinite;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
 
-.ernest-container.awake .ernest-zap-line {
-    opacity: 1;
-}
+
 
 @keyframes cartoon-zap {
     0% {
-        stroke-dashoffset: 25;
+        stroke-dashoffset: 60;
+        opacity: 0;
     }
 
-    100% {
+    10%,
+    20% {
         stroke-dashoffset: 0;
+        opacity: 1;
     }
+
+    30%,
+    100% {
+        stroke-dashoffset: -60;
+        opacity: 0;
+    }
+}
+
+.ernest-zap-line {
+    /* Set stroke dasharray to allow drawing effect */
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    opacity: 0;
+    /* Animate every 3 seconds, taking 1.5s to complete */
+    animation: cartoon-zap 3s ease-out infinite;
+}
+
+/* Offset the right zap so they fire slightly asynchronously if desired, or keep them synced */
+.ernest-zap-line+.ernest-zap-line {
+    animation-delay: 0.2s;
 }
 
 /* Simple LED Blink */
@@ -242,7 +190,7 @@
     fill: #008f25;
 }
 
-.ernest-container.awake .ernest-led {
+.at-ernest-container.awake .ernest-led {
     animation: cartoon-led 1s infinite steps(2);
 }
 
@@ -256,61 +204,7 @@
     }
 }
 
-/* --- Hand Gesture Visibility Logic --- */
-/* By default, hide all gesture images */
-.ernest-gesture-palm,
-.ernest-gesture-fist,
-.ernest-gesture-point,
-.ernest-gesture-thumb,
-.ernest-gesture-palm-l,
-.ernest-gesture-fist-l,
-.ernest-gesture-point-l,
-.ernest-gesture-thumb-l {
-    display: none;
-}
 
-/* Default state if no data attribute is provided (Palm Right, Fist Left) */
-.ernest-container:not([data-gesture-r]) .ernest-gesture-palm {
-    display: block;
-}
-
-.ernest-container:not([data-gesture-l]) .ernest-gesture-fist-l {
-    display: block;
-}
-
-/* Right Hand Explicit States */
-.ernest-container[data-gesture-r="palm"] .ernest-gesture-palm {
-    display: block;
-}
-
-.ernest-container[data-gesture-r="fist"] .ernest-gesture-fist {
-    display: block;
-}
-
-.ernest-container[data-gesture-r="point"] .ernest-gesture-point {
-    display: block;
-}
-
-.ernest-container[data-gesture-r="thumb"] .ernest-gesture-thumb {
-    display: block;
-}
-
-/* Left Hand Explicit States */
-.ernest-container[data-gesture-l="palm"] .ernest-gesture-palm-l {
-    display: block;
-}
-
-.ernest-container[data-gesture-l="fist"] .ernest-gesture-fist-l {
-    display: block;
-}
-
-.ernest-container[data-gesture-l="point"] .ernest-gesture-point-l {
-    display: block;
-}
-
-.ernest-container[data-gesture-l="thumb"] .ernest-gesture-thumb-l {
-    display: block;
-}
 
 /* --- Fun Composited Character Animations --- */
 
@@ -320,13 +214,13 @@
 }
 
 #ernest-character.thinking .ernest-hand-pos-right {
-    /* Character Right / Viewer Left - Hand moves to chin */
-    transform: translate(180px, 305px) rotate(-15deg) !important;
+    /* Hand moves to chin area */
+    transform: translate(320px, 295px) rotate(-15deg) !important;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 #ernest-character.thinking .ernest-hand-pos-left {
-    transform: translate(390px, 340px) rotate(10deg) !important;
+    transform: translate(90px, 340px) rotate(10deg) !important;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -338,49 +232,33 @@
     }
 
     50% {
-        transform: scale(0.76) rotate(4deg) translateY(-5px) scaleY(0.98);
+        /* Deep, wide, tilted bounce for thinking */
+        transform: scale(0.76) rotate(-8deg) translateY(20px);
     }
 }
 
-/* 2. Excited (Rapid Jumps with Hands Up) */
+/* 2. Excited */
 #ernest-character.excited .ernest-svg-char {
     animation: anim-excited-body 0.6s infinite ease-in-out;
-}
-
-#ernest-character.excited .ernest-hand-pos-right {
-    transform: translate(40px, 140px) rotate(-30deg) !important;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-#ernest-character.excited .ernest-hand-pos-left {
-    transform: translate(410px, 140px) rotate(30deg) !important;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes anim-excited-body {
 
     0%,
     100% {
-        transform: scale(0.76) translateY(0px) scaleY(1);
+        /* Grounded heavy bounce */
+        transform: scale(0.76) translateY(20px);
     }
 
     50% {
-        transform: scale(0.76) translateY(-35px) scaleY(1.08);
+        /* Air leap */
+        transform: scale(0.76) translateY(-40px);
     }
 }
 
 /* 3. Lecturing / Pointing */
 #ernest-character.lecturing .ernest-svg-char {
     animation: anim-lecturing-body 2s infinite ease-in-out;
-}
-
-#ernest-character.lecturing .ernest-hand-pos-right {
-    transform: translate(20px, 320px) rotate(0deg) !important;
-}
-
-#ernest-character.lecturing .ernest-hand-pos-left {
-    transform: translate(440px, 200px) rotate(-20deg) !important;
-    animation: anim-pointing-hand 1.4s infinite ease-in-out;
 }
 
 @keyframes anim-lecturing-body {
@@ -390,69 +268,28 @@
         transform: scale(0.76) translateY(0px) rotate(0deg);
     }
 
-    30% {
-        transform: scale(0.76) translateY(-5px) rotate(-2deg);
-    }
-
-    70% {
-        transform: scale(0.76) translateY(-2px) rotate(-1deg);
-    }
-}
-
-@keyframes anim-pointing-hand {
-
-    0%,
-    100% {
-        transform: translate(440px, 200px) rotate(-20deg);
-    }
-
     50% {
-        transform: translate(460px, 190px) rotate(-30deg);
+        /* Leaning towards camera/user = scale up slightly, rotate towards them */
+        transform: scale(0.80) translateY(5px) rotate(-6deg);
     }
 }
 
-/* 4. Dancing (Jazz Hands) */
+/* 4. Dancing */
 #ernest-character.dancing .ernest-svg-char {
     animation: anim-dancing-body 1s infinite alternate ease-in-out;
 }
 
-#ernest-character.dancing .ernest-hand-pos-right {
-    transform: translate(20px, 320px) !important;
-    animation: rayman-jazz-r 0.6s infinite alternate ease-in-out;
-}
-
-#ernest-character.dancing .ernest-hand-pos-left {
-    transform: translate(430px, 320px) !important;
-    animation: rayman-jazz-l 0.6s infinite alternate ease-in-out;
-}
-
 @keyframes anim-dancing-body {
     0% {
-        transform: scale(0.76) rotate(-5deg) translateY(0);
+        transform: scale(0.76) rotate(-15deg) translateY(10px);
+    }
+
+    50% {
+        transform: scale(0.76) rotate(0deg) translateY(-20px);
     }
 
     100% {
-        transform: scale(0.76) rotate(5deg) translateY(0);
-    }
-}
-
-@keyframes rayman-jazz-r {
-    0% {
-        transform: translate(0px, 320px) rotate(15deg) scale(1);
-    }
-
-    100% {
-        transform: translate(40px, 280px) rotate(-5deg) scale(1.1);
-    }
-}
-
-@keyframes rayman-jazz-l {
-    0% {
-        transform: translate(450px, 320px) rotate(-15deg) scale(1);
-    }
-
-    100% {
-        transform: translate(410px, 280px) rotate(5deg) scale(1.1);
+        transform: scale(0.76) rotate(15deg) translateY(10px);
     }
 }
 
@@ -461,68 +298,144 @@
     animation: anim-jumping-body 0.8s infinite ease-in-out;
 }
 
-#ernest-character.jumping .ernest-hand-pos-right {
-    transform: translate(40px, 340px) !important;
-    animation: rayman-pump-r 0.8s infinite ease-in-out;
-}
-
-#ernest-character.jumping .ernest-hand-pos-left {
-    transform: translate(410px, 340px) !important;
-    animation: rayman-pump-l 0.8s infinite ease-in-out;
-}
-
 @keyframes anim-jumping-body {
 
     0%,
     100% {
-        transform: scale(0.76) translateY(0px) scaleY(1);
+        transform: scale(0.76) translateY(30px);
+        /* Heavy land */
     }
 
     50% {
-        transform: scale(0.76) translateY(-30px) scaleY(1.05);
-    }
-}
-
-@keyframes rayman-pump-r {
-
-    0%,
-    100% {
-        transform: translate(40px, 340px) scale(1);
-    }
-
-    50% {
-        transform: translate(40px, 180px) scale(1.1);
-    }
-}
-
-@keyframes rayman-pump-l {
-
-    0%,
-    100% {
-        transform: translate(410px, 340px) scale(1);
-    }
-
-    50% {
-        transform: translate(410px, 180px) scale(1.1);
+        transform: scale(0.76) translateY(-60px);
+        /* Huge leap in the air */
     }
 }
 
 /* 6. Waving */
 #ernest-character.waving .ernest-svg-char {
-    animation: ernest-bounce 3s infinite ease-in-out;
+    animation: ernest-bounce-wave 1s infinite ease-in-out;
 }
 
-#ernest-character.waving .ernest-hand-pos-left {
-    transform: translate(430px, 320px) rotate(0deg) !important;
-    animation: rayman-wave-l 1s infinite alternate ease-in-out;
+@keyframes ernest-bounce-wave {
+
+    0%,
+    100% {
+        transform: scale(0.76) rotate(-10deg) translateY(10px);
+    }
+
+    50% {
+        transform: scale(0.76) rotate(15deg) translateY(-10px);
+    }
 }
 
-@keyframes rayman-wave-l {
+
+/* --- NEW BODY ANIMATIONS (Handless Expression) --- */
+
+/* Pop Out Animation */
+#ernest-character.pop-out .ernest-svg-char {
+    animation: ernest-pop-out 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ernest-pop-out {
     0% {
-        transform: translate(410px, 300px) rotate(-25deg);
+        transform: scale(0.76) translateY(40px);
+    }
+
+    40% {
+        transform: scale(1.1) translateY(-30px);
+    }
+
+    70% {
+        transform: scale(0.76) translateY(15px);
     }
 
     100% {
-        transform: translate(450px, 300px) rotate(25deg);
+        transform: scale(0.76);
+    }
+}
+
+/* Prong Wobble (Idle Quirk) */
+.at-ernest-container.awake .ernest-prong-left {
+    transform-origin: 195px 135px;
+    /* Bottom of left prong */
+    animation: prong-wobble-l 4s infinite ease-in-out;
+}
+
+.at-ernest-container.awake .ernest-prong-right {
+    transform-origin: 305px 135px;
+    /* Bottom of right prong */
+    animation: prong-wobble-r 4.5s infinite ease-in-out;
+}
+
+@keyframes prong-wobble-l {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-4deg);
+    }
+
+    75% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes prong-wobble-r {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    30% {
+        transform: rotate(4deg);
+    }
+
+    70% {
+        transform: rotate(-2deg);
+    }
+}
+
+/* Prong Pulse (Talking Glow/Grow) */
+#ernest-character.talking .ernest-prong rect,
+#ernest-character.talking .ernest-prong circle {
+    animation: prong-pulse 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes prong-pulse {
+    0% {
+        fill: #b0b5ba;
+        filter: brightness(1);
+    }
+
+    100% {
+        fill: #c8e0e8;
+        filter: brightness(1.2) drop-shadow(0 0 4px #88dded);
+    }
+}
+
+/* Prong Spark (Excited State) */
+.ernest-prong-spark {
+    opacity: 0;
+    stroke-dasharray: 15 10;
+    transition: opacity 0.3s;
+}
+
+#ernest-character.excited .ernest-prong-spark {
+    opacity: 1;
+    animation: spark-travel 0.3s linear infinite;
+}
+
+@keyframes spark-travel {
+    0% {
+        stroke-dashoffset: 25;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
     }
 }

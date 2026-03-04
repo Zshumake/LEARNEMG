@@ -531,7 +531,7 @@ export const PathwayExplorer = {
                 name: "Median Nerve",
                 roots: "C6-T1",
                 story: "The Median nerve originates from the lateral and medial cords of the brachial plexus. It travels down the arm medial to the humerus, passes through the cubital fossa, and enters the forearm between the heads of the pronator teres. It supplies the flexor compartment of the forearm before passing through the carpal tunnel to innervate the thenar muscles and provide sensation to the lateral 3.5 digits.",
-                imagePath: "images/pathways/Median Nerve Optimized.png",
+                imagePath: "images/anatomy/median_nerve.png",
                 steps: [
                     { title: "Origin", desc: "Forms from lateral and medial cords of brachial plexus (C6-T1)", isInjurySite: false },
                     { title: "Upper Arm", desc: "Travels medially to humerus in bicipital groove", isInjurySite: false },

@@ -1,4 +1,5 @@
 import { Icons } from './Icons.js';
+import { ErnestIcon } from '../../../utils/ErnestIcon.js';
 
 export class PlayerOverlay {
     constructor(controller) {
@@ -27,7 +28,7 @@ export class PlayerOverlay {
                     <div class="header-content">
                         <div class="brand-container">
                             <div class="avatar-wrapper">
-                                <img id="podcast-header-icon" src="images/ui/ERNEST.png" alt="Ernest">
+                                ${ErnestIcon.getHTML({ size: '48px', className: 'podcast-header-icon' })}
                                 <div class="status-dot"></div>
                             </div>
                             <div class="brand-text">
@@ -170,9 +171,10 @@ export class PlayerOverlay {
 
     updateMeta(episode) {
         if (!episode) return;
-        const headerIcon = document.getElementById('podcast-header-icon');
-        if (headerIcon && episode.icon) {
-            headerIcon.src = episode.icon;
+        const wrapper = document.querySelector('.avatar-wrapper');
+        if (wrapper && episode.icon) {
+            // Handle legacy icon switch if needed, but for now we use dynamic
+            // wrapper.innerHTML = ErnestIcon.getHTML({ size: '48px' });
         }
     }
 

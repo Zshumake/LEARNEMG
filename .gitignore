@@ -37,6 +37,8 @@ Photos-*/
 Medical texts/
 BACKUP_PRE_LEGACY_REMOVAL/
 tasks/
+trash/
+large_files/
 
 # Tempoary Files
 temp_*.html

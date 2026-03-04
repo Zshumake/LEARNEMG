@@ -11,7 +11,10 @@ export function generateContent(module) {
         <div class="interactive-content" style="position: relative;">
             ${generateErnestButton('radiculopathy', 'Radiculopathy Pathophysiology')}
             <div style="background: linear-gradient(135deg, #fff7ed, #fed7aa); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
-                <h3 style="color: #c2410c; margin-bottom: 15px;">🎯 Learning Objectives</h3>
+                <h3 style="color: #c2410c; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Learning Objectives
+                </h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
                     <div>
                         <p style="color: #9a3412; font-weight: 500;">• Understand radiculopathy pathophysiology and etiology</p>
@@ -26,7 +29,10 @@ export function generateContent(module) {
 
             <!-- Definition and Pathophysiology -->
             <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #dc2626;">
-                <h4 style="color: #2c3e50; margin-bottom: 15px;">🧬 What is Radiculopathy?</h4>
+                <h4 style="color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 20px; height: 20px; margin-right: 8px; color: #dc2626;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    What is Radiculopathy?
+                </h4>
                 <p style="color: #495057; margin-bottom: 15px; line-height: 1.6;">
                     <strong>Radiculopathy</strong> refers to dysfunction of a nerve root, typically caused by compression, inflammation,
                     or injury at the level where the nerve root exits the spinal cord through the neural foramen. The pathology
@@ -57,10 +63,13 @@ export function generateContent(module) {
                 </div>
 
                 <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                    <h5 style="color: #b91c1c; margin-bottom: 10px;">🔬 Key Pathophysiology</h5>
+                    <h5 style="color: #b91c1c; margin-bottom: 10px; display: flex; align-items: center;">
+                        <svg style="width: 18px; height: 18px; margin-right: 6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        Key Pathophysiology
+                    </h5>
                     <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
                         <div>
-                            <strong style="color: #991b1b;">Location:</strong> Lesion is <em>proximal</em> to dorsal root ganglion → Sensory NCS remain normal
+                            <strong style="color: #991b1b;">Location:</strong> Lesion is <em>proximal</em> to dorsal root ganglion &rarr; Sensory NCS remain normal
                         </div>
                         <div>
                             <strong style="color: #991b1b;">Pattern:</strong> Single nerve root affects multiple muscles (myotome) + paraspinal muscles
@@ -74,10 +83,15 @@ export function generateContent(module) {
 
             <!-- Age-Related Causes -->
             <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #7c3aed;">
-                <h4 style="color: #2c3e50; margin-bottom: 15px;">📊 Age-Related Etiology</h4>
+                <h4 style="color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 20px; height: 20px; margin-right: 8px; color: #7c3aed;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    Age-Related Etiology
+                </h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div style="background: #ede9fe; padding: 15px; border-radius: 8px;">
-                        <h5 style="color: #6b21a8; margin-bottom: 10px;">👶 Younger Patients (&lt;50 years)</h5>
+                        <h5 style="color: #6b21a8; margin-bottom: 10px; display: flex; align-items: center;">
+                            Younger Patients (&lt;50 years)
+                        </h5>
                         <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
                             <li><strong>Disc herniation</strong> (most common)</li>
                             <li>Acute trauma</li>
@@ -86,7 +100,9 @@ export function generateContent(module) {
                         </ul>
                     </div>
                     <div style="background: #fef3c7; padding: 15px; border-radius: 8px;">
-                        <h5 style="color: #92400e; margin-bottom: 10px;">👴 Older Patients (&gt;50 years)</h5>
+                        <h5 style="color: #92400e; margin-bottom: 10px; display: flex; align-items: center;">
+                            Older Patients (&gt;50 years)
+                        </h5>
                         <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
                             <li><strong>Spinal stenosis</strong> (most common)</li>
                             <li>Degenerative spondylosis</li>
@@ -99,7 +115,10 @@ export function generateContent(module) {
 
             <!-- NCS/EMG Pattern Summary -->
             <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #3b82f6;">
-                <h3 style="color: #1e40af; margin-bottom: 15px;">⚡ Radiculopathy NCS/EMG Pattern</h3>
+                <h3 style="color: #1e40af; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 8px; color: #3b82f6;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    Radiculopathy NCS/EMG Pattern
+                </h3>
                 <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead>
@@ -133,7 +152,10 @@ export function generateContent(module) {
 
             <!-- Clinical Findings by Root -->
             <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                <h3 style="color: #059669; margin-bottom: 15px;">📋 Clinical Findings by Nerve Root</h3>
+                <h3 style="color: #059669; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    Clinical Findings by Nerve Root
+                </h3>
                 <div style="overflow-x: auto;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
                         <thead>
@@ -195,63 +217,72 @@ export function generateContent(module) {
             <!-- Etiology -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                 <div style="background: white; padding: 20px; border-radius: 15px; border-left: 5px solid #059669;">
-                    <h4 style="color: #059669; margin-bottom: 15px;">📊 Common Causes</h4>
-                    <ul style="color: #374151; line-height: 1.8; margin: 0;">
-                        <li><strong>Herniated nucleus pulposus:</strong> Most common in adults <50 years</li>
-                        <li><strong>Spinal stenosis:</strong> Most common in adults >50 years</li>
+                    <h4 style="color: #059669; margin-bottom: 15px; display: flex; align-items: center;">
+                        <svg style="width: 20px; height: 20px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        Common Causes
+                    </h4>
+                    <ul style="color: #374151; line-height: 1.8; margin: 0; padding-left: 20px;">
+                        <li><strong>Herniated nucleus pulposus:</strong> Most common in adults &lt;50 years</li>
+                        <li><strong>Spinal stenosis:</strong> Most common in adults &gt;50 years</li>
                     </ul>
                 </div>
 
                 <div style="background: white; padding: 20px; border-radius: 15px; border-left: 5px solid #dc2626;">
-                    <h4 style="color: #dc2626; margin-bottom: 15px;">🎯 "HI MADAM" Mnemonic</h4>
+                    <h4 style="color: #dc2626; margin-bottom: 15px; display: flex; align-items: center;">
+                        <svg style="width: 20px; height: 20px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        "HI MADAM" Mnemonic
+                    </h4>
                     <div style="font-size: 0.9em; line-height: 1.6; color: #374151;">
                         <p><strong>H</strong> - Herpes zoster</p>
-                        <p><strong>I</strong> - Inflammatory (TB, Lyme, HIV, sarcoid)</p>
+                        <p><strong>I</strong> - Inflammatory <span style="font-size: 0.9em; color: #6b7280;">(TB, Lyme, HIV, sarcoid)</span></p>
                         <p><strong>M</strong> - Metastasis</p>
                         <p><strong>A</strong> - Arachnoiditis</p>
                         <p><strong>D</strong> - Diabetes mellitus</p>
                         <p><strong>A</strong> - Abscess</p>
-                        <p><strong>M</strong> - Mass (neurofibroma, meningioma, etc.)</p>
+                        <p><strong>M</strong> - Mass <span style="font-size: 0.9em; color: #6b7280;">(neurofibroma, meningioma, etc.)</span></p>
                     </div>
                 </div>
             </div>
 
             <!-- Electrodiagnostic Timeline -->
             <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                <h3 style="color: #7c3aed; margin-bottom: 15px;">⏰ Electrodiagnostic Timeline</h3>
+                <h3 style="color: #7c3aed; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Electrodiagnostic Timeline
+                </h3>
                 <div style="position: relative; padding: 20px 0;">
-                    <div style="position: absolute; left: 50px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, #7c3aed, #a855f7);"></div>
+                    <div style="position: absolute; left: 50px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, #7c3aed, #a855f7, #059669);"></div>
 
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #7c3aed; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center;">Day 0</div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative;">
+                        <div style="background: #7c3aed; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center; z-index: 1;">Day 0</div>
                         <div style="background: #f3f4f6; padding: 12px 15px; border-radius: 8px; flex-grow: 1;">
                             <strong>Immediate findings:</strong> Decreased recruitment, prolonged F-waves, abnormal H-reflex (S1)
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #a855f7; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center;">1 Week</div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative;">
+                        <div style="background: #a855f7; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center; z-index: 1;">1 Week</div>
                         <div style="background: #fef3c7; padding: 12px 15px; border-radius: 8px; flex-grow: 1;">
                             <strong>Paraspinal abnormalities:</strong> First spontaneous activity appears in paraspinal muscles
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #c084fc; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center;">2 Weeks</div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative;">
+                        <div style="background: #c084fc; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center; z-index: 1;">2 Weeks</div>
                         <div style="background: #fecaca; padding: 12px 15px; border-radius: 8px; flex-grow: 1;">
                             <strong>Limb involvement:</strong> Abnormal spontaneous activity begins in limb muscles
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #d8b4fe; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center;">3 Weeks</div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative;">
+                        <div style="background: #d8b4fe; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center; z-index: 1;">3 Weeks</div>
                         <div style="background: #fed7d7; padding: 12px 15px; border-radius: 8px; flex-grow: 1;">
                             <strong>Full pattern:</strong> Abnormal activity in both paraspinals and limbs
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center;">
-                        <div style="background: #059669; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center;">5-6 Weeks</div>
+                    <div style="display: flex; align-items: center; position: relative;">
+                        <div style="background: #059669; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; margin-right: 20px; min-width: 80px; text-align: center; z-index: 1;">5-6 Weeks</div>
                         <div style="background: #dcfce7; padding: 12px 15px; border-radius: 8px; flex-grow: 1;">
                             <strong>Recovery begins:</strong> Reinnervation patterns start to appear
                         </div>
@@ -261,7 +292,10 @@ export function generateContent(module) {
 
             <!-- Key Clinical Points -->
             <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #f59e0b;">
-                <h3 style="color: #d97706; margin-bottom: 15px;">🔍 Diagnostic Pearls</h3>
+                <h3 style="color: #d97706; margin-bottom: 15px; display: flex; align-items: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Diagnostic Pearls
+                </h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <h5 style="color: #92400e; margin-bottom: 8px;">Myotomal Pattern</h5>

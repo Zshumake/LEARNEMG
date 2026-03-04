@@ -20,12 +20,26 @@ export class ClinicalUI {
         this.proceedAfterDecision = this.proceedAfterDecision.bind(this);
         this.showFinalDiagnosis = this.showFinalDiagnosis.bind(this);
         this._handleFinalDiagnosisSubmit = this._handleFinalDiagnosisSubmit.bind(this);
+        this.setFilter = this.setFilter.bind(this);
+        this.analyzeDifferential = this.analyzeDifferential.bind(this);
+        this.makeEMGDecision = this.makeEMGDecision.bind(this);
+        this.checkFinalDiagnosis = this.checkFinalDiagnosis.bind(this);
+        this.currentPGY = 'all';
     }
 
     // --- Core API ---
 
-    renderDashboard(pgyLevel) {
-        const content = ClinicalRenderer.renderDashboard(pgyLevel, this.engine.database);
+    showClinicalCases(pgyLevel) {
+        this.currentPGY = pgyLevel || 'all';
+        this.renderDashboard(this.currentPGY);
+    }
+
+    setFilter(difficulty) {
+        this.renderDashboard(this.currentPGY, difficulty);
+    }
+
+    renderDashboard(pgyLevel, selectedDifficulty = 'all') {
+        const content = ClinicalRenderer.renderDashboard(pgyLevel, this.engine.database, selectedDifficulty);
 
         // 1. Candyland Core Integration Check
         const activeCandylandModal = document.querySelector('.learning-modal-overlay.active .learning-modal');
@@ -112,7 +126,11 @@ export class ClinicalUI {
         if (emgNotIndicatedCard) emgNotIndicatedCard.onclick = () => this._handleEMGDecisionClick(false);
     }
 
-    // --- Interaction Routing ---
+    // --- Interaction Routing & Public API Aliases ---
+
+    analyzeDifferential() { this._handleDifferentialSubmit(); }
+    makeEMGDecision(isIndicated) { this._handleEMGDecisionClick(isIndicated); }
+    checkFinalDiagnosis() { this._handleFinalDiagnosisSubmit(); }
 
     startSpecificCase(caseId) {
         try {

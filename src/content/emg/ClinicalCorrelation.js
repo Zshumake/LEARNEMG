@@ -15,8 +15,8 @@ const generateContent = function (module) {
     // We use a small delay to ensure the DOM is ready for the modal
     setTimeout(() => {
         if (window.appComponents && window.appComponents.clinicalCases) {
-            const currentPGY = (window.store && window.store.getPGYLevel) ? window.store.getPGYLevel() : 'pgy2';
-            window.appComponents.clinicalCases.renderDashboard(currentPGY);
+            const currentPGY = (window.store && window.store.getPGYLevel) ? window.store.getPGYLevel() : (window.currentPGYLevel || 'all');
+            window.appComponents.clinicalCases.showClinicalCases(currentPGY);
         } else {
             console.error('❌ Clinical Cases engine not ready');
         }

@@ -2,14 +2,17 @@ import { ClinicalTables } from './components/ClinicalTables.js';
 import { ClinicalEvaluator } from './ClinicalEvaluator.js';
 
 export const ClinicalRenderer = {
-    renderDashboard: function (pgyLevel, caseDatabase) {
+    renderDashboard: function (pgyLevel, caseDatabase, selectedDifficulty = 'all') {
         let caseListHtml = '';
         if (caseDatabase) {
             caseListHtml = '<div class="case-list-container" style="margin-top: 50px;">';
-            caseListHtml += '<h3 style="color: white; text-align: center; margin-bottom: 25px; font-size: 1.5em; font-weight: 700;">📂 Patient Case Load</h3>';
+            const displayDifficulty = selectedDifficulty === 'difficult' ? 'Expert' : (selectedDifficulty.charAt(0).toUpperCase() + selectedDifficulty.slice(1));
+            caseListHtml += `<h3 style="color: white; text-align: center; margin-bottom: 25px; font-size: 1.5em; font-weight: 700;">📂 ${selectedDifficulty === 'all' ? 'All Patient' : displayDifficulty} Case Load</h3>`;
             caseListHtml += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 10px;">';
 
             for (const [id, caseData] of Object.entries(caseDatabase)) {
+                if (selectedDifficulty !== 'all' && caseData.difficulty !== selectedDifficulty) continue;
+
                 const difficultyColor = caseData.difficulty === 'beginner' ? '#10b981' : (caseData.difficulty === 'intermediate' ? '#f59e0b' : '#ef4444');
 
                 caseListHtml += `
@@ -26,31 +29,70 @@ export const ClinicalRenderer = {
             caseListHtml += '</div></div>';
         }
 
+        const activeStyles = {
+            beginner: 'background: linear-gradient(135deg, #4ade80, #22c55e); box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); border: 2px solid #bef264; animation: pulse-glow 2s infinite;',
+            intermediate: 'background: linear-gradient(135deg, #fb923c, #f97316); box-shadow: 0 0 30px rgba(249, 115, 22, 0.6); border: 2px solid #fdba74; animation: pulse-glow 2s infinite;',
+            difficult: 'background: linear-gradient(135deg, #f87171, #ef4444); box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); border: 2px solid #fca5a5; animation: pulse-glow 2s infinite;'
+        };
+
         return `
+            <style>
+                @keyframes pulse-glow {
+                    0% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+                    50% { transform: scale(1.08); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
+                    100% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+                }
+                .difficulty-cards-centered {
+                    display: flex;
+                    justify-content: center;
+                    gap: 30px;
+                    margin-bottom: 40px;
+                    flex-wrap: wrap;
+                }
+                .large-diff-card {
+                    width: 320px !important;
+                    min-height: 220px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                }
+                .large-diff-card:hover {
+                    transform: translateY(-5px);
+                }
+            </style>
             <div id="case-selection" class="difficulty-selector">
                 <h3 class="selector-title">Clinical Correlation Lab</h3>
                 <p class="selector-subtitle" style="color: var(--clinical-text-muted);">Master the diagnostic pathway through real-world patient scenarios</p>
 
-                <div class="difficulty-cards">
-                    <div class="difficulty-card beginner-card" onclick="window.appComponents.clinicalCases.startBeginnerCases()">
-                        <div class="card-icon">🌱</div>
-                        <div class="card-title">Beginner</div>
-                        <div class="card-subtitle">Foundational Skills</div>
+                <div class="difficulty-cards-centered">
+                    <div class="difficulty-card large-diff-card beginner-card ${selectedDifficulty === 'beginner' ? 'active' : ''}" 
+                         style="${selectedDifficulty === 'beginner' ? activeStyles.beginner : ''}"
+                         onclick="window.appComponents.clinicalCases.setFilter('beginner')">
+                        <div class="card-icon" style="font-size: 64px;">🌱</div>
+                        <div class="card-title" style="font-size: 1.8em; margin-bottom: 10px;">Beginner</div>
+                        <div class="card-subtitle" style="font-weight: 600; letter-spacing: 1px;">FOUNDATIONAL SKILLS</div>
                     </div>
-                    <div class="difficulty-card intermediate-card" onclick="window.appComponents.clinicalCases.startIntermediateCases()">
-                        <div class="card-icon">🔥</div>
-                        <div class="card-title">Intermediate</div>
-                        <div class="card-subtitle">Clinical Reasoning</div>
+                    <div class="difficulty-card large-diff-card intermediate-card ${selectedDifficulty === 'intermediate' ? 'active' : ''}" 
+                         style="${selectedDifficulty === 'intermediate' ? activeStyles.intermediate : ''}"
+                         onclick="window.appComponents.clinicalCases.setFilter('intermediate')">
+                        <div class="card-icon" style="font-size: 64px;">🔥</div>
+                        <div class="card-title" style="font-size: 1.8em; margin-bottom: 10px;">Intermediate</div>
+                        <div class="card-subtitle" style="font-weight: 600; letter-spacing: 1px;">CLINICAL REASONING</div>
                     </div>
-                    <div class="difficulty-card difficult-card" onclick="window.appComponents.clinicalCases.startExpertCases()">
-                        <div class="card-icon">💎</div>
-                        <div class="card-title">Expert</div>
-                        <div class="card-subtitle">Complex Localization</div>
+                    <div class="difficulty-card large-diff-card difficult-card ${selectedDifficulty === 'difficult' ? 'active' : ''}" 
+                         style="${selectedDifficulty === 'difficult' ? activeStyles.difficult : ''}"
+                         onclick="window.appComponents.clinicalCases.setFilter('difficult')">
+                        <div class="card-icon" style="font-size: 64px;">💎</div>
+                        <div class="card-title" style="font-size: 1.8em; margin-bottom: 10px;">Expert</div>
+                        <div class="card-subtitle" style="font-weight: 600; letter-spacing: 1px;">COMPLEX LOCALIZATION</div>
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 30px;">
-                     <button class="clinical-btn secondary" onclick="window.returnToPGYNavigator('${pgyLevel}')">← Return to Learning Pathway</button>
+                <div style="text-align: center; margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                     ${selectedDifficulty !== 'all' ? '<button class="clinical-btn secondary" onclick="window.appComponents.clinicalCases.setFilter(\'all\')">Show All Cases</button>' : ''}
+                     <button class="clinical-btn secondary" style="margin: 0 auto;" onclick="window.returnToPGYNavigator('${pgyLevel}')">← Return to Learning Pathway</button>
                 </div>
 
                 ${caseListHtml}

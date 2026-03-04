@@ -22,8 +22,7 @@ class FundamentalsModule extends BaseContent {
             'methods': DesignTokens.gradients.technical,
             'technical': DesignTokens.gradients.safety,
             'interpretation': DesignTokens.gradients.cardinal,
-            'calculations': DesignTokens.gradients.foundations,
-            'quiz': DesignTokens.gradients.localization
+            'calculations': DesignTokens.gradients.foundations
         };
 
         this.initTabNavigation('ncs', tabColors, '.ncs-section');
@@ -41,7 +40,7 @@ class FundamentalsModule extends BaseContent {
             if (b === btn) {
                 b.style.background = isCorrect ? DesignTokens.colors.successLight : DesignTokens.colors.dangerLight;
                 b.style.borderColor = isCorrect ? DesignTokens.colors.success : DesignTokens.colors.danger;
-                b.innerHTML += isCorrect ? ' ✅' : ' ❌';
+                b.innerHTML += isCorrect ? ' <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-left: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ' <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-left: 4px;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
             }
         });
     }
@@ -95,7 +94,7 @@ class FundamentalsModule extends BaseContent {
                     `).join('')}
                 </div>
                 <div class="quiz-feedback" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
-                <button class="quiz-next-btn btn-primary" style="margin-top: 20px; display:none;" onclick="window.nextNCSQuestion(${idx}, ${this.data.quiz.length})">Next →</button>
+                <button class="quiz-next-btn btn-primary" style="margin-top: 20px; display:none;" onclick="window.nextNCSQuestion(${idx}, ${this.data.quiz.length})">Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
             </div>
         `).join('');
     }
@@ -115,7 +114,7 @@ class FundamentalsModule extends BaseContent {
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px;">
                             ${UIComponents.renderCard(`
-                                <h5 style="color: #92400e; margin-bottom: 15px; display: flex; align-items: center;"><span style="margin-right: 10px;">⚡</span> Action Potential Phases</h5>
+                                <h5 style="color: #92400e; margin-bottom: 15px; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Action Potential Phases</h5>
                                 <div style="overflow-x: auto;">
                                     <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
                                         <thead>
@@ -139,7 +138,7 @@ class FundamentalsModule extends BaseContent {
                             `, { borderLeftColor: '#f59e0b' })}
 
                             ${UIComponents.renderCard(`
-                                <h5 style="color: #059669; margin-bottom: 15px; display: flex; align-items: center;"><span style="margin-right: 10px;">🏎️</span> Conduction Principles</h5>
+                                <h5 style="color: #059669; margin-bottom: 15px; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg> Conduction Principles</h5>
                                 <div style="background: white; padding: 15px; border-radius: 12px; border: 1px solid #d1fae5; margin-bottom: 15px;">
                                     <strong style="color: #065f46; display: block; margin-bottom: 5px;">${this.data.physiology.conduction.process}</strong>
                                     <p style="font-size: 0.9em; line-height: 1.4; color: #374151;">${this.data.physiology.conduction.detail}</p>
@@ -276,9 +275,28 @@ class FundamentalsModule extends BaseContent {
                 <!-- 5. Math & Calculations -->
                 <div id="ncs-calculations-section" class="ncs-section" style="display: none;">
                     <div style="background: ${DesignTokens.colors.surface}; padding: 30px; border-radius: 20px; border: 1px solid ${DesignTokens.colors.border};">
-                        <h4 style="color: ${DesignTokens.colors.primary}; margin-bottom: 25px;">Interactive Calculation System</h4>
-                        <div style="background: #f8fafc; border-radius: 12px; padding: 20px; border-left: 5px solid ${DesignTokens.colors.primary}; margin-bottom: 25px;">
-                            <code>Formula: ${this.data.calculations.formula}</code>
+                        <h4 style="color: ${DesignTokens.colors.primary}; margin-bottom: 25px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: text-bottom;"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg> Interactive Calculation System</h4>
+                        
+                        <div style="background: #eef2ff; border-radius: 12px; padding: 20px; border: 1px solid #c7d2fe; margin-bottom: 25px;">
+                            <h5 style="color: #3730a3; margin-bottom: 10px;">Understanding Conduction Velocity (CV)</h5>
+                            <p style="font-size: 0.95em; color: #4338ca; margin-bottom: 15px; line-height: 1.5;">
+                                To calculate how fast a nerve conducts electricity (m/s), we need two stimulation points (Proximal and Distal). 
+                            </p>
+                            <ul style="font-size: 0.9em; color: #312e81; padding-left: 20px; margin-bottom: 15px; line-height: 1.5;">
+                                <li style="margin-bottom: 8px;"><strong>Distance (mm):</strong> The physical length of the nerve segment measured with a tape measure on the skin between the two stimulation sites.</li>
+                                <li style="margin-bottom: 8px;"><strong>Proximal Latency (ms):</strong> Time from shocking the nerve furthest from the recording electrode until the muscle twitches.</li>
+                                <li style="margin-bottom: 8px;"><strong>Distal Latency (ms):</strong> Time from shocking the nerve closer to the recording electrode until the muscle twitches.</li>
+                            </ul>
+                            <div style="background: white; padding: 15px; border-radius: 8px; font-size: 0.9em; color: #4338ca; border-left: 4px solid #4f46e5;">
+                                <strong>Why subtract latencies?</strong><br>
+                                Subtracting Distal Latency from Proximal Latency removes the time the signal spends crossing the neuromuscular junction (NMJ) and traveling down the muscle fibers. This isolates the pure nerve travel time!
+                            </div>
+                        </div>
+
+                        <div style="background: #f8fafc; border-radius: 12px; padding: 20px; border-left: 5px solid ${DesignTokens.colors.primary}; margin-bottom: 25px; text-align: center; font-size: 1.1em;">
+                            <code style="background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #0f172a;">
+                                <strong>${this.data.calculations.formula}</strong>
+                            </code>
                         </div>
                         
                         <div style="display: grid; gap: 20px; margin-bottom: 30px;">
@@ -303,11 +321,12 @@ class FundamentalsModule extends BaseContent {
                         </div>
                     </div>
                 </div>
+                </div>
 
-                <!-- 6. Quiz -->
-                <div id="ncs-quiz-section" class="ncs-section" style="display: none;">
-                    <div style="background: linear-gradient(135deg, ${DesignTokens.colors.primary}, ${DesignTokens.colors.secondary}); padding: 30px; border-radius: 20px; margin-bottom: 30px; text-align: center; color: white;">
-                        <h3 style="margin-bottom: 10px;">Knowledge Check</h3>
+                <!-- Global Knowledge Check (Always Visible at bottom) -->
+                <div style="margin-top: 50px; padding-top: 30px;">
+                    <div style="background: linear-gradient(135deg, ${DesignTokens.colors.primary}, ${DesignTokens.colors.secondary}); padding: 30px; border-radius: 20px; margin-bottom: 30px; text-align: center; color: white; box-shadow: ${DesignTokens.shadows.md};">
+                        <h3 style="margin-bottom: 10px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: text-bottom;"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Knowledge Check</h3>
                         <p style="opacity: 0.9;">Validate your mastery of NCS Fundamentals</p>
                     </div>
                     
@@ -320,7 +339,7 @@ class FundamentalsModule extends BaseContent {
                     <div class="quiz-container">
                         ${this.renderQuiz()}
                         <div id="quiz-complete" style="display: none; background: #ecfdf5; padding: 40px; border-radius: 20px; border: 3px solid #10b981; text-align: center; animation: slideIn 0.5s ease-out;">
-                            <h3 style="color: #065f46; margin-bottom: 15px;">🎉 Quiz Complete!</h3>
+                            <h3 style="color: #065f46; margin-bottom: 15px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: text-bottom;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Quiz Complete!</h3>
                             <p style="color: #064e3b; font-size: 1.4em; margin: 0;">Final Score: <span id="final-score" style="font-weight: 800;"></span> / ${this.data.quiz.length}</p>
                             <button class="btn-primary" style="margin-top: 25px;" onclick="location.reload()">Restart Quiz</button>
                         </div>
