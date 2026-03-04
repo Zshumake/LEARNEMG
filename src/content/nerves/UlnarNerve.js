@@ -1,11 +1,10 @@
 
-import { generateErnestButton } from '../../modules/audio/AudioData.js';
 
 const generateElbowContent = () => `
     <div style="background: white; padding: 20px; border-radius: 12px; font-family: 'Segoe UI', system-ui, sans-serif; margin-bottom: 25px;">
         <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">💪 Ulnar Neuropathy at the Elbow (UNE)</h5>
 
-        ${generateErnestButton ? generateErnestButton('ulnar-elbow', 'Ulnar Neuropathy at Elbow') : ''}
+
 
         <!-- Anatomy Section -->
         <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
@@ -82,7 +81,7 @@ const generateWristContent = () => `
     <div style="background: white; padding: 20px; border-radius: 12px; font-family: 'Segoe UI', system-ui, sans-serif;">
         <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">✋ Ulnar Neuropathy at the Wrist (Guyon's Canal)</h5>
 
-        ${generateErnestButton ? generateErnestButton('ulnar-wrist', 'Ulnar at Wrist') : ''}
+
 
         <!-- Anatomy Section -->
         <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">

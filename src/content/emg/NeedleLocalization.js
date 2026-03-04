@@ -3,7 +3,6 @@
  * EMG Needle Localization Content Module
  * Restored from legacy archives.
  */
-import { generateErnestButton } from '../../utils/ButtonGenerator.js';
 
 
 const EMGLocalizationDatabase = {
@@ -336,8 +335,7 @@ export const NeedleLocalization = {
 
         return `
         <div class="emg-localization-container">
-            ${generateErnestButton('emg-needle-localization', 'EMG Needle Localization')}
-            <!-- Hero Section with Animated Gradient -->
+<!-- Hero Section with Animated Gradient -->
             <div class="emg-hero">
                 <div class="hero-content">
                     <h1 class="hero-title">💉 EMG Needle Localization Guide</h1>

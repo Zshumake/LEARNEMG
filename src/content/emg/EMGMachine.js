@@ -1,5 +1,4 @@
 
-import { generateErnestButton } from '../../utils/ButtonGenerator.js';
 
 export const EMGMachine = {
     generateContent(module) {
@@ -21,9 +20,7 @@ export const EMGMachine = {
 
         return `
         <div class="emg-machine-container">
-            ${generateErnestButton('emg-machine', 'Cadwell Sierra Instrumentation')}
-            
-            <!-- Hero Section -->
+<!-- Hero Section -->
             <div class="machine-hero">
                 <h1 style="font-size: 2.5em; letter-spacing: -0.04em; margin: 0;">⚡ Cadwell Sierra Summit</h1>
                 <p style="margin-top: 15px;">Instrumentation mastery is the first step toward diagnostic precision. This guide isn't just a technical manual; it's a clinical roadmap highlighting the subtle hardware nuances and mental workflows you'll use every single day in the lab.</p>

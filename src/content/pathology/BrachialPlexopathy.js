@@ -1,13 +1,10 @@
 // Brachial Plexopathy: Clinical Pathophysiology Module
 // Mentorship-style guide for residents on injuries, localization, and EDX patterns.
 
-import { generateErnestButton } from '../../modules/audio/AudioData.js';
 export function generatePlexopathyContent() {
     return `
         <div class="plexopathy-clinical-content" style="padding: 30px; line-height: 1.7; color: #334155; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
-            ${generateErnestButton('brachial-plexopathy', 'Brachial Plexopathy Clinical Guide')}
-
-            <!-- Hero Section -->
+<!-- Hero Section -->
             <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #7dd3fc; padding: 35px; border-radius: 24px; margin-bottom: 35px; box-shadow: 0 10px 30px rgba(14, 165, 233, 0.08);">
                 <h2 style="color: #0369a1; margin-bottom: 20px; font-weight: 800; display: flex; align-items: center; gap: 12px; font-size: 1.8em;">
                     <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>

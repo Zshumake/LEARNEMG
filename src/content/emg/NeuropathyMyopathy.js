@@ -1,4 +1,3 @@
-import { generateErnestButton } from '../../modules/audio/AudioData.js';
 
 const generateContent = function (module) {
     // Podcast registered automatically via AudioData.js in the main loader/player
@@ -694,9 +693,7 @@ const generateContent = function (module) {
         </style>
 
         <div class="nm-module-wrapper">
-            ${generateErnestButton('neuropathy-myopathy-basics', 'Neuropathy vs Myopathy')}
-
-            <div class="nm-gradient-header">
+<div class="nm-gradient-header">
                 <h2 style="margin: 0; font-size: 2.2em; font-weight: 800; letter-spacing: -0.025em; display: flex; align-items: center; justify-content: center; gap: 15px;">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/><path d="M12 6a4 4 0 0 0-4 4h2a2 2 0 1 1 4 0h2a4 4 0 0 0-4-4z"/><path d="M12 14v2h.01"/></svg>
                     Neuropathy vs Myopathy

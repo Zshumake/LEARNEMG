@@ -1,7 +1,7 @@
 // Basic Patterns Module
 // Comprehensive EMG pattern recognition with multimedia content
 
-import { generateErnestButton } from '../../modules/audio/AudioData.js';// Note: The original code used a global generateModuleQuiz. I might need to clarify where this comes from.
+// Note: The original code used a global generateModuleQuiz. I might need to clarify where this comes from.
 // Looking at other files, it seems generating HTML strings is the pattern. 
 // If generateModuleQuiz is global, I should probably keep it global or import it if I can find it.
 // Wait, I saw generateModuleQuiz in src/content/ncs/Fundamentals.js? No, checking...
@@ -19,8 +19,7 @@ export const BasicPatterns = {
 
         return `
             <div class="interactive-content" style="position: relative;">
-                ${generateErnestButton('basic-patterns', 'Pattern Recognition')}
-                <!-- Learning Objective Banner -->
+<!-- Learning Objective Banner -->
                 <div style="background: linear-gradient(135deg, #f0f9ff, #e0e7ff); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #6366f1;">
                     <h3 style="color: #4338ca; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Learning Objectives</h3>
                     <p style="color: #3730a3; font-size: 1.1em; font-weight: 500; margin: 0;">

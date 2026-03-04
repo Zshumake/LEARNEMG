@@ -1,11 +1,10 @@
 
-import { generateErnestButton } from '../../modules/audio/AudioData.js';
 
 const generateContent = () => `
     <div style="background: white; padding: 20px; border-radius: 12px; font-family: 'Segoe UI', system-ui, sans-serif;">
         <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 1.2em;">🖐️ Carpal Tunnel Syndrome - Median Nerve at Wrist</h5>
 
-        ${generateErnestButton ? generateErnestButton('carpal-tunnel', 'Carpal Tunnel Syndrome') : ''}
+
 
         <!-- Anatomy Section -->
         <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">

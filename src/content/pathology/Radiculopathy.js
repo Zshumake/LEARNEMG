@@ -2,14 +2,11 @@
 // Nerve root compression patterns and localization
 // Updated: 20260304-v4 for Deep Content Expansion
 
-import { generateErnestButton } from '../../modules/audio/AudioData.js';
 
 export function generateContent(module) {
     return `
         <div class="interactive-content" style="position: relative; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            ${generateErnestButton('radiculopathy', 'Radiculopathy Pathophysiology')}
-            
-            <!-- Hero Section: Clinical Significance -->
+<!-- Hero Section: Clinical Significance -->
             <div style="background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); padding: 35px; border-radius: 20px; margin-bottom: 30px; border: 1px solid #fb923c; box-shadow: 0 10px 25px rgba(251, 146, 60, 0.1);">
                 <h3 style="color: #c2410c; margin-bottom: 20px; display: flex; align-items: center; font-size: 1.8em; font-weight: 800;">
                     <svg style="width: 32px; height: 32px; margin-right: 12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
