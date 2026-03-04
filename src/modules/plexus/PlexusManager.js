@@ -322,21 +322,3 @@ export class PlexusManager {
         }
     }
 }
-
-showInteractiveAnatomy() {
-    const content = this.getHTMLContent();
-
-    // The showModal function is provided globally by ViewHelpers.js
-    if (window.showModal) {
-        window.showModal('🧠 Interactive Plexus Anatomy', content);
-
-        // Initialize manager visually after modal is in DOM
-        setTimeout(() => {
-            this.initialize('plexus-viz-container');
-        }, 100);
-
-    } else {
-        console.error("ViewHelpers not loaded: showModal missing");
-    }
-}
-}
