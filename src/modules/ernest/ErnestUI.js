@@ -213,13 +213,17 @@ export class ErnestUI {
                 font-size: 14px;
                 cursor: pointer;
                 z-index: 2147483647;
-                display: none;
+                display: none; /* Initially hidden */
                 animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 box-shadow: 0 4px 15px rgba(0,0,0,0.3);
                 border: 2px solid white;
-                display: flex;
                 align-items: center;
                 gap: 8px;
+            }
+
+            /* Prevent tooltip from showing on start page */
+            body.on-start-page .jrpg-ernest-tooltip {
+                display: none !important;
             }
             /* Tooltip Arrow (Points UP) */
             .jrpg-ernest-tooltip::after {
