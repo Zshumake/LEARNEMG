@@ -16,6 +16,9 @@ export class PlexusManager {
     async initialize(containerId, initialPlexus = null) {
         console.log('🚀 PlexusManager: Initializing...');
 
+        // Reset view state to anatomy upon re-initialization
+        this.view = 'anatomy';
+
         // Initialize Renderer
         this.renderer = new PlexusRenderer(containerId, this);
 
