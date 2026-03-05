@@ -381,6 +381,7 @@ export const ClinicalRenderer = {
     },
 
     renderEMGDecisionFeedback: function (evaluation) {
+        const isCorrect = evaluation.type.includes('correct');
         const color = isCorrect ? '#34d399' : '#f87171';
         const bg = isCorrect ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)';
         const border = isCorrect ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)';
@@ -436,12 +437,7 @@ export const ClinicalRenderer = {
                 <div style="margin-bottom: 30px;">
                     <h5 style="margin: 0 0 15px 0; color: #94a3b8; text-transform: uppercase; font-size: 0.85em; letter-spacing: 1px; font-weight: 700;">Key Evidence Review</h5>
                     <div style="display: grid; gap: 12px;">
-                        ${this.generateEvidenceReview(currentCase).map(ev => `
-                            <div style="display: flex; gap: 12px; align-items: flex-start; background: rgba(15, 23, 42, 0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                                <div style="color: ${color}; margin-top: 2px;">${this.getSvgIcon(ev.icon, 'currentColor', '20')}</div>
-                                <div style="color: #cbd5e1; font-size: 0.95em; line-height: 1.5;">${ev.text}</div>
-                            </div>
-                        `).join('')}
+                        ${this.generateEvidenceReview(currentCase, color)}
                     </div>
                 </div>
 
@@ -486,7 +482,7 @@ export const ClinicalRenderer = {
     `;
     },
 
-    generateEvidenceReview: function (caseData) {
+    generateEvidenceReview: function (caseData, color = '#22d3ee') {
         let evidence = [];
 
         if (caseData.physicalExam) {
@@ -546,9 +542,9 @@ export const ClinicalRenderer = {
         if (evidence.length === 0) return '<p style="color: #64748b; font-style: italic; margin: 0;">No specific abnormalities identified to review.</p>';
 
         return evidence.slice(0, 5).map(e => `
-            <div style="display: flex; gap: 15px; align-items: start; background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                <span style="color: #3b82f6;">${this.getSvgIcon(e.icon, 'currentColor', '24')}</span>
-                <span style="font-size: 0.95em; color: #334155; line-height: 1.5;">${e.text}</span>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: rgba(15, 23, 42, 0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                <div style="color: ${color}; margin-top: 2px;">${this.getSvgIcon(e.icon, 'currentColor', '20')}</div>
+                <div style="color: #cbd5e1; font-size: 0.95em; line-height: 1.5;">${e.text}</div>
             </div>
     `).join('');
     }

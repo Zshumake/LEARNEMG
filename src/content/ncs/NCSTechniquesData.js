@@ -169,7 +169,7 @@ export const NCSTechniquesData = {
             },
             {
                 title: "Peroneal Motor (EDB)",
-                images: ["images/ncs/fibular_peroneal_motor_at_the_ankle.png", "images/ncs/fibular_peronal_motor_at_the_fibular_head.png", "images/ncs/fibular_peronal_motor_at_the_popliteal_fossa.png"],
+                images: ["images/fibular_peroneal_motor_at_the_ankle.png", "images/fibular_peronal_motor_at_the_fibular_head.png", "images/fibular_peronal_motor_at_the_popliteal_fossa.png"],
                 protocol: "Place G1 on the fleshy bump of the Extensor Digitorum Brevis (EDB) on the top-lateral aspect of the foot. Place G2 on the MTP joint of the little toe. First, stimulate the anterior ankle lateral to the thick tibialis anterior tendon, exactly 9 cm proximal to G1. Next, stimulate the lateral calf, 1 to 2 fingerbreadths directly below the bony fibular head. Finally, stimulate the popliteal fossa slightly laterally, exactly 10 to 12 cm proximal to the below-fibular head site.",
                 pearl: "Crucially, you MUST always perform three distinct stimulations to thoroughly bracket the fibular neck (above the neck, below the neck, and ankle). This bone is the 'danger zone' for nerve crush injuries. If your amplitude fired from below the fibula is magically larger than the amplitude fired at the ankle, suspect an accessory deep peroneal nerve anomalous connection arriving from behind the lateral malleolus."
             },
@@ -250,9 +250,9 @@ export const NCSTechniquesData = {
                 pearl: "Just like the medial mixed study, this massive mixed signal is the superior choice for exposing focal slowing in the tarsal tunnel beneath the flexor retinaculum. Again, perfectly healthy adults over forty may spontaneously lose these signals entirely to age-related axonal loss, so always perform bilateral comparisons before diagnosing unilateral entrapment."
             },
             {
-                title: "Soleus H Reflex",
-                images: ["images/ncs/soleus_h_reflex.png"],
-                protocol: "Place G1 on the posterior calf directly over the soleus muscle belly, specifically one to two fingerbreadths distal to where the two massive gastrocnemius muscle bellies meet in a 'V'. Place G2 straight down on the thick Achilles tendon. Stimulate centrally in the popliteal fossa mid-knee. Crucially, the stimulator pulse duration MUST be set fully to 1000 µs (1.0 ms) to selectively activate the enormous Ia afferent fibers.",
+                title: "Soleus H-Reflex",
+                images: ["images/soleus_h_reflex.png"],
+                protocol: "Place G1 slightly distal to the junction of the medial and lateral bellies of the gastrocnemius muscle (approx 2 fingerbreadths above the soleus insertion onto the Achilles tendon). Place G2 on the Achilles tendon itself. Stimulate the tibial nerve at the popliteal fossa. Crucially, the cathode (black prong) MUST face proximally/superiorly (towards the spinal cord) rather than distally like a normal motor NCS, because you are trying to measure the afferent Ia sensory fibers traveling UP to the cord, not the efferent motor fibers traveling DOWN.",
                 pearl: "This is the electrical equivalent of striking the Achilles tendon with a reflex hammer. The electrical signal travels all the way up the sensory nerve into the spinal cord, synapses in the S1 nerve root, and physically fires back down the motor nerve to twitch the calf. If a patient has an aggressive S1 radiculopathy (a pinched nerve in their lower spine), this elegant, long-distance loop will be delayed or completely destroyed."
             }
         ]
