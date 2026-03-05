@@ -98,20 +98,17 @@ export const ClinicalRenderer = {
                 .large-diff-card.beginner-card:hover, .large-diff-card.beginner-card.active {
                     box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
                     border-color: #10b981;
-                    z-index: 10;
                 }
                 .large-diff-card.intermediate-card:hover, .large-diff-card.intermediate-card.active {
                     box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
                     border-color: #f59e0b;
-                    z-index: 10;
                 }
                 .large-diff-card.difficult-card:hover, .large-diff-card.difficult-card.active {
                     box-shadow: 0 15px 30px rgba(239, 68, 68, 0.4);
                     border-color: #ef4444;
-                    z-index: 10;
                 }
             </style>
-            <div class="advanced-mesh-bg" style="min-height: 100%; border-radius: 12px; margin: -30px; padding: 30px;">
+            <div class="advanced-mesh-bg" style="min-height: 100%; border-radius: 12px; padding: 30px; text-align: center;">
             <div id="case-selection" class="difficulty-selector" style="background: transparent; border: none; box-shadow: none;">
                 <div style="text-align: center; margin-bottom: 40px;">
                     <h3 class="selector-title" style="color: #f8fafc; font-size: 2em; font-weight: 800; margin-bottom: 10px;">Clinical Correlation Lab</h3>
