@@ -266,7 +266,8 @@
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
     margin: 0 !important;
     max-width: none !important;
-    /* Override previous max-width */
+    pointer-events: none;
+    /* Prevent hover flickering */
 }
 
 .ernest-dialogue-box.show {
