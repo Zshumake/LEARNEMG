@@ -3,9 +3,9 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 20px auto;
-    width: 380px;
-    height: 480px;
+    margin: 10px auto;
+    width: 320px;
+    height: 320px;
 }
 
 .ernest-svg-char {
@@ -14,7 +14,7 @@
     min-width: 500px;
     min-height: 550px;
     transform-origin: top center;
-    transform: scale(0.76);
+    transform: scale(0.55);
     overflow: visible;
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -33,11 +33,11 @@
 
     0%,
     100% {
-        transform: scale(0.76) translateY(0);
+        transform: scale(0.55) translateY(0);
     }
 
     50% {
-        transform: scale(0.76) translateY(12px);
+        transform: scale(0.55) translateY(12px);
     }
 }
 
@@ -50,11 +50,11 @@
 
     0%,
     100% {
-        transform: scale(0.76) translateY(0);
+        transform: scale(0.55) translateY(0);
     }
 
     50% {
-        transform: scale(0.76) translateY(18px);
+        transform: scale(0.55) translateY(18px);
         /* Deeper breathing */
     }
 }
@@ -228,12 +228,12 @@
 
     0%,
     100% {
-        transform: scale(0.76) rotate(0deg) translateY(0);
+        transform: scale(0.55) rotate(0deg) translateY(0);
     }
 
     50% {
         /* Deep, wide, tilted bounce for thinking */
-        transform: scale(0.76) rotate(-8deg) translateY(20px);
+        transform: scale(0.55) rotate(-8deg) translateY(20px);
     }
 }
 
@@ -247,12 +247,12 @@
     0%,
     100% {
         /* Grounded heavy bounce */
-        transform: scale(0.76) translateY(20px);
+        transform: scale(0.55) translateY(20px);
     }
 
     50% {
         /* Air leap */
-        transform: scale(0.76) translateY(-40px);
+        transform: scale(0.55) translateY(-40px);
     }
 }
 
@@ -265,7 +265,7 @@
 
     0%,
     100% {
-        transform: scale(0.76) translateY(0px) rotate(0deg);
+        transform: scale(0.55) translateY(0px) rotate(0deg);
     }
 
     50% {
@@ -281,15 +281,15 @@
 
 @keyframes anim-dancing-body {
     0% {
-        transform: scale(0.76) rotate(-15deg) translateY(10px);
+        transform: scale(0.55) rotate(-15deg) translateY(10px);
     }
 
     50% {
-        transform: scale(0.76) rotate(0deg) translateY(-20px);
+        transform: scale(0.55) rotate(0deg) translateY(-20px);
     }
 
     100% {
-        transform: scale(0.76) rotate(15deg) translateY(10px);
+        transform: scale(0.55) rotate(15deg) translateY(10px);
     }
 }
 
@@ -302,12 +302,12 @@
 
     0%,
     100% {
-        transform: scale(0.76) translateY(30px);
+        transform: scale(0.55) translateY(30px);
         /* Heavy land */
     }
 
     50% {
-        transform: scale(0.76) translateY(-60px);
+        transform: scale(0.55) translateY(-60px);
         /* Huge leap in the air */
     }
 }
@@ -321,11 +321,11 @@
 
     0%,
     100% {
-        transform: scale(0.76) rotate(-10deg) translateY(10px);
+        transform: scale(0.55) rotate(-10deg) translateY(10px);
     }
 
     50% {
-        transform: scale(0.76) rotate(15deg) translateY(-10px);
+        transform: scale(0.55) rotate(15deg) translateY(-10px);
     }
 }
 
@@ -339,7 +339,7 @@
 
 @keyframes ernest-pop-out {
     0% {
-        transform: scale(0.76) translateY(40px);
+        transform: scale(0.55) translateY(40px);
     }
 
     40% {
@@ -347,11 +347,11 @@
     }
 
     70% {
-        transform: scale(0.76) translateY(15px);
+        transform: scale(0.55) translateY(15px);
     }
 
     100% {
-        transform: scale(0.76);
+        transform: scale(0.55);
     }
 }
 

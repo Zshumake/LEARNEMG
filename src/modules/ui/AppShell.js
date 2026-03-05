@@ -193,7 +193,7 @@ export class AppShell {
 </svg>
                         </div>
                         <div class="speech-bubble">
-                            <p class="lead-text" style="font-size: 1.25em; text-align: center;">Junior, listen up. I'm Ernest. We've got a full board today and the sensors aren't going to stabilize themselves. We're here to master the Preston & Shapiro fundamentals—no shortcuts. Ready to step up and handle some real clinical waveforms?</p>
+                            <p class="lead-text" style="font-size: 1.25em; text-align: center;">Doctor, listen up. I'm Ernest. We've got a full board today and the sensors aren't going to stabilize themselves. We're here to master the Preston & Shapiro fundamentals—no shortcuts. Ready to step up and handle some real clinical waveforms?</p>
                         </div>
                     </div>
                     <button class="app-cta-button" id="start-journey-btn">Begin Learning</button>
@@ -201,7 +201,7 @@ export class AppShell {
             </div>
 
             <!-- Progress Dashboard -->
-            <div id="progress-dashboard" class="progress-dashboard hidden">
+            <div id="progress-dashboard" class="progress-dashboard hidden" style="display: none;">
                 <div class="dashboard-header">
                     <h3>📊 Learning Progress Dashboard</h3>
                     <div class="dashboard-stats">
@@ -251,7 +251,7 @@ export class AppShell {
             // Set corresponding dialogue and gestures
             if (speechBubbleText) {
                 if (randomState === 'sleeping') {
-                    speechBubbleText.innerHTML = "Zzz... *Snores in 60Hz hum*... Wake up, Junior. The clinic waitlist is growing. Click to begin.";
+                    speechBubbleText.innerHTML = "Zzz... *Snores in 60Hz hum*... Wake up, Doctor. The clinic waitlist is growing. Click to begin.";
                 } else if (randomState === 'dancing') {
                     ernestContainer.setAttribute('data-gesture-l', 'palm');
                     ernestContainer.setAttribute('data-gesture-r', 'palm');
@@ -262,7 +262,7 @@ export class AppShell {
                     speechBubbleText.innerHTML = "High amplitude, fast rise time! That's the energy I need to see. Ready to recruit some motor units? Click to start.";
                 } else if (randomState === 'waving') {
                     ernestContainer.setAttribute('data-gesture-r', 'palm');
-                    speechBubbleText.innerHTML = "Don't just stand there, Junior. This is the EMG/NCS Mastery System—the gold standard. Click me and let's see if your conduction velocities are up to snuff.";
+                    speechBubbleText.innerHTML = "Don't just stand there, Doctor. This is the EMG/NCS Mastery System—the gold standard. Click me and let's see if your conduction velocities are up to snuff.";
                 }
             }
 
@@ -281,7 +281,7 @@ export class AppShell {
                     if (speechBubbleText) {
                         const responses = [
                             "Check your ground, that's unstable.",
-                            "Latency is the key to life, Junior. Don't forget it.",
+                            "Latency is the key to life, Doctor. Don't forget it.",
                             "Are you stimulating or just guessing? Match the signal.",
                             "Knowledge is the best filter for noise. Keep studying."
                         ];
