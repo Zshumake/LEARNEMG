@@ -8,12 +8,12 @@ export const CUSTOM_ICON_MAPPING = {
     'neuropathy-pathophysiology': 'images/icons/Neuropathy Pathophysiology.png',
     'ncs-fundamentals': 'images/icons/NCS Fundamentals.png',
     'ncs-techniques': 'images/icons/NCS Techniques.png',
-    'emg-needle-localization': 'images/icons/EMG Needle localization.png',
+    'emg-needle-localization': 'images/icons/EMG Needle Localization.png',
     'muscle-quiz': 'images/icons/muscle study lab.png',
     'basic-patterns': 'images/icons/Basic Pattern Recognition.png',
     'neuropathy-myopathy-basics': 'images/icons/Neuropathy vs. Myopathy Basics.png',
     'simple-reports': 'images/icons/Basic report writing.png',
-    'clinical-correlation': 'images/icons/Clinical application.png'
+    'clinical-correlation': 'images/icons/Clinical Application.png'
 };
 
 // Standard Module List

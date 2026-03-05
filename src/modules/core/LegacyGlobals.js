@@ -668,19 +668,19 @@ window.closeGeneralModal = function () {
 
 // Module Configuration with Custom Artwork Integration
 const atriumModuleConfig = [
-    { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: 'NEW ICONS/EMG:NCS Intro.png' },
-    { id: 'plexus-anatomy', title: 'Peripheral Nerve Anatomy', customIcon: 'NEW ICONS/Peripheral Anatomy.png' },
-    { id: 'plexus', title: 'Interactive Plexus Anatomy', customIcon: 'NEW ICONS/Brachial Plexus Anatomy.png' },
-    { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: 'NEW ICONS/Radiculopathy Pathophysiology.png' },
-    { id: 'neuropathy-pathophysiology', title: 'Neuropathy Pathophysiology', customIcon: 'NEW ICONS/Neuropathy Pathophysiology.png' },
-    { id: 'ncs-fundamentals', title: 'NCS Fundamentals', customIcon: 'NEW ICONS/NCS Fundamentals.png' },
-    { id: 'ncs-techniques', title: 'NCS Techniques', customIcon: 'NEW ICONS/NCS Techniques.png' },
-    { id: 'emg-needle-localization', title: 'EMG Needle Localization', customIcon: 'NEW ICONS/EMG Needle localization.png' },
-    { id: 'muscle-quiz', title: 'Muscle Study Lab', customIcon: 'NEW ICONS/muscle study lab.png' },
-    { id: 'basic-patterns', title: 'Basic Pattern Recognition', customIcon: 'NEW ICONS/Basic Pattern Recognition.png' },
-    { id: 'neuropathy-myopathy-basics', title: 'Neuropathy vs Myopathy Basics', customIcon: 'NEW ICONS/Neuropathy vs. Myopathy Basics.png' },
-    { id: 'simple-reports', title: 'Basic Report Writing', customIcon: 'NEW ICONS/Basic report writing.png' },
-    { id: 'clinical-correlation', title: 'Clinical Application', customIcon: 'NEW ICONS/Clinical application.png' }
+    { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: 'images/icons/EMG-NCS Intro.png' },
+    { id: 'plexus-anatomy', title: 'Peripheral Nerve Anatomy', customIcon: 'images/icons/Peripheral Anatomy.png' },
+    { id: 'plexus', title: 'Interactive Plexus Anatomy', customIcon: 'images/icons/Brachial Plexus Anatomy.png' },
+    { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: 'images/icons/Radiculopathy Pathophysiology.png' },
+    { id: 'neuropathy-pathophysiology', title: 'Neuropathy Pathophysiology', customIcon: 'images/icons/Neuropathy Pathophysiology.png' },
+    { id: 'ncs-fundamentals', title: 'NCS Fundamentals', customIcon: 'images/icons/NCS Fundamentals.png' },
+    { id: 'ncs-techniques', title: 'NCS Techniques', customIcon: 'images/icons/NCS Techniques.png' },
+    { id: 'emg-needle-localization', title: 'EMG Needle Localization', customIcon: 'images/icons/EMG Needle Localization.png' },
+    { id: 'muscle-quiz', title: 'Muscle Study Lab', customIcon: 'images/icons/muscle study lab.png' },
+    { id: 'basic-patterns', title: 'Basic Pattern Recognition', customIcon: 'images/icons/Basic Pattern Recognition.png' },
+    { id: 'neuropathy-myopathy-basics', title: 'Neuropathy vs Myopathy Basics', customIcon: 'images/icons/Neuropathy vs. Myopathy Basics.png' },
+    { id: 'simple-reports', title: 'Basic Report Writing', customIcon: 'images/icons/Basic report writing.png' },
+    { id: 'clinical-correlation', title: 'Clinical Application', customIcon: 'images/icons/Clinical Application.png' }
 ];
 
 // Old ERNEST Messages Removed - Now Using Dynamic Description System
