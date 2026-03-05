@@ -1,6 +1,3 @@
-// Muscle Quiz Module  
-// Interactive muscle localization tool with EMG needle placement guide
-
 export function generateContent(module) {
     return `
         <style>
@@ -13,130 +10,147 @@ export function generateContent(module) {
                 0%, 100% { transform: translateY(0px); }
                 50% { transform: translateY(-8px); }
             }
+            .muscle-dashboard-card {
+                background: white;
+                border-radius: 25px;
+                padding: 45px;
+                border: 2px solid #e2e8f0;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            .muscle-dashboard-card:hover {
+                transform: translateY(-5px) scale(1.01);
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            }
+            .muscle-dashboard-card.study-card:hover {
+                border-color: #06b6d4;
+            }
+            .muscle-dashboard-card.quiz-card:hover {
+                border-color: #10b981;
+            }
+            .muscle-dashboard-card.challenge-card:hover {
+                border-color: #8b5cf6;
+            }
+            
+            .dashboard-card-btn {
+                color: white;
+                border: none;
+                padding: 18px 45px;
+                border-radius: 50px;
+                font-size: 1.3em;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-top: 15px;
+            }
         </style>
         <div class="interactive-content">
             <!-- Learning Objective Banner -->
             <div style="
-                background: linear-gradient(135deg, #14b8a6, #06b6d4, #8b5cf6);
-                background-size: 200% 200%;
-                animation: gradient-flow 8s ease infinite;
+                background: linear-gradient(135deg, #f8fafc, #f1f5f9);
                 padding: 35px;
                 border-radius: 20px;
                 margin-bottom: 30px;
-                border: 2px solid rgba(255, 255, 255, 0.3);
-                box-shadow: 0 10px 40px rgba(20, 184, 166, 0.3);
-                position: relative;
-                overflow: hidden;
+                border: 2px solid #e2e8f0;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                display: flex;
+                align-items: center;
+                gap: 20px;
             ">
-                <h3 style="color: white; margin-bottom: 15px; font-size: 1.8em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">💪 Advanced Muscle Localization Training</h3>
-                <p style="color: rgba(255,255,255,0.95); font-size: 1.1em; font-weight: 500; margin: 0; text-shadow: 0 1px 5px rgba(0,0,0,0.1);">
-                    Interactive quiz system with nerve roots, innervation patterns, and clinical correlation - the same advanced system from the main EMG application.
-                </p>
+                <div style="background: white; padding: 15px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                </div>
+                <div>
+                    <h3 style="color: #0f172a; margin-bottom: 8px; font-size: 1.8em;">Advanced Muscle Localization</h3>
+                    <p style="color: #64748b; font-size: 1.1em; font-weight: 500; margin: 0;">
+                        Master functional anatomy, nerve roots, innervation patterns, and clinical correlation with our interactive study system.
+                    </p>
+                </div>
             </div>
 
-            <!-- Note: EMG Needle Localization Guide is available in the dedicated tab above -->
             <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
 
-                <!-- Study Cards - Large Interactive Card -->
-                <div style="
-                    background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(6, 182, 212, 0.05));
-                    border-radius: 25px;
-                    padding: 45px;
-                    border: 3px solid rgba(20, 184, 166, 0.3);
-                    box-shadow: 0 10px 40px rgba(20, 184, 166, 0.2);
-                    transition: all 0.4s ease;
-                    position: relative;
-                    overflow: hidden;
-                " onmouseover="this.style.transform='translateY(-5px) scale(1.01)'; this.style.boxShadow='0 15px 50px rgba(20, 184, 166, 0.3)'; this.style.borderColor='rgba(20, 184, 166, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 40px rgba(20, 184, 166, 0.2)'; this.style.borderColor='rgba(20, 184, 166, 0.3)'">
-
+                <!-- Study Cards -->
+                <div class="muscle-dashboard-card study-card">
                     <div style="position: relative; z-index: 2;">
                         <div style="text-align: left; margin-bottom: 25px;">
-                            <h3 style="
-                                background: linear-gradient(135deg, #0d9488, #06b6d4);
-                                -webkit-background-clip: text;
-                                -webkit-text-fill-color: transparent;
-                                background-clip: text;
-                                font-size: 2em;
-                                margin-bottom: 12px;
-                                font-weight: 700;
-                            ">📚 Master Every Muscle</h3>
-                            <p style="color: #475569; font-size: 1.15em; line-height: 1.6; margin: 0;">
-                                Dive deep into 45 muscles with interactive flashcards. Test your knowledge on innervation, nerve roots, actions, and clinical correlations.
+                            <h3 style="color: #0d9488; font-size: 2em; margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 15px;">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                Master Every Muscle
+                            </h3>
+                            <p style="color: #64748b; font-size: 1.15em; line-height: 1.6; margin: 0;">
+                                Dive deep into over 40 muscles with interactive flashcards. Review innervation, nerve roots, actions, and clinical correlations in an elegant UI.
                             </p>
                         </div>
 
                         <button
-                            onclick="showStudyCards()"
-                            style="
-                                background: linear-gradient(135deg, #14b8a6, #06b6d4);
-                                color: white;
-                                border: none;
-                                padding: 18px 45px;
-                                border-radius: 50px;
-                                font-size: 1.3em;
-                                font-weight: 700;
-                                cursor: pointer;
-                                box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
-                                transition: all 0.3s ease;
-                                text-transform: uppercase;
-                                letter-spacing: 1px;
-                            "
-                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(20, 184, 166, 0.5)'; this.style.background='linear-gradient(135deg, #0d9488, #0891b2)'"
-                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(20, 184, 166, 0.4)'; this.style.background='linear-gradient(135deg, #14b8a6, #06b6d4)'"
+                            onclick="window.showStudyCards()"
+                            class="dashboard-card-btn"
+                            style="background: linear-gradient(135deg, #0ea5e9, #0284c7); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);"
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(14, 165, 233, 0.4)'"
+                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(14, 165, 233, 0.3)'"
                         >
-                            🚀 Start Learning →
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                            Explore Study Cards
                         </button>
                     </div>
                 </div>
 
-                <!-- EMG Challenge - Large Interactive Card -->
-                <div style="
-                    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(99, 102, 241, 0.05));
-                    border-radius: 25px;
-                    padding: 45px;
-                    border: 3px solid rgba(139, 92, 246, 0.3);
-                    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
-                    transition: all 0.4s ease;
-                    position: relative;
-                    overflow: hidden;
-                " onmouseover="this.style.transform='translateY(-5px) scale(1.01)'; this.style.boxShadow='0 15px 50px rgba(139, 92, 246, 0.3)'; this.style.borderColor='rgba(139, 92, 246, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 40px rgba(139, 92, 246, 0.2)'; this.style.borderColor='rgba(139, 92, 246, 0.3)'">
-
+                <!-- Anatomy Quiz -->
+                <div class="muscle-dashboard-card quiz-card">
                     <div style="position: relative; z-index: 2;">
                         <div style="text-align: left; margin-bottom: 25px;">
-                            <h3 style="
-                                background: linear-gradient(135deg, #8b5cf6, #6366f1);
-                                -webkit-background-clip: text;
-                                -webkit-text-fill-color: transparent;
-                                background-clip: text;
-                                font-size: 2em;
-                                margin-bottom: 12px;
-                                font-weight: 700;
-                            ">📋 Localize Like A Pro</h3>
-                            <p style="color: #475569; font-size: 1.15em; line-height: 1.6; margin: 0;">
-                                Challenge yourself with real EMG patterns. Analyze abnormal findings, identify lesion locations, and build diagnostic confidence.
+                            <h3 style="color: #10b981; font-size: 2em; margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 15px;">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                Anatomy Quiz Engine
+                            </h3>
+                            <p style="color: #64748b; font-size: 1.15em; line-height: 1.6; margin: 0;">
+                                Test your rapid recall with an infinite generator. Customize topics (roots, nerves, actions) and build your diagnostic intuition through immediate feedback.
                             </p>
                         </div>
 
                         <button
-                            onclick="showEMGChallenge()"
-                            style="
-                                background: linear-gradient(135deg, #8b5cf6, #6366f1);
-                                color: white;
-                                border: none;
-                                padding: 18px 45px;
-                                border-radius: 50px;
-                                font-size: 1.3em;
-                                font-weight: 700;
-                                cursor: pointer;
-                                box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-                                transition: all 0.3s ease;
-                                text-transform: uppercase;
-                                letter-spacing: 1px;
-                            "
-                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(139, 92, 246, 0.5)'; this.style.background='linear-gradient(135deg, #7c3aed, #4f46e5)'"
-                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(139, 92, 246, 0.4)'; this.style.background='linear-gradient(135deg, #8b5cf6, #6366f1)'"
+                            onclick="window.launchAnatomyQuiz()"
+                            class="dashboard-card-btn"
+                            style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);"
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(16, 185, 129, 0.4)'"
+                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(16, 185, 129, 0.3)'"
                         >
-                            🎯 Take Challenge →
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Launch Quiz Engine
+                        </button>
+                    </div>
+                </div>
+
+                <!-- EMG Challenge -->
+                <div class="muscle-dashboard-card challenge-card">
+                    <div style="position: relative; z-index: 2;">
+                        <div style="text-align: left; margin-bottom: 25px;">
+                            <h3 style="color: #6366f1; font-size: 2em; margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 15px;">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                                Clinical EMG Challenge
+                            </h3>
+                            <p style="color: #64748b; font-size: 1.15em; line-height: 1.6; margin: 0;">
+                                Challenge yourself with real clinical scenarios. Analyze abnormal findings, identify lesion locations, and bridge the gap between anatomy and pathology.
+                            </p>
+                        </div>
+
+                        <button
+                            onclick="window.showEMGChallenge()"
+                            class="dashboard-card-btn"
+                            style="background: linear-gradient(135deg, #6366f1, #4f46e5); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);"
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(99, 102, 241, 0.4)'"
+                            onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 25px rgba(99, 102, 241, 0.3)'"
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            Start Clinical Challenge
                         </button>
                     </div>
                 </div>
@@ -144,78 +158,28 @@ export function generateContent(module) {
 
             <!-- Instructions -->
             <div style="
-                background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
-                padding: 25px;
-                border-radius: 15px;
-                border: 2px solid rgba(251, 191, 36, 0.3);
-                box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
+                background: white;
+                padding: 30px;
+                border-radius: 20px;
+                border: 2px solid #e2e8f0;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             ">
-                <h4 style="
-                    background: linear-gradient(135deg, #f59e0b, #d97706);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                    margin-bottom: 18px;
-                    font-size: 1.3em;
-                ">📚 How to Use the Advanced Quiz System</h4>
-                <ul style="color: #374151; line-height: 1.8; margin: 0; padding-left: 20px; font-size: 1.05em;">
-                    <li><strong style="color: #0d9488;">Select Quiz Types:</strong> Choose which anatomical aspects to test (nerve, roots, cords, actions)</li>
-                    <li><strong style="color: #0d9488;">Choose Mode:</strong> Type answers for harder challenge or use multiple choice</li>
-                    <li><strong style="color: #0d9488;">Region Selection:</strong> Focus on upper or lower extremity muscles</li>
-                    <li><strong style="color: #0d9488;">Start Quiz:</strong> Begin interactive questions with immediate feedback</li>
-                    <li><strong style="color: #0d9488;">EMG Testing Mode:</strong> Advanced continuous quiz with performance statistics</li>
-                    <li><strong style="color: #0d9488;">EMG Localization Challenge:</strong> Study normal/abnormal muscle patterns to identify lesion locations</li>
-                </ul>
-            </div>
-
-            <!-- EMG Challenge Interface - Now Opens in Modal via showEMGChallenge() -->
-
-            <!-- Required HTML for quiz functionality -->
-            <div id="muscle-test-modal" class="muscle-test-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
-                <div class="muscle-test-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 15px; padding: 30px; max-width: 600px; width: 90%; max-height: 80%; overflow-y: auto;">
-                    <div class="muscle-test-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <div class="test-title">
-                            <h3 style="margin: 0; color: #1e40af;">🧪 Continuous Muscle Anatomy Quiz</h3>
-                            <div class="test-stats" style="margin-top: 10px;">
-                                <span id="questions-answered" style="margin-right: 15px; color: #6b7280;">Questions: 0</span>
-                                <span id="current-accuracy" style="color: #6b7280;">Accuracy: 0%</span>
-                            </div>
-                        </div>
-                        <button class="close-test-btn" onclick="MuscleAnatomy.stopMuscleTest()" style="
-                            background: #dc2626;
-                            color: white;
-                            border: none;
-                            padding: 8px 12px;
-                            border-radius: 6px;
-                            cursor: pointer;
-                            font-weight: 600;
-                        ">✕ Stop Quiz</button>
+                <h4 style="color: #334155; margin-bottom: 20px; font-size: 1.3em; display: flex; align-items: center; gap: 10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    How to Utilize the Muscle Lab
+                </h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <strong style="color: #0ea5e9; display: block; margin-bottom: 8px; font-size: 1.1em;">Phase 1: Memorization</strong>
+                        <p style="color: #64748b; margin: 0; line-height: 1.5;">Use the <strong style="color: #475569;">Study Cards</strong> to isolate individual muscles. Focus on memorizing the nerve root supplies and peripheral innervations.</p>
                     </div>
-
-                    <div class="muscle-test-body" id="muscle-test-body">
-                        <div class="test-question">
-                            <h4 id="question-text" style="margin-bottom: 20px; color: #374151;">Loading question...</h4>
-                            <div id="answer-choices" class="answer-choices">
-                                <!-- Multiple choice options will be populated here -->
-                            </div>
-                        </div>
-
-                        <div id="answer-feedback" class="answer-feedback" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px;">
-                            <div class="feedback-content">
-                                <div id="feedback-result" style="font-weight: 600; margin-bottom: 10px;"></div>
-                                <div id="feedback-explanation" style="color: #6b7280;"></div>
-                            </div>
-                            <button id="next-question-btn" class="next-question-btn" onclick="MuscleAnatomy.nextQuestion()" style="
-                                margin-top: 15px;
-                                padding: 10px 20px;
-                                background: #10b981;
-                                color: white;
-                                border: none;
-                                border-radius: 6px;
-                                cursor: pointer;
-                                font-weight: 600;
-                            ">Next Question →</button>
-                        </div>
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <strong style="color: #10b981; display: block; margin-bottom: 8px; font-size: 1.1em;">Phase 2: Speed Recall</strong>
+                        <p style="color: #64748b; margin: 0; line-height: 1.5;">Fire up the <strong style="color: #475569;">Anatomy Quiz Engine</strong>. Configure it for your weak spots and test your rapid-fire knowledge under pressure.</p>
+                    </div>
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <strong style="color: #6366f1; display: block; margin-bottom: 8px; font-size: 1.1em;">Phase 3: Integration</strong>
+                        <p style="color: #64748b; margin: 0; line-height: 1.5;">Take the <strong style="color: #475569;">Clinical Challenge</strong> to analyze real-world patterns. Build diagnostic confidence for neurophysiology boards.</p>
                     </div>
                 </div>
             </div>
@@ -223,5 +187,3 @@ export function generateContent(module) {
         </div>
     `;
 }
-
-

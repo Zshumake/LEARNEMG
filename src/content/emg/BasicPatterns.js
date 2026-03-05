@@ -1,446 +1,226 @@
-// Basic Patterns Module
-// Comprehensive EMG pattern recognition with multimedia content
-
-// Note: The original code used a global generateModuleQuiz. I might need to clarify where this comes from.
-// Looking at other files, it seems generating HTML strings is the pattern. 
-// If generateModuleQuiz is global, I should probably keep it global or import it if I can find it.
-// Wait, I saw generateModuleQuiz in src/content/ncs/Fundamentals.js? No, checking...
-// Actually, let's look for where generateModuleQuiz is defined. 
-// It is likely in a shared utility. I'll search for it later. For now, I will assume it's available or I will copy the function if it's small/local.
-// Actually, in the read of src/content/ncs/Fundamentals.js (previous turn), I didn't see generateModuleQuiz imported. 
-// But in js/modules/basic-patterns.js it was used. 
-// I will check if generatedModuleQuiz is defined in a common file or if I need to stub it / find it.
-// Let's assume for now I should copy the content as is, but fixing imports.
+import { BasicPatternsData } from './BasicPatternsData.js';
 
 export const BasicPatterns = {
     generateContent: function (module) {
-        // Register podcast for this module
-        // Podcast registered automatically via AudioData.js
-
         return `
-            <div class="interactive-content" style="position: relative;">
-<!-- Learning Objective Banner -->
-                <div style="background: linear-gradient(135deg, #f0f9ff, #e0e7ff); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #6366f1;">
-                    <h3 style="color: #4338ca; margin-bottom: 15px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Learning Objectives</h3>
-                    <p style="color: #3730a3; font-size: 1.1em; font-weight: 500; margin: 0;">
-                        Master the systematic analysis of EMG patterns using morphology, stability, and firing characteristics. Develop expertise in recognizing normal and abnormal spontaneous activity, motor unit potentials, and their clinical significance for accurate electrodiagnostic interpretation.
+            <style>
+                .bp-interactive-card {
+                    background: white;
+                    border-radius: 20px;
+                    padding: 30px;
+                    border: 2px solid #e2e8f0;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                    transition: all 0.3s ease;
+                    margin-bottom: 25px;
+                }
+                .bp-interactive-card:hover {
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                    border-color: #cbd5e1;
+                }
+                .bp-video-card {
+                    background: white;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    border: 2px solid #e2e8f0;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                    transition: all 0.3s ease;
+                }
+                .bp-video-card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+                }
+                .bp-pearl-box {
+                    background: #f8fafc;
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-top: 20px;
+                    border-left: 4px solid #6366f1;
+                }
+            </style>
+
+            <div class="interactive-content" style="position: relative; font-family: 'Inter', sans-serif;">
+                
+                <!-- Learning Objective Banner -->
+                <div style="
+                    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+                    padding: 35px;
+                    border-radius: 20px;
+                    margin-bottom: 35px;
+                    border: 2px solid #e2e8f0;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                ">
+                    <h3 style="color: #0f172a; margin-bottom: 15px; font-size: 1.8em; display: flex; align-items: center; gap: 12px; font-weight: 700;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> 
+                        Learning Objectives
+                    </h3>
+                    <p style="color: #475569; font-size: 1.15em; font-weight: 500; margin: 0; line-height: 1.6;">
+                        ${BasicPatternsData.objectives}
                     </p>
                 </div>
 
                 <!-- Pattern Analysis Framework -->
-                <div style="background: linear-gradient(135deg, #e0f7fa, #e8f5e8); padding: 25px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid #00796b;">
-                    <h3 style="color: #00695c; margin-bottom: 20px; font-size: 1.4em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Systematic Pattern Analysis Framework</h3>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h4 style="color: #00796b; margin-bottom: 15px; font-size: 1.2em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Morphology</h4>
-                            <ul style="color: #37474f; line-height: 1.6; font-size: 0.95em; margin: 0;">
-                                <li><strong>Duration:</strong> Time from initial to final baseline crossing</li>
-                                <li><strong>Amplitude:</strong> Peak-to-peak voltage measurement</li>
-                                <li><strong>Phases:</strong> Baseline crossings + 1</li>
-                                <li><strong>Initial deflection:</strong> Positive vs. negative</li>
-                                <li><strong>Shape:</strong> Brief spike vs. positive wave</li>
-                            </ul>
-                        </div>
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h4 style="color: #00796b; margin-bottom: 15px; font-size: 1.2em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><line x1="12" y1="3" x2="12" y2="21"></line><path d="M4 14l8-8 8 8"></path></svg> Stability</h4>
-                            <ul style="color: #37474f; line-height: 1.6; font-size: 0.95em; margin: 0;">
-                                <li><strong>Stable:</strong> Consistent morphology</li>
-                                <li><strong>Waxing/Waning:</strong> Amplitude changes</li>
-                                <li><strong>Decrementing:</strong> Progressive amplitude decrease</li>
-                                <li><strong>Abrupt changes:</strong> Discrete morphology jumps</li>
-                                <li><strong>Blocking:</strong> Intermittent firing failure</li>
-                            </ul>
-                        </div>
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h4 style="color: #00796b; margin-bottom: 15px; font-size: 1.2em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Firing Characteristics</h4>
-                            <ul style="color: #37474f; line-height: 1.6; font-size: 0.95em; margin: 0;">
-                                <li><strong>Rate:</strong> Very slow (&lt;2Hz) to very fast (&gt;100Hz)</li>
-                                <li><strong>Pattern:</strong> Regular, irregular, bursting</li>
-                                <li><strong>Rhythm:</strong> Semi-rhythmic vs. perfectly regular</li>
-                                <li><strong>Recruitment:</strong> Activation vs. recruitment patterns</li>
-                                <li><strong>Voluntary control:</strong> &lt;4-5Hz cannot be voluntary</li>
-                            </ul>
-                        </div>
+                <div class="bp-interactive-card">
+                    <h3 style="color: #0f172a; margin-bottom: 25px; font-size: 1.5em; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> 
+                        Systematic Pattern Analysis Framework
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                        ${BasicPatternsData.analysisFramework.map(section => `
+                            <div style="background: #f8fafc; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0;">
+                                <h4 style="color: #0369a1; margin-bottom: 20px; font-size: 1.25em; font-weight: 600;">${section.title}</h4>
+                                <ul style="color: #334155; line-height: 1.6; font-size: 0.95em; margin: 0; padding-left: 20px;">
+                                    ${section.items.map(item => `
+                                        <li style="margin-bottom: 12px;"><strong>${item.label}:</strong> ${item.desc}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
 
                 <!-- Multimedia Pattern Recognition Library -->
-                <div style="background: linear-gradient(135deg, #fff3e0, #fce4ec); padding: 25px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid #f57c00;">
-                    <h3 style="color: #e65100; margin-bottom: 20px; font-size: 1.4em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg> Interactive Pattern Recognition Library</h3>
-                    <p style="color: #bf360c; margin-bottom: 25px; font-size: 1.05em;">
-                        Master EMG pattern recognition through real-time video demonstrations with expert clinical interpretation.
+                <div class="bp-interactive-card" style="border-top: 4px solid #f59e0b;">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.6em; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg> 
+                        Interactive Pattern Recognition Library
+                    </h3>
+                    <p style="color: #475569; margin-bottom: 35px; font-size: 1.1em; max-width: 800px;">
+                        Master EMG pattern recognition through real-time video demonstrations. Read the clinical pearls alongside the videos to train your ear.
                     </p>
 
                     <!-- Abnormal Spontaneous Activity Videos -->
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: #d84315; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Abnormal Spontaneous Activity</h4>
+                    <div style="margin-bottom: 50px;">
+                        <h4 style="color: #dc2626; margin-bottom: 25px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; font-weight: 700; padding-bottom: 10px; border-bottom: 2px solid #fee2e2;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg> 
+                            Abnormal Spontaneous Activity
+                        </h4>
 
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;">
-                            <!-- Fibrillations and Positive Sharp Waves -->
-                            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h5 style="color: #c62828; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Fibrillations & Positive Sharp Waves</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Spontaneous muscle fiber discharges indicating active denervation - the hallmark of nerve injury and motor neuron disease.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/jjUZMf8_B1k"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;">
+                            ${BasicPatternsData.abnormalActivity.map(act => `
+                                <div class="bp-video-card">
+                                    <div style="padding: 20px 25px; background: #fafafa; border-bottom: 1px solid #e2e8f0;">
+                                        <h5 style="color: #0f172a; margin: 0; font-size: 1.2em; font-weight: 700;">${act.title}</h5>
+                                    </div>
+                                    <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+                                        <iframe loading="lazy" src="https://www.youtube.com/embed/${act.videoId}"
+                                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                    <div style="padding: 25px;">
+                                        <p style="color: #475569; font-size: 0.95em; line-height: 1.6; margin-top: 0;">${act.description}</p>
+                                        
+                                        <div class="bp-pearl-box" style="border-left-color: #dc2626;">
+                                            <p style="color: #991b1b; font-weight: 700; margin: 0 0 10px 0; font-size: 0.9em; text-transform: uppercase;">Clinical Pearls:</p>
+                                            <ul style="color: #334155; font-size: 0.95em; line-height: 1.5; margin: 0; padding-left: 20px;">
+                                                ${act.clinicalPearls.map(pearl => `
+                                                    <li style="margin-bottom: 8px;"><strong>${pearl.label}:</strong> ${pearl.value}</li>
+                                                `).join('')}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style="background: #ffebee; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #b71c1c; font-weight: 600; margin-bottom: 8px;">Clinical Significance:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Fibrillations:</strong> Brief spike (1-5ms), regular 0.5-10Hz, "rain on tin roof" sound</li>
-                                        <li><strong>PSWs:</strong> Initial positive, slow negative, "dull thud" sound</li>
-                                        <li><strong>Pathology:</strong> Active denervation - radiculopathy, neuropathy, motor neuron disease</li>
-                                        <li><strong>Timing:</strong> Appear 1-3 weeks post-denervation</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- 3+ Positive Sharp Waves -->
-                            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h5 style="color: #c62828; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> Grade 3+ Positive Sharp Waves</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Severe denervation with abundant positive sharp waves filling multiple muscle areas - indicates significant nerve damage.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/fT6Lx4rnRNs"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </div>
-                                <div style="background: #ffebee; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #b71c1c; font-weight: 600; margin-bottom: 8px;">Grading Scale (0-4+):</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>0:</strong> None present</li>
-                                        <li><strong>1+:</strong> Persistent single trains (2-3 areas)</li>
-                                        <li><strong>2+:</strong> Moderate number (3+ areas)</li>
-                                        <li><strong>3+:</strong> Many potentials in all areas</li>
-                                        <li><strong>4+:</strong> Full interference pattern - severe denervation</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Complex Repetitive Discharges -->
-                            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h5 style="color: #7b1fa2; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg> Complex Repetitive Discharges</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Time-linked muscle fibers creating perfectly regular "machine-like" discharges - characteristic of chronic muscle disorders.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/UE-UIRDzZ-U"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </div>
-                                <div style="background: #f3e5f5; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #4a148c; font-weight: 600; margin-bottom: 8px;">Distinctive Features:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Morphology:</strong> Time-linked individual muscle fibers</li>
-                                        <li><strong>Sound:</strong> Characteristic "machine-like" pattern</li>
-                                        <li><strong>Frequency:</strong> 5-100Hz, perfectly regular</li>
-                                        <li><strong>Pathology:</strong> Chronic neuropathic/myopathic conditions</li>
-                                        <li><strong>Mechanism:</strong> Ephaptic transmission between denervated fibers</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Myokymia -->
-                            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h5 style="color: #00796b; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><path d="M2 12h4l2-9 5 18 3-10h6"></path></svg> Myokymic Discharges</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Grouped bursts of the same motor unit with "marching soldiers" sound - often seen in radiation-induced nerve damage.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/ZClcikXOOaU"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </div>
-                                <div style="background: #e0f2f1; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #00695c; font-weight: 600; margin-bottom: 8px;">Clinical Patterns:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Pattern:</strong> Grouped repetitive discharges of same MUAP</li>
-                                        <li><strong>Sound:</strong> "Marching soldiers"</li>
-                                        <li><strong>Frequency:</strong> 1-5Hz (interburst), 5-60Hz (intraburst)</li>
-                                        <li><strong>Associations:</strong> Radiation plexopathy, MS (facial), Guillain-Barré</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                                <h5 style="color: #f57c00; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg> Myotonic Discharges</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Repetitive muscle fiber discharges that wax and wane in frequency and amplitude, producing a characteristic "dive bomber" sound.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/X29z-QTi0tM"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </div>
-                                <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #e65100; font-weight: 600; margin-bottom: 8px;">Clinical Patterns:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Pattern:</strong> Waxing and waning amplitude and frequency</li>
-                                        <li><strong>Sound:</strong> "Dive bomber" or "revving motorcycle"</li>
-                                        <li><strong>Frequency:</strong> Typically 20-150Hz</li>
-                                        <li><strong>Pathology:</strong> Myotonic dystrophy, myotonia congenita</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                                <h5 style="color: #1976d2; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg> Fasciculations</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Spontaneous, random, and irregular firing discharges of individual motor units with a "corn popping" sound.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/u0v4tSZq-Fc"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </div>
-                                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #1565c0; font-weight: 600; margin-bottom: 8px;">Clinical Patterns:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Pattern:</strong> Spontaneous, irregular firing of a single motor unit</li>
-                                        <li><strong>Sound:</strong> "Corn popping" or "large distant pops"</li>
-                                        <li><strong>Frequency:</strong> Very slow and irregular (0.1-10Hz)</li>
-                                        <li><strong>Significance:</strong> Common in ALS, but also in benign fasciculation syndrome or after heavy exercise.</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            `).join('')}
                         </div>
                     </div>
 
                     <!-- Motor Unit Analysis Videos -->
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: #1565c0; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Motor Unit Analysis</h4>
+                    <div style="margin-bottom: 50px;">
+                        <h4 style="color: #2563eb; margin-bottom: 25px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; font-weight: 700; padding-bottom: 10px; border-bottom: 2px solid #dbeafe;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 
+                            Motor Unit Analysis
+                        </h4>
 
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                            <!-- Polyphasic Potentials -->
-                            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h5 style="color: #1565c0; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg> Polyphasic Potentials</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Motor units with >4 phases indicating loss of synchrony - seen in both muscle disease and nerve reinnervation.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/liNujyDKe58"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;">
+                             ${BasicPatternsData.motorUnitAnalysis.map(act => `
+                                <div class="bp-video-card">
+                                    <div style="padding: 20px 25px; background: #fafafa; border-bottom: 1px solid #e2e8f0;">
+                                        <h5 style="color: #0f172a; margin: 0; font-size: 1.2em; font-weight: 700;">${act.title}</h5>
+                                    </div>
+                                    <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+                                        <iframe loading="lazy" src="https://www.youtube.com/embed/${act.videoId}"
+                                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                    <div style="padding: 25px;">
+                                        <p style="color: #475569; font-size: 0.95em; line-height: 1.6; margin-top: 0;">${act.description}</p>
+                                        
+                                        <div class="bp-pearl-box" style="border-left-color: #2563eb;">
+                                            <p style="color: #1e40af; font-weight: 700; margin: 0 0 10px 0; font-size: 0.9em; text-transform: uppercase;">Clinical Pearls:</p>
+                                            <ul style="color: #334155; font-size: 0.95em; line-height: 1.5; margin: 0; padding-left: 20px;">
+                                                ${act.clinicalPearls.map(pearl => `
+                                                    <li style="margin-bottom: 8px;"><strong>${pearl.label}:</strong> ${pearl.value}</li>
+                                                `).join('')}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #0d47a1; font-weight: 600; margin-bottom: 8px;">Polyphasia Analysis:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Normal:</strong> 2-4 phases (≤10% polyphasic acceptable)</li>
-                                        <li><strong>Abnormal:</strong> >10% polyphasic (&gt;25% in deltoid)</li>
-                                        <li><strong>Sound:</strong> High-frequency "clicking"</li>
-                                        <li><strong>Significance:</strong> Measure of synchrony, seen in both neuropathy and myopathy</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Motor Unit Recruitment -->
-                            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h5 style="color: #1565c0; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Motor Unit Recruitment</h5>
-                                <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                    Progressive activation of motor units with increasing force - essential for distinguishing neuropathic vs. myopathic patterns.
-                                </p>
-                                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                    <iframe loading="lazy" src="https://www.youtube.com/embed/kTJiD1d0NsI"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </div>
-                                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
-                                    <p style="color: #0d47a1; font-weight: 600; margin-bottom: 8px;">Recruitment Patterns:</p>
-                                    <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                        <li><strong>Normal ratio:</strong> ~5:1 (firing rate : # of MUAPs)</li>
-                                        <li><strong>Reduced recruitment:</strong> Neuropathic (axonal loss)</li>
-                                        <li><strong>Early recruitment:</strong> Myopathic (fewer fibers per MU)</li>
-                                        <li><strong>Poor activation:</strong> Central (upper motor neuron)</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            `).join('')}
                         </div>
                     </div>
 
-                    <!-- Normal Activity -->
+                    <!-- Normal Activity Videos -->
                     <div>
-                        <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Normal Spontaneous Activity</h4>
+                         <h4 style="color: #059669; margin-bottom: 25px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; font-weight: 700; padding-bottom: 10px; border-bottom: 2px solid #d1fae5;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> 
+                            Normal Spontaneous Activity
+                        </h4>
 
-                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 600px;">
-                            <h5 style="color: #2e7d32; margin-bottom: 15px; font-size: 1.1em;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> End Plate Spike (Normal)</h5>
-                            <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.95em;">
-                                Normal needle-induced activity at the neuromuscular junction - important to distinguish from pathologic fibrillations.
-                            </p>
-                            <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 15px;">
-                                <iframe loading="lazy" src="https://www.youtube.com/embed/2QgTg8f0pHE"
-                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                            </div>
-                            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px;">
-                                <p style="color: #1b5e20; font-weight: 600; margin-bottom: 8px;">Normal Endplate Zone Activity:</p>
-                                <ul style="color: #37474f; font-size: 0.95em; line-height: 1.5; margin: 0;">
-                                    <li><strong>Endplate noise:</strong> MEPPs, monophasic negative, "seashell" sound</li>
-                                    <li><strong>Endplate spikes:</strong> Needle-induced, biphasic, initial negative</li>
-                                    <li><strong>Mechanism:</strong> Terminal nerve twig irritation → muscle fiber AP</li>
-                                    <li><strong>Key feature:</strong> Initial negativity (vs. fibrillations: initial positive)</li>
-                                </ul>
-                            </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;">
+                             ${BasicPatternsData.normalActivity.map(act => `
+                                <div class="bp-video-card">
+                                    <div style="padding: 20px 25px; background: #fafafa; border-bottom: 1px solid #e2e8f0;">
+                                        <h5 style="color: #0f172a; margin: 0; font-size: 1.2em; font-weight: 700;">${act.title}</h5>
+                                    </div>
+                                    <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+                                        <iframe loading="lazy" src="https://www.youtube.com/embed/${act.videoId}"
+                                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                    <div style="padding: 25px;">
+                                        <p style="color: #475569; font-size: 0.95em; line-height: 1.6; margin-top: 0;">${act.description}</p>
+                                        
+                                        <div class="bp-pearl-box" style="border-left-color: #059669;">
+                                            <p style="color: #065f46; font-weight: 700; margin: 0 0 10px 0; font-size: 0.9em; text-transform: uppercase;">Clinical Pearls:</p>
+                                            <ul style="color: #334155; font-size: 0.95em; line-height: 1.5; margin: 0; padding-left: 20px;">
+                                                ${act.clinicalPearls.map(pearl => `
+                                                    <li style="margin-bottom: 8px;"><strong>${pearl.label}:</strong> ${pearl.value}</li>
+                                                `).join('')}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
                         </div>
-                    </div>
-                </div>
-
-                <!-- Comprehensive Pattern Reference Guide -->
-                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
-                    <h3 style="color: #424242; margin-bottom: 20px; font-size: 1.4em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Comprehensive Pattern Reference Guide</h3>
-
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
-                            <thead>
-                                <tr style="background: #f5f5f5;">
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; color: #424242; font-weight: 600;">Pattern</th>
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; color: #424242; font-weight: 600;">Source Generator</th>
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; color: #424242; font-weight: 600;">Sound</th>
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; color: #424242; font-weight: 600;">Firing Rate</th>
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; color: #424242; font-weight: 600;">Stability</th>
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; color: #424242; font-weight: 600;">Clinical Significance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #d32f2f; font-weight: 500;">Fibrillation</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Muscle fiber</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Rain on tin roof</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">0.5-10 Hz (regular)</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Stable</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Active denervation (neuropathy, radiculopathy, motor neuron disease)</td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #d32f2f; font-weight: 500;">Positive Sharp Wave</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Muscle fiber</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Dull pops</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">0.5-10 Hz (regular)</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Stable</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Active denervation (same as fibrillations)</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #7b1fa2; font-weight: 500;">Complex Repetitive</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Multiple muscle fibers</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Machine-like</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">5-100 Hz (perfectly regular)</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Usually stable</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Chronic neuropathic/myopathic conditions</td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #00796b; font-weight: 500;">Myokymic</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Motor unit</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Marching soldiers</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">1-5 Hz (interburst)</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Usually stable</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Radiation injury, MS (facial), Guillain-Barré</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #f57c00; font-weight: 500;">Myotonic</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Muscle fiber</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Revving engine</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">20-150 Hz</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Waxing/waning</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Myotonic dystrophy, myotonia congenita</td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #1976d2; font-weight: 500;">Fasciculation</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Motor unit</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Corn popping</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Low (0.1-10 Hz)</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Stable</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Motor neuron disease, benign fasciculations</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd; color: #388e3c; font-weight: 500;">Endplate Spike</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Terminal axon twig</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Sputtering</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">5-50 Hz (irregular)</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Stable</td>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Normal (needle-induced at endplate zone)</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
                 <!-- Advanced Clinical Scenarios -->
-                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
-                    <h3 style="color: #6366f1; margin-bottom: 20px; font-size: 1.3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Advanced Pattern Recognition Scenarios</h3>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #ef4444;">
-                            <h4 style="color: #dc2626; margin-bottom: 15px;">Case 1: Motor Neuron Disease</h4>
-                            <p style="color: #475569; line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Clinical:</strong> 55-year-old with progressive weakness, fasciculations<br>
-                                <strong>EMG Findings:</strong> 3+ fibrillations/PSWs, large polyphasic MUAPs, reduced recruitment, fasciculations
-                            </p>
-                            <div style="background: #fef2f2; padding: 12px; border-radius: 8px;">
-                                <strong style="color: #991b1b;">Key Features:</strong>
-                                <ul style="color: #7f1d1d; margin-top: 8px; font-size: 0.9em;">
-                                    <li>Widespread denervation pattern</li>
-                                    <li>Chronic reinnervation (large MUAPs)</li>
-                                    <li>Active denervation (fibs/PSWs)</li>
-                                    <li>Fasciculations (motor neuron irritability)</li>
-                                </ul>
+                <div class="bp-interactive-card" style="border-top: 4px solid #6366f1;">
+                    <h3 style="color: #0f172a; margin-bottom: 25px; font-size: 1.5em; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> 
+                        Advanced Scenario Breakdown
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+                        ${BasicPatternsData.advancedScenarios.map(caseStudy => `
+                            <div style="background: #f8fafc; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-top: 4px solid ${caseStudy.id === 'case1' ? '#ef4444' : '#8b5cf6'};">
+                                <h4 style="color: #1e293b; margin-top: 0; margin-bottom: 15px; font-size: 1.25em;">${caseStudy.title}</h4>
+                                <p style="color: #475569; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">
+                                    <strong style="color: #334155;">Clinical:</strong> ${caseStudy.clinical}<br><br>
+                                    <strong style="color: #334155;">EMG Findings:</strong> ${caseStudy.findings}
+                                </p>
+                                <div style="background: white; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                                    <strong style="color: ${caseStudy.id === 'case1' ? '#b91c1c' : '#6d28d9'}; font-size: 0.9em; text-transform: uppercase;">The Resident Breakdown:</strong>
+                                    <ul style="color: #475569; margin-top: 10px; margin-bottom: 0; font-size: 0.9em; padding-left: 20px; line-height: 1.5;">
+                                        ${caseStudy.features.map(f => `<li style="margin-bottom: 5px;">${f}</li>`).join('')}
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-
-                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #8b5cf6;">
-                            <h4 style="color: #7c3aed; margin-bottom: 15px;">Case 2: Myotonic Dystrophy</h4>
-                            <p style="color: #475569; line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Clinical:</strong> 35-year-old with grip myotonia, distal weakness<br>
-                                <strong>EMG Findings:</strong> Myotonic discharges, small polyphasic MUAPs, early recruitment
-                            </p>
-                            <div style="background: #f3e8ff; padding: 12px; border-radius: 8px;">
-                                <strong style="color: #6b21a8;">Key Features:</strong>
-                                <ul style="color: #6b21a8; margin-top: 8px; font-size: 0.9em;">
-                                    <li>Characteristic "dive bomber" sound</li>
-                                    <li>Waxing/waning amplitude and frequency</li>
-                                    <li>Myopathic MUAPs (small, brief, polyphasic)</li>
-                                    <li>Early recruitment pattern</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="background: #eff6ff; padding: 20px; border-radius: 12px; margin-top: 20px;">
-                        <h4 style="color: #1e40af; margin-bottom: 15px;">Diagnostic Approach</h4>
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
-                            <div>
-                                <strong style="color: #1e40af;">1. Morphology Analysis</strong>
-                                <ul style="color: #374151; font-size: 0.9em; margin-top: 8px;">
-                                    <li>Duration (reflects fiber number)</li>
-                                    <li>Amplitude (proximity-dependent)</li>
-                                    <li>Phases (synchrony measure)</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <strong style="color: #1e40af;">2. Stability Assessment</strong>
-                                <ul style="color: #374151; font-size: 0.9em; margin-top: 8px;">
-                                    <li>Consistent morphology</li>
-                                    <li>Blocking patterns</li>
-                                    <li>Amplitude variations</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <strong style="color: #1e40af;">3. Firing Pattern</strong>
-                                <ul style="color: #374151; font-size: 0.9em; margin-top: 8px;">
-                                    <li>Rate and rhythm</li>
-                                    <li>Recruitment analysis</li>
-                                    <li>Voluntary vs. spontaneous</li>
-                                </ul>
-                            </div>
-                        </div>
+                        `).join('')}
                     </div>
                 </div>
 

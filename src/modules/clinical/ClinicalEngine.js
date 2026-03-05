@@ -52,18 +52,31 @@ export class ClinicalEngine {
 
     analyzeDifferential(userInputStr) {
         if (!this.currentCase || !this.currentCase.differentialDiagnosis) {
-            return { matched: [], unmatched: [], totalExpected: 0 };
+            return { matched: [], unmatched: [], totalExpected: 0, expectedData: [] };
         }
 
-        const inputLower = userInputStr.toLowerCase();
+        const inputLower = (userInputStr || '').trim().toLowerCase();
         const expectedDifferentials = this.currentCase.differentialDiagnosis;
 
         const matchedDiagnoses = [];
         const unmatchedDiagnoses = [];
 
+        if (inputLower === '') {
+            // If the user entered nothing, they matched nothing.
+            return {
+                matched: [],
+                unmatched: expectedDifferentials.map(expected => typeof expected === 'string' ? expected : expected.name),
+                totalExpected: expectedDifferentials.length,
+                expectedData: expectedDifferentials
+            };
+        }
+
         expectedDifferentials.forEach(expected => {
             const expectedName = typeof expected === 'string' ? expected : expected.name;
-            if (this._isMatch(expectedName, inputLower) || inputLower.includes(expectedName.toLowerCase())) {
+            const expectedLower = expectedName.toLowerCase();
+
+            // We check if the expected word is in the user's string
+            if (inputLower.includes(expectedLower) || this._isMatch(expectedLower, inputLower)) {
                 matchedDiagnoses.push(expectedName);
             } else {
                 unmatchedDiagnoses.push(expectedName);
@@ -97,8 +110,12 @@ export class ClinicalEngine {
     evaluateFinalDiagnosis(userInputStr) {
         if (!this.currentCase || !this.currentCase.correctDiagnosis) return false;
 
-        const input = userInputStr.toLowerCase().trim();
+        const input = (userInputStr || '').trim().toLowerCase();
         const correct = this.currentCase.correctDiagnosis.toLowerCase().trim();
+
+        if (input === '') {
+            return false;
+        }
 
         // Simple fuzzy match for final diagnosis
         if (input === correct || correct.includes(input) || input.includes(correct)) {

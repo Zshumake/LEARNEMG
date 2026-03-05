@@ -1,29 +1,30 @@
 /* Clinical Correlation Module Styles */
 
 .difficulty-selector {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
     border-radius: 25px;
     padding: 40px;
     margin: 20px 0;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
 }
 
 .selector-title {
     text-align: center;
-    color: #f8fafc;
+    color: #0f172a;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 10px;
 }
 
 .selector-subtitle {
     text-align: center;
-    color: #cbd5e1;
+    color: #475569;
     font-size: 16px;
     margin-bottom: 40px;
-    opacity: 0.9;
+    font-weight: 500;
 }
 
 .difficulty-cards {
@@ -36,9 +37,8 @@
 }
 
 .difficulty-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: white;
+    border: 1px solid #e2e8f0;
     border-radius: 20px;
     padding: 30px;
     cursor: pointer;
@@ -46,29 +46,27 @@
     position: relative;
     overflow: hidden;
     text-align: center;
-    color: white;
+    color: #0f172a;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 .difficulty-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
 }
 
 .beginner-card {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
-    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+    border-bottom: 4px solid #10b981;
 }
 
 .intermediate-card {
-    background: linear-gradient(135deg, #f97316, #ea580c);
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+    border-bottom: 4px solid #f59e0b;
 }
 
 .difficult-card {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+    border-bottom: 4px solid #ef4444;
 }
 
 .card-icon {
@@ -108,56 +106,58 @@
 
 /* Cadwell Sierra Style Theme */
 .cadwell-table-container {
-    background: #f1f5f9;
+    background: rgba(15, 23, 42, 0.5);
     padding: 15px;
-    border-radius: 4px;
-    border: 1px solid #94a3b8;
+    border-radius: 8px;
+    border: 1px solid rgba(6, 182, 212, 0.2);
     margin-bottom: 25px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.5);
 }
 
 .clinical-report-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white !important;
-    color: #1e293b !important;
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 11px;
     margin-bottom: 10px;
-    border: 1px solid #64748b;
+    border: 1px solid rgba(6, 182, 212, 0.3);
 }
 
 .clinical-report-table th {
-    background: linear-gradient(to bottom, #475569, #1e293b) !important;
-    color: white !important;
+    background: linear-gradient(to bottom, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)) !important;
+    color: #22d3ee !important;
     font-weight: 600;
     text-align: center;
-    border: 1px solid #1e293b;
+    border: 1px solid rgba(6, 182, 212, 0.4);
     padding: 5px 8px;
     text-transform: uppercase;
     font-size: 10px;
+    letter-spacing: 0.5px;
 }
 
 .clinical-report-table td {
-    border: 1px solid #cbd5e1;
+    border: 1px solid rgba(6, 182, 212, 0.15);
     padding: 4px 8px;
     text-align: center;
-    background-color: white !important;
-    color: #334155 !important;
+    background-color: rgba(15, 23, 42, 0.4) !important;
+    color: #f8fafc !important;
 }
 
 .clinical-report-table tr:nth-child(even) td {
-    background-color: #f8fafc !important;
+    background-color: rgba(6, 182, 212, 0.03) !important;
 }
 
 .clinical-report-table .abnormal-value {
     font-weight: 800;
-    color: #dc2626 !important;
-    background-color: #fef2f2 !important;
+    color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
 }
 
 .clinical-report-table .normal-limit {
-    color: #64748b;
+    color: #94a3b8;
     font-style: italic;
     font-size: 9px;
     display: block;
@@ -178,15 +178,220 @@
     gap: 15px;
 }
 
-.exam-category {
+.exam-category,
+.history-card {
     background: #f8fafc;
     padding: 15px;
     border-radius: 8px;
     border-left: 4px solid #3b82f6;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.exam-category:hover,
+.history-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border-color: #cbd5e1;
 }
 
 .exam-category h5 {
     margin: 0 0 5px 0;
     color: #3b82f6;
     font-size: 14px;
+}
+
+/* Premium Glassmorphism & Float Animations */
+.glass-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50px !important;
+    padding: 16px 36px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.glass-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px -5px rgba(59, 130, 246, 0.4), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+}
+
+.glass-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.glass-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    transition: none;
+    animation: shimmer 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    20% {
+        left: 200%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+.glass-card {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    color: #f8fafc;
+}
+
+/* 2026 UI: Deep Space Mesh Background */
+.advanced-mesh-bg {
+    background: radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.15), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(79, 70, 229, 0.15), transparent 30%);
+    background-color: #070e1b;
+    background-size: 200% 200%;
+    animation: meshFlow 15s ease infinite;
+    color: #f8fafc;
+}
+
+@keyframes meshFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 2026 UI: Progressive Disclosure Pills */
+.shrunk-pill {
+    transform: scale(0.95) translateY(-10px) !important;
+    opacity: 0.6 !important;
+    filter: grayscale(0.5);
+    cursor: pointer;
+    overflow: hidden;
+    max-height: 80px;
+    margin-bottom: -15px;
+    /* Collapse space */
+    position: relative !important;
+    /* Keep it in flow but compressed */
+    z-index: 1;
+}
+
+.shrunk-pill:hover {
+    opacity: 0.9 !important;
+    transform: scale(0.97) translateY(-8px) !important;
+    filter: grayscale(0);
+}
+
+.shrunk-pill::after {
+    content: 'Click to expand...';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(to top, #070e1b, rgba(7, 14, 27, 0));
+    color: #94a3b8;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* 2026 UI: Skeleton Loader */
+.skeleton-box {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s infinite linear;
+    border-radius: 8px;
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 2026 UI: Kinetic Typography Pulse */
+.value-pulse-high {
+    animation: pulseHigh 2s infinite;
+    color: #ef4444 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+}
+
+.value-pulse-low {
+    animation: pulseLow 2s infinite;
+    color: #f59e0b !important;
+    font-weight: 800 !important;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+@keyframes pulseHigh {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseLow {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 2026 UI: Magnetic Elements */
+.magnetic-btn {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.magnetic-btn:hover {
+    transition: transform 0.05s linear !important;
 }

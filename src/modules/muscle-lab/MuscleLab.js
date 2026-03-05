@@ -3,6 +3,7 @@ import { StudyCardsModule } from './StudyCards.js';
 import { EMGChallengeSystem } from './EMGChallenge.js';
 import { MuscleLocalization } from './MuscleLocalization.js';
 import { MuscleLabMenu } from './MuscleLabMenu.js';
+import { MuscleAnatomyQuizModule } from './MuscleAnatomyQuiz.js';
 import { ReferenceMaterials } from '../info/ReferenceMaterials.js';
 import { initializeCandylandBoard } from '../board/CandylandBoard.js';
 
@@ -12,6 +13,7 @@ console.log('💪 Initializing Muscle Lab Core...');
 const studyCards = new StudyCardsModule();
 const emgChallenge = new EMGChallengeSystem();
 const muscleLabMenu = new MuscleLabMenu();
+const anatomyQuiz = new MuscleAnatomyQuizModule();
 const referenceMaterials = new ReferenceMaterials();
 
 // Expose Muscle Lab Globally (Legacy Compatibility)
@@ -22,6 +24,7 @@ window.MuscleLocalization = MuscleLocalization;
 // Bind Global Launch Functions
 window.showStudyCards = () => studyCards.launch();
 window.showEMGChallenge = () => emgChallenge.launch();
+window.launchAnatomyQuiz = () => anatomyQuiz.launch();
 window.backToMuscleMenu = () => muscleLabMenu.show();
 window.showCardinalRules = () => referenceMaterials.showCardinalRules();
 
@@ -32,5 +35,6 @@ export const MuscleLab = {
     studyCards,
     emgChallenge,
     muscleLabMenu,
+    anatomyQuiz,
     referenceMaterials
 };

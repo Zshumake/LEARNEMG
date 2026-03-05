@@ -10,7 +10,7 @@ export class MuscleLocalization {
     }
 
     switchRegion(region) {
-        console.log(`🎯 Switching to ${region} extremity muscle localization`);
+        console.log(`[Target] Switching to ${region} extremity muscle localization`);
         this.currentRegion = region;
 
         // Update button states
@@ -34,7 +34,7 @@ export class MuscleLocalization {
         // We use a non-blocking notification if possible, but keeping alert for legacy compat for now
         // or replacing with a nice toast if ViewHelpers is available?
         // Staying faithful to original logic:
-        alert(`📍 Switched to ${region} extremity muscle localization. Advanced muscle database with complete innervation patterns and clinical correlations available.`);
+        alert(`[Info] Switched to ${region} extremity muscle localization. Advanced muscle database with complete innervation patterns and clinical correlations available.`);
 
         // Dispatch event or callback if needed
         if (window.appComponents && window.appComponents.muscleLab) {

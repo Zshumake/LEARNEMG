@@ -1,372 +1,407 @@
-/**
- * Fundamentals.js
- * NCS Fundamentals Module - Refactored for modularity and standardized UI.
- * Extends BaseContent for unified behavior.
- */
-import { BaseContent } from '../BaseContent.js';
 import { NCSFundamentalsData } from './NCSFundamentalsData.js';
-import { UIComponents } from '../../ui/UIComponents.js';
-import { DesignTokens } from '../../ui/DesignTokens.js';
+import { ErnestIcon } from '../../utils/ErnestIcon.js';
 
-class FundamentalsModule extends BaseContent {
-    constructor() {
-        super({ defaultTab: 'foundations' });
-        this.data = NCSFundamentalsData;
-    }
+export const Fundamentals = {
+    data: NCSFundamentalsData,
 
-    initialize() {
-        console.log('📦 Initializing NCS Fundamentals Module (v2 Modular Expanded)');
+    generateContent(module) {
+        // Ensure global tab switcher is defined
+        if (!window.NCS_switchTab) {
+            window.NCS_switchTab = function (tabName) {
+                document.querySelectorAll('.ncs-content').forEach(el => el.style.display = 'none');
+                const target = document.getElementById('content-' + tabName);
+                if (target) target.style.display = 'block';
 
-        const tabColors = {
-            'foundations': DesignTokens.gradients.anatomy,
-            'methods': DesignTokens.gradients.technical,
-            'technical': DesignTokens.gradients.safety,
-            'interpretation': DesignTokens.gradients.cardinal,
-            'calculations': DesignTokens.gradients.foundations
-        };
+                document.querySelectorAll('.ncs-tab').forEach(el => {
+                    el.classList.remove('active');
+                    el.style.background = 'transparent';
+                    el.style.color = '#475569';
+                });
 
-        this.initTabNavigation('ncs', tabColors, '.ncs-section');
-
-        // Interactive logic for Calculations and Quiz
-        window.checkNCSCalc = (btn, isCorrect) => this.handleCalculationAnswer(btn, isCorrect);
-        window.checkNCSQuiz = (btn, isCorrect, feedback) => this.handleQuizAnswer(btn, isCorrect, feedback);
-        window.nextNCSQuestion = (curr, total) => this.handleNextQuestion(curr, total);
-    }
-
-    handleCalculationAnswer(btn, isCorrect) {
-        const parent = btn.parentElement;
-        parent.querySelectorAll('button').forEach(b => {
-            b.disabled = true;
-            if (b === btn) {
-                b.style.background = isCorrect ? DesignTokens.colors.successLight : DesignTokens.colors.dangerLight;
-                b.style.borderColor = isCorrect ? DesignTokens.colors.success : DesignTokens.colors.danger;
-                b.innerHTML += isCorrect ? ' <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-left: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ' <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-left: 4px;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-            }
-        });
-    }
-
-    handleQuizAnswer(btn, isCorrect, feedback) {
-        const card = btn.closest('.quiz-question-card');
-        card.querySelectorAll('.quiz-option').forEach(opt => opt.disabled = true);
-
-        if (isCorrect) {
-            btn.style.background = DesignTokens.colors.successLight;
-            btn.style.borderColor = DesignTokens.colors.success;
-            const scoreSpan = document.getElementById('quiz-score');
-            if (scoreSpan) scoreSpan.textContent = parseInt(scoreSpan.textContent || '0') + 1;
-        } else {
-            btn.style.background = DesignTokens.colors.dangerLight;
-            btn.style.borderColor = DesignTokens.colors.danger;
+                const btn = document.getElementById('tab-' + tabName);
+                if (btn) {
+                    btn.classList.add('active');
+                    btn.style.background = '#2563eb'; // Blue theme for NCS
+                    btn.style.color = 'white';
+                }
+            };
         }
 
-        const feedbackDiv = card.querySelector('.quiz-feedback');
-        feedbackDiv.style.display = 'block';
-        feedbackDiv.style.background = isCorrect ? DesignTokens.colors.successLight : DesignTokens.colors.dangerLight;
-        feedbackDiv.innerHTML = `<strong>${isCorrect ? 'Correct!' : 'Incorrect.'}</strong> ${feedback || ''}`;
-
-        const nextBtn = card.querySelector('.quiz-next-btn');
-        if (nextBtn) nextBtn.style.display = 'inline-block';
-    }
-
-    handleNextQuestion(current, total) {
-        document.querySelector(`[data-question="${current}"]`).style.display = 'none';
-        if (current + 1 < total) {
-            document.querySelector(`[data-question="${current + 1}"]`).style.display = 'block';
-        } else {
-            document.getElementById('quiz-complete').style.display = 'block';
-            document.getElementById('final-score').textContent = document.getElementById('quiz-score').textContent;
+        // Logic for Math Calculations
+        if (!window.checkNCSCalc) {
+            window.checkNCSCalc = function (btn, isCorrect) {
+                const parent = btn.closest('.calc-card');
+                parent.querySelectorAll('button').forEach(b => {
+                    b.disabled = true;
+                    if (b === btn) {
+                        b.style.background = isCorrect ? '#dcfce7' : '#fee2e2';
+                        b.style.borderColor = isCorrect ? '#22c55e' : '#ef4444';
+                        b.style.color = isCorrect ? '#166534' : '#991b1b';
+                    }
+                });
+                const feedback = parent.querySelector('.calc-feedback');
+                feedback.style.display = 'block';
+                feedback.style.background = isCorrect ? '#f0fdf4' : '#fef2f2';
+                feedback.style.color = isCorrect ? '#15803d' : '#b91c1c';
+            };
         }
-    }
 
-    renderQuiz() {
-        return this.data.quiz.map((q, idx) => `
-            <div class="ncs-hover-card quiz-question-card" style="background: white; padding: 25px; border-radius: 12px; border: 2px solid ${DesignTokens.colors.border}; display: ${idx === 0 ? 'block' : 'none'};" data-question="${idx}">
-                <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 20px;">
-                    <span style="background: ${DesignTokens.colors.primary}; color: white; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">Q${idx + 1}</span>
-                    ${q.question}
-                </p>
-                <div class="quiz-options" style="display: grid; gap: 10px;">
-                    ${q.options.map(opt => `
-                        <button class="quiz-option" onclick="window.checkNCSQuiz(this, ${opt.correct}, '${opt.feedback || ''}')" 
-                                style="padding: 15px; border: 2px solid ${DesignTokens.colors.border}; border-radius: 8px; text-align: left; cursor: pointer; background: white; transition: all 0.2s;">
-                            ${opt.text}
-                        </button>
+        // Output the HTML
+        return `
+        <div class="intro-container">
+
+            <!-- Hero Section -->
+            <div class="intro-hero" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); padding: 50px 30px; border-radius: 24px; color: white; margin-bottom: 40px; text-align: center; box-shadow: 0 20px 40px rgba(30, 58, 138, 0.2);">
+                <h1 style="font-size: 2.8em; font-weight: 900; margin-bottom: 15px; letter-spacing: -0.03em;">${this.data.header.title}</h1>
+                <p style="font-size: 1.25em; opacity: 0.9; max-width: 800px; margin: 0 auto; line-height: 1.6;">${this.data.header.subtitle}</p>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="tabs-container" style="display: flex; flex-wrap: wrap; gap: 10px; background: #f8fafc; padding: 15px; border-radius: 20px; margin-bottom: 40px; border: 1px solid #e2e8f0;">
+                ${this.data.tabs.map((tab, i) => `
+                    <button onclick="NCS_switchTab('${tab.id}')" 
+                            class="ncs-tab ${i === 0 ? 'active' : ''}" 
+                            id="tab-${tab.id}"
+                            style="flex: 1; min-width: 150px; padding: 12px 20px; background: ${i === 0 ? '#2563eb' : 'transparent'}; color: ${i === 0 ? 'white' : '#475569'}; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="${tab.icon}"></path></svg>
+                        ${tab.label}
+                    </button>
+                `).join('')}
+            </div>
+
+            <!-- CONTENT SECTIONS -->
+
+            <!-- 1. Physics & Physiology -->
+            <div id="content-foundations" class="ncs-content" style="display: block; animation: fadeIn 0.5s;">
+                <div class="content-card">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.8em; font-weight: 900;">${this.data.physiology.intro.title}</h3>
+                    <p style="font-size: 1.1em; color: #475569; line-height: 1.6; margin-bottom: 30px;">${this.data.physiology.intro.text}</p>
+                    
+                    <h4 style="color: #2563eb; font-weight: 800; font-size: 1.4em; margin-bottom: 15px;">The Action Potential Timeline</h4>
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px;">
+                        ${this.data.physiology.actionPotential.map((ap, idx) => `
+                            <div style="background: ${idx % 2 === 0 ? 'white' : '#f8fafc'}; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px 20px; display: grid; grid-template-columns: 150px 100px 1fr; align-items: center; gap: 20px;">
+                                <div style="font-weight: 800; color: #0f172a;">${ap.stage}</div>
+                                <div style="font-family: monospace; font-weight: 700; color: #b45309; background: #fef3c7; padding: 4px 10px; border-radius: 8px; text-align: center;">${ap.value}</div>
+                                <div style="color: #475569; font-size: 0.95em; line-height: 1.5;">${ap.detail}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; margin-bottom: 40px;">
+                        <h4 style="color: #0f172a; margin-bottom: 15px; font-weight: 900; font-size: 1.4em;">${this.data.physiology.conduction.process}</h4>
+                        <p style="color: #475569; margin-bottom: 20px; font-size: 1.05em; line-height: 1.7;">${this.data.physiology.conduction.detail}</p>
+                        <div style="background: #eff6ff; padding: 15px; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                            <span style="color: #1e3a8a; font-weight: 700; font-style: italic;">${this.data.physiology.conduction.staircase}</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #2563eb; font-weight: 800; font-size: 1.4em; margin-bottom: 15px;">Fiber Type Capabilities</h4>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 30px;">
+                         ${this.data.physiology.fiberTypes.map(fiber => `
+                            <div style="background: white; border: 1px solid #e2e8f0; border-left: 6px solid ${fiber.color}; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <h5 style="color: #0f172a; font-size: 1.25em; font-weight: 900; margin: 0;">${fiber.name}</h5>
+                                    <div style="display: flex; gap: 10px;">
+                                        <span style="background: #f1f5f9; color: #475569; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.85em;">${fiber.diameter}</span>
+                                        <span style="background: #f0fdf4; color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.85em;">${fiber.velocity}</span>
+                                    </div>
+                                </div>
+                                <p style="color: #334155; line-height: 1.6; margin: 0;">${fiber.function}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="resident-pearl">
+                        <h4>The Great Blind Spot of EDX</h4>
+                        <p>${this.data.physiology.pearl}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Setup & Methods -->
+            <div id="content-methods" class="ncs-content" style="display: none; animation: fadeIn 0.5s;">
+                <div class="content-card">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.8em; font-weight: 900;">${this.data.methods.intro}</h3>
+                    <p style="font-size: 1.1em; color: #475569; line-height: 1.6; margin-bottom: 30px;">${this.data.methods.text}</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px;">
+                            <h4 style="color: #1e293b; font-weight: 900; font-size: 1.3em; margin-bottom: 20px;">${this.data.methods.recording.montage}</h4>
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <div style="background: #1e293b; color: white; padding: 15px; border-radius: 12px;">
+                                    <strong>G1 (Active):</strong> <span style="opacity: 0.9;">${this.data.methods.recording.g1}</span>
+                                </div>
+                                <div style="background: white; border: 1px solid #cbd5e1; color: #334155; padding: 15px; border-radius: 12px;">
+                                    <strong>G2 (Reference):</strong> <span style="opacity: 0.9;">${this.data.methods.recording.g2}</span>
+                                </div>
+                                <p style="color: #475569; font-size: 0.95em; line-height: 1.6; margin-top: 10px; font-style: italic;">${this.data.methods.recording.principle}</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px;">
+                            <h4 style="color: #1e293b; font-weight: 900; font-size: 1.3em; margin-bottom: 20px;">${this.data.methods.supramaximal.definition}</h4>
+                            <p style="color: #334155; line-height: 1.6; font-size: 1.05em;">${this.data.methods.supramaximal.reason}</p>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #2563eb; font-weight: 800; font-size: 1.4em; margin-bottom: 15px;">Targeting Sensory Signals</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                         ${this.data.methods.direction.map((dir, i) => `
+                            <div style="background: white; border: 1px solid ${i === 0 ? '#3b82f6' : '#14b8a6'}; border-radius: 16px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                                <h5 style="color: ${i === 0 ? '#1d4ed8' : '#0f766e'}; font-size: 1.25em; font-weight: 900; margin-bottom: 10px;">${dir.type}</h5>
+                                <p style="color: #475569; font-size: 0.95em; line-height: 1.5; margin-bottom: 15px;">${dir.direction}</p>
+                                <div style="background: #f0fdf4; color: #166534; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9em;">
+                                    <strong>+ Pros:</strong> ${dir.pros}
+                                </div>
+                                <div style="background: #fef2f2; color: #991b1b; padding: 10px 15px; border-radius: 8px; font-size: 0.9em;">
+                                    <strong>- Cons:</strong> ${dir.cons}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="resident-pearl">
+                        <h4>The Initial Positive Deflection</h4>
+                        <p>${this.data.methods.pearl}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Technical Factors -->
+            <div id="content-technical" class="ncs-content" style="display: none; animation: fadeIn 0.5s;">
+                <div class="content-card">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.8em; font-weight: 900;">${this.data.technicalFactors.intro}</h3>
+                    <p style="font-size: 1.1em; color: #475569; line-height: 1.6; margin-bottom: 30px;">${this.data.technicalFactors.text}</p>
+                    
+                    <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 16px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.1);">
+                        <h4 style="color: #b45309; font-weight: 900; font-size: 1.5em; margin-bottom: 15px;">${this.data.technicalFactors.temperature.title}</h4>
+                        <p style="color: #92400e; font-size: 1.1em; line-height: 1.6; border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 20px;">${this.data.technicalFactors.temperature.effects}</p>
+                        <div style="background: white; border: 1px dashed #d97706; padding: 15px; border-radius: 12px; margin-bottom: 15px; font-size: 1.05em; font-weight: 700; color: #b45309; text-align: center;">
+                            ${this.data.technicalFactors.temperature.correction}
+                        </div>
+                        <div style="text-align: center; color: #78350f; font-weight: 900; font-size: 1.2em;">
+                            ${this.data.technicalFactors.temperature.ideal}
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px;">
+                        <div style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 16px; padding: 25px;">
+                            <h4 style="color: #334155; font-weight: 900; font-size: 1.25em; margin-bottom: 15px;">${this.data.technicalFactors.noise.type}</h4>
+                            <p style="color: #475569; line-height: 1.6; font-size: 0.95em;"><strong>The Cause:</strong> ${this.data.technicalFactors.noise.cause}</p>
+                            <p style="color: #1e293b; line-height: 1.6; font-size: 0.95em; background: white; padding: 10px; border-radius: 8px; margin-top: 10px;"><strong>The Solution:</strong> ${this.data.technicalFactors.noise.solution}</p>
+                        </div>
+
+                        <div style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 16px; padding: 25px;">
+                            <h4 style="color: #334155; font-weight: 900; font-size: 1.25em; margin-bottom: 15px;">${this.data.technicalFactors.artifact.trailing}</h4>
+                            <ul style="color: #475569; line-height: 1.6; font-size: 0.95em; padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                                ${this.data.technicalFactors.artifact.mitigation.map(mit => `<li>${mit}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #2563eb; font-weight: 800; font-size: 1.4em; margin-bottom: 15px;">Digital Filtration Mathematics</h4>
+                    <div style="display: flex; gap: 20px; margin-bottom: 30px;">
+                        ${this.data.technicalFactors.filters.map(filter => `
+                            <div style="flex: 1; background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                                <h5 style="color: #0f172a; font-weight: 800; font-size: 1.1em; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">${filter.type}</h5>
+                                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                    <span style="background: #eff6ff; color: #1d4ed8; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 0.85em; flex: 1; text-align: center;">${filter.lff}</span>
+                                    <span style="background: #fef2f2; color: #b91c1c; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 0.85em; flex: 1; text-align: center;">${filter.hff}</span>
+                                </div>
+                                <p style="color: #64748b; font-size: 0.9em; line-height: 1.5; margin: 0;">${filter.note}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="resident-pearl">
+                        <h4>Cathode Position Matters</h4>
+                        <p>${this.data.technicalFactors.pearl}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Interpretation -->
+            <div id="content-interpretation" class="ncs-content" style="display: none; animation: fadeIn 0.5s;">
+                <div class="content-card">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.8em; font-weight: 900;">${this.data.interpretation.intro}</h3>
+                    <p style="font-size: 1.1em; color: #475569; line-height: 1.6; margin-bottom: 30px;">${this.data.interpretation.text}</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 40px;">
+                        <!-- Axonal Loss -->
+                        <div style="background: white; border: 1px solid #fecaca; border-left: 8px solid #ef4444; border-radius: 16px; padding: 25px; box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.1);">
+                            <h4 style="color: #b91c1c; font-weight: 900; font-size: 1.4em; margin-bottom: 15px;">${this.data.interpretation.axonalLoss.title}</h4>
+                            <div style="background: #fef2f2; color: #991b1b; padding: 12px 15px; border-radius: 8px; font-weight: 800; margin-bottom: 15px;">
+                                ${this.data.interpretation.axonalLoss.primary}
+                            </div>
+                            <p style="color: #475569; line-height: 1.6; font-size: 1.05em; margin-bottom: 15px;">${this.data.interpretation.axonalLoss.secondary}</p>
+                            <p style="color: #b91c1c; font-size: 0.95em; font-weight: 700; margin: 0; font-style: italic;">${this.data.interpretation.axonalLoss.note}</p>
+                        </div>
+
+                        <!-- Demyelination -->
+                        <div style="background: white; border: 1px solid #bfdbfe; border-left: 8px solid #3b82f6; border-radius: 16px; padding: 25px; box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);">
+                            <h4 style="color: #1d4ed8; font-weight: 900; font-size: 1.4em; margin-bottom: 15px;">${this.data.interpretation.demyelination.title}</h4>
+                            <div style="background: #eff6ff; color: #1e3a8a; padding: 12px 15px; border-radius: 8px; font-weight: 800; margin-bottom: 15px;">
+                                ${this.data.interpretation.demyelination.primary}
+                            </div>
+                            <p style="color: #475569; line-height: 1.6; font-size: 1.05em; margin-bottom: 15px;">${this.data.interpretation.demyelination.secondary}</p>
+                            <div style="background: #f8fafc; border: 1px dashed #cbd5e1; padding: 15px; border-radius: 8px; color: #475569; font-size: 0.95em;">
+                                <strong>Temporal Dispersion:</strong> ${this.data.interpretation.demyelination.dispersion}
+                            </div>
+                        </div>
+
+                        <!-- Conduction Block -->
+                        <div style="background: white; border: 1px solid #e9d5ff; border-left: 8px solid #a855f7; border-radius: 16px; padding: 25px; box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.1);">
+                            <h4 style="color: #7e22ce; font-weight: 900; font-size: 1.4em; margin-bottom: 15px;">${this.data.interpretation.conductionBlock.title}</h4>
+                            <p style="color: #475569; line-height: 1.6; font-size: 1.05em; margin-bottom: 15px;">${this.data.interpretation.conductionBlock.block}</p>
+                            <div style="background: #faf5ff; color: #6b21a8; padding: 12px 15px; border-radius: 8px; font-weight: 800; font-size: 0.95em;">
+                                ${this.data.interpretation.conductionBlock.dispersion}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resident-pearl">
+                        <h4>The 75% Rule of Thumb</h4>
+                        <p>${this.data.interpretation.pearl}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Math & Calculations -->
+            <div id="content-calculations" class="ncs-content" style="display: none; animation: fadeIn 0.5s;">
+                <div class="content-card">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.8em; font-weight: 900;">${this.data.calculations.intro}</h3>
+                    <p style="font-size: 1.1em; color: #475569; line-height: 1.6; margin-bottom: 30px;">${this.data.calculations.text}</p>
+                    
+                    <div style="background: #1e293b; color: white; border-radius: 16px; padding: 30px; margin-bottom: 40px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+                        <h4 style="color: #94a3b8; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.1em; margin-bottom: 15px;">The Master Formula</h4>
+                        <code style="font-size: 1.5em; font-weight: 800; color: #f8fafc;">
+                            ${this.data.calculations.formula}
+                        </code>
+                    </div>
+
+                    <h4 style="color: #2563eb; font-weight: 800; font-size: 1.4em; margin-bottom: 15px;">Practice Calculations</h4>
+                    <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
+                        ${this.data.calculations.practice.map((prac, i) => `
+                            <div class="calc-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <span style="background: #eff6ff; color: #1d4ed8; font-weight: 800; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; text-transform: uppercase;">Scenario ${i + 1}</span>
+                                    <span style="color: #64748b; font-size: 0.9em; font-weight: 600;">${prac.category}</span>
+                                </div>
+                                <p style="color: #1e293b; font-size: 1.1em; line-height: 1.6; margin-bottom: 25px;">${prac.question}</p>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                    <button class="calc-btn" onclick="checkNCSCalc(this, ${prac.answer === '30 m/s' || prac.answer === '50 m/s'})" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer}</button>
+                                    <button class="calc-btn" onclick="checkNCSCalc(this, false)" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer === '50 m/s' ? '40 m/s' : '40 m/s'}</button>
+                                    <button class="calc-btn" onclick="checkNCSCalc(this, false)" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer === '50 m/s' ? '60 m/s' : '50 m/s'}</button>
+                                </div>
+
+                                <div class="calc-feedback" style="display: none; padding: 15px; border-radius: 12px; font-size: 0.95em; line-height: 1.5; margin-top: 15px;">
+                                    <strong>Explanation:</strong> ${prac.check}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="resident-pearl">
+                        <h4>Why Do We Subtract Latencies?</h4>
+                        <p>${this.data.calculations.pearl}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div id="content-quiz" class="ncs-content" style="display: none; animation: fadeIn 0.5s;">
+                <div class="content-card" style="background: #f8fafc; border: 2px solid #e2e8f0;">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h3 style="color: #0f172a; margin-bottom: 10px; font-size: 2em; font-weight: 900;">Knowledge Check</h3>
+                        <p style="font-size: 1.1em; color: #475569;">Validate your mastery of NCS Fundamentals</p>
+                    </div>
+
+                    ${typeof window.generateModuleQuiz === 'function' ?
+                window.generateModuleQuiz(this.data.quiz)
+                : '<div style="text-align:center; padding: 20px; background: white; border-radius: 12px; color: #64748b;">Quiz system currently unavailable.</div>'}
+                </div>
+            </div>
+
+            <!-- Global Glossary -->
+            <div style="margin-top: 50px; border-top: 2px dashed #cbd5e1; padding-top: 40px;">
+                <h4 style="color: #64748b; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.1em; margin-bottom: 20px; text-align: center;">Mastery Glossary</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                    ${this.data.glossary.map(g => `
+                        <div style="background: white; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                            <strong style="color: #0f172a; display: block; margin-bottom: 8px; font-size: 1.05em;">${g.term}</strong>
+                            <p style="color: #475569; font-size: 0.9em; line-height: 1.5; margin: 0;">${g.definition}</p>
+                        </div>
                     `).join('')}
                 </div>
-                <div class="quiz-feedback" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
-                <button class="quiz-next-btn btn-primary" style="margin-top: 20px; display:none;" onclick="window.nextNCSQuestion(${idx}, ${this.data.quiz.length})">Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
             </div>
-        `).join('');
-    }
 
-    generateContent() {
-        return `
-            ${this.getStandardStyles()}
-            <div class="interactive-content" style="max-width: 1200px; margin: 0 auto; animation: fadeIn 0.5s ease-out;">
-                
-                ${UIComponents.renderHeader(this.data.header.title, this.data.header.subtitle)}
-                ${UIComponents.renderTabs(this.data.tabs, 'ncs')}
+        </div>
 
-                <!-- 1. Physics & Physiology -->
-                <div id="ncs-foundations-section" class="ncs-section">
-                    <div style="background: linear-gradient(135deg, #fef3c7, #fed7aa); padding: 30px; border-radius: 20px; margin-bottom: 30px; box-shadow: ${DesignTokens.shadows.md};">
-                        <h4 style="color: #92400e; margin-bottom: 25px; font-size: 1.5em; border-bottom: 2px solid rgba(146, 64, 14, 0.1); padding-bottom: 10px;">Nerve Physiology & Action Potentials</h4>
-                        
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px;">
-                            ${UIComponents.renderCard(`
-                                <h5 style="color: #92400e; margin-bottom: 15px; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Action Potential Phases</h5>
-                                <div style="overflow-x: auto;">
-                                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
-                                        <thead>
-                                            <tr style="text-align: left; color: #b45309; border-bottom: 1px solid #fde68a;">
-                                                <th style="padding: 8px;">Phase</th>
-                                                <th style="padding: 8px;">Potential</th>
-                                                <th style="padding: 8px;">Mechanism</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            ${this.data.physiology.actionPotential.map(p => `
-                                                <tr style="border-bottom: 1px solid rgba(251, 191, 36, 0.1);">
-                                                    <td style="padding: 8px; font-weight: 600;">${p.stage}</td>
-                                                    <td style="padding: 8px; color: #d97706;"><code>${p.value}</code></td>
-                                                    <td style="padding: 8px; font-size: 0.85em;">${p.detail}</td>
-                                                </tr>
-                                            `).join('')}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            `, { borderLeftColor: '#f59e0b' })}
-
-                            ${UIComponents.renderCard(`
-                                <h5 style="color: #059669; margin-bottom: 15px; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg> Conduction Principles</h5>
-                                <div style="background: white; padding: 15px; border-radius: 12px; border: 1px solid #d1fae5; margin-bottom: 15px;">
-                                    <strong style="color: #065f46; display: block; margin-bottom: 5px;">${this.data.physiology.conduction.process}</strong>
-                                    <p style="font-size: 0.9em; line-height: 1.4; color: #374151;">${this.data.physiology.conduction.detail}</p>
-                                </div>
-                                <div style="background: #ecfdf5; padding: 12px; border-radius: 8px; font-size: 0.85em; color: #065f46;">
-                                    <strong>Clinical Insight:</strong> ${this.data.physiology.conduction.staircase}
-                                </div>
-                            `, { borderLeftColor: '#059669' })}
-                        </div>
-
-                        ${UIComponents.renderCard(`
-                            <h5 style="color: #1e40af; margin-bottom: 20px; text-align: center;">Fiber Type Classification</h5>
-                            <div style="overflow-x: auto;">
-                                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                                    <thead style="background: #eff6ff;">
-                                        <tr>
-                                            <th style="padding: 12px; border-bottom: 2px solid #bfdbfe;">Fiber Type</th>
-                                            <th style="padding: 12px; border-bottom: 2px solid #bfdbfe;">Diameter</th>
-                                            <th style="padding: 12px; border-bottom: 2px solid #bfdbfe;">Velocity</th>
-                                            <th style="padding: 12px; border-bottom: 2px solid #bfdbfe;">Function</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${this.data.physiology.fiberTypes.map(f => `
-                                            <tr style="background: white; border-bottom: 1px solid #f1f5f9;">
-                                                <td style="padding: 12px; font-weight: bold; color: ${DesignTokens.colors.primary};"><span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:${f.color}; margin-right:8px;"></span>${f.name}</td>
-                                                <td style="padding: 12px;">${f.diameter}</td>
-                                                <td style="padding: 12px;"><code>${f.velocity}</code></td>
-                                                <td style="padding: 12px; font-size: 0.9em;">${f.function}</td>
-                                            </tr>
-                                        `).join('')}
-                                    </tbody>
-                                </table>
-                            </div>
-                        `, { borderLeftColor: '#3b82f6' })}
-                    </div>
-                </div>
-
-                <!-- 2. Setup & Methods -->
-                <div id="ncs-methods-section" class="ncs-section" style="display: none;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
-                        ${UIComponents.renderCard(`
-                            <h5 style="color: #1e293b; margin-bottom: 15px;">Recording Principles</h5>
-                            <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
-                                <strong style="color: #475569; display: block; margin-bottom: 10px;">${this.data.methods.recording.montage}</strong>
-                                <ul style="list-style: none; padding: 0;">
-                                    <li style="margin-bottom: 10px;"><span style="color: ${DesignTokens.colors.primary}; font-weight: bold;">G1:</span> ${this.data.methods.recording.g1}</li>
-                                    <li style="margin-bottom: 10px;"><span style="color: ${DesignTokens.colors.secondary}; font-weight: bold;">G2:</span> ${this.data.methods.recording.g2}</li>
-                                </ul>
-                                <div style="margin-top: 15px; padding: 12px; background: #fffbeb; border-radius: 8px; font-size: 0.9em; border: 1px solid #fef3c7;">
-                                    <strong>The "G1-G2" Differential:</strong> ${this.data.methods.recording.principle}
-                                </div>
-                            </div>
-                        `, { title: "Clinical Setup", borderLeftColor: DesignTokens.colors.primary })}
-
-                        ${UIComponents.renderCard(`
-                            <h5 style="color: #1e293b; margin-bottom: 15px;">Antidromic vs Orthodromic</h5>
-                            <div style="display: grid; gap: 10px;">
-                                ${this.data.methods.direction.map(dir => `
-                                    <div style="background: white; border: 1px solid #f1f5f9; padding: 15px; border-radius: 10px;">
-                                        <strong style="color: ${DesignTokens.colors.primary}; display: block; margin-bottom: 4px;">${dir.type}</strong>
-                                        <div style="font-size: 0.85em; color: #64748b; margin-bottom: 8px;">${dir.direction}</div>
-                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                            <div style="color: #059669; font-size: 0.85em;"><strong>+</strong> ${dir.pros}</div>
-                                            <div style="color: #dc2626; font-size: 0.85em;"><strong>-</strong> ${dir.cons}</div>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `, { borderLeftColor: DesignTokens.colors.secondary })}
-                    </div>
-                </div>
-
-                <!-- 3. Technical Factors -->
-                <div id="ncs-technical-section" class="ncs-section" style="display: none;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                        ${UIComponents.renderCard(`
-                            <h5 style="color: #92400e; margin-bottom: 15px;">${this.data.technicalFactors.temperature.title}</h5>
-                            <p style="font-size: 0.9em; color: #4b5563; margin-bottom: 15px;">${this.data.technicalFactors.temperature.effects}</p>
-                            <div style="background: #fff9db; padding: 15px; border-radius: 12px; font-family: monospace; font-size: 0.95em;">
-                                ${this.data.technicalFactors.temperature.correction}
-                            </div>
-                            <p style="margin-top: 10px; font-weight: bold; color: #92400e;">Target: ${this.data.technicalFactors.temperature.ideal}</p>
-                        `, { borderLeftColor: '#f59e0b' })}
-
-                        ${UIComponents.renderCard(`
-                            <h5 style="color: #1e40af; margin-bottom: 15px;">Filter Settings</h5>
-                            <div style="display: grid; gap: 12px;">
-                                ${this.data.technicalFactors.filters.map(f => `
-                                    <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; border: 1px solid #e0f2fe;">
-                                        <strong style="display: block; color: #0369a1;">${f.type}</strong>
-                                        <code>LFF: ${f.lff} | HFF: ${f.hff}</code>
-                                        <p style="font-size: 0.8em; margin-top: 5px; color: #64748b;">${f.note}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `, { borderLeftColor: '#3b82f6' })}
-
-                        ${UIComponents.renderCard(`
-                            <h5 style="color: #b91c1c; margin-bottom: 15px;">Stimulus Artifact & Noise</h5>
-                            <strong style="font-size: 0.9em;">Common Mitigation:</strong>
-                            <ul style="font-size: 0.85em; color: #4b5563; padding-left: 15px; margin-top: 8px;">
-                                ${this.data.technicalFactors.artifact.mitigation.map(m => `<li>${m}</li>`).join('')}
-                            </ul>
-                            <div style="margin-top: 15px; padding: 10px; background: #fef2f2; border-radius: 6px; font-size: 0.85em;">
-                                <strong>60Hz Tip:</strong> ${this.data.technicalFactors.noise.solution}
-                            </div>
-                        `, { borderLeftColor: '#ef4444' })}
-                    </div>
-                </div>
-
-                <!-- 4. Interpretation -->
-                <div id="ncs-interpretation-section" class="ncs-section" style="display: none;">
-                    <div style="display: grid; gap: 20px;">
-                        ${Object.values(this.data.interpretation).map(p => `
-                            ${UIComponents.renderCard(`
-                                <h5 style="margin-bottom: 10px;">${p.title}</h5>
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
-                                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #cbd5e1;">
-                                        <strong style="display: block; margin-bottom: 5px;">Primary Findings</strong>
-                                        <p style="font-size: 0.9em; color: #475569;">${p.primary}</p>
-                                    </div>
-                                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #cbd5e1;">
-                                        <strong style="display: block; margin-bottom: 5px;">Differential Logic</strong>
-                                        <p style="font-size: 0.9em; color: #475569;">${p.secondary || p.block}</p>
-                                    </div>
-                                </div>
-                                ${p.note || p.dispersion ? `<div style="margin-top: 15px; font-size: 0.85em; color: #64748b; font-style: italic;">Note: ${p.note || p.dispersion}</div>` : ''}
-                            `, { borderLeftColor: DesignTokens.colors.primary })}
-                        `).join('')}
-                    </div>
-                </div>
-
-                <!-- 5. Math & Calculations -->
-                <div id="ncs-calculations-section" class="ncs-section" style="display: none;">
-                    <div style="background: ${DesignTokens.colors.surface}; padding: 30px; border-radius: 20px; border: 1px solid ${DesignTokens.colors.border};">
-                        <h4 style="color: ${DesignTokens.colors.primary}; margin-bottom: 25px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: text-bottom;"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg> Interactive Calculation System</h4>
-                        
-                        <div style="background: #eef2ff; border-radius: 12px; padding: 20px; border: 1px solid #c7d2fe; margin-bottom: 25px;">
-                            <h5 style="color: #3730a3; margin-bottom: 10px;">Understanding Conduction Velocity (CV)</h5>
-                            <p style="font-size: 0.95em; color: #4338ca; margin-bottom: 15px; line-height: 1.5;">
-                                To calculate how fast a nerve conducts electricity (m/s), we need two stimulation points (Proximal and Distal). 
-                            </p>
-                            <ul style="font-size: 0.9em; color: #312e81; padding-left: 20px; margin-bottom: 15px; line-height: 1.5;">
-                                <li style="margin-bottom: 8px;"><strong>Distance (mm):</strong> The physical length of the nerve segment measured with a tape measure on the skin between the two stimulation sites.</li>
-                                <li style="margin-bottom: 8px;"><strong>Proximal Latency (ms):</strong> Time from shocking the nerve furthest from the recording electrode until the muscle twitches.</li>
-                                <li style="margin-bottom: 8px;"><strong>Distal Latency (ms):</strong> Time from shocking the nerve closer to the recording electrode until the muscle twitches.</li>
-                            </ul>
-                            <div style="background: white; padding: 15px; border-radius: 8px; font-size: 0.9em; color: #4338ca; border-left: 4px solid #4f46e5;">
-                                <strong>Why subtract latencies?</strong><br>
-                                Subtracting Distal Latency from Proximal Latency removes the time the signal spends crossing the neuromuscular junction (NMJ) and traveling down the muscle fibers. This isolates the pure nerve travel time!
-                            </div>
-                        </div>
-
-                        <div style="background: #f8fafc; border-radius: 12px; padding: 20px; border-left: 5px solid ${DesignTokens.colors.primary}; margin-bottom: 25px; text-align: center; font-size: 1.1em;">
-                            <code style="background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #0f172a;">
-                                <strong>${this.data.calculations.formula}</strong>
-                            </code>
-                        </div>
-                        
-                        <div style="display: grid; gap: 20px; margin-bottom: 30px;">
-                            ${this.data.calculations.practice.map((p, idx) => `
-                                <div class="ncs-hover-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid ${DesignTokens.colors.border}; border-top: 6px solid ${DesignTokens.colors.primary};">
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                                        <span style="background: ${DesignTokens.colors.primary}20; color: ${DesignTokens.colors.primary}; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.8em;">SCENARIO ${idx + 1}</span>
-                                        <span style="font-size: 0.9em; color: #64748b;">${p.category} Case</span>
-                                    </div>
-                                    <p style="font-size: 1.1em; color: #1e293b; margin-bottom: 20px; font-weight: 500;">${p.question}</p>
-                                    
-                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
-                                        <button class="btn-secondary" onclick="window.checkNCSCalc(this, ${p.answer === '50 m/s' || p.answer === '30 m/s'})">${p.answer}</button>
-                                        <button class="btn-secondary" onclick="window.checkNCSCalc(this, false)">40 m/s</button>
-                                        <button class="btn-secondary" onclick="window.checkNCSCalc(this, false)">60 m/s</button>
-                                    </div>
-                                    <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 8px; font-size: 0.85em; color: #0369a1; display: none;" class="calc-feedback">
-                                        <strong>Explanation:</strong> ${p.check}
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Global Knowledge Check (Always Visible at bottom) -->
-                <div style="margin-top: 50px; padding-top: 30px;">
-                    <div style="background: linear-gradient(135deg, ${DesignTokens.colors.primary}, ${DesignTokens.colors.secondary}); padding: 30px; border-radius: 20px; margin-bottom: 30px; text-align: center; color: white; box-shadow: ${DesignTokens.shadows.md};">
-                        <h3 style="margin-bottom: 10px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: text-bottom;"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Knowledge Check</h3>
-                        <p style="opacity: 0.9;">Validate your mastery of NCS Fundamentals</p>
-                    </div>
-                    
-                    <div class="quiz-score-tracker" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 30px; text-align: center; border: 2px solid ${DesignTokens.colors.border};">
-                        <span style="font-size: 1.3em; font-weight: bold; color: ${DesignTokens.colors.primary};">
-                            Score: <span id="quiz-score">0</span> / ${this.data.quiz.length}
-                        </span>
-                    </div>
-
-                    <div class="quiz-container">
-                        ${this.renderQuiz()}
-                        <div id="quiz-complete" style="display: none; background: #ecfdf5; padding: 40px; border-radius: 20px; border: 3px solid #10b981; text-align: center; animation: slideIn 0.5s ease-out;">
-                            <h3 style="color: #065f46; margin-bottom: 15px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="inline-svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: text-bottom;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Quiz Complete!</h3>
-                            <p style="color: #064e3b; font-size: 1.4em; margin: 0;">Final Score: <span id="final-score" style="font-weight: 800;"></span> / ${this.data.quiz.length}</p>
-                            <button class="btn-primary" style="margin-top: 25px;" onclick="location.reload()">Restart Quiz</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Global Glossary (Always Visible at bottom) -->
-                <div style="margin-top: 50px; border-top: 2px solid #e2e8f0; padding-top: 30px;">
-                    <h5 style="color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9em; margin-bottom: 20px;">Mastery Terms</h5>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                        ${this.data.glossary.map(g => `
-                            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                                <strong style="color: #1e293b; display: block; margin-bottom: 5px;">${g.term}</strong>
-                                <p style="color: #64748b; font-size: 0.85em; margin: 0;">${g.definition}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-            </div>
+        <style>
+            .intro-container {
+                font-family: 'Inter', -apple-system, system-ui, sans-serif;
+                max-width: 1100px;
+                margin: 0 auto;
+                color: #1e293b;
+            }
+            .content-card {
+                background: white;
+                padding: 40px;
+                border-radius: 24px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .resident-pearl {
+                background: linear-gradient(135deg, #eff6ff, #dbeafe);
+                border: 1px solid #bfdbfe;
+                border-radius: 16px;
+                padding: 30px;
+                margin-top: 40px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+            }
+            .resident-pearl h4 {
+                color: #1d4ed8;
+                font-size: 1.3em;
+                font-weight: 900;
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .resident-pearl p {
+                color: #1e3a8a;
+                font-size: 1.05em;
+                line-height: 1.6;
+                margin: 0;
+            }
+            .ncs-tab.active {
+                box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            }
+            .ncs-tab:hover:not(.active) {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+            }
+            .calc-btn:hover:not(:disabled) {
+                background: #e2e8f0 !important;
+                transform: translateY(-2px);
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(15px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
         `;
     }
-}
+};
 
-const fundamentalsModule = new FundamentalsModule();
+window.NCSFundamentals = Fundamentals;
 
 export default {
-    initialize() { fundamentalsModule.initialize(); },
-    generateContent() { return fundamentalsModule.generateContent(); }
+    initialize() { /* Sub-handlers initialized inline now */ },
+    generateContent() { return Fundamentals.generateContent(); }
 };

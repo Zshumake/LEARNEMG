@@ -278,7 +278,7 @@ export const clinicalCasesData = {
     },
     'radiationplexopathy': {
         title: "Progressive Hand Weakness History of Cancer",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 55,
             gender: "Female",
@@ -1357,7 +1357,7 @@ export const clinicalCasesData = {
 
     doublecrush: {
         title: "Hand Weakness with Neck and Elbow Pain",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 48,
             gender: "Male",
@@ -1559,7 +1559,7 @@ export const clinicalCasesData = {
 
     als: {
         title: "Progressive Weakness with Muscle Twitching",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 62,
             gender: "Male",
@@ -1716,7 +1716,7 @@ export const clinicalCasesData = {
 
     lems: {
         title: "Weakness Improving with Exercise",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 58,
             gender: "Male",
@@ -1869,7 +1869,7 @@ export const clinicalCasesData = {
 
     parsonage: {
         title: "Extreme Shoulder Pain Followed by Weakness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 35,
             gender: "Male",
@@ -1942,7 +1942,7 @@ export const clinicalCasesData = {
 
     pronator: {
         title: "Forearm Pain and Palmar Numbness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 42,
             gender: "Male",
@@ -2014,7 +2014,7 @@ export const clinicalCasesData = {
 
     ain: {
         title: "Difficulty Making the 'OK' Sign",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 28,
             gender: "Female",
@@ -2087,7 +2087,7 @@ export const clinicalCasesData = {
 
     struthers: {
         title: "Forearm Weakness with Mid-Arm Pain",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 55,
             gender: "Male",
@@ -2157,7 +2157,7 @@ export const clinicalCasesData = {
 
     pin: {
         title: "Finger Drop without Numbness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 48,
             gender: "Male",
@@ -2374,7 +2374,7 @@ export const clinicalCasesData = {
 
     suprascapular: {
         title: "Deep Shoulder Pain and External Rotation Weakness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 24,
             gender: "Male",
@@ -2516,7 +2516,7 @@ export const clinicalCasesData = {
 
     long_thoracic: {
         title: "The Winged Scapula",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 28,
             gender: "Female",
@@ -2665,7 +2665,7 @@ export const clinicalCasesData = {
 
     meralgia: {
         title: "The Burning Thigh",
-        difficulty: "easy",
+        difficulty: "beginner",
         presentation: {
             age: 45,
             gender: "Male",
@@ -2734,7 +2734,7 @@ export const clinicalCasesData = {
     },
     deep_peroneal_ankle: {
         title: "Top of Foot Numbness and EDB Atrophy",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 38,
             gender: "Male",
@@ -2803,7 +2803,7 @@ export const clinicalCasesData = {
     },
     obturator: {
         title: "Groin Pain and Inner Thigh Weakness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 44,
             gender: "Female",
@@ -2874,7 +2874,7 @@ export const clinicalCasesData = {
     },
     piriformis: {
         title: "Deep Buttock Pain and Hip Weakness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 41,
             gender: "Female",
@@ -2948,7 +2948,7 @@ export const clinicalCasesData = {
 
     baxters: {
         title: "Chronic Heel Pain and Medial Foot Aching",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 48,
             gender: "Male",
@@ -3018,7 +3018,7 @@ export const clinicalCasesData = {
     },
     klumpke: {
         title: "Weak Hand and Medial Arm Numbness",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 24,
             gender: "Male",
@@ -3158,7 +3158,7 @@ export const clinicalCasesData = {
     },
     cidp: {
         title: "Chronic Progressive Weakness and Sensory Loss",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 52,
             gender: "Male",
@@ -3228,7 +3228,7 @@ export const clinicalCasesData = {
     },
     mmn: {
         title: "Asymmetric Hand Weakness and Wrist Drop",
-        difficulty: "advanced",
+        difficulty: "difficult",
         presentation: {
             age: 55,
             gender: "Male",
