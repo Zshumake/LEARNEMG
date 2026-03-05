@@ -154,18 +154,20 @@ export class ErnestCore {
 
     promptApiKey() {
         window.open('https://aistudio.google.com/app/apikey', '_blank');
-        setTimeout(() => {
-            let key = prompt("I've opened the key page for you!\n\n1. Sign in with Google\n2. Click 'Create API key'\n3. Paste it here:");
+
+        // Use the new custom HTML modal instead of the browser's blocked prompt()
+        this.ui.showApiKeyModal((key) => {
             if (key) {
-                key = key.trim();
                 if (this.api.setApiKey(key)) {
-                    alert("Perfect! Ernest is now fully operational.");
-                    if (this.ui.ui.setupBtn) this.ui.ui.setupBtn.remove();
+                    this.chat.addToChat('ernest', "Perfect! My systems are now fully operational. How can I assist your studies today?");
+                    if (this.ui.ui.setupBtn) {
+                        this.ui.ui.setupBtn.style.display = 'none';
+                    }
                 } else {
                     alert("That doesn't look like a valid key (should start with 'AIza'). Please try again.");
                 }
             }
-        }, 1000);
+        });
     }
 
     async handleUserQuestion(queryOverride) {

@@ -193,9 +193,7 @@ export class AppShell {
 </svg>
                         </div>
                         <div class="speech-bubble">
-                            <p class="lead-text" style="font-size: 1.25em; text-align: center;">Welcome, future
-                                Electrodiagnostician! I'm Ernest, your guide to the electrifying world of EMG & NCS! We're going
-                                to master nerves, muscles, and waveforms together. Ready to spark your learning?</p>
+                            <p class="lead-text" style="font-size: 1.25em; text-align: center;">Junior, listen up. I'm Ernest. We've got a full board today and the sensors aren't going to stabilize themselves. We're here to master the Preston & Shapiro fundamentals—no shortcuts. Ready to step up and handle some real clinical waveforms?</p>
                         </div>
                     </div>
                     <button class="atrium-cta-button" id="start-journey-btn">Begin Learning</button>
@@ -253,18 +251,18 @@ export class AppShell {
             // Set corresponding dialogue and gestures
             if (speechBubbleText) {
                 if (randomState === 'sleeping') {
-                    speechBubbleText.innerHTML = "Zzz... Oh! Click me to wake me up!";
+                    speechBubbleText.innerHTML = "Zzz... *Snores in 60Hz hum*... Wake up, Junior. The clinic waitlist is growing. Click to begin.";
                 } else if (randomState === 'dancing') {
                     ernestContainer.setAttribute('data-gesture-l', 'palm');
                     ernestContainer.setAttribute('data-gesture-r', 'palm');
-                    speechBubbleText.innerHTML = "Woo-hoo! Let's get moving! Click me to start learning!";
+                    speechBubbleText.innerHTML = "Rhythm and recruitment! If you can't keep the beat, you can't read a MUAP. Click and let's get into the flow.";
                 } else if (randomState === 'jumping') {
                     ernestContainer.setAttribute('data-gesture-l', 'fist');
                     ernestContainer.setAttribute('data-gesture-r', 'fist');
-                    speechBubbleText.innerHTML = "I'm so pumped up for EMG! Click me when you're ready to dive in!";
+                    speechBubbleText.innerHTML = "High amplitude, fast rise time! That's the energy I need to see. Ready to recruit some motor units? Click to start.";
                 } else if (randomState === 'waving') {
                     ernestContainer.setAttribute('data-gesture-r', 'palm');
-                    speechBubbleText.innerHTML = "Hey there! Welcome to the Atrium Health EMG/NCS Learning System! Click me to begin!";
+                    speechBubbleText.innerHTML = "Don't just stand there, Junior. This is the Atrium Health EMG/NCS Learning System—the gold standard. Click me and let's see if your conduction velocities are up to snuff.";
                 }
             }
 
@@ -276,16 +274,16 @@ export class AppShell {
                     ernestContainer.removeAttribute('data-gesture-l');
                     ernestContainer.removeAttribute('data-gesture-r');
                     if (speechBubbleText) {
-                        speechBubbleText.innerHTML = "Awesome, let's jump in! Welcome, future Electrodiagnostician! I'm Ernest. Ready to spark your learning?";
+                        speechBubbleText.innerHTML = "Good. You're awake. Focused H&P is done? Good. I'm Ernest. Let's start dissecting these waveforms. No noise, just signal. Ready?";
                     }
                 } else {
                     // Playful poke response, without breaking his current dancing/jumping state
                     if (speechBubbleText) {
                         const responses = [
-                            "Hey, that tickles!",
-                            "Ready to measure some nerve conduction velocities?",
-                            "Let's get shocking!",
-                            "I'm so ready to start learning!"
+                            "Check your ground, that's unstable.",
+                            "Latency is the key to life, Junior. Don't forget it.",
+                            "Are you stimulating or just guessing? Match the signal.",
+                            "Knowledge is the best filter for noise. Keep studying."
                         ];
                         speechBubbleText.innerHTML = responses[Math.floor(Math.random() * responses.length)];
                     }

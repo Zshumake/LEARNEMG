@@ -302,6 +302,69 @@ export class ErnestUI {
                 0% { transform: scale(0.8); opacity: 0; }
                 100% { transform: scale(1); opacity: 1; }
             }
+
+            /* Custom API Key Modal */
+            .jrpg-ernest-modal-overlay {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(15, 23, 42, 0.85);
+                backdrop-filter: blur(5px);
+                z-index: 2147483648; /* Topmost */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s;
+            }
+            .jrpg-ernest-modal-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            .jrpg-ernest-modal {
+                background: white;
+                border-radius: 15px;
+                padding: 30px;
+                width: 90%;
+                max-width: 450px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                border: 3px solid #6b9f78;
+                transform: translateY(20px);
+                transition: transform 0.3s;
+            }
+            .jrpg-ernest-modal-overlay.active .jrpg-ernest-modal {
+                transform: translateY(0);
+            }
+            .jrpg-ernest-modal h3 {
+                margin: 0 0 15px 0;
+                color: #1e293b;
+                font-family: 'Segoe UI', sans-serif;
+            }
+            .jrpg-ernest-modal p {
+                margin: 0 0 20px 0;
+                color: #64748b;
+                font-size: 0.95em;
+                line-height: 1.5;
+            }
+            .jrpg-ernest-modal input {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 1em;
+                margin-bottom: 20px;
+                box-sizing: border-box;
+                font-family: monospace;
+            }
+            .jrpg-ernest-modal input:focus {
+                border-color: #6b9f78;
+                outline: none;
+            }
+            .jrpg-ernest-modal-actions {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+            }
         `;
         document.head.appendChild(style);
     }
@@ -356,9 +419,62 @@ export class ErnestUI {
             dialogueBox: wrapper.querySelector('.jrpg-ernest-dialogue-box')
         };
 
+        // API Key Modal HTML
+        const apiModal = document.createElement('div');
+        apiModal.className = 'jrpg-ernest-modal-overlay';
+        apiModal.id = 'jrpg-ernest-apikey-overlay';
+        apiModal.innerHTML = `
+            <div class="jrpg-ernest-modal">
+                <h3>Configure Ernest API Key</h3>
+                <p>To use Ernest as your AI companion, please provide a Google Gemini API Key. It will be stored securely in your browser's local storage.</p>
+                <input type="text" id="jrpg-ernest-apikey-input" placeholder="Paste your API key here (starts with AIza...)">
+                <div class="jrpg-ernest-modal-actions">
+                    <button class="jrpg-ernest-btn" id="jrpg-ernest-apikey-cancel">Cancel</button>
+                    <button class="jrpg-ernest-btn primary" id="jrpg-ernest-apikey-save">Save Key</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(apiModal);
+
+        this.ui.apiModal = apiModal;
+        this.ui.apiInput = document.getElementById('jrpg-ernest-apikey-input');
+        this.ui.apiSaveBtn = document.getElementById('jrpg-ernest-apikey-save');
+        this.ui.apiCancelBtn = document.getElementById('jrpg-ernest-apikey-cancel');
+
         this.attachEventListeners();
         this.createTooltip(initialPersona);
         this.applyTheme(initialPersona);
+    }
+
+    showApiKeyModal(onSubmitCallback) {
+        this.ui.apiInput.value = '';
+        this.ui.apiModal.classList.add('active');
+        this.ui.apiInput.focus();
+
+        const closeAndCleanup = () => {
+            this.ui.apiModal.classList.remove('active');
+            this.ui.apiSaveBtn.onclick = null;
+            this.ui.apiCancelBtn.onclick = null;
+        };
+
+        this.ui.apiCancelBtn.onclick = () => {
+            closeAndCleanup();
+            if (onSubmitCallback) onSubmitCallback(null);
+        };
+
+        this.ui.apiSaveBtn.onclick = () => {
+            const val = this.ui.apiInput.value.trim();
+            closeAndCleanup();
+            if (onSubmitCallback) onSubmitCallback(val);
+        };
+
+        // Allow Enter key to save
+        this.ui.apiInput.onkeydown = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.ui.apiSaveBtn.click();
+            }
+        };
     }
 
     attachEventListeners() {
