@@ -97,7 +97,7 @@ window.addEventListener('pagehide', function (e) {
     console.error('⚠️ PAGE HIDE - Page is being hidden/closed');
 });
 
-// Note: window.startAtriumJourney is now defined in the <head> section for immediate availability
+// Note: window.startMasteryJourney is now defined in the <head> section for immediate availability
 
 // Local Storage Functions
 function saveProgressToStorage() {
@@ -667,7 +667,7 @@ window.closeGeneralModal = function () {
 // ===============================================
 
 // Module Configuration with Custom Artwork Integration
-const atriumModuleConfig = [
+const masteryModuleConfig = [
     { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: 'images/icons/EMG-NCS Intro.png' },
     { id: 'plexus-anatomy', title: 'Peripheral Nerve Anatomy', customIcon: 'images/icons/Peripheral Anatomy.png' },
     { id: 'plexus', title: 'Interactive Plexus Anatomy', customIcon: 'images/icons/Brachial Plexus Anatomy.png' },
@@ -786,8 +786,8 @@ function positionDescriptionBox(box, moduleNumber, side) {
 
 
 // MAIN ENTRY POINT FOR PATHWAY GENERATION
-async function generateAtriumPathway() {
-    console.log('🚀 Generating Atrium Pathway via Module System...');
+async function generateMasteryPathway() {
+    console.log('🚀 Generating Mastery Pathway via Module System...');
     if (window.appComponents && window.appComponents.candyland) {
         await window.appComponents.candyland.render();
     } else {
@@ -1096,7 +1096,7 @@ async function openModuleInNewTab(moduleNumber, moduleId) {
             throw new Error('No content generated');
         }
 
-        const moduleTitle = atriumModuleConfig[moduleNumber - 1].title;
+        const moduleTitle = masteryModuleConfig[moduleNumber - 1].title;
 
         // Get base URL for script paths
         const baseURL = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
@@ -1368,8 +1368,8 @@ function hideModuleDescription() {
     }, 2000); // 2 seconds - better timing
 }
 
-async function generateAtriumPathway(pgy = 'pgy2') {
-    console.log('🚀 Generating Atrium Pathway via Module System...', pgy);
+async function generateMasteryPathway(pgy = 'pgy2') {
+    console.log('🚀 Generating Mastery Pathway via Module System...', pgy);
 
     // Retry mechanism to wait for modules to initialize
     const maxRetries = 50; // 5 seconds (100ms * 50)
@@ -1397,10 +1397,10 @@ async function generateAtriumPathway(pgy = 'pgy2') {
 }
 
 // Override the existing generateLearningBoard function
-window.generateLearningBoard = generateAtriumPathway;
+window.generateLearningBoard = generateMasteryPathway;
 
 // Make sure all functions are available globally
-// window.startAtriumJourney is already defined earlier in the script
+// window.startMasteryJourney is already defined earlier in the script
 window.showModuleDescription = showModuleDescription;
 window.hideModuleDescription = hideModuleDescription;
 
@@ -1458,7 +1458,7 @@ function togglePodcastsCollapsible() {
 }
 
 // Make functions globally available
-window.generateAtriumPathway = generateAtriumPathway;
+window.generateMasteryPathway = generateMasteryPathway;
 
 window.showModuleDescription = showModuleDescription;
 window.hideModuleDescription = hideModuleDescription;

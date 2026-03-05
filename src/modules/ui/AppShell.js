@@ -15,13 +15,13 @@ export class AppShell {
 
         root.innerHTML = `
             <!-- Initial Loading State / Splash -->
-            <div id="pgy-selection" class="atrium-welcome-screen">
-                <div class="atrium-main-container">
-                    <div class="atrium-logo-container">
-                        <img src="images/ui/atrium.jpeg" alt="Atrium Health" class="atrium-logo-img">
+            <div id="pgy-selection" class="app-welcome-screen">
+                <div class="app-main-container">
+                    <div class="app-logo-container">
+                        <img src="images/ui/modern_edx_app_icon.png" alt="Neuromuscular Mastery" class="app-logo-img">
                     </div>
-                    <h1 class="atrium-main-title">Atrium Health EMG/NCS Learning System</h1>
-                    <div class="atrium-content-area">
+                    <h1 class="app-main-title">EMG/NCS Mastery System</h1>
+                    <div class="app-content-area">
                         <div id="ernest-character" class="at-ernest-container">
                             <svg class="ernest-svg-char" viewBox="0 0 500 550" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -196,7 +196,7 @@ export class AppShell {
                             <p class="lead-text" style="font-size: 1.25em; text-align: center;">Junior, listen up. I'm Ernest. We've got a full board today and the sensors aren't going to stabilize themselves. We're here to master the Preston & Shapiro fundamentals—no shortcuts. Ready to step up and handle some real clinical waveforms?</p>
                         </div>
                     </div>
-                    <button class="atrium-cta-button" id="start-journey-btn">Begin Learning</button>
+                    <button class="app-cta-button" id="start-journey-btn">Begin Learning</button>
                 </div>
             </div>
 
@@ -262,7 +262,7 @@ export class AppShell {
                     speechBubbleText.innerHTML = "High amplitude, fast rise time! That's the energy I need to see. Ready to recruit some motor units? Click to start.";
                 } else if (randomState === 'waving') {
                     ernestContainer.setAttribute('data-gesture-r', 'palm');
-                    speechBubbleText.innerHTML = "Don't just stand there, Junior. This is the Atrium Health EMG/NCS Learning System—the gold standard. Click me and let's see if your conduction velocities are up to snuff.";
+                    speechBubbleText.innerHTML = "Don't just stand there, Junior. This is the EMG/NCS Mastery System—the gold standard. Click me and let's see if your conduction velocities are up to snuff.";
                 }
             }
 

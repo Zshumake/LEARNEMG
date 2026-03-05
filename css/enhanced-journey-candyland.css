@@ -1757,7 +1757,7 @@ body {
 
     /* Typography - Compact News Article Style */
     .main-title,
-    .atrium-title,
+    .app-title,
     h1 {
         font-size: 1.4em !important;
         /* ~18px */
@@ -2162,8 +2162,8 @@ body {
     }
 
     /* Layout - More Compact */
-    .atrium-main-container,
-    .atrium-welcome-container {
+    .app-main-container,
+    .app-welcome-container {
         padding: 20px 10px !important;
     }
 
@@ -2293,8 +2293,8 @@ body {
     }
 
     /* Logo Sizes */
-    .atrium-logo,
-    .atrium-logo-title {
+    .app-logo,
+    .app-logo-title {
         width: 70px !important;
         height: 70px !important;
     }
@@ -2450,7 +2450,7 @@ body {
     }
 
     .main-title,
-    .atrium-title {
+    .app-title {
         font-size: 1.8em !important;
     }
 }

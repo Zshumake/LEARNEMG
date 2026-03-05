@@ -26,7 +26,7 @@ export class BoardRenderer {
 
 
 
-            <div class="atrium-pathway-container" style="
+            <div class="pathway-container" style="
                     position: relative; 
                     padding: 40px 5%; 
                     background: linear-gradient(to bottom, #f8fafc, #f1f5f9); 
@@ -498,7 +498,7 @@ export class BoardRenderer {
     generateGridModule(module, index) {
         if (!module) return '';
         // Note: onclick index is 0-based index in the FULL modules array?
-        // handleModuleClick expects ID and Index. legacy used openAtriumModule(moduleNumber, id).
+        // handleModuleClick expects ID and Index. legacy used openMasteryModule(moduleNumber, id).
         // I will align handleModuleClick to take ID.
         return `
             <div class="module-card"

@@ -227,6 +227,50 @@ class IntroductionModule extends BaseContent {
                         <h4 style="color: #be185d; margin: 0;">EDX Mastery Glossary</h4>
                         <input type="text" id="glossary-search" onkeyup="window.filterGlossary()" placeholder="Search mastery terms..." style="padding: 12px; border-radius: 12px; border: 1px solid #fce7f3; width: 300px; box-shadow: ${DesignTokens.shadows.sm};">
                     </div>
+                    <!-- NEW: Essential Terminology Podcast Banner -->
+                    <div class="podcast-play-banner" onclick="window.openModulePodcast('emg-introduction', 'emg-terminology')" style="
+                        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+                        border-radius: 16px;
+                        padding: 25px;
+                        margin-bottom: 30px;
+                        display: flex;
+                        align-items: center;
+                        gap: 25px;
+                        cursor: pointer;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <!-- Animated background elements -->
+                        <div style="position: absolute; top: -10px; right: -10px; opacity: 0.1;">
+                            <svg width="150" height="150" viewBox="0 0 24 24" fill="white"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </div>
+
+                        <div style="background: white; border-radius: 50%; padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); flex-shrink: 0; z-index: 1;">
+                            ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '55px' }) : '<img src="images/ui/ERNEST.png" style="width: 55px; height: 55px;">'}
+                        </div>
+                        
+                        <div style="flex: 1; z-index: 1;">
+                            <div style="color: #93c5fd; font-weight: 800; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Listen & Learn</div>
+                            <h3 style="color: white; margin: 0 0 8px 0; font-size: 1.5em; font-weight: 700;">Ever Wonder What These Mean?</h3>
+                            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 1em; line-height: 1.4;">Let me walk you through the essential terminology of EMG and NCS. Click here to play my podcast while you browse the glossary below.</p>
+                        </div>
+
+                        <div class="play-button-outer" style="background: rgba(255, 255, 255, 0.2); border-radius: 50%; padding: 15px; transition: transform 0.2s; z-index: 1;">
+                            <div style="background: #f59e0b; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+                        .podcast-play-banner:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3); }
+                        .podcast-play-banner:hover .play-button-outer { transform: scale(1.1); }
+                        .podcast-play-banner:active { transform: translateY(0); }
+                    </style>
+
                     <div id="glossary-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
                         ${this.renderGlossary()}
                     </div>
