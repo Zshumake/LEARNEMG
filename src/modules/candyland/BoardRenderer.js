@@ -486,7 +486,7 @@ export class BoardRenderer {
                 <div class="hero-content">
                     <img src="${module.customIcon || ''}" alt="${module.title || ''}" class="hero-icon">
                     <div class="hero-text">
-                        <div class="hero-badge">🚀 START HERE - Module ${index}</div>
+                        <div class="hero-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg> START HERE - Module ${index}</div>
                         <h2 class="hero-title">${module.title || ''}</h2>
                         <p class="hero-description">${desc}</p>
                     </div>
