@@ -195,10 +195,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                                 const SizedBox(height: 16),
                                 const Text(
-                                  'Welcome, Doctor',
+                                  'Ready to Master the Pulse?',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 32,
+                                    fontSize: 28,
                                     fontWeight: FontWeight.w900,
                                     color: AppTheme.textHeading,
                                     letterSpacing: -0.5,
@@ -206,7 +206,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  'Your clinical mastery journey continues here.',
+                                  'Decode complex signals. Perfect your diagnosis. Let\'s dive in.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 15,

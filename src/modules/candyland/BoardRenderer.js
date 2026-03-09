@@ -52,12 +52,12 @@ export class BoardRenderer {
                     <!-- Title Section -->
                      <div style="margin-bottom: 20px;">
                         <h1 class="pathway-title" style="margin: 0; font-size: 3.5em;">
-                            EMG/NCS Learning Pathway
+                            The EMG Mastery Lab
                         </h1>
                     </div>
                     
                     <p class="pathway-subtitle" style="font-size: 1.3em; color: #475569; max-width: 800px; margin: 0 auto 30px;">
-                        Comprehensive Electrodiagnostic Medicine Training
+                        Where advanced signals become definitive clinical breakthroughs.
                     </p>
                     
                     <!-- Podcast Toggle Button Section (Includes Learning Obj) -->
