@@ -171,18 +171,16 @@ export const podcastEpisodes = {
             audioFile: 'Podcasts/Mononeuropathy pathophysiology.m4a',
             description: 'Detailed examination of focal neuropathies and mononeuropathy multiplex',
             transcript: 'Episode transcript will appear here once available...',
-            showNotes: `
-                <h4>In This Episode:</h4>
-                <ul>
-                    <li>Focal entrapment neuropathies: carpal tunnel, cubital tunnel, and more</li>
-                    <li>Mononeuropathy multiplex patterns and causes</li>
-                    <li>Compression, ischemia, and inflammation mechanisms</li>
-                    <li>Electrodiagnostic localization techniques</li>
-                    <li>Clinical localization and differential diagnosis strategies</li>
-                </ul>
-                <h4>Key Takeaways:</h4>
-                <p>Understanding mononeuropathy pathophysiology is essential for accurate localization. Learn to distinguish focal compression from systemic causes and recognize mononeuropathy multiplex patterns.</p>
-            `
+            showNotes: `<h4>In This Episode:</h4><ul><li>Focal entrapment neuropathies</li><li>Mononeuropathy multiplex patterns</li><li>Electrodiagnostic localization</li></ul>`
+        },
+        {
+            id: 'neuropathy-main',
+            title: 'Neuropathy Pathophysiology',
+            duration: '33:22',
+            audioFile: 'Podcasts/Neuropathy Pathophysiology.m4a',
+            description: 'Foundational pathophysiology of peripheral nerve disorders',
+            transcript: 'Episode transcript will appear here once available...',
+            showNotes: `<h4>In This Episode:</h4><p>Foundational principles of nerve pathology.</p>`
         }
     ],
 
@@ -194,19 +192,16 @@ export const podcastEpisodes = {
             audioFile: 'Podcasts/Basic Patter Recognition.m4a',
             description: 'Ernest teaches systematic EMG interpretation and pattern recognition',
             transcript: 'Episode transcript will appear here once available...',
-            showNotes: `
-                <h4>In This Episode:</h4>
-                <ul>
-                    <li>Systematic approach to EMG/NCS interpretation</li>
-                    <li>Classic patterns: CTS, cubital tunnel, fibular neuropathy</li>
-                    <li>Radiculopathy patterns and myotomal distributions</li>
-                    <li>Plexopathy vs. multiple mononeuropathies</li>
-                    <li>Putting it all together: clinical correlation and diagnosis</li>
-                    <li>Common pitfalls and how to avoid misinterpretation</li>
-                </ul>
-                <h4>Key Takeaways:</h4>
-                <p>Pattern recognition is a skill that develops with practice. Learn a systematic approach to interpreting EMG/NCS studies and recognizing common patterns to build your diagnostic confidence.</p>
-            `
+            showNotes: `<h4>In This Episode:</h4><p>Systematic approach to EMG/NCS interpretation.</p>`
+        },
+        {
+            id: 'patterns-interpretation',
+            title: 'EMG Interpretation',
+            duration: '15:00',
+            audioFile: 'Podcasts/EMG interpretation.m4a',
+            description: 'Systematic approach to interpreting complex EMG signals',
+            transcript: 'Episode transcript will appear here once available...',
+            showNotes: `<h4>In This Episode:</h4><p>Deep dive into reading EMG signals.</p>`
         }
     ],
 
@@ -285,18 +280,16 @@ export const podcastEpisodes = {
             audioFile: 'Podcasts/The Blink Reflex explained.m4a',
             description: 'Ernest explains the blink reflex study and its clinical applications',
             transcript: 'Episode transcript will appear here once available...',
-            showNotes: `
-                <h4>In This Episode:</h4>
-                <ul>
-                    <li>Anatomy of the blink reflex pathway (trigeminal and facial nerves)</li>
-                    <li>R1 and R2 components: what they mean and how to measure them</li>
-                    <li>Technical aspects: stimulation, recording, and interpretation</li>
-                    <li>Clinical applications: facial nerve disorders, brainstem lesions</li>
-                    <li>Troubleshooting and common artifacts</li>
-                </ul>
-                <h4>Key Takeaways:</h4>
-                <p>The blink reflex is a specialized study for evaluating the trigeminal and facial nerve pathways. Learn when to use it and how to interpret the results for optimal diagnostic yield.</p>
-            `
+            showNotes: `<h4>In This Episode:</h4><p>Anatomy and clinical use of the blink reflex.</p>`
+        },
+        {
+            id: 'extra-blink-alt',
+            title: 'Blink Reflex Essentials',
+            duration: '14:14',
+            audioFile: 'Podcasts/Blink Reflex.m4a',
+            description: 'Core principles of the electrodiagnostic blink reflex',
+            transcript: 'Episode transcript will appear here once available...',
+            showNotes: `<h4>In This Episode:</h4><p>Core essentials of the blink reflex study.</p>`
         },
         {
             id: 'extra-nmj',
@@ -305,20 +298,7 @@ export const podcastEpisodes = {
             audioFile: 'Podcasts/Neuromuscular junction disorders.m4a',
             description: 'Ernest explores disorders affecting the neuromuscular junction',
             transcript: 'Episode transcript will appear here once available...',
-            showNotes: `
-                <h4>In This Episode:</h4>
-                <ul>
-                    <li>Pathophysiology: presynaptic vs. postsynaptic NMJ disorders</li>
-                    <li>Myasthenia gravis and Lambert-Eaton syndrome comparison</li>
-                    <li>Clinical presentation: weakness patterns and associated symptoms</li>
-                    <li>Repetitive nerve stimulation: decremental vs. incremental responses</li>
-                    <li>Single fiber EMG findings in NMJ disorders</li>
-                    <li>Antibody testing and clinical correlation</li>
-                    <li>Treatment implications and prognosis</li>
-                </ul>
-                <h4>Key Takeaways:</h4>
-                <p>Neuromuscular junction disorders require specialized electrodiagnostic techniques for diagnosis. Master the clinical and EDX features that distinguish these treatable conditions from other causes of weakness.</p>
-            `
+            showNotes: `<h4>In This Episode:</h4><p>Exploring Myasthenia Gravis and LEMS.</p>`
         }
     ],
 
@@ -326,122 +306,122 @@ export const podcastEpisodes = {
         {
             id: 'edx-1',
             title: 'EDX Series: Episode 1',
-            duration: '22 min',
-            audioFile: 'Podcasts/EMG Intro.m4a',
+            duration: '52 min',
+            audioFile: 'Podcasts/EDX_1.m4a',
             description: 'A fundamental primer on electrodiagnostic medicine.',
-            showNotes: `<p>This podcast episode serves as a fundamental primer on electrodiagnostic medicine...</p>`
+            showNotes: `<p>A fundamental primer on electrodiagnostic medicine.</p>`
         },
         {
             id: 'edx-2',
             title: 'EDX Series: Episode 2',
-            duration: '24 min',
-            audioFile: 'Podcasts/Essential Terminology.m4a',
+            duration: '15 min',
+            audioFile: 'Podcasts/EDX_2.m4a',
             description: 'Technical overview of the neuromuscular system and nerve injuries.',
-            showNotes: `<p>This podcast episode provides a technical overview of the neuromuscular system...</p>`
+            showNotes: `<p>Technical overview of the neuromuscular system.</p>`
         },
         {
             id: 'edx-3',
             title: 'EDX Series: Episode 3',
-            duration: '25 min',
-            audioFile: 'Podcasts/Neuropathy vs. Myopathy.m4a',
+            duration: '31 min',
+            audioFile: 'Podcasts/EDX_3.m4a',
             description: 'Overview of EDX instrumentation and NCS principles.',
-            showNotes: `<p>This podcast episode provides a comprehensive technical overview...</p>`
+            showNotes: `<p>Overview of EDX instrumentation.</p>`
         },
         {
             id: 'edx-4',
             title: 'EDX Series: Episode 4',
-            duration: '28 min',
-            audioFile: 'Podcasts/Polyneuropathies.m4a',
+            duration: '16 min',
+            audioFile: 'Podcasts/EDX_4.m4a',
             description: 'Details various nerve conduction studies (NCS).',
-            showNotes: `<p>This podcast episode details various nerve conduction studies...</p>`
+            showNotes: `<p>Details various nerve conduction studies.</p>`
         },
         {
             id: 'edx-5',
             title: 'EDX Series: Episode 5',
-            duration: '26 min',
-            audioFile: 'Podcasts/Radiculopathy.m4a',
+            duration: '15 min',
+            audioFile: 'Podcasts/EDX_5.m4a',
             description: 'Diagnostic utility of EDX studies and needle EMG.',
-            showNotes: `<p>This podcast episode outlines the diagnostic utility of electrodiagnostic studies...</p>`
+            showNotes: `<p>Diagnostic utility of EDX studies.</p>`
         },
         {
             id: 'edx-6',
             title: 'EDX Series: Episode 6',
-            duration: '24 min',
-            audioFile: 'Podcasts/Peripheral Anatomy.m4a',
+            duration: '39 min',
+            audioFile: 'Podcasts/EDX_6.m4a',
             description: 'Clinical guide for interpreting EMG results.',
-            showNotes: `<p>This podcast episode serves as a clinical guide for interpreting EMG results...</p>`
+            showNotes: `<p>Clinical guide for interpreting EMG results.</p>`
         },
         {
             id: 'edx-7',
             title: 'EDX Series: Episode 7',
             duration: '30 min',
-            audioFile: 'Podcasts/Anatomical_Nerve_Crossovers_and_Misdiagnosis_Cheat_Codes.m4a',
+            audioFile: 'Podcasts/EDX_7.m4a',
             description: 'Diagnostic framework for identifying nerve injuries.',
-            showNotes: `<p>This podcast episode details the diagnostic framework for identifying nerve injuries...</p>`
+            showNotes: `<p>Diagnostic framework for identifying nerve injuries.</p>`
         },
         {
             id: 'edx-8',
             title: 'EDX Series: Episode 8',
-            duration: '27 min',
-            audioFile: 'Podcasts/EMG interpretation.m4a',
+            duration: '28 min',
+            audioFile: 'Podcasts/EDX_8.m4a',
             description: 'Clinical guide to plexopathies and nerve entrapments.',
-            showNotes: `<p>This podcast episode serves as a clinical guide to diagnosing and treating plexopathies...</p>`
+            showNotes: `<p>Clinical guide to plexopathies.</p>`
         },
         {
             id: 'edx-9',
             title: 'EDX Series: Episode 9',
-            duration: '29 min',
-            audioFile: 'Podcasts/Anamolous Anatomy.m4a',
+            duration: '14 min',
+            audioFile: 'Podcasts/EDX_9.m4a',
             description: 'Comprehensive overview of upper extremity nerve pathologies.',
-            showNotes: `<p>This podcast episode provides a comprehensive overview of upper extremity nerve pathologies...</p>`
+            showNotes: `<p>Overview of upper extremity nerve pathologies.</p>`
         },
         {
             id: 'edx-10',
             title: 'EDX Series: Episode 10',
-            duration: '25 min',
-            audioFile: 'Podcasts/Basic Patter Recognition.m4a',
+            duration: '15 min',
+            audioFile: 'Podcasts/EDX_10.m4a',
             description: 'Clinical guide to mononeuropathies of the limbs.',
-            showNotes: `<p>This podcast episode serves as a comprehensive clinical guide to mononeuropathies...</p>`
+            showNotes: `<p>Clinical guide to mononeuropathies.</p>`
         },
         {
             id: 'edx-11',
             title: 'EDX Series: Episode 11',
             duration: '32 min',
-            audioFile: 'Podcasts/Neuropathy Pathophysiology.m4a',
+            audioFile: 'Podcasts/EDX_11.m4a',
             description: 'Anatomy and pathology of lower extremity nerves.',
-            showNotes: `<p>This podcast episode details the anatomy and pathology of the lower extremity nerves...</p>`
+            showNotes: `<p>Anatomy and pathology of lower extremity nerves.</p>`
         },
         {
             id: 'edx-12',
             title: 'EDX Series: Episode 12',
-            duration: '31 min',
-            audioFile: 'Podcasts/The Blink Reflex explained.m4a',
+            duration: '14 min',
+            audioFile: 'Podcasts/EDX_12.m4a',
             description: 'Clinical overview of peripheral polyneuropathy.',
-            showNotes: `<p>This podcast episode provides a comprehensive clinical overview of peripheral polyneuropathy...</p>`
+            showNotes: `<p>Clinical overview of peripheral polyneuropathy.</p>`
         },
         {
             id: 'edx-13',
             title: 'EDX Series: Episode 13',
-            duration: '28 min',
-            audioFile: 'Podcasts/Mononeuropathy pathophysiology.m4a',
+            duration: '33 min',
+            audioFile: 'Podcasts/EDX_13.m4a',
             description: 'Clinical guide for diagnosing neuromuscular junction (NMJ) disorders.',
-            showNotes: `<p>This podcast episode serves as a clinical guide for diagnosing NMJ disorders...</p>`
+            showNotes: `<p>Clinical guide for diagnosing NMJ disorders.</p>`
         },
         {
             id: 'edx-14',
             title: 'EDX Series: Episode 14',
-            duration: '27 min',
-            audioFile: 'Podcasts/Plexopathies.m4a',
+            duration: '13 min',
+            audioFile: 'Podcasts/EDX_14.m4a',
             description: 'Comprehensive clinical guide for diagnosing and classifying myopathies.',
-            showNotes: `<p>This podcast episode serves as a comprehensive clinical guide... </p>`
+            showNotes: `<p>Clinical guide for diagnosing myopathies.</p>`
         },
         {
             id: 'edx-15',
             title: 'EDX Series: Episode 15',
-            duration: '30 min',
-            audioFile: 'Podcasts/ALS and mimics.m4a',
+            duration: '13 min',
+            audioFile: 'Podcasts/EDX_15.m4a',
             description: 'Clinical guide to motor neuron diseases (MND).',
-            showNotes: `<p>This podcast episode serves as a clinical guide to motor neuron diseases (MND)...</p>`
+            showNotes: `<p>Clinical guide to motor neuron diseases (MND).</p>`
         }
     ]
 };
