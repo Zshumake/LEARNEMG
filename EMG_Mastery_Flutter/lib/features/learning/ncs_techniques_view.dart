@@ -658,7 +658,7 @@ const _ncsTechniquesData = (
     ),
     _VideoData(
       "Median-Radial Comparison",
-      "https://youtube.com/watch?v=nMaxrbpyR-0",
+      "https://youtube.com/watch?v=M1sE2FT8YQg",
     ),
     _VideoData(
       "Dorsal Ulnar Cutaneous",
@@ -676,19 +676,23 @@ const _ncsTechniquesData = (
   lowerVideos: [
     _VideoData(
       "Superficial Fibular Sensory",
-      "https://youtube.com/watch?v=M1sE2FT8YQg",
-    ),
-    _VideoData(
-      "Sural Sensory Technique",
       "https://youtube.com/watch?v=zP1yAU5DW2s",
     ),
     _VideoData(
-      "Common Fibular Motor",
+      "Sural Sensory Technique",
       "https://youtube.com/watch?v=G1bsDinxuF8",
     ),
     _VideoData(
-      "Tibial Motor Technique",
+      "Common Fibular Motor",
       "https://youtube.com/watch?v=pWeH6kCa9lo",
+    ),
+    _VideoData(
+      "Tibial Motor Technique",
+      "https://youtube.com/watch?v=86j7cNLIX0U",
+    ),
+    _VideoData(
+      "Popliteal Fossa Anatomy",
+      "https://youtube.com/watch?v=nMaxrbpyR-0",
     ),
   ],
 );

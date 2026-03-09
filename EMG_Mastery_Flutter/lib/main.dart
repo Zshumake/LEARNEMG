@@ -33,6 +33,17 @@ class EMGMasteryApp extends StatelessWidget {
       title: 'EMG/NCS Mastery',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      builder: (context, child) {
+        return Stack(
+          children: [
+            child!,
+            const Align(
+              alignment: Alignment.bottomCenter,
+              child: PodcastMiniPlayer(),
+            ),
+          ],
+        );
+      },
       home: const DashboardScreen(),
     );
   }
@@ -247,14 +258,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               bottom: 100, // Move up to avoid mini player
               right: 10,
               child: AnimatedErnestWidget(size: 180, showSpeechBubble: true),
-            ),
-
-            // Global Podcast Mini Player
-            const Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: PodcastMiniPlayer(),
             ),
           ],
         ),

@@ -34,6 +34,14 @@ class PodcastData {
         audioFile: 'Podcasts/Anamolous Anatomy.m4a',
         description: 'Explore anatomical variations and anomalies',
       ),
+      PodcastEpisode(
+        id: 'plexus-plexopathies',
+        title: 'Plexopathies Deep Dive',
+        duration: '13:30',
+        audioFile: 'Podcasts/Plexopathies.m4a',
+        description:
+            'Detailed exploration of brachial and lumbosacral plexus disorders',
+      ),
     ],
     'radiculopathy': [
       PodcastEpisode(
@@ -60,6 +68,21 @@ class PodcastData {
         audioFile: 'Podcasts/Mononeuropathy pathophysiology.m4a',
         description: 'Detailed examination of focal neuropathies',
       ),
+      PodcastEpisode(
+        id: 'neuropathy-main',
+        title: 'Neuropathy Pathophysiology',
+        duration: '33:22',
+        audioFile: 'Podcasts/Neuropathy Pathophysiology.m4a',
+        description:
+            'Foundational pathophysiology of peripheral nerve disorders',
+      ),
+      PodcastEpisode(
+        id: 'neuropathy-myo-vs-neuro',
+        title: 'Myopathy vs. Neuropathy',
+        duration: '17:15',
+        audioFile: 'Podcasts/Myopathy vs. Neuropathy.m4a',
+        description: 'Key clinical and electrodiagnostic differentiators',
+      ),
     ],
     'basic-patterns': [
       PodcastEpisode(
@@ -68,6 +91,20 @@ class PodcastData {
         duration: '15:00',
         audioFile: 'Podcasts/Basic Patter Recognition.m4a',
         description: 'Ernest teaches systematic EMG interpretation',
+      ),
+      PodcastEpisode(
+        id: 'patterns-report-writing',
+        title: 'Basic Report Writing',
+        duration: '12:00',
+        audioFile: 'Podcasts/Basic Report Writing.m4a',
+        description: 'Master the art of clear and concise EDX reporting',
+      ),
+      PodcastEpisode(
+        id: 'patterns-interpretation',
+        title: 'EMG Interpretation',
+        duration: '15:00',
+        audioFile: 'Podcasts/EMG interpretation.m4a',
+        description: 'Systematic approach to interpreting complex EMG signals',
       ),
     ],
     'extra-topics': [
@@ -84,6 +121,13 @@ class PodcastData {
         duration: '14:14',
         audioFile: 'Podcasts/The Blink Reflex explained.m4a',
         description: 'Ernest explains the blink reflex study',
+      ),
+      PodcastEpisode(
+        id: 'extra-blink-alt',
+        title: 'Blink Reflex Essentials',
+        duration: '14:14',
+        audioFile: 'Podcasts/Blink Reflex.m4a',
+        description: 'Core principles of the electrodiagnostic blink reflex',
       ),
       PodcastEpisode(
         id: 'extra-nmj',

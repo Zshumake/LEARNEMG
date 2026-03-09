@@ -8,6 +8,7 @@ class PodcastController extends ChangeNotifier {
   PodcastEpisode? _currentEpisode;
   bool _isPlaying = false;
   Duration _position = Duration.zero;
+  Duration _lastNotifiedPosition = Duration.zero; // For throttling
   Duration _duration = Duration.zero;
   double _speed = 1.0;
 
@@ -29,7 +30,12 @@ class PodcastController extends ChangeNotifier {
 
     _player.positionStream.listen((pos) {
       _position = pos;
-      notifyListeners();
+      // Throttling: only notify listeners if at least 500ms has passed
+      // or if it's a significant jump (pause/seek)
+      if ((pos - _lastNotifiedPosition).inMilliseconds.abs() > 500) {
+        _lastNotifiedPosition = pos;
+        notifyListeners();
+      }
     });
 
     _player.durationStream.listen((dur) {
@@ -70,6 +76,18 @@ class PodcastController extends ChangeNotifier {
 
   Future<void> seek(Duration position) async {
     await _player.seek(position);
+    _lastNotifiedPosition = position;
+    notifyListeners();
+  }
+
+  Future<void> skipForward() async {
+    final newPos = _position + const Duration(seconds: 15);
+    await seek(newPos > _duration ? _duration : newPos);
+  }
+
+  Future<void> skipBackward() async {
+    final newPos = _position - const Duration(seconds: 15);
+    await seek(newPos < Duration.zero ? Duration.zero : newPos);
   }
 
   Future<void> setSpeed(double speed) async {
