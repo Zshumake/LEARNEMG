@@ -10,36 +10,13 @@ class PodcastData {
         audioFile: 'Podcasts/EMG Intro.m4a',
         description:
             'Comprehensive introduction to electrodiagnostic medicine fundamentals',
-        showNotes: '''
-#### In This Episode:
-* What is electrodiagnostic medicine?
-* Overview of EMG and NCS techniques
-* Clinical applications and when to order studies
-* What to expect during an EMG/NCS examination
-* Comprehensive fundamentals for beginners
-
-#### Key Takeaways:
-Electrodiagnostic studies are powerful tools for evaluating nerve and muscle disorders. This comprehensive introduction covers everything you need to get started with EMG and NCS interpretation.
-''',
       ),
       PodcastEpisode(
         id: 'emg-terminology',
         title: 'Essential EMG Terminology',
         duration: '14:46',
         audioFile: 'Podcasts/Essential Terminology.m4a',
-        description:
-            'Master the essential vocabulary and definitions used in electrodiagnostic medicine',
-        showNotes: '''
-#### In This Episode:
-* Fundamental EMG and NCS terminology
-* Understanding motor unit action potentials (MUAPs)
-* Spontaneous activity patterns and their significance
-* Key concepts: recruitment, conduction velocity, latency
-* Essential definitions for accurate interpretation
-
-#### Key Takeaways:
-Mastering electrodiagnostic terminology is the foundation for accurate study interpretation. Learn the essential terms and concepts that every EDX physician needs to know.
-''',
+        description: 'Master the essential vocabulary and definitions',
       ),
     ],
     'plexus-anatomy': [
@@ -48,19 +25,14 @@ Mastering electrodiagnostic terminology is the foundation for accurate study int
         title: 'Peripheral Nerve Anatomy',
         duration: '39:08',
         audioFile: 'Podcasts/Peripheral Anatomy.m4a',
-        description:
-            'Comprehensive exploration of peripheral nerve anatomy and organization',
-        showNotes: '''
-#### In This Episode:
-* Anatomical organization of peripheral nerves
-* Key landmarks and nerve pathways
-* Upper and lower extremity nerve anatomy
-* Clinical correlations with nerve injury patterns
-* Tips for remembering complex anatomy
-
-#### Key Takeaways:
-Understanding peripheral nerve anatomy is essential for localizing lesions and interpreting electrodiagnostic findings accurately. This comprehensive episode covers the entire peripheral nervous system.
-''',
+        description: 'Comprehensive exploration of peripheral nerve anatomy',
+      ),
+      PodcastEpisode(
+        id: 'plexus-anomalous',
+        title: 'Anomalous Anatomy',
+        duration: '14:48',
+        audioFile: 'Podcasts/Anamolous Anatomy.m4a',
+        description: 'Explore anatomical variations and anomalies',
       ),
     ],
     'radiculopathy': [
@@ -71,17 +43,6 @@ Understanding peripheral nerve anatomy is essential for localizing lesions and i
         audioFile: 'Podcasts/Radiculopathy.m4a',
         description:
             'Ernest explains the pathophysiology of nerve root compression',
-        showNotes: '''
-#### In This Episode:
-* Mechanisms of nerve root compression and injury
-* Classic radiculopathy patterns (C5-T1, L4-S1)
-* EMG findings: denervation and reinnervation patterns
-* Differentiating radiculopathy from peripheral neuropathy and plexopathy
-* Clinical presentation and physical exam findings
-
-#### Key Takeaways:
-Radiculopathy is one of the most common reasons for EMG referral. Learn to recognize the patterns and correlate with imaging findings for accurate diagnosis.
-''',
       ),
     ],
     'neuropathy-pathophysiology': [
@@ -90,38 +51,14 @@ Radiculopathy is one of the most common reasons for EMG referral. Learn to recog
         title: 'Polyneuropathies',
         duration: '16:03',
         audioFile: 'Podcasts/Polyneuropathies.m4a',
-        description:
-            'Comprehensive exploration of polyneuropathy patterns and mechanisms',
-        showNotes: '''
-#### In This Episode:
-* Axonal vs. demyelinating polyneuropathies
-* Length-dependent vs. non-length-dependent patterns
-* Common causes: diabetes, toxins, hereditary conditions
-* NCS and EMG patterns in polyneuropathies
-* Diagnostic approach and differential diagnosis
-
-#### Key Takeaways:
-Polyneuropathies are among the most common peripheral nerve disorders. Master the pattern recognition and diagnostic approach for accurate classification and treatment.
-''',
+        description: 'Comprehensive exploration of polyneuropathy patterns',
       ),
       PodcastEpisode(
         id: 'neuropathy-mono',
         title: 'Mononeuropathy Pathophysiology',
         duration: '33:22',
         audioFile: 'Podcasts/Mononeuropathy pathophysiology.m4a',
-        description:
-            'Detailed examination of focal neuropathies and mononeuropathy multiplex',
-        showNotes: '''
-#### In This Episode:
-* Focal entrapment neuropathies: carpal tunnel, cubital tunnel, and more
-* Mononeuropathy multiplex patterns and causes
-* Compression, ischemia, and inflammation mechanisms
-* Electrodiagnostic localization techniques
-* Clinical localization and differential diagnosis strategies
-
-#### Key Takeaways:
-Understanding mononeuropathy pathophysiology is essential for accurate localization. Learn to distinguish focal compression from systemic causes and recognize mononeuropathy multiplex patterns.
-''',
+        description: 'Detailed examination of focal neuropathies',
       ),
     ],
     'basic-patterns': [
@@ -130,63 +67,141 @@ Understanding mononeuropathy pathophysiology is essential for accurate localizat
         title: 'Basic Pattern Recognition',
         duration: '15:00',
         audioFile: 'Podcasts/Basic Patter Recognition.m4a',
-        description:
-            'Ernest teaches systematic EMG interpretation and pattern recognition',
-        showNotes: '''
-#### In This Episode:
-* Systematic approach to EMG/NCS interpretation
-* Classic patterns: CTS, cubital tunnel, fibular neuropathy
-* Radiculopathy patterns and myotomal distributions
-* Plexopathy vs. multiple mononeuropathies
-* Putting it all together: clinical correlation and diagnosis
-* Common pitfalls and how to avoid misinterpretation
-
-#### Key Takeaways:
-Pattern recognition is a skill that develops with practice. Learn a systematic approach to interpreting EMG/NCS studies and recognizing common patterns to build your diagnostic confidence.
-''',
+        description: 'Ernest teaches systematic EMG interpretation',
       ),
     ],
-    'neuropathy-myopathy-basics': [
+    'extra-topics': [
       PodcastEpisode(
-        id: 'neuro-myo-ep1',
-        title: 'Neuropathy vs. Myopathy',
-        duration: '17:10',
-        audioFile: 'Podcasts/Neuropathy vs. Myopathy.m4a',
-        description:
-            'Ernest explains how to differentiate nerve and muscle disorders using clinical and EDX features',
-        showNotes: '''
-#### In This Episode:
-* Clinical clues: distribution of weakness (proximal vs. distal)
-* NCS findings: normal in myopathy, abnormal in neuropathy
-* Needle EMG: myopathic vs. neuropathic changes in detail
-* Motor neuron disease: the great imitator with mixed features
-* Inflammatory myopathies and their EDX signatures
-* Practical diagnostic algorithms and clinical correlation
-
-#### Key Takeaways:
-Distinguishing neuropathy from myopathy is essential for proper patient management. Use clinical history, NCS, and needle EMG together for accurate diagnosis and appropriate treatment planning.
-''',
+        id: 'extra-als',
+        title: 'ALS and Mimics',
+        duration: '13:55',
+        audioFile: 'Podcasts/ALS and mimics.m4a',
+        description: 'Ernest explores motor neuron disease and mimics',
+      ),
+      PodcastEpisode(
+        id: 'extra-blink',
+        title: 'The Blink Reflex Explained',
+        duration: '14:14',
+        audioFile: 'Podcasts/The Blink Reflex explained.m4a',
+        description: 'Ernest explains the blink reflex study',
+      ),
+      PodcastEpisode(
+        id: 'extra-nmj',
+        title: 'Neuromuscular Junction Disorders',
+        duration: '16:00',
+        audioFile: 'Podcasts/Neuromuscular junction disorders.m4a',
+        description: 'Ernest explores disorders affecting the NMJ',
       ),
     ],
-    'simple-reports': [
+    'edx-series': [
       PodcastEpisode(
-        id: 'reports-ep1',
-        title: 'Basic Report Writing',
-        duration: '11:57',
-        audioFile: 'Podcasts/Basic Report Writing.m4a',
+        id: 'edx-1',
+        title: 'EDX Series: Episode 1',
+        duration: '52:27',
+        audioFile: 'Podcasts/EDX_1.m4a',
+        description: 'A fundamental primer on electrodiagnostic medicine.',
+      ),
+      PodcastEpisode(
+        id: 'edx-2',
+        title: 'EDX Series: Episode 2',
+        duration: '14:46',
+        audioFile: 'Podcasts/EDX_2.m4a',
         description:
-            'Ernest teaches the art of clear, effective electrodiagnostic report writing',
-        showNotes: '''
-#### In This Episode:
-* AANEM reporting guidelines overview
-* Essential elements: patient data, NCS, EMG, summary
-* Writing clear interpretations and recommendations
-* Common mistakes to avoid
-* Tips for efficient and professional report generation
-
-#### Key Takeaways:
-A well-written report communicates your findings clearly to referring physicians and becomes part of the permanent medical record. Take time to craft quality reports that accurately convey your electrodiagnostic findings.
-''',
+            'Technical overview of the neuromuscular system and nerve injuries.',
+      ),
+      PodcastEpisode(
+        id: 'edx-3',
+        title: 'EDX Series: Episode 3',
+        duration: '31:00',
+        audioFile: 'Podcasts/EDX_3.m4a',
+        description: 'Overview of EDX instrumentation and NCS principles.',
+      ),
+      PodcastEpisode(
+        id: 'edx-4',
+        title: 'EDX Series: Episode 4',
+        duration: '16:00',
+        audioFile: 'Podcasts/EDX_4.m4a',
+        description: 'Details various nerve conduction studies (NCS).',
+      ),
+      PodcastEpisode(
+        id: 'edx-5',
+        title: 'EDX Series: Episode 5',
+        duration: '15:00',
+        audioFile: 'Podcasts/EDX_5.m4a',
+        description: 'Diagnostic utility of EDX studies and needle EMG.',
+      ),
+      PodcastEpisode(
+        id: 'edx-6',
+        title: 'EDX Series: Episode 6',
+        duration: '39:00',
+        audioFile: 'Podcasts/EDX_6.m4a',
+        description: 'Clinical guide for interpreting EMG results.',
+      ),
+      PodcastEpisode(
+        id: 'edx-7',
+        title: 'EDX Series: Episode 7',
+        duration: '30:00',
+        audioFile: 'Podcasts/EDX_7.m4a',
+        description: 'Diagnostic framework for identifying nerve injuries.',
+      ),
+      PodcastEpisode(
+        id: 'edx-8',
+        title: 'EDX Series: Episode 8',
+        duration: '28:00',
+        audioFile: 'Podcasts/EDX_8.m4a',
+        description: 'Clinical guide to plexopathies and nerve entrapments.',
+      ),
+      PodcastEpisode(
+        id: 'edx-9',
+        title: 'EDX Series: Episode 9',
+        duration: '14:00',
+        audioFile: 'Podcasts/EDX_9.m4a',
+        description:
+            'Comprehensive overview of upper extremity nerve pathologies.',
+      ),
+      PodcastEpisode(
+        id: 'edx-10',
+        title: 'EDX Series: Episode 10',
+        duration: '15:00',
+        audioFile: 'Podcasts/EDX_10.m4a',
+        description: 'Clinical guide to mononeuropathies of the limbs.',
+      ),
+      PodcastEpisode(
+        id: 'edx-11',
+        title: 'EDX Series: Episode 11',
+        duration: '32:00',
+        audioFile: 'Podcasts/EDX_11.m4a',
+        description: 'Anatomy and pathology of lower extremity nerves.',
+      ),
+      PodcastEpisode(
+        id: 'edx-12',
+        title: 'EDX Series: Episode 12',
+        duration: '14:00',
+        audioFile: 'Podcasts/EDX_12.m4a',
+        description: 'Clinical overview of peripheral polyneuropathy.',
+      ),
+      PodcastEpisode(
+        id: 'edx-13',
+        title: 'EDX Series: Episode 13',
+        duration: '33:00',
+        audioFile: 'Podcasts/EDX_13.m4a',
+        description:
+            'Clinical guide for diagnosing neuromuscular junction (NMJ) disorders.',
+      ),
+      PodcastEpisode(
+        id: 'edx-14',
+        title: 'EDX Series: Episode 14',
+        duration: '13:00',
+        audioFile: 'Podcasts/EDX_14.m4a',
+        description:
+            'Comprehensive clinical guide for diagnosing and classifying myopathies.',
+      ),
+      PodcastEpisode(
+        id: 'edx-15',
+        title: 'EDX Series: Episode 15',
+        duration: '13:00',
+        audioFile: 'Podcasts/EDX_15.m4a',
+        description: 'Clinical guide to motor neuron diseases (MND).',
       ),
     ],
   };

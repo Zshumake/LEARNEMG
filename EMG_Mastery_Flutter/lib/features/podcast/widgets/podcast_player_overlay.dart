@@ -176,7 +176,7 @@ class PodcastPlayerOverlay extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     MarkdownBody(
-                      data: episode.showNotes,
+                      data: episode.showNotes ?? '',
                       styleSheet: MarkdownStyleSheet(
                         p: const TextStyle(
                           color: Colors.white70,

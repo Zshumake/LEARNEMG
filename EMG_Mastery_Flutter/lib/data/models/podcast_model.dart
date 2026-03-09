@@ -5,7 +5,7 @@ class PodcastEpisode {
   final String audioFile;
   final String description;
   final String? transcript;
-  final String showNotes;
+  final String? showNotes;
   final String? icon;
 
   PodcastEpisode({
@@ -15,7 +15,7 @@ class PodcastEpisode {
     required this.audioFile,
     required this.description,
     this.transcript,
-    required this.showNotes,
+    this.showNotes,
     this.icon,
   });
 }

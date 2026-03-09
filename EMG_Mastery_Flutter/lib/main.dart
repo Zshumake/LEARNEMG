@@ -215,7 +215,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
                     child: _buildPodcastBanner(context),
                   ),
                 ),
