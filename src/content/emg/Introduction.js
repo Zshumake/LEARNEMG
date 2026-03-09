@@ -93,7 +93,7 @@ class IntroductionModule extends BaseContent {
                         `).join('')}
                     </div>
 
-                    <h4 style="color: #334155; margin-bottom: 20px;">The 6 Cardinal Rules (Preston & Shapiro)</h4>
+                    <h4 style="color: #334155; margin-bottom: 20px;">The 6 Cardinal Rules</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                         ${this.data.philosophy.cardinalRules.map(rule => `
                             <div class="emg-card" style="border-top: 4px solid ${rule.color};">

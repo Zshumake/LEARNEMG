@@ -1290,8 +1290,8 @@ const moduleDescriptions = {
     },
     9: {
         title: "Muscle Study Laboratory",
-        text: "Explore comprehensive muscle anatomy with our advanced Preston & Shapiro laboratory database. Interactive muscle exploration with detailed anatomical references and clinical correlations.",
-        highlights: "Topics: Muscle anatomy, Preston & Shapiro database, interactive learning"
+        text: "Explore comprehensive muscle anatomy with our advanced laboratory database. Interactive muscle exploration with detailed anatomical references and clinical correlations.",
+        highlights: "Topics: Muscle anatomy, laboratory database, interactive learning"
     },
     10: {
         title: "Basic Pattern Recognition",

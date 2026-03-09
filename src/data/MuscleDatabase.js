@@ -1,5 +1,5 @@
 
-// Complete Muscle Database - Preston & Shapiro
+// Comprehensive Muscle Database
 // Organized by Peripheral Nerve
 
 export const MuscleDatabase = {

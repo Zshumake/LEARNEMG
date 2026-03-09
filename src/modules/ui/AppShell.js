@@ -193,7 +193,7 @@ export class AppShell {
 </svg>
                         </div>
                         <div class="speech-bubble">
-                            <p class="lead-text" style="font-size: 1.25em; text-align: center;">Doctor, listen up. I'm Ernest. We've got a full board today and the sensors aren't going to stabilize themselves. We're here to master the Preston & Shapiro fundamentals—no shortcuts. Ready to step up and handle some real clinical waveforms?</p>
+                            <p class="lead-text" style="font-size: 1.25em; text-align: center;">Doctor, listen up. I'm Ernest. We've got a full board today and the sensors aren't going to stabilize themselves. We're here to master the core fundamentals—no shortcuts. Ready to step up and handle some real clinical waveforms?</p>
                         </div>
                     </div>
                     <button class="app-cta-button" id="start-journey-btn">Begin Learning</button>

@@ -1,7 +1,7 @@
 /**
  * NCSFundamentalsData.js
  * Comprehensive clinical data, technical factors, patterns, and quiz data for the NCS Fundamentals module.
- * Source: Preston & Shapiro, Chapters 3 & 8.
+ * Source: Standard Clinical Guidelines
  */
 
 export const NCSFundamentalsData = {

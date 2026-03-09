@@ -123,7 +123,7 @@ export class ErnestChat {
         } else {
             const msgs = [
                 "Analyzing waveforms...",
-                "Consulting Preston & Shapiro...",
+                "Consulting clinical guidelines...",
                 "Checking references...",
                 "Filtering 60Hz noise...",
                 "Calculating conduction velocity...",

@@ -151,7 +151,7 @@ export class StudyCardsModule {
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
                 </div>
                 <h2>Advanced Muscle Laboratory</h2>
-                <p>Preston & Shapiro Complete Muscle Database</p>
+                <p>Comprehensive Muscle Database</p>
                 <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px;">
                     <div><strong>${Object.keys(this.muscleDatabase).length}</strong> Muscles</div>
                     <div><strong>∞</strong> Variations</div>

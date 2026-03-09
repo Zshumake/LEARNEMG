@@ -1,0 +1,432 @@
+{
+    "nodes": [
+        {
+            "id": "root_t12",
+            "label": "T12",
+            "type": "root",
+            "level": 0,
+            "order": 1,
+            "yOffset": -150,
+            "row": 1
+        },
+        {
+            "id": "root_l1",
+            "label": "L1",
+            "type": "root",
+            "level": 0,
+            "order": 2,
+            "yOffset": -120,
+            "row": 2
+        },
+        {
+            "id": "root_l2",
+            "label": "L2",
+            "type": "root",
+            "level": 0,
+            "order": 3,
+            "yOffset": -90,
+            "row": 3
+        },
+        {
+            "id": "root_l3",
+            "label": "L3",
+            "type": "root",
+            "level": 0,
+            "order": 4,
+            "yOffset": -60,
+            "row": 4
+        },
+        {
+            "id": "root_l4",
+            "label": "L4",
+            "type": "root",
+            "level": 0,
+            "order": 5,
+            "yOffset": -30,
+            "row": 5
+        },
+        {
+            "id": "root_l5",
+            "label": "L5",
+            "type": "root",
+            "level": 0,
+            "order": 6,
+            "yOffset": 0,
+            "row": 6
+        },
+        {
+            "id": "root_s1",
+            "label": "S1",
+            "type": "root",
+            "level": 0,
+            "order": 7,
+            "yOffset": 30,
+            "row": 7
+        },
+        {
+            "id": "root_s2",
+            "label": "S2",
+            "type": "root",
+            "level": 0,
+            "order": 8,
+            "yOffset": 60,
+            "row": 8
+        },
+        {
+            "id": "root_s3",
+            "label": "S3",
+            "type": "root",
+            "level": 0,
+            "order": 9,
+            "yOffset": 90,
+            "row": 9
+        },
+        {
+            "id": "root_s4",
+            "label": "S4",
+            "type": "root",
+            "level": 0,
+            "order": 10,
+            "yOffset": 120,
+            "row": 10
+        },
+        {
+            "id": "nerve_iliohypogastric",
+            "label": "Iliohypogastric",
+            "type": "nerve",
+            "level": 1,
+            "order": 1,
+            "yOffset": -135,
+            "row": 1,
+            "muscles": [
+                "Transversus Abdominis",
+                "Internal Oblique"
+            ]
+        },
+        {
+            "id": "nerve_ilioinguinal",
+            "label": "Ilioinguinal",
+            "type": "nerve",
+            "level": 1,
+            "order": 2,
+            "yOffset": -105,
+            "row": 2,
+            "muscles": [
+                "Transversus Abdominis",
+                "Internal Oblique"
+            ]
+        },
+        {
+            "id": "nerve_genitofemoral",
+            "label": "Genitofemoral",
+            "type": "nerve",
+            "level": 1,
+            "order": 3,
+            "yOffset": -75,
+            "row": 2.5,
+            "muscles": [
+                "Cremaster (in males)"
+            ]
+        },
+        {
+            "id": "nerve_lat_fem_cut",
+            "label": "Lat. Fem. Cutaneous",
+            "type": "nerve",
+            "level": 1.5,
+            "order": 4,
+            "yOffset": -45,
+            "row": 3,
+            "muscles": [],
+            "description": "Sensory: Supplies skin on the lateral aspect of the thigh."
+        },
+        {
+            "id": "nerve_femoral",
+            "label": "Femoral",
+            "type": "nerve",
+            "level": 2,
+            "order": 1,
+            "yOffset": -75,
+            "row": 4.5,
+            "muscles": [
+                "Iliacus",
+                "Pectineus",
+                "Sartorius",
+                "Rectus Femoris",
+                "Vastus Lateralis",
+                "Vastus Medialis",
+                "Vastus Intermedius"
+            ]
+        },
+        {
+            "id": "nerve_obturator",
+            "label": "Obturator",
+            "type": "nerve",
+            "level": 2,
+            "order": 2,
+            "yOffset": -45,
+            "row": 4,
+            "muscles": [
+                "Obturator Externus",
+                "Pectineus",
+                "Adductor Longus",
+                "Adductor Brevis",
+                "Adductor Magnus (adductor part)",
+                "Gracilis"
+            ]
+        },
+        {
+            "id": "nerve_acc_obturator",
+            "label": "Acc. Obturator",
+            "type": "nerve",
+            "level": 2,
+            "order": 3,
+            "yOffset": -15,
+            "row": 5
+        },
+        {
+            "id": "trunk_lumbosacral",
+            "label": "Lumbosacral Trunk",
+            "type": "trunk",
+            "level": 1,
+            "order": 1,
+            "yOffset": -15,
+            "row": 5
+        },
+        {
+            "id": "nerve_sup_gluteal",
+            "label": "Sup. Gluteal",
+            "type": "nerve",
+            "level": 2,
+            "order": 4,
+            "yOffset": 15,
+            "row": 5.5,
+            "muscles": [
+                "Gluteus Medius",
+                "Gluteus Minimus",
+                "Tensor Fasciae Latae"
+            ]
+        },
+        {
+            "id": "nerve_inf_gluteal",
+            "label": "Inf. Gluteal",
+            "type": "nerve",
+            "level": 2,
+            "order": 5,
+            "yOffset": 45,
+            "row": 6.5,
+            "muscles": [
+                "Gluteus Maximus"
+            ]
+        },
+        {
+            "id": "nerve_sciatic",
+            "label": "Sciatic",
+            "type": "nerve",
+            "level": 2.5,
+            "order": 1,
+            "yOffset": 60,
+            "row": 7,
+            "muscles": [
+                "Biceps Femoris",
+                "Semitendinosus",
+                "Semimembranosus",
+                "Adductor Magnus (hamstring part)"
+            ]
+        },
+        {
+            "id": "nerve_tibial",
+            "label": "Tibial",
+            "type": "nerve-division",
+            "level": 3,
+            "order": 1,
+            "yOffset": 45,
+            "row": 6.5,
+            "muscles": [
+                "Gastrocnemius",
+                "Plantaris",
+                "Soleus",
+                "Popliteus",
+                "Tibialis Posterior",
+                "Flexor Digitorum Longus",
+                "Flexor Hallucis Longus",
+                "Intrinsic Foot Muscles"
+            ]
+        },
+        {
+            "id": "nerve_fibular",
+            "label": "Common Fibular",
+            "type": "nerve-division",
+            "level": 3,
+            "order": 2,
+            "yOffset": 75,
+            "row": 5
+        },
+        {
+            "id": "nerve_post_fem_cut",
+            "label": "Post. Fem. Cutaneous",
+            "type": "nerve",
+            "level": 2,
+            "order": 6,
+            "yOffset": 75,
+            "row": 8,
+            "muscles": [],
+            "description": "Sensory: Supplies skin on the posterior aspect of the thigh and popliteal fossa."
+        },
+        {
+            "id": "nerve_pudendal",
+            "label": "Pudendal",
+            "type": "nerve",
+            "level": 2,
+            "order": 7,
+            "yOffset": 105,
+            "row": 9.5,
+            "muscles": [
+                "Perineal Muscles",
+                "External Urethral Sphincter",
+                "External Anal Sphincter"
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": "root_t12",
+            "target": "nerve_iliohypogastric"
+        },
+        {
+            "source": "root_l1",
+            "target": "nerve_iliohypogastric"
+        },
+        {
+            "source": "root_l1",
+            "target": "nerve_ilioinguinal"
+        },
+        {
+            "source": "root_l1",
+            "target": "nerve_genitofemoral"
+        },
+        {
+            "source": "root_l2",
+            "target": "nerve_genitofemoral"
+        },
+        {
+            "source": "root_l2",
+            "target": "nerve_lat_fem_cut"
+        },
+        {
+            "source": "root_l3",
+            "target": "nerve_lat_fem_cut"
+        },
+        {
+            "source": "root_l2",
+            "target": "nerve_femoral"
+        },
+        {
+            "source": "root_l3",
+            "target": "nerve_femoral"
+        },
+        {
+            "source": "root_l4",
+            "target": "nerve_femoral"
+        },
+        {
+            "source": "root_l2",
+            "target": "nerve_obturator"
+        },
+        {
+            "source": "root_l3",
+            "target": "nerve_obturator"
+        },
+        {
+            "source": "root_l4",
+            "target": "nerve_obturator"
+        },
+        {
+            "source": "root_l3",
+            "target": "nerve_acc_obturator"
+        },
+        {
+            "source": "root_l4",
+            "target": "nerve_acc_obturator"
+        },
+        {
+            "source": "root_l4",
+            "target": "trunk_lumbosacral"
+        },
+        {
+            "source": "root_l5",
+            "target": "trunk_lumbosacral"
+        },
+        {
+            "source": "root_l4",
+            "target": "nerve_sup_gluteal"
+        },
+        {
+            "source": "root_l5",
+            "target": "nerve_sup_gluteal"
+        },
+        {
+            "source": "root_s1",
+            "target": "nerve_sup_gluteal"
+        },
+        {
+            "source": "root_l5",
+            "target": "nerve_inf_gluteal"
+        },
+        {
+            "source": "root_s1",
+            "target": "nerve_inf_gluteal"
+        },
+        {
+            "source": "root_s2",
+            "target": "nerve_inf_gluteal"
+        },
+        {
+            "source": "trunk_lumbosacral",
+            "target": "nerve_sciatic"
+        },
+        {
+            "source": "root_s1",
+            "target": "nerve_sciatic"
+        },
+        {
+            "source": "root_s2",
+            "target": "nerve_sciatic"
+        },
+        {
+            "source": "root_s3",
+            "target": "nerve_sciatic"
+        },
+        {
+            "source": "nerve_sciatic",
+            "target": "nerve_tibial"
+        },
+        {
+            "source": "nerve_sciatic",
+            "target": "nerve_fibular"
+        },
+        {
+            "source": "root_s1",
+            "target": "nerve_post_fem_cut"
+        },
+        {
+            "source": "root_s2",
+            "target": "nerve_post_fem_cut"
+        },
+        {
+            "source": "root_s3",
+            "target": "nerve_post_fem_cut"
+        },
+        {
+            "source": "root_s2",
+            "target": "nerve_pudendal"
+        },
+        {
+            "source": "root_s3",
+            "target": "nerve_pudendal"
+        },
+        {
+            "source": "root_s4",
+            "target": "nerve_pudendal"
+        }
+    ]
+}
