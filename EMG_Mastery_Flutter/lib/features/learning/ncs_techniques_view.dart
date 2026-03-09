@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import '../../core/widgets/video_player_widget.dart';
 
 /// NCS Techniques teaching module.
 /// Ported from NCSTechniquesData.js and Techniques.js.
@@ -362,84 +363,59 @@ class _VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        final url = Uri.parse(video.url);
-        if (await canLaunchUrl(url)) {
-          await launchUrl(url, mode: LaunchMode.externalApplication);
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-            ),
-          ],
-          border: Border.all(color: const Color(0xFFE2E8F0)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFF8FAFC),
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16),
-                      ),
+    final videoId = YoutubePlayerController.convertUrlToId(video.url) ?? '';
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+          ),
+        ],
+        border: Border.all(color: const Color(0xFFE2E8F0)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (videoId.isNotEmpty)
+            Expanded(child: AppVideoPlayer(videoId: videoId))
+          else
+            const Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.video_camera_back_outlined,
+                      color: Colors.grey,
+                      size: 40,
                     ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.play_circle_fill,
-                        color: Color(0xFF0D9488),
-                        size: 64,
-                      ),
+                    SizedBox(height: 8),
+                    Text(
+                      "Video not available",
+                      style: TextStyle(color: Colors.grey),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 15,
-                    left: 15,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.6),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'VIDEO',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                video.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFF0F172A),
-                  fontSize: 15,
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(
+              video.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF0F172A),
+                fontSize: 14,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }

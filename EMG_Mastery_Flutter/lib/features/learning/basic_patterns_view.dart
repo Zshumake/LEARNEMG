@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb;
 import '../../data/pattern_data.dart';
 import '../../data/podcast_data.dart';
 import '../../data/models/pattern_model.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
+import '../../core/widgets/video_player_widget.dart';
 import '../podcast/widgets/podcast_trigger_card.dart';
 
 class BasicPatternsView extends StatelessWidget {
@@ -312,7 +309,10 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
           padding: const EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
             border: Border(
-              bottom: BorderSide(color: accentColor.withValues(alpha: 0.1), width: 2),
+              bottom: BorderSide(
+                color: accentColor.withValues(alpha: 0.1),
+                width: 2,
+              ),
             ),
           ),
           child: Row(
@@ -603,35 +603,10 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
   }
 }
 
-class _PatternVideoCard extends StatefulWidget {
+class _PatternVideoCard extends StatelessWidget {
   final PatternDetail pattern;
   final Color accentColor;
   const _PatternVideoCard({required this.pattern, required this.accentColor});
-
-  @override
-  State<_PatternVideoCard> createState() => _PatternVideoCardState();
-}
-
-class _PatternVideoCardState extends State<_PatternVideoCard> {
-  late YoutubePlayerController _controller;
-  bool get _isMobile => !kIsWeb && (Platform.isAndroid || Platform.isIOS);
-
-  @override
-  void initState() {
-    super.initState();
-    if (_isMobile) {
-      _controller = YoutubePlayerController(
-        initialVideoId: widget.pattern.videoId,
-        flags: const YoutubePlayerFlags(autoPlay: false, mute: false),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    if (_isMobile) _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -654,7 +629,7 @@ class _PatternVideoCardState extends State<_PatternVideoCard> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
             ),
             child: Text(
-              widget.pattern.title,
+              pattern.title,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w800,
@@ -662,20 +637,14 @@ class _PatternVideoCardState extends State<_PatternVideoCard> {
               ),
             ),
           ),
-          if (_isMobile)
-            YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-            )
-          else
-            _buildWebPlaceholder(),
+          AppVideoPlayer(videoId: pattern.videoId),
           Padding(
             padding: const EdgeInsets.all(25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.pattern.description,
+                  pattern.description,
                   style: const TextStyle(
                     color: Color(0xFF475569),
                     fontSize: 15,
@@ -692,37 +661,13 @@ class _PatternVideoCardState extends State<_PatternVideoCard> {
     );
   }
 
-  Widget _buildWebPlaceholder() {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      color: Colors.black,
-      child: Center(
-        child: TextButton.icon(
-          onPressed: () => launchUrl(
-            Uri.parse('https://youtube.com/watch?v=${widget.pattern.videoId}'),
-          ),
-          icon: const Icon(
-            Icons.play_circle_fill,
-            size: 50,
-            color: Colors.white,
-          ),
-          label: const Text(
-            "Watch on YouTube",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildPearls() {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(12),
-        border: Border(left: BorderSide(color: widget.accentColor, width: 4)),
+        border: Border(left: BorderSide(color: accentColor, width: 4)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -730,14 +675,14 @@ class _PatternVideoCardState extends State<_PatternVideoCard> {
           Text(
             "CLINICAL PEARLS:",
             style: TextStyle(
-              color: widget.accentColor,
+              color: accentColor,
               fontWeight: FontWeight.w900,
               fontSize: 12,
               letterSpacing: 1,
             ),
           ),
           const SizedBox(height: 12),
-          ...widget.pattern.clinicalPearls.map(
+          ...pattern.clinicalPearls.map(
             (pearl) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: RichText(

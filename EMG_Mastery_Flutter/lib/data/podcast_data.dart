@@ -191,6 +191,10 @@ A well-written report communicates your findings clearly to referring physicians
     ],
   };
 
+  static List<PodcastEpisode> get allEpisodes {
+    return episodes.values.expand((list) => list).toList();
+  }
+
   static List<PodcastEpisode> getEpisodesByModule(String moduleId) {
     return episodes[moduleId] ?? [];
   }

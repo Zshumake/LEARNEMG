@@ -9,6 +9,8 @@ import 'core/widgets/ernest_widget.dart';
 
 import 'features/ernest/ernest_controller.dart';
 import 'features/podcast/podcast_controller.dart';
+import 'features/podcast/podcast_library_screen.dart';
+import 'features/podcast/widgets/podcast_mini_player.dart';
 
 void main() {
   runApp(
@@ -211,6 +213,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                    child: _buildPodcastBanner(context),
+                  ),
+                ),
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -236,11 +244,104 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
             // Ernest with animated SVG character
             Positioned(
-              bottom: 20,
+              bottom: 100, // Move up to avoid mini player
               right: 10,
               child: AnimatedErnestWidget(size: 180, showSpeechBubble: true),
             ),
+
+            // Global Podcast Mini Player
+            const Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: PodcastMiniPlayer(),
+            ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPodcastBanner(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFD97706).withValues(alpha: 0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PodcastLibraryScreen(),
+              ),
+            );
+          },
+          borderRadius: BorderRadius.circular(24),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.mic_external_on,
+                    color: Colors.white,
+                    size: 32,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "EDX Podcast",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "Listen to exclusive clinical breakdowns",
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.9),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                  size: 16,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
