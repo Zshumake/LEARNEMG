@@ -1079,8 +1079,8 @@ class _EarlPainter extends CustomPainter {
     canvas.drawPath(bodyPath, thickOutlinePaint);
 
     // ── PRONGS ──
-    _drawProng(canvas, s, _s(180, s), _s(40, s), _s(188, s), prongLeftAngle, outlinePaint, isLeft: true);
-    _drawProng(canvas, s, _s(304, s), _s(40, s), _s(312, s), prongRightAngle, outlinePaint, isLeft: false);
+    _drawEarlProng(canvas, s, _s(180, s), _s(40, s), _s(188, s), prongLeftAngle, outlinePaint, isLeft: true);
+    _drawEarlProng(canvas, s, _s(304, s), _s(40, s), _s(312, s), prongRightAngle, outlinePaint, isLeft: false);
 
     // ── TEXT DECORATIONS ──
     _drawBodyText(canvas, s);
@@ -1216,7 +1216,7 @@ class _EarlPainter extends CustomPainter {
     canvas.drawPath(Path()..moveTo(_s(230, s), _s(322, s))..quadraticBezierTo(_s(250, s), _s(315, s), _s(270, s), _s(322, s)), Paint()..color = const Color(0xFF2C3330).withOpacity(0.5)..strokeWidth = _s(4, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round);
   }
 
-  void _drawProng(Canvas canvas, double s, double x, double y, double cx, double angle, Paint outlinePaint, {required bool isLeft}) {
+  void _drawEarlProng(Canvas canvas, double s, double x, double y, double cx, double angle, Paint outlinePaint, {required bool isLeft}) {
     canvas.save();
     canvas.translate(cx, y + _s(80, s));
     canvas.rotate(angle * pi / 180);
