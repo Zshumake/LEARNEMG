@@ -979,8 +979,10 @@ class _EarlPainter extends CustomPainter {
     const bodyGradStart = Color(0xFF6A736E);
     const bodyGradMid = Color(0xFF555D59);
     const bodyGradEnd = Color(0xFF3B423F);
+    
     const screenGradTop = Color(0xFF4C5C44);
     const screenGradBottom = Color(0xFF3A4734);
+    
     const ledColorOff = Color(0xFF787D7A);
     const ledColorOn = Color(0xFF88DDED);
     const outlineColor = Color(0xFF1A1C1A);
@@ -997,349 +999,251 @@ class _EarlPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeJoin = StrokeJoin.round;
 
-    // Body Chassis Path
+    // ── BODY CHASSIS ──
     final bodyPath = Path()
       ..moveTo(_s(110, s), _s(160, s))
-      ..cubicTo(
-        _s(110, s),
-        _s(110, s),
-        _s(140, s),
-        _s(100, s),
-        _s(180, s),
-        _s(100, s),
-      )
+      ..cubicTo(_s(110, s), _s(110, s), _s(140, s), _s(100, s), _s(180, s), _s(100, s))
       ..lineTo(_s(320, s), _s(100, s))
-      ..cubicTo(
-        _s(360, s),
-        _s(100, s),
-        _s(390, s),
-        _s(110, s),
-        _s(390, s),
-        _s(160, s),
-      )
-      ..cubicTo(
-        _s(390, s),
-        _s(200, s),
-        _s(350, s),
-        _s(210, s),
-        _s(330, s),
-        _s(240, s),
-      )
-      ..cubicTo(
-        _s(320, s),
-        _s(255, s),
-        _s(320, s),
-        _s(280, s),
-        _s(320, s),
-        _s(300, s),
-      )
+      ..cubicTo(_s(360, s), _s(100, s), _s(390, s), _s(110, s), _s(390, s), _s(160, s))
+      ..cubicTo(_s(390, s), _s(200, s), _s(350, s), _s(210, s), _s(330, s), _s(240, s))
+      ..cubicTo(_s(320, s), _s(255, s), _s(320, s), _s(280, s), _s(320, s), _s(300, s))
       ..lineTo(_s(320, s), _s(480, s))
-      ..cubicTo(
-        _s(320, s),
-        _s(530, s),
-        _s(280, s),
-        _s(540, s),
-        _s(250, s),
-        _s(540, s),
-      )
-      ..cubicTo(
-        _s(220, s),
-        _s(540, s),
-        _s(180, s),
-        _s(530, s),
-        _s(180, s),
-        _s(480, s),
-      )
+      ..cubicTo(_s(320, s), _s(530, s), _s(280, s), _s(540, s), _s(250, s), _s(540, s))
+      ..cubicTo(_s(220, s), _s(540, s), _s(180, s), _s(530, s), _s(180, s), _s(480, s))
       ..lineTo(_s(180, s), _s(300, s))
-      ..cubicTo(
-        _s(180, s),
-        _s(280, s),
-        _s(180, s),
-        _s(255, s),
-        _s(170, s),
-        _s(240, s),
-      )
-      ..cubicTo(
-        _s(150, s),
-        _s(210, s),
-        _s(110, s),
-        _s(200, s),
-        _s(110, s),
-        _s(160, s),
-      )
+      ..cubicTo(_s(180, s), _s(280, s), _s(180, s), _s(255, s), _s(170, s), _s(240, s))
+      ..cubicTo(_s(150, s), _s(210, s), _s(110, s), _s(200, s), _s(110, s), _s(160, s))
       ..close();
 
-    // Fill Body Graduate
-    final bodyRect = Rect.fromLTWH(
-      _s(110, s),
-      _s(100, s),
-      _s(280, s),
-      _s(440, s),
-    );
     final bodyPaint = Paint()
       ..shader = LinearGradient(
         colors: [bodyGradStart, bodyGradMid, bodyGradEnd],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-      ).createShader(bodyRect);
-
+      ).createShader(Rect.fromLTWH(0, 0, s, s));
+    
     canvas.drawPath(bodyPath, bodyPaint);
 
-    // Body Highlights/Shadows
+    // Body Highlights (White, stroke 6, opacity 0.2)
     final highlightPaint = Paint()
       ..color = Colors.white.withOpacity(0.2)
       ..strokeWidth = _s(6, s)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    final highlightPath = Path()
+    final highlightPath1 = Path()
       ..moveTo(_s(120, s), _s(160, s))
-      ..cubicTo(
-        _s(120, s),
-        _s(120, s),
-        _s(145, s),
-        _s(110, s),
-        _s(180, s),
-        _s(110, s),
-      )
-      ..lineTo(_s(320, s), _s(110, s));
-    canvas.drawPath(highlightPath, highlightPaint);
+      ..cubicTo(_s(120, s), _s(120, s), _s(145, s), _s(110, s), _s(180, s), _s(110, s))
+      ..lineTo(_s(320, s), _s(110, s))
+      ..cubicTo(_s(340, s), _s(110, s), _s(355, s), _s(115, s), _s(365, s), _s(125, s));
+    
+    final highlightPath2 = Path()
+      ..moveTo(_s(120, s), _s(160, s))
+      ..cubicTo(_s(120, s), _s(190, s), _s(155, s), _s(205, s), _s(175, s), _s(235, s))
+      ..cubicTo(_s(185, s), _s(250, s), _s(190, s), _s(270, s), _s(190, s), _s(300, s))
+      ..lineTo(_s(190, s), _s(480, s))
+      ..cubicTo(_s(190, s), _s(515, s), _s(215, s), _s(530, s), _s(250, s), _s(530, s));
+    
+    canvas.drawPath(highlightPath1, highlightPaint);
+    canvas.drawPath(highlightPath2, highlightPaint);
+
+    // Body Shadow (Black, stroke 8, opacity 0.3)
+    final shadowPaint = Paint()
+      ..color = Colors.black.withOpacity(0.3)
+      ..strokeWidth = _s(8, s)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    
+    final shadowPath = Path()
+      ..moveTo(_s(250, s), _s(530, s))
+      ..cubicTo(_s(285, s), _s(530, s), _s(310, s), _s(515, s), _s(310, s), _s(480, s))
+      ..lineTo(_s(310, s), _s(300, s))
+      ..cubicTo(_s(310, s), _s(270, s), _s(315, s), _s(250, s), _s(325, s), _s(235, s))
+      ..cubicTo(_s(345, s), _s(205, s), _s(380, s), _s(190, s), _s(380, s), _s(160, s))
+      ..cubicTo(_s(380, s), _s(135, s), _s(365, s), _s(118, s), _s(340, s), _s(112, s));
+    
+    canvas.drawPath(shadowPath, shadowPaint);
+
+    // ── BODY CRACKS & DIRT ──
+    final dirtDark = Paint()..color = const Color(0xFF4A2010);
+    final dirtLight = Paint()..color = const Color(0xFF8C3E16);
+
+    // Top Right Crack
+    canvas.drawPath(Path()..moveTo(_s(388, s), _s(150, s))..quadraticBezierTo(_s(375, s), _s(160, s), _s(380, s), _s(175, s))..quadraticBezierTo(_s(392, s), _s(165, s), _s(388, s), _s(150, s))..close(), dirtDark);
+    canvas.drawPath(Path()..moveTo(_s(385, s), _s(153, s))..quadraticBezierTo(_s(378, s), _s(160, s), _s(382, s), _s(170, s))..quadraticBezierTo(_s(388, s), _s(163, s), _s(385, s), _s(153, s))..close(), dirtLight);
+
+    // Bottom Right Crack
+    canvas.drawPath(Path()..moveTo(_s(315, s), _s(470, s))..quadraticBezierTo(_s(305, s), _s(480, s), _s(310, s), _s(500, s))..quadraticBezierTo(_s(325, s), _s(490, s), _s(315, s), _s(470, s))..close(), dirtDark);
+    canvas.drawPath(Path()..moveTo(_s(313, s), _s(475, s))..quadraticBezierTo(_s(308, s), _s(482, s), _s(311, s), _s(495, s))..quadraticBezierTo(_s(320, s), _s(488, s), _s(313, s), _s(475, s))..close(), dirtLight);
 
     canvas.drawPath(bodyPath, thickOutlinePaint);
 
-    // Prongs
-    _drawProng(
-      canvas,
-      s,
-      _s(180, s),
-      _s(40, s),
-      _s(188, s),
-      prongLeftAngle,
-      outlinePaint,
-    );
-    _drawProng(
-      canvas,
-      s,
-      _s(304, s),
-      _s(40, s),
-      _s(312, s),
-      prongRightAngle,
-      outlinePaint,
-    );
+    // ── PRONGS ──
+    _drawProng(canvas, s, _s(180, s), _s(40, s), _s(188, s), prongLeftAngle, outlinePaint, isLeft: true);
+    _drawProng(canvas, s, _s(304, s), _s(40, s), _s(312, s), prongRightAngle, outlinePaint, isLeft: false);
 
-    // Text decorations on body
+    // ── TEXT DECORATIONS ──
     _drawBodyText(canvas, s);
 
-    // Screen area
+    // ── SCREEN AREA ──
     final screenPath = Path()
       ..moveTo(_s(125, s), _s(130, s))
       ..lineTo(_s(375, s), _s(130, s))
-      ..cubicTo(
-        _s(385, s),
-        _s(130, s),
-        _s(385, s),
-        _s(180, s),
-        _s(375, s),
-        _s(180, s),
-      )
+      ..cubicTo(_s(385, s), _s(130, s), _s(385, s), _s(180, s), _s(375, s), _s(180, s))
       ..lineTo(_s(125, s), _s(180, s))
-      ..cubicTo(
-        _s(115, s),
-        _s(180, s),
-        _s(115, s),
-        _s(130, s),
-        _s(125, s),
-        _s(130, s),
-      )
+      ..cubicTo(_s(115, s), _s(180, s), _s(115, s), _s(130, s), _s(125, s), _s(130, s))
       ..close();
 
-    final screenRect = Rect.fromLTWH(
-      _s(115, s),
-      _s(130, s),
-      _s(270, s),
-      _s(50, s),
-    );
+    final screenRect = Rect.fromLTWH(_s(115, s), _s(130, s), _s(270, s), _s(50, s));
     final screenPaint = Paint()
       ..shader = LinearGradient(
         colors: [screenGradTop, screenGradBottom],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ).createShader(screenRect);
-
+    
     canvas.drawPath(screenPath, screenPaint);
 
     // Gloss effect on screen
-    final glossPaint = Paint()
+    final glossPaintConstant = Paint()
       ..shader = LinearGradient(
         colors: [Colors.white.withOpacity(0.25), Colors.white.withOpacity(0)],
         begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
+        end: const Alignment(0.5, 1.0),
       ).createShader(screenRect);
-    canvas.drawPath(screenPath, glossPaint);
+    canvas.drawPath(screenPath, glossPaintConstant);
+
+    // ERROR Text
+    _drawText(canvas, 'ERROR', _s(165, s) + _s(100, s)/2, _s(166, s), _s(36, s), const Color(0xFF4ADE80).withOpacity(0.9), s);
+
+    // ── SCREEN IMPACT CRACKS ──
+    final impactBgPaint = Paint()..color = const Color(0xFF777777).withOpacity(0.4)..strokeWidth = 1.5..style = PaintingStyle.stroke;
+    final impactFgPaint = Paint()..color = outlineColor..strokeWidth = 2.5..style = PaintingStyle.stroke;
+    final impactDotPaint = Paint()..color = outlineColor;
+
+    void drawImpact(double x, double y) {
+      // Background faint lines
+      final bg = Path()
+        ..moveTo(_s(x + 1, s), _s(y + 1, s))..lineTo(_s(x - 14, s), _s(y - 9, s))
+        ..moveTo(_s(x + 1, s), _s(y + 1, s))..lineTo(_s(x - 9, s), _s(y + 21, s))..lineTo(_s(x - 4, s), _s(y + 36, s))
+        ..moveTo(_s(x + 1, s), _s(y + 1, s))..lineTo(_s(x + 21, s), _s(y + 11, s))..lineTo(_s(x + 36, s), _s(y + 1, s));
+      canvas.drawPath(bg, impactBgPaint);
+
+      final fg = Path()
+        ..moveTo(_s(x, s), _s(y, s))..lineTo(_s(x - 15, s), _s(y - 10, s))
+        ..moveTo(_s(x, s), _s(y, s))..lineTo(_s(x - 10, s), _s(y + 20, s))..lineTo(_s(x - 5, s), _s(y + 35, s))
+        ..moveTo(_s(x, s), _s(y, s))..lineTo(_s(x + 20, s), _s(y + 10, s))..lineTo(_s(x + 35, s), _s(y, s));
+      canvas.drawPath(fg, impactFgPaint);
+      canvas.drawCircle(Offset(_s(x, s), _s(y, s)), _s(2, s), impactDotPaint);
+    }
+    
+    drawImpact(144, 144);
+    drawImpact(354, 164);
 
     canvas.drawPath(screenPath, outlinePaint);
 
-    // ERROR Text
-    _drawText(
-      canvas,
-      'ERROR',
-      _s(250, s),
-      _s(170, s),
-      _s(36, s),
-      const Color(0xFF4ADE80).withOpacity(0.9), // Brighter green for Earl
-      s,
-    );
-
     // LED
     final ledColor = Color.lerp(ledColorOff, ledColorOn, ledValue)!;
-    canvas.drawCircle(
-      Offset(_s(365, s), _s(155, s)),
-      _s(7, s),
-      Paint()..color = ledColor,
-    );
+    canvas.drawCircle(Offset(_s(365, s), _s(155, s)), _s(7, s), Paint()..color = ledColor);
     canvas.drawCircle(Offset(_s(365, s), _s(155, s)), _s(7, s), outlinePaint);
+    // LED highlight arc
+    canvas.drawArc(Rect.fromCircle(center: Offset(_s(365, s), _s(155, s)), radius: _s(5, s)), -pi, pi, false, Paint()..color = Colors.white.withOpacity(0.5)..style = PaintingStyle.stroke..strokeWidth = 1.5);
 
-    // ── FACE (Earl's unique grumpy features) ──
+    // ── FACE ──
     _drawEarlFace(canvas, s, outlinePaint);
 
-    // Zap lines (if any)
+    // Zap lines
     if (zapOpacity > 0.01) {
-      final zapPaint = Paint()
-        ..color = const Color(0xFF88DDED).withOpacity(zapOpacity)
-        ..strokeWidth = _s(5, s)
-        ..style = PaintingStyle.stroke
-        ..strokeCap = StrokeCap.round;
-
-      final zapPath = Path()
-        ..moveTo(_s(155, s), _s(10, s))
-        ..lineTo(_s(140, s), _s(-20, s))
-        ..lineTo(_s(160, s), _s(-35, s))
-        ..lineTo(_s(145, s), _s(-60, s));
-      canvas.drawPath(zapPath, zapPaint);
+      final zapPaint = Paint()..color = const Color(0xFF88DDED).withOpacity(zapOpacity)..strokeWidth = _s(5, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
+      canvas.drawPath(Path()..moveTo(_s(155, s), _s(10, s))..lineTo(_s(140, s), _s(-20, s))..lineTo(_s(160, s), _s(-35, s))..lineTo(_s(145, s), _s(-60, s)), zapPaint);
     }
   }
 
   void _drawEarlFace(Canvas canvas, double s, Paint outlinePaint) {
-    // Face Backdrop Shadow (subtle path behind facial features)
-    final faceBackdropPaint = Paint()
-      ..color = const Color(0xFF2C3330).withOpacity(0.3);
-    final backdropPath = Path()
-      ..moveTo(_s(180, s), _s(250, s))
-      ..quadraticBezierTo(_s(250, s), _s(270, s), _s(320, s), _s(250, s))
-      ..lineTo(_s(320, s), _s(290, s))
-      ..quadraticBezierTo(_s(250, s), _s(310, s), _s(180, s), _s(290, s))
-      ..close();
-    canvas.drawPath(backdropPath, faceBackdropPaint);
+    // Face Backdrop Shadow
+    final faceBackdropPaint = Paint()..color = const Color(0xFF2C3330).withOpacity(0.3);
+    canvas.drawPath(Path()..moveTo(_s(180, s), _s(250, s))..quadraticBezierTo(_s(250, s), _s(270, s), _s(320, s), _s(250, s))..lineTo(_s(320, s), _s(290, s))..quadraticBezierTo(_s(250, s), _s(310, s), _s(180, s), _s(290, s))..close(), faceBackdropPaint);
 
-    final faceOutlinePaint = Paint()
-      ..color = const Color(0xFF1A1C1A)
-      ..strokeWidth = _s(4, s)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
+    final faceOutlinePaint = Paint()..color = const Color(0xFF1A1C1A)..strokeWidth = _s(4, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
 
     // Eyebrows
     canvas.save();
     canvas.translate(0, _s(eyebrowOffset, s));
-    final browPaint = Paint()
-      ..color = const Color(0xFF262B28)
-      ..strokeWidth = _s(8, s)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-    
-    final leftBrow = Path()
-      ..moveTo(_s(180, s), _s(255, s))
-      ..quadraticBezierTo(_s(210, s), _s(245, s), _s(242, s), _s(275, s));
-    final rightBrow = Path()
-      ..moveTo(_s(320, s), _s(255, s))
-      ..quadraticBezierTo(_s(290, s), _s(245, s), _s(258, s), _s(275, s));
-    
-    canvas.drawPath(leftBrow, browPaint);
-    canvas.drawPath(rightBrow, browPaint);
+    final browPaint = Paint()..color = const Color(0xFF262B28)..strokeWidth = _s(8, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
+    canvas.drawPath(Path()..moveTo(_s(180, s), _s(255, s))..quadraticBezierTo(_s(210, s), _s(245, s), _s(242, s), _s(275, s)), browPaint);
+    canvas.drawPath(Path()..moveTo(_s(320, s), _s(255, s))..quadraticBezierTo(_s(290, s), _s(245, s), _s(258, s), _s(275, s)), browPaint);
     canvas.restore();
 
-    // Tired Eyes (with blink)
-    void drawTiredEye(double cx, double cy, double pupilOffsetX) {
+    // Eyes
+    void drawTiredEye(double cx, double cy, double pcx, Path clip, double lidYStart, double lidYCurve) {
       canvas.save();
-      // Clip eye to "tired" shape
-      final eyeClip = Path()
-        ..moveTo(_s(cx - 25, s), _s(cy - 7, s))
-        ..quadraticBezierTo(_s(cx, s), _s(cy + 5, s), _s(cx + 25, s), _s(cy - 7, s))
-        ..lineTo(_s(cx + 25, s), _s(cy + 35, s))
-        ..lineTo(_s(cx - 25, s), _s(cy + 35, s))
-        ..close();
+      canvas.clipPath(clip);
       
-      canvas.clipPath(eyeClip);
-      
-      // Pivot around eye center for blink
+      // Pivot for blink
       canvas.translate(0, _s(cy, s));
       canvas.scale(1.0, blinkValue);
       canvas.translate(0, -_s(cy, s));
 
-      final eyeFillPaint = Paint()..color = const Color(0xFFE8E4D3);
-      canvas.drawCircle(Offset(_s(cx, s), _s(cy, s)), _s(18, s), eyeFillPaint);
+      canvas.drawCircle(Offset(_s(cx, s), _s(cy, s)), _s(18, s), Paint()..color = const Color(0xFFE8E4D3));
       canvas.drawCircle(Offset(_s(cx, s), _s(cy, s)), _s(18, s), faceOutlinePaint);
-      
-      final pupilPaint = Paint()..color = const Color(0xFF1A1C1A);
-      canvas.drawCircle(Offset(_s(cx + pupilOffsetX, s), _s(cy, s)), _s(6, s), pupilPaint);
+      canvas.drawCircle(Offset(_s(pcx, s), _s(cy, s)), _s(6, s), Paint()..color = const Color(0xFF1A1C1A));
+      canvas.drawCircle(Offset(_s(cx, s), _s(cy, s)), _s(18, s), Paint()..color = const Color(0xFF2C3330).withOpacity(0.4)..style=PaintingStyle.stroke..strokeWidth = _s(4, s));
       
       canvas.restore();
-      
-      // Top eye lid line
-      canvas.drawPath(
-        Path()
-          ..moveTo(_s(cx - 22, s), _s(cy - 7, s))
-          ..quadraticBezierTo(_s(cx, s), _s(cy + 5, s), _s(cx + 22, s), _s(cy - 7, s)),
-        faceOutlinePaint
-      );
+
+      // Lid line
+      canvas.drawPath(Path()..moveTo(_s(cx-22, s), _s(lidYStart, s))..quadraticBezierTo(_s(cx, s), _s(lidYCurve, s), _s(cx+22, s), _s(lidYStart, s)), faceOutlinePaint);
+      // Bottom shadow line
+      canvas.drawPath(Path()..moveTo(_s(cx-16, s), _s(cy+23, s))..quadraticBezierTo(_s(cx, s), _s(cy+31, s), _s(cx+16, s), _s(cy+23, s)), Paint()..color=const Color(0xFF2C3330).withOpacity(0.8)..strokeWidth=_s(3, s)..style=PaintingStyle.stroke..strokeCap=StrokeCap.round);
     }
 
-    drawTiredEye(210, 275, 2);
-    drawTiredEye(290, 275, -2);
+    final leftClip = Path()..moveTo(_s(185, s), _s(268, s))..quadraticBezierTo(_s(210, s), _s(280, s), _s(235, s), _s(268, s))..lineTo(_s(235, s), _s(310, s))..lineTo(_s(185, s), _s(310, s))..close();
+    drawTiredEye(210, 275, 212, leftClip, 268, 280);
 
-    // Nose Curve
-    final nosePath = Path()
-      ..moveTo(_s(245, s), _s(275, s))
-      ..cubicTo(_s(235, s), _s(275, s), _s(235, s), _s(295, s), _s(250, s), _s(295, s))
-      ..cubicTo(_s(255, s), _s(295, s), _s(260, s), _s(290, s), _s(260, s), _s(285, s));
-    canvas.drawPath(nosePath, faceOutlinePaint);
+    final rightClip = Path()..moveTo(_s(265, s), _s(268, s))..quadraticBezierTo(_s(290, s), _s(280, s), _s(315, s), _s(268, s))..lineTo(_s(315, s), _s(310, s))..lineTo(_s(265, s), _s(310, s))..close();
+    drawTiredEye(290, 275, 288, rightClip, 268, 280);
 
-    // Sarcastic Mouth
-    final mouthPath = Path()
-      ..moveTo(_s(185, s), _s(325, s))
-      ..quadraticBezierTo(_s(250, s), _s(300, s), _s(315, s), _s(325, s));
-    canvas.drawPath(mouthPath, Paint()..color = const Color(0xFF1A1C1A)..strokeWidth=_s(6, s)..style=PaintingStyle.stroke..strokeCap=StrokeCap.round);
+    // Nose
+    canvas.drawPath(Path()..moveTo(_s(245, s), _s(275, s))..cubicTo(_s(235, s), _s(275, s), _s(235, s), _s(295, s), _s(250, s), _s(295, s))..cubicTo(_s(255, s), _s(295, s), _s(260, s), _s(290, s), _s(260, s), _s(285, s)), faceOutlinePaint);
 
-    // Mouth corners
-    final dimplePaint = Paint()..color = const Color(0xFF1A1C1A)..strokeWidth=_s(4, s)..style=PaintingStyle.stroke..strokeCap=StrokeCap.round;
+    // Mouth
+    final mouthPaint = Paint()..color = const Color(0xFF1A1C1A)..strokeWidth = _s(6, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
+    canvas.drawPath(Path()..moveTo(_s(185, s), _s(325, s))..quadraticBezierTo(_s(250, s), _s(300, s), _s(315, s), _s(325, s)), mouthPaint);
+    final dimplePaint = Paint()..color = const Color(0xFF1A1C1A)..strokeWidth = _s(4, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
     canvas.drawPath(Path()..moveTo(_s(180, s), _s(315, s))..quadraticBezierTo(_s(175, s), _s(325, s), _s(190, s), _s(332, s)), dimplePaint);
     canvas.drawPath(Path()..moveTo(_s(320, s), _s(315, s))..quadraticBezierTo(_s(325, s), _s(325, s), _s(310, s), _s(332, s)), dimplePaint);
+    // Mouth inner shadow
+    canvas.drawPath(Path()..moveTo(_s(230, s), _s(322, s))..quadraticBezierTo(_s(250, s), _s(315, s), _s(270, s), _s(322, s)), Paint()..color = const Color(0xFF2C3330).withOpacity(0.5)..strokeWidth = _s(4, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round);
   }
 
-
-  void _drawProng(
-    Canvas canvas,
-    double s,
-    double x,
-    double y,
-    double cx,
-    double angle,
-    Paint outlinePaint,
-  ) {
+  void _drawProng(Canvas canvas, double s, double x, double y, double cx, double angle, Paint outlinePaint, {required bool isLeft}) {
     canvas.save();
     canvas.translate(cx, y + _s(80, s));
     canvas.rotate(angle * pi / 180);
     canvas.translate(-cx, -(y + _s(80, s)));
 
-    canvas.drawRect(
-      Rect.fromLTWH(x, y, _s(16, s), _s(80, s)),
-      Paint()..color = const Color(0xFF787D7A),
-    );
+    final prongPaint = Paint()..color = const Color(0xFF787D7A);
+    canvas.drawRect(Rect.fromLTWH(x, y, _s(16, s), _s(80, s)), prongPaint);
+    canvas.drawCircle(Offset(cx, y), _s(12, s), prongPaint);
+    
+    // Gloss line
+    canvas.drawRect(Rect.fromLTWH(x + _s(2, s), y + _s(5, s), _s(4, s), _s(70, s)), Paint()..color = Colors.white.withOpacity(0.3));
+
+    // Withered Details / Cracks
+    final crackDark = Paint()..color = const Color(0xFF4A2010);
+    final crackLight = Paint()..color = const Color(0xFF8C3E16);
+
+    if (isLeft) {
+      canvas.drawPath(Path()..moveTo(_s(182, s), _s(50, s))..quadraticBezierTo(_s(186, s), _s(45, s), _s(194, s), _s(52, s))..lineTo(_s(194, s), _s(62, s))..quadraticBezierTo(_s(186, s), _s(65, s), _s(182, s), _s(58, s))..close(), crackDark);
+      canvas.drawPath(Path()..moveTo(_s(184, s), _s(52, s))..quadraticBezierTo(_s(188, s), _s(48, s), _s(192, s), _s(53, s))..lineTo(_s(192, s), _s(60, s))..quadraticBezierTo(_s(188, s), _s(62, s), _s(184, s), _s(56, s))..close(), crackLight);
+      canvas.drawPath(Path()..moveTo(_s(182, s), _s(85, s))..quadraticBezierTo(_s(188, s), _s(80, s), _s(194, s), _s(88, s))..lineTo(_s(194, s), _s(95, s))..lineTo(_s(182, s), _s(95, s))..close(), crackDark);
+    } else {
+      canvas.drawPath(Path()..moveTo(_s(306, s), _s(70, s))..quadraticBezierTo(_s(312, s), _s(65, s), _s(318, s), _s(75, s))..lineTo(_s(318, s), _s(90, s))..quadraticBezierTo(_s(310, s), _s(95, s), _s(306, s), _s(85, s))..close(), crackDark);
+      canvas.drawPath(Path()..moveTo(_s(308, s), _s(73, s))..quadraticBezierTo(_s(312, s), _s(68, s), _s(316, s), _s(76, s))..lineTo(_s(316, s), _s(88, s))..quadraticBezierTo(_s(312, s), _s(91, s), _s(308, s), _s(83, s))..close(), crackLight);
+      canvas.drawPath(Path()..moveTo(_s(306, s), _s(45, s))..quadraticBezierTo(_s(314, s), _s(42, s), _s(318, s), _s(48, s))..lineTo(_s(318, s), _s(55, s))..lineTo(_s(306, s), _s(50, s))..close(), crackDark);
+    }
+
     canvas.drawRect(Rect.fromLTWH(x, y, _s(16, s), _s(80, s)), outlinePaint);
-    canvas.drawCircle(
-      Offset(cx, y),
-      _s(12, s),
-      Paint()..color = const Color(0xFF787D7A),
-    );
     canvas.drawCircle(Offset(cx, y), _s(12, s), outlinePaint);
 
     canvas.restore();
