@@ -1181,8 +1181,8 @@ class _EarlPainter extends CustomPainter {
     );
     canvas.drawCircle(Offset(_s(365, s), _s(155, s)), _s(7, s), outlinePaint);
 
-    // Face Area (Simplified version of the SVG)
-    _drawFace(canvas, s, outlinePaint);
+    // Face Area (Earl's face is the ERROR screen, so we don't draw the standard face)
+    // _drawFace(canvas, s, outlinePaint);
 
     // Zap lines (if any)
     if (zapOpacity > 0.01) {
