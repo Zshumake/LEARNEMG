@@ -137,6 +137,16 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
               IconButton(
                 visualDensity: VisualDensity.compact,
                 icon: const Icon(
+                  Icons.swap_horiz_rounded,
+                  color: Colors.white70,
+                  size: 20,
+                ),
+                onPressed: controller.switchPersona,
+                tooltip: "Switch Persona (Ernest/Earl)",
+              ),
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                icon: const Icon(
                   Icons.vpn_key_outlined,
                   color: Colors.white70,
                   size: 20,
