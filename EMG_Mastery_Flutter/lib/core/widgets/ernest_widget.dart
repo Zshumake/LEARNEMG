@@ -214,131 +214,125 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
       builder: (context, controller, child) {
         final isEarl = controller.currentPersona?.id == 'earl';
 
-        return SizedBox(
-          width: widget.size,
-          height: widget.size + 40, // extra for speech bubble
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              // Speech Bubble (positioned above Ernest)
-              if (widget.showSpeechBubble)
-                Positioned(
-                  top: -10,
-                  left: 0,
-                  right: 0,
-                  child: AnimatedOpacity(
-                    opacity: _showBubble ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 300),
-                    child: AnimatedSlide(
-                      offset: _showBubble ? Offset.zero : const Offset(0, 0.2),
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            _tapCount++;
+            _tapTimer?.cancel();
+            _singleTapTimer?.cancel(); // Cancel any pending single-tap action
+
+            _tapTimer = Timer(const Duration(milliseconds: 1500), () {
+              if (mounted) {
+                _tapCount = 0;
+              }
+            });
+
+            if (widget.allowPersonaToggle && _tapCount >= 7) {
+              _tapCount = 0;
+              _tapTimer?.cancel();
+              _singleTapTimer?.cancel();
+              controller.switchPersona();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    isEarl
+                        ? "System Override: Restoring Ernest..."
+                        : "System Override: Booting Earl...",
+                  ),
+                  backgroundColor: isEarl ? const Color(0xFF6B9F78) : Colors.red,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+              return;
+            }
+
+            if (widget.isInteractive && widget.allowChatOpening && _tapCount == 1) {
+              if (widget.allowPersonaToggle) {
+                // Delay the chat opening only if toggle is allowed
+                _singleTapTimer = Timer(const Duration(milliseconds: 400), () {
+                  if (mounted) {
+                    _showChat(context);
+                  }
+                });
+              } else {
+                // Open immediately if no toggle conflict
+                _showChat(context);
+              }
+            }
+          },
+          child: SizedBox(
+            width: widget.size,
+            height: widget.size + (widget.showSpeechBubble ? 40 : 0),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // Speech Bubble (positioned above Ernest)
+                if (widget.showSpeechBubble)
+                  Positioned(
+                    top: -10,
+                    left: 0,
+                    right: 0,
+                    child: AnimatedOpacity(
+                      opacity: _showBubble ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 300),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 14,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                          border: Border.all(
-                            color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
+                      child: AnimatedSlide(
+                        offset: _showBubble ? Offset.zero : const Offset(0, 0.2),
+                        duration: const Duration(milliseconds: 300),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 8,
                           ),
-                        ),
-                        child: Text(
-                          _currentSpeech,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: Color(0xFF334155),
-                            fontWeight: FontWeight.w600,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
+                                blurRadius: 12,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                            border: Border.all(
+                              color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
+                            ),
+                          ),
+                          child: Text(
+                            _currentSpeech,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Color(0xFF334155),
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
+
+                // Character (animated)
+                Positioned(
+                  top: widget.showSpeechBubble ? 40 : 0,
+                  left: 0,
+                  right: 0,
+                  child: AnimatedBuilder(
+                    animation: Listenable.merge([
+                      _bounceController,
+                      _blinkController,
+                      _ledController,
+                      _prongLeftController,
+                      _prongRightController,
+                      _zapController,
+                      _eyebrowController,
+                    ]),
+                    builder: (context, child) {
+                      return isEarl ? _buildAnimatedEarl() : _buildAnimatedErnest();
+                    },
+                  ),
                 ),
-
-              // Character (animated)
-              Positioned(
-                top: 40,
-                left: 0,
-                right: 0,
-                child: AnimatedBuilder(
-                  animation: Listenable.merge([
-                    _bounceController,
-                    _blinkController,
-                    _ledController,
-                    _prongLeftController,
-                    _prongRightController,
-                    _zapController,
-                    _eyebrowController,
-                  ]),
-                  builder: (context, child) {
-                    final character = isEarl
-                        ? _buildAnimatedEarl()
-                        : _buildAnimatedErnest();
-
-                    return GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        _tapCount++;
-                        _tapTimer?.cancel();
-                        _singleTapTimer?.cancel(); // Cancel any pending single-tap action
-
-                        _tapTimer = Timer(const Duration(milliseconds: 1500), () {
-                          if (mounted) {
-                            _tapCount = 0;
-                          }
-                        });
-
-                        if (widget.allowPersonaToggle && _tapCount >= 7) {
-                          _tapCount = 0;
-                          _tapTimer?.cancel();
-                          _singleTapTimer?.cancel();
-                          controller.switchPersona();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                isEarl
-                                    ? "System Override: Restoring Ernest..."
-                                    : "System Override: Booting Earl...",
-                              ),
-                              backgroundColor: isEarl
-                                  ? const Color(0xFF6B9F78)
-                                  : Colors.red,
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                          return;
-                        }
-
-                        if (widget.isInteractive && widget.allowChatOpening && _tapCount == 1) {
-                          if (widget.allowPersonaToggle) {
-                            // Delay the chat opening only if toggle is allowed
-                            _singleTapTimer = Timer(const Duration(milliseconds: 400), () {
-                              if (mounted) {
-                                _showChat(context);
-                              }
-                            });
-                          } else {
-                            // Open immediately if no toggle conflict
-                            _showChat(context);
-                          }
-                        }
-                      },
-                      child: character,
-                    );
-                  },
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
