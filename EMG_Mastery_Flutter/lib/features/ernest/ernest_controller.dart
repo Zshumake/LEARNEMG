@@ -101,7 +101,7 @@ PERSONA: "THE BITTER CHIEF RESIDENT"
   void _initializeModel() {
     if (_apiKey == null) return;
     _model = GenerativeModel(
-      model: 'gemini-1.5-flash',
+      model: 'gemini-1.5-flash-latest',
       apiKey: _apiKey!,
       generationConfig: GenerationConfig(
         temperature: 0.7,

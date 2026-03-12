@@ -205,126 +205,128 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.watch<ErnestController>();
-    final isEarl = controller.currentPersona?.id == 'earl';
+    return Consumer<ErnestController>(
+      builder: (context, controller, child) {
+        final isEarl = controller.currentPersona?.id == 'earl';
 
-    return SizedBox(
-      width: widget.size,
-      height: widget.size + 40, // extra for speech bubble
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          // Speech Bubble (positioned above Ernest)
-          if (widget.showSpeechBubble)
-            Positioned(
-              top: -10,
-              left: 0,
-              right: 0,
-              child: AnimatedOpacity(
-                opacity: _showBubble ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 300),
-                child: AnimatedSlide(
-                  offset: _showBubble ? Offset.zero : const Offset(0, 0.2),
-                  duration: const Duration(milliseconds: 300),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
+        return SizedBox(
+          width: widget.size,
+          height: widget.size + 40, // extra for speech bubble
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              // Speech Bubble (positioned above Ernest)
+              if (widget.showSpeechBubble)
+                Positioned(
+                  top: -10,
+                  left: 0,
+                  right: 0,
+                  child: AnimatedOpacity(
+                    opacity: _showBubble ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 300),
+                    child: AnimatedSlide(
+                      offset: _showBubble ? Offset.zero : const Offset(0, 0.2),
+                      duration: const Duration(milliseconds: 300),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 8,
                         ),
-                      ],
-                      border: Border.all(
-                        color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
-                      ),
-                    ),
-                    child: Text(
-                      _currentSpeech,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: Color(0xFF334155),
-                        fontWeight: FontWeight.w600,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                          border: Border.all(
+                            color: const Color(0xFF6B9F78).withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: Text(
+                          _currentSpeech,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF334155),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
 
-          // Ernest Character (animated)
-          Positioned(
-            top: 40,
-            left: 0,
-            right: 0,
-            child: AnimatedBuilder(
-              animation: Listenable.merge([
-                _bounceController,
-                _blinkController,
-                _ledController,
-                _prongLeftController,
-                _prongRightController,
-                _zapController,
-                _eyebrowController,
-              ]),
-              builder: (context, child) {
-                final character = isEarl
-                    ? _buildAnimatedEarl()
-                    : _buildAnimatedErnest();
+              // Character (animated)
+              Positioned(
+                top: 40,
+                left: 0,
+                right: 0,
+                child: AnimatedBuilder(
+                  animation: Listenable.merge([
+                    _bounceController,
+                    _blinkController,
+                    _ledController,
+                    _prongLeftController,
+                    _prongRightController,
+                    _zapController,
+                    _eyebrowController,
+                  ]),
+                  builder: (context, child) {
+                    final character = isEarl
+                        ? _buildAnimatedEarl()
+                        : _buildAnimatedErnest();
 
-                return GestureDetector(
-                  onTap: () {
-                    _tapCount++;
-                    _tapTimer?.cancel();
-                    _tapTimer = Timer(const Duration(milliseconds: 500), () {
-                      if (mounted) {
-                        _tapCount = 0;
-                      }
-                    });
+                    return GestureDetector(
+                      onTap: () {
+                        _tapCount++;
+                        _tapTimer?.cancel();
+                        _tapTimer = Timer(const Duration(milliseconds: 500), () {
+                          if (mounted) {
+                            _tapCount = 0;
+                          }
+                        });
 
-                    if (_tapCount >= 7) {
-                      _tapCount = 0;
-                      _tapTimer?.cancel();
-                          isEarl;
-                      controller.switchPersona();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            isEarl
-                                ? "System Override: Restoring Ernest..."
-                                : "System Override: Booting Earl...",
-                          ),
-                          backgroundColor: isEarl
-                              ? const Color(0xFF6B9F78)
-                              : Colors.red,
-                          duration: const Duration(seconds: 2),
-                        ),
-                      );
-                    }
+                        if (_tapCount >= 7) {
+                          _tapCount = 0;
+                          _tapTimer?.cancel();
+                          controller.switchPersona();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                isEarl
+                                    ? "System Override: Restoring Ernest..."
+                                    : "System Override: Booting Earl...",
+                              ),
+                              backgroundColor: isEarl
+                                  ? const Color(0xFF6B9F78)
+                                  : Colors.red,
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        }
 
-                    if (widget.isInteractive && _tapCount == 1) {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => const ErnestChatOverlay(),
-                      );
-                    }
+                        if (widget.isInteractive && _tapCount == 1) {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            builder: (context) => const ErnestChatOverlay(),
+                          );
+                        }
+                      },
+                      child: character,
+                    );
                   },
-                  child: character,
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
