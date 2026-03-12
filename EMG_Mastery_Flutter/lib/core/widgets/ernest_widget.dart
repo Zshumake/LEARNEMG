@@ -1186,7 +1186,7 @@ class _EarlPainter extends CustomPainter {
       _s(250, s),
       _s(170, s),
       _s(36, s),
-      const Color(0xFF222B1C).withOpacity(0.9),
+      const Color(0xFF4ADE80).withOpacity(0.9), // Brighter green for Earl
       s,
     );
 
@@ -1199,8 +1199,7 @@ class _EarlPainter extends CustomPainter {
     );
     canvas.drawCircle(Offset(_s(365, s), _s(155, s)), _s(7, s), outlinePaint);
 
-    // Face Area (Earl's face is now properly layered over/around the screen)
-    _drawFace(canvas, s, outlinePaint);
+    // Earl's face is the ERROR screen, no cartoon features
 
     // Zap lines (if any)
     if (zapOpacity > 0.01) {
@@ -1219,103 +1218,6 @@ class _EarlPainter extends CustomPainter {
     }
   }
 
-  void _drawFace(Canvas canvas, double s, Paint outlinePaint) {
-    const outlineColor = Color(0xFF2A2D34);
-    const noseColor = Color(0xFF606469);
-    const mouthColor = Color(0xFF141517);
-    const tongueColor = Color(0xFFFF7675);
-
-    // Eyebrows
-    canvas.save();
-    canvas.translate(0, _s(eyebrowOffset, s));
-    final browPaint = Paint()
-      ..color = outlineColor
-      ..strokeWidth = _s(6, s)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-    final leftBrow = Path()
-      ..moveTo(_s(205, s), _s(255, s))
-      ..quadraticBezierTo(_s(220, s), _s(245, s), _s(235, s), _s(250, s));
-    final rightBrow = Path()
-      ..moveTo(_s(295, s), _s(255, s))
-      ..quadraticBezierTo(_s(280, s), _s(245, s), _s(265, s), _s(250, s));
-    canvas.drawPath(leftBrow, browPaint);
-    canvas.drawPath(rightBrow, browPaint);
-    canvas.restore();
-
-    // Eyes (w/ blink)
-    canvas.save();
-    final eyeCenterY = _s(285, s);
-    canvas.translate(0, eyeCenterY);
-    canvas.scale(1.0, blinkValue);
-    canvas.translate(0, -eyeCenterY);
-
-    // Left eye
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(_s(220, s), _s(285, s)),
-        width: _s(24, s),
-        height: _s(36, s),
-      ),
-      Paint()..color = const Color(0xFF1E1F24),
-    );
-    canvas.drawCircle(Offset(_s(223, s), _s(278, s)), _s(4, s), Paint()..color = Colors.white);
-
-    // Right eye
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(_s(280, s), _s(285, s)),
-        width: _s(24, s),
-        height: _s(36, s),
-      ),
-      Paint()..color = const Color(0xFF1E1F24),
-    );
-    canvas.drawCircle(Offset(_s(283, s), _s(278, s)), _s(4, s), Paint()..color = Colors.white);
-    canvas.restore();
-
-    // Nose
-    final noseRect = RRect.fromRectAndRadius(
-      Rect.fromLTWH(_s(243, s), _s(283, s), _s(14, s), _s(24, s)),
-      Radius.circular(_s(7, s)),
-    );
-    canvas.drawRRect(noseRect, Paint()..color = noseColor);
-    canvas.drawRRect(noseRect, outlinePaint);
-
-    // Nose ridges
-    final ridgePaint = Paint()
-      ..color = outlineColor
-      ..strokeWidth = _s(4, s)
-      ..strokeCap = StrokeCap.round;
-    for (final y in [289.0, 295.0, 301.0]) {
-      canvas.drawLine(Offset(_s(245, s), _s(y, s)), Offset(_s(255, s), _s(y, s)), ridgePaint);
-    }
-
-    // Mouth
-    canvas.save();
-    canvas.translate(_s(118.5, s), _s(108.75, s));
-    canvas.scale(0.65);
-    final mouthPath = Path()
-      ..moveTo(_s(175, s), _s(315, s))
-      ..cubicTo(_s(175, s), _s(315, s), _s(210, s), _s(325, s), _s(245, s), _s(315, s))
-      ..cubicTo(_s(245, s), _s(355, s), _s(175, s), _s(355, s), _s(175, s), _s(315, s));
-    canvas.drawPath(mouthPath, Paint()..color = mouthColor);
-    canvas.drawPath(mouthPath, Paint()..color = outlineColor..strokeWidth = _s(7, s)..style = PaintingStyle.stroke..strokeJoin = StrokeJoin.round);
-
-    final tonguePath = Path()
-      ..moveTo(_s(185, s), _s(340, s))
-      ..quadraticBezierTo(_s(210, s), _s(315, s), _s(235, s), _s(340, s))
-      ..cubicTo(_s(235, s), _s(365, s), _s(185, s), _s(365, s), _s(185, s), _s(340, s));
-    canvas.save();
-    canvas.clipPath(mouthPath);
-    canvas.drawPath(tonguePath, Paint()..color = tongueColor);
-    canvas.drawPath(tonguePath, Paint()..color = outlineColor..strokeWidth = _s(2, s)..style = PaintingStyle.stroke);
-    canvas.restore();
-
-    final dimplePaint = Paint()..color = outlineColor..strokeWidth = _s(7, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
-    canvas.drawPath(Path()..moveTo(_s(168, s), _s(310, s))..quadraticBezierTo(_s(172, s), _s(312, s), _s(175, s), _s(315, s)), dimplePaint);
-    canvas.drawPath(Path()..moveTo(_s(252, s), _s(310, s))..quadraticBezierTo(_s(248, s), _s(312, s), _s(245, s), _s(315, s)), dimplePaint);
-    canvas.restore();
-  }
 
   void _drawProng(
     Canvas canvas,
