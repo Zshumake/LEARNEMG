@@ -320,17 +320,17 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                         }
 
                         if (widget.isInteractive && widget.allowChatOpening && _tapCount == 1) {
-                          // Delay the chat opening to see if it's a multi-tap sequence
-                          _singleTapTimer = Timer(const Duration(milliseconds: 400), () {
-                            if (mounted) {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                builder: (context) => const ErnestChatOverlay(),
-                              );
-                            }
-                          });
+                          if (widget.allowPersonaToggle) {
+                            // Delay the chat opening only if toggle is allowed
+                            _singleTapTimer = Timer(const Duration(milliseconds: 400), () {
+                              if (mounted) {
+                                _showChat(context);
+                              }
+                            });
+                          } else {
+                            // Open immediately if no toggle conflict
+                            _showChat(context);
+                          }
                         }
                       },
                       child: character,
@@ -342,6 +342,15 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
           ),
         );
       },
+    );
+  }
+
+  void _showChat(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const ErnestChatOverlay(),
     );
   }
 
