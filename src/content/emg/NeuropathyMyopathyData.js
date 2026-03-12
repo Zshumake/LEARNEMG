@@ -12,9 +12,31 @@ export const NeuropathyMyopathyData = {
     tabs: [
         { id: 'myopathy', label: 'Myopathy Deep Dive', icon: 'M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z' },
         { id: 'neuropathy', label: 'Neuropathy Deep Dive', icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+        { id: 'classification', label: 'Classification', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 10-4 0M11 15l2 2 4-4' },
         { id: 'comparison', label: 'Side-by-Side Comparison', icon: 'M18 20V10 M12 20V4 M6 20v-6' },
         { id: 'quiz', label: 'Knowledge Check', icon: 'M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11' }
     ],
+
+    classification: {
+        intro: "Understanding how nerves fail across different anatomical structures is critical for determining prognosis.",
+        seddon: [
+            { grade: "Neurapraxia", desc: "Focal demyelination with intact axons. Recovery is fast and complete (weeks).", icon: 'bolt', color: '#6B21A8' },
+            { grade: "Axonotmesis", desc: "Axonal damage with intact connective tissue. Regeneration happens at 1mm/day.", icon: 'cut', color: '#9333EA' },
+            { grade: "Neurotmesis", desc: "Complete nerve transection. Requires surgery; prognosis is often poor.", icon: 'alert', color: '#A855F7' }
+        ],
+        sunderland: [
+            { grade: "Type I", anatomy: "Myelin Only", prognosis: "Excellent", seddon: "Neurapraxia" },
+            { grade: "Type II", anatomy: "Axon (Endoneurium Intact)", prognosis: "Good", seddon: "Axonotmesis" },
+            { grade: "Type III", anatomy: "Endoneurium Broken", prognosis: "Variable", seddon: "Axonotmesis" },
+            { grade: "Type IV", anatomy: "Perineurium Broken", prognosis: "Poor", seddon: "Axonotmesis" },
+            { grade: "Type V", anatomy: "Complete Transection", prognosis: "Requires Surgery", seddon: "Neurotmesis" }
+        ],
+        prognosis: [
+            { factor: "Distance to Target", detail: "Shorter distances to target muscle/sensory organ improve prognosis.", color: '#D97706' },
+            { factor: "Age of Patient", detail: "Younger patients generally have better regenerative capacity.", color: '#F59E0B' },
+            { factor: "Type of Injury", detail: "Neurapraxia has the best prognosis, Neurotmesis the worst.", color: '#FBBF24' }
+        ]
+    },
 
     myopathy: {
         intro: {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_theme.dart';
 import '../ernest_controller.dart';
 import '../../../data/models/ernest_model.dart';
@@ -134,12 +135,14 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
               IconButton(
                 visualDensity: VisualDensity.compact,
                 icon: const Icon(
-                  Icons.swap_horiz,
+                  Icons.vpn_key_outlined,
                   color: Colors.white70,
                   size: 20,
                 ),
-                onPressed: () => controller.switchPersona(),
-                tooltip: "Switch Persona",
+                onPressed: () => launchUrl(
+                  Uri.parse("https://aistudio.google.com/app/apikey"),
+                ),
+                tooltip: "Get Gemini API Key",
               ),
               IconButton(
                 visualDensity: VisualDensity.compact,
@@ -364,13 +367,27 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
               "Ernest needs a Google Gemini API key to chat. You can get one for free at aistudio.google.com",
               style: TextStyle(color: Colors.white70, fontSize: 13),
             ),
-            const SizedBox(height: 8),
-            const SelectableText(
-              "https://aistudio.google.com",
-              style: TextStyle(
-                color: AppTheme.primary,
-                fontSize: 12,
-                decoration: TextDecoration.underline,
+            const SizedBox(height: 16),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () => launchUrl(
+                  Uri.parse("https://aistudio.google.com/app/apikey"),
+                ),
+                icon: const Icon(Icons.open_in_new, size: 16),
+                label: const Text("Get Free Gemini Key"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppTheme.primary.withValues(alpha: 0.2),
+                  foregroundColor: AppTheme.primary,
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(color: AppTheme.primary),
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 16),

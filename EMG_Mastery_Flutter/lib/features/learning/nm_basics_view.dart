@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../data/nm_basics_data.dart';
-import '../../data/podcast_data.dart';
+import '../../data/models/nm_basics_model.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 
 class NMBasicsView extends StatelessWidget {
   const NMBasicsView({super.key});
@@ -49,17 +49,21 @@ class NMBasicsView extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                _DeepDiveTab(
-                  data: NMBasicsData.myopathy,
-                  color: const Color(0xFF7C3AED),
+                KeepAliveTabWrapper(
+                  child: _DeepDiveTab(
+                    data: NMBasicsData.myopathy,
+                    color: const Color(0xFF7C3AED),
+                  ),
                 ),
-                _DeepDiveTab(
-                  data: NMBasicsData.neuropathy,
-                  color: const Color(0xFF0284C7),
+                KeepAliveTabWrapper(
+                  child: _DeepDiveTab(
+                    data: NMBasicsData.neuropathy,
+                    color: const Color(0xFF0284C7),
+                  ),
                 ),
-                const _ClassificationTab(),
-                const _ComparisonTab(),
-                _QuizTab(),
+                const KeepAliveTabWrapper(child: _ClassificationTab()),
+                const KeepAliveTabWrapper(child: _ComparisonTab()),
+                KeepAliveTabWrapper(child: _QuizTab()),
               ],
             ),
           ),
@@ -108,27 +112,17 @@ class NMBasicsView extends StatelessWidget {
 }
 
 class _DeepDiveTab extends StatelessWidget {
-  final dynamic data;
+  final NMDeepDive data;
   final Color color;
   const _DeepDiveTab({required this.data, required this.color});
 
   @override
   Widget build(BuildContext context) {
-    // Determine module key for podcasts
-    final isMyopathy = data.title.toLowerCase().contains('myopathy');
-    final moduleKey = isMyopathy ? 'myopathy' : 'neuropathy';
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...PodcastData.getEpisodesByModule(moduleKey).map(
-            (episode) => Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: PodcastTriggerCard(episode: episode),
-            ),
-          ),
           Text(
             data.title,
             style: TextStyle(
@@ -147,12 +141,44 @@ class _DeepDiveTab extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
+          _buildCausesSection(),
+          const SizedBox(height: 30),
           _buildClinicalGrid(),
           const SizedBox(height: 30),
           _buildEMGFindings(),
+          const SizedBox(height: 30),
+          _buildNCSFindings(),
+          const SizedBox(height: 30),
+          _buildStrategySection(),
+          const SizedBox(height: 30),
+          _buildPearlSection(),
           const SizedBox(height: 60),
         ],
       ),
+    );
+  }
+
+  Widget _buildCausesSection() {
+    return Column(
+      children: [
+        _SectionHeader(
+          title: "Common Causes",
+          icon: Icons.history_edu_rounded,
+          color: color,
+        ),
+        const SizedBox(height: 15),
+        ...data.causes.map(
+          (c) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: _ClinicalIconCard(
+              title: c.title,
+              detail: c.detail,
+              color: color,
+              isWide: true,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -160,8 +186,8 @@ class _DeepDiveTab extends StatelessWidget {
     return Column(
       children: [
         _SectionHeader(
-          title: "Clinical Presentation",
-          icon: Icons.medical_information_outlined,
+          title: "Clinical Symptoms",
+          icon: Icons.personal_injury_outlined,
           color: color,
         ),
         const SizedBox(height: 15),
@@ -204,15 +230,142 @@ class _DeepDiveTab extends StatelessWidget {
           ),
           const SizedBox(height: 12),
         ],
-        if (data.recruitment != null)
+        if (data.recruitment != null) ...[
           _EMGCard(
             title: data.recruitment!.title,
             traits: data.recruitment!.traits,
             color: color,
           ),
-        if (data.toString().contains('emgTraits'))
-          ...(data.emgTraits as List).map((t) => _TraitRow(text: t.toString())),
+          const SizedBox(height: 12),
+        ],
+        if (data.emgTraits != null)
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: const Color(0xFFE2E8F0)),
+            ),
+            child: Column(
+              children: data.emgTraits!.map((t) => _TraitRow(text: t)).toList(),
+            ),
+          ),
       ],
+    );
+  }
+
+  Widget _buildNCSFindings() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SectionHeader(
+          title: data.ncsTitle,
+          icon: Icons.settings_input_component_rounded,
+          color: color,
+        ),
+        const SizedBox(height: 15),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: color.withOpacity(0.1)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "FOUNDATION: ${data.ncsFinding}",
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 14,
+                  color: color,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                data.ncsDetail,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF334155),
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (data.axonal != null) ...[
+          const SizedBox(height: 12),
+          _EMGCard(
+            title: data.axonal!.title,
+            traits: data.axonal!.traits,
+            color: color,
+          ),
+        ],
+        if (data.demyelinating != null) ...[
+          const SizedBox(height: 12),
+          _EMGCard(
+            title: data.demyelinating!.title,
+            traits: data.demyelinating!.traits,
+            color: color,
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildStrategySection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SectionHeader(
+          title: "Diagnostic Strategy",
+          icon: Icons.center_focus_strong_rounded,
+          color: Colors.teal,
+        ),
+        const SizedBox(height: 15),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.teal.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.teal.withOpacity(0.1)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "HOW TO APPROACH THIS:",
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 12,
+                  color: Colors.teal,
+                  letterSpacing: 1,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                data.clinicalStrategy,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF334155),
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPearlSection() {
+    return _RuleCard(
+      title: data.pearlTitle.toUpperCase(),
+      text: data.pearlText,
+      color: const Color(0xFFD97706),
     );
   }
 }
@@ -381,6 +534,8 @@ class _ClassificationTab extends StatelessWidget {
           _buildSeddonCards(),
           const SizedBox(height: 30),
           _buildSunderlandTable(),
+          const SizedBox(height: 30),
+          _buildPrognosticIndicators(),
           const SizedBox(height: 40),
           _SectionHeader(
             title: "Fiber Classification",
@@ -412,20 +567,23 @@ class _ClassificationTab extends StatelessWidget {
           desc:
               "Focal demyelination with intact axons. Recovery is fast and complete (weeks).",
           color: const Color(0xFF6B21A8),
+          icon: Icons.bolt_rounded,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
         _ClassificationCard(
           grade: "Axonotmesis",
           desc:
               "Axonal damage with intact connective tissue. Regeneration happens at 1mm/day.",
           color: const Color(0xFF9333EA),
+          icon: Icons.content_cut_rounded,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
         _ClassificationCard(
           grade: "Neurotmesis",
           desc:
               "Complete nerve transection. Requires surgery; prognosis is often poor.",
           color: const Color(0xFFA855F7),
+          icon: Icons.dangerous_rounded,
         ),
       ],
     );
@@ -504,6 +662,46 @@ class _ClassificationTab extends StatelessWidget {
     );
   }
 
+  Widget _buildPrognosticIndicators() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SectionHeader(
+          title: "Prognostic Indicators",
+          icon: Icons.trending_up_rounded,
+          color: const Color(0xFFD97706),
+        ),
+        const SizedBox(height: 15),
+        const Text(
+          "Key factors influencing nerve injury recovery:",
+          style: TextStyle(fontSize: 14, color: Color(0xFF64748B), height: 1.5),
+        ),
+        const SizedBox(height: 15),
+        _ClassificationCard(
+          grade: "Distance to Target",
+          desc:
+              "Shorter distances to target muscle/sensory organ improve prognosis.",
+          color: const Color(0xFFD97706),
+          icon: Icons.location_on_rounded,
+        ),
+        const SizedBox(height: 12),
+        _ClassificationCard(
+          grade: "Age of Patient",
+          desc: "Younger patients generally have better regenerative capacity.",
+          color: const Color(0xFFF59E0B),
+          icon: Icons.person_rounded,
+        ),
+        const SizedBox(height: 12),
+        _ClassificationCard(
+          grade: "Type of Injury",
+          desc: "Neurapraxia has the best prognosis, Neurotmesis the worst.",
+          color: const Color(0xFFFBBF24),
+          icon: Icons.healing_rounded,
+        ),
+      ],
+    );
+  }
+
   Widget _buildFiberList() {
     return Column(
       children: [
@@ -545,10 +743,12 @@ class _ClassificationTab extends StatelessWidget {
 class _ClassificationCard extends StatelessWidget {
   final String grade, desc;
   final Color color;
+  final IconData icon;
   const _ClassificationCard({
     required this.grade,
     required this.desc,
     required this.color,
+    required this.icon,
   });
 
   @override
@@ -558,32 +758,51 @@ class _ClassificationCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        border: Border(
-          left: BorderSide(color: color, width: 4),
-          right: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
-          top: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
-          bottom: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
-        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            grade,
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-              color: color,
-              fontSize: 16,
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
             ),
+            child: Icon(icon, color: color, size: 28),
           ),
-          const SizedBox(height: 6),
-          Text(
-            desc,
-            style: const TextStyle(
-              fontSize: 13,
-              color: Color(0xFF475569),
-              height: 1.4,
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  grade,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    color: color,
+                    fontSize: 17,
+                    letterSpacing: -0.3,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  desc,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF475569),
+                    height: 1.5,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -687,14 +906,17 @@ class _SectionHeader extends StatelessWidget {
 class _ClinicalIconCard extends StatelessWidget {
   final String title, detail;
   final Color color;
+  final bool isWide;
   const _ClinicalIconCard({
     required this.title,
     required this.detail,
     required this.color,
+    this.isWide = false,
   });
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: isWide ? double.infinity : null,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.05),

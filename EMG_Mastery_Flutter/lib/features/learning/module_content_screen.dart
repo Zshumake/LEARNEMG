@@ -7,8 +7,9 @@ import 'nerve_explorer_view.dart';
 import 'plexus_explorer_view.dart';
 import 'plexus_clinical_view.dart';
 import 'radiculopathy_view.dart';
-import 'neuropathy_view.dart';
-import 'ncs_fundamentals_view.dart';
+import '../../data/module_contents/neuropathy_content.dart';
+import '../../data/module_contents/ncs_fundamentals_content.dart';
+import 'topic_content_view.dart';
 import 'needle_localization_view.dart';
 import 'ncs_techniques_view.dart';
 import 'muscle_lab_view.dart';
@@ -115,28 +116,12 @@ class ModuleContentScreen extends StatelessWidget {
 
     // Neuropathy Pathophysiology
     if (module.id == 'neuropathy-pathophysiology') {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Neuropathy Pathophysiology'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.headset),
-              onPressed: () {
-                // TODO: Trigger Podcast
-              },
-            ),
-          ],
-        ),
-        body: const NeuropathyView(),
-      );
+      return TopicContentView(data: neuropathyContent);
     }
 
     // NCS Fundamentals
     if (module.id == 'ncs-fundamentals') {
-      return Scaffold(
-        appBar: AppBar(title: const Text('NCS Fundamentals')),
-        body: const NCSFundamentalsView(),
-      );
+      return TopicContentView(data: ncsFundamentalsContent);
     }
 
     // EMG Needle Localization

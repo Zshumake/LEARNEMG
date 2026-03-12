@@ -87,6 +87,14 @@ export class ErnestCore {
         this.ui.applyTheme(p);
         this.updateGlobalImages(p.image);
 
+        // Update AppShell if on start page
+        if (window.appComponents && window.appComponents.shell) {
+            const welcomeScreen = document.getElementById('pgy-selection');
+            if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
+                window.appComponents.shell.render();
+            }
+        }
+
         // Update Start Page Label (Legacy Support)
         const startLabel = document.querySelector('.ernest-label');
         if (startLabel) {
@@ -99,6 +107,16 @@ export class ErnestCore {
         if (speechBubbleText && p.description) {
             speechBubbleText.textContent = p.description;
         }
+
+        // 🔄 GLOBAL DOM SWEEP: Instantly update all miniature icons across the app (Candyland, headers, etc)
+        const miniIcons = document.querySelectorAll('.mini-ernest-wrapper');
+        miniIcons.forEach(wrapper => {
+            if (window.ErnestIcon && typeof window.ErnestIcon.getSVGOnly === 'function') {
+                wrapper.innerHTML = window.ErnestIcon.getSVGOnly(newId);
+                wrapper.dataset.persona = newId;
+                wrapper.style.background = newId === 'earl' ? '#e2e8f0' : '#ffffff';
+            }
+        });
     }
 
     updateGlobalImages(newSrc) {
@@ -149,7 +167,9 @@ export class ErnestCore {
     }
 
     resetApiKey() {
-        this.api.resetApiKey();
+        if (confirm("Reset Ernest API Key? This will clear your current key and reload the page.")) {
+            this.api.resetApiKey(true);
+        }
     }
 
     promptApiKey() {

@@ -6,6 +6,7 @@ import '../../data/models/introduction_content.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/content_card.dart';
 import 'widgets/glossary_list.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 
 class IntroductionModuleView extends StatelessWidget {
   const IntroductionModuleView({super.key});
@@ -74,12 +75,12 @@ class IntroductionModuleView extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                _buildPhilosophyTab(content),
-                _buildBasicsTab(content),
-                _buildInstrumentationTab(),
-                _buildTechnicalTab(content),
-                _buildLocalizationTab(content),
-                _buildTerminologyTab(content),
+                KeepAliveTabWrapper(child: _buildPhilosophyTab(content)),
+                KeepAliveTabWrapper(child: _buildBasicsTab(content)),
+                KeepAliveTabWrapper(child: _buildInstrumentationTab()),
+                KeepAliveTabWrapper(child: _buildTechnicalTab(content)),
+                KeepAliveTabWrapper(child: _buildLocalizationTab(content)),
+                KeepAliveTabWrapper(child: _buildTerminologyTab(content)),
               ],
             ),
           ),
@@ -96,9 +97,6 @@ class IntroductionModuleView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...PodcastData.getEpisodesByModule(
-            'emg-introduction',
-          ).map((ep) => PodcastTriggerCard(episode: ep)),
           ContentCard(
             title: content.philosophy.core.title,
             accentColor: AppTheme.primary,
@@ -230,11 +228,11 @@ class IntroductionModuleView extends StatelessWidget {
           const Expanded(
             child: TabBarView(
               children: [
-                _InstrumentationSystemTab(),
-                _InstrumentationSoftwareTab(),
-                _InstrumentationStimTrollerTab(),
-                _InstrumentationPreampTab(),
-                _InstrumentationSettingsTab(),
+                KeepAliveTabWrapper(child: _InstrumentationSystemTab()),
+                KeepAliveTabWrapper(child: _InstrumentationSoftwareTab()),
+                KeepAliveTabWrapper(child: _InstrumentationStimTrollerTab()),
+                KeepAliveTabWrapper(child: _InstrumentationPreampTab()),
+                KeepAliveTabWrapper(child: _InstrumentationSettingsTab()),
               ],
             ),
           ),
@@ -399,6 +397,12 @@ class IntroductionModuleView extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppTheme.textHeading,
             ),
+          ),
+          const SizedBox(height: 16),
+          PodcastTriggerCard(
+            episode: PodcastData.getEpisodesByModule(
+              'emg-introduction',
+            ).firstWhere((ep) => ep.id == 'emg-terminology'),
           ),
           const SizedBox(height: 16),
           GlossaryList(terms: content.terminology.glossary),

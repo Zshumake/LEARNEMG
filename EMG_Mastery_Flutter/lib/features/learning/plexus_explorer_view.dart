@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/models/plexus_graph_data.dart';
-import '../../data/podcast_data.dart';
 import '../../logic/plexus_logic.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 
 /// Full interactive Plexus Anatomy explorer — ported from PlexusManager + PlexusRenderer.
 /// Features: switchable Brachial/Lumbosacral, Discovery/Lesion modes, interactive graph.
@@ -156,7 +154,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.15),
+                                  color: Colors.black.withOpacity(0.15),
                                   blurRadius: 20,
                                   offset: const Offset(0, -5),
                                 ),
@@ -220,7 +218,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                       boxShadow: _selectedNode?.id == node.id
                           ? [
                               BoxShadow(
-                                color: node.color.withValues(alpha: 0.5),
+                                color: node.color.withOpacity(0.5),
                                 blurRadius: 8,
                               ),
                             ]
@@ -245,12 +243,6 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
       ),
       child: Column(
         children: [
-          ...PodcastData.getEpisodesByModule('plexus-anatomy').map(
-            (episode) => Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: PodcastTriggerCard(episode: episode),
-            ),
-          ),
           // Plexus selector
           Row(
             children: [

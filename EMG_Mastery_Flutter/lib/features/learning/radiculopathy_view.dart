@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 
 /// Radiculopathy Pathophysiology teaching module.
 class RadiculopathyView extends StatelessWidget {
@@ -30,7 +29,10 @@ class RadiculopathyView extends StatelessWidget {
           ),
           const Expanded(
             child: TabBarView(
-              children: [_RadiculopathyLearningTab(), _QuizTab()],
+              children: [
+                KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
+                KeepAliveTabWrapper(child: _QuizTab()),
+              ],
             ),
           ),
         ],
@@ -89,12 +91,6 @@ class _RadiculopathyLearningTab extends StatelessWidget {
         children: [
           _buildMentorshipIntro(),
           const SizedBox(height: 25),
-          ...PodcastData.getEpisodesByModule('radiculopathy').map(
-            (episode) => Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: PodcastTriggerCard(episode: episode),
-            ),
-          ),
           _buildPathophysiologySection(),
           const SizedBox(height: 25),
           _buildAgeTrendsSection(),
@@ -139,7 +135,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               const Text(
-                'The EMG "Bread & Butter"',
+                'Radiculopathy: The EMG "Bread & Butter"',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
@@ -150,7 +146,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           const Text(
-            'If you talk to any EMG attending, they\'ll tell you: Radiculopathy is the most common reason patients are sent to the lab. You aren\'t just looking for "abnormalities"—you are mapping exactly which spinal level is being compressed.',
+            'If you talk to any EMG attending, they\'ll tell you: Radiculopathy is the most common reason patients are sent to the lab. Whether it\'s a "pinched nerve" in the neck (cervical) or the low back (lumbar), your job as the electrodiagnostician is to act as a detective. You aren\'t just looking for "abnormalities"—you are mapping exactly which spinal level is being compressed.',
             style: TextStyle(
               fontSize: 16,
               color: Color(0xFF9A3412),
@@ -165,7 +161,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 child: _SmallInfoCard(
                   title: 'Diagnostic Goals',
                   text:
-                      'Confirm the nerve root, identify the exact level (e.g. L5 vs S1), and determine acuity.',
+                      '1. Confirm the nerve root is the problem\n2. Identify the exact spinal level (e.g., L5 vs S1)\n3. Determine if the injury is acute or chronic',
                 ),
               ),
               const SizedBox(width: 15),
@@ -173,7 +169,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 child: _SmallInfoCard(
                   title: 'Resident Pro-Tip',
                   text:
-                      '"The history is half the battle. If pain radiates to the big toe, think L5. If the little toe, think S1."',
+                      '"The history is half the battle. If the pain radiates down to the big toe, think L5. If it\'s the little toe, think S1. Let the patient guide your needle!"',
                   isItalic: true,
                 ),
               ),
@@ -186,14 +182,14 @@ class _RadiculopathyLearningTab extends StatelessWidget {
 
   Widget _buildPathophysiologySection() {
     return _SectionCard(
-      title: "PATHOPHYSIOLOGY: BEHIND THE DRG",
+      title: "1. THE PATHOPHYSIOLOGY: WHAT'S HAPPENING?",
       icon: Icons.biotech_rounded,
       color: const Color(0xFFEF4444),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Radiculopathy is a plumbing problem. A nerve root is being squeezed right as it tries to exit the spinal column at the neural foramen.",
+            "At its core, Radiculopathy is a plumbing problem. A nerve root is being squeezed or irritated right as it tries to exit the spinal column. This happens at the neural foramen—the small holes between your vertebrae.",
             style: TextStyle(
               fontSize: 15,
               color: Color(0xFF334155),
@@ -212,16 +208,16 @@ class _RadiculopathyLearningTab extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Why are SNAPs normal in Radiculopathy?",
+                  "The 'Behind the DRG' Secret (High Yield!)",
                   style: TextStyle(
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w900,
                     color: Color(0xFFDC2626),
-                    fontSize: 15,
+                    fontSize: 16,
                   ),
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  "Imagine the Dorsal Root Ganglion (DRG) as a Telephone Exchange. In radiculopathy, the pinch is PROXIMAL to the exchange (inside the spine). The wire in the arm is still attached to its healthy power source (the DRG outside the spine), so the SNAP signal remains normal!",
+                  "Why are SNAPs normal in Radiculopathy?\n\nImagine a telephone wire. The \"Telephone Exchange\" (the Dorsal Root Ganglion/DRG) is located outside the spinal canal.\n\n• If you cut the wire distal to the exchange (in the arm), the distal end dies and the signal disappears (SNAP becomes abnormal).\n• In radiculopathy, the pinch is proximal to the exchange (inside the spine/foramen). The \"Telephone Exchange\" (DRG) is still happy and healthy, so the wire in the arm is still attached to its power source. The signal in the arm remains normal!",
                   style: TextStyle(
                     fontSize: 13,
                     color: Color(0xFF475569),
@@ -257,33 +253,29 @@ class _RadiculopathyLearningTab extends StatelessWidget {
 
   Widget _buildAgeTrendsSection() {
     return _SectionCard(
-      title: "WHO AND WHY? (AGE TRENDS)",
+      title: "2. WHO AND WHY? (AGE-RELATED TRENDS)",
       icon: Icons.groups_rounded,
       color: const Color(0xFF8B5CF6),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _TrendCard(
-              title: "Younger Adults (<50)",
-              mechanism: "Acute Disc Herniation",
-              desc:
-                  "Sudden 'electric' pain triggered by lifting or twisting. Usually acute onset.",
-              color: const Color(0xFF86198F),
-              bgColor: const Color(0xFFFDF4FF),
-              borderColor: const Color(0xFFF5D0FE),
-            ),
+          _TrendCard(
+            title: "Younger Adults (< 50)",
+            mechanism: "Usually Acute Disc Herniation",
+            desc:
+                "The 'jelly' inside the disc (nucleus pulposus) squirts out and smashes a nerve root.\n\n• Trigger: Heavy lifting or sudden twisting\n• Pain: Sudden, sharp, 'electric shock' pain\n• EMG Timing: Often done too early (wait 3 weeks!)",
+            color: const Color(0xFF86198F),
+            bgColor: const Color(0xFFFDF4FF),
+            borderColor: const Color(0xFFF5D0FE),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: _TrendCard(
-              title: "Older Adults (>50)",
-              mechanism: "Spinal Stenosis",
-              desc:
-                  "Slow, aching 'claudication' pain worse with walking. Gradual bone spur narrowing.",
-              color: const Color(0xFF92400E),
-              bgColor: const Color(0xFFFFFBEB),
-              borderColor: const Color(0xFFFEF3C7),
-            ),
+          const SizedBox(height: 15),
+          _TrendCard(
+            title: "Older Adults (> 50)",
+            mechanism: "Usually Spinal Stenosis/Spondylosis",
+            desc:
+                "This is slow and 'crumbly.' Bone spurs (osteophytes) gradually narrow the exit holes.\n\n• Trigger: Gradual onset, worse with walking\n• Pain: Aching, heavy, 'claudication' of the nerves\n• EMG Timing: Often shows chronic changes (large, rare MUAPs)",
+            color: const Color(0xFF92400E),
+            bgColor: const Color(0xFFFFFBEB),
+            borderColor: const Color(0xFFFEF3C7),
           ),
         ],
       ),
@@ -292,13 +284,13 @@ class _RadiculopathyLearningTab extends StatelessWidget {
 
   Widget _buildEmgClockSection() {
     return _SectionCard(
-      title: "THE EMG CLOCK: TIMING",
+      title: "3. THE EMG \"CLOCK\": TIMING IS EVERYTHING",
       icon: Icons.history_toggle_off_rounded,
       color: const Color(0xFF059669),
       child: Column(
         children: [
           const Text(
-            "Fibrillation potentials don't appear immediately. They take time to travel down the wire based on the distance from the spine.",
+            "Residents often ask: \"Should I do the EMG today?\" The answer depends on where we are on the biological clock of nerve death. Fibrillation potentials don't just appear immediately. They take time to travel down the wire.",
             style: TextStyle(
               fontSize: 14,
               color: Color(0xFF475569),
@@ -308,23 +300,23 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           const SizedBox(height: 20),
           _ClockPhaseRow(
             days: "Day 0-3",
-            title: "Recruitment Failure",
+            title: "Immediate: Recruitment Failure",
             desc:
-                "No 'fibs' yet. Just decreased motor recruitment and potential F-wave delays.",
+                "You won't see \"fibs\" yet. You'll just see decreased recruitment (the muscle isn't getting enough commands). F-waves might be slightly slow.",
             color: const Color(0xFF10B981),
           ),
           _ClockPhaseRow(
             days: "Day 7-10",
-            title: "Paraspinal Fire",
+            title: "Phase 1: Paraspinal Fire",
             desc:
-                "Denervation reaches the paraspinals first as they are closest to the spine.",
+                "Denervation reaches the paraspinal muscles because they are physically closest to the spine. If you see abnormalities here, you've localized it to the root!",
             color: const Color(0xFF059669),
           ),
           _ClockPhaseRow(
             days: "Day 14-21",
-            title: "Limb Invasion",
+            title: "Phase 2: Limb Invasion",
             desc:
-                "Fibrillations finally arrive in the arm/leg. The 'Golden Window' for full diagnosis.",
+                "Fibrillations finally arrive in the arm or leg. Now you can do a full limb study. This is the \"Golden Window\" for diagnostic precision.",
             color: const Color(0xFF047857),
           ),
         ],
@@ -334,14 +326,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
 
   Widget _buildLocalizationTableSection() {
     return _SectionCard(
-      title: "MASTERING THE LEVELS",
+      title: "4. MASTERING THE LEVELS: CLINICAL LOCALIZATION",
       icon: Icons.map_rounded,
       color: const Color(0xFF3B82F6),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: DataTable(
-          headingRowColor: MaterialStateProperty.all(const Color(0xFFF1F5F9)),
-          columnSpacing: 20,
+          headingRowColor: WidgetStateProperty.all(const Color(0xFFF1F5F9)),
+          columnSpacing: 25,
+          horizontalMargin: 15,
           columns: const [
             DataColumn(
               label: Text(
@@ -357,7 +350,19 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             ),
             DataColumn(
               label: Text(
+                "Physical Exam",
+                style: TextStyle(fontWeight: FontWeight.w900),
+              ),
+            ),
+            DataColumn(
+              label: Text(
                 "Reflex",
+                style: TextStyle(fontWeight: FontWeight.w900),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                "Resident Pro-Tip",
                 style: TextStyle(fontWeight: FontWeight.w900),
               ),
             ),
@@ -368,8 +373,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 DataCell(
                   Text("C5", style: TextStyle(fontWeight: FontWeight.w800)),
                 ),
-                DataCell(Text("Deltoid, Biceps, Rhomboids")),
+                DataCell(Text("Deltoid,\nBiceps, Rhomboids")),
+                DataCell(Text("Shoulder abduction,\nelbow flexion")),
                 DataCell(Text("Biceps")),
+                DataCell(
+                  Text(
+                    "Check the rhomboids to prove it's the root, not the plexus!",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
               ],
             ),
             DataRow(
@@ -377,8 +389,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 DataCell(
                   Text("C6", style: TextStyle(fontWeight: FontWeight.w800)),
                 ),
-                DataCell(Text("Biceps, Brachioradialis")),
+                DataCell(Text("Biceps,\nBrachioradialis, PT")),
+                DataCell(Text("Thumb sensation,\nwrist extension")),
                 DataCell(Text("Brachiorad.")),
+                DataCell(
+                  Text(
+                    "The 'Thumb Root'. Often confused with Carpal Tunnel!",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
               ],
             ),
             DataRow(
@@ -386,8 +405,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 DataCell(
                   Text("C7", style: TextStyle(fontWeight: FontWeight.w800)),
                 ),
-                DataCell(Text("Triceps, Finger Extensors")),
+                DataCell(Text("Triceps,\nFinger Extensors")),
+                DataCell(Text("Elbow extension,\nmiddle finger sens.")),
                 DataCell(Text("Triceps")),
+                DataCell(
+                  Text(
+                    "Most common cervical root. Triceps is your best friend here.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
               ],
             ),
             DataRow(
@@ -395,8 +421,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 DataCell(
                   Text("L5", style: TextStyle(fontWeight: FontWeight.w800)),
                 ),
-                DataCell(Text("Tib Ant, EHL, Glut Med")),
+                DataCell(Text("Tib Ant,\nEHL, Glut Med")),
+                DataCell(Text("Big toe extension,\nheel walking")),
                 DataCell(Text("Med Hamst.")),
+                DataCell(
+                  Text(
+                    "Always check the Glut Med. Root, not the peroneal nerve!",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
               ],
             ),
             DataRow(
@@ -404,8 +437,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                 DataCell(
                   Text("S1", style: TextStyle(fontWeight: FontWeight.w800)),
                 ),
-                DataCell(Text("Gastroc, Glut Max")),
+                DataCell(Text("Gastroc, Soleus,\nGlut Max")),
+                DataCell(Text("Plantar flexion,\ntoe walking")),
                 DataCell(Text("Achilles")),
+                DataCell(
+                  Text(
+                    "The 'Foot Slapping' root. Look for S1 paraspinals.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
               ],
             ),
           ],
@@ -416,14 +456,14 @@ class _RadiculopathyLearningTab extends StatelessWidget {
 
   Widget _buildHiMadamSection() {
     return _SectionCard(
-      title: "NON-MECHANICAL CAUSES",
+      title: "DON'T BE A \"DISC-SNOB\": THE HI MADAM DIFFERENTIAL",
       icon: Icons.warning_amber_rounded,
       color: const Color(0xFFF59E0B),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "If it involves multiple levels or persistent pain, think HI MADAM:",
+            "Even though 90% of radiculopathies are due to discs or stenosis, every resident should know the non-mechanical causes. If it involves multiple levels, think HI MADAM:",
             style: TextStyle(fontSize: 14, color: Color(0xFF475569)),
           ),
           const SizedBox(height: 15),
@@ -464,7 +504,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               const Text(
-                "Senior Resident Truths",
+                "Final Senior Resident \"Truths\"",
                 style: TextStyle(
                   color: Color(0xFF38BDF8),
                   fontSize: 20,
@@ -476,15 +516,15 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           const SizedBox(height: 20),
           _TruthRow(
             text:
-                "1. The Paraspinals are NOT optional. You'll find the diagnosis there 20% of the time when everything else is normal.",
+                "1. The Paraspinals are NOT optional. You will find the diagnosis there 10-20% of the time when everything else looks normal. If you skip them, you're guessing, not diagnosing.",
           ),
           _TruthRow(
             text:
-                "2. Rule out the 'Impersonators.' For every L5, verify the Peroneal nerve. For C6, check the Median nerve.",
+                "2. Rule #2: Rule out the \"Impersonators\". For every L5 radikulopathy, verify the Fibular (Peroneal) nerve. For every C6, check the Median nerve. Prove it's the root by finding abnormalities \"upstream\" of where the plexus begins.",
           ),
           _TruthRow(
             text:
-                "3. Symmetry is a trap. Don't just look at the bad leg; comparison is your best diagnostic tool.",
+                "3. Symmetry is a trap. Don't just look at the bad leg. Look at the good one too. Comparison is your best diagnostic tool.",
           ),
         ],
       ),
@@ -557,7 +597,9 @@ class _SmallInfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFFB923C).withValues(alpha: 0.3)),
+        border: Border.all(
+          color: const Color(0xFFFB923C).withValues(alpha: 0.3),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

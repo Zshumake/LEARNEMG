@@ -29,12 +29,33 @@ class PodcastLibraryScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           _buildHeroHeader(),
-          ...categories.entries.map((entry) {
+          ...categories.entries.expand((entry) {
             final categoryName = _formatCategoryName(entry.key);
             final episodes = entry.value;
-            return SliverToBoxAdapter(
-              child: _buildCategorySection(context, categoryName, episodes),
-            );
+            return [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 32, 24, 16),
+                  child: Text(
+                    categoryName.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.5,
+                      color: Color(0xFF64748B),
+                    ),
+                  ),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: _buildEpisodeCard(context, episodes[index]),
+                  );
+                }, childCount: episodes.length),
+              ),
+            ];
           }),
           const SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
@@ -85,32 +106,6 @@ class PodcastLibraryScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildCategorySection(
-    BuildContext context,
-    String title,
-    List<PodcastEpisode> episodes,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 32, 24, 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title.toUpperCase(),
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 1.5,
-              color: Color(0xFF64748B),
-            ),
-          ),
-          const SizedBox(height: 16),
-          ...episodes.map((ep) => _buildEpisodeCard(context, ep)),
-        ],
       ),
     );
   }

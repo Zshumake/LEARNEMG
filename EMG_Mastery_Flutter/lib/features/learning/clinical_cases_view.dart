@@ -102,16 +102,44 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildDifficultyGrid(),
                     const SizedBox(height: 32),
-                    _buildCaseList(controller, filteredCases),
+                    _buildCaseListHeader(),
                   ],
                 ),
               ),
             ),
+            if (filteredCases.isEmpty)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(40),
+                  child: Center(
+                    child: Text(
+                      "No cases found.",
+                      style: TextStyle(color: Colors.white38),
+                    ),
+                  ),
+                ),
+              )
+            else
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 32.0),
+                sliver: SliverList.builder(
+                  itemCount: filteredCases.length,
+                  itemBuilder: (context, index) {
+                    final entry = filteredCases[index];
+                    return _CaseSelectionCard(
+                      caseTitle: entry.value.title,
+                      difficulty: entry.value.difficulty,
+                      onTap: () => controller.loadCase(entry.key),
+                    );
+                  },
+                ),
+              ),
           ],
         ),
       ),
@@ -157,52 +185,23 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
     );
   }
 
-  Widget _buildCaseList(
-    ClinicalCaseController controller,
-    List<MapEntry<String, ClinicalCase>> cases,
-  ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildCaseListHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Patient Case Load",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            if (_selectedDifficulty != 'all')
-              TextButton(
-                onPressed: () => setState(() => _selectedDifficulty = 'all'),
-                child: const Text(
-                  "Show All",
-                  style: TextStyle(color: Colors.cyan),
-                ),
-              ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        if (cases.isEmpty)
-          const Center(
-            child: Padding(
-              padding: EdgeInsets.all(40),
-              child: Text(
-                "No cases found.",
-                style: TextStyle(color: Colors.white38),
-              ),
-            ),
-          ),
-        ...cases.map(
-          (entry) => _CaseSelectionCard(
-            caseTitle: entry.value.title,
-            difficulty: entry.value.difficulty,
-            onTap: () => controller.loadCase(entry.key),
+        const Text(
+          "Patient Case Load",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        if (_selectedDifficulty != 'all')
+          TextButton(
+            onPressed: () => setState(() => _selectedDifficulty = 'all'),
+            child: const Text("Show All", style: TextStyle(color: Colors.cyan)),
+          ),
       ],
     );
   }

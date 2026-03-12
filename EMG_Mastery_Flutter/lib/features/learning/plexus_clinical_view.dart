@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 
 /// Clinical Pathophysiology content for the Brachial Plexus module.
 class PlexusClinicalView extends StatelessWidget {
@@ -27,7 +28,12 @@ class PlexusClinicalView extends StatelessWidget {
             ),
           ),
           const Expanded(
-            child: TabBarView(children: [_ClinicalGuideTab(), _QuizTab()]),
+            child: TabBarView(
+              children: [
+                KeepAliveTabWrapper(child: _ClinicalGuideTab()),
+                KeepAliveTabWrapper(child: _QuizTab()),
+              ],
+            ),
           ),
         ],
       ),

@@ -10,15 +10,175 @@ export const ErnestIcon = {
      * @param {string} options.className - Additional CSS classes
      * @param {boolean} options.isCelebratory - If true, applies a celebratory pose
      */
-    getHTML(options = {}) {
-        const { size = '40px', className = '', isCelebratory = false } = options;
+    getSVGOnly(personaId = 'ernest') {
+        const id = `svg-icon-${Math.random().toString(36).substr(2, 5)}`;
 
-        // Unique ID for filters to prevent collisions
-        const id = `ernest-icon-${Math.random().toString(36).substr(2, 9)}`;
+        if (personaId === 'earl') {
+            // Tightly zoomed in on upper face/screen area to make him visible in small circles
+            return `
+<svg viewBox="100 80 300 300" preserveAspectRatio="xMidYMid slice" class="mini-earl-svg earl-container awake" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block;">
+    <defs>
+        <linearGradient id="body-grad-${id}" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6a736e" />
+            <stop offset="50%" stop-color="#555d59" />
+            <stop offset="100%" stop-color="#3b423f" />
+        </linearGradient>
 
+        <linearGradient id="screen-grad-${id}" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#4c5c44" />
+            <stop offset="100%" stop-color="#3a4734" />
+        </linearGradient>
+
+        <linearGradient id="gloss-grad-${id}" x1="0%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+        </linearGradient>
+
+        <clipPath id="left-eye-clip-${id}">
+            <path d="M 185 268 Q 210 280 235 268 L 235 310 L 185 310 Z" />
+        </clipPath>
+        <clipPath id="right-eye-clip-${id}">
+            <path d="M 265 268 Q 290 280 315 268 L 315 310 L 265 310 Z" />
+        </clipPath>
+    </defs>
+
+    <g class="earl-z-group" fill="#88dded" font-family="Comic Sans MS, Marker Felt, sans-serif" font-weight="bold" font-size="30" opacity="0">
+        <text class="earl-z1" x="320" y="150">Z</text>
+        <text class="earl-z2" x="360" y="110">z</text>
+        <text class="earl-z3" x="390" y="80">z</text>
+    </g>
+
+    <g id="earl-prongs">
+        <g class="earl-prong earl-prong-left">
+            <rect x="180" y="40" width="16" height="80" fill="#787d7a" stroke="#1a1c1a" stroke-width="4"/>
+            <circle cx="188" cy="40" r="12" fill="#787d7a" stroke="#1a1c1a" stroke-width="4"/>
+            <rect x="182" y="45" width="4" height="70" fill="#ffffff" opacity="0.3"/>
+            <path d="M 182 50 Q 186 45 194 52 L 194 62 Q 186 65 182 58 Z" fill="#4a2010"/>
+            <path d="M 184 52 Q 188 48 192 53 L 192 60 Q 188 62 184 56 Z" fill="#8c3e16"/>
+            <path d="M 182 85 Q 188 80 194 88 L 194 95 L 182 95 Z" fill="#4a2010"/>
+        </g>
+        
+        <g class="earl-prong earl-prong-right">
+            <rect x="304" y="40" width="16" height="80" fill="#787d7a" stroke="#1a1c1a" stroke-width="4"/>
+            <circle cx="312" cy="40" r="12" fill="#787d7a" stroke="#1a1c1a" stroke-width="4"/>
+            <rect x="306" y="45" width="4" height="70" fill="#ffffff" opacity="0.3"/>
+            <path d="M 306 70 Q 312 65 318 75 L 318 90 Q 310 95 306 85 Z" fill="#4a2010"/>
+            <path d="M 308 73 Q 312 68 316 76 L 316 88 Q 312 91 308 83 Z" fill="#8c3e16"/>
+            <path d="M 306 45 Q 314 42 318 48 L 318 55 L 306 50 Z" fill="#4a2010"/>
+        </g>
+    </g>
+
+    <g id="earl-body-group">
+        <path id="body-chassis" d="M 110 160 C 110 110, 140 100, 180 100 L 320 100 C 360 100, 390 110, 390 160 C 390 200, 350 210, 330 240 C 320 255, 320 280, 320 300 L 320 480 C 320 530, 280 540, 250 540 C 220 540, 180 530, 180 480 L 180 300 C 180 280, 180 255, 170 240 C 150 210, 110 200, 110 160 Z" 
+              fill="url(#body-grad-${id})" stroke="#1a1c1a" stroke-width="8" stroke-linejoin="round"/>
+
+        <path d="M 120 160 C 120 120, 145 110, 180 110 L 320 110 C 340 110, 355 115, 365 125 M 120 160 C 120 190, 155 205, 175 235 C 185 250, 190 270, 190 300 L 190 480 C 190 515, 215 530, 250 530" 
+              fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.2"/>
+        <path d="M 250 530 C 285 530, 310 515, 310 480 L 310 300 C 310 270, 315 250, 325 235 C 345 205, 380 190, 380 160 C 380 135, 365 118, 340 112" 
+              fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" opacity="0.3"/>
+
+        <g>
+            <path d="M 388 150 Q 375 160 380 175 Q 392 165 388 150 Z" fill="#4a2010"/>
+            <path d="M 385 153 Q 378 160 382 170 Q 388 163 385 153 Z" fill="#8c3e16"/>
+        </g>
+        <g>
+            <path d="M 315 470 Q 305 480 310 500 Q 325 490 315 470 Z" fill="#4a2010"/>
+            <path d="M 313 475 Q 308 482 311 495 Q 320 488 313 475 Z" fill="#8c3e16"/>
+        </g>
+
+        <g stroke-linecap="round">
+            <path d="M 185 412 L 210 452 M 205 412 L 185 447" stroke="#ffffff" stroke-width="3" opacity="0.3"/>
+            <path d="M 185 410 L 210 450 M 205 410 L 185 445" stroke="#1a1c1a" stroke-width="4" opacity="0.8"/>
+            <path d="M 315 412 L 290 452 M 295 412 L 315 447" stroke="#ffffff" stroke-width="3" opacity="0.3"/>
+            <path d="M 315 410 L 290 450 M 295 410 L 315 445" stroke="#1a1c1a" stroke-width="4" opacity="0.8"/>
+            <path d="M 230 482 L 245 497" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+            <path d="M 230 480 L 245 495" stroke="#1a1c1a" stroke-width="2.5" opacity="0.7"/>
+        </g>
+
+        <g font-family="Comic Sans MS, Marker Felt, sans-serif" font-weight="bold" fill="#2a302d" opacity="0.4" text-anchor="middle">
+            <text x="250" y="235" font-size="44" letter-spacing="4">STIM</text>
+            <text x="250" y="390" font-size="38" letter-spacing="3">STORE</text>
+            <text x="250" y="430" font-size="34">1</text>
+            <text x="250" y="470" font-size="34">2</text>
+        </g>
+
+        <g stroke="#1a1c1a" stroke-width="5" fill="none">
+            <circle cx="250" cy="515" r="22" fill="#4a524e" opacity="0.5"/>
+            <circle cx="250" cy="515" r="22" />
+            <path d="M 228 515 L 240 515 L 245 498 L 255 532 L 260 515 L 272 515" stroke-linejoin="miter"/>
+        </g>
+
+        <g id="earl-screen-area">
+            <path d="M 125 130 L 375 130 C 385 130, 385 180, 375 180 L 125 180 C 115 180, 115 130, 125 130 Z" 
+                  fill="url(#screen-grad-${id})" stroke="#1a1c1a" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M 125 130 L 375 130 C 385 130, 385 180, 375 180 L 125 180 C 115 180, 115 130, 125 130 Z" 
+                  fill="none" stroke="#11150f" stroke-width="8" opacity="0.6"/>
+
+            <text x="165" y="166" font-family="monospace, sans-serif" font-size="36" font-weight="bold" fill="#222b1c" opacity="0.9" letter-spacing="5">ERROR</text>
+            
+            <g stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 145 145 L 130 135 M 145 145 L 135 165 L 140 180 M 145 145 L 165 155 L 180 145 M 165 155 L 175 170" stroke="#777777" stroke-width="1.5" fill="none" opacity="0.4"/>
+                <path d="M 355 165 L 370 175 M 355 165 L 345 145 L 330 135 M 355 165 L 335 170 L 310 160 M 345 145 L 350 130" stroke="#777777" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+                <path d="M 144 144 L 129 134 M 144 144 L 134 164 L 139 179 M 144 144 L 164 154 L 179 144 M 164 154 L 174 169" stroke="#1a1c1a" stroke-width="2.5" fill="none"/>
+                <path d="M 354 164 L 369 174 M 354 164 L 344 144 L 329 134 M 354 164 L 334 169 L 309 159 M 344 144 L 349 129" stroke="#1a1c1a" stroke-width="2.5" fill="none"/>
+                
+                <circle cx="144" cy="144" r="2" fill="#1a1c1a"/>
+                <circle cx="354" cy="164" r="2" fill="#1a1c1a"/>
+            </g>
+
+            <path d="M 125 130 L 375 130 C 380 130, 383 135, 383 140 L 122 170 C 120 160, 115 130, 125 130 Z" fill="url(#gloss-grad-${id})"/>
+
+            <circle class="earl-led" cx="365" cy="155" r="7" stroke="#1a1c1a" stroke-width="3"/>
+            <path d="M 360 152 A 5 5 0 0 1 368 152" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.5"/>
+        </g>
+
+        <g id="earl-face-area">
+            <path d="M 180 250 Q 250 270 320 250 L 320 290 Q 250 310 180 290 Z" fill="#2c3330" opacity="0.3"/>
+
+            <g class="earl-eyes">
+                <g>
+                    <g clip-path="url(#left-eye-clip-${id})">
+                        <circle cx="210" cy="275" r="18" fill="#e8e4d3" stroke="#1a1c1a" stroke-width="4"/>
+                        <circle cx="212" cy="275" r="6" fill="#1a1c1a"/> 
+                        <circle cx="210" cy="275" r="18" fill="none" stroke="#2c3330" stroke-width="4" opacity="0.4"/>
+                    </g>
+                    <path d="M 188 268 Q 210 280 232 268" fill="none" stroke="#1a1c1a" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 194 298 Q 210 306 226 298" fill="none" stroke="#2c3330" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                
+                <g>
+                    <g clip-path="url(#right-eye-clip-${id})">
+                        <circle cx="290" cy="275" r="18" fill="#e8e4d3" stroke="#1a1c1a" stroke-width="4"/>
+                        <circle cx="288" cy="275" r="6" fill="#1a1c1a"/> 
+                        <circle cx="290" cy="275" r="18" fill="none" stroke="#2c3330" stroke-width="4" opacity="0.4"/>
+                    </g>
+                    <path d="M 268 268 Q 290 280 312 268" fill="none" stroke="#1a1c1a" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 274 298 Q 290 306 306 298" fill="none" stroke="#2c3330" stroke-width="3" stroke-linecap="round"/>
+                </g>
+            </g>
+
+            <g class="earl-eyebrow" stroke-linecap="round">
+                <path d="M 180 255 Q 210 245 242 275" fill="none" stroke="#262b28" stroke-width="8"/>
+                <path d="M 320 255 Q 290 245 258 275" fill="none" stroke="#262b28" stroke-width="8"/>
+            </g>
+
+            <path d="M 245 275 C 235 275, 235 295, 250 295 C 255 295, 260 290, 260 285" fill="none" stroke="#1a1c1a" stroke-width="4" stroke-linecap="round"/>
+
+            <g class="earl-mouth-closed">
+                <path d="M 185 325 Q 250 300 315 325" fill="none" stroke="#1a1c1a" stroke-width="6" stroke-linecap="round"/>
+                <path d="M 180 315 Q 175 325 190 332" fill="none" stroke="#1a1c1a" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 320 315 Q 325 325 310 332" fill="none" stroke="#1a1c1a" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 230 322 Q 250 315 270 322" fill="none" stroke="#2c3330" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+            </g>
+        </g>
+    </g>
+</svg>`;
+        }
+
+        // Default Ernest SVG
         return `
-            <div class="mini-ernest-wrapper ${className}" style="width: ${size}; height: ${size}; min-width: ${size}; min-height: ${size}; flex-shrink: 0; position: relative; overflow: hidden; border-radius: 50%; background: #6b9f78; border: 2px solid #2a2d34; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center;">
-                <svg viewBox="75 40 340 340" preserveAspectRatio="xMidYMid meet" class="mini-ernest-svg at-ernest-container awake" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block;">
+            <svg viewBox="75 40 340 340" preserveAspectRatio="xMidYMid meet" class="mini-ernest-svg at-ernest-container awake" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block;">
             <defs>
                 <style>
                     .ernest-outline { stroke: #2a2d34; stroke-width: 7; stroke-linejoin: round; stroke-linecap: round; }
@@ -185,7 +345,24 @@ export const ErnestIcon = {
                 <path class="ernest-zap-line" d="M 155 10 L 140 -20 L 160 -35 L 145 -60" fill="none" stroke="#88dded" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path class="ernest-zap-line" d="M 265 10 L 280 -20 L 260 -35 L 275 -60" fill="none" stroke="#88dded" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
             </g>
-</svg>
+            </svg>
+        `;
+    },
+
+    getHTML(options = {}) {
+        const { size = '40px', className = '', persona = null } = options;
+
+        // Auto-detect current persona from global state if not specified
+        let currentPersona = persona;
+        if (!currentPersona && window.appComponents && window.appComponents.ernestAI) {
+            currentPersona = window.appComponents.ernestAI.currentPersonaId;
+        }
+
+        const bgColor = currentPersona === 'earl' ? '#e2e8f0' : '#ffffff';
+
+        return `
+            <div class="mini-ernest-wrapper ${className}" style="width: ${size}; height: ${size}; min-width: ${size}; min-height: ${size}; flex-shrink: 0; position: relative; overflow: hidden; border-radius: 50%; background: ${bgColor}; border: 2px solid #000000; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center;" data-persona="${currentPersona}">
+                ${this.getSVGOnly(currentPersona)}
             </div>
         `;
     }

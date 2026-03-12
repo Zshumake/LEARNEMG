@@ -4,9 +4,9 @@ export class ErnestAPI {
         this.preferredModel = localStorage.getItem('ernest_preferred_model') || null;
     }
 
-    resetApiKey() {
+    resetApiKey(reload = true) {
         localStorage.removeItem('ernest_api_key');
-        location.reload();
+        if (reload) location.reload();
     }
 
     setApiKey(key) {

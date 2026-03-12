@@ -1,19 +1,11 @@
 /* Cartoony Rubber-Hose Ernest CSS */
-.at-ernest-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 10px auto;
-    width: 320px;
-    height: 320px;
-}
 
 .ernest-svg-char {
     width: 500px !important;
     height: 550px !important;
     min-width: 500px;
     min-height: 550px;
-    transform-origin: top center;
+    transform-origin: bottom center;
     transform: scale(0.55);
     overflow: visible;
     cursor: pointer;
@@ -21,7 +13,7 @@
 }
 
 .ernest-svg-char:hover {
-    transform: scale(0.78);
+    transform: scale(0.67);
 }
 
 /* Rubber-Hose Bouncy Body (Awake) */
@@ -37,7 +29,7 @@
     }
 
     50% {
-        transform: scale(0.55) translateY(12px);
+        transform: scale(0.55) translateY(-12px);
     }
 }
 
@@ -54,8 +46,8 @@
     }
 
     50% {
-        transform: scale(0.55) translateY(18px);
-        /* Deeper breathing */
+        transform: scale(0.55) translateY(-18px);
+        /* Deeper breathing outward from floor */
     }
 }
 
@@ -232,8 +224,8 @@
     }
 
     50% {
-        /* Deep, wide, tilted bounce for thinking */
-        transform: scale(0.55) rotate(-8deg) translateY(20px);
+        /* Deep, wide, tilted bounce for thinking - adjusted for bottom origin */
+        transform: scale(0.55) rotate(-8deg) translateY(-20px);
     }
 }
 
@@ -247,12 +239,12 @@
     0%,
     100% {
         /* Grounded heavy bounce */
-        transform: scale(0.55) translateY(20px);
+        transform: scale(0.55) translateY(-20px);
     }
 
     50% {
         /* Air leap */
-        transform: scale(0.55) translateY(-40px);
+        transform: scale(0.55) translateY(40px);
     }
 }
 
@@ -269,8 +261,8 @@
     }
 
     50% {
-        /* Leaning towards camera/user = scale up slightly, rotate towards them */
-        transform: scale(0.80) translateY(5px) rotate(-6deg);
+        /* Adjusted for bottom origin */
+        transform: scale(0.65) translateY(-5px) rotate(-6deg);
     }
 }
 
@@ -281,15 +273,15 @@
 
 @keyframes anim-dancing-body {
     0% {
-        transform: scale(0.55) rotate(-15deg) translateY(10px);
+        transform: scale(0.55) rotate(-15deg) translateY(-10px);
     }
 
     50% {
-        transform: scale(0.55) rotate(0deg) translateY(-20px);
+        transform: scale(0.55) rotate(0deg) translateY(20px);
     }
 
     100% {
-        transform: scale(0.55) rotate(15deg) translateY(10px);
+        transform: scale(0.55) rotate(15deg) translateY(-10px);
     }
 }
 
@@ -302,12 +294,12 @@
 
     0%,
     100% {
-        transform: scale(0.55) translateY(30px);
+        transform: scale(0.55) translateY(-30px);
         /* Heavy land */
     }
 
     50% {
-        transform: scale(0.55) translateY(-60px);
+        transform: scale(0.55) translateY(60px);
         /* Huge leap in the air */
     }
 }
@@ -321,11 +313,11 @@
 
     0%,
     100% {
-        transform: scale(0.55) rotate(-10deg) translateY(10px);
+        transform: scale(0.55) rotate(-10deg) translateY(-10px);
     }
 
     50% {
-        transform: scale(0.55) rotate(15deg) translateY(-10px);
+        transform: scale(0.55) rotate(15deg) translateY(10px);
     }
 }
 
@@ -339,15 +331,15 @@
 
 @keyframes ernest-pop-out {
     0% {
-        transform: scale(0.55) translateY(40px);
+        transform: scale(0.55) translateY(-40px);
     }
 
     40% {
-        transform: scale(1.1) translateY(-30px);
+        transform: scale(1.1) translateY(30px);
     }
 
     70% {
-        transform: scale(0.55) translateY(15px);
+        transform: scale(0.55) translateY(-15px);
     }
 
     100% {

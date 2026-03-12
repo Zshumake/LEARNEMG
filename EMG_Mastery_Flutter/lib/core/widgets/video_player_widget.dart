@@ -17,7 +17,6 @@ class AppVideoPlayer extends StatefulWidget {
 
 class _AppVideoPlayerState extends State<AppVideoPlayer> {
   late YoutubePlayerController _controller;
-  bool _isInteracting = false;
 
   @override
   void initState() {
@@ -45,27 +44,9 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
       borderRadius: BorderRadius.circular(12),
       child: AspectRatio(
         aspectRatio: widget.aspectRatio!,
-        child: Stack(
-          children: [
-            YoutubePlayer(
-              controller: _controller,
-              aspectRatio: widget.aspectRatio!,
-            ),
-            if (!_isInteracting)
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isInteracting = true;
-                  });
-                  _controller.playVideo();
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-              ),
-          ],
+        child: YoutubePlayer(
+          controller: _controller,
+          aspectRatio: widget.aspectRatio!,
         ),
       ),
     );

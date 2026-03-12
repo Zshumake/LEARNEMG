@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../data/pattern_data.dart';
-import '../../data/podcast_data.dart';
 import '../../data/models/pattern_model.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/video_player_widget.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 
 class BasicPatternsView extends StatelessWidget {
   const BasicPatternsView({super.key});
@@ -31,7 +30,12 @@ class BasicPatternsView extends StatelessWidget {
             ),
           ),
           const Expanded(
-            child: TabBarView(children: [_PatternLibraryTab(), _QuizTab()]),
+            child: TabBarView(
+              children: [
+                KeepAliveTabWrapper(child: _PatternLibraryTab()),
+                KeepAliveTabWrapper(child: _QuizTab()),
+              ],
+            ),
           ),
         ],
       ),
@@ -92,12 +96,6 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...PodcastData.getEpisodesByModule('basic-patterns').map(
-            (episode) => Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: PodcastTriggerCard(episode: episode),
-            ),
-          ),
           _buildObjectives(),
           const SizedBox(height: 30),
           _buildAnalysisFramework(),

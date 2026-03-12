@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../data/needle_localization_data.dart';
 import '../../data/models/needle_localization_model.dart';
 
@@ -29,7 +30,12 @@ class NeedleLocalizationView extends StatelessWidget {
             ),
           ),
           const Expanded(
-            child: TabBarView(children: [_AnatomyAtlasTab(), _QuizTab()]),
+            child: TabBarView(
+              children: [
+                KeepAliveTabWrapper(child: _AnatomyAtlasTab()),
+                KeepAliveTabWrapper(child: _QuizTab()),
+              ],
+            ),
           ),
         ],
       ),

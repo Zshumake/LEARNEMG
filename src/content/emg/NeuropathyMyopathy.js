@@ -188,7 +188,72 @@ export const NeuropathyMyopathy = {
                 </div>
             </div>
 
-            <!-- 3. Comparison -->
+            <!-- 3. Classification -->
+            <div id="content-classification" class="nm-content" style="display: none; animation: fadeIn 0.5s;">
+                <div class="content-card">
+                    <h3 style="color: #0f172a; margin-bottom: 20px; font-size: 1.8em; font-weight: 900;">Injury Classification</h3>
+                    <p style="font-size: 1.1em; color: #475569; line-height: 1.6; margin-bottom: 30px;">${this.data.classification.intro}</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 40px;">
+                        ${this.data.classification.seddon.map(item => `
+                            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 25px; border-left: 5px solid ${item.color}; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="background: ${item.color}15; color: ${item.color}; padding: 8px; border-radius: 10px;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            ${item.icon === 'bolt' ? '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>' :
+                item.icon === 'cut' ? '<circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line>' :
+                    '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="12" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>'}
+                                        </svg>
+                                    </div>
+                                    <h4 style="color: ${item.color}; font-weight: 900; font-size: 1.25em; margin: 0;">${item.grade}</h4>
+                                </div>
+                                <p style="color: #475569; font-size: 1em; line-height: 1.5; margin: 0;">${item.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <h4 style="color: #0f172a; font-weight: 900; font-size: 1.5em; margin-bottom: 20px;">Sunderland Grades</h4>
+                    <div style="overflow-x: auto; background: #f8fafc; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 40px;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead style="background: #f1f5f9;">
+                                <tr style="border-bottom: 2px solid #e2e8f0;">
+                                    <th style="padding: 15px 20px; font-weight: 800; color: #475569;">Grade</th>
+                                    <th style="padding: 15px 20px; font-weight: 800; color: #475569;">Anatomy</th>
+                                    <th style="padding: 15px 20px; font-weight: 800; color: #475569;">Prognosis</th>
+                                    <th style="padding: 15px 20px; font-weight: 800; color: #475569;">Seddon Equivalent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${this.data.classification.sunderland.map(row => `
+                                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                                        <td style="padding: 15px 20px; font-weight: 700;">${row.grade}</td>
+                                        <td style="padding: 15px 20px;">${row.anatomy}</td>
+                                        <td style="padding: 15px 20px;"><span style="padding: 4px 10px; border-radius: 20px; background: #e2e8f0; color: #475569; font-size: 0.85em; font-weight: 700;">${row.prognosis}</span></td>
+                                        <td style="padding: 15px 20px; color: #6d28d9; font-weight: 600;">${row.seddon}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="background: #f1f5f9; border-radius: 20px; padding: 30px; border: 1px solid #e2e8f0; margin-bottom: 30px;">
+                        <h4 style="color: #0f172a; font-weight: 900; font-size: 1.3em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            Prognostic Indicators
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                            ${this.data.classification.prognosis.map(item => `
+                                <div style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid ${item.color}; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                                    <strong style="color: #0f172a; display: block; margin-bottom: 8px;">${item.factor}</strong>
+                                    <p style="color: #475569; font-size: 0.9em; line-height: 1.5; margin: 0;">${item.detail}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Comparison -->
             <div id="content-comparison" class="nm-content" style="display: none; animation: fadeIn 0.5s;">
                 <div class="content-card">
                     <div style="text-align: center; margin-bottom: 30px;">
@@ -218,10 +283,10 @@ export const NeuropathyMyopathy = {
                             </thead>
                             <tbody>
                                 ${this.data.comparison.table.map(row => {
-            if (row.category) {
-                return `<tr><td colspan="3" style="background: #f1f5f9; padding: 12px 20px; font-weight: 800; color: #334155; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase;">${row.category}</td></tr>`;
-            }
-            return `
+                        if (row.category) {
+                            return `<tr><td colspan="3" style="background: #f1f5f9; padding: 12px 20px; font-weight: 800; color: #334155; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase;">${row.category}</td></tr>`;
+                        }
+                        return `
                                     <tr style="border-bottom: 1px solid #f1f5f9;">
                                         <td style="padding: 15px 20px; font-weight: 700; color: #1e293b;">${row.feature}</td>
                                         
@@ -236,7 +301,7 @@ export const NeuropathyMyopathy = {
                                         </td>
                                     </tr>
                                     `;
-        }).join('')}
+                    }).join('')}
                             </tbody>
                         </table>
                     </div>

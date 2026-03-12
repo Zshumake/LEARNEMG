@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/models/report_writing_model.dart';
-import '../../data/podcast_data.dart';
 import '../../data/report_writing_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
+import '../../core/widgets/keep_alive_tab_wrapper.dart';
 
 class ReportWritingView extends StatefulWidget {
   const ReportWritingView({super.key});
@@ -36,7 +35,10 @@ class _ReportWritingViewState extends State<ReportWritingView> {
           ),
           Expanded(
             child: TabBarView(
-              children: [_buildTutorialSection(), _buildScenariosSection()],
+              children: [
+                KeepAliveTabWrapper(child: _buildTutorialSection()),
+                KeepAliveTabWrapper(child: _buildScenariosSection()),
+              ],
             ),
           ),
         ],
@@ -51,9 +53,6 @@ class _ReportWritingViewState extends State<ReportWritingView> {
         children: [
           _buildHeroHeader(),
           const SizedBox(height: 20),
-          ...PodcastData.getEpisodesByModule(
-            'simple-reports',
-          ).map((e) => PodcastTriggerCard(episode: e)),
           const SizedBox(height: 30),
           _buildProgressBar(),
           const SizedBox(height: 40),

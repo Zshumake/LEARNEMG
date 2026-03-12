@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../core/widgets/video_player_widget.dart';
 
 /// NCS Techniques teaching module.
@@ -363,7 +362,7 @@ class _VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final videoId = YoutubePlayerController.convertUrlToId(video.url) ?? '';
+    final videoId = video.url;
 
     return Container(
       decoration: BoxDecoration(
@@ -648,52 +647,19 @@ class _ProtocolData {
 
 const _ncsTechniquesData = (
   upperVideos: [
-    _VideoData(
-      "Median Sensory Technique",
-      "https://youtube.com/watch?v=86j7cNLIX0U",
-    ),
-    _VideoData(
-      "Ulnar Sensory Technique",
-      "https://youtube.com/watch?v=i9Naurf0eWU",
-    ),
-    _VideoData(
-      "Median-Radial Comparison",
-      "https://youtube.com/watch?v=M1sE2FT8YQg",
-    ),
-    _VideoData(
-      "Dorsal Ulnar Cutaneous",
-      "https://youtube.com/watch?v=U-60ft_8klI",
-    ),
-    _VideoData(
-      "Median Motor Technique",
-      "https://youtube.com/watch?v=cdVrcgeBgIg",
-    ),
-    _VideoData(
-      "Ulnar Motor Technique",
-      "https://youtube.com/watch?v=UmFYJDMucOY",
-    ),
+    _VideoData("Median Sensory Technique", "86j7cNLIX0U"),
+    _VideoData("Ulnar Sensory Technique", "i9Naurf0eWU"),
+    _VideoData("Median-Radial Comparison", "nMaxrbpyR-0"),
+    _VideoData("Dorsal Ulnar Cutaneous", "U-60ft_8klI"),
+    _VideoData("Median Motor Technique", "cdVrcgeBgIg"),
+    _VideoData("Ulnar Motor Technique", "UmFYJDMucOY"),
   ],
   lowerVideos: [
-    _VideoData(
-      "Superficial Fibular Sensory",
-      "https://youtube.com/watch?v=zP1yAU5DW2s",
-    ),
-    _VideoData(
-      "Sural Sensory Technique",
-      "https://youtube.com/watch?v=G1bsDinxuF8",
-    ),
-    _VideoData(
-      "Common Fibular Motor",
-      "https://youtube.com/watch?v=pWeH6kCa9lo",
-    ),
-    _VideoData(
-      "Tibial Motor Technique",
-      "https://youtube.com/watch?v=86j7cNLIX0U",
-    ),
-    _VideoData(
-      "Popliteal Fossa Anatomy",
-      "https://youtube.com/watch?v=nMaxrbpyR-0",
-    ),
+    _VideoData("Superficial Fibular Sensory", "M1sE2FT8YQg"),
+    _VideoData("Sural Sensory Technique", "zP1yAU5DW2s"),
+    _VideoData("Common Fibular Motor", "G1bsDinxuF8"),
+    _VideoData("Tibial Motor Technique", "pWeH6kCa9lo"),
+    _VideoData("Popliteal Fossa Anatomy", "nMaxrbpyR-0"),
   ],
 );
 

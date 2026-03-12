@@ -1,6 +1,9 @@
 import 'dart:math';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../features/ernest/widgets/ernest_chat_overlay.dart';
+import '../../features/ernest/ernest_controller.dart';
 
 /// Animated Ernest character widget that renders the SVG stimulator mascot
 /// with idle bounce, blinking eyes, LED pulse, prong wobble, and zap line
@@ -53,6 +56,9 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
     "Welcome, future neurophysiologist!",
     "STIM is ready! Let's go! 🚀",
   ];
+
+  int _tapCount = 0;
+  Timer? _tapTimer;
 
   @override
   void initState() {
@@ -266,19 +272,55 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                 _eyebrowController,
               ]),
               builder: (context, child) {
-                final ernest = _buildAnimatedErnest();
-                if (!widget.isInteractive) return ernest;
+                final controller = context.watch<ErnestController>();
+                final isEarl = controller.currentPersona?.id == 'earl';
+
+                final character = isEarl
+                    ? _buildAnimatedEarl()
+                    : _buildAnimatedErnest();
 
                 return GestureDetector(
                   onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      builder: (context) => const ErnestChatOverlay(),
-                    );
+                    _tapCount++;
+                    _tapTimer?.cancel();
+                    _tapTimer = Timer(const Duration(milliseconds: 500), () {
+                      if (mounted) {
+                        _tapCount = 0;
+                      }
+                    });
+
+                    if (_tapCount >= 7) {
+                      _tapCount = 0;
+                      _tapTimer?.cancel();
+                      final currentlyEarl =
+                          context.read<ErnestController>().currentPersona?.id ==
+                          'earl';
+                      context.read<ErnestController>().switchPersona();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            currentlyEarl
+                                ? "System Override: Restoring Ernest..."
+                                : "System Override: Booting Earl...",
+                          ),
+                          backgroundColor: currentlyEarl
+                              ? const Color(0xFF6B9F78)
+                              : Colors.red,
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    }
+
+                    if (widget.isInteractive && _tapCount == 1) {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const ErnestChatOverlay(),
+                      );
+                    }
                   },
-                  child: ernest,
+                  child: character,
                 );
               },
             ),
@@ -296,6 +338,26 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
         height: widget.size,
         child: CustomPaint(
           painter: _ErnestPainter(
+            blinkValue: _blinkAnimation.value,
+            ledValue: _ledAnimation.value,
+            prongLeftAngle: _prongLeftAnimation.value,
+            prongRightAngle: _prongRightAnimation.value,
+            zapOpacity: _zapAnimation.value,
+            eyebrowOffset: _eyebrowAnimation.value,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAnimatedEarl() {
+    return Transform.translate(
+      offset: Offset(0, _bounceAnimation.value),
+      child: SizedBox(
+        width: widget.size,
+        height: widget.size,
+        child: CustomPaint(
+          painter: _EarlPainter(
             blinkValue: _blinkAnimation.value,
             ledValue: _ledAnimation.value,
             prongLeftAngle: _prongLeftAnimation.value,
@@ -863,6 +925,471 @@ class _ErnestPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _ErnestPainter oldDelegate) {
+    return oldDelegate.blinkValue != blinkValue ||
+        oldDelegate.ledValue != ledValue ||
+        oldDelegate.prongLeftAngle != prongLeftAngle ||
+        oldDelegate.prongRightAngle != prongRightAngle ||
+        oldDelegate.zapOpacity != zapOpacity ||
+        oldDelegate.eyebrowOffset != eyebrowOffset;
+  }
+}
+
+class _EarlPainter extends CustomPainter {
+  final double blinkValue;
+  final double ledValue;
+  final double prongLeftAngle;
+  final double prongRightAngle;
+  final double zapOpacity;
+  final double eyebrowOffset;
+
+  _EarlPainter({
+    required this.blinkValue,
+    required this.ledValue,
+    required this.prongLeftAngle,
+    required this.prongRightAngle,
+    required this.zapOpacity,
+    required this.eyebrowOffset,
+  });
+
+  double _s(double v, double size) => v * size / 500;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final s = size.width;
+
+    // Colors for Earl
+    const bodyGradStart = Color(0xFF6A736E);
+    const bodyGradMid = Color(0xFF555D59);
+    const bodyGradEnd = Color(0xFF3B423F);
+    const screenGradTop = Color(0xFF4C5C44);
+    const screenGradBottom = Color(0xFF3A4734);
+    const ledColorOff = Color(0xFF787D7A);
+    const ledColorOn = Color(0xFF88DDED);
+    const outlineColor = Color(0xFF1A1C1A);
+
+    final outlinePaint = Paint()
+      ..color = outlineColor
+      ..strokeWidth = _s(6, s)
+      ..style = PaintingStyle.stroke
+      ..strokeJoin = StrokeJoin.round;
+
+    final thickOutlinePaint = Paint()
+      ..color = outlineColor
+      ..strokeWidth = _s(8, s)
+      ..style = PaintingStyle.stroke
+      ..strokeJoin = StrokeJoin.round;
+
+    // Body Chassis Path
+    final bodyPath = Path()
+      ..moveTo(_s(110, s), _s(160, s))
+      ..cubicTo(
+        _s(110, s),
+        _s(110, s),
+        _s(140, s),
+        _s(100, s),
+        _s(180, s),
+        _s(100, s),
+      )
+      ..lineTo(_s(320, s), _s(100, s))
+      ..cubicTo(
+        _s(360, s),
+        _s(100, s),
+        _s(390, s),
+        _s(110, s),
+        _s(390, s),
+        _s(160, s),
+      )
+      ..cubicTo(
+        _s(390, s),
+        _s(200, s),
+        _s(350, s),
+        _s(210, s),
+        _s(330, s),
+        _s(240, s),
+      )
+      ..cubicTo(
+        _s(320, s),
+        _s(255, s),
+        _s(320, s),
+        _s(280, s),
+        _s(320, s),
+        _s(300, s),
+      )
+      ..lineTo(_s(320, s), _s(480, s))
+      ..cubicTo(
+        _s(320, s),
+        _s(530, s),
+        _s(280, s),
+        _s(540, s),
+        _s(250, s),
+        _s(540, s),
+      )
+      ..cubicTo(
+        _s(220, s),
+        _s(540, s),
+        _s(180, s),
+        _s(530, s),
+        _s(180, s),
+        _s(480, s),
+      )
+      ..lineTo(_s(180, s), _s(300, s))
+      ..cubicTo(
+        _s(180, s),
+        _s(280, s),
+        _s(180, s),
+        _s(255, s),
+        _s(170, s),
+        _s(240, s),
+      )
+      ..cubicTo(
+        _s(150, s),
+        _s(210, s),
+        _s(110, s),
+        _s(200, s),
+        _s(110, s),
+        _s(160, s),
+      )
+      ..close();
+
+    // Fill Body Graduate
+    final bodyRect = Rect.fromLTWH(
+      _s(110, s),
+      _s(100, s),
+      _s(280, s),
+      _s(440, s),
+    );
+    final bodyPaint = Paint()
+      ..shader = LinearGradient(
+        colors: [bodyGradStart, bodyGradMid, bodyGradEnd],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(bodyRect);
+
+    canvas.drawPath(bodyPath, bodyPaint);
+
+    // Body Highlights/Shadows
+    final highlightPaint = Paint()
+      ..color = Colors.white.withOpacity(0.2)
+      ..strokeWidth = _s(6, s)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    final highlightPath = Path()
+      ..moveTo(_s(120, s), _s(160, s))
+      ..cubicTo(
+        _s(120, s),
+        _s(120, s),
+        _s(145, s),
+        _s(110, s),
+        _s(180, s),
+        _s(110, s),
+      )
+      ..lineTo(_s(320, s), _s(110, s));
+    canvas.drawPath(highlightPath, highlightPaint);
+
+    canvas.drawPath(bodyPath, thickOutlinePaint);
+
+    // Prongs
+    _drawProng(
+      canvas,
+      s,
+      _s(180, s),
+      _s(40, s),
+      _s(188, s),
+      prongLeftAngle,
+      outlinePaint,
+    );
+    _drawProng(
+      canvas,
+      s,
+      _s(304, s),
+      _s(40, s),
+      _s(312, s),
+      prongRightAngle,
+      outlinePaint,
+    );
+
+    // Text decorations on body
+    _drawBodyText(canvas, s);
+
+    // Screen area
+    final screenPath = Path()
+      ..moveTo(_s(125, s), _s(130, s))
+      ..lineTo(_s(375, s), _s(130, s))
+      ..cubicTo(
+        _s(385, s),
+        _s(130, s),
+        _s(385, s),
+        _s(180, s),
+        _s(375, s),
+        _s(180, s),
+      )
+      ..lineTo(_s(125, s), _s(180, s))
+      ..cubicTo(
+        _s(115, s),
+        _s(180, s),
+        _s(115, s),
+        _s(130, s),
+        _s(125, s),
+        _s(130, s),
+      )
+      ..close();
+
+    final screenRect = Rect.fromLTWH(
+      _s(115, s),
+      _s(130, s),
+      _s(270, s),
+      _s(50, s),
+    );
+    final screenPaint = Paint()
+      ..shader = LinearGradient(
+        colors: [screenGradTop, screenGradBottom],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ).createShader(screenRect);
+
+    canvas.drawPath(screenPath, screenPaint);
+
+    // Gloss effect on screen
+    final glossPaint = Paint()
+      ..shader = LinearGradient(
+        colors: [Colors.white.withOpacity(0.25), Colors.white.withOpacity(0)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(screenRect);
+    canvas.drawPath(screenPath, glossPaint);
+
+    canvas.drawPath(screenPath, outlinePaint);
+
+    // ERROR Text
+    _drawText(
+      canvas,
+      'ERROR',
+      _s(250, s),
+      _s(170, s),
+      _s(36, s),
+      const Color(0xFF222B1C).withOpacity(0.9),
+      s,
+    );
+
+    // LED
+    final ledColor = Color.lerp(ledColorOff, ledColorOn, ledValue)!;
+    canvas.drawCircle(
+      Offset(_s(365, s), _s(155, s)),
+      _s(7, s),
+      Paint()..color = ledColor,
+    );
+    canvas.drawCircle(Offset(_s(365, s), _s(155, s)), _s(7, s), outlinePaint);
+
+    // Face Area (Simplified version of the SVG)
+    _drawFace(canvas, s, outlinePaint);
+
+    // Zap lines (if any)
+    if (zapOpacity > 0.01) {
+      final zapPaint = Paint()
+        ..color = const Color(0xFF88DDED).withOpacity(zapOpacity)
+        ..strokeWidth = _s(5, s)
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round;
+
+      final zapPath = Path()
+        ..moveTo(_s(155, s), _s(10, s))
+        ..lineTo(_s(140, s), _s(-20, s))
+        ..lineTo(_s(160, s), _s(-35, s))
+        ..lineTo(_s(145, s), _s(-60, s));
+      canvas.drawPath(zapPath, zapPaint);
+    }
+  }
+
+  void _drawProng(
+    Canvas canvas,
+    double s,
+    double x,
+    double y,
+    double cx,
+    double angle,
+    Paint outlinePaint,
+  ) {
+    canvas.save();
+    canvas.translate(cx, y + _s(80, s));
+    canvas.rotate(angle * pi / 180);
+    canvas.translate(-cx, -(y + _s(80, s)));
+
+    canvas.drawRect(
+      Rect.fromLTWH(x, y, _s(16, s), _s(80, s)),
+      Paint()..color = const Color(0xFF787D7A),
+    );
+    canvas.drawRect(Rect.fromLTWH(x, y, _s(16, s), _s(80, s)), outlinePaint);
+    canvas.drawCircle(
+      Offset(cx, y),
+      _s(12, s),
+      Paint()..color = const Color(0xFF787D7A),
+    );
+    canvas.drawCircle(Offset(cx, y), _s(12, s), outlinePaint);
+
+    canvas.restore();
+  }
+
+  void _drawFace(Canvas canvas, double s, Paint outlinePaint) {
+    // Eyebrows
+    final browPaint = Paint()
+      ..color = const Color(0xFF262B28)
+      ..strokeWidth = _s(8, s)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    final leftBrow = Path()
+      ..moveTo(_s(180, s), _s(255, s) + _s(eyebrowOffset, s))
+      ..quadraticBezierTo(
+        _s(210, s),
+        _s(245, s) + _s(eyebrowOffset, s),
+        _s(242, s),
+        _s(275, s) + _s(eyebrowOffset, s),
+      );
+    final rightBrow = Path()
+      ..moveTo(_s(320, s), _s(255, s) + _s(eyebrowOffset, s))
+      ..quadraticBezierTo(
+        _s(290, s),
+        _s(245, s) + _s(eyebrowOffset, s),
+        _s(258, s),
+        _s(275, s) + _s(eyebrowOffset, s),
+      );
+
+    canvas.drawPath(leftBrow, browPaint);
+    canvas.drawPath(rightBrow, browPaint);
+
+    // Eyes
+    final eyeBgPaint = Paint()..color = const Color(0xFFE8E4D3);
+    final pupilPaint = Paint()..color = const Color(0xFF1A1C1A);
+
+    canvas.save();
+    final eyeCenterY = _s(275, s);
+    canvas.translate(0, eyeCenterY);
+    canvas.scale(1.0, blinkValue);
+    canvas.translate(0, -eyeCenterY);
+
+    // Left Eye
+    canvas.drawCircle(Offset(_s(210, s), _s(275, s)), _s(18, s), eyeBgPaint);
+    canvas.drawCircle(Offset(_s(210, s), _s(275, s)), _s(18, s), outlinePaint);
+    canvas.drawCircle(Offset(_s(212, s), _s(275, s)), _s(6, s), pupilPaint);
+
+    // Right Eye
+    canvas.drawCircle(Offset(_s(290, s), _s(275, s)), _s(18, s), eyeBgPaint);
+    canvas.drawCircle(Offset(_s(290, s), _s(275, s)), _s(18, s), outlinePaint);
+    canvas.drawCircle(Offset(_s(288, s), _s(275, s)), _s(6, s), pupilPaint);
+
+    canvas.restore();
+
+    // Mouth
+    final mouthPaint = Paint()
+      ..color = const Color(0xFF1A1C1A)
+      ..strokeWidth = _s(6, s)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    final mouthPath = Path()
+      ..moveTo(_s(185, s), _s(325, s))
+      ..quadraticBezierTo(_s(250, s), _s(300, s), _s(315, s), _s(325, s));
+
+    canvas.drawPath(mouthPath, mouthPaint);
+  }
+
+  void _drawBodyText(Canvas canvas, double s) {
+    const textColor = Color(0xFF2A302D);
+    const opacity = 0.4;
+
+    _drawText(
+      canvas,
+      'STIM',
+      _s(250, s),
+      _s(235, s),
+      _s(44, s),
+      textColor.withOpacity(opacity),
+      s,
+    );
+    _drawText(
+      canvas,
+      'STORE',
+      _s(250, s),
+      _s(390, s),
+      _s(38, s),
+      textColor.withOpacity(opacity),
+      s,
+    );
+    _drawText(
+      canvas,
+      '1',
+      _s(250, s),
+      _s(430, s),
+      _s(34, s),
+      textColor.withOpacity(opacity),
+      s,
+    );
+    _drawText(
+      canvas,
+      '2',
+      _s(250, s),
+      _s(470, s),
+      _s(34, s),
+      textColor.withOpacity(opacity),
+      s,
+    );
+
+    // Heartbeat line at bottom
+    final stimBasePaint = Paint()
+      ..color = const Color(0xFF1A1C1A)
+      ..strokeWidth = _s(5, s)
+      ..style = PaintingStyle.stroke
+      ..strokeJoin = StrokeJoin.miter;
+
+    canvas.drawCircle(
+      Offset(_s(250, s), _s(515, s)),
+      _s(22, s),
+      Paint()..color = const Color(0xFF4A524E).withOpacity(0.5),
+    );
+    canvas.drawCircle(Offset(_s(250, s), _s(515, s)), _s(22, s), stimBasePaint);
+
+    final heartbeat = Path()
+      ..moveTo(_s(228, s), _s(515, s))
+      ..lineTo(_s(240, s), _s(515, s))
+      ..lineTo(_s(245, s), _s(498, s))
+      ..lineTo(_s(255, s), _s(532, s))
+      ..lineTo(_s(260, s), _s(515, s))
+      ..lineTo(_s(272, s), _s(515, s));
+    canvas.drawPath(heartbeat, stimBasePaint);
+  }
+
+  void _drawText(
+    Canvas canvas,
+    String text,
+    double x,
+    double y,
+    double fontSize,
+    Color color,
+    double s,
+  ) {
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          color: color,
+          fontSize: _s(fontSize, s),
+          fontWeight: FontWeight.w900,
+          fontFamily: 'monospace',
+          letterSpacing: 2,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+    textPainter.paint(
+      canvas,
+      Offset(x - textPainter.width / 2, y - textPainter.height / 2),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _EarlPainter oldDelegate) {
     return oldDelegate.blinkValue != blinkValue ||
         oldDelegate.ledValue != ledValue ||
         oldDelegate.prongLeftAngle != prongLeftAngle ||
