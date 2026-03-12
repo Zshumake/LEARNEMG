@@ -13,6 +13,8 @@ class AnimatedErnestWidget extends StatefulWidget {
   final bool showSpeechBubble;
   final String? speechText;
   final bool isInteractive;
+  final bool allowPersonaToggle;
+  final bool allowChatOpening;
 
   const AnimatedErnestWidget({
     super.key,
@@ -20,6 +22,8 @@ class AnimatedErnestWidget extends StatefulWidget {
     this.showSpeechBubble = true,
     this.speechText,
     this.isInteractive = true,
+    this.allowPersonaToggle = true,
+    this.allowChatOpening = true,
   });
 
   @override
@@ -294,10 +298,10 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                           }
                         });
 
-                        if (_tapCount >= 7) {
+                        if (widget.allowPersonaToggle && _tapCount >= 7) {
                           _tapCount = 0;
                           _tapTimer?.cancel();
-                          _singleTapTimer?.cancel(); // Ensure chat doesn't open
+                          _singleTapTimer?.cancel();
                           controller.switchPersona();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -315,7 +319,7 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                           return;
                         }
 
-                        if (widget.isInteractive && _tapCount == 1) {
+                        if (widget.isInteractive && widget.allowChatOpening && _tapCount == 1) {
                           // Delay the chat opening to see if it's a multi-tap sequence
                           _singleTapTimer = Timer(const Duration(milliseconds: 400), () {
                             if (mounted) {

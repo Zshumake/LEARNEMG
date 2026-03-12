@@ -257,7 +257,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Positioned(
               bottom: 100, // Move up to avoid mini player
               right: 10,
-              child: AnimatedErnestWidget(size: 180, showSpeechBubble: true),
+              child: const AnimatedErnestWidget(
+                size: 180,
+                showSpeechBubble: true,
+                allowPersonaToggle: false,
+              ),
             ),
           ],
         ),

@@ -101,10 +101,12 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
       ),
       child: Row(
         children: [
-          AnimatedErnestWidget(
+          const AnimatedErnestWidget(
             size: 100,
             showSpeechBubble: false,
-            isInteractive: false,
+            isInteractive: true,
+            allowPersonaToggle: true,
+            allowChatOpening: false,
           ),
           const SizedBox(width: 12),
           Expanded(
