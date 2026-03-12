@@ -205,6 +205,9 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<ErnestController>();
+    final isEarl = controller.currentPersona?.id == 'earl';
+
     return SizedBox(
       width: widget.size,
       height: widget.size + 40, // extra for speech bubble
@@ -272,9 +275,6 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                 _eyebrowController,
               ]),
               builder: (context, child) {
-                final controller = context.watch<ErnestController>();
-                final isEarl = controller.currentPersona?.id == 'earl';
-
                 final character = isEarl
                     ? _buildAnimatedEarl()
                     : _buildAnimatedErnest();
@@ -292,18 +292,16 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                     if (_tapCount >= 7) {
                       _tapCount = 0;
                       _tapTimer?.cancel();
-                      final currentlyEarl =
-                          context.read<ErnestController>().currentPersona?.id ==
-                          'earl';
-                      context.read<ErnestController>().switchPersona();
+                          isEarl;
+                      controller.switchPersona();
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            currentlyEarl
+                            isEarl
                                 ? "System Override: Restoring Ernest..."
                                 : "System Override: Booting Earl...",
                           ),
-                          backgroundColor: currentlyEarl
+                          backgroundColor: isEarl
                               ? const Color(0xFF6B9F78)
                               : Colors.red,
                           duration: const Duration(seconds: 2),

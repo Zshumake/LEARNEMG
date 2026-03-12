@@ -211,7 +211,11 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
             CircleAvatar(
               radius: 14,
               backgroundColor: persona.primaryColor.withValues(alpha: 0.2),
-              child: Icon(Icons.bolt, size: 14, color: persona.primaryColor),
+              child: Icon(
+                persona.id == 'ernest' ? Icons.bolt : Icons.terminal,
+                size: 14,
+                color: persona.primaryColor,
+              ),
             ),
             const SizedBox(width: 8),
           ],
