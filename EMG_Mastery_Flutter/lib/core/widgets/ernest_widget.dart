@@ -59,6 +59,7 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
 
   int _tapCount = 0;
   Timer? _tapTimer;
+  Timer? _singleTapTimer;
 
   @override
   void initState() {
@@ -285,6 +286,8 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                       onTap: () {
                         _tapCount++;
                         _tapTimer?.cancel();
+                        _singleTapTimer?.cancel(); // Cancel any pending single-tap action
+
                         _tapTimer = Timer(const Duration(milliseconds: 1500), () {
                           if (mounted) {
                             _tapCount = 0;
@@ -294,6 +297,7 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                         if (_tapCount >= 7) {
                           _tapCount = 0;
                           _tapTimer?.cancel();
+                          _singleTapTimer?.cancel(); // Ensure chat doesn't open
                           controller.switchPersona();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -308,15 +312,21 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                               duration: const Duration(seconds: 2),
                             ),
                           );
+                          return;
                         }
 
                         if (widget.isInteractive && _tapCount == 1) {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (context) => const ErnestChatOverlay(),
-                          );
+                          // Delay the chat opening to see if it's a multi-tap sequence
+                          _singleTapTimer = Timer(const Duration(milliseconds: 400), () {
+                            if (mounted) {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (context) => const ErnestChatOverlay(),
+                              );
+                            }
+                          });
                         }
                       },
                       child: character,
@@ -1231,69 +1241,6 @@ class _EarlPainter extends CustomPainter {
     canvas.restore();
   }
 
-  void _drawFace(Canvas canvas, double s, Paint outlinePaint) {
-    // Eyebrows
-    final browPaint = Paint()
-      ..color = const Color(0xFF262B28)
-      ..strokeWidth = _s(8, s)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    final leftBrow = Path()
-      ..moveTo(_s(180, s), _s(255, s) + _s(eyebrowOffset, s))
-      ..quadraticBezierTo(
-        _s(210, s),
-        _s(245, s) + _s(eyebrowOffset, s),
-        _s(242, s),
-        _s(275, s) + _s(eyebrowOffset, s),
-      );
-    final rightBrow = Path()
-      ..moveTo(_s(320, s), _s(255, s) + _s(eyebrowOffset, s))
-      ..quadraticBezierTo(
-        _s(290, s),
-        _s(245, s) + _s(eyebrowOffset, s),
-        _s(258, s),
-        _s(275, s) + _s(eyebrowOffset, s),
-      );
-
-    canvas.drawPath(leftBrow, browPaint);
-    canvas.drawPath(rightBrow, browPaint);
-
-    // Eyes
-    final eyeBgPaint = Paint()..color = const Color(0xFFE8E4D3);
-    final pupilPaint = Paint()..color = const Color(0xFF1A1C1A);
-
-    canvas.save();
-    final eyeCenterY = _s(275, s);
-    canvas.translate(0, eyeCenterY);
-    canvas.scale(1.0, blinkValue);
-    canvas.translate(0, -eyeCenterY);
-
-    // Left Eye
-    canvas.drawCircle(Offset(_s(210, s), _s(275, s)), _s(18, s), eyeBgPaint);
-    canvas.drawCircle(Offset(_s(210, s), _s(275, s)), _s(18, s), outlinePaint);
-    canvas.drawCircle(Offset(_s(212, s), _s(275, s)), _s(6, s), pupilPaint);
-
-    // Right Eye
-    canvas.drawCircle(Offset(_s(290, s), _s(275, s)), _s(18, s), eyeBgPaint);
-    canvas.drawCircle(Offset(_s(290, s), _s(275, s)), _s(18, s), outlinePaint);
-    canvas.drawCircle(Offset(_s(288, s), _s(275, s)), _s(6, s), pupilPaint);
-
-    canvas.restore();
-
-    // Mouth
-    final mouthPaint = Paint()
-      ..color = const Color(0xFF1A1C1A)
-      ..strokeWidth = _s(6, s)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    final mouthPath = Path()
-      ..moveTo(_s(185, s), _s(325, s))
-      ..quadraticBezierTo(_s(250, s), _s(300, s), _s(315, s), _s(325, s));
-
-    canvas.drawPath(mouthPath, mouthPaint);
-  }
 
   void _drawBodyText(Canvas canvas, double s) {
     const textColor = Color(0xFF2A302D);
