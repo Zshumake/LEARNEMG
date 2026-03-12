@@ -1082,9 +1082,6 @@ class _EarlPainter extends CustomPainter {
     _drawEarlProng(canvas, s, _s(180, s), _s(40, s), _s(188, s), prongLeftAngle, outlinePaint, isLeft: true);
     _drawEarlProng(canvas, s, _s(304, s), _s(40, s), _s(312, s), prongRightAngle, outlinePaint, isLeft: false);
 
-    // ── TEXT DECORATIONS ──
-    _drawBodyText(canvas, s);
-
     // ── SCREEN AREA ──
     final screenPath = Path()
       ..moveTo(_s(125, s), _s(130, s))
@@ -1112,9 +1109,6 @@ class _EarlPainter extends CustomPainter {
         end: const Alignment(0.5, 1.0),
       ).createShader(screenRect);
     canvas.drawPath(screenPath, glossPaintConstant);
-
-    // ERROR Text
-    _drawText(canvas, 'ERROR', _s(165, s) + _s(100, s)/2, _s(166, s), _s(36, s), const Color(0xFF4ADE80).withOpacity(0.9), s);
 
     // ── SCREEN IMPACT CRACKS ──
     final impactBgPaint = Paint()..color = const Color(0xFF777777).withOpacity(0.4)..strokeWidth = 1.5..style = PaintingStyle.stroke;
@@ -1157,6 +1151,22 @@ class _EarlPainter extends CustomPainter {
       final zapPaint = Paint()..color = const Color(0xFF88DDED).withOpacity(zapOpacity)..strokeWidth = _s(5, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
       canvas.drawPath(Path()..moveTo(_s(155, s), _s(10, s))..lineTo(_s(140, s), _s(-20, s))..lineTo(_s(160, s), _s(-35, s))..lineTo(_s(145, s), _s(-60, s)), zapPaint);
     }
+
+    // ── TEXT LABELS (Drawn last to ensure visibility) ──
+    // ERROR text on screen
+    _drawText(canvas, 'ERROR', _s(250, s), _s(152, s), _s(28, s), const Color(0xFF1A1C1A).withOpacity(0.6), s);
+    
+    // ── BODY SCARS (X marks) ──
+    final scarPaint = Paint()..color = const Color(0xFF1A1C1A).withOpacity(0.4)..strokeWidth = _s(3, s)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
+    // Left X
+    canvas.drawLine(Offset(_s(205, s), _s(415, s)), Offset(_s(230, s), _s(445, s)), scarPaint);
+    canvas.drawLine(Offset(_s(230, s), _s(415, s)), Offset(_s(205, s), _s(445, s)), scarPaint);
+    // Right X
+    canvas.drawLine(Offset(_s(270, s), _s(415, s)), Offset(_s(295, s), _s(445, s)), scarPaint);
+    canvas.drawLine(Offset(_s(295, s), _s(415, s)), Offset(_s(270, s), _s(445, s)), scarPaint);
+
+    // Body labels
+    _drawBodyText(canvas, s);
   }
 
   void _drawEarlFace(Canvas canvas, double s, Paint outlinePaint) {
@@ -1250,43 +1260,42 @@ class _EarlPainter extends CustomPainter {
   }
 
   void _drawBodyText(Canvas canvas, double s) {
-    const textColor = Color(0xFFCCCCCC); // Brighter for Earl
-    const opacity = 0.8; // More opaque for visibility
+    final textColor = const Color(0xFF1A1C1A).withOpacity(0.5);
 
     _drawText(
       canvas,
       'STIM',
       _s(250, s),
-      _s(235, s),
-      _s(44, s),
-      textColor.withOpacity(opacity),
+      _s(215, s),
+      _s(28, s),
+      textColor,
       s,
     );
     _drawText(
       canvas,
       'STORE',
       _s(250, s),
-      _s(390, s),
-      _s(38, s),
-      textColor.withOpacity(opacity),
+      _s(380, s),
+      _s(24, s),
+      textColor,
       s,
     );
     _drawText(
       canvas,
       '1',
       _s(250, s),
-      _s(430, s),
-      _s(34, s),
-      textColor.withOpacity(opacity),
+      _s(415, s),
+      _s(22, s),
+      textColor.withOpacity(0.4),
       s,
     );
     _drawText(
       canvas,
       '2',
       _s(250, s),
-      _s(470, s),
-      _s(34, s),
-      textColor.withOpacity(opacity),
+      _s(445, s),
+      _s(22, s),
+      textColor.withOpacity(0.4),
       s,
     );
 
@@ -1328,7 +1337,7 @@ class _EarlPainter extends CustomPainter {
         text: text,
         style: TextStyle(
           color: color,
-          fontSize: _s(fontSize, s),
+          fontSize: fontSize, // FontSize is already scaled by the caller
           fontWeight: FontWeight.w900,
           fontFamily: 'monospace',
           letterSpacing: 2,

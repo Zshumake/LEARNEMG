@@ -105,7 +105,7 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
             size: 100,
             showSpeechBubble: false,
             isInteractive: true,
-            allowPersonaToggle: true,
+            allowPersonaToggle: false,
             allowChatOpening: false,
           ),
           const SizedBox(width: 12),
@@ -134,16 +134,6 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              IconButton(
-                visualDensity: VisualDensity.compact,
-                icon: const Icon(
-                  Icons.swap_horiz_rounded,
-                  color: Colors.white70,
-                  size: 20,
-                ),
-                onPressed: controller.switchPersona,
-                tooltip: "Switch Persona (Ernest/Earl)",
-              ),
               IconButton(
                 visualDensity: VisualDensity.compact,
                 icon: const Icon(
