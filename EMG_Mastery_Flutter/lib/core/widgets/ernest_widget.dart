@@ -281,10 +281,11 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                         : _buildAnimatedErnest();
 
                     return GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () {
                         _tapCount++;
                         _tapTimer?.cancel();
-                        _tapTimer = Timer(const Duration(milliseconds: 500), () {
+                        _tapTimer = Timer(const Duration(milliseconds: 1500), () {
                           if (mounted) {
                             _tapCount = 0;
                           }
