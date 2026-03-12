@@ -1199,7 +1199,8 @@ class _EarlPainter extends CustomPainter {
     );
     canvas.drawCircle(Offset(_s(365, s), _s(155, s)), _s(7, s), outlinePaint);
 
-    // Earl's face is the ERROR screen, no cartoon features
+    // ── FACE (Earl's unique grumpy features) ──
+    _drawEarlFace(canvas, s, outlinePaint);
 
     // Zap lines (if any)
     if (zapOpacity > 0.01) {
@@ -1216,6 +1217,102 @@ class _EarlPainter extends CustomPainter {
         ..lineTo(_s(145, s), _s(-60, s));
       canvas.drawPath(zapPath, zapPaint);
     }
+  }
+
+  void _drawEarlFace(Canvas canvas, double s, Paint outlinePaint) {
+    // Face Backdrop Shadow (subtle path behind facial features)
+    final faceBackdropPaint = Paint()
+      ..color = const Color(0xFF2C3330).withOpacity(0.3);
+    final backdropPath = Path()
+      ..moveTo(_s(180, s), _s(250, s))
+      ..quadraticBezierTo(_s(250, s), _s(270, s), _s(320, s), _s(250, s))
+      ..lineTo(_s(320, s), _s(290, s))
+      ..quadraticBezierTo(_s(250, s), _s(310, s), _s(180, s), _s(290, s))
+      ..close();
+    canvas.drawPath(backdropPath, faceBackdropPaint);
+
+    final faceOutlinePaint = Paint()
+      ..color = const Color(0xFF1A1C1A)
+      ..strokeWidth = _s(4, s)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    // Eyebrows
+    canvas.save();
+    canvas.translate(0, _s(eyebrowOffset, s));
+    final browPaint = Paint()
+      ..color = const Color(0xFF262B28)
+      ..strokeWidth = _s(8, s)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    
+    final leftBrow = Path()
+      ..moveTo(_s(180, s), _s(255, s))
+      ..quadraticBezierTo(_s(210, s), _s(245, s), _s(242, s), _s(275, s));
+    final rightBrow = Path()
+      ..moveTo(_s(320, s), _s(255, s))
+      ..quadraticBezierTo(_s(290, s), _s(245, s), _s(258, s), _s(275, s));
+    
+    canvas.drawPath(leftBrow, browPaint);
+    canvas.drawPath(rightBrow, browPaint);
+    canvas.restore();
+
+    // Tired Eyes (with blink)
+    void drawTiredEye(double cx, double cy, double pupilOffsetX) {
+      canvas.save();
+      // Clip eye to "tired" shape
+      final eyeClip = Path()
+        ..moveTo(_s(cx - 25, s), _s(cy - 7, s))
+        ..quadraticBezierTo(_s(cx, s), _s(cy + 5, s), _s(cx + 25, s), _s(cy - 7, s))
+        ..lineTo(_s(cx + 25, s), _s(cy + 35, s))
+        ..lineTo(_s(cx - 25, s), _s(cy + 35, s))
+        ..close();
+      
+      canvas.clipPath(eyeClip);
+      
+      // Pivot around eye center for blink
+      canvas.translate(0, _s(cy, s));
+      canvas.scale(1.0, blinkValue);
+      canvas.translate(0, -_s(cy, s));
+
+      final eyeFillPaint = Paint()..color = const Color(0xFFE8E4D3);
+      canvas.drawCircle(Offset(_s(cx, s), _s(cy, s)), _s(18, s), eyeFillPaint);
+      canvas.drawCircle(Offset(_s(cx, s), _s(cy, s)), _s(18, s), faceOutlinePaint);
+      
+      final pupilPaint = Paint()..color = const Color(0xFF1A1C1A);
+      canvas.drawCircle(Offset(_s(cx + pupilOffsetX, s), _s(cy, s)), _s(6, s), pupilPaint);
+      
+      canvas.restore();
+      
+      // Top eye lid line
+      canvas.drawPath(
+        Path()
+          ..moveTo(_s(cx - 22, s), _s(cy - 7, s))
+          ..quadraticBezierTo(_s(cx, s), _s(cy + 5, s), _s(cx + 22, s), _s(cy - 7, s)),
+        faceOutlinePaint
+      );
+    }
+
+    drawTiredEye(210, 275, 2);
+    drawTiredEye(290, 275, -2);
+
+    // Nose Curve
+    final nosePath = Path()
+      ..moveTo(_s(245, s), _s(275, s))
+      ..cubicTo(_s(235, s), _s(275, s), _s(235, s), _s(295, s), _s(250, s), _s(295, s))
+      ..cubicTo(_s(255, s), _s(295, s), _s(260, s), _s(290, s), _s(260, s), _s(285, s));
+    canvas.drawPath(nosePath, faceOutlinePaint);
+
+    // Sarcastic Mouth
+    final mouthPath = Path()
+      ..moveTo(_s(185, s), _s(325, s))
+      ..quadraticBezierTo(_s(250, s), _s(300, s), _s(315, s), _s(325, s));
+    canvas.drawPath(mouthPath, Paint()..color = const Color(0xFF1A1C1A)..strokeWidth=_s(6, s)..style=PaintingStyle.stroke..strokeCap=StrokeCap.round);
+
+    // Mouth corners
+    final dimplePaint = Paint()..color = const Color(0xFF1A1C1A)..strokeWidth=_s(4, s)..style=PaintingStyle.stroke..strokeCap=StrokeCap.round;
+    canvas.drawPath(Path()..moveTo(_s(180, s), _s(315, s))..quadraticBezierTo(_s(175, s), _s(325, s), _s(190, s), _s(332, s)), dimplePaint);
+    canvas.drawPath(Path()..moveTo(_s(320, s), _s(315, s))..quadraticBezierTo(_s(325, s), _s(325, s), _s(310, s), _s(332, s)), dimplePaint);
   }
 
 
