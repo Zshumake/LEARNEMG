@@ -1,6 +1,7 @@
 
 // Custom Icon Mappings
 export const CUSTOM_ICON_MAPPING = {
+    'clinical-exam-lab': 'images/icons/Clinical Exam Lab.png',
     'emg-introduction': 'images/icons/EMG-NCS Intro.png',
     'plexus-anatomy': 'images/icons/Peripheral Anatomy.png',
     'plexus': 'images/icons/Brachial Plexus Anatomy.png',
@@ -19,6 +20,7 @@ export const CUSTOM_ICON_MAPPING = {
 // Standard Module List
 export const STANDARD_MODULES = [
     { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: CUSTOM_ICON_MAPPING['emg-introduction'], competency: 'Patient Care & Knowledge', description: 'Master the fundamental principles of electrodiagnostic medicine.' },
+    { id: 'clinical-exam-lab', title: 'Clinical Exam Lab', customIcon: CUSTOM_ICON_MAPPING['clinical-exam-lab'], competency: 'Patient Care & Knowledge', description: 'Master the history and physical exam for every diagnosis sent to the EMG lab.', isFeatured: true },
     { id: 'plexus-anatomy', title: 'Peripheral Nerve Anatomy', customIcon: CUSTOM_ICON_MAPPING['plexus-anatomy'], competency: 'Medical Knowledge', description: 'Build your anatomical foundation with detailed nerve pathway mapping.' },
     { id: 'plexus', title: 'Interactive Plexus Anatomy', customIcon: CUSTOM_ICON_MAPPING['plexus'], competency: 'Medical Knowledge', description: 'Explore the complex nerve networks of the body interactively.' },
     { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: CUSTOM_ICON_MAPPING['radiculopathy-pathophysiology'], competency: 'Medical Knowledge', description: 'Understand the mechanisms behind nerve root compression.' },

@@ -1,5 +1,5 @@
-import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js?v=podcastRefactor1';
-import { BoardRenderer } from './BoardRenderer.js?v=podcastRefactor1';
+import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js?v=20260317';
+import { BoardRenderer } from './BoardRenderer.js?v=20260317d';
 
 export class CandylandCore {
     constructor() {
@@ -71,12 +71,16 @@ export class CandylandCore {
 
         if (window.appComponents && window.appComponents.modal) {
             const modules = this.config[this.currentPGYLevel] || this.config['all'] || [];
-            const module = modules[index];
+            // Try index first, then fall back to finding by moduleId
+            let module = modules[index];
+            if (!module && moduleId) {
+                module = modules.find(m => m.id === moduleId);
+            }
 
             if (module) {
                 window.appComponents.modal.showLearningModal(module, index, this.currentPGYLevel);
             } else {
-                console.error(`❌ Module not found for index: ${index} in PGY: ${this.currentPGYLevel}`);
+                console.error(`❌ Module not found for id: ${moduleId}, index: ${index} in PGY: ${this.currentPGYLevel}`);
             }
         } else if (window.startLearningModule) {
             // Legacy fallback

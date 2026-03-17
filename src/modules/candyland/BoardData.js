@@ -1,6 +1,7 @@
 
 // Custom Icon Mappings from index.html (verified)
 export const CUSTOM_ICON_MAPPING = {
+    'clinical-exam-lab': 'images/icons/Clinical Exam Lab.png',
     'emg-introduction': 'images/icons/EMG-NCS Intro.png',
     'plexus-anatomy': 'images/icons/Peripheral Anatomy.png',
     'brachial-plexus-interactive': 'images/icons/Brachial Plexus Anatomy.png',
@@ -14,6 +15,13 @@ export const CUSTOM_ICON_MAPPING = {
     'neuropathy-myopathy-basics': 'images/icons/Neuropathy vs. Myopathy Basics.png',
     'simple-reports': 'images/icons/Basic report writing.png',
     'clinical-correlation': 'images/icons/Clinical Application.png'
+};
+
+// Featured module description (Clinical Exam Lab)
+export const FEATURED_MODULE_DESCRIPTION = {
+    title: "Clinical Exam Lab",
+    text: "Master the history and physical exam for every diagnosis sent to the EMG lab. Study exam findings for 90+ diagnoses or build a custom exam from your differential. Includes entrapments, radiculopathies (every level), plexopathies, polyneuropathies, motor neuron diseases, NMJ disorders, myopathies, and inappropriate referrals.",
+    highlights: "Modes: Study Mode (browse by diagnosis) | Exam Builder (build from differential)"
 };
 
 // Module Descriptions (1-based index to match module Number)
@@ -89,6 +97,7 @@ export const MODULE_DESCRIPTIONS = {
 // Helper to define standard module list
 const standardModules = [
     { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: CUSTOM_ICON_MAPPING['emg-introduction'] },
+    { id: 'clinical-exam-lab', title: 'Clinical Exam Lab', customIcon: CUSTOM_ICON_MAPPING['clinical-exam-lab'], isFeatured: true },
     { id: 'plexus-anatomy', title: 'Plexus Anatomy', customIcon: CUSTOM_ICON_MAPPING['plexus-anatomy'] },
     { id: 'brachial-plexus-interactive', title: 'Brachial Plexus Interactive', customIcon: CUSTOM_ICON_MAPPING['brachial-plexus-interactive'] },
     { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: CUSTOM_ICON_MAPPING['radiculopathy-pathophysiology'] },

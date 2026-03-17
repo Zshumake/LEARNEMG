@@ -11,11 +11,13 @@ export class BoardRenderer {
         const boardContainer = document.getElementById(containerId);
         if (!boardContainer) return;
 
-        // Separate modules into Hero (0) and Grid (1..rest)
+        // Separate modules: Hero (0), Featured (isFeatured), and Grid (rest)
         const heroModule = modules[0];
-        const gridModules = modules.slice(1);
+        const featuredModule = modules.find(m => m.isFeatured);
+        const gridModules = modules.slice(1).filter(m => !m.isFeatured);
 
         const heroHTML = this.generateHeroModule(heroModule, 1);
+        const featuredHTML = featuredModule ? this.generateFeaturedModule(featuredModule) : '';
         const gridHTML = gridModules.map((mod, i) => this.generateGridModule(mod, i + 2)).join(''); // i+2 because 1 is hero
 
         // Podcast Section
@@ -66,6 +68,9 @@ export class BoardRenderer {
 
                 <!-- Hero Module (Module 1) -->
                 ${heroHTML}
+
+                <!-- Featured Module (Clinical Exam Lab) -->
+                ${featuredHTML}
 
                 <!-- Main Modules Container -->
                 <div class="modules-container">
@@ -469,6 +474,38 @@ export class BoardRenderer {
                         </div>
                     </div>
                 </div>
+            </div>
+        `;
+    }
+
+    generateFeaturedModule(module) {
+        if (!module) return '';
+
+        return `
+            <div class="featured-module" style="
+                    margin: -10px auto 30px;
+                    max-width: 650px;
+                    background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #a855f7 100%);
+                    border-radius: 10px;
+                    padding: 8px 18px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 3px 14px rgba(124, 58, 237, 0.25);
+                    border: 1px solid rgba(255,255,255,0.15);
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;"
+                 onclick="window.appComponents.candyland.handleModuleClick('${module.id}', -1)"
+                 onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 22px rgba(124, 58, 237, 0.35)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 14px rgba(124, 58, 237, 0.25)'">
+                <div style="flex-shrink: 0; width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A2 2 0 1 0 6 5.5"/><path d="M12 2.3A2 2 0 1 0 13.2 5.5"/><path d="M6 5.5C6 9 4 11 4 15a2 2 0 0 0 4 0"/><path d="M13.2 5.5C13.2 9 15.2 11 15.2 15a2 2 0 0 1-4 0"/><path d="M8 15v2a4 4 0 0 0 3.2 6"/><path d="M11.2 17v-2"/></svg>
+                </div>
+                <div style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px;">
+                    <h3 style="color: white; margin: 0; font-size: 0.95em; font-weight: 700; white-space: nowrap;">Clinical Exam Lab</h3>
+                    <span style="background: rgba(255,255,255,0.2); color: white; padding: 1px 7px; border-radius: 10px; font-size: 0.6em; font-weight: 700; letter-spacing: 0.5px;">NEW</span>
+                </div>
+                <div style="flex-shrink: 0; color: white; font-size: 1em; opacity: 0.5;">→</div>
             </div>
         `;
     }
