@@ -499,7 +499,7 @@ export class BoardRenderer {
                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 22px rgba(124, 58, 237, 0.35)'"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 14px rgba(124, 58, 237, 0.25)'">
                 <div style="flex-shrink: 0; width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A2 2 0 1 0 6 5.5"/><path d="M12 2.3A2 2 0 1 0 13.2 5.5"/><path d="M6 5.5C6 9 4 11 4 15a2 2 0 0 0 4 0"/><path d="M13.2 5.5C13.2 9 15.2 11 15.2 15a2 2 0 0 1-4 0"/><path d="M8 15v2a4 4 0 0 0 3.2 6"/><path d="M11.2 17v-2"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 2h6v2H9z"/><path d="M9 12l2 2 4-4"/></svg>
                 </div>
                 <div style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px;">
                     <h3 style="color: white; margin: 0; font-size: 0.95em; font-weight: 700; white-space: nowrap;">Clinical Exam Lab</h3>
