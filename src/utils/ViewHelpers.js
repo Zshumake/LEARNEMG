@@ -79,8 +79,51 @@ export function closeModalWithTransition() {
     }
 }
 
+/**
+ * Image error handling with SVG fallbacks
+ */
+export function handleImageError(img, type = 'generic') {
+    const fallbacks = {
+        'video': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjM2Y1MTY1Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5OmIFZpZGVvIENvbWluZyBTb29uPC90ZXh0Pjwvc3ZnPg==',
+        'landmark': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzZiOWY3OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPvCfk41JbWFnZSBDb21pbmcgU29vbjwvdGV4dD48L3N2Zz4=',
+        'generic': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTllY2VmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBBdmFpbGFibGU8L3RleHQ+PC9zdmc+'
+    };
+    img.src = fallbacks[type] || fallbacks['generic'];
+    img.style.opacity = '0.7';
+}
+
+/**
+ * Placeholder content for modules under development
+ */
+export function showPlaceholderContent(tabNumber, contentType) {
+    const content = `
+        <div style="text-align: center; padding: 50px;">
+            <div style="font-size: 48px; margin-bottom: 20px;">🔧</div>
+            <h3 style="color: #2c3e50; margin-bottom: 15px;">Content Under Development</h3>
+            <p style="color: #5a6c7d; margin-bottom: 25px;">
+                Tab ${tabNumber} (${contentType}) is currently being developed.
+            </p>
+            <div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                <p style="color: #0277bd; margin: 0; font-weight: 600;">Coming Soon!</p>
+                <p style="color: #0288d1; margin: 5px 0 0 0; font-size: 14px;">
+                    This learning module will include interactive content, quizzes, and clinical scenarios.
+                </p>
+            </div>
+            <button onclick="closeModalWithTransition()"
+                    style="background: #6b9f78; color: white; border: none; padding: 12px 24px;
+                           border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Close
+            </button>
+        </div>
+    `;
+    showModal('Component Under Construction', content);
+}
+
 // Bind to window for legacy support
+window.ViewHelpers = { showModal, closeModalWithTransition, navigateWithTransition, handleImageError };
 window.showModal = showModal;
 window.navigateWithTransition = navigateWithTransition;
 window.closeModalWithTransition = closeModalWithTransition;
-window.closeGeneralModal = closeModalWithTransition; // Alias used in cases
+window.closeGeneralModal = closeModalWithTransition;
+window.handleImageError = handleImageError;
+window.showPlaceholderContent = showPlaceholderContent;

@@ -3,26 +3,6 @@
 
 
 
-// Get muscle image path helper - Global utility function
-function getMuscleImagePath(muscleKey) {
-    const imageMap = {
-        'APB': 'images/Abductor Pollicus Brevis.png',
-        'Bicep': 'images/Biceps.png',
-        'EIP': 'images/Extensor Indicus.png',
-        'FDI': 'images/First Dorsal Interosseous.png',
-        'Middle Deltoid': 'images/Deltoid.png',
-        'PT': 'images/Pronator teres.png',
-        'Tricep': 'images/Triceps.png',
-        'Extensor Hallucis': 'images/Extensor Hallucis longus.png',
-        'Medial Gastroc': 'images/Medial Gastroc.png',
-        'Peroneus Longus': 'images/Fibularis longus.png',
-        'Tibialis Ant': 'images/Tibialis Anterior.png',
-        'Tibialis Post': 'images/Tibialis Posterior.png',
-        'Vastus Lateralis': 'images/Vastus Lateralis.png'
-    };
-    return imageMap[muscleKey] || null;
-}
-window.getMuscleImagePath = getMuscleImagePath;
 
 
 
@@ -654,13 +634,6 @@ window.resetPathway = function () {
     }
 };
 
-// Function to close general modal
-window.closeGeneralModal = function () {
-    const modalOverlay = document.getElementById('modal-overlay');
-    if (modalOverlay) {
-        modalOverlay.style.display = 'none';
-    }
-};
 
 // ===============================================
 // ATRIUM HEALTH 13-MODULE PATHWAY SYSTEM
@@ -1470,20 +1443,6 @@ console.log('✨🎮 Enhanced Journey with Integrated Modal Systemeady!');
 
 
 
-function closeGeneralModal() {
-    const overlay = document.getElementById('modal-overlay');
-    if (overlay) {
-        // Fade out with transition
-        overlay.classList.remove('show');
-
-        // Hide after animation completes (increased to match slower transition)
-        setTimeout(() => {
-            overlay.style.display = 'none';
-        }, 700);
-
-        console.log('🔒 Modal closed with transition');
-    }
-}
 
 // Add CSS styles for modal and transitions
 const modalStyles = document.createElement('style');
