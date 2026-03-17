@@ -705,7 +705,7 @@ function createDescriptionBoxes() {
         descriptionBox.className = `ernest-description-box module-${moduleNumber}-description`;
         descriptionBox.innerHTML = `
                     <div class="description-ernest">
-                        ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'description-ernest-avatar' }) : '<img src="images/ui/ERNEST.png" class="description-ernest-avatar">'}
+                        ${window.ErnestIcon.getHTML({ size: '50px', className: 'description-ernest-avatar' })}
                         <div class="description-content">
                             <div class="description-title">${desc.title}</div>
                             <div class="description-text">${desc.text}</div>
@@ -824,7 +824,7 @@ function generateCompletePodcastLibrary() {
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                    ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Plexopathies</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 3 • 25 min</p>
@@ -841,7 +841,7 @@ function generateCompletePodcastLibrary() {
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                    ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Radiculopathy</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 4 • 19 min</p>
@@ -858,7 +858,7 @@ function generateCompletePodcastLibrary() {
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                    ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Neuropathy Pathophysiology</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 5 • 61 min</p>
@@ -875,7 +875,7 @@ function generateCompletePodcastLibrary() {
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                    ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">EMG Interpretation</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 7 • 28 min</p>
@@ -892,7 +892,7 @@ function generateCompletePodcastLibrary() {
                                  onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.2)'; this.style.borderColor='#3b82f6'"
                                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                    <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #3b82f6; object-fit: cover;" alt="Ernest">
+                                    <div style="width: 50px; height: 50px; margin-right: 12px;">${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}</div>
                                     <div>
                                         <h4 style="color: #1e40af; margin: 0; font-size: 1.2em; font-weight: 600;">Myopathy vs. Neuropathy</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Module 8 • 32 min</p>
@@ -917,7 +917,7 @@ function generateCompletePodcastLibrary() {
                             onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                     <div>
                                         <h4 style="color: #7e22ce; margin: 0; font-size: 1.2em; font-weight: 600;">ALS and Mimics</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
@@ -934,7 +934,7 @@ function generateCompletePodcastLibrary() {
                             onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                     <div>
                                         <h4 style="color: #7e22ce; margin: 0; font-size: 1.2em; font-weight: 600;">Blink Reflex</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 26 min</p>
@@ -951,7 +951,7 @@ function generateCompletePodcastLibrary() {
                             onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                <img src="images/ui/ERNEST.png" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; border: 2px solid #a855f7;" alt="Ernest">
+                                <div style="width: 50px; height: 50px; margin-right: 12px;">${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}</div>
                                     <div>
                                         <h4 style="color: #7e22ce; margin: 0; font-size: 1.2em; font-weight: 600;">MG vs. Lambert-Eaton</h4>
                                         <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 29 min</p>
@@ -995,7 +995,7 @@ function generateExtraTopicsSection() {
                         onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 25px rgba(220, 38, 38, 0.3)'"
                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(220, 38, 38, 0.2)'">
                         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                            ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '60px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 60px; height: 60px;">'}
+                            ${window.ErnestIcon.getHTML({ size: '60px', className: 'mini-ernest-wrapper' })}
                                 <div>
                                     <h3 style="color: #991b1b; margin: 0; font-size: 1.4em; font-weight: 600;">ALS and Mimics</h3>
                                     <p style="color: #b91c1c; margin: 5px 0 0 0; font-size: 0.9em;">Duration: 26 minutes</p>
@@ -1023,7 +1023,7 @@ function generateExtraTopicsSection() {
                         onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 25px rgba(14, 165, 233, 0.3)'"
                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(14, 165, 233, 0.2)'">
                         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                            ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '60px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 60px; height: 60px;">'}
+                            ${window.ErnestIcon.getHTML({ size: '60px', className: 'mini-ernest-wrapper' })}
                                 <div>
                                     <h3 style="color: #075985; margin: 0; font-size: 1.4em; font-weight: 600;">Blink Reflex</h3>
                                     <p style="color: #0369a1; margin: 5px 0 0 0; font-size: 0.9em;">Duration: 26 minutes</p>
@@ -1051,7 +1051,7 @@ function generateExtraTopicsSection() {
                         onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 25px rgba(168, 85, 247, 0.3)'"
                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(168, 85, 247, 0.2)'">
                         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                            ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '60px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 60px; height: 60px;">'}
+                            ${window.ErnestIcon.getHTML({ size: '60px', className: 'mini-ernest-wrapper' })}
                                 <div>
                                     <h3 style="color: #6b21a8; margin: 0; font-size: 1.4em; font-weight: 600;">MG vs. Lambert-Eaton</h3>
                                     <p style="color: #7e22ce; margin: 5px 0 0 0; font-size: 0.9em;">Duration: 29 minutes</p>

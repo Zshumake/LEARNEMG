@@ -457,7 +457,7 @@ export class BoardRenderer {
                              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.2)'; this.style.borderColor='#a855f7'"
                              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.borderColor='#e5e7eb'">
                             <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                                ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' }) : '<img src="images/ui/ERNEST.png" style="width: 50px; height: 50px;">'}
+                                ${window.ErnestIcon.getHTML({ size: '50px', className: 'mini-ernest-wrapper' })}
                                 <div>
                                     <h4 style="color: #7e22ce; margin: 0; font-size: 1.1em; font-weight: 600;">MG vs. Lambert-Eaton</h4>
                                     <p style="color: #64748b; margin: 3px 0 0 0; font-size: 0.85em;">Extra Topics • 29 min</p>

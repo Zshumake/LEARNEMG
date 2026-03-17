@@ -145,7 +145,7 @@ export class AudioPlayer {
                 album: 'EMG/NCS Learning Series',
                 artwork: [
                     {
-                        src: "images/ui/ERNEST.png", // Legacy fallback
+                        src: "images/ui/modern_edx_app_icon.png",
                         sizes: '512x512', type: 'image/png'
                     }
                 ]

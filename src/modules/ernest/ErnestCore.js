@@ -15,7 +15,7 @@ export class ErnestCore {
             'ernest': {
                 description: "Join Ernest on an interactive adventure through the peripheral nervous system. Master complex anatomy, conquer clinical patterns, and build the skills that will help you become a confident electrodiagnostician. Ready to begin your journey?",
                 name: "Ernest (StimTroller Plus™)",
-                image: "images/ui/ERNEST.png",
+                image: null,
                 color: "#6b9f78",
                 prompt: `
             PERSONA: "THE ENERGETIC NEURO-WIZARD"
@@ -31,7 +31,7 @@ export class ErnestCore {
             'earl': {
                 description: "Oh, you're back? Fine. I suppose I can verify your attempts at 'diagnostics.' Try not to confuse volume conduction with actual pathology this time. Ready to be corrected?",
                 name: "Earl",
-                image: "images/ui/EARL.png",
+                image: null,
                 color: "#b91c1c",
                 bg: "#fef2f2",
                 prompt: `
@@ -120,16 +120,7 @@ export class ErnestCore {
     }
 
     updateGlobalImages(newSrc) {
-        const allImages = document.querySelectorAll('img');
-        allImages.forEach(img => {
-            // Updated check to handle new path structure
-            if (img.src.includes('images/ui/ERNEST.png') || img.src.includes('images/ui/EARL.png')) {
-                const oldFilename = img.src.split('/').pop();
-                if (oldFilename === 'ERNEST.png' || oldFilename === 'EARL.png') {
-                    img.src = newSrc;
-                }
-            }
-        });
+        // SVG icons are now used everywhere - no PNG images to update
     }
 
     startIdleMonitor() {

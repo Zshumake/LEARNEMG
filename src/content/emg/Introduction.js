@@ -249,7 +249,7 @@ class IntroductionModule extends BaseContent {
                         </div>
 
                         <div style="background: white; border-radius: 50%; padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); flex-shrink: 0; z-index: 1;">
-                            ${window.ErnestIcon ? window.ErnestIcon.getHTML({ size: '55px' }) : '<img src="images/ui/ERNEST.png" style="width: 55px; height: 55px;">'}
+                            ${window.ErnestIcon.getHTML({ size: '55px' })}
                         </div>
                         
                         <div style="flex: 1; z-index: 1;">
