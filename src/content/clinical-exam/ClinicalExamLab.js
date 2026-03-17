@@ -147,9 +147,9 @@ class ClinicalExamLabModule {
                 <!-- History Section (collapsed by default) -->
                 <div class="cel-section">
                     <h3 class="cel-section-title" onclick="window._celModule.toggleSection('history-${dx.id}')">
-                        ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">+</span>
+                        ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">-</span>
                     </h3>
-                    <div id="cel-section-history-${dx.id}" class="cel-section-body cel-collapsed">
+                    <div id="cel-section-history-${dx.id}" class="cel-section-body">
                         <div class="cel-info-row"><strong>Demographics:</strong> ${dx.history.demographics}</div>
                         <div class="cel-info-row"><strong>Chief Complaint:</strong> ${dx.history.chiefComplaint}</div>
                         <div class="cel-info-row">
@@ -176,9 +176,9 @@ class ClinicalExamLabModule {
                 <!-- Physical Exam Section (collapsed by default) -->
                 <div class="cel-section">
                     <h3 class="cel-section-title" onclick="window._celModule.toggleSection('exam-${dx.id}')">
-                        ${ICONS.exam} Physical Examination <span class="cel-toggle" id="cel-arrow-exam-${dx.id}">+</span>
+                        ${ICONS.exam} Physical Examination <span class="cel-toggle" id="cel-arrow-exam-${dx.id}">-</span>
                     </h3>
-                    <div id="cel-section-exam-${dx.id}" class="cel-section-body cel-collapsed">
+                    <div id="cel-section-exam-${dx.id}" class="cel-section-body">
                         ${this.renderExamSubsection('inspection', 'Inspection', ICONS.inspection, dx.physicalExam.inspection, dx.id)}
                         ${this.renderExamSubsection('palpation', 'Palpation', ICONS.palpation, dx.physicalExam.palpation, dx.id)}
                         ${this.renderExamSubsection('rom', 'Range of Motion', ICONS.rom, dx.physicalExam.rom, dx.id)}
@@ -213,9 +213,9 @@ class ClinicalExamLabModule {
             <div class="cel-subsection">
                 <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
                     ${icon} ${title} <span class="cel-sub-count">${items.length}</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">+</span>
+                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
                 </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body cel-collapsed">
+                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
                     <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
                 </div>
             </div>
@@ -229,9 +229,9 @@ class ClinicalExamLabModule {
             <div class="cel-subsection">
                 <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
                     ${ICONS.strength} Manual Muscle Testing <span class="cel-sub-count">${strength.length} muscles</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">+</span>
+                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
                 </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body cel-collapsed">
+                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
                     <div class="cel-table-wrapper">
                         <table class="cel-table">
                             <thead>
@@ -263,9 +263,9 @@ class ClinicalExamLabModule {
             <div class="cel-subsection">
                 <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
                     ${ICONS.sensory} Sensory Examination <span class="cel-sub-count">${sensory.length}</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">+</span>
+                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
                 </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body cel-collapsed">
+                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
                     <div class="cel-table-wrapper">
                         <table class="cel-table">
                             <thead>
@@ -294,9 +294,9 @@ class ClinicalExamLabModule {
             <div class="cel-subsection">
                 <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
                     ${ICONS.reflex} Reflexes <span class="cel-sub-count">${reflexes.length}</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">+</span>
+                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
                 </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body cel-collapsed">
+                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
                     <div class="cel-table-wrapper">
                         <table class="cel-table">
                             <thead>
@@ -324,9 +324,9 @@ class ClinicalExamLabModule {
             <div class="cel-subsection">
                 <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
                     ${ICONS.specialTest} Special Tests <span class="cel-sub-count">${tests.length} tests</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">+</span>
+                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
                 </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body cel-collapsed">
+                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
                     ${tests.map(t => `
                         <div class="cel-special-test">
                             <div class="cel-test-name">${t.name}${t.sensitivity ? ` <span class="cel-test-stats">(Sens: ${t.sensitivity}${t.specificity ? `, Spec: ${t.specificity}` : ''})</span>` : ''}</div>
