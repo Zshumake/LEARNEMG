@@ -1,4 +1,4 @@
-import { moduleLoader } from '../utils/ModuleLoader.js?v=20260318b';
+import { moduleLoader } from '../utils/ModuleLoader.js?v=20260318c';
 import { Bootstrapper } from './core/Bootstrapper.js?v=20260317';
 import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260317';
 import { PlexusManager } from './plexus/PlexusManager.js?v=20260317';

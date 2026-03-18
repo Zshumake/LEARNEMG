@@ -53,7 +53,7 @@ const MODULE_MAP = {
     },
 
     // STANDARD CONTENT MODULES (Lazy Loaded)
-    'clinical-exam-lab': () => import('../content/clinical-exam/ClinicalExamLab.js?v=20260318b'),
+    'clinical-exam-lab': () => import('../content/clinical-exam/ClinicalExamLab.js?v=20260318c'),
     'emg-introduction': () => import('../content/emg/Introduction.js'),
     'basic-patterns': () => import('../content/emg/BasicPatterns.js'),
     'neuropathy-myopathy-basics': () => import('../content/emg/NeuropathyMyopathy.js'),
