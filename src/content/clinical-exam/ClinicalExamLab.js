@@ -3,7 +3,7 @@
  * Module for teaching residents H&P before EMG/NCS.
  * Two modes: Study Mode (browse diagnoses) and Exam Builder (build from differential).
  */
-import { clinicalExamData, DIAGNOSIS_CATEGORIES } from '../../data/clinical-exam/index.js?v=20260317';
+import { clinicalExamData, DIAGNOSIS_CATEGORIES } from '../../data/clinical-exam/index.js?v=rootfix1';
 
 // Inline SVG icons (no emojis)
 const ICONS = {
@@ -424,11 +424,8 @@ class ClinicalExamLabModule {
         const pe = dx.physicalExam;
         const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.muscle);
         const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.area);
-        // Only highlight roots for radiculopathy -- entrapments/plexopathies affect nerves, not roots
-        const isRadiculopathy = (dx.category || '').toLowerCase().includes('radiculopathy');
-        const abnormalRoots = isRadiculopathy
-            ? [...new Set((pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.root))]
-            : [];
+        // Only highlight the specific affected root for radiculopathies using explicit affectedRoot field
+        const abnormalRoots = dx.affectedRoot ? [dx.affectedRoot] : [];
 
         if (region === BODY_REGION.UPPER || region === BODY_REGION.BOTH) {
             return this.renderUpperExtremitySVG(abnormalMuscles, abnormalSensory, abnormalRoots);
@@ -492,7 +489,7 @@ class ClinicalExamLabModule {
             : ['L2', 'L3', 'L4', 'L5', 'S1', 'S2'];
 
         const dermStrip = rootLevels.map((root, i) => {
-            const isAbnormal = roots.some(r => r.includes(root));
+            const isAbnormal = roots.includes(root);
             const fill = isAbnormal ? '#fecaca' : '#f1f5f9';
             const stroke = isAbnormal ? '#dc2626' : '#cbd5e1';
             const textColor = isAbnormal ? '#991b1b' : '#64748b';

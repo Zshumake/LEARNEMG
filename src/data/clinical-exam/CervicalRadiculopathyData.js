@@ -4,6 +4,7 @@ export const cervicalRadiculopathyData = {
         id: 'c5_radiculopathy',
         name: 'C5 Radiculopathy',
         category: 'Cervical Radiculopathy',
+        affectedRoot: 'C5',
         isInappropriate: false,
         history: {
             demographics: 'Adults 40-60 years, degenerative disc disease, trauma (younger patients)',
@@ -77,6 +78,7 @@ export const cervicalRadiculopathyData = {
         id: 'c6_radiculopathy',
         name: 'C6 Radiculopathy',
         category: 'Cervical Radiculopathy',
+        affectedRoot: 'C6',
         isInappropriate: false,
         history: {
             demographics: 'Adults 40-60 years, C5-C6 disc herniation (most common cervical disc level)',
@@ -147,6 +149,7 @@ export const cervicalRadiculopathyData = {
         id: 'c7_radiculopathy',
         name: 'C7 Radiculopathy',
         category: 'Cervical Radiculopathy',
+        affectedRoot: 'C7',
         isInappropriate: false,
         history: {
             demographics: 'Most COMMON cervical radiculopathy level. Adults 40-60, C6-C7 disc herniation.',
@@ -217,6 +220,7 @@ export const cervicalRadiculopathyData = {
         id: 'c8_radiculopathy',
         name: 'C8 Radiculopathy',
         category: 'Cervical Radiculopathy',
+        affectedRoot: 'C8',
         isInappropriate: false,
         history: {
             demographics: 'Less common than C6/C7. C7-T1 disc herniation or foraminal stenosis. Consider Pancoast tumor.',
@@ -288,6 +292,7 @@ export const cervicalRadiculopathyData = {
         id: 't1_radiculopathy',
         name: 'T1 Radiculopathy',
         category: 'Cervical Radiculopathy',
+        affectedRoot: 'T1',
         isInappropriate: false,
         history: {
             demographics: 'Rare. Must rule out Pancoast tumor (apical lung tumor). Cervicothoracic disc pathology.',

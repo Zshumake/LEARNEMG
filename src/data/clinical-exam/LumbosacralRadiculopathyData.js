@@ -4,6 +4,7 @@ export const lumbosacralRadiculopathyData = {
         id: 'l2_radiculopathy',
         name: 'L2 Radiculopathy',
         category: 'Lumbosacral Radiculopathy',
+        affectedRoot: 'L2',
         isInappropriate: false,
         history: {
             demographics: 'Relatively uncommon. Consider retroperitoneal pathology, tumor, infection. Older adults with degenerative changes.',
@@ -68,6 +69,7 @@ export const lumbosacralRadiculopathyData = {
         id: 'l3_radiculopathy',
         name: 'L3 Radiculopathy',
         category: 'Lumbosacral Radiculopathy',
+        affectedRoot: 'L3',
         isInappropriate: false,
         history: {
             demographics: 'Older adults with degenerative disc/facet disease. L2-L3 or L3-L4 pathology.',
@@ -134,6 +136,7 @@ export const lumbosacralRadiculopathyData = {
         id: 'l4_radiculopathy',
         name: 'L4 Radiculopathy',
         category: 'Lumbosacral Radiculopathy',
+        affectedRoot: 'L4',
         isInappropriate: false,
         history: {
             demographics: 'Adults with L3-L4 disc herniation or foraminal stenosis. More common in older adults.',
@@ -203,6 +206,7 @@ export const lumbosacralRadiculopathyData = {
         id: 'l5_radiculopathy',
         name: 'L5 Radiculopathy',
         category: 'Lumbosacral Radiculopathy',
+        affectedRoot: 'L5',
         isInappropriate: false,
         history: {
             demographics: 'Very common. L4-L5 disc herniation (most common lumbar herniation level). Adults 30-50.',
@@ -282,6 +286,7 @@ export const lumbosacralRadiculopathyData = {
         id: 's1_radiculopathy',
         name: 'S1 Radiculopathy',
         category: 'Lumbosacral Radiculopathy',
+        affectedRoot: 'S1',
         isInappropriate: false,
         history: {
             demographics: 'Very common. L5-S1 disc herniation. Adults 30-50 years.',

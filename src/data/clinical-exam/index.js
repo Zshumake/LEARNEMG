@@ -1,7 +1,7 @@
 import { entrapmentUpperData } from './EntrapmentUpperData.js?v=20260317';
 import { entrapmentLowerData } from './EntrapmentLowerData.js?v=20260317';
-import { cervicalRadiculopathyData } from './CervicalRadiculopathyData.js?v=20260317';
-import { lumbosacralRadiculopathyData } from './LumbosacralRadiculopathyData.js?v=20260317';
+import { cervicalRadiculopathyData } from './CervicalRadiculopathyData.js?v=rootfix1';
+import { lumbosacralRadiculopathyData } from './LumbosacralRadiculopathyData.js?v=rootfix1';
 import { plexopathyData } from './PlexopathyData.js?v=20260317';
 import { polyneuropathyData } from './PolyneuropathyData.js?v=20260317';
 import { motorNeuronData } from './MotorNeuronData.js?v=20260317';
