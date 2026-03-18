@@ -67,10 +67,10 @@ export const myopathyCases = {
             { muscle: "Iliopsoas", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early" },
             { muscle: "Biceps", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early/Full" },
             { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early/Full" },
-            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early/Full" },
-            { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early/Full" },
-            { muscle: "Fibularis Longus", nerve: "Superficial Peroneal", root: "L5-S1", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early/Full" },
-            { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: true, fibs: "2+", motorUnits: "Small/Poly", recruitment: "Early/Full" }
+            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: false, fibs: "0", motorUnits: "Normal", recruitment: "Normal" },
+            { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: false, fibs: "0", motorUnits: "Normal", recruitment: "Normal" },
+            { muscle: "Fibularis Longus", nerve: "Superficial Peroneal", root: "L5-S1", abnormal: false, fibs: "0", motorUnits: "Normal", recruitment: "Normal" },
+            { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: false, fibs: "0", motorUnits: "Normal", recruitment: "Normal" }
         ],
         teachingPoints: [
             "Myopathic disorders show preservation of sensory and motor conduction (unless severe).",

@@ -15,7 +15,7 @@ export const medianForearmCases = {
             inspection: "No visible atrophy in the hand or forearm.",
             palpation: "Marked tenderness over the pronator teres muscle in the proximal forearm.",
             rom: "Full ROM throughout.",
-            strength: "Normal strength in thumb flexion (FPL) and finger flexion (FDP 2/3). Mild weakness in pronation against resistance (Pronator Teres/PQ). Normal hand intrinsic strength.",
+            strength: "Normal strength in thumb flexion (FPL) and finger flexion (FDP 2/3). Mild weakness in pronation against resistance (PQ). Normal hand intrinsic strength.",
             sensation: "Decreased sensation in the median distribution, INCLUDING the palmar cutaneous territory (the central palm).",
             reflexes: "2+ and symmetric throughout.",
             specialTests: "Pain reproduced with resisted pronation of the forearm and resisted flexion of the middle finger FDS."
@@ -187,7 +187,7 @@ export const medianForearmCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 4.8, amp: 8.0, velocity: 32, abnormal: true },
+                { name: "Median Sensory (Index)", peak: 4.8, amp: 8.0, velocity: 48, abnormal: true },
                 { name: "Palmar Cutaneous (Median)", peak: "Absent", amp: 0, velocity: 0, abnormal: true },
                 { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false }
             ],

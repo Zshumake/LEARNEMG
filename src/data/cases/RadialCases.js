@@ -88,7 +88,7 @@ export const radialCases = {
             inspection: "Wrist and fingers hanging in a flexed position (Wrist Drop). No atrophy (hyperacute).",
             palpation: "No significant tenderness in the neck or forearm.",
             rom: "Full passive ROM. Active extension zero.",
-            strength: "Right Wrist Extension (ECRL/B, ECU) 0/5, Finger Extension (EDC) 0/5, Thumb Extension (EPL) 0/5. Brachioradialis 1/5. Supinator 2/5. Triceps strength 5/5. Normal hand intrinsics (APB, ADM, FDI).",
+            strength: "Right Wrist Extension 2/5 (radial deviation only, ECRL partially spared), Finger Extension (EDC) 0/5, Thumb Extension (EPL) 0/5. Brachioradialis 1/5. Supinator 2/5. Triceps strength 5/5. Normal hand intrinsics (APB, ADM, FDI).",
             sensation: "Decreased sensation over the radial sensory territory (Snuffbox and dorsal first webspace).",
             reflexes: "Right Brachioradialis reflex 0. Triceps reflex 2+. Left reflexes symmetric.",
             specialTests: "Positive Tinel's sign at the spiral groove of the humerus; Negative Tinel's at the wrist/elbow."
@@ -115,7 +115,7 @@ export const radialCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Radial Sensory (Snuffbox)", peak: "Absent", amp: 0, velocity: 0, abnormal: true, comment: "Characteristic finding in high radial neuropathy" },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.8, amp: 18.0, velocity: 52, abnormal: false, comment: "Preserved distally in neurapraxia (conduction block)" },
                 { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
                 { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false }
             ],
@@ -135,7 +135,7 @@ export const radialCases = {
             { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, fibs: "0", recruitment: "Absent" },
             { muscle: "Triceps", nerve: "Radial", root: "C6-C8", abnormal: false, comment: "Spared (Proximal to spiral groove)" },
             { muscle: "Brachioradialis", nerve: "Radial", root: "C5-C6", abnormal: true, fibs: "0 (Hyperacute)", recruitment: "Absent", comment: "Neurapraxic block" },
-            { muscle: "Extensor Carpi Radialis Longus", nerve: "Radial", root: "C6-C7", abnormal: true, fibs: "0", recruitment: "Absent" },
+            { muscle: "Extensor Carpi Radialis Longus", nerve: "Radial", root: "C6-C7", abnormal: false, fibs: "0", recruitment: "Normal", motorUnits: "Normal", comment: "Spared (ECRL branches above spiral groove)" },
             { muscle: "Extensor Digitorum Communis", nerve: "PIN", root: "C7-C8", abnormal: true, fibs: "0", recruitment: "Absent" }
         ],
         teachingPoints: [

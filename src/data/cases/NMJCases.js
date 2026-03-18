@@ -136,14 +136,14 @@ export const nMJCases = {
             ]
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "Fibularis Longus", nerve: "Superficial Peroneal", root: "L5-S1", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" },
-            { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L3-L4", abnormal: true, motorUnits: "Small/Poly", recruitment: "Reduced" }
+            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "Fibularis Longus", nerve: "Superficial Peroneal", root: "L5-S1", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" },
+            { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L3-L4", abnormal: true, motorUnits: "Unstable/Varying", recruitment: "Reduced" }
         ],
         teachingPoints: [
             "LEMS is a pre-synaptic NMJ disorder affecting Voltage-Gated Calcium Channels (VGCC).",

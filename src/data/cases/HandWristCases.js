@@ -50,7 +50,7 @@ export const handWristCases = {
             ],
             motor: [
                 { name: "Median Motor (APB)", latency: 5.8, amp: 4.2, velocity: 52, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 5.0, velocity: 62, abnormal: true }
             ],
             comparison: [
                 { name: "Median-Ulnar Comp (Digit 4)", measureA: "4.8", measureB: "2.4", deltaP: "2.4", abnormal: true },

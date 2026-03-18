@@ -48,10 +48,10 @@ export const systemicCases = {
                 { name: "Fibular Sensory", peak: 0, amp: 0, velocity: 0, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 5.2, amp: 4.8, velocity: 38, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 4.8, amp: 5.2, velocity: 42, abnormal: true },
-                { name: "Fibular Motor (EDB)", latency: 7.2, amp: 0.8, velocity: 28, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 6.8, amp: 2.2, velocity: 32, abnormal: true }
+                { name: "Median Motor (APB)", latency: 5.2, amp: 4.8, velocity: 44, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 4.8, amp: 5.2, velocity: 45, abnormal: true },
+                { name: "Fibular Motor (EDB)", latency: 7.2, amp: 0.8, velocity: 35, abnormal: true },
+                { name: "Tibial Motor (AH)", latency: 6.8, amp: 2.2, velocity: 36, abnormal: true }
             ],
             comparison: []
         },
@@ -205,8 +205,8 @@ export const systemicCases = {
                 { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 5.2, velocity: 45, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 3.5, amp: 4.8, velocity: 42, abnormal: true },
+                { name: "Median Motor (APB)", latency: 6.2, amp: 5.2, velocity: 45, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 5.8, amp: 4.8, velocity: 42, abnormal: true },
                 { name: "Fibular Motor (EDB)", latency: 5.2, amp: 2.5, velocity: 32, abnormal: true },
                 { name: "Tibial Motor (AH)", latency: 6.5, amp: 3.0, velocity: 30, abnormal: true }
             ],
@@ -298,7 +298,7 @@ export const systemicCases = {
         teachingPoints: [
             "CIDP is a chronic demyelinating polyneuropathy characterized by progression >8 weeks.",
             "NCS hallmark: Criteria for demyelination include 1) Prolonged distal latency, 2) Conduction velocity <70% LLN, 3) Abnormal F-waves, and 4) Conduction block or temporal dispersion.",
-            "Aripiprazole-like dissociation (High protein, normal cell count) in CSF is common.",
+            "Albuminocytologic dissociation (High protein, normal cell count) in CSF is common.",
             "Proximal weakness is as common as distal weakness in CIDP/GBS because the roots (polyradiculopathy) are involved."
         ]
     },

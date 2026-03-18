@@ -51,7 +51,7 @@ export const ulnarCases = {
             ],
             motor: [
                 { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 4.8, amp: 4.2, velocity: 38, abnormal: true, comment: "Focal slowing (>10m/s drop) across the elbow segment" }
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 4.2, velocity: 38, abnormal: true, comment: "Focal slowing (>10m/s drop) across the elbow segment" }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -119,8 +119,8 @@ export const ulnarCases = {
                 { name: "Medial Antebrachial Cut", peak: 4.8, amp: 4.0, velocity: 38, abnormal: true, comment: "Key Localization - Abnormal" }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 5.2, amp: 3.5, velocity: 52, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 4.8, amp: 2.5, velocity: 48, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 3.5, velocity: 52, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 3.0, amp: 2.5, velocity: 48, abnormal: true }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }

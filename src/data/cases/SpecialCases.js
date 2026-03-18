@@ -7,7 +7,7 @@ export const specialCases = {
             gender: "Male",
             occupation: "Retired",
             chiefComplaint: "Acute onset left-sided weakness and facial droop",
-            history: "Wired found patient at 7 AM with left facial droop and dense left-sided weakness. He was neurologically normal when he went to bed at 10 PM. No history of headache, neck pain, or vision changes. Slurred speech noted on arrival.",
+            history: "Wife found patient at 7 AM with left facial droop and dense left-sided weakness. He was neurologically normal when he went to bed at 10 PM. No history of headache, neck pain, or vision changes. Slurred speech noted on arrival.",
             pmh: "Hypertension, Type 2 Diabetes, Atrial Fibrillation (non-compliant with anticoagulation)",
             medications: "Lisinopril, Metformin, Amlodipine"
         },

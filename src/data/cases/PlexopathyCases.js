@@ -199,7 +199,7 @@ export const plexopathyCases = {
             { muscle: "Flexor Carpi Ulnaris", nerve: "Ulnar", root: "C8-T1", abnormal: true, fibs: "1+", recruitment: "Reduced" }
         ],
         teachingPoints: [
-            "Radiation plexopathy typically involves more proximal elements and classically affects the upper trunk. Finding myokymia in a lower-trunk distribution is key to differentiating from tumor recurrence.",
+            "Radiation plexopathy most commonly affects the upper trunk, but lower trunk involvement can also occur, particularly when the radiation field extends to the lower plexus as in this case. Finding myokymia is key to differentiating radiation injury from tumor recurrence regardless of trunk level.",
             "EMG hallmark: Myokymic discharges (spontaneous bursts of potentials) are highly suggestive of radiation injury.",
             "NCS often shows reduced amplitudes across multiple nerves."
         ]

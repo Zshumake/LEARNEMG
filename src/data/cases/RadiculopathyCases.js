@@ -84,7 +84,7 @@ export const radiculopathyCases = {
             medications: "Ibuprofen, muscle relaxers"
         },
         physicalExam: {
-            inspection: "Mild thenar atrophy on right, antalgic neck posture",
+            inspection: "Mild biceps atrophy on right, antalgic neck posture",
             palpation: "Cervical paraspinal muscle spasm, tender over C6 facet",
             rom: "Limited cervical extension and right lateral bending",
             strength: "Biceps 3/5, brachioradialis 3/5, wrist extensors 4/5 on right",
