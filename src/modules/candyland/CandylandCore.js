@@ -67,18 +67,19 @@ export class CandylandCore {
     }
 
     async handleModuleClick(moduleId, index) {
-        console.log(`🎯 Module clicked: ${moduleId} (Index: ${index})`);
+        console.log(`Module clicked: ${moduleId} (Index: ${index})`);
 
         if (window.appComponents && window.appComponents.modal) {
             const modules = this.config[this.currentPGYLevel] || this.config['all'] || [];
-            // Try index first, then fall back to finding by moduleId
-            let module = modules[index];
-            if (!module && moduleId) {
-                module = modules.find(m => m.id === moduleId);
+            // Always find by moduleId first (index is unreliable after featured module insertion)
+            let module = moduleId ? modules.find(m => m.id === moduleId) : null;
+            if (!module) {
+                module = modules[index];
             }
 
             if (module) {
-                window.appComponents.modal.showLearningModal(module, index, this.currentPGYLevel);
+                const actualIndex = modules.indexOf(module);
+                window.appComponents.modal.showLearningModal(module, actualIndex, this.currentPGYLevel);
             } else {
                 console.error(`❌ Module not found for id: ${moduleId}, index: ${index} in PGY: ${this.currentPGYLevel}`);
             }
