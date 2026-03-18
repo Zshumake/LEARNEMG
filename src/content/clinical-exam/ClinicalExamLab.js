@@ -24,7 +24,29 @@ const ICONS = {
     copy: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
     placeholder: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>',
     wrench: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+    // Status icons for reflexes
+    checkCircle: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>',
+    downCircle: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v5"/><path d="M9 11l3 3 3-3"/></svg>',
+    xCircle: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>',
+    upCircle: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5"/><path d="M9 13l3-3 3 3"/></svg>',
 };
+
+// --- Region mapping for anatomical diagrams ---
+const BODY_REGION = {
+    UPPER: 'upper',
+    LOWER: 'lower',
+    BOTH: 'both',
+    NONE: 'none'
+};
+
+function getCategoryBodyRegion(category) {
+    const cat = (category || '').toLowerCase();
+    if (cat.includes('upper extremity') || cat.includes('cervical')) return BODY_REGION.UPPER;
+    if (cat.includes('lower extremity') || cat.includes('lumbosacral')) return BODY_REGION.LOWER;
+    if (cat.includes('polyneuropathy')) return BODY_REGION.BOTH;
+    if (cat.includes('plexopathy')) return BODY_REGION.UPPER; // mostly brachial
+    return BODY_REGION.NONE;
+}
 
 class ClinicalExamLabModule {
     constructor() {
@@ -59,7 +81,6 @@ class ClinicalExamLabModule {
 
     initialize() {
         window._celModule = this;
-        // Select first diagnosis by default
         const firstCat = this.categories[0];
         if (firstCat && firstCat.ids.length > 0) {
             setTimeout(() => this.selectDiagnosis(firstCat.ids[0]), 100);
@@ -119,227 +140,390 @@ class ClinicalExamLabModule {
         this.selectedDiagnosis = id;
         const dx = this.data[id];
         if (!dx) return;
-
-        // Update sidebar highlighting
         document.querySelectorAll('.cel-dx-item').forEach(el => el.classList.remove('cel-dx-selected'));
         const item = document.getElementById(`cel-dx-${id}`);
         if (item) {
             item.classList.add('cel-dx-selected');
-            // Expand parent category
             const catEl = item.closest('.cel-category-items');
             if (catEl) catEl.style.display = 'block';
         }
-
-        // Render diagnosis detail
         const main = document.getElementById('cel-main-content');
-        if (main) main.innerHTML = this.renderDiagnosisDetail(dx);
+        if (main) {
+            main.innerHTML = this.renderDiagnosisDetail(dx);
+            main.scrollTop = 0;
+        }
     }
 
+    // --- STATUS HELPERS ---
+    getStatus(finding) {
+        const f = (finding || '').toUpperCase();
+        if (f.includes('WEAK') || f.includes('ABSENT') || f.includes('DIMINISHED') || f.includes('DECREASED') || f.includes('HYPERACTIVE')) return 'abnormal';
+        if (f.includes('MAY BE') || f.includes('VARIABLE') || f.includes('POSSIBLE')) return 'uncertain';
+        return 'normal';
+    }
+
+    getReflexIcon(finding) {
+        const f = (finding || '').toUpperCase();
+        if (f.includes('ABSENT')) return ICONS.xCircle;
+        if (f.includes('DIMINISHED')) return ICONS.downCircle;
+        if (f.includes('HYPERACTIVE') || f.includes('BRISK')) return ICONS.upCircle;
+        return ICONS.checkCircle;
+    }
+
+    parseStatPercent(str) {
+        if (!str) return null;
+        const match = str.match(/(\d+)/);
+        return match ? parseInt(match[1]) : null;
+    }
+
+    getStatColor(val) {
+        if (val === null) return '#94a3b8';
+        if (val >= 80) return '#059669';
+        if (val >= 60) return '#ea580c';
+        return '#dc2626';
+    }
+
+    // =========================================
+    // DIAGNOSIS DETAIL VIEW (redesigned)
+    // =========================================
     renderDiagnosisDetail(dx) {
+        const pe = dx.physicalExam;
+        const abnormalStrength = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const totalStrength = (pe.strength || []).length;
+        const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const totalSensory = (pe.sensory || []).length;
+        const abnormalReflexes = (pe.reflexes || []).filter(r => this.getStatus(r.expectedFinding) !== 'normal').length;
+        const totalReflexes = (pe.reflexes || []).length;
+        const totalTests = (pe.specialTests || []).length;
+        const bodyRegion = getCategoryBodyRegion(dx.category);
+
         return `
             <div class="cel-detail">
-                <div class="cel-detail-header ${dx.isInappropriate ? 'cel-header-inappropriate' : ''}">
-                    <h2>${dx.name}</h2>
-                    <span class="cel-cat-label">${dx.category}</span>
-                    ${dx.isInappropriate ? `<div class="cel-inappropriate-banner">${ICONS.warning} This diagnosis is commonly sent to the EMG lab but EMG/NCS is generally NOT indicated. The exam below helps distinguish it from true neuromuscular pathology.</div>` : ''}
-                </div>
-
-                <!-- History Section (collapsed by default) -->
-                <div class="cel-section">
-                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('history-${dx.id}')">
-                        ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">-</span>
-                    </h3>
-                    <div id="cel-section-history-${dx.id}" class="cel-section-body">
-                        <div class="cel-info-row"><strong>Demographics:</strong> ${dx.history.demographics}</div>
-                        <div class="cel-info-row"><strong>Chief Complaint:</strong> ${dx.history.chiefComplaint}</div>
-                        <div class="cel-info-row">
-                            <strong>Key HPI Features:</strong>
-                            <ul>${dx.history.hpiKeyFeatures.map(f => `<li>${f}</li>`).join('')}</ul>
+                <!-- Hero Header -->
+                <div class="cel-hero ${dx.isInappropriate ? 'cel-hero-warn' : ''}">
+                    <div class="cel-hero-content">
+                        <span class="cel-hero-cat">${dx.category}</span>
+                        <h2 class="cel-hero-title">${dx.name}</h2>
+                        <div class="cel-hero-stats">
+                            ${totalStrength ? `<span class="cel-stat-chip ${abnormalStrength ? 'cel-chip-abnormal' : 'cel-chip-normal'}">${abnormalStrength}/${totalStrength} muscles abnormal</span>` : ''}
+                            ${totalSensory ? `<span class="cel-stat-chip ${abnormalSensory ? 'cel-chip-abnormal' : 'cel-chip-normal'}">${abnormalSensory}/${totalSensory} sensory abnormal</span>` : ''}
+                            ${totalReflexes ? `<span class="cel-stat-chip ${abnormalReflexes ? 'cel-chip-abnormal' : 'cel-chip-normal'}">${abnormalReflexes}/${totalReflexes} reflexes abnormal</span>` : ''}
+                            ${totalTests ? `<span class="cel-stat-chip">${totalTests} special tests</span>` : ''}
                         </div>
-                        ${dx.history.associatedSymptoms?.length ? `
-                        <div class="cel-info-row">
-                            <strong>Associated Symptoms:</strong>
-                            <ul>${dx.history.associatedSymptoms.map(s => `<li>${s}</li>`).join('')}</ul>
-                        </div>` : ''}
-                        ${dx.history.redFlags?.length ? `
-                        <div class="cel-info-row cel-red-flags">
-                            <strong>${ICONS.flag} Red Flags:</strong>
-                            <ul>${dx.history.redFlags.map(f => `<li>${f}</li>`).join('')}</ul>
-                        </div>` : ''}
-                        ${dx.history.commonMisdiagnoses?.length ? `
-                        <div class="cel-info-row">
-                            <strong>Common Misdiagnoses:</strong> ${dx.history.commonMisdiagnoses.join(', ')}
-                        </div>` : ''}
                     </div>
+                    ${dx.isInappropriate ? `<div class="cel-hero-warn-banner">${ICONS.warning} EMG/NCS generally NOT indicated -- exam below helps distinguish from neuromuscular pathology.</div>` : ''}
                 </div>
 
-                <!-- Physical Exam Section (collapsed by default) -->
-                <div class="cel-section">
-                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('exam-${dx.id}')">
-                        ${ICONS.exam} Physical Examination <span class="cel-toggle" id="cel-arrow-exam-${dx.id}">-</span>
-                    </h3>
-                    <div id="cel-section-exam-${dx.id}" class="cel-section-body">
-                        ${this.renderExamSubsection('inspection', 'Inspection', ICONS.inspection, dx.physicalExam.inspection, dx.id)}
-                        ${this.renderExamSubsection('palpation', 'Palpation', ICONS.palpation, dx.physicalExam.palpation, dx.id)}
-                        ${this.renderExamSubsection('rom', 'Range of Motion', ICONS.rom, dx.physicalExam.rom, dx.id)}
-                        ${this.renderStrengthSubsection(dx.physicalExam.strength, dx.id)}
-                        ${this.renderSensorySubsection(dx.physicalExam.sensory, dx.id)}
-                        ${this.renderReflexSubsection(dx.physicalExam.reflexes, dx.id)}
-                        ${this.renderSpecialTestsSubsection(dx.physicalExam.specialTests, dx.id)}
-                    </div>
-                </div>
-
-                <!-- Key Distinguishing Findings (open by default) -->
+                <!-- Key Findings (promoted to top) -->
                 ${dx.keyDistinguishingFindings?.length ? `
-                <div class="cel-section cel-key-findings">
-                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('key-${dx.id}')">
-                        ${ICONS.key} Key Distinguishing Findings <span class="cel-toggle" id="cel-arrow-key-${dx.id}">&minus;</span>
-                    </h3>
-                    <div id="cel-section-key-${dx.id}" class="cel-section-body">
-                        <ul class="cel-pearl-list">
-                            ${dx.keyDistinguishingFindings.map(f => `<li>${f}</li>`).join('')}
-                        </ul>
+                <div class="cel-pearls">
+                    <div class="cel-pearls-header">${ICONS.key} Key Distinguishing Findings</div>
+                    <div class="cel-pearls-body">
+                        ${dx.keyDistinguishingFindings.map(f => `<div class="cel-pearl-item"><span class="cel-pearl-dot"></span>${f}</div>`).join('')}
                     </div>
+                </div>` : ''}
+
+                <!-- Anatomical Diagram + Exam Grid -->
+                <div class="cel-exam-layout ${bodyRegion !== BODY_REGION.NONE ? 'cel-has-diagram' : ''}">
+                    ${bodyRegion !== BODY_REGION.NONE ? `
+                    <div class="cel-diagram-panel">
+                        ${this.renderAnatomicalDiagram(dx, bodyRegion)}
+                    </div>` : ''}
+
+                    <div class="cel-exam-content">
+                        <!-- Strength Cards -->
+                        ${this.renderStrengthCards(pe.strength)}
+
+                        <!-- Sensory Cards -->
+                        ${this.renderSensoryCards(pe.sensory)}
+
+                        <!-- Reflex Chips -->
+                        ${this.renderReflexChips(pe.reflexes)}
+
+                        <!-- Special Tests -->
+                        ${this.renderSpecialTestCards(pe.specialTests, dx.id)}
+
+                        <!-- Inspection / Palpation / ROM -->
+                        ${this.renderExamList('Inspection', ICONS.inspection, pe.inspection)}
+                        ${this.renderExamList('Palpation', ICONS.palpation, pe.palpation)}
+                        ${this.renderExamList('Range of Motion', ICONS.rom, pe.rom)}
+                    </div>
+                </div>
+
+                <!-- History (compact, collapsed) -->
+                <div class="cel-section cel-history-section">
+                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('history-${dx.id}')">
+                        ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">+</span>
+                    </h3>
+                    <div id="cel-section-history-${dx.id}" class="cel-section-body cel-collapsed">
+                        ${this.renderHistoryCompact(dx.history)}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- STRENGTH CARD GRID ---
+    renderStrengthCards(strength) {
+        if (!strength || strength.length === 0) return '';
+        const abnormal = strength.filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const pct = Math.round((abnormal / strength.length) * 100);
+        return `
+            <div class="cel-card-section">
+                <div class="cel-card-section-header">
+                    ${ICONS.strength} <span>Manual Muscle Testing</span>
+                    <span class="cel-summary-text">${abnormal}/${strength.length} abnormal</span>
+                </div>
+                <div class="cel-summary-bar"><div class="cel-summary-fill cel-fill-abnormal" style="width:${pct}%"></div></div>
+                <div class="cel-muscle-grid">
+                    ${strength.map(s => {
+                        const status = this.getStatus(s.expectedFinding);
+                        return `
+                        <div class="cel-muscle-card cel-finding-${status}">
+                            <div class="cel-mc-top">
+                                <span class="cel-mc-name">${s.muscle}</span>
+                                <span class="cel-mrc-badge cel-mrc-${status}">${s.mrcGrade}</span>
+                            </div>
+                            <div class="cel-mc-details">
+                                <span class="cel-mc-nerve">${s.nerve}</span>
+                                <span class="cel-mc-root">${s.root}</span>
+                            </div>
+                            <div class="cel-mc-action">${s.action}</div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- SENSORY CARD GRID ---
+    renderSensoryCards(sensory) {
+        if (!sensory || sensory.length === 0) return '';
+        return `
+            <div class="cel-card-section">
+                <div class="cel-card-section-header">
+                    ${ICONS.sensory} <span>Sensory Examination</span>
+                </div>
+                <div class="cel-sensory-grid">
+                    ${sensory.map(s => {
+                        const status = this.getStatus(s.expectedFinding);
+                        return `
+                        <div class="cel-sensory-card cel-finding-${status}">
+                            <div class="cel-sc-area">${s.area}</div>
+                            <div class="cel-sc-modality">${s.modality}</div>
+                            <div class="cel-sc-finding">${s.expectedFinding}</div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- REFLEX CHIPS ---
+    renderReflexChips(reflexes) {
+        if (!reflexes || reflexes.length === 0) return '';
+        return `
+            <div class="cel-card-section">
+                <div class="cel-card-section-header">
+                    ${ICONS.reflex} <span>Reflexes</span>
+                </div>
+                <div class="cel-reflex-row">
+                    ${reflexes.map(r => {
+                        const status = this.getStatus(r.expectedFinding);
+                        return `
+                        <div class="cel-reflex-chip cel-finding-${status}">
+                            ${this.getReflexIcon(r.expectedFinding)}
+                            <span class="cel-rc-name">${r.reflex}</span>
+                            <span class="cel-rc-finding">${r.expectedFinding}</span>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- SPECIAL TEST CARDS ---
+    renderSpecialTestCards(tests, dxId) {
+        if (!tests || tests.length === 0) return '';
+        return `
+            <div class="cel-card-section">
+                <div class="cel-card-section-header">
+                    ${ICONS.specialTest} <span>Special Tests</span>
+                    <span class="cel-summary-text">${tests.length} tests</span>
+                </div>
+                <div class="cel-tests-grid">
+                    ${tests.map((t, i) => {
+                        const sensVal = this.parseStatPercent(t.sensitivity);
+                        const specVal = this.parseStatPercent(t.specificity);
+                        const testId = `test-${dxId}-${i}`;
+                        return `
+                        <div class="cel-test-card" onclick="window._celModule.toggleSection('${testId}')">
+                            <div class="cel-tc-header">
+                                <span class="cel-tc-name">${t.name}</span>
+                                <span class="cel-toggle cel-tc-toggle" id="cel-arrow-${testId}">+</span>
+                            </div>
+                            ${t.sensitivity || t.specificity ? `
+                            <div class="cel-tc-stats">
+                                ${t.sensitivity ? `
+                                <div class="cel-stat-meter">
+                                    <span class="cel-stat-label">Sens</span>
+                                    <div class="cel-stat-bar"><div class="cel-stat-fill" style="width:${sensVal || 50}%;background:${this.getStatColor(sensVal)}"></div></div>
+                                    <span class="cel-stat-value">${t.sensitivity}</span>
+                                </div>` : ''}
+                                ${t.specificity ? `
+                                <div class="cel-stat-meter">
+                                    <span class="cel-stat-label">Spec</span>
+                                    <div class="cel-stat-bar"><div class="cel-stat-fill" style="width:${specVal || 50}%;background:${this.getStatColor(specVal)}"></div></div>
+                                    <span class="cel-stat-value">${t.specificity}</span>
+                                </div>` : ''}
+                            </div>` : ''}
+                            <div id="cel-section-${testId}" class="cel-tc-body cel-collapsed">
+                                <div class="cel-tc-technique"><strong>Technique:</strong> ${t.technique}</div>
+                                <div class="cel-tc-positive"><strong>Positive:</strong> ${t.positiveFinding}</div>
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- EXAM LIST (inspection, palpation, ROM) ---
+    renderExamList(title, icon, items) {
+        if (!items || items.length === 0) return '';
+        return `
+            <div class="cel-card-section cel-list-section">
+                <div class="cel-card-section-header">
+                    ${icon} <span>${title}</span>
+                    <span class="cel-summary-text">${items.length} findings</span>
+                </div>
+                <div class="cel-exam-list">
+                    ${items.map(item => `<div class="cel-exam-list-item">${item}</div>`).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- COMPACT HISTORY ---
+    renderHistoryCompact(history) {
+        return `
+            <div class="cel-history-compact">
+                <div class="cel-hx-demo">${history.demographics}</div>
+                <div class="cel-hx-cc">"${history.chiefComplaint}"</div>
+                <div class="cel-hpi-grid">
+                    ${history.hpiKeyFeatures.map(f => `<span class="cel-hpi-tag">${f}</span>`).join('')}
+                </div>
+                ${history.associatedSymptoms?.length ? `
+                <div class="cel-hx-row"><strong>Associated:</strong> ${history.associatedSymptoms.join('; ')}</div>` : ''}
+                ${history.redFlags?.length ? `
+                <div class="cel-hx-redflags">
+                    ${history.redFlags.map(f => `<span class="cel-rf-item">${f}</span>`).join('')}
+                </div>` : ''}
+                ${history.commonMisdiagnoses?.length ? `
+                <div class="cel-hx-row"><strong>Commonly confused with:</strong>
+                    ${history.commonMisdiagnoses.map(m => `<span class="cel-misdiag-pill">${m}</span>`).join('')}
                 </div>` : ''}
             </div>
         `;
     }
 
-    // Collapsible subsection for simple list items (inspection, palpation, ROM)
-    renderExamSubsection(key, title, icon, items, dxId) {
-        if (!items || items.length === 0) return '';
-        const sectionId = `${key}-${dxId}`;
+    // --- ANATOMICAL DIAGRAM ---
+    renderAnatomicalDiagram(dx, region) {
+        const pe = dx.physicalExam;
+        const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.muscle);
+        const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.area);
+        const abnormalRoots = [...new Set((pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.root))];
+
+        if (region === BODY_REGION.UPPER || region === BODY_REGION.BOTH) {
+            return this.renderUpperExtremitySVG(abnormalMuscles, abnormalSensory, abnormalRoots);
+        }
+        if (region === BODY_REGION.LOWER) {
+            return this.renderLowerExtremitySVG(abnormalMuscles, abnormalSensory, abnormalRoots);
+        }
+        return '';
+    }
+
+    renderUpperExtremitySVG(muscles, sensory, roots) {
+        // Simplified arm outline with labeled regions
+        const regions = [
+            { id: 'shoulder', label: 'Shoulder', y: 30, keywords: ['Deltoid', 'Supraspinatus', 'Infraspinatus', 'shoulder'] },
+            { id: 'upper-arm', label: 'Upper Arm', y: 80, keywords: ['Biceps', 'Triceps', 'Brachialis', 'upper arm', 'arm'] },
+            { id: 'forearm', label: 'Forearm', y: 140, keywords: ['Pronator', 'Supinator', 'Wrist', 'FCR', 'ECR', 'FDP', 'FDS', 'EDC', 'forearm', 'Brachioradialis'] },
+            { id: 'hand-radial', label: 'Hand (Radial)', y: 200, keywords: ['APB', 'Abductor Pollicis', 'Opponens', 'thumb', 'index', 'middle', 'thenar', 'Median'] },
+            { id: 'hand-ulnar', label: 'Hand (Ulnar)', y: 230, keywords: ['FDI', 'First Dorsal', 'ADM', 'Abductor Digiti', 'hypothenar', 'ring', 'small', 'little', 'Ulnar', 'inteross'] },
+        ];
+
+        return this.renderRegionDiagram(regions, muscles, sensory, roots, 'Upper Extremity');
+    }
+
+    renderLowerExtremitySVG(muscles, sensory, roots) {
+        const regions = [
+            { id: 'hip', label: 'Hip/Thigh', y: 30, keywords: ['Iliopsoas', 'Quadriceps', 'Hip', 'Thigh', 'Adductor', 'Hamstring', 'Gluteus', 'hip', 'thigh'] },
+            { id: 'knee', label: 'Knee', y: 90, keywords: ['Quadriceps', 'knee', 'Patellar'] },
+            { id: 'anterior-leg', label: 'Anterior Leg', y: 140, keywords: ['Tibialis Anterior', 'Peroneus', 'Fibularis', 'EHL', 'EDL', 'anterior leg', 'dorsiflexion'] },
+            { id: 'posterior-leg', label: 'Posterior Leg', y: 180, keywords: ['Gastrocnemius', 'Soleus', 'Tibialis Posterior', 'calf', 'plantar flexion', 'posterior leg'] },
+            { id: 'foot', label: 'Foot', y: 230, keywords: ['EDB', 'AH', 'Abductor Hallucis', 'foot', 'toe', 'plantar', 'dorsal foot'] },
+        ];
+
+        return this.renderRegionDiagram(regions, muscles, sensory, roots, 'Lower Extremity');
+    }
+
+    renderRegionDiagram(regions, muscles, sensory, roots, title) {
+        const matchesAny = (keywords, items) => {
+            return items.some(item => keywords.some(kw => item.toLowerCase().includes(kw.toLowerCase())));
+        };
+
+        const svgRegions = regions.map(r => {
+            const muscleMatch = matchesAny(r.keywords, muscles);
+            const sensoryMatch = matchesAny(r.keywords, sensory);
+            const isAbnormal = muscleMatch || sensoryMatch;
+            const fill = isAbnormal ? '#fecaca' : '#e2e8f0';
+            const stroke = isAbnormal ? '#dc2626' : '#94a3b8';
+            const textColor = isAbnormal ? '#991b1b' : '#475569';
+
+            return `
+                <g>
+                    <rect x="10" y="${r.y}" width="160" height="36" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>
+                    <text x="90" y="${r.y + 15}" text-anchor="middle" fill="${textColor}" font-size="11" font-weight="600">${r.label}</text>
+                    ${isAbnormal ? `<text x="90" y="${r.y + 28}" text-anchor="middle" fill="${stroke}" font-size="8" font-weight="500">ABNORMAL</text>` :
+                    `<text x="90" y="${r.y + 28}" text-anchor="middle" fill="${textColor}" font-size="8">Normal</text>`}
+                </g>`;
+        }).join('');
+
+        // Dermatome strip on the right
+        const rootLevels = title === 'Upper Extremity'
+            ? ['C4', 'C5', 'C6', 'C7', 'C8', 'T1']
+            : ['L2', 'L3', 'L4', 'L5', 'S1', 'S2'];
+
+        const dermStrip = rootLevels.map((root, i) => {
+            const isAbnormal = roots.some(r => r.includes(root));
+            const fill = isAbnormal ? '#fecaca' : '#f1f5f9';
+            const stroke = isAbnormal ? '#dc2626' : '#cbd5e1';
+            const textColor = isAbnormal ? '#991b1b' : '#64748b';
+            const y = 20 + i * 40;
+            return `
+                <rect x="190" y="${y}" width="40" height="32" rx="4" fill="${fill}" stroke="${stroke}" stroke-width="1"/>
+                <text x="210" y="${y + 20}" text-anchor="middle" fill="${textColor}" font-size="11" font-weight="${isAbnormal ? '700' : '400'}">${root}</text>`;
+        }).join('');
+
+        const height = Math.max(regions[regions.length - 1].y + 50, rootLevels.length * 40 + 30);
+
         return `
-            <div class="cel-subsection">
-                <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
-                    ${icon} ${title} <span class="cel-sub-count">${items.length}</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
-                </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
-                    <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
-                </div>
+            <div class="cel-diagram-title">${title}</div>
+            <svg viewBox="0 0 240 ${height}" width="100%" style="max-width:240px;">
+                <text x="90" y="14" text-anchor="middle" fill="#64748b" font-size="9" font-weight="600">REGIONS</text>
+                <text x="210" y="14" text-anchor="middle" fill="#64748b" font-size="9" font-weight="600">ROOTS</text>
+                ${svgRegions}
+                ${dermStrip}
+            </svg>
+            <div class="cel-diagram-legend">
+                <span class="cel-legend-item"><span class="cel-legend-dot cel-legend-abnormal"></span>Abnormal</span>
+                <span class="cel-legend-item"><span class="cel-legend-dot cel-legend-normal"></span>Normal</span>
             </div>
         `;
     }
 
-    renderStrengthSubsection(strength, dxId) {
-        if (!strength || strength.length === 0) return '';
-        const sectionId = `strength-${dxId}`;
-        return `
-            <div class="cel-subsection">
-                <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
-                    ${ICONS.strength} Manual Muscle Testing <span class="cel-sub-count">${strength.length} muscles</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
-                </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
-                    <div class="cel-table-wrapper">
-                        <table class="cel-table">
-                            <thead>
-                                <tr><th>Muscle</th><th>Nerve</th><th>Root</th><th>Action</th><th>Expected</th><th>MRC</th></tr>
-                            </thead>
-                            <tbody>
-                                ${strength.map(s => `
-                                    <tr class="${s.expectedFinding.includes('WEAK') || s.expectedFinding.includes('ABSENT') ? 'cel-row-abnormal' : ''}">
-                                        <td><strong>${s.muscle}</strong></td>
-                                        <td>${s.nerve}</td>
-                                        <td>${s.root}</td>
-                                        <td>${s.action}</td>
-                                        <td>${s.expectedFinding}</td>
-                                        <td>${s.mrcGrade}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    renderSensorySubsection(sensory, dxId) {
-        if (!sensory || sensory.length === 0) return '';
-        const sectionId = `sensory-${dxId}`;
-        return `
-            <div class="cel-subsection">
-                <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
-                    ${ICONS.sensory} Sensory Examination <span class="cel-sub-count">${sensory.length}</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
-                </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
-                    <div class="cel-table-wrapper">
-                        <table class="cel-table">
-                            <thead>
-                                <tr><th>Area / Distribution</th><th>Modality</th><th>Expected Finding</th></tr>
-                            </thead>
-                            <tbody>
-                                ${sensory.map(s => `
-                                    <tr class="${s.expectedFinding.includes('Decreased') || s.expectedFinding.includes('Diminished') || s.expectedFinding.includes('ABSENT') ? 'cel-row-abnormal' : ''}">
-                                        <td>${s.area}</td>
-                                        <td>${s.modality}</td>
-                                        <td>${s.expectedFinding}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    renderReflexSubsection(reflexes, dxId) {
-        if (!reflexes || reflexes.length === 0) return '';
-        const sectionId = `reflexes-${dxId}`;
-        return `
-            <div class="cel-subsection">
-                <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
-                    ${ICONS.reflex} Reflexes <span class="cel-sub-count">${reflexes.length}</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
-                </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
-                    <div class="cel-table-wrapper">
-                        <table class="cel-table">
-                            <thead>
-                                <tr><th>Reflex</th><th>Expected Finding</th></tr>
-                            </thead>
-                            <tbody>
-                                ${reflexes.map(r => `
-                                    <tr class="${r.expectedFinding.includes('DIMINISHED') || r.expectedFinding.includes('ABSENT') || r.expectedFinding.includes('Diminished') ? 'cel-row-abnormal' : ''}">
-                                        <td>${r.reflex}</td>
-                                        <td>${r.expectedFinding}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    renderSpecialTestsSubsection(tests, dxId) {
-        if (!tests || tests.length === 0) return '';
-        const sectionId = `special-${dxId}`;
-        return `
-            <div class="cel-subsection">
-                <div class="cel-subsection-title" onclick="window._celModule.toggleSection('sub-${sectionId}')">
-                    ${ICONS.specialTest} Special Tests <span class="cel-sub-count">${tests.length} tests</span>
-                    <span class="cel-toggle" id="cel-arrow-sub-${sectionId}">-</span>
-                </div>
-                <div id="cel-section-sub-${sectionId}" class="cel-subsection-body">
-                    ${tests.map(t => `
-                        <div class="cel-special-test">
-                            <div class="cel-test-name">${t.name}${t.sensitivity ? ` <span class="cel-test-stats">(Sens: ${t.sensitivity}${t.specificity ? `, Spec: ${t.specificity}` : ''})</span>` : ''}</div>
-                            <div class="cel-test-technique"><strong>Technique:</strong> ${t.technique}</div>
-                            <div class="cel-test-positive"><strong>Positive:</strong> ${t.positiveFinding}</div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `;
-    }
-
-    // --- EXAM BUILDER ---
+    // --- EXAM BUILDER (unchanged) ---
     renderExamBuilder() {
         return `
             <div class="cel-builder">
@@ -385,11 +569,8 @@ class ClinicalExamLabModule {
     }
 
     toggleBuilderDx(id) {
-        if (this.examBuilderSelections.has(id)) {
-            this.examBuilderSelections.delete(id);
-        } else {
-            this.examBuilderSelections.add(id);
-        }
+        if (this.examBuilderSelections.has(id)) this.examBuilderSelections.delete(id);
+        else this.examBuilderSelections.add(id);
         const countEl = document.getElementById('cel-build-count');
         if (countEl) countEl.textContent = this.examBuilderSelections.size;
     }
@@ -400,69 +581,24 @@ class ClinicalExamLabModule {
             if (output) output.innerHTML = '<div class="cel-placeholder"><h3>No diagnoses selected</h3><p>Check at least one diagnosis from the list to build an exam.</p></div>';
             return;
         }
-
-        // Collect all exam components and de-duplicate
-        const allStrength = new Map();
-        const allSensory = new Map();
-        const allReflexes = new Map();
-        const allSpecialTests = new Map();
-        const allInspection = new Map();
-        const allPalpation = new Map();
-        const allRom = new Map();
+        const allStrength = new Map(), allSensory = new Map(), allReflexes = new Map();
+        const allSpecialTests = new Map(), allInspection = new Map(), allPalpation = new Map(), allRom = new Map();
 
         for (const id of this.examBuilderSelections) {
             const dx = this.data[id];
             if (!dx) continue;
             const pe = dx.physicalExam;
             const name = dx.name;
-
-            (pe.inspection || []).forEach(item => {
-                const key = item.substring(0, 60);
-                if (!allInspection.has(key)) allInspection.set(key, { text: item, diagnoses: [] });
-                allInspection.get(key).diagnoses.push(name);
-            });
-
-            (pe.palpation || []).forEach(item => {
-                const key = item.substring(0, 60);
-                if (!allPalpation.has(key)) allPalpation.set(key, { text: item, diagnoses: [] });
-                allPalpation.get(key).diagnoses.push(name);
-            });
-
-            (pe.rom || []).forEach(item => {
-                const key = item.substring(0, 60);
-                if (!allRom.has(key)) allRom.set(key, { text: item, diagnoses: [] });
-                allRom.get(key).diagnoses.push(name);
-            });
-
-            (pe.strength || []).forEach(s => {
-                const key = s.muscle;
-                if (!allStrength.has(key)) {
-                    allStrength.set(key, { ...s, diagnoses: [] });
-                }
-                allStrength.get(key).diagnoses.push(name);
-            });
-
-            (pe.sensory || []).forEach(s => {
-                const key = s.area.substring(0, 50);
-                if (!allSensory.has(key)) allSensory.set(key, { ...s, diagnoses: [] });
-                allSensory.get(key).diagnoses.push(name);
-            });
-
-            (pe.reflexes || []).forEach(r => {
-                const key = r.reflex;
-                if (!allReflexes.has(key)) allReflexes.set(key, { ...r, diagnoses: [] });
-                allReflexes.get(key).diagnoses.push(name);
-            });
-
-            (pe.specialTests || []).forEach(t => {
-                const key = t.name;
-                if (!allSpecialTests.has(key)) allSpecialTests.set(key, { ...t, diagnoses: [] });
-                allSpecialTests.get(key).diagnoses.push(name);
-            });
+            (pe.inspection || []).forEach(item => { const key = item.substring(0, 60); if (!allInspection.has(key)) allInspection.set(key, { text: item, diagnoses: [] }); allInspection.get(key).diagnoses.push(name); });
+            (pe.palpation || []).forEach(item => { const key = item.substring(0, 60); if (!allPalpation.has(key)) allPalpation.set(key, { text: item, diagnoses: [] }); allPalpation.get(key).diagnoses.push(name); });
+            (pe.rom || []).forEach(item => { const key = item.substring(0, 60); if (!allRom.has(key)) allRom.set(key, { text: item, diagnoses: [] }); allRom.get(key).diagnoses.push(name); });
+            (pe.strength || []).forEach(s => { const key = s.muscle; if (!allStrength.has(key)) allStrength.set(key, { ...s, diagnoses: [] }); allStrength.get(key).diagnoses.push(name); });
+            (pe.sensory || []).forEach(s => { const key = s.area.substring(0, 50); if (!allSensory.has(key)) allSensory.set(key, { ...s, diagnoses: [] }); allSensory.get(key).diagnoses.push(name); });
+            (pe.reflexes || []).forEach(r => { const key = r.reflex; if (!allReflexes.has(key)) allReflexes.set(key, { ...r, diagnoses: [] }); allReflexes.get(key).diagnoses.push(name); });
+            (pe.specialTests || []).forEach(t => { const key = t.name; if (!allSpecialTests.has(key)) allSpecialTests.set(key, { ...t, diagnoses: [] }); allSpecialTests.get(key).diagnoses.push(name); });
         }
 
         const selectedNames = [...this.examBuilderSelections].map(id => this.data[id]?.name).filter(Boolean);
-
         const output = document.getElementById('cel-builder-output');
         if (output) {
             output.innerHTML = `
@@ -472,7 +608,6 @@ class ClinicalExamLabModule {
                         <p>For differential: <strong>${selectedNames.join(', ')}</strong></p>
                         <button class="cel-copy-btn" onclick="window._celModule.copyExam()">${ICONS.copy} Copy to Clipboard</button>
                     </div>
-
                     ${this.renderBuiltSection('Inspection', allInspection)}
                     ${this.renderBuiltSection('Palpation', allPalpation)}
                     ${this.renderBuiltSection('Range of Motion', allRom)}
@@ -487,119 +622,35 @@ class ClinicalExamLabModule {
 
     renderBuiltSection(title, map) {
         if (map.size === 0) return '';
-        return `
-            <div class="cel-built-section">
-                <h4>${title}</h4>
-                <ul>
-                    ${[...map.values()].map(item => `
-                        <li>
-                            ${item.text}
-                            <span class="cel-dx-tags">${item.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `;
+        return `<div class="cel-built-section"><h4>${title}</h4><ul>${[...map.values()].map(item => `<li>${item.text}<span class="cel-dx-tags">${item.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</span></li>`).join('')}</ul></div>`;
     }
 
     renderBuiltStrength(map) {
         if (map.size === 0) return '';
-        return `
-            <div class="cel-built-section">
-                <h4>Manual Muscle Testing</h4>
-                <div class="cel-table-wrapper">
-                    <table class="cel-table">
-                        <thead><tr><th>Muscle</th><th>Nerve</th><th>Root</th><th>Action</th><th>Evaluates For</th></tr></thead>
-                        <tbody>
-                            ${[...map.values()].map(s => `
-                                <tr>
-                                    <td><strong>${s.muscle}</strong></td>
-                                    <td>${s.nerve}</td>
-                                    <td>${s.root}</td>
-                                    <td>${s.action}</td>
-                                    <td>${s.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        `;
+        return `<div class="cel-built-section"><h4>Manual Muscle Testing</h4><div class="cel-table-wrapper"><table class="cel-table"><thead><tr><th>Muscle</th><th>Nerve</th><th>Root</th><th>Action</th><th>Evaluates For</th></tr></thead><tbody>${[...map.values()].map(s => `<tr><td><strong>${s.muscle}</strong></td><td>${s.nerve}</td><td>${s.root}</td><td>${s.action}</td><td>${s.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td></tr>`).join('')}</tbody></table></div></div>`;
     }
 
     renderBuiltSensory(map) {
         if (map.size === 0) return '';
-        return `
-            <div class="cel-built-section">
-                <h4>Sensory Examination</h4>
-                <div class="cel-table-wrapper">
-                    <table class="cel-table">
-                        <thead><tr><th>Area</th><th>Modality</th><th>Evaluates For</th></tr></thead>
-                        <tbody>
-                            ${[...map.values()].map(s => `
-                                <tr>
-                                    <td>${s.area}</td>
-                                    <td>${s.modality}</td>
-                                    <td>${s.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        `;
+        return `<div class="cel-built-section"><h4>Sensory Examination</h4><div class="cel-table-wrapper"><table class="cel-table"><thead><tr><th>Area</th><th>Modality</th><th>Evaluates For</th></tr></thead><tbody>${[...map.values()].map(s => `<tr><td>${s.area}</td><td>${s.modality}</td><td>${s.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td></tr>`).join('')}</tbody></table></div></div>`;
     }
 
     renderBuiltReflexes(map) {
         if (map.size === 0) return '';
-        return `
-            <div class="cel-built-section">
-                <h4>Reflexes</h4>
-                <div class="cel-table-wrapper">
-                    <table class="cel-table">
-                        <thead><tr><th>Reflex</th><th>Evaluates For</th></tr></thead>
-                        <tbody>
-                            ${[...map.values()].map(r => `
-                                <tr>
-                                    <td>${r.reflex}</td>
-                                    <td>${r.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        `;
+        return `<div class="cel-built-section"><h4>Reflexes</h4><div class="cel-table-wrapper"><table class="cel-table"><thead><tr><th>Reflex</th><th>Evaluates For</th></tr></thead><tbody>${[...map.values()].map(r => `<tr><td>${r.reflex}</td><td>${r.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td></tr>`).join('')}</tbody></table></div></div>`;
     }
 
     renderBuiltSpecialTests(map) {
         if (map.size === 0) return '';
-        return `
-            <div class="cel-built-section">
-                <h4>Special Tests</h4>
-                ${[...map.values()].map(t => `
-                    <div class="cel-special-test">
-                        <div class="cel-test-name">${t.name}</div>
-                        <div class="cel-test-technique"><strong>Technique:</strong> ${t.technique}</div>
-                        <div class="cel-test-positive"><strong>Positive:</strong> ${t.positiveFinding}</div>
-                        <div class="cel-dx-tags">${t.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+        return `<div class="cel-built-section"><h4>Special Tests</h4>${[...map.values()].map(t => `<div class="cel-special-test"><div class="cel-test-name">${t.name}</div><div class="cel-test-technique"><strong>Technique:</strong> ${t.technique}</div><div class="cel-test-positive"><strong>Positive:</strong> ${t.positiveFinding}</div><div class="cel-dx-tags">${t.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</div></div>`).join('')}</div>`;
     }
 
     copyExam() {
         const el = document.querySelector('.cel-built-exam');
         if (!el) return;
-        const text = el.innerText;
-        navigator.clipboard.writeText(text).then(() => {
+        navigator.clipboard.writeText(el.innerText).then(() => {
             const btn = document.querySelector('.cel-copy-btn');
-            if (btn) {
-                const orig = btn.innerHTML;
-                btn.textContent = 'Copied!';
-                setTimeout(() => btn.innerHTML = orig, 2000);
-            }
+            if (btn) { const orig = btn.innerHTML; btn.textContent = 'Copied!'; setTimeout(() => btn.innerHTML = orig, 2000); }
         }).catch(() => alert('Copy failed. Please select and copy manually.'));
     }
 
@@ -622,19 +673,15 @@ class ClinicalExamLabModule {
     filterSidebar(query) {
         const q = query.toLowerCase();
         document.querySelectorAll('.cel-dx-item').forEach(el => {
-            const match = el.textContent.toLowerCase().includes(q);
-            el.style.display = match ? '' : 'none';
+            el.style.display = el.textContent.toLowerCase().includes(q) ? '' : 'none';
         });
-        if (q.length > 0) {
-            document.querySelectorAll('.cel-category-items').forEach(el => el.style.display = 'block');
-        }
+        if (q.length > 0) document.querySelectorAll('.cel-category-items').forEach(el => el.style.display = 'block');
     }
 
     filterBuilder(query) {
         const q = query.toLowerCase();
         document.querySelectorAll('.cel-builder-item').forEach(el => {
-            const match = el.getAttribute('data-dx-name').includes(q);
-            el.style.display = match ? '' : 'none';
+            el.style.display = el.getAttribute('data-dx-name').includes(q) ? '' : 'none';
         });
     }
 
@@ -646,7 +693,7 @@ class ClinicalExamLabModule {
     getStyles() {
         return `
             .cel-collapsed { display: none !important; }
-            .cel-container { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+            .cel-container { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; --cel-normal: #059669; --cel-normal-bg: #f0fdf4; --cel-normal-border: #bbf7d0; --cel-abnormal: #dc2626; --cel-abnormal-bg: #fef2f2; --cel-abnormal-border: #fecaca; --cel-uncertain: #ea580c; --cel-uncertain-bg: #fff7ed; --cel-uncertain-border: #fed7aa; }
             .cel-tabs { display: flex; gap: 8px; margin-bottom: 20px; background: #f1f5f9; padding: 6px; border-radius: 12px; }
             .cel-tab { flex: 1; padding: 12px; border: none; border-radius: 10px; font-size: 1.05em; font-weight: 600; cursor: pointer; background: transparent; color: #64748b; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
             .cel-tab svg { vertical-align: middle; }
@@ -656,12 +703,12 @@ class ClinicalExamLabModule {
             /* Study Mode Layout */
             #cel-study-panel { display: flex; gap: 20px; min-height: 600px; }
             .cel-sidebar { width: 280px; flex-shrink: 0; background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow-y: auto; max-height: 700px; }
-            .cel-main { flex: 1; min-width: 0; overflow-y: auto; max-height: 700px; }
+            .cel-main { flex: 1; min-width: 0; overflow-y: auto; max-height: 700px; padding-right: 4px; }
             .cel-search-box { padding: 12px; border-bottom: 1px solid #e2e8f0; }
             .cel-search-box input { width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9em; box-sizing: border-box; }
             .cel-search-box input:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 2px rgba(13,148,136,0.15); }
 
-            /* Sidebar categories */
+            /* Sidebar */
             .cel-category-header { padding: 10px 14px; font-weight: 600; font-size: 0.85em; color: #334155; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; }
             .cel-category-header:hover { background: #f8fafc; }
             .cel-cat-count { background: #e2e8f0; color: #475569; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; }
@@ -671,64 +718,131 @@ class ClinicalExamLabModule {
             .cel-dx-inappropriate { color: #b45309; }
             .cel-badge-warn { background: #fef3c7; color: #92400e; padding: 1px 6px; border-radius: 4px; font-size: 0.7em; font-weight: 600; }
             .cel-badge-warn-sm { background: #fef3c7; color: #92400e; padding: 1px 4px; border-radius: 3px; font-size: 0.65em; font-weight: 600; margin-left: 4px; }
-
-            /* Placeholder */
             .cel-placeholder { text-align: center; padding: 80px 20px; color: #94a3b8; }
             .cel-placeholder h3 { color: #64748b; margin: 10px 0 8px; }
             .cel-placeholder p { margin: 0; }
 
-            /* Diagnosis Detail */
-            .cel-detail { padding: 0 5px; }
-            .cel-detail-header { margin-bottom: 20px; }
-            .cel-detail-header h2 { margin: 0 0 6px; color: #0f172a; font-size: 1.5em; }
-            .cel-cat-label { background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 6px; font-size: 0.8em; font-weight: 600; }
-            .cel-header-inappropriate .cel-cat-label { background: #fef3c7; color: #92400e; }
-            .cel-inappropriate-banner { margin-top: 12px; background: #fef3c7; border: 1px solid #fbbf24; border-radius: 8px; padding: 10px 14px; font-size: 0.9em; color: #78350f; line-height: 1.4; display: flex; align-items: flex-start; gap: 8px; }
-            .cel-inappropriate-banner svg { flex-shrink: 0; margin-top: 2px; }
+            /* Hero Header */
+            .cel-hero { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 16px; padding: 24px 28px 20px; margin-bottom: 16px; position: relative; overflow: hidden; }
+            .cel-hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%); border-radius: 50%; }
+            .cel-hero-warn { background: linear-gradient(135deg, #78350f, #451a03); }
+            .cel-hero-warn::after { background: radial-gradient(circle, rgba(251,191,36,0.15) 0%, transparent 70%); }
+            .cel-hero-content { position: relative; z-index: 1; }
+            .cel-hero-cat { display: inline-block; background: rgba(255,255,255,0.12); color: #cbd5e1; padding: 3px 10px; border-radius: 6px; font-size: 0.75em; font-weight: 600; letter-spacing: 0.3px; margin-bottom: 8px; }
+            .cel-hero-title { color: white; margin: 0 0 12px; font-size: 1.4em; font-weight: 800; letter-spacing: -0.01em; }
+            .cel-hero-stats { display: flex; flex-wrap: wrap; gap: 6px; }
+            .cel-stat-chip { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.72em; font-weight: 600; background: rgba(255,255,255,0.1); color: #94a3b8; }
+            .cel-chip-abnormal { background: rgba(220,38,38,0.2); color: #fca5a5; }
+            .cel-chip-normal { background: rgba(5,150,105,0.2); color: #6ee7b7; }
+            .cel-hero-warn-banner { margin-top: 12px; padding: 8px 12px; background: rgba(251,191,36,0.15); border-radius: 8px; color: #fde68a; font-size: 0.82em; display: flex; align-items: center; gap: 6px; position: relative; z-index: 1; }
 
-            /* Sections */
-            .cel-section { background: white; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
-            .cel-section-title { margin: 0; padding: 14px 18px; font-size: 1.05em; cursor: pointer; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; user-select: none; }
+            /* Key Findings Pearls */
+            .cel-pearls { background: #ecfdf5; border: 1px solid #a7f3d0; border-left: 4px solid #059669; border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+            .cel-pearls-header { padding: 12px 16px; font-weight: 700; font-size: 0.92em; color: #065f46; display: flex; align-items: center; gap: 8px; background: rgba(5,150,105,0.05); }
+            .cel-pearls-body { padding: 8px 16px 12px; }
+            .cel-pearl-item { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; font-size: 0.88em; color: #065f46; line-height: 1.45; }
+            .cel-pearl-dot { width: 6px; height: 6px; border-radius: 50%; background: #059669; flex-shrink: 0; margin-top: 6px; }
+
+            /* Exam Layout with Diagram */
+            .cel-exam-layout { display: flex; gap: 16px; margin-bottom: 16px; }
+            .cel-exam-layout.cel-has-diagram .cel-diagram-panel { width: 250px; flex-shrink: 0; }
+            .cel-exam-content { flex: 1; min-width: 0; }
+            .cel-diagram-panel { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; position: sticky; top: 0; align-self: flex-start; }
+            .cel-diagram-title { font-size: 0.8em; font-weight: 700; color: #334155; margin-bottom: 8px; text-align: center; }
+            .cel-diagram-legend { display: flex; justify-content: center; gap: 12px; margin-top: 8px; font-size: 0.72em; color: #64748b; }
+            .cel-legend-item { display: flex; align-items: center; gap: 4px; }
+            .cel-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+            .cel-legend-abnormal { background: #fecaca; border: 1px solid #dc2626; }
+            .cel-legend-normal { background: #e2e8f0; border: 1px solid #94a3b8; }
+
+            /* Card Section */
+            .cel-card-section { margin-bottom: 14px; }
+            .cel-card-section-header { display: flex; align-items: center; gap: 6px; padding: 8px 0 6px; font-weight: 700; font-size: 0.88em; color: #334155; border-bottom: 1px solid #e2e8f0; margin-bottom: 8px; }
+            .cel-card-section-header svg { flex-shrink: 0; }
+            .cel-summary-text { margin-left: auto; font-size: 0.82em; font-weight: 500; color: #64748b; }
+
+            /* Summary Bar */
+            .cel-summary-bar { height: 4px; background: #e2e8f0; border-radius: 2px; margin-bottom: 10px; overflow: hidden; }
+            .cel-summary-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+            .cel-fill-abnormal { background: #dc2626; }
+
+            /* Muscle Cards */
+            .cel-muscle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+            .cel-muscle-card { border-radius: 8px; border: 1px solid #e2e8f0; padding: 8px 10px; border-left: 4px solid; transition: transform 0.15s, box-shadow 0.15s; }
+            .cel-muscle-card:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.06); }
+            .cel-finding-abnormal { border-left-color: var(--cel-abnormal); background: var(--cel-abnormal-bg); }
+            .cel-finding-uncertain { border-left-color: var(--cel-uncertain); background: var(--cel-uncertain-bg); }
+            .cel-finding-normal { border-left-color: var(--cel-normal); background: var(--cel-normal-bg); }
+            .cel-mc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+            .cel-mc-name { font-weight: 700; font-size: 0.84em; color: #1e293b; }
+            .cel-mrc-badge { font-size: 0.7em; font-weight: 700; padding: 1px 7px; border-radius: 9px; color: white; }
+            .cel-mrc-abnormal { background: var(--cel-abnormal); }
+            .cel-mrc-uncertain { background: var(--cel-uncertain); }
+            .cel-mrc-normal { background: var(--cel-normal); }
+            .cel-mc-details { display: flex; gap: 8px; margin-bottom: 2px; }
+            .cel-mc-nerve, .cel-mc-root { font-size: 0.75em; color: #64748b; }
+            .cel-mc-action { font-size: 0.75em; color: #475569; font-style: italic; }
+
+            /* Sensory Cards */
+            .cel-sensory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+            .cel-sensory-card { border-radius: 8px; border: 1px solid #e2e8f0; padding: 8px 10px; border-left: 4px solid; }
+            .cel-sc-area { font-weight: 700; font-size: 0.84em; color: #1e293b; margin-bottom: 2px; }
+            .cel-sc-modality { font-size: 0.75em; color: #64748b; margin-bottom: 2px; }
+            .cel-sc-finding { font-size: 0.78em; font-weight: 600; }
+            .cel-finding-abnormal .cel-sc-finding { color: var(--cel-abnormal); }
+            .cel-finding-normal .cel-sc-finding { color: var(--cel-normal); }
+
+            /* Reflex Chips */
+            .cel-reflex-row { display: flex; flex-wrap: wrap; gap: 6px; }
+            .cel-reflex-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-size: 0.82em; border: 1px solid; }
+            .cel-reflex-chip.cel-finding-abnormal { background: var(--cel-abnormal-bg); border-color: var(--cel-abnormal-border); }
+            .cel-reflex-chip.cel-finding-uncertain { background: var(--cel-uncertain-bg); border-color: var(--cel-uncertain-border); }
+            .cel-reflex-chip.cel-finding-normal { background: var(--cel-normal-bg); border-color: var(--cel-normal-border); }
+            .cel-rc-name { font-weight: 600; color: #334155; }
+            .cel-rc-finding { font-size: 0.85em; color: #64748b; }
+
+            /* Special Test Cards */
+            .cel-tests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+            .cel-test-card { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: box-shadow 0.15s; }
+            .cel-test-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+            .cel-tc-header { display: flex; justify-content: space-between; align-items: center; }
+            .cel-tc-name { font-weight: 700; font-size: 0.88em; color: #1e293b; }
+            .cel-tc-toggle { font-size: 0.9em; }
+            .cel-tc-stats { display: flex; gap: 12px; margin-top: 6px; }
+            .cel-stat-meter { display: flex; align-items: center; gap: 4px; }
+            .cel-stat-label { font-size: 0.68em; font-weight: 600; color: #94a3b8; width: 28px; }
+            .cel-stat-bar { width: 50px; height: 5px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+            .cel-stat-fill { height: 100%; border-radius: 3px; }
+            .cel-stat-value { font-size: 0.68em; color: #64748b; }
+            .cel-tc-body { margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9; }
+            .cel-tc-technique, .cel-tc-positive { font-size: 0.84em; color: #475569; margin-bottom: 3px; line-height: 1.4; }
+            .cel-tc-positive { color: #0d9488; }
+
+            /* Exam List (inspection, palpation, ROM) */
+            .cel-list-section { background: #f8fafc; border-radius: 10px; padding: 10px 14px; }
+            .cel-exam-list { display: flex; flex-direction: column; gap: 4px; }
+            .cel-exam-list-item { font-size: 0.84em; color: #475569; line-height: 1.4; padding: 3px 0; border-bottom: 1px solid #f1f5f9; }
+            .cel-exam-list-item:last-child { border-bottom: none; }
+
+            /* Compact History */
+            .cel-history-section { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+            .cel-section-title { margin: 0; padding: 12px 16px; font-size: 0.95em; cursor: pointer; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; user-select: none; }
             .cel-section-title:hover { background: #f1f5f9; }
             .cel-section-title svg { flex-shrink: 0; }
             .cel-toggle { margin-left: auto; font-size: 1.1em; color: #94a3b8; font-weight: 700; line-height: 1; }
-            .cel-section-body { padding: 16px 18px; }
-            .cel-info-row { margin-bottom: 12px; line-height: 1.5; font-size: 0.92em; }
-            .cel-info-row ul { margin: 4px 0 0 0; padding-left: 20px; }
-            .cel-info-row li { margin-bottom: 3px; }
-            .cel-red-flags { background: #fef2f2; border-radius: 8px; padding: 10px 14px; border: 1px solid #fecaca; }
-            .cel-red-flags strong { display: flex; align-items: center; gap: 6px; }
-            .cel-red-flags svg { flex-shrink: 0; }
-            .cel-key-findings { border-color: #a7f3d0; }
-            .cel-key-findings .cel-section-title { background: #ecfdf5; color: #065f46; }
-            .cel-pearl-list li { margin-bottom: 8px; line-height: 1.5; font-size: 0.92em; color: #065f46; }
+            .cel-section-body { padding: 14px 16px; }
 
-            /* Exam Subsections (nested collapsible) */
-            .cel-subsection { border: 1px solid #f1f5f9; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
-            .cel-subsection-title { padding: 10px 14px; font-size: 0.9em; font-weight: 600; color: #475569; cursor: pointer; background: #fafbfc; display: flex; align-items: center; gap: 6px; user-select: none; }
-            .cel-subsection-title:hover { background: #f1f5f9; }
-            .cel-subsection-title svg { flex-shrink: 0; }
-            .cel-sub-count { background: #e2e8f0; color: #64748b; padding: 1px 6px; border-radius: 8px; font-size: 0.75em; font-weight: 500; margin-left: 4px; }
-            .cel-subsection-body { padding: 10px 14px; }
-            .cel-subsection-body ul { margin: 0; padding-left: 18px; }
-            .cel-subsection-body li { margin-bottom: 4px; font-size: 0.88em; line-height: 1.4; }
+            .cel-history-compact {}
+            .cel-hx-demo { font-size: 0.78em; color: #64748b; margin-bottom: 4px; }
+            .cel-hx-cc { font-size: 0.95em; color: #334155; font-style: italic; margin-bottom: 10px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; }
+            .cel-hpi-grid { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+            .cel-hpi-tag { display: inline-block; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 4px 8px; font-size: 0.78em; color: #475569; line-height: 1.3; }
+            .cel-hx-row { font-size: 0.84em; color: #475569; margin-bottom: 6px; line-height: 1.5; }
+            .cel-hx-redflags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+            .cel-rf-item { display: inline-block; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 3px 8px; border-radius: 6px; font-size: 0.78em; font-weight: 500; }
+            .cel-misdiag-pill { display: inline-block; background: #f1f5f9; border-radius: 12px; padding: 2px 8px; font-size: 0.75em; color: #64748b; margin-left: 4px; }
 
-            /* Tables */
-            .cel-table-wrapper { overflow-x: auto; }
-            .cel-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
-            .cel-table th { background: #f1f5f9; padding: 8px 10px; text-align: left; font-weight: 600; color: #334155; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
-            .cel-table td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; }
-            .cel-row-abnormal { background: #fff7ed; }
-            .cel-row-abnormal td { color: #c2410c; font-weight: 500; }
-
-            /* Special Tests */
-            .cel-special-test { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
-            .cel-test-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; font-size: 0.95em; }
-            .cel-test-stats { font-weight: 400; color: #64748b; font-size: 0.85em; }
-            .cel-test-technique { font-size: 0.88em; color: #475569; margin-bottom: 3px; }
-            .cel-test-positive { font-size: 0.88em; color: #0d9488; }
-
-            /* Exam Builder */
+            /* Builder (unchanged) */
             .cel-builder-header { margin-bottom: 20px; }
             .cel-builder-header h3 { margin: 0 0 6px; }
             .cel-builder-header p { margin: 0; color: #64748b; font-size: 0.92em; }
@@ -755,6 +869,28 @@ class ClinicalExamLabModule {
             .cel-built-section li { margin-bottom: 8px; font-size: 0.9em; line-height: 1.4; }
             .cel-dx-tags { display: inline-flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
             .cel-dx-tag { background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; font-size: 0.7em; font-weight: 600; white-space: nowrap; }
+
+            /* Tables (for builder) */
+            .cel-table-wrapper { overflow-x: auto; }
+            .cel-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+            .cel-table th { background: #f1f5f9; padding: 8px 10px; text-align: left; font-weight: 600; color: #334155; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+            .cel-table td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; }
+            .cel-row-abnormal { background: #fff7ed; }
+            .cel-row-abnormal td { color: #c2410c; font-weight: 500; }
+
+            /* Special Tests (for builder) */
+            .cel-special-test { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+            .cel-test-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; font-size: 0.95em; }
+            .cel-test-stats { font-weight: 400; color: #64748b; font-size: 0.85em; }
+            .cel-test-technique { font-size: 0.88em; color: #475569; margin-bottom: 3px; }
+            .cel-test-positive { font-size: 0.88em; color: #0d9488; }
+
+            /* Animation */
+            @keyframes celFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+            .cel-detail > * { animation: celFadeIn 0.25s ease both; }
+            .cel-detail > *:nth-child(2) { animation-delay: 0.05s; }
+            .cel-detail > *:nth-child(3) { animation-delay: 0.1s; }
+            .cel-detail > *:nth-child(4) { animation-delay: 0.15s; }
         `;
     }
 }
