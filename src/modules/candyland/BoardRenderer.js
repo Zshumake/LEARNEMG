@@ -483,8 +483,11 @@ export class BoardRenderer {
 
         return `
             <div class="featured-module" style="
-                    margin: -10px auto 30px;
+                    position: relative;
+                    z-index: 5;
+                    margin: 15px auto 30px;
                     max-width: 650px;
+                    width: 100%;
                     background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #a855f7 100%);
                     border-radius: 10px;
                     padding: 8px 18px;
@@ -494,7 +497,9 @@ export class BoardRenderer {
                     border: 1px solid rgba(255,255,255,0.15);
                     display: flex;
                     align-items: center;
-                    gap: 12px;"
+                    gap: 12px;
+                    box-sizing: border-box;
+                    clear: both;"
                  onclick="window.appComponents.candyland.handleModuleClick('${module.id}', -1)"
                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 22px rgba(124, 58, 237, 0.35)'"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 14px rgba(124, 58, 237, 0.25)'">
