@@ -92,7 +92,7 @@ export const inappropriateReferralData = {
                 { reflex: 'All reflexes', expectedFinding: 'Normal' }
             ],
             specialTests: [
-                { name: 'Cozen Test', technique: 'Resist wrist extension with forearm pronated', positiveFinding: 'Pain at lateral epicondyle', sensitivity: '84%', specificity: '0%' },
+                { name: 'Cozen Test', technique: 'Resist wrist extension with forearm pronated', positiveFinding: 'Pain at lateral epicondyle', sensitivity: '84%', specificity: '50-55%' },
                 { name: 'Mill Test', technique: 'Passively flex wrist with elbow extended and forearm pronated', positiveFinding: 'Pain at lateral epicondyle (stretches ECRB origin)' },
                 { name: 'Maudsley Test (Resisted Middle Finger Extension)', technique: 'Resist middle finger extension at MCP', positiveFinding: 'Pain at lateral epicondyle (also positive in radial tunnel syndrome — location of pain differs)' }
             ]
@@ -188,8 +188,7 @@ export const inappropriateReferralData = {
                 { reflex: 'All reflexes', expectedFinding: 'Normal' }
             ],
             specialTests: [
-                { name: 'Finkelstein Test', technique: 'Grasp thumb in fist, ulnar deviate wrist', positiveFinding: 'Pain at radial styloid (tendon PAIN, not numbness)', sensitivity: '89%', specificity: '14%' },
-                { name: 'Eichhoff Test', technique: 'Same as Finkelstein — commonly confused terms', positiveFinding: 'Pain at first dorsal compartment' }
+                { name: 'Finkelstein/Eichhoff Test', technique: 'Grasp thumb in fist, ulnar deviate wrist (note: this maneuver is technically the Eichhoff test; the true Finkelstein involves examiner-applied ulnar deviation)', positiveFinding: 'Pain at radial styloid (tendon PAIN, not numbness)', sensitivity: '89%', specificity: '75%' }
             ]
         },
         keyDistinguishingFindings: [

@@ -62,7 +62,7 @@ export const entrapmentUpperData = {
         },
         keyDistinguishingFindings: [
             'Sensory loss restricted to median digits DISTAL to the wrist — thenar eminence skin is spared (palmar cutaneous branch passes over the carpal tunnel)',
-            'APB weakness with NORMAL pronator teres and FPL distinguishes CTS from pronator syndrome or C8 radiculopathy',
+            'APB weakness with NORMAL pronator teres and FPL distinguishes CTS from pronator syndrome. NORMAL ulnar-innervated intrinsics distinguishes from C8-T1 radiculopathy',
             'Nocturnal symptoms with flick sign are highly specific for CTS',
             'Normal ulnar-innervated intrinsics with weak APB = median neuropathy at wrist',
             'EMG: Prolonged median distal sensory and motor latencies; comparison to ulnar values increases diagnostic sensitivity'
@@ -749,7 +749,7 @@ export const entrapmentUpperData = {
             strength: [
                 { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion (supinated forearm)', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
                 { muscle: 'Brachialis', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion (pronated forearm)', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Coracobrachialis', nerve: 'Musculocutaneous', root: 'C5-C7', action: 'Shoulder forward flexion/adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
+                { muscle: 'Coracobrachialis', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Shoulder forward flexion/adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
                 { muscle: 'Brachioradialis', nerve: 'Radial', root: 'C5-C6', action: 'Elbow flexion (neutral forearm)', expectedFinding: 'NORMAL (compensates)', mrcGrade: '5/5' },
                 { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
                 { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
@@ -800,7 +800,7 @@ export const entrapmentUpperData = {
         physicalExam: {
             inspection: [
                 'Scapula may sit slightly laterally displaced at rest (rhomboid weakness)',
-                'Subtle lateral winging (inferior angle goes laterally — opposite of serratus anterior winging)',
+                'Scapular protraction/lateral shift from rhomboid weakness (differs from medial winging of serratus anterior palsy and from lateral winging of trapezius palsy)',
                 'Difficult to observe — often subtle findings'
             ],
             palpation: [

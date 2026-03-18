@@ -174,7 +174,7 @@ export const motorNeuronData = {
             specialTests: [
                 { name: 'Gynecomastia Assessment', technique: 'Inspect and palpate breast tissue', positiveFinding: 'Bilateral breast enlargement (androgen insensitivity)' },
                 { name: 'Perioral Fasciculation Check', technique: 'Observe chin and perioral area at rest', positiveFinding: 'Visible chin/perioral twitching — very characteristic of Kennedy disease' },
-                { name: 'Genetic Testing (Gold Standard)', technique: 'CAG repeat analysis in androgen receptor gene (Xq11-12)', positiveFinding: '>38 CAG repeats is diagnostic', sensitivity: '100%', specificity: '100%' }
+                { name: 'Genetic Testing (Gold Standard)', technique: 'CAG repeat analysis in androgen receptor gene (Xq11-12)', positiveFinding: '>=38 CAG repeats is diagnostic (normal <=34, intermediate 35-37)', sensitivity: '100%', specificity: '100%' }
             ]
         },
         keyDistinguishingFindings: [

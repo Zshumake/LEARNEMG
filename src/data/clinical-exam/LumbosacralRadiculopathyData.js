@@ -113,7 +113,7 @@ export const lumbosacralRadiculopathyData = {
                 { area: 'Below knee', modality: 'Light touch', expectedFinding: 'Normal (unless overlap with L4)' }
             ],
             reflexes: [
-                { reflex: 'Patellar reflex (L2-L4)', expectedFinding: 'DIMINISHED (L3 is major contributor)' },
+                { reflex: 'Patellar reflex (L2-L4)', expectedFinding: 'May be DIMINISHED (L3-L4 reflex, L4 predominant)' },
                 { reflex: 'Ankle jerk (S1)', expectedFinding: 'Normal' },
                 { reflex: 'Adductor reflex (L2-L4)', expectedFinding: 'May be diminished' }
             ],

@@ -183,6 +183,7 @@ export const cervicalRadiculopathyData = {
                 { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'WEAK (KEY muscle for C7)', mrcGrade: '4/5' },
                 { muscle: 'FCR (Wrist flexors)', nerve: 'Median', root: 'C6-C7', action: 'Wrist flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
                 { muscle: 'EDC (Finger extensors)', nerve: 'Radial (PIN)', root: 'C7-C8', action: 'Finger MCP extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
+                { muscle: 'ECRL/ECRB (Wrist extensors)', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
                 { muscle: 'Pronator teres', nerve: 'Median', root: 'C6-C7', action: 'Forearm pronation', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
                 { muscle: 'Latissimus dorsi', nerve: 'Thoracodorsal', root: 'C6-C8', action: 'Shoulder adduction/extension', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
                 { muscle: 'Pectoralis major (sternal head)', nerve: 'Medial/Lateral pectoral', root: 'C7-T1', action: 'Shoulder adduction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
@@ -259,12 +260,12 @@ export const cervicalRadiculopathyData = {
                 { muscle: 'FPL', nerve: 'Median (AIN)', root: 'C8-T1', action: 'Thumb IP flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
                 { muscle: 'EIP/EDM', nerve: 'Radial (PIN)', root: 'C8', action: 'Index/small finger extension', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
                 { muscle: 'APB', nerve: 'Median', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
+                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'May be WEAK (minor C8 contribution)', mrcGrade: '4+/5' },
                 { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
                 { muscle: 'Biceps/Deltoid', nerve: 'Musculocutaneous/Axillary', root: 'C5-C6', action: 'Elbow flexion/Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
             ],
             sensory: [
-                { area: 'Medial forearm, ring finger (ulnar side), small finger', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
+                { area: 'Ring finger (ulnar side), small finger, distal medial hand', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
                 { area: 'Dorsal hand (ulnar side)', modality: 'Light touch', expectedFinding: 'Decreased' }
             ],
             reflexes: [
@@ -339,7 +340,7 @@ export const cervicalRadiculopathyData = {
             sensory: [
                 { area: 'Medial forearm (medial antebrachial cutaneous territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
                 { area: 'Medial arm (medial brachial cutaneous territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
-                { area: 'Axilla and medial upper arm', modality: 'Light touch', expectedFinding: 'Decreased' }
+                { area: 'Proximal medial forearm to medial arm', modality: 'Light touch', expectedFinding: 'May be decreased (T1-T2 overlap zone)' }
             ],
             reflexes: [
                 { reflex: 'Finger flexor reflex (C8-T1)', expectedFinding: 'DIMINISHED' },
