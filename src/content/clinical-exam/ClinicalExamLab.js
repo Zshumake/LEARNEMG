@@ -584,61 +584,110 @@ class ClinicalExamLabModule {
             const dx = this.data[id];
             if (!dx) continue;
             const pe = dx.physicalExam;
-            const name = dx.name;
-            (pe.inspection || []).forEach(item => { const key = item.substring(0, 60); if (!allInspection.has(key)) allInspection.set(key, { text: item, diagnoses: [] }); allInspection.get(key).diagnoses.push(name); });
-            (pe.palpation || []).forEach(item => { const key = item.substring(0, 60); if (!allPalpation.has(key)) allPalpation.set(key, { text: item, diagnoses: [] }); allPalpation.get(key).diagnoses.push(name); });
-            (pe.rom || []).forEach(item => { const key = item.substring(0, 60); if (!allRom.has(key)) allRom.set(key, { text: item, diagnoses: [] }); allRom.get(key).diagnoses.push(name); });
-            (pe.strength || []).forEach(s => { const key = s.muscle; if (!allStrength.has(key)) allStrength.set(key, { ...s, diagnoses: [] }); allStrength.get(key).diagnoses.push(name); });
-            (pe.sensory || []).forEach(s => { const key = s.area.substring(0, 50); if (!allSensory.has(key)) allSensory.set(key, { ...s, diagnoses: [] }); allSensory.get(key).diagnoses.push(name); });
-            (pe.reflexes || []).forEach(r => { const key = r.reflex; if (!allReflexes.has(key)) allReflexes.set(key, { ...r, diagnoses: [] }); allReflexes.get(key).diagnoses.push(name); });
-            (pe.specialTests || []).forEach(t => { const key = t.name; if (!allSpecialTests.has(key)) allSpecialTests.set(key, { ...t, diagnoses: [] }); allSpecialTests.get(key).diagnoses.push(name); });
+            (pe.inspection || []).forEach(item => { const key = item.substring(0, 60); if (!allInspection.has(key)) allInspection.set(key, { text: item }); });
+            (pe.palpation || []).forEach(item => { const key = item.substring(0, 60); if (!allPalpation.has(key)) allPalpation.set(key, { text: item }); });
+            (pe.rom || []).forEach(item => { const key = item.substring(0, 60); if (!allRom.has(key)) allRom.set(key, { text: item }); });
+            (pe.strength || []).forEach(s => { if (!allStrength.has(s.muscle)) allStrength.set(s.muscle, s); });
+            (pe.sensory || []).forEach(s => { const key = s.area.substring(0, 50); if (!allSensory.has(key)) allSensory.set(key, s); });
+            (pe.reflexes || []).forEach(r => { if (!allReflexes.has(r.reflex)) allReflexes.set(r.reflex, r); });
+            (pe.specialTests || []).forEach(t => { if (!allSpecialTests.has(t.name)) allSpecialTests.set(t.name, t); });
         }
 
         const selectedNames = [...this.examBuilderSelections].map(id => this.data[id]?.name).filter(Boolean);
+        const totalExams = allStrength.size + allSensory.size + allReflexes.size + allSpecialTests.size + allInspection.size + allPalpation.size + allRom.size;
         const output = document.getElementById('cel-builder-output');
         if (output) {
             output.innerHTML = `
                 <div class="cel-built-exam">
-                    <div class="cel-built-header">
-                        <h3>Custom Physical Exam</h3>
-                        <p>For differential: <strong>${selectedNames.join(', ')}</strong></p>
-                        <button class="cel-copy-btn" onclick="window._celModule.copyExam()">${ICONS.copy} Copy to Clipboard</button>
+                    <div class="cel-built-hero">
+                        <div class="cel-built-hero-content">
+                            <h3>Your Exam Checklist</h3>
+                            <p>${selectedNames.length} diagnoses in differential</p>
+                            <div class="cel-hero-stats">
+                                <span class="cel-stat-chip">${allStrength.size} muscles</span>
+                                <span class="cel-stat-chip">${allSensory.size} sensory areas</span>
+                                <span class="cel-stat-chip">${allReflexes.size} reflexes</span>
+                                <span class="cel-stat-chip">${allSpecialTests.size} special tests</span>
+                            </div>
+                        </div>
+                        <button class="cel-copy-btn-hero" onclick="window._celModule.copyExam()">${ICONS.copy} Copy</button>
                     </div>
-                    ${this.renderBuiltSection('Inspection', allInspection)}
-                    ${this.renderBuiltSection('Palpation', allPalpation)}
-                    ${this.renderBuiltSection('Range of Motion', allRom)}
-                    ${this.renderBuiltStrength(allStrength)}
-                    ${this.renderBuiltSensory(allSensory)}
-                    ${this.renderBuiltReflexes(allReflexes)}
-                    ${this.renderBuiltSpecialTests(allSpecialTests)}
+                    <div class="cel-built-diff">
+                        <span class="cel-built-diff-label">Differential:</span>
+                        ${selectedNames.map(n => `<span class="cel-dx-tag">${n}</span>`).join('')}
+                    </div>
+                    ${this.renderBuiltChecklist('Manual Muscle Testing', ICONS.strength, allStrength, 'strength')}
+                    ${this.renderBuiltChecklist('Sensory Examination', ICONS.sensory, allSensory, 'sensory')}
+                    ${this.renderBuiltChecklist('Reflexes', ICONS.reflex, allReflexes, 'reflex')}
+                    ${this.renderBuiltTestChecklist(allSpecialTests)}
+                    ${this.renderBuiltSimpleList('Inspection', ICONS.inspection, allInspection)}
+                    ${this.renderBuiltSimpleList('Palpation', ICONS.palpation, allPalpation)}
+                    ${this.renderBuiltSimpleList('Range of Motion', ICONS.rom, allRom)}
                 </div>
             `;
         }
     }
 
-    renderBuiltSection(title, map) {
+    renderBuiltChecklist(title, icon, map, type) {
         if (map.size === 0) return '';
-        return `<div class="cel-built-section"><h4>${title}</h4><ul>${[...map.values()].map(item => `<li>${item.text}<span class="cel-dx-tags">${item.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</span></li>`).join('')}</ul></div>`;
+        const items = [...map.values()];
+        return `
+            <div class="cel-card-section">
+                <div class="cel-card-section-header">${icon} <span>${title}</span><span class="cel-summary-text">${items.length} to test</span></div>
+                <div class="cel-checklist-grid">
+                    ${items.map(item => {
+                        if (type === 'strength') {
+                            return `<div class="cel-check-card"><div class="cel-check-top"><span class="cel-check-name">${item.muscle}</span><span class="cel-check-meta">${item.root}</span></div><div class="cel-check-sub">${item.nerve} -- ${item.action}</div></div>`;
+                        } else if (type === 'sensory') {
+                            return `<div class="cel-check-card"><div class="cel-check-top"><span class="cel-check-name">${item.area}</span></div><div class="cel-check-sub">${item.modality}</div></div>`;
+                        } else {
+                            return `<div class="cel-check-card"><div class="cel-check-name">${item.reflex}</div></div>`;
+                        }
+                    }).join('')}
+                </div>
+            </div>`;
     }
 
-    renderBuiltStrength(map) {
+    renderBuiltTestChecklist(map) {
         if (map.size === 0) return '';
-        return `<div class="cel-built-section"><h4>Manual Muscle Testing</h4><div class="cel-table-wrapper"><table class="cel-table"><thead><tr><th>Muscle</th><th>Nerve</th><th>Root</th><th>Action</th><th>Evaluates For</th></tr></thead><tbody>${[...map.values()].map(s => `<tr><td><strong>${s.muscle}</strong></td><td>${s.nerve}</td><td>${s.root}</td><td>${s.action}</td><td>${s.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td></tr>`).join('')}</tbody></table></div></div>`;
+        const items = [...map.values()];
+        let counter = 0;
+        return `
+            <div class="cel-card-section">
+                <div class="cel-card-section-header">${ICONS.specialTest} <span>Special Tests</span><span class="cel-summary-text">${items.length} to perform</span></div>
+                <div class="cel-tests-grid">
+                    ${items.map(t => {
+                        const id = `built-test-${counter++}`;
+                        const sensVal = this.parseStatPercent(t.sensitivity);
+                        const specVal = this.parseStatPercent(t.specificity);
+                        return `
+                        <div class="cel-test-card" onclick="window._celModule.toggleSection('${id}')">
+                            <div class="cel-tc-header">
+                                <span class="cel-tc-name">${t.name}</span>
+                                <span class="cel-toggle cel-tc-toggle" id="cel-arrow-${id}">+</span>
+                            </div>
+                            ${t.sensitivity || t.specificity ? `
+                            <div class="cel-tc-stats">
+                                ${t.sensitivity ? `<div class="cel-stat-meter"><span class="cel-stat-label">Sens</span><div class="cel-stat-bar"><div class="cel-stat-fill" style="width:${sensVal || 50}%;background:${this.getStatColor(sensVal)}"></div></div><span class="cel-stat-value">${t.sensitivity}</span></div>` : ''}
+                                ${t.specificity ? `<div class="cel-stat-meter"><span class="cel-stat-label">Spec</span><div class="cel-stat-bar"><div class="cel-stat-fill" style="width:${specVal || 50}%;background:${this.getStatColor(specVal)}"></div></div><span class="cel-stat-value">${t.specificity}</span></div>` : ''}
+                            </div>` : ''}
+                            <div id="cel-section-${id}" class="cel-tc-body cel-collapsed">
+                                <div class="cel-tc-technique"><strong>How to perform:</strong> ${t.technique}</div>
+                                <div class="cel-tc-positive"><strong>Positive finding:</strong> ${t.positiveFinding}</div>
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>`;
     }
 
-    renderBuiltSensory(map) {
+    renderBuiltSimpleList(title, icon, map) {
         if (map.size === 0) return '';
-        return `<div class="cel-built-section"><h4>Sensory Examination</h4><div class="cel-table-wrapper"><table class="cel-table"><thead><tr><th>Area</th><th>Modality</th><th>Evaluates For</th></tr></thead><tbody>${[...map.values()].map(s => `<tr><td>${s.area}</td><td>${s.modality}</td><td>${s.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td></tr>`).join('')}</tbody></table></div></div>`;
-    }
-
-    renderBuiltReflexes(map) {
-        if (map.size === 0) return '';
-        return `<div class="cel-built-section"><h4>Reflexes</h4><div class="cel-table-wrapper"><table class="cel-table"><thead><tr><th>Reflex</th><th>Evaluates For</th></tr></thead><tbody>${[...map.values()].map(r => `<tr><td>${r.reflex}</td><td>${r.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</td></tr>`).join('')}</tbody></table></div></div>`;
-    }
-
-    renderBuiltSpecialTests(map) {
-        if (map.size === 0) return '';
-        return `<div class="cel-built-section"><h4>Special Tests</h4>${[...map.values()].map(t => `<div class="cel-special-test"><div class="cel-test-name">${t.name}</div><div class="cel-test-technique"><strong>Technique:</strong> ${t.technique}</div><div class="cel-test-positive"><strong>Positive:</strong> ${t.positiveFinding}</div><div class="cel-dx-tags">${t.diagnoses.map(d => `<span class="cel-dx-tag">${d}</span>`).join('')}</div></div>`).join('')}</div>`;
+        return `
+            <div class="cel-card-section cel-list-section">
+                <div class="cel-card-section-header">${icon} <span>${title}</span><span class="cel-summary-text">${map.size} findings</span></div>
+                <div class="cel-exam-list">${[...map.values()].map(item => `<div class="cel-exam-list-item">${item.text}</div>`).join('')}</div>
+            </div>`;
     }
 
     copyExam() {
@@ -854,29 +903,26 @@ class ClinicalExamLabModule {
             .cel-build-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(13,148,136,0.3); }
 
             /* Built Exam Output */
-            .cel-built-header { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #e2e8f0; }
-            .cel-built-header h3 { margin: 0 0 6px; }
-            .cel-built-header p { margin: 0 0 10px; color: #64748b; font-size: 0.9em; }
-            .cel-copy-btn { padding: 6px 14px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; font-size: 0.85em; display: inline-flex; align-items: center; gap: 6px; }
-            .cel-copy-btn:hover { background: #e2e8f0; }
-            .cel-built-section { margin-bottom: 20px; }
-            .cel-built-section h4 { margin: 0 0 10px; color: #0f172a; font-size: 1em; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; }
-            .cel-built-section ul { padding-left: 20px; margin: 0; }
-            .cel-built-section li { margin-bottom: 8px; font-size: 0.9em; line-height: 1.4; }
+            .cel-built-hero { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 14px; padding: 20px 24px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: flex-start; position: relative; overflow: hidden; }
+            .cel-built-hero::after { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%); border-radius: 50%; }
+            .cel-built-hero-content { position: relative; z-index: 1; }
+            .cel-built-hero h3 { color: white; margin: 0 0 4px; font-size: 1.3em; font-weight: 800; }
+            .cel-built-hero p { color: #94a3b8; margin: 0 0 10px; font-size: 0.85em; }
+            .cel-copy-btn-hero { position: relative; z-index: 1; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; cursor: pointer; font-size: 0.82em; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.2s; flex-shrink: 0; }
+            .cel-copy-btn-hero:hover { background: rgba(255,255,255,0.2); }
+            .cel-built-diff { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-bottom: 16px; padding: 10px 14px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; }
+            .cel-built-diff-label { font-size: 0.78em; font-weight: 700; color: #64748b; margin-right: 4px; }
             .cel-dx-tags { display: inline-flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
-            .cel-dx-tag { background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; font-size: 0.7em; font-weight: 600; white-space: nowrap; }
+            .cel-dx-tag { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.72em; font-weight: 600; white-space: nowrap; }
 
-            /* Tables (for builder) */
-            .cel-table-wrapper { overflow-x: auto; }
-            .cel-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
-            .cel-table th { background: #f1f5f9; padding: 8px 10px; text-align: left; font-weight: 600; color: #334155; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
-            .cel-table td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; }
-            .cel-row-abnormal { background: #fff7ed; }
-            .cel-row-abnormal td { color: #c2410c; font-weight: 500; }
-
-            /* Special Tests (for builder) */
-            .cel-special-test { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
-            .cel-test-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; font-size: 0.95em; }
+            /* Checklist Grid */
+            .cel-checklist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; }
+            .cel-check-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; border-left: 3px solid #0d9488; background: white; transition: transform 0.15s, box-shadow 0.15s; }
+            .cel-check-card:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.06); }
+            .cel-check-top { display: flex; justify-content: space-between; align-items: center; }
+            .cel-check-name { font-weight: 700; font-size: 0.84em; color: #1e293b; }
+            .cel-check-meta { font-size: 0.72em; color: #0d9488; font-weight: 600; background: #f0fdfa; padding: 1px 6px; border-radius: 4px; }
+            .cel-check-sub { font-size: 0.75em; color: #64748b; margin-top: 2px; }
             .cel-test-stats { font-weight: 400; color: #64748b; font-size: 0.85em; }
             .cel-test-technique { font-size: 0.88em; color: #475569; margin-bottom: 3px; }
             .cel-test-positive { font-size: 0.88em; color: #0d9488; }
