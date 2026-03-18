@@ -210,16 +210,6 @@ export const EMGMachine = {
                 </div>
             </div>
 
-            <!-- Journey Footer -->
-            <div style="text-align: center; margin-top: 80px; padding: 80px 40px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 40px; border: 3px dashed #cbd5e1; position: relative; overflow: hidden; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);">
-                <div style="position: absolute; left: -20px; bottom: -20px; font-size: 10em; opacity: 0.03; transform: rotate(-15deg);">🩺</div>
-                <h2 style="color: #0f172a; margin-bottom: 20px; font-weight: 900; font-size: 2.2em; letter-spacing: -0.03em;">${this.data.footer.title}</h2>
-                <p style="color: #64748b; margin-bottom: 40px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.8; font-size: 1.1em;">${this.data.footer.body}</p>
-                <div style="display: flex; justify-content: center; gap: 20px;">
-                    <button class="tech-tab active" style="padding: 18px 50px; font-size: 1.1em; border-radius: 20px;">Next: Technical Excellence →</button>
-                    <button class="tech-tab" style="padding: 18px 40px; font-size: 1.1em; border-radius: 20px;">Return to Menu</button>
-                </div>
-            </div>
 
         </div>
 
