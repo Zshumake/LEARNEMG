@@ -162,7 +162,7 @@ export const entrapmentLowerData = {
                 'Eversion or dorsiflexion may reproduce symptoms (stretches nerve)'
             ],
             strength: [
-                { muscle: 'Abductor Hallucis', nerve: 'Medial plantar (Tibial)', root: 'S1-S2', action: 'Great toe abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
+                { muscle: 'Abductor Hallucis', nerve: 'Medial plantar (Tibial)', root: 'L5-S1', action: 'Great toe abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
                 { muscle: 'Intrinsic foot muscles', nerve: 'Lateral plantar (Tibial)', root: 'S1-S2', action: 'Toe flexion/spreading', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
                 { muscle: 'Tibialis Posterior', nerve: 'Tibial (proximal)', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
                 { muscle: 'Gastrocnemius/Soleus', nerve: 'Tibial (proximal)', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
@@ -230,7 +230,7 @@ export const entrapmentLowerData = {
                 { muscle: 'Iliopsoas', nerve: 'Femoral + L1-L3 direct branches', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'May be WEAK', mrcGrade: '3-4/5' },
                 { muscle: 'Sartorius', nerve: 'Femoral', root: 'L2-L3', action: 'Hip flexion + knee flexion + external rotation', expectedFinding: 'WEAK', mrcGrade: '4/5' },
                 { muscle: 'Hip adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hamstrings', nerve: 'Sciatic (tibial division)', root: 'L5-S1', action: 'Knee flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
+                { muscle: 'Hamstrings', nerve: 'Sciatic (tibial division)', root: 'L5-S2', action: 'Knee flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
                 { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
             ],
             sensory: [
@@ -474,7 +474,7 @@ export const entrapmentLowerData = {
             rom: ['Full ankle ROM', 'Toe ROM normal'],
             strength: [
                 { muscle: 'Abductor Digiti Quinti (Minimi)', nerve: 'First branch lateral plantar (Baxter nerve)', root: 'S1-S2', action: 'Small toe abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Abductor Hallucis', nerve: 'Medial plantar', root: 'S1-S2', action: 'Great toe abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
+                { muscle: 'Abductor Hallucis', nerve: 'Medial plantar', root: 'L5-S1', action: 'Great toe abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
                 { muscle: 'Tibialis Posterior', nerve: 'Tibial', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
                 { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
             ],

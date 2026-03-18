@@ -349,7 +349,7 @@ export const plexopathyData = {
                 { muscle: 'Infraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'External rotation', expectedFinding: 'WEAK (commonly affected)', mrcGrade: '2-3/5' },
                 { muscle: 'Serratus Anterior', nerve: 'Long thoracic', root: 'C5-C7', action: 'Scapular protraction', expectedFinding: 'WEAK (commonly affected)', mrcGrade: '2-3/5' },
                 { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'May be WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'FPL + FDP (index)', nerve: 'AIN (Median)', root: 'C8-T1', action: 'Thumb/index DIP flexion', expectedFinding: 'May be WEAK (AIN variant)', mrcGrade: '3/5' },
+                { muscle: 'FPL + FDP (index)', nerve: 'AIN (Median)', root: 'C7-T1', action: 'Thumb/index DIP flexion', expectedFinding: 'May be WEAK (AIN variant)', mrcGrade: '3/5' },
                 { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Finger abduction', expectedFinding: 'Usually NORMAL', mrcGrade: '5/5' }
             ],
             sensory: [
