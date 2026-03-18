@@ -214,7 +214,17 @@ class ClinicalExamLabModule {
                     ${dx.isInappropriate ? `<div class="cel-hero-warn-banner">${ICONS.warning} EMG/NCS generally NOT indicated -- exam below helps distinguish from neuromuscular pathology.</div>` : ''}
                 </div>
 
-                <!-- Key Findings (promoted to top) -->
+                <!-- History (collapsed, at top for context) -->
+                <div class="cel-section cel-history-section">
+                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('history-${dx.id}')">
+                        ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">+</span>
+                    </h3>
+                    <div id="cel-section-history-${dx.id}" class="cel-section-body cel-collapsed">
+                        ${this.renderHistoryCompact(dx.history)}
+                    </div>
+                </div>
+
+                <!-- Key Findings -->
                 ${dx.keyDistinguishingFindings?.length ? `
                 <div class="cel-pearls">
                     <div class="cel-pearls-header">${ICONS.key} Key Distinguishing Findings</div>
@@ -231,32 +241,13 @@ class ClinicalExamLabModule {
                     </div>` : ''}
 
                     <div class="cel-exam-content">
-                        <!-- Strength Cards -->
                         ${this.renderStrengthCards(pe.strength)}
-
-                        <!-- Sensory Cards -->
                         ${this.renderSensoryCards(pe.sensory)}
-
-                        <!-- Reflex Chips -->
                         ${this.renderReflexChips(pe.reflexes)}
-
-                        <!-- Special Tests -->
                         ${this.renderSpecialTestCards(pe.specialTests, dx.id)}
-
-                        <!-- Inspection / Palpation / ROM -->
                         ${this.renderExamList('Inspection', ICONS.inspection, pe.inspection)}
                         ${this.renderExamList('Palpation', ICONS.palpation, pe.palpation)}
                         ${this.renderExamList('Range of Motion', ICONS.rom, pe.rom)}
-                    </div>
-                </div>
-
-                <!-- History (compact, collapsed) -->
-                <div class="cel-section cel-history-section">
-                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('history-${dx.id}')">
-                        ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">+</span>
-                    </h3>
-                    <div id="cel-section-history-${dx.id}" class="cel-section-body cel-collapsed">
-                        ${this.renderHistoryCompact(dx.history)}
                     </div>
                 </div>
             </div>
@@ -455,7 +446,7 @@ class ClinicalExamLabModule {
             { id: 'upper-arm', label: 'Upper Arm', y: 80, keywords: ['Biceps', 'Triceps', 'Brachialis', 'upper arm', 'arm'] },
             { id: 'forearm', label: 'Forearm', y: 140, keywords: ['Pronator', 'Supinator', 'Wrist', 'FCR', 'ECR', 'FDP', 'FDS', 'EDC', 'forearm', 'Brachioradialis'] },
             { id: 'hand-radial', label: 'Hand (Radial)', y: 200, keywords: ['APB', 'Abductor Pollicis', 'Opponens', 'thumb', 'index', 'middle', 'thenar', 'Median'] },
-            { id: 'hand-ulnar', label: 'Hand (Ulnar)', y: 230, keywords: ['FDI', 'First Dorsal', 'ADM', 'Abductor Digiti', 'hypothenar', 'ring', 'small', 'little', 'Ulnar', 'inteross'] },
+            { id: 'hand-ulnar', label: 'Hand (Ulnar)', y: 250, keywords: ['FDI', 'First Dorsal', 'ADM', 'Abductor Digiti', 'hypothenar', 'ring', 'small', 'little', 'Ulnar', 'inteross'] },
         ];
 
         return this.renderRegionDiagram(regions, muscles, sensory, roots, 'Upper Extremity');
