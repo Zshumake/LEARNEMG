@@ -193,16 +193,14 @@ if (!window.EMGLocalization) {
 }
 
 export const NeedleLocalization = {
-    generateContent(module) {
-        console.log('UI FACELIFT VERSION LOADED - EMG Needle Localization v20251002');
+    initialize() {
+        // Called after HTML is in the DOM -- show upper extremity muscles immediately
+        if (window.EMGLocalization) {
+            window.EMGLocalization.switchRegion('upper');
+        }
+    },
 
-        // Define helpers locally if not global yet (though we defined them above)
-        // Ensure initialization triggers
-        setTimeout(() => {
-            if (window.EMGLocalization) {
-                window.EMGLocalization.switchRegion('upper');
-            }
-        }, 100);
+    generateContent(module) {
 
         return `
         <div class="emg-localization-container">

@@ -139,9 +139,5 @@ export const EMGMachineData = {
             }
         ],
         distortionWarning: "Beginners often forget to switch filters between sensory and motor studies. Using the narrow **Sensory filter (2kHz)** while recording a powerful **EMG muscle wave** will artificially 'round' the peaks, making all your muscle waves look diseased or 'slow'. Always verify your Filter Protocol at the bottom of the screen before you hit the 'Run' button. If the baseline looks 'hairy', your HFF is too high; if the baseline is 'wavy', your LFF is too low!"
-    },
-    footer: {
-        title: "Module Complete: Instrumentation Mastery",
-        body: "You've mastered the clinical equipment of the Cadwell Sierra Summit. You're no longer just looking at a machine—you're looking at a diagnostic extension of your own senses. You now understand the *Why* behind every dial and port. Ready to move from gear to technique?"
     }
 };
