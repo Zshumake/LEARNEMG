@@ -406,13 +406,14 @@ class ClinicalExamLabModule {
 
     // --- COMPACT HISTORY ---
     renderHistoryCompact(history) {
+        if (!history) return '<div class="cel-history-compact"><em>No history data available.</em></div>';
         return `
             <div class="cel-history-compact">
-                <div class="cel-hx-demo">${history.demographics}</div>
-                <div class="cel-hx-cc">"${history.chiefComplaint}"</div>
-                <div class="cel-hpi-grid">
+                ${history.demographics ? `<div class="cel-hx-demo">${history.demographics}</div>` : ''}
+                ${history.chiefComplaint ? `<div class="cel-hx-cc">"${history.chiefComplaint}"</div>` : ''}
+                ${history.hpiKeyFeatures?.length ? `<div class="cel-hpi-grid">
                     ${history.hpiKeyFeatures.map(f => `<span class="cel-hpi-tag">${f}</span>`).join('')}
-                </div>
+                </div>` : ''}
                 ${history.associatedSymptoms?.length ? `
                 <div class="cel-hx-row"><strong>Associated:</strong> ${history.associatedSymptoms.join('; ')}</div>` : ''}
                 ${history.redFlags?.length ? `
@@ -432,7 +433,11 @@ class ClinicalExamLabModule {
         const pe = dx.physicalExam;
         const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.muscle);
         const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.area);
-        const abnormalRoots = [...new Set((pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.root))];
+        // Only highlight roots for radiculopathy -- entrapments/plexopathies affect nerves, not roots
+        const isRadiculopathy = (dx.category || '').toLowerCase().includes('radiculopathy');
+        const abnormalRoots = isRadiculopathy
+            ? [...new Set((pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.root))]
+            : [];
 
         if (region === BODY_REGION.UPPER || region === BODY_REGION.BOTH) {
             return this.renderUpperExtremitySVG(abnormalMuscles, abnormalSensory, abnormalRoots);
