@@ -124,5 +124,42 @@ export const BrachialPlexopathyData = {
             correct: 2,
             explanation: "Nerves regenerate at approximately 1mm per day (or 1 inch per month). Therefore, muscles geographically closest to the injury site (proximal shoulder/arm muscles) will receive their repairing axons and show reinnervation long before distal muscles like the hand intrinsics."
         }
+    ],
+    localizationScenarios: [
+        {
+            stem: "A 22-year-old motorcyclist presents after a high-speed collision. The right arm hangs at the side in the 'waiter's tip' position (shoulder adducted, internally rotated, elbow extended, forearm pronated). Biceps reflex is absent. All SNAPs in the hand are normal.",
+            question: "Where is the lesion?",
+            options: ["C5-C6 Radiculopathy", "Upper Trunk (Erb's Palsy)", "Lateral Cord Lesion", "Posterior Cord Lesion"],
+            correct: 1,
+            explanation: "The waiter's tip posture with absent biceps reflex points to C5-C6. Normal hand SNAPs could indicate either root or trunk level. However, the trauma mechanism (lateral neck-shoulder distraction) and the pattern of weakness in multiple C5-C6 nerves (axillary, musculocutaneous, suprascapular) localizes to the upper trunk. If paraspinals were abnormal, you would consider root avulsion."
+        },
+        {
+            stem: "A 58-year-old smoker presents with progressive hand weakness over 3 months. Examination reveals a claw hand deformity, numbness in the small finger and medial forearm, and ipsilateral Horner syndrome (ptosis, miosis, anhidrosis). The ulnar SNAP is absent. Chest imaging shows a Pancoast tumor at the lung apex.",
+            question: "Where is the lesion?",
+            options: ["Ulnar Nerve at the Elbow", "Medial Cord", "Lower Trunk (C8-T1)", "C8 Radiculopathy"],
+            correct: 2,
+            explanation: "Horner syndrome with lower plexus findings is pathognomonic for a lower trunk (C8-T1) lesion. The Pancoast tumor invades the lower trunk from below. Key distinguishing features: (1) Absent ulnar SNAP = postganglionic (rules out root), (2) Horner syndrome = sympathetic chain involvement at T1 (points to trunk, not cord), (3) ALL hand intrinsics weak (both median and ulnar innervated) = not a single peripheral nerve."
+        },
+        {
+            stem: "A 35-year-old woman wakes up 2 weeks after a flu-like illness with excruciating right shoulder pain lasting 3 days. The pain resolves, but she notices she cannot lift her arm overhead. EMG shows dense denervation in the supraspinatus, infraspinatus, AND serratus anterior, with normal paraspinals. The lateral antebrachial cutaneous SNAP is reduced.",
+            question: "What is the diagnosis?",
+            options: ["C5-C6 Radiculopathy", "Upper Trunk Plexopathy from Trauma", "Parsonage-Turner Syndrome (Neuralgic Amyotrophy)", "Rotator Cuff Tear"],
+            correct: 2,
+            explanation: "This is classic Parsonage-Turner syndrome: (1) Intense pain preceding weakness, (2) Post-viral trigger, (3) Patchy denervation that does NOT follow a single trunk pattern -- suprascapular nerve (supraspinatus/infraspinatus) + long thoracic nerve (serratus anterior) are from DIFFERENT cord/trunk origins, (4) Normal paraspinals exclude radiculopathy, (5) Abnormal SNAP confirms postganglionic. The patchy, multi-nerve pattern is the hallmark."
+        },
+        {
+            stem: "A patient presents after a shoulder dislocation with weakness of deltoid (3/5) and wrist/finger extension (2/5). Biceps strength is 5/5. Triceps is 3/5. The radial SNAP is absent. Lateral antebrachial cutaneous SNAP is normal.",
+            question: "Where is the lesion?",
+            options: ["Upper Trunk", "Posterior Cord", "C7 Radiculopathy", "Radial Nerve at Spiral Groove"],
+            correct: 1,
+            explanation: "The posterior cord gives rise to both the axillary nerve (deltoid) and the radial nerve (triceps, wrist/finger extensors). Normal biceps (musculocutaneous = lateral cord) with weak deltoid + extensors = posterior cord. The absent radial SNAP confirms postganglionic (not root). Normal LABC SNAP confirms the lateral cord is spared. If this were a radial nerve lesion at the spiral groove, the deltoid would be normal."
+        },
+        {
+            stem: "A patient has weakness of biceps (3/5) and pronator teres (3/5), but normal hand intrinsic strength (FDI 5/5, APB 5/5). The lateral antebrachial cutaneous SNAP is absent. The ulnar SNAP is normal. Deltoid is 5/5.",
+            question: "Where is the lesion?",
+            options: ["Upper Trunk", "Lateral Cord", "C6 Radiculopathy", "Musculocutaneous Nerve"],
+            correct: 1,
+            explanation: "The lateral cord gives rise to: (1) Musculocutaneous nerve (biceps, brachialis) and (2) Lateral contribution to median nerve (pronator teres, FCR). Normal deltoid = posterior cord intact. Normal hand intrinsics = medial cord intact. Absent LABC SNAP = musculocutaneous territory damaged (postganglionic). Normal ulnar SNAP = medial cord/lower trunk spared. Weak biceps + pronator with preserved intrinsics = lateral cord."
+        }
     ]
 };

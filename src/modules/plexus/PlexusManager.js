@@ -2,6 +2,62 @@ import { PlexusLogic } from './PlexusLogic.js';
 import { PlexusRenderer } from './PlexusRenderer.js?v=20260304-v5';
 import { generatePlexopathyContent } from '../../content/pathology/BrachialPlexopathy.js?v=20260304-v5';
 
+const MUSCLE_DETAILS = {
+    // Upper Extremity
+    'Deltoid': { action: 'Shoulder abduction', root: 'C5-C6', test: 'Resist shoulder abduction at 90 degrees' },
+    'Biceps': { action: 'Elbow flexion, forearm supination', root: 'C5-C6', test: 'Resist elbow flexion with forearm supinated' },
+    'Brachialis': { action: 'Elbow flexion', root: 'C5-C6', test: 'Resist elbow flexion with forearm pronated' },
+    'Coracobrachialis': { action: 'Shoulder flexion, adduction', root: 'C5-C7', test: 'Resist shoulder flexion' },
+    'Supraspinatus': { action: 'Shoulder abduction initiation (first 15 degrees)', root: 'C5-C6', test: 'Empty can test (Jobe test)' },
+    'Infraspinatus': { action: 'Shoulder external rotation', root: 'C5-C6', test: 'Resist external rotation with arm at side' },
+    'Teres Minor': { action: 'Shoulder external rotation', root: 'C5-C6', test: 'Resist external rotation at 90 degrees abduction' },
+    'Serratus Anterior': { action: 'Scapular protraction', root: 'C5-C7', test: 'Wall push-up -- watch for medial scapular winging' },
+    'Rhomboids': { action: 'Scapular retraction', root: 'C5', test: 'Resist scapular retraction (squeeze shoulder blades)' },
+    'Triceps': { action: 'Elbow extension', root: 'C6-C8', test: 'Resist elbow extension' },
+    'Brachioradialis': { action: 'Elbow flexion (neutral forearm)', root: 'C5-C6', test: 'Resist elbow flexion with forearm in neutral' },
+    'ECRL': { action: 'Wrist extension with radial deviation', root: 'C6-C7', test: 'Resist wrist extension' },
+    'ECU': { action: 'Wrist extension with ulnar deviation', root: 'C7-C8', test: 'Resist ulnar wrist extension' },
+    'Wrist Extensors': { action: 'Wrist extension', root: 'C6-C8', test: 'Resist wrist extension' },
+    'Finger Extensors': { action: 'Finger MCP extension', root: 'C7-C8', test: 'Resist finger extension at MCP joints' },
+    'Supinator': { action: 'Forearm supination', root: 'C5-C6', test: 'Resist supination with elbow extended' },
+    'Pronator Teres': { action: 'Forearm pronation', root: 'C6-C7', test: 'Resist forearm pronation' },
+    'FCR': { action: 'Wrist flexion with radial deviation', root: 'C6-C7', test: 'Resist radial wrist flexion' },
+    'FPL': { action: 'Thumb IP flexion', root: 'C8-T1', test: 'Resist thumb IP flexion (AIN test)' },
+    'FDP (Index)': { action: 'Index finger DIP flexion', root: 'C8-T1', test: 'Resist index DIP flexion (AIN test)' },
+    'APB': { action: 'Thumb abduction (palmar)', root: 'C8-T1', test: 'Resist thumb abduction perpendicular to palm' },
+    'Opponens Pollicis': { action: 'Thumb opposition', root: 'C8-T1', test: 'Resist thumb-to-pinky opposition' },
+    'Lumbricals 1-2': { action: 'Index/middle MCP flexion + IP extension', root: 'C8-T1', test: 'Resist MCP flexion with IP extended' },
+    'FDI': { action: 'Index finger abduction', root: 'C8-T1', test: 'Resist index finger abduction (spreading)' },
+    'ADM': { action: 'Small finger abduction', root: 'C8-T1', test: 'Resist small finger abduction' },
+    'Adductor Pollicis': { action: 'Thumb adduction', root: 'C8-T1', test: 'Froment test (paper pinch)' },
+    'Interossei': { action: 'Finger abduction/adduction', root: 'C8-T1', test: 'Resist finger spreading' },
+    'FCU': { action: 'Wrist flexion with ulnar deviation', root: 'C7-C8', test: 'Resist ulnar wrist flexion' },
+    'FDP (Ring/Little)': { action: 'Ring/little DIP flexion', root: 'C8-T1', test: 'Resist ring/little DIP flexion' },
+    'Latissimus Dorsi': { action: 'Shoulder adduction, extension, internal rotation', root: 'C6-C8', test: 'Resist shoulder adduction from abducted position' },
+    'Subscapularis': { action: 'Shoulder internal rotation', root: 'C5-C6', test: 'Belly press test or lift-off test' },
+    'Teres Major': { action: 'Shoulder adduction, internal rotation', root: 'C5-C7', test: 'Resist shoulder internal rotation' },
+    'Pectoralis Major': { action: 'Shoulder adduction, flexion, internal rotation', root: 'C5-T1', test: 'Resist horizontal adduction' },
+    // Lower Extremity
+    'Tibialis Anterior': { action: 'Ankle dorsiflexion, inversion', root: 'L4-L5', test: 'Resist ankle dorsiflexion (heel walk)' },
+    'Extensor Hallucis Longus': { action: 'Great toe extension', root: 'L5', test: 'Resist great toe extension' },
+    'Extensor Digitorum Longus': { action: 'Toe extension', root: 'L5', test: 'Resist toe extension' },
+    'Peroneus Longus': { action: 'Foot eversion, plantar flexion', root: 'L5-S1', test: 'Resist foot eversion' },
+    'Peroneus Brevis': { action: 'Foot eversion', root: 'L5-S1', test: 'Resist foot eversion' },
+    'Extensor Digitorum Brevis': { action: 'Toe extension (intrinsic)', root: 'L5-S1', test: 'Observe EDB bulk on dorsum of foot' },
+    'Gastrocnemius': { action: 'Ankle plantar flexion (knee extended)', root: 'S1-S2', test: 'Single leg heel raise' },
+    'Soleus': { action: 'Ankle plantar flexion (knee flexed)', root: 'S1-S2', test: 'Resist plantar flexion with knee bent' },
+    'Tibialis Posterior': { action: 'Ankle inversion, plantar flexion', root: 'L4-L5', test: 'Resist foot inversion (critical L5 vs peroneal test)' },
+    'Quadriceps': { action: 'Knee extension', root: 'L2-L4', test: 'Resist knee extension' },
+    'Iliopsoas': { action: 'Hip flexion', root: 'L1-L3', test: 'Resist hip flexion in seated position' },
+    'Adductors': { action: 'Hip adduction', root: 'L2-L4', test: 'Resist hip adduction (squeeze knees together)' },
+    'Gluteus Medius': { action: 'Hip abduction', root: 'L4-S1', test: 'Trendelenburg test (single leg stance)' },
+    'Gluteus Maximus': { action: 'Hip extension', root: 'L5-S2', test: 'Resist hip extension from prone position' },
+    'Hamstrings': { action: 'Knee flexion', root: 'L5-S2', test: 'Resist knee flexion in prone' },
+    'Intrinsic Foot Muscles': { action: 'Toe flexion, foot stabilization', root: 'S1-S2', test: 'Resist toe flexion / observe foot arch' },
+    'Flexor Digitorum Longus': { action: 'Toe DIP flexion', root: 'L5-S1', test: 'Resist toe flexion' },
+    'Flexor Hallucis Longus': { action: 'Great toe IP flexion', root: 'S1-S2', test: 'Resist great toe flexion' }
+};
+
 export class PlexusManager {
     constructor() {
         this.logic = new PlexusLogic();
@@ -155,14 +211,25 @@ export class PlexusManager {
         if (node.muscles && node.muscles.length > 0) {
             html += `<div style="margin-top: 15px;">
                         <strong style="color: #1e293b; font-size: 0.9em; display: block; margin-bottom: 10px;">Primary Motor Innervation:</strong>
-                        <ul style="margin: 0; padding-left: 0; list-style: none;">`;
+                        <div style="margin: 0;">`;
             node.muscles.forEach(m => {
-                html += `<li style="margin-bottom: 8px; font-size: 0.9em; padding: 8px 12px; background: #ecfdf5; color: #065f46; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
-                            <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            ${m}
-                        </li>`;
+                const detail = MUSCLE_DETAILS[m];
+                if (detail) {
+                    html += `<div style="padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+                                <div style="font-weight: 600; color: #1e293b; font-size: 0.9em;">${m}</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
+                                    <span style="color: #64748b; font-size: 0.8em;">${detail.action}</span>
+                                    <span style="background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; font-size: 0.7em; font-weight: 600; white-space: nowrap; margin-left: 8px;">${detail.root}</span>
+                                </div>
+                                <div style="color: #94a3b8; font-size: 0.75em; margin-top: 2px; font-style: italic;">Test: ${detail.test}</div>
+                            </div>`;
+                } else {
+                    html += `<div style="padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+                                <div style="font-weight: 600; color: #1e293b; font-size: 0.9em;">${m}</div>
+                            </div>`;
+                }
             });
-            html += `</ul></div>`;
+            html += `</div></div>`;
         }
 
         panel.innerHTML = html;
@@ -201,9 +268,21 @@ export class PlexusManager {
         if (effects.affectedMuscles && effects.affectedMuscles.length > 0) {
             html += `<div>
                         <strong style="color: #dc2626; font-size: 0.9em; display: block; margin-bottom: 10px;">Compromised Myotomes:</strong>
-                        <div style="max-height: 250px; overflow-y: auto; padding-right: 5px;">`;
+                        <div style="max-height: 350px; overflow-y: auto; padding-right: 5px;">`;
             effects.affectedMuscles.forEach(m => {
-                html += `<div style="margin-bottom: 6px; font-size: 0.85em; padding: 8px 12px; background: #fff1f2; color: #9f1239; border-radius: 8px; border-left: 3px solid #f43f5e;">${m}</div>`;
+                const detail = MUSCLE_DETAILS[m];
+                if (detail) {
+                    html += `<div style="margin-bottom: 6px; padding: 8px 12px; background: #fff1f2; border-radius: 8px; border-left: 3px solid #f43f5e;">
+                                <div style="font-weight: 600; color: #9f1239; font-size: 0.85em;">${m}</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
+                                    <span style="color: #be123c; font-size: 0.78em;">${detail.action}</span>
+                                    <span style="background: #fecdd3; color: #9f1239; padding: 1px 6px; border-radius: 4px; font-size: 0.7em; font-weight: 600; white-space: nowrap; margin-left: 8px;">${detail.root}</span>
+                                </div>
+                                <div style="color: #e11d48; font-size: 0.73em; margin-top: 2px; font-style: italic; opacity: 0.8;">Test: ${detail.test}</div>
+                            </div>`;
+                } else {
+                    html += `<div style="margin-bottom: 6px; font-size: 0.85em; padding: 8px 12px; background: #fff1f2; color: #9f1239; border-radius: 8px; border-left: 3px solid #f43f5e;">${m}</div>`;
+                }
             });
             html += `</div></div>`;
         }
