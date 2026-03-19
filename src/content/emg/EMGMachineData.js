@@ -1,14 +1,14 @@
 export const EMGMachineData = {
     hero: {
-        title: "⚡ Cadwell Sierra Summit",
+        title: "Cadwell Sierra Summit",
         subtitle: "Instrumentation mastery is the first step toward diagnostic precision. This guide isn't just a technical manual; it's a clinical roadmap highlighting the subtle hardware nuances and mental workflows you'll use every single day in the lab."
     },
     tabs: [
-        { id: "hardware", label: "🖥️ System Overview" },
-        { id: "software", label: "💻 NCS Software" },
-        { id: "stimtroller", label: "🕹️ StimTroller Plus™" },
-        { id: "amplifier", label: "🔌 Preamplifier" },
-        { id: "controls", label: "🎛️ Settings Guide" }
+        { id: "hardware", label: "System Overview" },
+        { id: "software", label: "NCS Software" },
+        { id: "stimtroller", label: "StimTroller Plus" },
+        { id: "amplifier", label: "Preamplifier" },
+        { id: "controls", label: "Settings Guide" }
     ],
     hardware: {
         hub: {
@@ -44,7 +44,7 @@ export const EMGMachineData = {
         narrative: "The Sierra software is designed for high-speed clinical workflow. When you look at the screen, your eyes should follow a deliberate 'Data Audit' path: **First check the Nerve Tree → Then watch the Waveform → Finally verify the Results Table.** Never trust the table if the waveform looks messy!",
         windows: [
             {
-                title: "🌊 Waveform Window (Left)",
+                title: "Waveform Window (Left)",
                 color: "0ea5e9", // Blue
                 description: "This is your clinical truth. Your main job is to ensure the dots (markers) are in the right place. 'Takeoff' marker goes at the first departure from baseline; 'Peak' marker goes at the absolute summit.",
                 bullets: [
@@ -53,7 +53,7 @@ export const EMGMachineData = {
                 ]
             },
             {
-                title: "📊 Results Table (Center)",
+                title: "Results Table (Center)",
                 color: "10b981", // Green
                 description: "The logic engine. This table highlights values in Red or Blue if they fall outside the age-matched 'Normative' range for that specific nerve.",
                 bullets: [
@@ -62,7 +62,7 @@ export const EMGMachineData = {
                 ]
             },
             {
-                title: "📁 Study Window (Right)",
+                title: "Study Window (Right)",
                 color: "8b5cf6", // Purple
                 description: "The checklist. It manages the 'Protocol Tree,' allowing you to quickly switch between the Median, Ulnar, and Radial nerves with a single click.",
                 bullets: [
@@ -71,33 +71,39 @@ export const EMGMachineData = {
                 ]
             }
         ],
-        proTip: "Efficiency is king when the lab is busy. The colored buttons at the bottom of the screen always mirror the **F1-F7** keys on your keyboard and the physical buttons on the StimTroller. **F2** is always 'Store', **F3** is 'Next Site', and **F10** is 'Finish Study'. Learn these shortcuts early, and you'll save yourself miles of mouse movement over your residency!"
+        proTip: "Efficiency is king when the lab is busy. Function keys map to key actions: **F1** = Train/Single toggle (RNS), **F2** = Store, **F3** = context-dependent (Next Site in NCS, Smooth in EMG, OK in impedance), **F4** = History (review stored traces), **F7** = Navigator (muscle/nerve selection). The colored buttons at the bottom of the screen mirror these F-keys. You can also use mouse clicks, base unit knobs, or StimTroller programmable buttons for the same functions. Learn these shortcuts early and you'll save yourself miles of mouse movement over your residency!"
     },
     stimtroller: {
-        subtitle: "The most advanced handheld controller in EDX medicine.",
+        subtitle: "The most advanced handheld controller in EDX medicine. Per the official Cadwell manual, the StimTroller Plus features a rotary wheel, a Stim button, a Store button, a Reverse Polarity (+/-) button, and three programmable buttons.",
         buttons: [
             {
-                name: "Intensity / Distance Wheel",
+                name: "Intensity Wheel",
                 color: "0ea5e9",
-                content: "The 'Haptic' dial. **Rotate** to adjust the stimulation current (milliamps). **Click it** to toggle into 'Distance Mode' so you can input your measurements without touching the computer. It provides physical 'clicks' for every 1mA change."
+                content: "The central rotary dial. **Rotate** to adjust stimulation current (milliamps) -- the intensity level is displayed on-screen in the Stimulator Toolbar. The wheel provides tactile feedback for precise adjustments. When a programmable button is set to Distance mode, the wheel switches to adjusting distance in 0.5 cm increments."
             },
             {
-                name: "THE STORE BUTTON (RED)",
-                color: "ef4444",
-                content: "The thumb-triggered red button on the side. This is your 'Commit' button. Pressing this freezes the live waveform and adds it to the report. Senior trick: If the wave is beautiful but the patient moves, hit Store instantly to save your data before it's lost!"
-            },
-            {
-                name: "Single / Seq Stim",
+                name: "Stim Button",
                 color: "10b981",
-                content: "The center top button. **Single Press** for one pulse. **Double Press** or **Long Press** to start repetitive stimulation (useful for myasthenia testing). Having this on the probe means you never have to turn away from the patient."
+                content: "Press to deliver a single electrical stimulus to the patient. In NCS, this is your primary trigger -- press it each time you want to shock the nerve. For Repetitive Nerve Stimulation (RNS), **hold the Stim button for 2 seconds** to initiate a stimulus train. The stimulator light on screen flashes yellow when a stimulus is delivered. You can also deliver single stimuli by pressing Knob #1 (the yellow knob) on the base unit."
+            },
+            {
+                name: "Store Button",
+                color: "ef4444",
+                content: "Your 'Commit' button. Pressing Store freezes the live waveform and saves it to the report. The trace color changes from white to purple when stored, and the next site in the study automatically highlights. You can also store via the Store key on the base unit or by pressing the footswitch pedal."
             },
             {
                 name: "Reverse Polarity (+/-)",
                 color: "f59e0b",
-                content: "Swaps the Cathode and Anode internally. This is a game-changer when testing the Ulnar nerve at the elbow; you can flip the polarity with a click rather than physically flipping the probe in a cramped space."
+                content: "Swaps the Cathode and Anode internally. A **green LED** on the stimulator indicates which probe is currently the Cathode. The default (normal) mode has the right-side probe as Cathode when holding the stimulator with the Stim button facing you and probes pointing up. The on-screen stimulator image and polarity field ('Nml' or 'Rev') also update to reflect the current setting. Essential for ulnar nerve studies at the elbow."
+            },
+            {
+                name: "Programmable Buttons (1, 2, 3)",
+                color: "8b5cf6",
+                content: "Three customizable buttons for workflow shortcuts. **Button #1** is commonly assigned to Distance entry -- press it, turn the wheel to adjust in 0.5 cm increments, then press again to accept. These buttons can also be mapped to functions like Next Site, nerve selection, or trace selection, depending on your lab's preferred configuration."
             }
         ],
-        trap: "Don't start with the dial at 100mA! Always verify your baseline is at **0mA** before placing it on a new patient. Delivering a high-intensity shock unexpectedly is the fastest way to lose a patient's trust. **Pro-tip:** Place the stimulator on the skin first, THEN start cranking the dial up from zero until you see the 'takeoff' of the wave."
+        trap: "Don't start with the dial at 100mA! Always verify your baseline is at **0mA** before placing it on a new patient. Delivering a high-intensity shock unexpectedly is the fastest way to lose a patient's trust. **Pro-tip:** Place the stimulator on the skin first, THEN start cranking the dial up from zero until you see the 'takeoff' of the wave.",
+        baseUnitKnobs: "The Sierra Summit base unit has **3 physical knobs** that mirror key StimTroller functions: **Knob #1 (Yellow)** -- Intensity / Single Stim (turn to adjust current, press to deliver stimulus). **Knob #2** -- Context-dependent (cursor selection in NCS, score table in EMG, threshold in AEP). **Knob #3 (Blue in NCS+)** -- Gain / Sweep Speed (turn to adjust gain, press to toggle to sweep mode, then turn to adjust sweep)."
     },
     amplifier: {
         intro: "Think of the Preamplifier as the 'Electronic Bodyguard.' It takes the tiny biological signals (measured in microvolts) and amplifies them immediately, right at the source, while rejecting any noise from the environment. **The Golden Rule of Noise:** Every inch of lead wire is an antenna for interference. Position the headbox so the wires hang slack and never cross paths with the power cables on the floor.",
@@ -108,14 +114,14 @@ export const EMGMachineData = {
             { color: "ef4444", label: "G2 (Reference): Red Lead", desc: "Place this on an electrically 'inactive' spot, like a tendon or a bone. It acts as the 'Control' group for the comparison." },
             { color: "22c55e", label: "Ground: Green Lead", desc: "Placed *between* the stimulator and the recording leads. It 'bleeds off' the massive stimulus artifact before it touches your sensitive G1/G2 ports." }
         ],
-        zTip: "Before you shock, look at the headbox. Notice the small 'Z' button? Press it! The lights next to your ports will turn **Green (< 5kΩ)** if the connection is high-quality or **Red** if it's poor. **Senior Resident Secret:** If the light is Red, don't just push the sticker harder. Use one more alcohol swap to aggressively scrub the dead skin cells away—high-quality data is worth the extra 5 seconds of prep!"
+        zTip: "Before you shock, check your electrode impedances! Click the **Impedance Icon** in the software Toolbar Controls at the top of the screen. A window displays impedance values for each channel's Active (-) and Reference (+) inputs plus the Ground electrode. Values are color-coded: **Green (< 5k Ohms)** = excellent connection, **Yellow (5.1-20k)** = acceptable but could be better, **Red (> 20k)** = poor connection. **Senior Resident Secret:** If impedance is in the red zone, don't just push the sticker harder. Aggressively scrub the skin with alcohol or abrasive paste to remove dead cells -- high-quality data starts with low impedance. For evoked potential studies, ALL impedances should be below 5k Ohms."
     },
     controls: {
         intro: "You don't just 'set and forget' the machine. For every nerve, you are adjusting the three pillars of signal fidelity: Gain, Sweep, and Filters. Mastering these is what separates a 'technician' from a 'clinician'.",
         pillars: [
             {
                 title: "Gain (Sensitivity)",
-                icon: "📈",
+                icon: "",
                 color: "0ea5e9",
                 desc: "The 'Vertical Zoom.' Adjust this so the wave fills at least 1/3rd of the screen but doesn't 'clip' off the top.",
                 settingsText: "Standard Settings:",
@@ -123,7 +129,7 @@ export const EMGMachineData = {
             },
             {
                 title: "Sweep Speed",
-                icon: "⏱️",
+                icon: "",
                 color: "10b981",
                 desc: "The 'Horizontal Zoom.' This determines how much time (space) you see on the screen at once.",
                 settingsText: "Standard Settings:",
@@ -131,7 +137,7 @@ export const EMGMachineData = {
             },
             {
                 title: "Filter Settings",
-                icon: "🔧",
+                icon: "",
                 color: "8b5cf6",
                 desc: "The 'Electronic Sieve.' It decides which frequencies are allowed on your screen and which are deleted.",
                 settingsText: "NCS Filter:",

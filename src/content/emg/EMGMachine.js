@@ -99,7 +99,7 @@ export const EMGMachine = {
                     </div>
 
                     <div class="resident-tip" style="margin-top: 25px; padding: 25px; background: #fffbeb; border-radius: 12px; border: 1px solid #fde68a;">
-                        <h4 style="margin-bottom: 8px; color: #92400e; display: flex; align-items: center; gap: 10px;">💡 Resident Pro-Tip: Keyboard Shortcuts</h4>
+                        <h4 style="margin-bottom: 8px; color: #92400e; display: flex; align-items: center; gap: 10px;">Resident Pro-Tip: Keyboard Shortcuts</h4>
                         <p style="font-size: 0.9em; margin: 0; color: #78350f; line-height: 1.6;">${this.data.software.proTip}</p>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ export const EMGMachine = {
                     </div>
 
                     <div class="resident-tip" style="margin-top: 25px; padding: 25px; background: #fef2f2; border-radius: 12px; border: 1px solid #fecaca;">
-                        <h4 style="margin-bottom: 8px; color: #991b1b;">⚠️ The "Beginner's Dial" Trap</h4>
+                        <h4 style="margin-bottom: 8px; color: #991b1b;">The "Beginner's Dial" Trap</h4>
                         <p style="font-size: 0.95em; margin: 0; color: #7f1d1d; line-height: 1.6;">${this.data.stimtroller.trap}</p>
                     </div>
                 </div>
@@ -144,7 +144,7 @@ export const EMGMachine = {
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
                         <div>
                             <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 25px;">
-                                <span style="font-size: 2.5em;">🔌</span>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M12 2v6m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 7h14m-14 0a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/></svg>
                                 <div>
                                     <h3 style="margin: 0;">Pre-Amplifier Headbox</h3>
                                     <p style="color: #64748b; font-size: 0.9em; margin-top: 5px;">Double-Shielded High Fidelity Differential Input.</p>
@@ -172,8 +172,7 @@ export const EMGMachine = {
                             </div>
 
                             <div class="alert-box success" style="margin-top: 30px; padding: 25px; background: #ecfdf5; border-radius: 15px; border: 1.5px solid #10b981; position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(16,185,129,0.1);">
-                                <div style="position: absolute; right: -15px; top: -15px; font-size: 5em; opacity: 0.05; transform: rotate(15deg);">💡</div>
-                                <h4 style="margin-bottom: 10px; color: #064e3b; display: flex; align-items: center; gap: 8px; font-weight: 800;">The "Z" (Impedance) Cheat-Code</h4>
+                                <h4 style="margin-bottom: 10px; color: #064e3b; display: flex; align-items: center; gap: 8px; font-weight: 800;">Impedance Check: Your Data Quality Guarantee</h4>
                                 <p style="color: #065f46; margin: 0; font-size: 0.9em; line-height: 1.6;">${this.data.amplifier.zTip}</p>
                             </div>
                         </div>
