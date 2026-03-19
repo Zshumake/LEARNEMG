@@ -34,7 +34,13 @@ export const PathwayData = {
                 { title: "The AIN Branch", desc: "Deep in the forearm, it yields the Anterior Interosseous Nerve (AIN), a pure motor branch that dives to the bone to supply the deep finger and thumb flexors (FDP and FPL).", isInjurySite: false },
                 { title: "The Carpal Tunnel", desc: "The ultimate bottleneck. The nerve, along with 9 thick flexor tendons, must pass under the rigid Transverse Carpal Ligament. Any swelling here crushes the nerve against the ligament, resulting in Carpal Tunnel Syndrome—the most common entrapment globally.", isInjurySite: true },
                 { title: "Hand Terminus", desc: "Emerges from the tunnel to supply the crucial thenar muscles (LOAF: Lumbricals 1 & 2, Opponens pollicis, Abductor pollicis brevis, Flexor pollicis brevis) and sensation to the palmar thumb, index, middle, and half of the ring finger.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "A patient has numbness in the thumb, index, and middle fingers with thenar weakness. What is the most common site of median nerve entrapment?",
+                options: ["Ligament of Struthers", "Pronator teres", "Carpal tunnel", "Axilla"],
+                correct: 2,
+                explanation: "Carpal tunnel syndrome is the most common peripheral nerve entrapment worldwide. The median nerve passes beneath the transverse carpal ligament with the flexor tendons. Thenar weakness (APB) plus sensory loss in the first 3.5 digits is the classic pattern."
+            }
         },
         ulnar: {
             name: "Ulnar Nerve",
@@ -49,7 +55,13 @@ export const PathwayData = {
                 { title: "Guyon's Canal", desc: "At the wrist, it bypasses the carpal tunnel entirely. Instead, it runs through a separate superficial bridge called Guyon's Canal, roofed by the volar carpal ligament. Cyclists holding handlebars often crush the nerve here.", isInjurySite: true },
                 { title: "Intrinsic Motor Division", desc: "In the palm, it splits. The deep motor branch dives beneath the muscles to supply almost all the small, intrinsic muscles of the hand (interossei, hypothenar eminence, adductor pollicis).", isInjurySite: false },
                 { title: "Sensory Division", desc: "The superficial branch provides sensation only to the pinky finger and the medial half of the ring finger.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "A patient has numbness in the small finger and weakness of finger abduction. The dorsal ulnar hand is also numb. Where is the lesion?",
+                options: ["Guyon's canal at the wrist", "Cubital tunnel at the elbow", "Medial cord of brachial plexus", "C8 nerve root"],
+                correct: 1,
+                explanation: "The dorsal ulnar cutaneous nerve branches PROXIMAL to Guyon's canal. If dorsal ulnar hand sensation is abnormal, the lesion must be at or above the elbow (cubital tunnel). Guyon's canal lesions spare dorsal sensation because that branch has already departed."
+            }
         },
         radial: {
             name: "Radial Nerve",
@@ -63,7 +75,13 @@ export const PathwayData = {
                 { title: "The Great Divide", desc: "At the elbow, it splits completely into two distinct paths: the superficial sensory branch and the deep motor branch (the Posterior Interosseous Nerve, or PIN).", isInjurySite: false },
                 { title: "Arcade of Frohse (PIN)", desc: "The heavy motor branch (PIN) must dive through a tough fibrotic arch in the Supinator muscle known as the Arcade of Frohse. Repetitive twisting motions (mechanics using screwdrivers) can trap the nerve here, causing pure weakness without any numbness.", isInjurySite: true },
                 { title: "Dorsal Sensory Path", desc: "The superficial sensory branch continues down the forearm under the brachioradialis to safely supply sensation to the back of the hand.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "A patient wakes up after sleeping with the arm draped over a chair. They have wrist drop but can extend the elbow normally. Where is the radial nerve injured?",
+                options: ["Axilla", "Spiral groove of the humerus", "Posterior interosseous nerve", "Superficial radial nerve"],
+                correct: 1,
+                explanation: "This is classic 'Saturday Night Palsy.' The radial nerve is compressed at the spiral groove. The triceps is spared because its branch exits proximal to the groove. The ECRL may also be partially spared since its branch can arise at or above the groove."
+            }
         },
         musculocutaneous: {
             name: "Musculocutaneous Nerve",
@@ -76,7 +94,13 @@ export const PathwayData = {
                 { title: "Biceps Power", desc: "Travels deep to the biceps brachii, providing massive motor innervation to both the biceps and the brachialis muscle beneath it.", isInjurySite: false },
                 { title: "Sensory Transition", desc: "Having exhausted its motor fibers, it emerges lateral to the biceps tendon at the elbow as a pure sensory nerve.", isInjurySite: false },
                 { title: "Lateral Antebrachial Cutaneous", desc: "It changes its name to the Lateral Antebrachial Cutaneous (LAC) nerve, providing feeling to the skin on the lateral (thumb) side of the forearm.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "The musculocutaneous nerve has a unique anatomical feature. Which muscle does it physically pierce (pass through)?",
+                options: ["Biceps brachii", "Brachialis", "Coracobrachialis", "Deltoid"],
+                correct: 2,
+                explanation: "The musculocutaneous nerve (C5-C7, lateral cord) uniquely pierces through the coracobrachialis muscle before innervating the biceps and brachialis. After these motor branches, it continues as the purely sensory lateral antebrachial cutaneous nerve (LABC), providing sensation to the lateral forearm."
+            }
         },
         axillary: {
             name: "Axillary Nerve",
@@ -89,7 +113,13 @@ export const PathwayData = {
                 { title: "Surgical Neck Vulnerability", desc: "Wraps horizontally around the 'surgical neck' of the upper humerus. If the shoulder pops out of socket (dislocation), the migrating bone stretches and shreds the nerve.", isInjurySite: true },
                 { title: "Deltoid Command", desc: "Provides massive motor innervation to the entire Deltoid muscle, allowing you to lift your arm outward.", isInjurySite: false },
                 { title: "Regimental Badge", desc: "Terminates by providing a small patch of sensation over the lateral shoulder, exactly where a military patch would sit.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "A patient sustains an anterior shoulder dislocation. Which nerve is most at risk, and what is the key sensory area to test?",
+                options: ["Radial nerve -- posterior forearm", "Musculocutaneous nerve -- lateral forearm", "Axillary nerve -- regimental badge area", "Suprascapular nerve -- posterior shoulder"],
+                correct: 2,
+                explanation: "The axillary nerve (C5-C6, posterior cord) wraps around the surgical neck of the humerus through the quadrilateral space. Anterior shoulder dislocations stretch or compress the nerve. Test sensation over the lateral deltoid ('regimental badge' area) and check deltoid strength. The axillary nerve also innervates teres minor."
+            }
         },
 
         // --- LOWER EXTREMITY ---
@@ -104,7 +134,13 @@ export const PathwayData = {
                 { title: "Piriformis Entrapment", desc: "It typically passes just beneath the piriformis muscle deep in the buttocks. In some people, the nerve pierces the muscle. A tight piriformis can fiercely crimp the nerve, causing 'Piriformis Syndrome' (deep buttock pain radiating down the leg).", isInjurySite: true },
                 { title: "Posterior Thigh", desc: "Descends directly down the midline of the posterior thigh, dispatching thick motor branches to power the hamstrings.", isInjurySite: false },
                 { title: "The Great Divide", desc: "Just above the back of the knee (the popliteal fossa), the giant trunk finally unzips into its two terminal components: the Tibial and Common Peroneal nerves.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "The sciatic nerve bifurcates into its two terminal branches at which anatomical landmark?",
+                options: ["Greater sciatic foramen", "Piriformis muscle", "Popliteal fossa", "Fibular head"],
+                correct: 2,
+                explanation: "The sciatic nerve (L4-S3) typically divides into the tibial nerve and common fibular (peroneal) nerve at or just above the popliteal fossa behind the knee. However, in approximately 10-15% of individuals, the division occurs higher, sometimes even within the pelvis."
+            }
         },
         tibial: {
             name: "Tibial Nerve",
@@ -117,7 +153,13 @@ export const PathwayData = {
                 { title: "Deep Calf Muscles", desc: "Dives deep under the massive calf muscles (Gastrocnemius and Soleus), providing the critical motor power for pushing off (plantarflexion).", isInjurySite: false },
                 { title: "The Tarsal Tunnel", desc: "To reach the bottom of the foot, it hooks tightly around the inside ankle bone (medial malleolus) passing under the thick flexor retinaculum. Swelling here causes Tarsal Tunnel Syndrome, leading to burning pain on the sole of the foot.", isInjurySite: true },
                 { title: "Plantar Division", desc: "Successfully through the tunnel, it divides into the Medial and Lateral Plantar nerves, supplying all the intrinsic muscles of the sole and sensory coverage to the bottom of the foot.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "The tibial nerve passes through which structure at the ankle, analogous to the carpal tunnel at the wrist?",
+                options: ["Sinus tarsi", "Tarsal tunnel", "Cuboid tunnel", "Plantar fascia"],
+                correct: 1,
+                explanation: "The tarsal tunnel is formed by the flexor retinaculum behind the medial malleolus. The tibial nerve, along with the posterior tibial artery and flexor tendons, passes through this space. Compression here causes tarsal tunnel syndrome, with burning pain and numbness on the plantar surface of the foot."
+            }
         },
         peroneal: {
             name: "Peroneal (Fibular) Nerve",
@@ -130,7 +172,13 @@ export const PathwayData = {
                 { title: "The Split", desc: "Immediately after surviving the fibular neck, it splits into the Superficial and Deep branches.", isInjurySite: false },
                 { title: "Superficial Branch", desc: "Travels down the outside of the shin, powering the ankle 'eversion' muscles before spraying out to provide sensation over the broad top of the foot.", isInjurySite: false },
                 { title: "Deep Branch (Anterior Tarsal Tunnel)", desc: "Dives deep to power the crucial 'dorsiflexor' muscles that pick the foot up. It eventually surfaces at the front of the ankle, passing under the tight extensor retinaculum. Tight shoelaces or heavy boots can compress it here (Anterior Tarsal Tunnel Syndrome).", isInjurySite: true }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "Why is the common fibular (peroneal) nerve particularly vulnerable to injury at the fibular head?",
+                options: ["It crosses over bone with minimal soft tissue protection", "It passes through a tight muscular tunnel", "It has poor blood supply at this location", "It divides into multiple branches here"],
+                correct: 0,
+                explanation: "The common fibular nerve wraps around the fibular neck just beneath the skin with almost no cushioning from muscle or fat. This makes it the most commonly injured nerve in the lower extremity. Compression from leg crossing, casts, or prolonged bed rest can cause foot drop."
+            }
         },
         femoral: {
             name: "Femoral Nerve",
@@ -143,7 +191,13 @@ export const PathwayData = {
                 { title: "Inguinal Ligament", desc: "Slips under the dense inguinal ligament into the thigh. Childbirth or prolonged lithotomy positions can stretch and damage the nerve here.", isInjurySite: true },
                 { title: "Quadriceps Starburst", desc: "Immediately shatters into numerous deep branches to fire the colossal quadriceps muscles.", isInjurySite: false },
                 { title: "The Saphenous Continuation", desc: "The final, longest sensory-only branch (the Saphenous Nerve) continues down the inside of the thigh and calf, providing sensation all the way to the inner ankle.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "A patient cannot extend the knee and has an absent patellar reflex. Sensation is reduced on the anterior thigh and medial leg. Which nerve is affected?",
+                options: ["Obturator nerve", "Sciatic nerve", "Femoral nerve", "L3 nerve root"],
+                correct: 2,
+                explanation: "The femoral nerve (L2-L4) innervates the quadriceps (knee extension), and its terminal sensory branch (saphenous nerve) supplies the medial leg. The patellar reflex is mediated by the femoral nerve (L3-L4). Common causes of femoral neuropathy include retroperitoneal hematoma, post-surgical injury, and compression during childbirth."
+            }
         },
         obturator: {
             name: "Obturator Nerve",
@@ -156,7 +210,13 @@ export const PathwayData = {
                 { title: "The Obturator Canal", desc: "Must squeeze through a tiny circular window in the pelvis known as the obturator canal to reach the leg. Pelvic fractures or heavy scarring from pelvic surgery can trap the nerve here.", isInjurySite: true },
                 { title: "The Adductor Powerhouse", desc: "Splits into anterior and posterior branches to power the massive adductor longus, brevis, and magnus muscles.", isInjurySite: false },
                 { title: "Sensory Patch", desc: "Provides a small, highly variable patch of sensation to the skin of the inner thigh.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "The obturator nerve exits the pelvis through which anatomical structure?",
+                options: ["Greater sciatic foramen", "Obturator foramen/canal", "Inguinal canal", "Femoral triangle"],
+                correct: 1,
+                explanation: "The obturator nerve (L2-L4) exits through the obturator canal in the pelvis to reach the medial thigh. It innervates the adductor muscles (adductor longus, brevis, magnus partial, gracilis). Obturator neuropathy can occur from pelvic fractures, hip surgery, or obturator hernia."
+            }
         },
         sural: {
             name: "Sural Nerve",
@@ -168,7 +228,13 @@ export const PathwayData = {
                 { title: "Calf Descent", desc: "Runs straight down the midline of the back of the calf, traveling safely alongside the small saphenous vein.", isInjurySite: false },
                 { title: "Lateral Malleolus Landmark", desc: "Swings distinctly behind the lateral malleolus (the outside ankle bone). This predictable bony landmark is why we always use the Sural nerve to test for length-dependent neuropathies.", isInjurySite: false },
                 { title: "Lateral Foot", desc: "Provides absolute sensory coverage to the outer edge of the foot and the pinky toe.", isInjurySite: false }
-            ]
+            ],
+            knowledgeCheck: {
+                question: "The sural nerve is a purely sensory nerve formed by contributions from which two sources?",
+                options: ["Tibial and femoral nerves", "Common fibular and tibial nerves", "Saphenous and tibial nerves", "Superficial and deep fibular nerves"],
+                correct: 1,
+                explanation: "The sural nerve is formed by the medial sural cutaneous nerve (from the tibial nerve) joining the lateral sural cutaneous nerve or sural communicating branch (from the common fibular nerve) in the mid-calf. It provides sensation to the lateral ankle and foot. The sural SNAP is one of the most commonly tested sensory responses in EDX, and is the 'gold standard' reference nerve for diagnosing polyneuropathy."
+            }
         }
     }
 };

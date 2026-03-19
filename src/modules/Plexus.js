@@ -87,6 +87,149 @@ export class Plexus {
                 ],
                 correct: 2,
                 explanation: "Complete L5 root lesion affects tibialis anterior, extensor hallucis longus, extensor digitorum longus, and gluteus medius, causing foot drop and Trendelenburg gait."
+            },
+            // --- PGY2 new questions ---
+            {
+                id: 7,
+                difficulty: 'pgy2',
+                plexus: 'lumbosacral',
+                question: "What nerve root is primarily tested by the H-reflex?",
+                type: 'multiple_choice',
+                options: ["L4", "L5", "S1", "S2"],
+                correct: 2,
+                explanation: "The H-reflex is the electrical equivalent of the ankle jerk. It primarily tests the S1 nerve root via the tibial nerve. An absent or delayed H-reflex is one of the most sensitive early findings in S1 radiculopathy."
+            },
+            {
+                id: 8,
+                difficulty: 'pgy2',
+                plexus: 'lumbosacral',
+                question: "The femoral nerve arises from which nerve roots?",
+                type: 'multiple_choice',
+                options: ["L1-L2", "L2-L4", "L4-L5", "L5-S1"],
+                correct: 1,
+                explanation: "The femoral nerve originates from the lumbar plexus (L2, L3, L4). It innervates the quadriceps (knee extension), iliopsoas (hip flexion), and provides sensation to the anterior thigh and medial leg via the saphenous nerve."
+            },
+            {
+                id: 9,
+                difficulty: 'pgy2',
+                plexus: 'brachial',
+                question: "Which nerve passes through Guyon's canal at the wrist?",
+                type: 'multiple_choice',
+                options: ["Median nerve", "Ulnar nerve", "Radial nerve", "Musculocutaneous nerve"],
+                correct: 1,
+                explanation: "Guyon's canal (ulnar tunnel) at the wrist transmits the ulnar nerve and ulnar artery. Compression here causes ulnar neuropathy at the wrist, which must be differentiated from cubital tunnel syndrome at the elbow."
+            },
+            {
+                id: 10,
+                difficulty: 'pgy2',
+                plexus: 'brachial',
+                question: "Which cord of the brachial plexus gives rise to the axillary nerve?",
+                type: 'multiple_choice',
+                options: ["Lateral cord", "Medial cord", "Posterior cord", "Upper trunk"],
+                correct: 2,
+                explanation: "The posterior cord (C5-T1) gives rise to both the axillary nerve and the radial nerve. The axillary nerve (C5-C6) innervates the deltoid and teres minor muscles."
+            },
+            // --- PGY3 new questions ---
+            {
+                id: 11,
+                difficulty: 'pgy3',
+                plexus: 'lumbosacral',
+                question: "A patient has foot drop. Which muscle, if also weak, would localize the lesion to the L5 root rather than the common fibular nerve?",
+                type: 'multiple_choice',
+                options: ["Tibialis anterior", "Extensor hallucis longus", "Tibialis posterior", "Peroneus longus"],
+                correct: 2,
+                explanation: "Tibialis posterior is innervated by the tibial nerve (not the fibular nerve) at L5. If it is weak along with fibular-innervated muscles, the lesion must be proximal to where the sciatic nerve divides -- pointing to L5 radiculopathy rather than fibular neuropathy."
+            },
+            {
+                id: 12,
+                difficulty: 'pgy3',
+                plexus: 'brachial',
+                question: "The long thoracic nerve innervates which muscle?",
+                type: 'multiple_choice',
+                options: ["Rhomboid major", "Serratus anterior", "Trapezius", "Latissimus dorsi"],
+                correct: 1,
+                explanation: "The long thoracic nerve (C5-C7) innervates the serratus anterior, which holds the scapula against the chest wall. Damage causes medial scapular winging, most commonly from viral neuritis (Parsonage-Turner syndrome) or surgical injury."
+            },
+            {
+                id: 13,
+                difficulty: 'pgy3',
+                plexus: 'brachial',
+                question: "A patient has wrist drop but intact triceps strength. Where is the radial nerve lesion most likely located?",
+                type: 'multiple_choice',
+                options: ["Axilla", "Spiral groove of humerus", "Posterior interosseous nerve at forearm", "Superficial radial nerve at wrist"],
+                correct: 1,
+                explanation: "At the spiral groove, the radial nerve has already given off its branch to the triceps (which exits higher). Therefore, a spiral groove lesion causes wrist and finger drop while sparing the triceps. If the triceps were weak, the lesion would be at the axilla or higher."
+            },
+            {
+                id: 14,
+                difficulty: 'pgy3',
+                plexus: 'lumbosacral',
+                question: "Which structure passes through the greater sciatic foramen below the piriformis muscle?",
+                type: 'multiple_choice',
+                options: ["Femoral nerve", "Obturator nerve", "Sciatic nerve", "Superior gluteal nerve"],
+                correct: 2,
+                explanation: "The sciatic nerve (L4-S3) exits the pelvis through the greater sciatic foramen, passing below (inferior to) the piriformis muscle in most anatomic variants. The superior gluteal nerve exits above the piriformis."
+            },
+            {
+                id: 15,
+                difficulty: 'pgy3',
+                plexus: 'lumbosacral',
+                question: "The obturator nerve primarily innervates which muscle group?",
+                type: 'multiple_choice',
+                options: ["Quadriceps", "Hip adductors", "Hamstrings", "Gluteal muscles"],
+                correct: 1,
+                explanation: "The obturator nerve (L2-L4) innervates the adductor muscles of the thigh (adductor longus, brevis, magnus partial, gracilis). It also provides sensory innervation to the medial thigh."
+            },
+            {
+                id: 16,
+                difficulty: 'pgy3',
+                plexus: 'brachial',
+                question: "A lesion at the posterior cord of the brachial plexus would spare which terminal nerve?",
+                type: 'multiple_choice',
+                options: ["Axillary", "Radial", "Musculocutaneous", "Thoracodorsal"],
+                correct: 2,
+                explanation: "The musculocutaneous nerve arises from the lateral cord, not the posterior cord. A posterior cord lesion affects the axillary, radial, thoracodorsal, and subscapular nerves, while sparing the musculocutaneous (lateral cord) and ulnar/medial pectoral (medial cord)."
+            },
+            // --- PGY4 new questions ---
+            {
+                id: 17,
+                difficulty: 'pgy4',
+                plexus: 'brachial',
+                question: "In true neurogenic thoracic outlet syndrome (nTOS), what is the classic hand finding?",
+                type: 'multiple_choice',
+                options: ["Claw hand deformity", "Ape hand deformity", "Gilliatt-Sumner hand (lateral thenar > hypothenar wasting)", "Wrist drop"],
+                correct: 2,
+                explanation: "True nTOS is extremely rare (<1/million). The Gilliatt-Sumner hand shows preferential thenar (lateral hand) wasting compared to hypothenar muscles, with a characteristic low median CMAP and reduced medial antebrachial cutaneous SNAP. This lower trunk pattern is the hallmark."
+            },
+            {
+                id: 18,
+                difficulty: 'pgy4',
+                plexus: 'brachial',
+                question: "Martin-Gruber anastomosis is a crossover of motor fibers between which two nerves?",
+                type: 'multiple_choice',
+                options: ["Median to radial in the arm", "Ulnar to median in the forearm", "Median to ulnar in the forearm", "Radial to ulnar at the elbow"],
+                correct: 2,
+                explanation: "Martin-Gruber anastomosis (MGA) occurs in 15-30% of the population. Motor fibers leave the median nerve (typically via the AIN branch) in the forearm and join the ulnar nerve, innervating ulnar hand muscles. This can cause confusing NCS findings including apparent conduction block."
+            },
+            {
+                id: 19,
+                difficulty: 'pgy4',
+                plexus: 'brachial',
+                question: "A patient has clear sensory symptoms and EMG shows denervation with fibrillations in paraspinal muscles. All SNAPs are normal. What does this localize to?",
+                type: 'multiple_choice',
+                options: ["Peripheral nerve", "Brachial plexus", "Nerve root (radiculopathy)", "Anterior horn cell"],
+                correct: 2,
+                explanation: "Normal SNAPs with clinical sensory loss = preganglionic lesion (proximal to DRG). Abnormal paraspinals confirm the lesion is at the root level (since paraspinal muscles are innervated by dorsal rami which branch off at the root). A plexus lesion would show abnormal SNAPs; anterior horn cell disease would not affect sensory symptoms."
+            },
+            {
+                id: 20,
+                difficulty: 'pgy4',
+                plexus: 'brachial',
+                question: "To differentiate a lower trunk brachial plexopathy from a medial cord lesion, which muscle is the key differentiator?",
+                type: 'multiple_choice',
+                options: ["First dorsal interosseous (ulnar)", "Abductor pollicis brevis (median)", "Extensor indicis proprius (radial/C8)", "Pronator teres (median/C6-C7)"],
+                correct: 2,
+                explanation: "Both lower trunk and medial cord lesions affect C8-T1 median and ulnar muscles. The key differentiator is the EIP, innervated by the radial nerve (posterior cord) at C8. In a lower trunk lesion, C8 fibers destined for ALL cords are affected, so EIP is weak. In a medial cord lesion, the posterior cord is spared, so EIP is normal."
             }
         ];
 
@@ -100,9 +243,9 @@ export class Plexus {
         const allowedDifficulties = pgyLevels[pgyLevel] || ['pgy2'];
         const filteredQuestions = allQuestions.filter(q => allowedDifficulties.includes(q.difficulty));
 
-        // Shuffle and select 4 questions
+        // Shuffle and select 6 questions
         const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, Math.min(4, shuffled.length));
+        return shuffled.slice(0, Math.min(6, shuffled.length));
     }
 
     showQuizModal(questions, pgyLevel) {

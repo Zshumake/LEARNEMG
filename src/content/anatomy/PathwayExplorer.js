@@ -534,6 +534,35 @@ export const PathwayExplorer = {
         window.showStep = this.showStep.bind(this);
         window.nextStep = this.nextStep.bind(this);
         window.previousStep = this.previousStep.bind(this);
+
+        window._pathwayCheckAnswer = function(btnEl, isCorrect, explanation) {
+            const container = btnEl.closest('.knowledge-check-card');
+            if (!container) return;
+            const allBtns = container.querySelectorAll('.kc-option-btn');
+            allBtns.forEach(b => {
+                b.disabled = true;
+                b.style.cursor = 'default';
+                b.style.opacity = '0.7';
+                if (b.dataset.correct === 'true') {
+                    b.style.background = '#dcfce7';
+                    b.style.borderColor = '#16a34a';
+                    b.style.color = '#15803d';
+                }
+            });
+            if (!isCorrect) {
+                btnEl.style.background = '#fee2e2';
+                btnEl.style.borderColor = '#dc2626';
+                btnEl.style.color = '#b91c1c';
+                btnEl.style.opacity = '1';
+            } else {
+                btnEl.style.opacity = '1';
+            }
+            const explEl = container.querySelector('.kc-explanation');
+            if (explEl) {
+                explEl.style.display = 'block';
+                explEl.innerHTML = (isCorrect ? '<strong style="color:#16a34a;">Correct!</strong> ' : '<strong style="color:#dc2626;">Incorrect.</strong> ') + explanation;
+            }
+        };
     },
 
     selectNerve(nerveName) {
@@ -639,6 +668,25 @@ export const PathwayExplorer = {
                     </div>
                 `;
             }).join('');
+
+            // Append knowledge check card after the last timeline step
+            const kc = explorer.currentNerve.knowledgeCheck;
+            if (kc) {
+                const optionsHtml = kc.options.map((opt, i) => {
+                    const isCorrect = i === kc.correct;
+                    const escapedExplanation = kc.explanation.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                    return `<button class="kc-option-btn" data-correct="${isCorrect}" onclick="_pathwayCheckAnswer(this, ${isCorrect}, '${escapedExplanation}')" style="display:block;width:100%;text-align:left;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;font-size:0.95em;color:#334155;cursor:pointer;font-weight:500;transition:all 0.2s;font-family:inherit;"><strong style="margin-right:8px;color:#64748b;">${String.fromCharCode(65 + i)}.</strong>${opt}</button>`;
+                }).join('');
+
+                stepsContainer.innerHTML += `
+                    <div class="knowledge-check-card" style="margin-top:10px;padding:24px;background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #6366f1;border-radius:0 12px 12px 0;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                        <div style="font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#6366f1;margin-bottom:12px;">Knowledge Check</div>
+                        <div style="font-size:1em;font-weight:600;color:#0f172a;line-height:1.6;margin-bottom:18px;">${kc.question}</div>
+                        <div>${optionsHtml}</div>
+                        <div class="kc-explanation" style="display:none;margin-top:16px;padding:14px 18px;background:#fff;border-radius:8px;border:1px solid #e2e8f0;font-size:0.95em;line-height:1.6;color:#334155;"></div>
+                    </div>
+                `;
+            }
         }
 
         // Handle Zoom Effect for Image (Safe Zoom to prevent cutoff)
