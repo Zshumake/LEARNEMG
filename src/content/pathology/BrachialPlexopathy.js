@@ -20,9 +20,12 @@ export function generatePlexopathyContent() {
 
     const md = (text) => text ? text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>') : '';
 
-    const goldenRule = BrachialPlexopathyData.sections[0];
-    const patterns = BrachialPlexopathyData.sections[1];
-    const burner = BrachialPlexopathyData.sections[2];
+    const anatomyOverview = BrachialPlexopathyData.sections[0];
+    const cordPatterns = BrachialPlexopathyData.sections[1];
+    const lsOverview = BrachialPlexopathyData.sections[2];
+    const goldenRule = BrachialPlexopathyData.sections[3];
+    const patterns = BrachialPlexopathyData.sections[4];
+    const burner = BrachialPlexopathyData.sections[5];
 
     const patternColors = [
         { bg: '#faf5ff', border: '#e9d5ff', accent: '#7c3aed', titleColor: '#6b21a8', btnBg: '#7c3aed' },
@@ -43,6 +46,9 @@ export function generatePlexopathyContent() {
             .bp-section:nth-child(7) { animation-delay: 0.6s; }
             .bp-section:nth-child(8) { animation-delay: 0.7s; }
             .bp-section:nth-child(9) { animation-delay: 0.8s; }
+            .bp-section:nth-child(10) { animation-delay: 0.9s; }
+            .bp-section:nth-child(11) { animation-delay: 1.0s; }
+            .bp-section:nth-child(12) { animation-delay: 1.1s; }
             .bp-edx-reveal { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
             .bp-edx-btn { cursor: pointer; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 0.85em; color: white; letter-spacing: 0.02em; transition: opacity 0.2s; }
             .bp-edx-btn:hover { opacity: 0.85; }
@@ -65,6 +71,89 @@ export function generatePlexopathyContent() {
                         <div style="color: #c4b5fd; font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">Resident Pro-Tip</div>
                         <div style="color: #e2e8f0; font-size: 0.92em; font-style: italic;">${BrachialPlexopathyData.hero.proTip}</div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Anatomy Overview -->
+            <div class="bp-section" style="background: white; border-top: 4px solid #3498db; border-radius: 16px; padding: 40px; margin-bottom: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="color: #0f172a; margin: 0 0 12px; font-size: 1.35em; font-weight: 800;">${anatomyOverview.title}</h3>
+                <p style="margin: 0 0 25px; color: #475569; font-size: 0.98em;">${md(anatomyOverview.description)}</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    ${anatomyOverview.levels.map((level, i) => `
+                    <div style="display: flex; gap: 16px; align-items: flex-start; padding: 18px; background: #f8fafc; border-radius: 12px; border-left: 4px solid ${level.color};">
+                        <div style="background: ${level.color}; color: white; min-width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85em; flex-shrink: 0;">${i + 1}</div>
+                        <div>
+                            <div style="font-weight: 800; color: #0f172a; font-size: 1em; margin-bottom: 4px;">${level.name}</div>
+                            <div style="color: #475569; font-size: 0.9em; line-height: 1.6;">${level.description}</div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Cord Lesion Patterns -->
+            <div class="bp-section" style="background: white; border-top: 4px solid #e74c3c; border-radius: 16px; padding: 40px; margin-bottom: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="color: #0f172a; margin: 0 0 12px; font-size: 1.35em; font-weight: 800;">${cordPatterns.title}</h3>
+                <p style="margin: 0 0 25px; color: #475569; font-size: 0.98em;">${md(cordPatterns.description)}</p>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    ${cordPatterns.cords.map(cord => `
+                    <div style="background: #fafafa; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px;">
+                        <h4 style="color: #1e293b; font-weight: 800; margin: 0 0 14px; font-size: 1.08em;">${cord.name}</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                            <div>
+                                <div style="font-weight: 700; color: #64748b; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Terminal Nerves</div>
+                                <div style="color: #334155; font-size: 0.88em;">${cord.terminal}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #64748b; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Key Muscles</div>
+                                <div style="color: #334155; font-size: 0.88em;">${cord.muscles}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #64748b; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Sensory</div>
+                                <div style="color: #334155; font-size: 0.88em;">${cord.sensory}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #64748b; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Localization Test</div>
+                                <div style="color: #334155; font-size: 0.88em;">${cord.keyTest}</div>
+                            </div>
+                        </div>
+                        <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 12px 16px; border-radius: 10px;">
+                            <div style="font-weight: 700; color: #0369a1; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px;">EDX Pearl</div>
+                            <div style="color: #0c4a6e; font-size: 0.88em;">${cord.edxPearl}</div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Lumbosacral Plexus -->
+            <div class="bp-section" style="background: white; border-top: 4px solid #059669; border-radius: 16px; padding: 40px; margin-bottom: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="color: #0f172a; margin: 0 0 12px; font-size: 1.35em; font-weight: 800;">${lsOverview.title}</h3>
+                <p style="margin: 0 0 25px; color: #475569; font-size: 0.98em;">${md(lsOverview.description)}</p>
+
+                <h4 style="color: #059669; font-size: 1em; font-weight: 800; margin: 0 0 14px;">Lumbar Plexus (T12-L4)</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
+                    ${lsOverview.lumbarNerves.map(n => `
+                    <div style="padding: 14px 18px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px;">
+                        <div style="font-weight: 700; color: #166534; font-size: 0.92em; margin-bottom: 4px;">${n.name}</div>
+                        <div style="color: #334155; font-size: 0.88em;">${n.function}</div>
+                    </div>
+                    `).join('')}
+                </div>
+
+                <h4 style="color: #059669; font-size: 1em; font-weight: 800; margin: 0 0 14px;">Sacral Plexus (L4-S4)</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                    ${lsOverview.sacralNerves.map(n => `
+                    <div style="padding: 14px 18px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px;">
+                        <div style="font-weight: 700; color: #166534; font-size: 0.92em; margin-bottom: 4px;">${n.name}</div>
+                        <div style="color: #334155; font-size: 0.88em;">${n.function}</div>
+                    </div>
+                    `).join('')}
+                </div>
+
+                <div style="border-left: 4px solid #059669; background: #f0fdf4; padding: 16px 20px; border-radius: 0 10px 10px 0;">
+                    <div style="font-weight: 800; color: #166534; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Clinical Pearl</div>
+                    <div style="color: #14532d; font-size: 0.92em;">${lsOverview.lumbosacralPearl}</div>
                 </div>
             </div>
 
