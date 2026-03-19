@@ -19,6 +19,7 @@ export class QuizSystem {
         // Generate HTML for all questions (hidden by default except first)
         const quizHTML = questions.map((q, index) => `
             <div class="quiz-question-card" style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #e5e7eb; display: ${index === 0 ? 'block' : 'none'};" data-question="${index}">
+                ${q.stem ? `<div style="background: #f8fafc; border-left: 4px solid #0d9488; padding: 15px 18px; border-radius: 0 8px 8px 0; margin-bottom: 16px; color: #334155; font-size: 0.97em; line-height: 1.7;">${q.stem}</div>` : ''}
                 <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 20px; color: #1f2937;">
                     <span style="background: #0d9488; color: white; padding: 4px 10px; border-radius: 6px; margin-right: 10px; font-size: 0.9em;">Question ${index + 1} of ${questions.length}</span>
                     ${q.question}
