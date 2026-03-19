@@ -30,6 +30,20 @@ class IntroductionModule extends BaseContent {
 
         // Inject search logic globally for the terminology tab
         window.filterGlossary = this.handleGlossarySearch.bind(this);
+
+        window._introToggleRule = function(id) {
+            const detail = document.getElementById('rule-detail-' + id);
+            const chevron = document.getElementById('rule-chevron-' + id);
+            if (detail) {
+                if (detail.style.maxHeight === '0px' || !detail.style.maxHeight) {
+                    detail.style.maxHeight = '500px';
+                    if (chevron) chevron.textContent = '\u2212';
+                } else {
+                    detail.style.maxHeight = '0px';
+                    if (chevron) chevron.textContent = '+';
+                }
+            }
+        };
     }
 
     handleGlossarySearch() {
@@ -95,13 +109,28 @@ class IntroductionModule extends BaseContent {
 
                     <h4 style="color: #334155; margin-bottom: 20px;">The 6 Cardinal Rules</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                        ${this.data.philosophy.cardinalRules.map(rule => `
-                            <div class="emg-card" style="border-top: 4px solid ${rule.color};">
-                                <div style="background: ${rule.color}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 800; margin-bottom: 10px;">${rule.id}</div>
-                                <h5 style="color: ${rule.color};">${rule.title}</h5>
-                                <p style="font-size: 0.9em; color: #475569;">${rule.text}</p>
+                        ${this.data.philosophy.cardinalRules.map(rule => {
+                            const firstSentence = rule.text.split('. ')[0] + '.';
+                            const restOfText = rule.text.substring(firstSentence.length).trim();
+                            return `
+                            <div class="emg-card" style="border-top: 4px solid ${rule.color}; cursor: pointer;" onclick="window._introToggleRule && window._introToggleRule(${rule.id})">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="background: ${rule.color}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 800;">${rule.id}</div>
+                                        <h5 style="color: ${rule.color}; margin: 0;">${rule.title}</h5>
+                                    </div>
+                                    <span id="rule-chevron-${rule.id}" style="color: ${rule.color}; font-size: 1.2em; transition: transform 0.3s;">+</span>
+                                </div>
+                                <p style="font-size: 0.9em; color: #475569; margin-top: 10px;">${firstSentence}</p>
+                                <div id="rule-detail-${rule.id}" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease;">
+                                    <p style="font-size: 0.9em; color: #475569; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e2e8f0;">${restOfText}</p>
+                                </div>
                             </div>
-                        `).join('')}
+                        `;}).join('')}
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizPhilosophy) : ''}
                     </div>
                 </div>
 
@@ -124,6 +153,49 @@ class IntroductionModule extends BaseContent {
                         `).join('')}
                     </div>
                     
+                    <div class="emg-card" style="border-top: 5px solid #0ea5e9; margin-bottom: 25px;">
+                        <h5 style="color: #0c4a6e; margin-bottom: 15px;">Sunderland Classification of Nerve Injury</h5>
+                        <p style="font-size: 0.9em; color: #475569; margin-bottom: 15px;">Understanding injury severity determines prognosis and treatment approach. Source: Sunderland 1951, Braddom's PM&R.</p>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+                                <thead style="background: #f0f9ff;">
+                                    <tr>
+                                        <th style="padding: 10px; border-bottom: 2px solid #0ea5e9; text-align: left;">Grade</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #0ea5e9; text-align: left;">Injury</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #0ea5e9; text-align: left;">Recovery</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #0ea5e9; text-align: left;">EDX Findings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${this.data.sunderlandClassification.map(s => `
+                                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                                            <td style="padding: 10px; font-weight: 700; color: #0c4a6e;">${s.grade}</td>
+                                            <td style="padding: 10px;">${s.injury}</td>
+                                            <td style="padding: 10px;">${s.recovery}</td>
+                                            <td style="padding: 10px;">${s.edxFindings}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="emg-card" style="border-top: 5px solid #f59e0b; margin-bottom: 25px;">
+                        <h5 style="color: #92400e; margin-bottom: 15px;">When to Order the EMG: Temporal Evolution of EDX Findings After Nerve Injury</h5>
+                        <p style="font-size: 0.9em; color: #475569; margin-bottom: 15px;">Timing matters. Ordering an EMG too early or too late can lead to missed or misinterpreted findings. Source: Preston & Shapiro, Dumitru.</p>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            ${this.data.temporalEvolution.map((t, i) => `
+                                <div style="display: flex; gap: 15px; align-items: flex-start; padding: 10px; background: ${i % 2 === 0 ? '#fffbeb' : '#fff'}; border-radius: 8px;">
+                                    <div style="min-width: 90px; font-weight: 800; color: #d97706; font-size: 0.85em;">${t.timepoint}</div>
+                                    <div>
+                                        <div style="font-weight: 700; color: #1e293b; font-size: 0.9em; margin-bottom: 2px;">${t.finding}</div>
+                                        <div style="font-size: 0.85em; color: #64748b;">${t.explanation}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
                     ${UIComponents.renderCard(`
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
@@ -136,6 +208,10 @@ class IntroductionModule extends BaseContent {
                             </div>
                         </div>
                     `, { title: "EDX Machine Fundamentals", borderLeftColor: '#6366f1' })}
+
+                    <div style="margin-top: 40px;">
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizBasics) : ''}
+                    </div>
                 </div>
 
                 <!-- 2b. Cadwell Instrumentation (Detailed) -->
@@ -164,6 +240,17 @@ class IntroductionModule extends BaseContent {
                         `).join('')}
                     </div>
 
+                    <div class="emg-card" style="border-left: 5px solid #7c3aed; margin-bottom: 25px;">
+                        <h5 style="color: #5b21b6;">${this.data.martinGruber.title}</h5>
+                        <p style="font-size: 0.85em; color: #64748b; margin-bottom: 8px;"><strong>Prevalence:</strong> ${this.data.martinGruber.prevalence}</p>
+                        <p style="font-size: 0.9em; color: #475569; margin-bottom: 12px;">${this.data.martinGruber.description}</p>
+                        <h6 style="color: #5b21b6; margin-bottom: 8px;">Clinical Impact on NCS Interpretation:</h6>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            ${this.data.martinGruber.clinicalImpact.map(c => `<li style="font-size: 0.85em; color: #475569; margin-bottom: 6px;">${c}</li>`).join('')}
+                        </ul>
+                        <p style="font-size: 0.75em; color: #94a3b8; margin-top: 10px; font-style: italic;">Source: ${this.data.martinGruber.source}</p>
+                    </div>
+
                     <div class="emg-card" style="border-top: 5px solid #ef4444; background: #fef2f2;">
                         <h5 style="color: #b91c1c; margin-bottom: 15px;">Medical Safety & Precautions</h5>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
@@ -180,6 +267,10 @@ class IntroductionModule extends BaseContent {
                                 <p style="font-size: 0.85em;">${this.data.technical.safety.infection}</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizTechnical) : ''}
                     </div>
                 </div>
 
@@ -219,6 +310,43 @@ class IntroductionModule extends BaseContent {
                             </table>
                         </div>
                     `, { title: "Anatomic Pattern Recognition", borderLeftColor: '#10b981' })}
+
+                    ${UIComponents.renderCard(`
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85em;">
+                                <thead style="background: #f0fdf4;">
+                                    <tr>
+                                        <th style="padding: 10px; border-bottom: 2px solid #10b981;">Pattern</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #10b981;">SNAP</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #10b981;">CMAP / NCS</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #10b981;">EMG</th>
+                                        <th style="padding: 10px; border-bottom: 2px solid #10b981;">Key Feature</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${this.data.expandedPatterns.map(p => `
+                                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                                            <td style="padding: 10px; font-weight: 700;">${p.site}</td>
+                                            <td style="padding: 10px;">${p.snap}</td>
+                                            <td style="padding: 10px;">${p.cmap}</td>
+                                            <td style="padding: 10px;">${p.emg}</td>
+                                            <td style="padding: 10px; font-weight: 600; color: #059669;">${p.keyFeature}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `, { title: "Additional Pattern Recognition", borderLeftColor: '#059669', style: 'margin-top: 25px;' })}
+
+                    <div style="margin-top: 30px;">
+                        <h4 style="color: #1e293b; margin-bottom: 15px;">Clinical Localization Challenge</h4>
+                        <p style="color: #64748b; font-size: 0.9em; margin-bottom: 20px;">Test your understanding of electrodiagnostic localization with these clinical scenarios.</p>
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.localizationScenarios) : ''}
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizLocalization) : ''}
+                    </div>
                 </div>
 
                 <!-- 5. Terminology -->
@@ -286,6 +414,10 @@ class IntroductionModule extends BaseContent {
                                 </div>
                             `).join('')}
                         </div>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizGlossary) : ''}
                     </div>
                 </div>
 

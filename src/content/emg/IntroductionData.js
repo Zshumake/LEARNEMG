@@ -52,7 +52,7 @@ export const IntroductionData = {
         physiology: [
             {
                 title: "Saltatory Conduction: The 'Leap-Frog' Miracle",
-                detail: "Our nerves don't just 'flow' electricity like a slow stream of water through a pipe. They use a brilliant evolutionary trick to save energy and dramatically increase speed: the electrical signal 'jumps' between small gaps in the insulation called Nodes of Ranvier. This leap-frogging process (Saltatory Conduction) allows signals to travel at incredible speeds—up to 150 miles per hour! If the 'insulation' (Myelin) is damaged or peeled away, the signal can no longer jump. It either has to crawl slowly along the bare wire or it simply gets stuck and fails to arrive at all. This is why patients with demyelinating diseases feel sudden weakness or 'heavy' limbs.",
+                detail: "Our nerves don't just 'flow' electricity like a slow stream of water through a pipe. They use a brilliant evolutionary trick to save energy and dramatically increase speed: the electrical signal 'jumps' between small gaps in the insulation called Nodes of Ranvier. This leap-frogging process (Saltatory Conduction) allows signals to travel at incredible speeds—up to 120 meters per second (nearly 270 miles per hour in the fastest fibers)! If the 'insulation' (Myelin) is damaged or peeled away, the signal can no longer jump. It either has to crawl slowly along the bare wire or it simply gets stuck and fails to arrive at all. This is why patients with demyelinating diseases feel sudden weakness or 'heavy' limbs.",
                 image: "images/anatomy/saltatory_conduction.png"
             },
             {
@@ -78,7 +78,7 @@ export const IntroductionData = {
             { factor: "Stimulus Artifact: The 'Power Surge'", cause: "This occurs when the massive burst of electricity from the stimulator 'jumps' over the skin surface directly to your recording stickers, creating a huge, jagged spike that 'swallows' the start of your nerve wave.", mitigation: "To fix this, make sure the patient's skin is bone-dry between the stimulator and the stickers. If the skin is sweaty or oily, it acts like a bridge for the electricity, causing a short-circuit 'flash' that masks the data you're trying to see." }
         ],
         safety: {
-            pacemakers: "Don't be intimidated! Nerve conduction studies are exceptionally safe for patients with pacemakers. The current only travels an inch or two into the skin and doesn't reach the heart. The logic is simple: avoid 'crossing the heart line' (don't stimulate both arms simultaneously) and never place the stimulator directly on top of the pacemaker box itself. For patients with ICDs, we simply ask them to inform us if they feel a 'jolt' while we're shocking (which is rare).",
+            pacemakers: "Don't be intimidated! Nerve conduction studies are exceptionally safe for patients with pacemakers. The current only travels an inch or two into the skin and doesn't reach the heart. The logic is simple: avoid 'crossing the heart line' (don't stimulate both arms simultaneously) and never place the stimulator directly on top of the pacemaker box itself. For patients with ICDs, we simply ask them to inform us if they feel a 'jolt' while we're shocking (which is rare). For patients with ICDs specifically, needle EMG near the pulse generator may be sensed as cardiac activity -- consider consulting cardiology for device interrogation before performing needle EMG in the chest or shoulder region.",
             anticoagulation: "If a patient is on strong anticoagulants (like Eliquis, Xarelto, or Warfarin), their muscle tissue can bleed and form hematomas much more easily when we use the needle. We must be extra gentle, use the thinnest needles possible, and avoid deep, non-compressible muscles (like the Iliopsoas or deep paraspinals in the hip/back) where we can't apply direct pressure if a bleed starts.",
             infection: "This is our zero-tolerance rule: Every needle is a high-cost, single-use, pre-sterilized medical tool. We throw them into the biohazard sharps container immediately after the study. We use surgical-grade gloves and prep the skin thoroughly with alcohol, ensuring your procedure is the cleanest and safest part of the patient's entire hospital visit."
         }
@@ -328,5 +328,183 @@ export const IntroductionData = {
         { term: "Near-field Potential", definition: "Recording 'Front Row.' This is a signal recorded directly underneath your electrode (like a standard CMAP or SNAP). Because the source is right there, the signal is sharp and clear, and we can pinpoint its origin with high accuracy." },
         { term: "Far-field Potential", definition: "The 'Thunder Peal.' This is a signal that originated very far away but is so powerful it can be heard instantly everywhere (like the 'flash' of a camera). Stimulus Artifact is the perfect example—it shows up the exact microsecond you shock the patient, regardless of where your stickers are." },
         { term: "Supramaximal Stimulation", definition: "The 'True Test.' Nerves have thousands of fibers with different thresholds. To get a valid test, you must shock hard enough to wake up the most stubborn fibers. We keep turning up the dial until the wave stops getting bigger—then we add another 20%. If you aren't supramaximal, your entire interpretation of 'nerve health' is invalid." }
+    ],
+
+    quizPhilosophy: [
+        {
+            question: "A resident begins an EDX study by following a pre-set template without examining the patient first. What is the primary risk?",
+            options: ["The study will take too long", "Missing the actual pathology by testing irrelevant nerves", "The patient will be in more pain", "The insurance will not cover the study"],
+            correct: 1,
+            explanation: "The Golden Rule of EDX is to LOCALIZE. Without a focused clinical question from the history and exam, you may test nerves that have nothing to do with the patient's problem, missing the real diagnosis entirely. Every study must be tailored to the individual patient's presentation."
+        },
+        {
+            question: "A patient's median motor distal latency is 4.3 ms (upper limit of normal: 4.2 ms) but they have zero hand symptoms. What is the most appropriate interpretation?",
+            options: ["Diagnose mild carpal tunnel syndrome", "Recommend surgery based on the numbers", "Consider this a normal variant and do NOT diagnose CTS", "Repeat the study in 6 months"],
+            correct: 2,
+            explanation: "Specificity is King (Cardinal Rule 6). A borderline finding that does not correlate with the patient's symptoms is most likely a normal variant. Labeling a healthy, asymptomatic person with carpal tunnel syndrome based on a 0.1 ms difference could lead to unnecessary surgery and permanent anxiety."
+        },
+        {
+            question: "Before turning on the EMG machine, what three steps should the physician always complete?",
+            options: ["Calibrate the machine, test the stimulator, check the filters", "Review the MRI, order labs, consult neurology", "Take a clinical history, perform a physical exam, formulate a differential diagnosis", "Warm the limb, check impedance, set the gain"],
+            correct: 2,
+            explanation: "The Patient Encounter workflow is: (1) Clinical History as your roadmap, (2) Physical Exam as your anchor, and (3) Differential Diagnosis for hypothesis testing. The machine comes AFTER you know what questions to ask the nervous system."
+        }
+    ],
+
+    quizBasics: [
+        {
+            question: "A patient has a confirmed C7 radiculopathy on MRI. The median SNAP recorded from the index finger is completely normal. Why?",
+            options: ["The MRI is wrong", "The SNAP test was performed incorrectly", "The dorsal root ganglion (DRG) is proximal to the lesion, so peripheral sensory axons survive", "Sensory nerves are not affected by radiculopathy"],
+            correct: 2,
+            explanation: "The DRG sits outside the spinal canal. In radiculopathy, the compression is proximal (behind) the DRG. Since the sensory cell body in the DRG is still connected to its peripheral axon, the SNAP remains normal even though the patient is clinically numb. This is the single most important localizing principle in electrodiagnostics."
+        },
+        {
+            question: "In Amyotrophic Lateral Sclerosis (ALS), which component of the motor unit is primarily affected?",
+            options: ["The myelin sheath (insulation)", "The neuromuscular junction (handshake)", "The anterior horn cell (motor neuron cell body)", "The muscle fiber itself"],
+            correct: 2,
+            explanation: "ALS is a motor neuron disease -- it destroys the cell body (the 'Coach') in the anterior horn of the spinal cord. This leads to widespread denervation of muscle fibers across multiple myotomes, producing fasciculations and fibrillations on EMG with normal sensory studies."
+        },
+        {
+            question: "A nerve injury causes the myelin to be stripped but the axon remains intact. What is the expected recovery timeline?",
+            options: ["No recovery is possible", "Weeks (remyelination)", "6-12 months (axon regrowth)", "Years (surgical repair required)"],
+            correct: 1,
+            explanation: "Demyelination (insulation damage) recovers in weeks because the body can re-wrap myelin relatively quickly. The axon itself is intact, so no regrowth is needed. This is fundamentally different from axonal loss, where the nerve must physically regrow at approximately 1 mm/day from the injury site."
+        }
+    ],
+
+    quizTechnical: [
+        {
+            question: "You record a median motor distal latency of 5.2 ms. The patient's hand skin temperature is 28 degrees C. What should you do before interpreting this result?",
+            options: ["Report the finding as carpal tunnel syndrome", "Add a correction factor of 0.2 ms per degree", "Warm the hand to at least 32 degrees C and repeat the study", "The temperature does not affect distal latency"],
+            correct: 2,
+            explanation: "Cold temperature slows sodium channel kinetics, artificially prolonging latencies and slowing conduction velocities. Per AANEM guidelines, the hand must be warmed to at least 32 degrees C (upper extremity) or 30 degrees C (lower extremity) before results can be trusted. A 'cold hand' can make a perfectly healthy nerve look diseased."
+        },
+        {
+            question: "You see a thick, rhythmic 'fuzzy' baseline obscuring all your nerve conduction waveforms. What is the most likely cause?",
+            options: ["The nerve is severely damaged", "60 Hz electrical interference from building wiring", "The stimulator is malfunctioning", "The patient is moving too much"],
+            correct: 1,
+            explanation: "60 Hz interference (the 'Wall Hum') is the most common artifact in the EMG lab. It comes from the building's electrical wiring coupling into your recording leads. Fix it by: (1) scrubbing the skin to reduce impedance, (2) ensuring good ground electrode contact between the stimulator and recording electrodes, and (3) checking that all electrode leads are properly connected."
+        },
+        {
+            question: "A patient with an implanted cardiac defibrillator (ICD) needs an EMG study. What is the primary safety concern?",
+            options: ["Nerve conduction shocks will trigger the ICD", "The EMG machine will interfere with the pacemaker function", "Needle EMG electrical activity near the device may be sensed as a cardiac arrhythmia by the ICD", "EMG is absolutely contraindicated in all patients with cardiac devices"],
+            correct: 2,
+            explanation: "The primary concern with ICDs is that the electrical activity from needle EMG near the generator may be misinterpreted by the device as ventricular fibrillation, potentially triggering an inappropriate shock. NCS is generally safe as the current is superficial. For ICD patients, consider having the device interrogated or temporarily reprogrammed by cardiology before performing needle EMG near the chest."
+        }
+    ],
+
+    quizLocalization: [
+        {
+            question: "A patient presents with hand weakness and numbness. The ulnar SNAP is absent. Where can the lesion NOT be located?",
+            options: ["Ulnar nerve at the elbow (cubital tunnel)", "Lower trunk of the brachial plexus", "C8 nerve root (radiculopathy)", "Guyon's canal at the wrist"],
+            correct: 2,
+            explanation: "In radiculopathy, the lesion is proximal to the DRG (preganglionic). The sensory cell bodies in the DRG remain connected to their peripheral axons, so the SNAP is PRESERVED even if the patient is clinically numb. An absent SNAP means the lesion is postganglionic -- at the plexus, peripheral nerve, or distal to the DRG."
+        },
+        {
+            question: "On repetitive nerve stimulation at 3 Hz, the CMAP amplitude drops by 20% by the 4th stimulus. What disorder does this pattern suggest?",
+            options: ["Carpal tunnel syndrome", "ALS (motor neuron disease)", "Neuromuscular junction disorder (e.g., myasthenia gravis)", "Demyelinating polyneuropathy"],
+            correct: 2,
+            explanation: "A decremental response (>10% amplitude drop) on low-frequency (2-3 Hz) repetitive nerve stimulation is the hallmark of a postsynaptic neuromuscular junction disorder such as myasthenia gravis. The safety factor at the NMJ is reduced, so with repeated stimulation, progressively fewer muscle fibers reach threshold."
+        },
+        {
+            question: "A 65-year-old presents with progressive weakness. EMG shows widespread fibrillations and fasciculations across 3 body regions. All SNAPs are normal. What is the most likely diagnostic category?",
+            options: ["Inflammatory myopathy", "Sensorimotor polyneuropathy", "Motor neuron disease (e.g., ALS)", "Chronic inflammatory demyelinating polyneuropathy"],
+            correct: 2,
+            explanation: "Widespread denervation (fibrillations) across multiple body regions with completely normal sensory studies and fasciculations is the classic electrodiagnostic pattern for motor neuron disease. Normal SNAPs exclude polyneuropathy. The widespread distribution across multiple myotomes and peripheral nerve territories excludes a single radiculopathy or mononeuropathy."
+        }
+    ],
+
+    quizGlossary: [
+        {
+            question: "What does a 'positive sharp wave' (PSW) on needle EMG indicate?",
+            options: ["Normal muscle activity during contraction", "A healthy motor unit firing voluntarily", "Active denervation -- a muscle fiber spontaneously firing after losing its nerve supply", "An artifact from the needle touching bone"],
+            correct: 2,
+            explanation: "Positive sharp waves (and fibrillations) are the electrical signatures of denervation. When a muscle fiber loses its nerve connection, it becomes electrically unstable and fires spontaneously. These potentials appear 2-3 weeks after acute nerve injury and indicate active, ongoing denervation of muscle fibers."
+        },
+        {
+            question: "Why is supramaximal stimulation necessary for valid nerve conduction studies?",
+            options: ["It makes the study faster", "It ensures ALL nerve fibers are activated, giving a true measurement of the nerve's health", "It reduces artifact", "It is only needed for sensory studies"],
+            correct: 1,
+            explanation: "A peripheral nerve contains thousands of fibers with different activation thresholds. If you stimulate submaximally, you only activate a portion of the fibers, making the CMAP amplitude artificially low. This could lead to a false diagnosis of axonal loss. Supramaximal stimulation (20% above maximal) ensures every fiber contributes to the response."
+        },
+        {
+            question: "A motor unit potential has 6 phases and increased duration compared to normal. What process does this most likely represent?",
+            options: ["Acute denervation (the nerve just died)", "Myopathic changes (muscle disease)", "Chronic reinnervation via collateral sprouting", "Normal variation in young adults"],
+            correct: 2,
+            explanation: "Polyphasic, long-duration, high-amplitude MUAPs are the hallmark of chronic neurogenic reinnervation. When a motor neuron dies, surviving neighboring neurons send out collateral sprouts to 'adopt' the orphaned muscle fibers. These newly reinnervated fibers fire slightly out of sync, creating the polyphasic morphology."
+        }
+    ],
+
+    sunderlandClassification: [
+        { grade: "I (Neurapraxia)", injury: "Myelin damage only", pathology: "Focal demyelination at the injury site. Axon is intact.", recovery: "Complete recovery in days to 12 weeks. No Wallerian degeneration occurs.", edxFindings: "Conduction block at the lesion site. Normal distal responses. No fibrillations on EMG." },
+        { grade: "II (Axonotmesis)", injury: "Axon severed, endoneurium intact", pathology: "Wallerian degeneration occurs distal to the injury. The endoneurial tube remains intact as a guide for regrowth.", recovery: "Good prognosis. Axon regrows at ~1 mm/day along the intact tube. Full recovery expected.", edxFindings: "Reduced CMAP/SNAP amplitudes distally (after Wallerian degeneration). Fibrillations appear at 2-5 weeks." },
+        { grade: "III-V (Neurotmesis)", injury: "Progressive connective tissue disruption", pathology: "Grade III: endoneurium disrupted. Grade IV: perineurium disrupted. Grade V: complete nerve transection (epineurium disrupted).", recovery: "Poor without surgical intervention. Misdirected regrowth leads to incomplete recovery. Surgery may be needed for Grades IV-V.", edxFindings: "Absent distal responses. Dense fibrillations. No voluntary MUAPs in affected muscles. No improvement over months without surgery." }
+    ],
+
+    temporalEvolution: [
+        { timepoint: "Day 0-2", finding: "NCS may appear NORMAL", explanation: "Wallerian degeneration has not yet occurred. The distal nerve segment is still alive and conducting normally, even though it has been severed from its cell body." },
+        { timepoint: "Day 3-5", finding: "Motor amplitudes begin to drop", explanation: "The distal motor axons begin to degenerate. CMAP amplitudes recorded distal to the injury site progressively decrease. This is the earliest NCS change." },
+        { timepoint: "Day 6-10", finding: "Sensory amplitudes drop", explanation: "Sensory axons undergo Wallerian degeneration slightly later than motor axons. SNAP amplitudes decrease. By day 10-11, the process is largely complete." },
+        { timepoint: "Week 2-3", finding: "Fibrillations appear PROXIMALLY", explanation: "Denervated muscle fibers closest to the injury site develop membrane instability first. Fibrillations and positive sharp waves appear on needle EMG in proximal muscles." },
+        { timepoint: "Week 3-5", finding: "Fibrillations appear DISTALLY", explanation: "More distal muscles develop fibrillations later because the degenerating axon terminals persist longer in more distal locations. This is why timing matters for EDX." },
+        { timepoint: "Months", finding: "Reinnervation potentials appear", explanation: "If recovery is occurring, nascent (small, polyphasic) MUAPs appear first, gradually increasing in size as collateral sprouts mature. Large, polyphasic 'giant' MUAPs indicate established chronic reinnervation." }
+    ],
+
+    martinGruber: {
+        title: "Martin-Gruber Anastomosis (MGA)",
+        prevalence: "Present in 15-30% of the population (often bilateral)",
+        description: "A crossover of motor nerve fibers from the median nerve to the ulnar nerve in the forearm. Fibers leave the median nerve (typically from the AIN branch) and join the ulnar nerve, innervating ulnar hand muscles via the median nerve trunk.",
+        clinicalImpact: [
+            "The ulnar CMAP amplitude may appear LARGER when stimulating at the elbow vs. the wrist (because the crossover fibers join the ulnar nerve in the forearm)",
+            "The median CMAP at the elbow may show an initial positive deflection (volume-conducted from ulnar-innervated muscles)",
+            "Can cause a false appearance of conduction block in the ulnar nerve across the elbow segment",
+            "May mask true ulnar neuropathy by maintaining amplitude via the crossover fibers"
+        ],
+        source: "Kimura, Electrodiagnosis in Diseases of Nerve and Muscle; prevalence data from Amoiridis & Vlachonikolis, 1992"
+    },
+
+    expandedPatterns: [
+        { site: "Mononeuropathy (Focal Entrapment)", snap: "May be ABSENT or REDUCED if the sensory fibers of that specific nerve are affected (e.g., absent median SNAP in CTS). Other nerves are normal.", cmap: "Prolonged DISTAL LATENCY at the entrapment site with normal proximal segments. Conduction block or focal slowing may be present across the compression point.", emg: "Denervation limited to muscles innervated by the affected nerve, distal to the lesion.", keyFeature: "Focal abnormality confined to ONE nerve territory" },
+        { site: "Polyneuropathy (Length-Dependent)", snap: "ABSENT distally (sural, superficial peroneal affected first), gradually worsening proximal. Follows a length-dependent gradient.", cmap: "REDUCED amplitudes distally (fibular, tibial affected more than median, ulnar). Velocities mildly slow in axonal; markedly slow in demyelinating.", emg: "Denervation most prominent distally (intrinsic foot muscles > legs > hands). Chronic neurogenic changes in a stocking-glove distribution.", keyFeature: "Symmetric, distal-to-proximal gradient affecting MULTIPLE nerves" },
+        { site: "Motor Neuron Disease (e.g., ALS)", snap: "NORMAL -- sensory nerves are completely spared because the disease affects motor neurons only.", cmap: "May be REDUCED from motor neuron loss, but sensory amplitudes are preserved. The dissociation between reduced CMAPs and normal SNAPs is characteristic.", emg: "Widespread fibrillations and fasciculations across 3+ body regions (bulbar, cervical, thoracic, lumbosacral). Large, polyphasic MUAPs with reduced recruitment.", keyFeature: "Widespread motor denervation with NORMAL sensory studies" },
+        { site: "Myopathy", snap: "NORMAL -- peripheral nerves are not affected in primary muscle disease.", cmap: "Usually NORMAL (the nerve is fine; the muscle is sick). May be mildly reduced in severe cases.", emg: "Short-duration, low-amplitude, polyphasic MUAPs with EARLY recruitment. Fibrillations may be present in inflammatory myopathies (irritable myopathy). NO fasciculations.", keyFeature: "Small, short MUAPs with early/full recruitment pattern" }
+    ],
+
+    localizationScenarios: [
+        {
+            stem: "A 52-year-old presents with right hand weakness and numbness in the ring and small fingers. The ulnar SNAP is absent. The ulnar CMAP amplitude is reduced.",
+            question: "Based on the absent ulnar SNAP, which localization can be definitively EXCLUDED?",
+            options: ["Ulnar neuropathy at the elbow", "Lower trunk brachial plexopathy", "C8 radiculopathy", "Ulnar neuropathy at the wrist"],
+            correct: 2,
+            explanation: "An absent SNAP definitively excludes radiculopathy. In radiculopathy, the lesion is proximal to the DRG (preganglionic), so sensory axons in the periphery survive and the SNAP remains NORMAL. An absent SNAP means the lesion is postganglionic -- the problem is in the plexus, nerve trunk, or distally."
+        },
+        {
+            stem: "A 68-year-old diabetic presents with right foot drop. NCS shows: absent fibular CMAP, normal sural SNAP, normal tibial motor study.",
+            question: "What is the most likely localization?",
+            options: ["S1 radiculopathy", "Common fibular neuropathy at the fibular head", "L5 radiculopathy or fibular neuropathy (cannot distinguish with this data alone)", "Diabetic polyneuropathy"],
+            correct: 2,
+            explanation: "This is a critical teaching point: the sural SNAP (which is a tibial/S1 territory nerve) is NORMAL in BOTH L5 radiculopathy and fibular neuropathy. To distinguish them, you need needle EMG of non-fibular L5 muscles (tibialis posterior, gluteus medius). If those are abnormal, it is radiculopathy. If only fibular-innervated muscles are affected, it is a fibular neuropathy."
+        },
+        {
+            stem: "A 34-year-old motorcyclist after a high-speed crash has a flail right arm. NCS shows: absent median, ulnar, and radial SNAPs. All CMAPs are absent.",
+            question: "What is the localization?",
+            options: ["Cervical spinal cord injury", "Pan-brachial plexopathy", "Multiple cervical radiculopathies (C5-T1)", "Peripheral polyneuropathy"],
+            correct: 1,
+            explanation: "The ABSENT SNAPs are the key finding. In spinal cord injury or radiculopathy, SNAPs would be PRESERVED (preganglionic lesion). Absent SNAPs across all three major nerve territories prove the lesion is postganglionic -- at the brachial plexus level. This is pan-brachial plexopathy, a devastating injury requiring urgent surgical evaluation."
+        },
+        {
+            stem: "A 45-year-old woman presents with fluctuating bilateral ptosis and difficulty swallowing that worsens throughout the day. Routine NCS (sensory and motor) is completely normal.",
+            question: "What additional electrodiagnostic test should be performed?",
+            options: ["Needle EMG of all four extremities", "Repetitive nerve stimulation (RNS) at 3 Hz", "F-wave studies of all nerves", "Somatosensory evoked potentials"],
+            correct: 1,
+            explanation: "The clinical presentation (fluctuating weakness, ptosis, bulbar symptoms, diurnal variation) is classic for myasthenia gravis -- a neuromuscular junction disorder. Routine NCS is normal in MG because the nerve and muscle are healthy. Repetitive nerve stimulation at 2-3 Hz will show a decremental response (>10% drop) as the impaired NMJ fails to maintain transmission with repeated stimulation."
+        },
+        {
+            stem: "A 70-year-old man has progressive weakness over 12 months. EMG shows: fibrillations and fasciculations in the tongue, both arms, and both legs. All SNAPs are normal. CMAPs are reduced in multiple nerves.",
+            question: "What is the most likely diagnosis?",
+            options: ["Chronic inflammatory demyelinating polyneuropathy (CIDP)", "Inclusion body myositis", "Amyotrophic lateral sclerosis (ALS)", "Multifocal motor neuropathy"],
+            correct: 2,
+            explanation: "Widespread denervation (fibrillations) with fasciculations across 4 body regions (bulbar + 3 limb regions), completely normal SNAPs, and reduced CMAPs is the classic Awaji/revised El Escorial pattern for ALS. Normal SNAPs exclude CIDP. Fasciculations and widespread distribution across nerve and root territories exclude focal neuropathies."
+        }
     ]
 };
