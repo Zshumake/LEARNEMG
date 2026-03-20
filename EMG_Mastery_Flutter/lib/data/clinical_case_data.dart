@@ -280,7 +280,7 @@ class ClinicalCaseData {
           ),
           NCSMotorStudy(
             name: "Ulnar Motor (ADM)",
-            latency: "4.8",
+            latency: "2.8",
             amp: "4.2",
             velocity: "38",
             abnormal: true,
@@ -447,28 +447,28 @@ class ClinicalCaseData {
             name: "Median Motor (APB)",
             latency: "5.2",
             amp: "4.8",
-            velocity: "38",
+            velocity: "44",
             abnormal: true,
           ),
           NCSMotorStudy(
             name: "Ulnar Motor (ADM)",
             latency: "4.8",
             amp: "5.2",
-            velocity: "42",
+            velocity: "45",
             abnormal: true,
           ),
           NCSMotorStudy(
             name: "Fibular Motor (EDB)",
             latency: "7.2",
             amp: "0.8",
-            velocity: "28",
+            velocity: "35",
             abnormal: true,
           ),
           NCSMotorStudy(
             name: "Tibial Motor (AH)",
             latency: "6.8",
             amp: "2.2",
-            velocity: "32",
+            velocity: "36",
             abnormal: true,
           ),
         ],
@@ -860,9 +860,9 @@ class ClinicalCaseData {
           NCSMotorStudy(
             name: "Ulnar Motor (ADM)",
             latency: "2.8",
-            amp: "14.0",
+            amp: "5.0",
             velocity: "62",
-            abnormal: false,
+            abnormal: true,
           ),
           NCSMotorStudy(
             name: "Ulnar Motor (FDI)",
@@ -1529,37 +1529,37 @@ class ClinicalCaseData {
           muscle: "Tibialis Anterior",
           nerve: "Deep peroneal",
           root: "L4-L5-S1",
-          abnormal: true,
-          fibs: "2+",
-          motorUnits: "Small/Poly",
-          recruitment: "Early/Full",
+          abnormal: false,
+          fibs: "0",
+          motorUnits: "Normal",
+          recruitment: "Normal",
         ),
         EMGFinding(
           muscle: "Extensor Hallucis Longus",
           nerve: "Deep peroneal",
           root: "L5-S1",
-          abnormal: true,
-          fibs: "2+",
-          motorUnits: "Small/Poly",
-          recruitment: "Early/Full",
+          abnormal: false,
+          fibs: "0",
+          motorUnits: "Normal",
+          recruitment: "Normal",
         ),
         EMGFinding(
           muscle: "Fibularis Longus",
           nerve: "Superficial Peroneal",
           root: "L5-S1",
-          abnormal: true,
-          fibs: "2+",
-          motorUnits: "Small/Poly",
-          recruitment: "Early/Full",
+          abnormal: false,
+          fibs: "0",
+          motorUnits: "Normal",
+          recruitment: "Normal",
         ),
         EMGFinding(
           muscle: "Medial Gastrocnemius",
           nerve: "Tibial",
           root: "S1-S2",
-          abnormal: true,
-          fibs: "2+",
-          motorUnits: "Small/Poly",
-          recruitment: "Early/Full",
+          abnormal: false,
+          fibs: "0",
+          motorUnits: "Normal",
+          recruitment: "Normal",
         ),
       ],
       teachingPoints: [
@@ -2044,7 +2044,7 @@ class ClinicalCaseData {
         ),
       ],
       teachingPoints: [
-        "Radiation plexopathy typically involves more proximal elements and classically affects the upper trunk. Finding myokymia in a lower-trunk distribution is key to differentiating from tumor recurrence.",
+        "Radiation plexopathy most commonly affects the upper trunk, but lower trunk involvement can also occur, particularly when the radiation field extends to the lower plexus as in this case. Finding myokymia is key to differentiating radiation injury from tumor recurrence regardless of trunk level.",
         "EMG hallmark: Myokymic discharges (spontaneous bursts of potentials) are highly suggestive of radiation injury.",
         "NCS often shows reduced amplitudes across multiple nerves.",
       ],
@@ -2444,7 +2444,7 @@ class ClinicalCaseData {
         medications: "Ibuprofen, muscle relaxers",
       ),
       physicalExam: PhysicalExam(
-        inspection: "Mild thenar atrophy on right, antalgic neck posture",
+        inspection: "Mild biceps atrophy on right, antalgic neck posture",
         palpation: "Cervical paraspinal muscle spasm, tender over C6 facet",
         rom: "Limited cervical extension and right lateral bending",
         strength:
@@ -2820,7 +2820,7 @@ class ClinicalCaseData {
             "Marked tenderness over the pronator teres muscle in the proximal forearm.",
         rom: "Full ROM throughout.",
         strength:
-            "Normal strength in thumb flexion (FPL) and finger flexion (FDP 2/3). Mild weakness in pronation against resistance (Pronator Teres/PQ). Normal hand intrinsic strength.",
+            "Normal strength in thumb flexion (FPL) and finger flexion (FDP 2/3). Mild weakness in pronation against resistance (PQ). Normal hand intrinsic strength.",
         sensation:
             "Decreased sensation in the median distribution, INCLUDING the palmar cutaneous territory (the central palm).",
         reflexes: "2+ and symmetric throughout.",
@@ -3245,7 +3245,7 @@ class ClinicalCaseData {
             name: "Median Sensory (Index)",
             peak: "4.8",
             amp: "8.0",
-            velocity: "32",
+            velocity: "48",
             abnormal: true,
           ),
           NCSSensoryStudy(
@@ -3560,7 +3560,7 @@ class ClinicalCaseData {
         palpation: "No significant tenderness in the neck or forearm.",
         rom: "Full passive ROM. Active extension zero.",
         strength:
-            "Right Wrist Extension (ECRL/B, ECU) 0/5, Finger Extension (EDC) 0/5, Thumb Extension (EPL) 0/5. Brachioradialis 1/5. Supinator 2/5. Triceps strength 5/5. Normal hand intrinsics (APB, ADM, FDI).",
+            "Right Wrist Extension 2/5 (radial deviation only, ECRL partially spared), Finger Extension (EDC) 0/5, Thumb Extension (EPL) 0/5. Brachioradialis 1/5. Supinator 2/5. Triceps strength 5/5. Normal hand intrinsics (APB, ADM, FDI).",
         sensation:
             "Decreased sensation over the radial sensory territory (Snuffbox and dorsal first webspace).",
         reflexes:
@@ -3615,11 +3615,10 @@ class ClinicalCaseData {
         sensory: [
           NCSSensoryStudy(
             name: "Radial Sensory (Snuffbox)",
-            peak: "Absent",
-            amp: "0",
-            velocity: "0",
-            abnormal: true,
-            comment: "Characteristic finding in high radial neuropathy",
+            peak: "2.8",
+            amp: "18.0",
+            velocity: "52",
+            abnormal: false,
           ),
           NCSSensoryStudy(
             name: "Median Sensory (Index)",
@@ -3721,9 +3720,10 @@ class ClinicalCaseData {
           muscle: "Extensor Carpi Radialis Longus",
           nerve: "Radial",
           root: "C6-C7",
-          abnormal: true,
+          abnormal: false,
           fibs: "0",
-          recruitment: "Absent",
+          recruitment: "Normal",
+          motorUnits: "Normal",
         ),
         EMGFinding(
           muscle: "Extensor Digitorum Communis",
@@ -5704,14 +5704,14 @@ class ClinicalCaseData {
         motor: [
           NCSMotorStudy(
             name: "Median Motor (APB)",
-            latency: "3.8",
+            latency: "6.2",
             amp: "5.2",
             velocity: "45",
             abnormal: true,
           ),
           NCSMotorStudy(
             name: "Ulnar Motor (ADM)",
-            latency: "3.5",
+            latency: "5.8",
             amp: "4.8",
             velocity: "42",
             abnormal: true,
@@ -5971,7 +5971,7 @@ class ClinicalCaseData {
           nerve: "Femoral",
           root: "L2-L4",
           abnormal: true,
-          motorUnits: "Small/Short (Myopathic appearance due to RNS deficit)",
+          motorUnits: "Unstable/Varying",
           recruitment: "Early/Full",
         ),
         EMGFinding(
@@ -5979,7 +5979,7 @@ class ClinicalCaseData {
           nerve: "Femoral",
           root: "L2-L3",
           abnormal: true,
-          motorUnits: "Small/Short",
+          motorUnits: "Unstable/Varying",
           recruitment: "Early/Full",
         ),
       ],
@@ -7305,7 +7305,7 @@ class ClinicalCaseData {
         occupation: "Retired",
         chiefComplaint: "Acute onset left-sided weakness and facial droop",
         history:
-            "Wired found patient at 7 AM with left facial droop and dense left-sided weakness. He was neurologically normal when he went to bed at 10 PM. No history of headache, neck pain, or vision changes. Slurred speech noted on arrival.",
+            "Wife found patient at 7 AM with left facial droop and dense left-sided weakness. He was neurologically normal when he went to bed at 10 PM. No history of headache, neck pain, or vision changes. Slurred speech noted on arrival.",
         pmh:
             "Hypertension, Type 2 Diabetes, Atrial Fibrillation (non-compliant with anticoagulation)",
         medications: "Lisinopril, Metformin, Amlodipine",
@@ -8390,14 +8390,14 @@ class ClinicalCaseData {
         motor: [
           NCSMotorStudy(
             name: "Median Motor (APB)",
-            latency: "5.2",
+            latency: "3.8",
             amp: "3.5",
             velocity: "52",
             abnormal: true,
           ),
           NCSMotorStudy(
             name: "Ulnar Motor (ADM)",
-            latency: "4.8",
+            latency: "3.0",
             amp: "2.5",
             velocity: "48",
             abnormal: true,
