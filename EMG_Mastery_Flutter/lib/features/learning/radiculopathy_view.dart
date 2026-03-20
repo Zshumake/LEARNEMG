@@ -63,7 +63,7 @@ class RadiculopathyView extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             'The Detective\'s Guide to Nerve Root Localization',
             style: TextStyle(
@@ -89,6 +89,10 @@ class _RadiculopathyLearningTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _buildBeginnerIntro(),
+          const SizedBox(height: 25),
+          _buildRedFlagsSection(),
+          const SizedBox(height: 25),
           _buildMentorshipIntro(),
           const SizedBox(height: 25),
           _buildPathophysiologySection(),
@@ -102,7 +106,141 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           _buildHiMadamSection(),
           const SizedBox(height: 25),
           _buildSeniorTruthsSection(),
+          const SizedBox(height: 25),
+          _buildClinicalScenariosSection(),
           const SizedBox(height: 60),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBeginnerIntro() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(25),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: const Border(
+          top: BorderSide(color: Color(0xFF3B82F6), width: 4),
+          left: BorderSide(color: Color(0xFFE2E8F0)),
+          right: BorderSide(color: Color(0xFFE2E8F0)),
+          bottom: BorderSide(color: Color(0xFFE2E8F0)),
+        ),
+      ),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'What IS a Radiculopathy?',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF1E40AF),
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'A radiculopathy is an injury to a spinal nerve root -- the thick bundle of motor and sensory fibers that exits the spinal cord through a bony opening called the neural foramen. The most common cause in younger patients is a herniated disc; in older patients, it\'s degenerative foraminal stenosis from bone spurs (osteophytes).',
+            style: TextStyle(
+              fontSize: 15,
+              color: Color(0xFF334155),
+              height: 1.6,
+            ),
+          ),
+          SizedBox(height: 14),
+          Text(
+            'EMG/NCS is the gold standard for confirming radiculopathy because it provides objective evidence of nerve root dysfunction that imaging alone cannot. Up to 30% of asymptomatic adults have disc herniations on MRI that cause zero symptoms. The EMG tells you whether the nerve root is actually injured, how severely, and whether it is acute or chronic.',
+            style: TextStyle(
+              fontSize: 15,
+              color: Color(0xFF334155),
+              height: 1.6,
+            ),
+          ),
+          SizedBox(height: 14),
+          Text(
+            'The most important electrodiagnostic principle: the SNAP is NORMAL in radiculopathy because the dorsal root ganglion (DRG) sits outside the spinal canal. A disc herniation compresses the root PROXIMAL to the DRG, so the peripheral sensory axon stays alive. If you find an absent SNAP, the lesion must be distal to the DRG (plexus or peripheral nerve).',
+            style: TextStyle(
+              fontSize: 15,
+              color: Color(0xFF334155),
+              height: 1.6,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRedFlagsSection() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(25),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: const Border(
+          left: BorderSide(color: Color(0xFFDC2626), width: 4),
+          top: BorderSide(color: Color(0xFFE2E8F0)),
+          right: BorderSide(color: Color(0xFFE2E8F0)),
+          bottom: BorderSide(color: Color(0xFFE2E8F0)),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              Icon(
+                Icons.warning_rounded,
+                color: Color(0xFFDC2626),
+                size: 28,
+              ),
+              SizedBox(width: 10),
+              Text(
+                'Red Flags: When It\'s NOT a Simple\nRadiculopathy',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFFDC2626),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Most radiculopathies are benign. However, these presentations should raise immediate concern:',
+            style: TextStyle(
+              fontSize: 14,
+              color: Color(0xFF475569),
+              height: 1.5,
+            ),
+          ),
+          const SizedBox(height: 12),
+          _RedFlagTile(
+            title: 'Cauda Equina Syndrome',
+            content:
+                'Bilateral leg weakness, saddle anesthesia, and bowel/bladder dysfunction = surgical emergency. Needs emergent MRI and decompression within 24-48 hours.',
+          ),
+          _RedFlagTile(
+            title: 'Progressive Myelopathy',
+            content:
+                'Upper motor neuron signs (hyperreflexia, Babinski, spasticity) + radicular symptoms means spinal cord compression, not just a root.',
+          ),
+          _RedFlagTile(
+            title: 'Bilateral/Multi-Level',
+            content:
+                'Multi-level findings? Consider multilevel disc disease, polyradiculopathy (diabetes/CIDP), motor neuron disease, or neoplastic disease.',
+          ),
+          _RedFlagTile(
+            title: 'Systemic Symptoms',
+            content:
+                'Weight loss, fever, night sweats, or cancer history? Think metastatic disease, epidural abscess, or vertebral osteomyelitis.',
+          ),
+          _RedFlagTile(
+            title: 'No Improvement 6-8 Weeks',
+            content:
+                'Persistent symptoms despite treatment warrant repeat imaging and surgical consultation. Ongoing fibrillations without reinnervation at 3-4 months = poor prognosis.',
+          ),
         ],
       ),
     );
@@ -234,7 +372,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      "🌟 Clinical Pearl: Normal SNAPs + Sensory Symptoms = Radiculopathy until proven otherwise!",
+                      "Clinical Pearl: Normal SNAPs + Sensory Symptoms = Radiculopathy until proven otherwise!",
                       style: TextStyle(
                         color: Color(0xFF991B1B),
                         fontWeight: FontWeight.w700,
@@ -419,6 +557,86 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             DataRow(
               cells: [
                 DataCell(
+                  Text("C8", style: TextStyle(fontWeight: FontWeight.w800)),
+                ),
+                DataCell(Text("FDI, ADM,\nEIP, FDP (index)")),
+                DataCell(Text("Hand grip,\nfinger extension")),
+                DataCell(Text("None specific")),
+                DataCell(
+                  Text(
+                    "The 'Hand Root.' C8 affects BOTH median AND ulnar muscles PLUS the radial-innervated EIP.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(
+                  Text("T1", style: TextStyle(fontWeight: FontWeight.w800)),
+                ),
+                DataCell(Text("APB, Opponens,\nFDI (hand intrinsics)")),
+                DataCell(Text("Finger abduction,\nthumb opposition")),
+                DataCell(Text("None specific")),
+                DataCell(
+                  Text(
+                    "Pure hand intrinsic root. Normal SNAPs = root, absent SNAPs = cord/nerve. Horner syndrome suggests T1 avulsion.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(
+                  Text("L2", style: TextStyle(fontWeight: FontWeight.w800)),
+                ),
+                DataCell(Text("Iliopsoas,\nAdductor Longus")),
+                DataCell(Text("Hip flexion,\nhip adduction")),
+                DataCell(Text("Cremasteric")),
+                DataCell(
+                  Text(
+                    "The 'Hip Flexion Root.' Isolated L2 is rare. Must differentiate from femoral neuropathy.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(
+                  Text("L3", style: TextStyle(fontWeight: FontWeight.w800)),
+                ),
+                DataCell(Text("Quadriceps,\nIliopsoas, Adductors")),
+                DataCell(Text("Knee extension,\nstair climbing")),
+                DataCell(Text("Patellar (L3-L4)")),
+                DataCell(
+                  Text(
+                    "The 'Knee Extension Root' (shared with L4). Distinguish from L4 by sparing of tibialis anterior.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(
+                  Text("L4", style: TextStyle(fontWeight: FontWeight.w800)),
+                ),
+                DataCell(Text("Quadriceps,\nTib Ant, Tib Post")),
+                DataCell(Text("Knee extension,\nankle dorsiflexion")),
+                DataCell(Text("Patellar (L3-L4)")),
+                DataCell(
+                  Text(
+                    "The 'Knee Jerk Root.' Key differentiator from L5: in L4, quadriceps is weak; in L5, gluteus medius is weak.",
+                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
+                  ),
+                ),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(
                   Text("L5", style: TextStyle(fontWeight: FontWeight.w800)),
                 ),
                 DataCell(Text("Tib Ant,\nEHL, Glut Med")),
@@ -525,6 +743,85 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           _TruthRow(
             text:
                 "3. Symmetry is a trap. Don't just look at the bad leg. Look at the good one too. Comparison is your best diagnostic tool.",
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildClinicalScenariosSection() {
+    return Container(
+      padding: const EdgeInsets.all(35),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1B4B),
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              Icon(
+                Icons.psychology_rounded,
+                color: Color(0xFFA78BFA),
+                size: 28,
+              ),
+              SizedBox(width: 12),
+              Text(
+                'Name That Root: Clinical Scenarios',
+                style: TextStyle(
+                  color: Color(0xFFA78BFA),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          _ScenarioTile(
+            number: 1,
+            preview: '45-year-old with neck pain radiating to the thumb...',
+            stem:
+                '45-year-old with neck pain radiating to the thumb. Weak biceps (4/5) and brachioradialis (4/5). Diminished biceps reflex. Normal median SNAP.',
+            answer: 'C6',
+            explanation:
+                'Biceps and brachioradialis share C6 innervation across different peripheral nerves. The diminished biceps reflex and normal SNAP confirm a preganglionic (root) lesion at C6.',
+          ),
+          _ScenarioTile(
+            number: 2,
+            preview: '55-year-old runner with back pain radiating to the dorsal foot...',
+            stem:
+                '55-year-old runner with back pain radiating to the dorsal foot. Weak ankle dorsiflexion (3/5), great toe extension (2/5), and hip abduction (4/5). Normal ankle jerk. Normal sural SNAP.',
+            answer: 'L5',
+            explanation:
+                'Gluteus medius (hip abduction) involvement distinguishes this from fibular neuropathy. The fibular nerve does not innervate gluteus medius. Normal sural SNAP confirms a preganglionic lesion.',
+          ),
+          _ScenarioTile(
+            number: 3,
+            preview: '60-year-old diabetic with hand clumsiness...',
+            stem:
+                '60-year-old diabetic with hand clumsiness. FDI 3/5, APB 4/5, EIP 4/5. All SNAPs normal. Fibs in FDI, APB, EIP, and C8 paraspinals.',
+            answer: 'C8 Radiculopathy',
+            explanation:
+                'Normal SNAPs = preganglionic lesion. The key is that FDI (ulnar), APB (median), and EIP (radial) all share the C8 root but are innervated by three different peripheral nerves. Paraspinal fibrillations confirm root-level pathology.',
+          ),
+          _ScenarioTile(
+            number: 4,
+            preview: '40-year-old after heavy lifting with shoulder pain...',
+            stem:
+                '40-year-old after heavy lifting with shoulder pain. Deltoid 3/5, infraspinatus 4/5, biceps 4/5. Triceps 5/5. Diminished biceps reflex. Normal SNAPs.',
+            answer: 'C5',
+            explanation:
+                'Deltoid (axillary nerve), infraspinatus (suprascapular nerve), and biceps (musculocutaneous nerve) all share C5 innervation across three different peripheral nerves. Normal triceps (C7) helps exclude a broader plexopathy.',
+          ),
+          _ScenarioTile(
+            number: 5,
+            preview: '65-year-old with calf pain, weak gastroc...',
+            stem:
+                '65-year-old with calf pain, weak gastroc (4/5), absent ankle jerk. H-reflex 35ms right vs 29ms left. Normal sural SNAPs.',
+            answer: 'S1',
+            explanation:
+                'Gastrocnemius weakness and absent Achilles reflex are classic S1 findings. The prolonged H-reflex (>6ms side-to-side difference) is a sensitive marker for S1 radiculopathy. Normal sural SNAP confirms a preganglionic lesion.',
           ),
         ],
       ),
@@ -808,6 +1105,145 @@ class _TruthRow extends StatelessWidget {
   }
 }
 
+class _RedFlagTile extends StatelessWidget {
+  final String title;
+  final String content;
+  const _RedFlagTile({required this.title, required this.content});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFFECACA)),
+      ),
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        childrenPadding:
+            const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        collapsedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        iconColor: const Color(0xFFDC2626),
+        collapsedIconColor: const Color(0xFFDC2626),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w800,
+            color: Color(0xFFDC2626),
+            fontSize: 14,
+          ),
+        ),
+        children: [
+          Text(
+            content,
+            style: const TextStyle(
+              fontSize: 13,
+              color: Color(0xFF475569),
+              height: 1.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ScenarioTile extends StatelessWidget {
+  final int number;
+  final String preview;
+  final String stem;
+  final String answer;
+  final String explanation;
+  const _ScenarioTile({
+    required this.number,
+    required this.preview,
+    required this.stem,
+    required this.answer,
+    required this.explanation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFF2E1065),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: const Color(0xFF7C3AED).withValues(alpha: 0.3),
+        ),
+      ),
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        childrenPadding:
+            const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+        ),
+        collapsedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+        ),
+        iconColor: const Color(0xFFA78BFA),
+        collapsedIconColor: const Color(0xFFA78BFA),
+        title: Text(
+          'Scenario $number: $preview',
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Color(0xFFC4B5FD),
+            fontSize: 13,
+          ),
+        ),
+        children: [
+          Text(
+            stem,
+            style: const TextStyle(
+              fontSize: 13,
+              color: Color(0xFFE2E8F0),
+              height: 1.5,
+            ),
+          ),
+          const SizedBox(height: 14),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFF4C1D95),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Answer: $answer',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFFA78BFA),
+                    fontSize: 15,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  explanation,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Color(0xFFCBD5E1),
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _QuizTab extends StatelessWidget {
   const _QuizTab();
 
@@ -938,5 +1374,31 @@ const _radicQuizQuestions = [
     correctIndex: 2,
     explanation:
         "S1 radiculopathy classically presents with LOSS OF THE ACHILLES REFLEX and plantar flexion weakness.",
+  ),
+  QuizQuestion(
+    question:
+        "A patient presents with weakness of finger abduction (FDI) and thumb opposition (APB). SNAPs are all normal. EMG shows fibrillations in FDI, APB, EIP, and C8 paraspinals. What is the most likely diagnosis?",
+    options: [
+      "Ulnar neuropathy at the elbow",
+      "Combined median and ulnar neuropathy",
+      "C8 radiculopathy",
+      "Lower trunk brachial plexopathy",
+    ],
+    correctIndex: 2,
+    explanation:
+        "Normal SNAPs rule out a postganglionic lesion. The involvement of ulnar (FDI), median (APB), AND radial (EIP) muscles sharing the C8 root, plus C8 paraspinal fibrillations, localizes to the C8 nerve root.",
+  ),
+  QuizQuestion(
+    question:
+        "A patient had a lumbar disc herniation 5 days ago. You perform an EMG and find no fibrillations anywhere, but recruitment is mildly reduced in the tibialis anterior. Is this study reliable?",
+    options: [
+      "Yes -- reduced recruitment proves radiculopathy",
+      "No -- fibrillations take 2-3 weeks to develop; repeat at 3-4 weeks",
+      "Yes -- absence of fibrillations rules out radiculopathy",
+      "No -- the patient should never have EMG after disc herniation",
+    ],
+    correctIndex: 1,
+    explanation:
+        "At day 5, Wallerian degeneration has barely begun. Fibrillation potentials take 2-3 weeks to appear in proximal muscles and 3-5 weeks in distal muscles. The optimal timing for EMG is 3-4 weeks post-onset.",
   ),
 ];

@@ -1,23 +1,20 @@
-# Flutter Sync + Module 5 Improvement Plan
+# Radiculopathy Module Update Plan
 
-## Priority 1: Flutter Medical Accuracy Sync
-- [x] Port 15 EMG/NCS case accuracy fixes to clinical_case_data.dart
-- [x] Verify Flutter analyzer passes (No issues found)
-- [x] Rebuild Flutter web and deploy to /mobile/
+## Tasks
+- [x] 1. Add 5 new root levels to localization DataTable (C8, T1, L2, L3, L4) in anatomical order
+- [x] 2. Add "What IS a Radiculopathy?" beginner intro section before mentorship intro
+- [x] 3. Add "Red Flags" section with ExpansionTiles after beginner intro
+- [x] 4. Add 2 new quiz questions (C8 radiculopathy + EMG timing) -- now 12 total
+- [x] 5. Add "Name That Root: Clinical Scenarios" section after Senior Truths
+- [x] 6. Remove star emoji from line 237 clinical pearl text
+- [x] 7. Run flutter analyze -- No issues found
 
-## Priority 2: Module 5 Neuropathy Pathophysiology (Web + Flutter)
-- [ ] Move hardcoded JSON quiz from NeuropathyPathophysiology.js to NeuropathyData.js
-- [ ] Expand quiz from 9 to 15 questions
-- [ ] Add "Neuropathy Patterns" section (length-dependent, mononeuropathy multiplex, etc.)
-- [ ] Add "Temporal Evolution" section (acute vs chronic EDX findings)
-- [ ] Add AANEM demyelination criteria to EDX Correlations tab
-- [ ] Add 5 clinical scenarios ("Name That Neuropathy")
-- [ ] Add click-to-reveal EDX signatures in Clinical Atlas
-- [ ] Medical accuracy + emoji audit
-- [ ] Port Module 5 improvements to Flutter
-
-## Priority 3: Flutter Content Sync (Modules 1-4)
-- [ ] Module 4 Radiculopathy: Add 5 missing roots (C8, T1, L2, L3, L4), expand quiz, add scenarios
-- [ ] Module 1 Introduction: Add quizzes, Sunderland table, Martin-Gruber, localization scenarios
-- [ ] Module 2 Peripheral Anatomy: Expand quiz, add knowledge checks, fix fibular muscles
-- [ ] Module 3 Brachial Plexus: Add muscle details, localization scenarios, content sections
+## Review
+- File grew from 943 lines to 1404 lines (461 lines added)
+- Also fixed a pre-existing unnecessary_const lint warning on the hero SizedBox
+- All new widgets follow existing patterns: const constructors, same color conventions, same widget structure
+- No emojis anywhere in the code
+- DataTable now has 10 root levels in anatomical order: C5, C6, C7, C8, T1, L2, L3, L4, L5, S1
+- Red Flags section uses 5 ExpansionTile widgets with red accent styling
+- Clinical Scenarios section uses 5 custom _ScenarioTile widgets (ExpansionTile-based) with dark purple theme
+- Two new support widgets added: _RedFlagTile, _ScenarioTile
