@@ -360,6 +360,17 @@ export default {
                 </div>
             </div>
         </div>
+
+        <!-- Knowledge Check Quiz -->
+        <div style="margin-top: 50px; border-top: 2px dashed #cbd5e1; padding-top: 40px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h3 style="color: #0f172a; margin-bottom: 10px; font-size: 2em; font-weight: 900;">NCS Techniques Knowledge Check</h3>
+                <p style="font-size: 1.1em; color: #475569;">Test your understanding of electrode placement and protocol selection</p>
+            </div>
+            ${typeof window.generateModuleQuiz === 'function' ?
+                window.generateModuleQuiz(NCSTechniquesData.quiz)
+                : '<div style="text-align:center; padding: 20px; background: white; border-radius: 12px; color: #64748b;">Quiz system currently unavailable.</div>'}
+        </div>
         `;
     }
 };

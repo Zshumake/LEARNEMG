@@ -4,6 +4,15 @@ import '../../data/models/nm_basics_model.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
+import '../../core/widgets/module_hero_header.dart';
+import '../../core/theme/app_theme.dart';
+import '../../data/podcast_data.dart';
+import '../podcast/widgets/podcast_trigger_card.dart';
+import '../../core/widgets/waveform_card.dart';
+import '../../core/widgets/decision_tree.dart';
+import '../../data/clinical_decision_trees.dart';
+import '../../core/widgets/comparison_card.dart';
+import '../../data/board_comparisons.dart';
 
 class NMBasicsView extends StatelessWidget {
   const NMBasicsView({super.key});
@@ -14,15 +23,25 @@ class NMBasicsView extends StatelessWidget {
       length: 5,
       child: Column(
         children: [
-          _buildHero(),
+          ModuleHeroHeader(
+            title: NMBasicsData.title,
+            subtitle: NMBasicsData.subtitle,
+            color: AppTheme.moduleNMBasics,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: PodcastTriggerCard(
+              episode: PodcastData.getEpisodesByModule('neuropathy-pathophysiology').first,
+            ),
+          ),
           Container(
             color: const Color(0xFFF8FAFC),
             child: const TabBar(
               isScrollable: true,
               tabAlignment: TabAlignment.start,
-              labelColor: Color(0xFF7C3AED),
+              labelColor: AppTheme.moduleNMBasics,
               unselectedLabelColor: Color(0xFF64748B),
-              indicatorColor: Color(0xFF7C3AED),
+              indicatorColor: AppTheme.moduleNMBasics,
               indicatorWeight: 3,
               labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
               tabs: [
@@ -72,43 +91,6 @@ class NMBasicsView extends StatelessWidget {
     );
   }
 
-  Widget _buildHero() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(25),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF4C1D95), Color(0xFF8B5CF6)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            NMBasicsData.title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.w900,
-              letterSpacing: -0.5,
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            NMBasicsData.subtitle,
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              height: 1.4,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _DeepDiveTab extends StatelessWidget {
@@ -406,7 +388,51 @@ class _ComparisonTab extends StatelessWidget {
             color: const Color(0xFF7C3AED),
           ),
           const SizedBox(height: 30),
+          const Text(
+            'EMG Waveform Patterns',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF1E293B),
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Tap each waveform to see the clinical explanation.',
+            style: TextStyle(fontSize: 13, color: Color(0xFF94A3B8)),
+          ),
+          const SizedBox(height: 16),
+          const WaveformCard(type: WaveformType.normalMuap),
+          const WaveformCard(type: WaveformType.neuropathicMuap),
+          const WaveformCard(type: WaveformType.myopathicMuap),
+          const SizedBox(height: 20),
+          ComparisonCard(
+            title: BoardComparisons.neuropathicVsMyopathic.title,
+            columns: BoardComparisons.neuropathicVsMyopathic.columns,
+            rows: BoardComparisons.neuropathicVsMyopathic.rows,
+            footnote: BoardComparisons.neuropathicVsMyopathic.footnote,
+          ),
+          ComparisonCard(
+            title: BoardComparisons.mgVsLemsVsBotulism.title,
+            columns: BoardComparisons.mgVsLemsVsBotulism.columns,
+            rows: BoardComparisons.mgVsLemsVsBotulism.rows,
+            footnote: BoardComparisons.mgVsLemsVsBotulism.footnote,
+          ),
+          const SizedBox(height: 30),
           _buildTable(),
+          const SizedBox(height: 30),
+          const DecisionTree(
+            title: 'Weakness Differential',
+            subtitle: 'Localize the lesion: UMN, LMN, NMJ, or muscle?',
+            root: ClinicalDecisionTrees.weaknessDifferential,
+            accentColor: Color(0xFF7C3AED),
+          ),
+          const DecisionTree(
+            title: 'Axonal vs Demyelinating',
+            subtitle: 'Classify the NCS pattern systematically.',
+            root: ClinicalDecisionTrees.axonalVsDemyelinating,
+            accentColor: Color(0xFF0D9488),
+          ),
           const SizedBox(height: 60),
         ],
       ),

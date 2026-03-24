@@ -256,5 +256,141 @@ export const NCSTechniquesData = {
                 pearl: "This is the electrical equivalent of striking the Achilles tendon with a reflex hammer. The electrical signal travels all the way up the sensory nerve into the spinal cord, synapses in the S1 nerve root, and physically fires back down the motor nerve to twitch the calf. If a patient has an aggressive S1 radiculopathy (a pinched nerve in their lower spine), this elegant, long-distance loop will be delayed or completely destroyed."
             }
         ]
-    }
+    },
+
+    // --- QUIZ SECTION ---
+    quiz: [
+        {
+            question: "You are performing a median motor study. Where should the G1 (Active) recording electrode be placed?",
+            options: [
+                "Over the center of the Abductor Pollicis Brevis muscle belly",
+                "On the tendon of the APB at the thumb",
+                "On the index finger",
+                "Over the thenar eminence crease"
+            ],
+            correct: 0,
+            explanation: "For motor studies, G1 must be placed directly over the motor endplate zone, which is the center of the muscle belly. For median motor studies, this is the APB. Placing G1 off-center will produce an initial positive deflection and inaccurate latency measurements."
+        },
+        {
+            question: "A patient is referred for evaluation of carpal tunnel syndrome. Which comparison study is most sensitive for detecting mild median neuropathy at the wrist?",
+            options: [
+                "Median vs Radial sensory to Digit 1",
+                "Median motor recording APB",
+                "Ulnar motor recording ADM",
+                "Sural sensory"
+            ],
+            correct: 0,
+            explanation: "The Median vs Radial sensory comparison to Digit 1 is one of the most sensitive tests for mild CTS. Both nerves travel to the same finger, so any latency difference greater than 0.5ms strongly suggests focal median slowing at the wrist. This eliminates age, temperature, and limb-length as confounders."
+        },
+        {
+            question: "When performing a sensory nerve conduction study, what is the standard distance between the stimulating cathode and the G1 recording electrode?",
+            options: [
+                "8 cm",
+                "10 cm",
+                "14 cm",
+                "20 cm"
+            ],
+            correct: 2,
+            explanation: "The standard distance for antidromic sensory studies is 14 cm. This standardized distance allows for accurate comparison of onset latencies and peak latencies across patients and between laboratories."
+        },
+        {
+            question: "You are performing an ulnar motor study and need to evaluate for cubital tunnel syndrome. What is critical about electrode placement when stimulating above the elbow?",
+            options: [
+                "The arm must be fully extended",
+                "The elbow must be flexed to 70-90 degrees",
+                "The stimulator should be placed on the lateral epicondyle",
+                "G2 should be moved to the wrist"
+            ],
+            correct: 1,
+            explanation: "The elbow MUST be flexed to 70-90 degrees during ulnar motor NCS across the elbow. In full extension, the ulnar nerve takes a shortcut across the medial epicondyle, making the measured distance artificially long and the calculated velocity falsely slow, potentially mimicking a neuropathy that does not exist."
+        },
+        {
+            question: "During a sural sensory study, where is the G1 recording electrode placed?",
+            options: [
+                "Behind the medial malleolus",
+                "On the dorsum of the foot",
+                "Behind the lateral malleolus",
+                "At the fibular head"
+            ],
+            correct: 2,
+            explanation: "The sural nerve runs behind the lateral malleolus (outside ankle bone). G1 is placed just posterior and inferior to the lateral malleolus. The sural nerve is the gold standard reference for diagnosing length-dependent polyneuropathy because of its predictable superficial course."
+        },
+        {
+            question: "What is unique about the cathode orientation when performing an H-reflex study compared to standard motor NCS?",
+            options: [
+                "The cathode faces distally, same as motor NCS",
+                "The cathode faces proximally (toward the spinal cord)",
+                "No cathode is used; only surface electrodes",
+                "The cathode is placed on the recording site"
+            ],
+            correct: 1,
+            explanation: "For the H-reflex, the cathode MUST face proximally (superiorly) because you are trying to selectively stimulate the Ia sensory afferent fibers traveling UP to the spinal cord. This is the opposite of standard motor NCS where the cathode faces distally toward the recording electrodes."
+        },
+        {
+            question: "You notice that your median motor CMAP has an initial positive (downward) deflection. What is the most likely problem?",
+            options: [
+                "The stimulus intensity is too high",
+                "The G1 electrode is not over the motor endplate zone",
+                "The patient has carpal tunnel syndrome",
+                "The nerve is demyelinated"
+            ],
+            correct: 1,
+            explanation: "An initial positive deflection almost always means the G1 (Active) electrode is off the motor endplate zone. The electrode is recording the approaching wavefront as volume conduction before the muscle under it depolarizes. Move G1 until the waveform rockets straight upward from baseline."
+        },
+        {
+            question: "The Lumbrical-Interossei comparison study is used to diagnose which condition?",
+            options: [
+                "Ulnar neuropathy at the elbow",
+                "Radial neuropathy at the spiral groove",
+                "Carpal tunnel syndrome (median neuropathy at the wrist)",
+                "C8 radiculopathy"
+            ],
+            correct: 2,
+            explanation: "The Lumbrical-Interossei comparison records from two muscles in the same hand -- the 2nd lumbrical (median-innervated) and the interosseous (ulnar-innervated). Both are the same distance from the wrist, eliminating distance as a variable. A latency difference >0.4ms confirms focal median nerve slowing at the carpal tunnel."
+        },
+        {
+            question: "When performing a superficial fibular (peroneal) sensory study, where do you place the G1 recording electrode?",
+            options: [
+                "Behind the lateral malleolus",
+                "On the dorsum of the foot at the ankle",
+                "At the fibular head",
+                "On the lateral calf"
+            ],
+            correct: 1,
+            explanation: "G1 is placed on the anterolateral ankle (dorsum of the foot) where the superficial fibular nerve becomes subcutaneous. This nerve provides sensation to the dorsal foot. Stimulation is applied 14 cm proximally on the lateral leg."
+        },
+        {
+            question: "What is the clinical significance of the Dorsal Ulnar Cutaneous (DUC) sensory study?",
+            options: [
+                "It confirms carpal tunnel syndrome",
+                "It differentiates ulnar neuropathy at the elbow vs. the wrist (Guyon's canal)",
+                "It tests C6 radiculopathy",
+                "It measures tibial nerve function"
+            ],
+            correct: 1,
+            explanation: "The DUC nerve branches off the ulnar nerve PROXIMAL to Guyon's canal at the wrist. If a patient has ulnar symptoms and the DUC is abnormal, the lesion must be at or above the elbow (cubital tunnel). If the DUC is normal but other ulnar studies are abnormal, the lesion is at Guyon's canal."
+        },
+        {
+            question: "What is the primary advantage of an antidromic sensory study over an orthodromic study?",
+            options: [
+                "It produces a cleaner baseline without motor artifact",
+                "It produces larger amplitude sensory responses",
+                "It requires less stimulus intensity",
+                "It is more comfortable for the patient"
+            ],
+            correct: 1,
+            explanation: "Antidromic studies produce much larger SNAP amplitudes because the digital nerves in the fingers are extremely superficial and close to the recording ring electrodes. The disadvantage is that motor fibers also fire, creating a volume-conducted motor artifact that can contaminate the recording."
+        },
+        {
+            question: "A patient presents with burning pain on the sole of the foot. Which specialized NCS protocol would you add to evaluate for tarsal tunnel syndrome?",
+            options: [
+                "Sural sensory and superficial fibular sensory",
+                "Medial and lateral plantar mixed nerve studies",
+                "Common fibular motor across the fibular head",
+                "Tibial H-reflex"
+            ],
+            correct: 1,
+            explanation: "The medial and lateral plantar mixed nerve studies are the most sensitive electrodiagnostic tests for tarsal tunnel syndrome. They measure the signal traveling through the tarsal tunnel beneath the flexor retinaculum. Prolonged plantar latencies or absent responses with a normal tibial motor study strongly support focal compression at the ankle."
+        }
+    ]
 };

@@ -259,7 +259,15 @@
             "level": 3,
             "order": 2,
             "yOffset": 75,
-            "row": 5
+            "row": 5,
+            "muscles": [
+                "Tibialis Anterior",
+                "Extensor Hallucis Longus",
+                "Extensor Digitorum Longus",
+                "Peroneus Longus",
+                "Peroneus Brevis",
+                "Extensor Digitorum Brevis"
+            ]
         },
         {
             "id": "nerve_post_fem_cut",

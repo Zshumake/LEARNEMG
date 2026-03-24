@@ -54,11 +54,11 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
   String _currentSpeech = '';
   bool _showBubble = false;
   final List<String> _greetings = [
-    "Ready to learn? ⚡",
+    "Ready to learn?",
     "Let's master EMG!",
-    "Clinical Correlation is King! 👑",
+    "Clinical Correlation is King!",
     "Welcome, future neurophysiologist!",
-    "STIM is ready! Let's go! 🚀",
+    "STIM is ready! Let's go!",
   ];
 
   int _tapCount = 0;

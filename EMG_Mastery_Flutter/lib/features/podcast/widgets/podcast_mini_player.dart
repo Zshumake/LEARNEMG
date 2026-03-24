@@ -29,7 +29,22 @@ class PodcastMiniPlayer extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Padding(
+              child: Column(
+                children: [
+                  // Progress bar at top
+                  LinearProgressIndicator(
+                    value: controller.duration.inMilliseconds > 0
+                        ? controller.position.inMilliseconds /
+                            controller.duration.inMilliseconds
+                        : 0,
+                    backgroundColor: Colors.white.withOpacity(0.08),
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      Color(0xFFF59E0B),
+                    ),
+                    minHeight: 3,
+                  ),
+                  Expanded(
+                    child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
@@ -128,6 +143,9 @@ class PodcastMiniPlayer extends StatelessWidget {
                   ],
                 ),
               ),
+                  ), // Expanded
+                ], // Column children
+              ), // Column
             ),
           ),
         );
@@ -136,13 +154,8 @@ class PodcastMiniPlayer extends StatelessWidget {
   }
 
   Widget _buildCycleSpeedButton(PodcastController controller) {
-    final speeds = [0.5, 1.0, 1.5, 2.0];
     return GestureDetector(
-      onTap: () {
-        final currentIndex = speeds.indexOf(controller.speed);
-        final nextIndex = (currentIndex + 1) % speeds.length;
-        controller.setSpeed(speeds[nextIndex]);
-      },
+      onTap: () => controller.cycleSpeed(),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
         decoration: BoxDecoration(

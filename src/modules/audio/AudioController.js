@@ -229,9 +229,31 @@ export class AudioController {
             }
         }
 
+        if (state.error) {
+            this.showErrorToast(state.error);
+        }
+
         if (state.hasEnded) {
             this.nextEpisode();
         }
+    }
+
+    showErrorToast(message) {
+        const existing = document.getElementById('podcast-error-toast');
+        if (existing) existing.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'podcast-error-toast';
+        toast.style.cssText = `
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+            background: #DC2626; color: white; padding: 12px 24px;
+            border-radius: 12px; font-size: 14px; font-weight: 600;
+            z-index: 200000; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s ease;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
     }
 }
 

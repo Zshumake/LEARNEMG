@@ -6,6 +6,11 @@ class IntroductionContent {
   final TechnicalContent technical;
   final LocalizationContent localization;
   final TerminologyContent terminology;
+  final List<SunderlandGrade>? sunderlandClassification;
+  final List<TemporalTimepoint>? temporalEvolution;
+  final MartinGruberContent? martinGruber;
+  final List<ExpandedPattern>? expandedPatterns;
+  final List<LocalizationScenario>? localizationScenarios;
 
   IntroductionContent({
     required this.header,
@@ -15,6 +20,11 @@ class IntroductionContent {
     required this.technical,
     required this.localization,
     required this.terminology,
+    this.sunderlandClassification,
+    this.temporalEvolution,
+    this.martinGruber,
+    this.expandedPatterns,
+    this.localizationScenarios,
   });
 }
 
@@ -188,4 +198,80 @@ class MasteryTerm {
   final String definition;
 
   MasteryTerm({required this.term, required this.definition});
+}
+
+class SunderlandGrade {
+  final String grade;
+  final String injury;
+  final String pathology;
+  final String recovery;
+  final String edxFindings;
+
+  SunderlandGrade({
+    required this.grade,
+    required this.injury,
+    required this.pathology,
+    required this.recovery,
+    required this.edxFindings,
+  });
+}
+
+class TemporalTimepoint {
+  final String timepoint;
+  final String finding;
+  final String explanation;
+
+  TemporalTimepoint({
+    required this.timepoint,
+    required this.finding,
+    required this.explanation,
+  });
+}
+
+class MartinGruberContent {
+  final String title;
+  final String prevalence;
+  final String description;
+  final List<String> clinicalImpact;
+  final String source;
+
+  MartinGruberContent({
+    required this.title,
+    required this.prevalence,
+    required this.description,
+    required this.clinicalImpact,
+    required this.source,
+  });
+}
+
+class ExpandedPattern {
+  final String site;
+  final String snap;
+  final String cmap;
+  final String emg;
+  final String keyFeature;
+
+  ExpandedPattern({
+    required this.site,
+    required this.snap,
+    required this.cmap,
+    required this.emg,
+    required this.keyFeature,
+  });
+}
+
+class LocalizationScenario {
+  final String stem;
+  final String question;
+  final List<String> options;
+  final int correct;
+  final String explanation;
+
+  LocalizationScenario({
+    required this.stem,
+    required this.question,
+    required this.options,
+    required this.correct,
+    required this.explanation,
+  });
 }

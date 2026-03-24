@@ -8,7 +8,7 @@ export const NeedleLocalizationData = {
     upperExtremity: {
         "APB": {
             fullName: "Abductor Pollicis Brevis",
-            innervation: "Median Nerve, Medial Cord, Anterior Division, Lower Trunk, C8, T1",
+            innervation: "Median Nerve, Lateral and Medial Cord, Anterior Division, Lower Trunk, C8, T1",
             origin: "From the palmar retinaculum, the tubercle of the scaphoid, and the tubercle of the trapezium.",
             insertion: "Lateral side of the base of the proximal phalanx of the thumb.",
             position: "Place the patient's hand resting comfortably in full supination (palm up).",
@@ -109,7 +109,7 @@ export const NeedleLocalizationData = {
         },
         "Peroneus Longus": {
             fullName: "Peroneus Longus",
-            innervation: "Superficial Peroneal Nerve, Common Peroneal Nerve, Sciatic Nerve, Posterior Division Sacral Plexus, L5, S1, S2",
+            innervation: "Superficial Peroneal Nerve, Common Peroneal Nerve, Sciatic Nerve, Posterior Division Sacral Plexus, L5, S1",
             origin: "The head of the fibula and the upper two-thirds of the lateral fibular shaft.",
             insertion: "It wraps under the foot to insert into the base of the first metatarsal and the medial cuneiform bone.",
             position: "Have the patient lie supine with their leg slightly internally rotated.",

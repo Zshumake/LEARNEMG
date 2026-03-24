@@ -20,7 +20,7 @@ export const MuscleDatabase = {
 
     // 5. SUBSCAPULAR AND LOWER SUBSCAPULAR NERVES
     'Subscapularis': { nerve: 'Subscapular', roots: ['C5', 'C6'], region: 'UE', peripheralNerve: 'Subscapular', cord: 'Posterior cord', actions: 'Shoulder internal rotation' },
-    'Teres major': { nerve: 'Lower subscapular', roots: ['C5', 'C6', 'C7'], region: 'UE', peripheralNerve: 'Lower subscapular', cord: 'Posterior cord', actions: 'Shoulder adduction, internal rotation, extension' },
+    'Teres major': { nerve: 'Lower subscapular', roots: ['C5', 'C6'], region: 'UE', peripheralNerve: 'Lower subscapular', cord: 'Posterior cord', actions: 'Shoulder adduction, internal rotation, extension' },
 
     // 6. PECTORAL NERVES (LATERAL AND MEDIAL)
     'Pectoralis major': { nerve: 'Pectoral', roots: ['C5', 'C6', 'C7', 'C8', 'T1'], region: 'UE', peripheralNerve: 'Pectoral', cord: 'Lateral/Medial cord', actions: 'Shoulder adduction, internal rotation' },

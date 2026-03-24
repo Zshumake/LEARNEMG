@@ -5,7 +5,7 @@
 // All audio files are located in the Podcasts/ directory
 // ============================================================================
 
-import { CUSTOM_ICON_MAPPING } from '../../data/ModuleConfig.js';
+import { CUSTOM_ICON_MAPPING } from '../candyland/BoardData.js';
 import { ErnestIcon } from '../../utils/ErnestIcon.js';
 
 console.log('🎧 Loading Ernest\'s Podcast episode data...');
@@ -35,7 +35,7 @@ export const podcastEpisodes = {
         {
             id: 'emg-terminology',
             title: 'Essential EMG Terminology',
-            duration: '14:46',
+            duration: '64:49',
             audioFile: 'Podcasts/Essential Terminology.m4a',
             description: 'Master the essential vocabulary and definitions used in electrodiagnostic medicine',
             transcript: 'Episode transcript will appear here once available...',
@@ -58,7 +58,7 @@ export const podcastEpisodes = {
         {
             id: 'plexus-peripheral',
             title: 'Peripheral Nerve Anatomy',
-            duration: '39:08',
+            duration: '39:07',
             audioFile: 'Podcasts/Peripheral Anatomy.m4a',
             description: 'Comprehensive exploration of peripheral nerve anatomy and organization',
             transcript: 'Episode transcript will appear here once available...',
@@ -78,7 +78,7 @@ export const podcastEpisodes = {
         {
             id: 'plexus-anomalous',
             title: 'Anomalous Anatomy',
-            duration: '14:48',
+            duration: '14:47',
             audioFile: 'Podcasts/Anamolous Anatomy.m4a',
             description: 'Explore anatomical variations and anomalies that can affect EDX interpretation',
             transcript: 'Episode transcript will appear here once available...',
@@ -101,7 +101,7 @@ export const podcastEpisodes = {
         {
             id: 'brachial-ep1',
             title: 'Plexopathies',
-            duration: '13:29',
+            duration: '13:28',
             audioFile: 'Podcasts/Plexopathies.m4a',
             description: 'Ernest explores brachial and lumbosacral plexus pathology',
             transcript: 'Episode transcript will appear here once available...',
@@ -124,7 +124,7 @@ export const podcastEpisodes = {
         {
             id: 'radiculopathy-ep1',
             title: 'Radiculopathy Pathophysiology',
-            duration: '15:49',
+            duration: '10:17',
             audioFile: 'Podcasts/Radiculopathy.m4a',
             description: 'Ernest explains the pathophysiology of nerve root compression',
             transcript: 'Episode transcript will appear here once available...',
@@ -147,7 +147,7 @@ export const podcastEpisodes = {
         {
             id: 'neuropathy-poly',
             title: 'Polyneuropathies',
-            duration: '16:03',
+            duration: '16:02',
             audioFile: 'Podcasts/Polyneuropathies.m4a',
             description: 'Comprehensive exploration of polyneuropathy patterns and mechanisms',
             transcript: 'Episode transcript will appear here once available...',
@@ -188,7 +188,7 @@ export const podcastEpisodes = {
         {
             id: 'patterns-ep1',
             title: 'Basic Pattern Recognition',
-            duration: '15:00',
+            duration: '14:59',
             audioFile: 'Podcasts/Basic Patter Recognition.m4a',
             description: 'Ernest teaches systematic EMG interpretation and pattern recognition',
             transcript: 'Episode transcript will appear here once available...',
@@ -197,7 +197,7 @@ export const podcastEpisodes = {
         {
             id: 'patterns-interpretation',
             title: 'EMG Interpretation',
-            duration: '15:00',
+            duration: '14:59',
             audioFile: 'Podcasts/EMG interpretation.m4a',
             description: 'Systematic approach to interpreting complex EMG signals',
             transcript: 'Episode transcript will appear here once available...',
@@ -209,8 +209,8 @@ export const podcastEpisodes = {
         {
             id: 'neuro-myo-ep1',
             title: 'Neuropathy vs. Myopathy',
-            duration: '17:10',
-            audioFile: 'Podcasts/Neuropathy vs. Myopathy.m4a',
+            duration: '17:09',
+            audioFile: 'Podcasts/Myopathy vs. Neuropathy.m4a',
             description: 'Ernest explains how to differentiate nerve and muscle disorders using clinical and EDX features',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -233,7 +233,7 @@ export const podcastEpisodes = {
         {
             id: 'reports-ep1',
             title: 'Basic Report Writing',
-            duration: '11:57',
+            duration: '11:56',
             audioFile: 'Podcasts/Basic Report Writing.m4a',
             description: 'Ernest teaches the art of clear, effective electrodiagnostic report writing',
             transcript: 'Episode transcript will appear here once available...',
@@ -256,8 +256,8 @@ export const podcastEpisodes = {
         {
             id: 'extra-als',
             title: 'ALS and Mimics',
-            duration: '13:55',
-            audioFile: 'Podcasts/ALS and Mimics.m4a',
+            duration: '13:54',
+            audioFile: 'Podcasts/ALS and mimics.m4a',
             description: 'Ernest explores motor neuron disease and conditions that can mimic ALS',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -306,7 +306,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-1',
             title: 'EDX Series: Episode 1',
-            duration: '52 min',
+            duration: '31:44',
             audioFile: 'Podcasts/EDX_1.m4a',
             description: 'A fundamental primer on electrodiagnostic medicine.',
             showNotes: `<p>A fundamental primer on electrodiagnostic medicine.</p>`
@@ -314,7 +314,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-2',
             title: 'EDX Series: Episode 2',
-            duration: '15 min',
+            duration: '28:29',
             audioFile: 'Podcasts/EDX_2.m4a',
             description: 'Technical overview of the neuromuscular system and nerve injuries.',
             showNotes: `<p>Technical overview of the neuromuscular system.</p>`
@@ -322,7 +322,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-3',
             title: 'EDX Series: Episode 3',
-            duration: '31 min',
+            duration: '36:29',
             audioFile: 'Podcasts/EDX_3.m4a',
             description: 'Overview of EDX instrumentation and NCS principles.',
             showNotes: `<p>Overview of EDX instrumentation.</p>`
@@ -330,7 +330,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-4',
             title: 'EDX Series: Episode 4',
-            duration: '16 min',
+            duration: '43:10',
             audioFile: 'Podcasts/EDX_4.m4a',
             description: 'Details various nerve conduction studies (NCS).',
             showNotes: `<p>Details various nerve conduction studies.</p>`
@@ -338,7 +338,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-5',
             title: 'EDX Series: Episode 5',
-            duration: '15 min',
+            duration: '35:24',
             audioFile: 'Podcasts/EDX_5.m4a',
             description: 'Diagnostic utility of EDX studies and needle EMG.',
             showNotes: `<p>Diagnostic utility of EDX studies.</p>`
@@ -346,7 +346,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-6',
             title: 'EDX Series: Episode 6',
-            duration: '39 min',
+            duration: '34:56',
             audioFile: 'Podcasts/EDX_6.m4a',
             description: 'Clinical guide for interpreting EMG results.',
             showNotes: `<p>Clinical guide for interpreting EMG results.</p>`
@@ -354,7 +354,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-7',
             title: 'EDX Series: Episode 7',
-            duration: '30 min',
+            duration: '29:57',
             audioFile: 'Podcasts/EDX_7.m4a',
             description: 'Diagnostic framework for identifying nerve injuries.',
             showNotes: `<p>Diagnostic framework for identifying nerve injuries.</p>`
@@ -362,7 +362,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-8',
             title: 'EDX Series: Episode 8',
-            duration: '28 min',
+            duration: '28:28',
             audioFile: 'Podcasts/EDX_8.m4a',
             description: 'Clinical guide to plexopathies and nerve entrapments.',
             showNotes: `<p>Clinical guide to plexopathies.</p>`
@@ -370,7 +370,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-9',
             title: 'EDX Series: Episode 9',
-            duration: '14 min',
+            duration: '37:25',
             audioFile: 'Podcasts/EDX_9.m4a',
             description: 'Comprehensive overview of upper extremity nerve pathologies.',
             showNotes: `<p>Overview of upper extremity nerve pathologies.</p>`
@@ -378,7 +378,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-10',
             title: 'EDX Series: Episode 10',
-            duration: '15 min',
+            duration: '32:36',
             audioFile: 'Podcasts/EDX_10.m4a',
             description: 'Clinical guide to mononeuropathies of the limbs.',
             showNotes: `<p>Clinical guide to mononeuropathies.</p>`
@@ -386,7 +386,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-11',
             title: 'EDX Series: Episode 11',
-            duration: '32 min',
+            duration: '37:13',
             audioFile: 'Podcasts/EDX_11.m4a',
             description: 'Anatomy and pathology of lower extremity nerves.',
             showNotes: `<p>Anatomy and pathology of lower extremity nerves.</p>`
@@ -394,7 +394,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-12',
             title: 'EDX Series: Episode 12',
-            duration: '14 min',
+            duration: '28:43',
             audioFile: 'Podcasts/EDX_12.m4a',
             description: 'Clinical overview of peripheral polyneuropathy.',
             showNotes: `<p>Clinical overview of peripheral polyneuropathy.</p>`
@@ -402,7 +402,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-13',
             title: 'EDX Series: Episode 13',
-            duration: '33 min',
+            duration: '40:27',
             audioFile: 'Podcasts/EDX_13.m4a',
             description: 'Clinical guide for diagnosing neuromuscular junction (NMJ) disorders.',
             showNotes: `<p>Clinical guide for diagnosing NMJ disorders.</p>`
@@ -410,7 +410,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-14',
             title: 'EDX Series: Episode 14',
-            duration: '13 min',
+            duration: '34:38',
             audioFile: 'Podcasts/EDX_14.m4a',
             description: 'Comprehensive clinical guide for diagnosing and classifying myopathies.',
             showNotes: `<p>Clinical guide for diagnosing myopathies.</p>`
@@ -418,7 +418,7 @@ export const podcastEpisodes = {
         {
             id: 'edx-15',
             title: 'EDX Series: Episode 15',
-            duration: '13 min',
+            duration: '29:43',
             audioFile: 'Podcasts/EDX_15.m4a',
             description: 'Clinical guide to motor neuron diseases (MND).',
             showNotes: `<p>Clinical guide to motor neuron diseases (MND).</p>`

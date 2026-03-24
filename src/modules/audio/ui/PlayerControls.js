@@ -42,6 +42,7 @@ export class PlayerControls {
                 <!-- Speed Controls -->
                 <div class="speed-controls">
                     <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="1.25">1.25x</button>
                     <button class="speed-btn" data-speed="1.5">1.5x</button>
                     <button class="speed-btn" data-speed="2">2x</button>
                 </div>

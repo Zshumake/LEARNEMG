@@ -60,7 +60,7 @@ class MuscleData {
     'Teres major': MuscleModel(
       name: 'Teres major',
       nerve: 'Lower subscapular',
-      roots: ['C5', 'C6', 'C7'],
+      roots: ['C5', 'C6'],
       region: 'UE',
       peripheralNerve: 'Lower subscapular',
       cord: 'Posterior cord',

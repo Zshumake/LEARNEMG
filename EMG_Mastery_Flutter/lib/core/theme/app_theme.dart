@@ -22,6 +22,38 @@ class AppTheme {
   static const Color textMuted = Color(0xFF64748B);
   static const Color textHeading = Color(0xFF1E293B);
 
+  // Spacing Scale (4px base)
+  static const double space4 = 4.0;
+  static const double space8 = 8.0;
+  static const double space12 = 12.0;
+  static const double space16 = 16.0;
+  static const double space20 = 20.0;
+  static const double space24 = 24.0;
+  static const double space32 = 32.0;
+  static const double space40 = 40.0;
+
+  // Border Radius Scale
+  static const double radiusS = 8.0;
+  static const double radiusM = 12.0;
+  static const double radiusL = 16.0;
+  static const double radiusXL = 20.0;
+  static const double radiusRound = 100.0;
+
+  // Module Accent Colors (one per module for tabs, headers, cards)
+  static const Color moduleIntro = Color(0xFF6B9F78);       // green (primary)
+  static const Color modulePlexus = Color(0xFF0EA5E9);      // sky blue
+  static const Color moduleRadiculopathy = Color(0xFFC2410C); // burnt orange
+  static const Color moduleNeuropathy = Color(0xFF2563EB);   // blue
+  static const Color moduleNCSFundamentals = Color(0xFF0D9488); // teal
+  static const Color moduleNCSTechniques = Color(0xFF8B5CF6);  // violet
+  static const Color moduleNeedle = Color(0xFF4F46E5);       // indigo
+  static const Color modulePatterns = Color(0xFFF59E0B);     // amber
+  static const Color moduleNMBasics = Color(0xFF7C3AED);     // purple
+  static const Color moduleReports = Color(0xFF059669);      // emerald
+  static const Color moduleClinical = Color(0xFF1E293B);     // slate (dark)
+  static const Color moduleMuscle = Color(0xFF0D9488);       // teal
+  static const Color moduleCases = Color(0xFF6366F1);        // indigo
+
   // Gradients
   static const LinearGradient foundationGradient = LinearGradient(
     colors: [primary, primaryDark],

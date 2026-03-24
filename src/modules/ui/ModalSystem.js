@@ -1,6 +1,6 @@
 
 import { themeManager } from './ThemeManager.js';
-import { LEARNING_MODULES_CONFIG } from '../../data/ModuleConfig.js';
+import { learningModulesConfig } from '../candyland/BoardData.js';
 
 export class ModalSystem {
     constructor() {
@@ -14,7 +14,7 @@ export class ModalSystem {
      * @param {string} pgyLevel - Current PGY Level.
      */
     async showLearningModal(module, index, pgyLevel = 'pgy2') {
-        const totalModules = LEARNING_MODULES_CONFIG[pgyLevel]?.length || 10;
+        const totalModules = learningModulesConfig[pgyLevel]?.length || 10;
         const terrain = themeManager.getTerrainTheme(index, totalModules);
 
         const modalHTML = `

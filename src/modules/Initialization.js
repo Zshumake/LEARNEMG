@@ -14,7 +14,7 @@ import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260317';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260317';
 import { AudioController } from './audio/AudioController.js?v=20260317';
 import { ErnestCore } from './ernest/ErnestCore.js?v=20260317';
-import { LEARNING_MODULES_CONFIG } from '../data/ModuleConfig.js?v=20260317';
+import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
 
 
 class AppInitializer {
@@ -59,7 +59,7 @@ class AppInitializer {
             plexus: null
         };
         window.moduleLoader = this.moduleLoader; // Legacy alias
-        window.learningModulesConfig = LEARNING_MODULES_CONFIG;
+        window.learningModulesConfig = learningModulesConfig;
 
         // Legacy global shims for decoupled HTML elements
         window.showEMGChallenge = window.showEMGChallenge || (() => {

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
+import '../../data/podcast_data.dart';
+import '../podcast/widgets/podcast_trigger_card.dart';
+import '../../core/widgets/decision_tree.dart';
+import '../../data/clinical_decision_trees.dart';
+import '../../core/widgets/diagram_card.dart';
 
 /// Radiculopathy Pathophysiology teaching module.
 class RadiculopathyView extends StatelessWidget {
@@ -89,6 +94,19 @@ class _RadiculopathyLearningTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          PodcastTriggerCard(
+            episode: PodcastData.getEpisodesByModule('radiculopathy').first,
+          ),
+          const SizedBox(height: 20),
+          const DiagramCard(
+            imagePath: 'assets/images/pathology/radiculopathy_pathophysiology.png',
+            caption: 'Radiculopathy -- Nerve Root Compression at the Spine',
+            labels: [
+              DiagramLabel(text: 'Nerve Root', color: Color(0xFFDC2626)),
+              DiagramLabel(text: 'DRG', color: Color(0xFF7C3AED)),
+              DiagramLabel(text: 'Disc Herniation', color: Color(0xFFF59E0B)),
+            ],
+          ),
           _buildBeginnerIntro(),
           const SizedBox(height: 25),
           _buildRedFlagsSection(),
@@ -108,6 +126,13 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           _buildSeniorTruthsSection(),
           const SizedBox(height: 25),
           _buildClinicalScenariosSection(),
+          const SizedBox(height: 30),
+          const DecisionTree(
+            title: 'Foot Drop Localization',
+            subtitle: 'Work through the clinical reasoning step by step.',
+            root: ClinicalDecisionTrees.footDrop,
+            accentColor: Color(0xFFC2410C),
+          ),
           const SizedBox(height: 60),
         ],
       ),
