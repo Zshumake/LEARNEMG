@@ -377,7 +377,7 @@ export const IntroductionData = {
             question: "You record a median motor distal latency of 5.2 ms. The patient's hand skin temperature is 28 degrees C. What should you do before interpreting this result?",
             options: ["Report the finding as carpal tunnel syndrome", "Add a correction factor of 0.2 ms per degree", "Warm the hand to at least 32 degrees C and repeat the study", "The temperature does not affect distal latency"],
             correct: 2,
-            explanation: "Cold temperature slows sodium channel kinetics, artificially prolonging latencies and slowing conduction velocities. Per AANEM guidelines, the hand must be warmed to at least 32 degrees C (upper extremity) or 30 degrees C (lower extremity) before results can be trusted. A 'cold hand' can make a perfectly healthy nerve look diseased."
+            explanation: "Cold temperature slows sodium channel kinetics, artificially prolonging latencies and slowing conduction velocities. Per AANEM guidelines, the hand must be warmed to at least 32 degrees C (upper extremity) or 31 degrees C (lower extremity) before results can be trusted. A 'cold hand' can make a perfectly healthy nerve look diseased."
         },
         {
             question: "You see a thick, rhythmic 'fuzzy' baseline obscuring all your nerve conduction waveforms. What is the most likely cause?",
@@ -444,7 +444,7 @@ export const IntroductionData = {
     temporalEvolution: [
         { timepoint: "Day 0-2", finding: "NCS may appear NORMAL", explanation: "Wallerian degeneration has not yet occurred. The distal nerve segment is still alive and conducting normally, even though it has been severed from its cell body." },
         { timepoint: "Day 3-5", finding: "Motor amplitudes begin to drop", explanation: "The distal motor axons begin to degenerate. CMAP amplitudes recorded distal to the injury site progressively decrease. This is the earliest NCS change." },
-        { timepoint: "Day 6-10", finding: "Sensory amplitudes drop", explanation: "Sensory axons undergo Wallerian degeneration slightly later than motor axons. SNAP amplitudes decrease. By day 10-11, the process is largely complete." },
+        { timepoint: "Day 7-11", finding: "Sensory amplitudes drop", explanation: "Sensory axons undergo Wallerian degeneration slightly later than motor axons. SNAP amplitudes decrease. By day 10-11, the process is largely complete." },
         { timepoint: "Week 2-3", finding: "Fibrillations appear PROXIMALLY", explanation: "Denervated muscle fibers closest to the injury site develop membrane instability first. Fibrillations and positive sharp waves appear on needle EMG in proximal muscles." },
         { timepoint: "Week 3-5", finding: "Fibrillations appear DISTALLY", explanation: "More distal muscles develop fibrillations later because the degenerating axon terminals persist longer in more distal locations. This is why timing matters for EDX." },
         { timepoint: "Months", finding: "Reinnervation potentials appear", explanation: "If recovery is occurring, nascent (small, polyphasic) MUAPs appear first, gradually increasing in size as collateral sprouts mature. Large, polyphasic 'giant' MUAPs indicate established chronic reinnervation." }

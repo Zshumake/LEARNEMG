@@ -226,7 +226,7 @@ final TopicData ncsFundamentalsContent = TopicData(
           findings:
               "Surviving wires conduct perfectly normally. Therefore, Velocity & Latency will stay >75% of normal values.",
           prognosis:
-              "Remember: Wallerian degeneration takes 3-5 days (motor) or 6-10 days (sensory) to complete. You cannot reliably diagnose axonal loss 1 hour after an injury.",
+              "Remember: Wallerian degeneration takes 3-5 days (motor) or 7-11 days (sensory) to complete. You cannot reliably diagnose axonal loss 1 hour after an injury.",
         ),
         MechanismCardBlock(
           type: "Demyelinating Pattern",

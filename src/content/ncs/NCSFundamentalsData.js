@@ -106,7 +106,7 @@ export const NCSFundamentalsData = {
             title: "Temperature Variation: The Silent Saboteur",
             effects: "Skin temperature is the most critical technical factor in all of electrodiagnosis. When a nerve gets cold, its sodium channels physically open and close more slowly. Cold nerves conduct electricity slowly, and the latencies become prolonged. Crucially, because the depolarization of individual muscle fibers happens more slowly, there is less 'phase cancellation' (the fast and slow fibers don't cancel each other out as much). This paradoxically causes the waveform amplitude to INCREASE.",
             correction: "The Golden Rule: Cool limb = Slowed Conduction + Higher Amplitude. Cold limbs perfectly mimic demyelinating neuropathies! For every 1°C drop below normal, conduction velocity slows by 1.5 - 2.5 m/s, and distal latency prolongs by 0.2 ms.",
-            ideal: "Always, ALWAYS verify skin temperature before starting. Target skin temp is 32-34°C. Warm the patient's limbs if necessary."
+            ideal: "Always, ALWAYS verify skin temperature before starting. Target skin temp is 32-34°C for upper extremity and 31-34°C for lower extremity. Warm the patient's limbs if necessary."
         },
         noise: {
             type: "60 Hz Interference",
@@ -135,7 +135,7 @@ export const NCSFundamentalsData = {
             title: "The Axonal Loss Pattern",
             primary: "Key Finding: Severely reduced Amplitudes (CMAP or SNAP).",
             secondary: "When axons are damaged (Wallerian Degeneration), the 'wires' are physically gone. Fewer wires firing means less electricity reaches the muscle, resulting in a tiny, crushed amplitude. Because the surviving wires still have perfect myelin insulation, the Conduction Velocity and Latencies usually remain entirely normal or only slightly slowed (always >75% of Lower Limit of Normal).",
-            note: "Timing matters! Wallerian degeneration is not instantaneous. If a patient severs their ulnar nerve today, their distal amplitudes will look completely normal for several days. It takes 3-5 days for motor axons to break down, and 6-10 days for sensory axons."
+            note: "Timing matters! Wallerian degeneration is not instantaneous. If a patient severs their ulnar nerve today, their distal amplitudes will look completely normal for several days. It takes 3-5 days for motor axons to break down, and 7-11 days for sensory axons."
         },
         demyelination: {
             title: "The Demyelinating Pattern",

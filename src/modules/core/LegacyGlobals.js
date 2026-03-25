@@ -211,25 +211,6 @@ window.checkMedianAnswer = function (button, isCorrect) {
 // ATRIUM HEALTH 13-MODULE PATHWAY SYSTEM
 // ===============================================
 
-// Module Configuration with Custom Artwork Integration
-const masteryModuleConfig = [
-    { id: 'emg-introduction', title: 'EMG/NCS Introduction', customIcon: 'images/icons/EMG-NCS Intro.png' },
-    { id: 'plexus-anatomy', title: 'Peripheral Nerve Anatomy', customIcon: 'images/icons/Peripheral Anatomy.png' },
-    { id: 'plexus', title: 'Interactive Plexus Anatomy', customIcon: 'images/icons/Brachial Plexus Anatomy.png' },
-    { id: 'radiculopathy-pathophysiology', title: 'Radiculopathy Pathophysiology', customIcon: 'images/icons/Radiculopathy Pathophysiology.png' },
-    { id: 'neuropathy-pathophysiology', title: 'Neuropathy Pathophysiology', customIcon: 'images/icons/Neuropathy Pathophysiology.png' },
-    { id: 'ncs-fundamentals', title: 'NCS Fundamentals', customIcon: 'images/icons/NCS Fundamentals.png' },
-    { id: 'ncs-techniques', title: 'NCS Techniques', customIcon: 'images/icons/NCS Techniques.png' },
-    { id: 'emg-needle-localization', title: 'EMG Needle Localization', customIcon: 'images/icons/EMG Needle Localization.png' },
-    { id: 'muscle-quiz', title: 'Muscle Study Lab', customIcon: 'images/icons/muscle study lab.png' },
-    { id: 'basic-patterns', title: 'Basic Pattern Recognition', customIcon: 'images/icons/Basic Pattern Recognition.png' },
-    { id: 'neuropathy-myopathy-basics', title: 'Neuropathy vs Myopathy Basics', customIcon: 'images/icons/Neuropathy vs. Myopathy Basics.png' },
-    { id: 'simple-reports', title: 'Basic Report Writing', customIcon: 'images/icons/Basic report writing.png' },
-    { id: 'clinical-correlation', title: 'Clinical Application', customIcon: 'images/icons/Clinical Application.png' }
-];
-
-// Old ERNEST Messages Removed - Now Using Dynamic Description System
-
 // Create Pre-Positioned Description Boxes
 
 
@@ -299,62 +280,6 @@ console.log('✨🎮 Enhanced Journey with Integrated Modal Systemeady!');
 
 
 
-// Add CSS styles for modal and transitions
-const modalStyles = document.createElement('style');
-modalStyles.textContent = `
-                /* Page transition effects */
-                .page - transition {
-                transition: all 0.8s cubic - bezier(0.4, 0, 0.2, 1);
-            }
-
-            .blur - out {
-                filter: blur(20px);
-                opacity: 0.3;
-                transform: scale(0.95);
-            }
-
-            #modal - overlay {
-                opacity: 0;
-                backdrop - filter: blur(0px);
-                transition: opacity 0.6s ease, backdrop - filter 0.6s ease;
-            }
-
-            #modal - overlay.show {
-                opacity: 1;
-                backdrop - filter: blur(8px);
-            }
-
-            #modal - overlay > div {
-                opacity: 0;
-                transform: scale(0.9) translateY(40px);
-                transition: opacity 0.5s ease 0.2s, transform 0.5s cubic - bezier(0.4, 0, 0.2, 1) 0.2s;
-            }
-
-            #modal - overlay.show > div {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-
-            #modal - overlay button:hover {
-                background: #dc2626!important;
-                transform: scale(1.1);
-            }
-
-            #modal - overlay.interactive - content {
-                max - width: 100 %;
-                margin: 0;
-            }
-
-            #modal - overlay.quiz - section {
-                margin - bottom: 20px;
-            }
-
-            /* Transition for main content */
-            #learning - board, #pgy - selection {
-                transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
-            }
-        `;
-document.head.appendChild(modalStyles);
 
 // Close modal when clicking outside overlay
 document.addEventListener('DOMContentLoaded', function () {
