@@ -5,6 +5,7 @@ import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/video_player_widget.dart';
+import '../../core/widgets/waveform_card.dart';
 import '../../data/podcast_data.dart';
 import '../podcast/widgets/podcast_trigger_card.dart';
 
@@ -105,6 +106,8 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
           _buildObjectives(),
           const SizedBox(height: 30),
           _buildAnalysisFramework(),
+          const SizedBox(height: 30),
+          _buildWaveformVisualizer(),
           const SizedBox(height: 30),
           _buildSectionHeader(
             "Pattern Recognition Library",
@@ -262,6 +265,96 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
           ),
         );
       }).toList(),
+    );
+  }
+
+  Widget _buildWaveformVisualizer() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Row(
+          children: [
+            Icon(Icons.monitor_heart_rounded, color: Color(0xFF059669), size: 28),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "EMG Waveform Visualizer",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          "Tap any waveform to see its clinical significance. Learn the morphology that defines each discharge type.",
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xFF64748B),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 20),
+        // Abnormal Spontaneous Activity
+        _buildWaveformGroup("Abnormal Spontaneous Activity", const Color(0xFFDC2626), const [
+          WaveformType.fibrillation,
+          WaveformType.psw,
+          WaveformType.crd,
+          WaveformType.myotonic,
+          WaveformType.fasciculation,
+        ]),
+        const SizedBox(height: 24),
+        // Motor Unit Potentials
+        _buildWaveformGroup("Motor Unit Potentials", const Color(0xFF2563EB), const [
+          WaveformType.normalMuap,
+          WaveformType.neuropathicMuap,
+          WaveformType.myopathicMuap,
+        ]),
+        const SizedBox(height: 24),
+        // Normal / Benign Activity
+        _buildWaveformGroup("Normal & Endplate Activity", const Color(0xFF059669), const [
+          WaveformType.endplateNoise,
+          WaveformType.endplateSpike,
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildWaveformGroup(String title, Color color, List<WaveformType> types) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(bottom: 8),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: color.withValues(alpha: 0.15), width: 2),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.auto_graph_rounded, color: color, size: 18),
+              const SizedBox(width: 8),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: color,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        ...types.map((type) => Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: WaveformCard(type: type),
+        )),
+      ],
     );
   }
 
