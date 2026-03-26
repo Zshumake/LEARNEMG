@@ -27,6 +27,21 @@ export class MuscleAnatomyQuizModule {
     initGlobalBindings() {
         window.MuscleAnatomyQuiz = this;
         window.launchAnatomyQuiz = this.launch;
+
+        // Register with ActionBus
+        if (window._registerAction) {
+            window._registerAction('muscleQuiz:startQuiz', () => this.startQuiz());
+            window._registerAction('muscleQuiz:checkAnswer', (el) => {
+                const answer = el.getAttribute('data-answer');
+                const idx = parseInt(el.getAttribute('data-idx'), 10);
+                this.checkAnswer(answer, idx);
+            });
+            window._registerAction('muscleQuiz:generateQuestion', () => this.generateQuestion());
+            window._registerAction('muscleQuiz:backToSetup', () => {
+                document.getElementById('quiz-setup').style.display = 'block';
+                document.getElementById('active-quiz-area').style.display = 'none';
+            });
+        }
     }
 
     launch() {
@@ -209,7 +224,7 @@ export class MuscleAnatomyQuizModule {
                     </div>
                 </div>
 
-                <button onclick="MuscleAnatomyQuiz.startQuiz()" class="quiz-start-btn">
+                <button data-action="muscleQuiz:startQuiz" class="quiz-start-btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                     Start Quiz Engine
                 </button>
@@ -290,7 +305,7 @@ export class MuscleAnatomyQuizModule {
 
             <div id="quiz-options-container" style="display: grid; gap: 15px; grid-template-columns: 1fr;">
                 ${options.map((opt, i) => `
-                    <button class="quiz-option-btn option-${i}" onclick="MuscleAnatomyQuiz.checkAnswer('${opt.replace(/'/g, "\\'")}', ${i})" 
+                    <button class="quiz-option-btn option-${i}" data-action="muscleQuiz:checkAnswer" data-answer="${opt.replace(/"/g, '&quot;')}" data-idx="${i}"
                     style="padding: 20px; text-align: left; border: 2px solid #e2e8f0; border-radius: 12px; background: white; cursor: pointer; font-size:1.1em; font-weight: 500; color: #334155; transition: all 0.2s ease; display: flex; align-items: center; gap: 15px;">
                         <div style="width: 30px; height: 30px; border-radius: 50%; background: #f1f5f9; color: #64748b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em;">${String.fromCharCode(65 + i)}</div>
                         ${opt}
@@ -299,11 +314,11 @@ export class MuscleAnatomyQuizModule {
             </div>
 
             <div style="margin-top: 30px; display: flex; justify-content: space-between;">
-                <button onclick="document.getElementById('quiz-setup').style.display = 'block'; document.getElementById('active-quiz-area').style.display = 'none';" style="background: transparent; border: 2px solid #e2e8f0; color: #64748b; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                <button data-action="muscleQuiz:backToSetup" style="background: transparent; border: 2px solid #e2e8f0; color: #64748b; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
                     Settings
                 </button>
-                
-                <button onclick="MuscleAnatomyQuiz.generateQuestion()" style="background: #f1f5f9; border: none; color: #475569; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+
+                <button data-action="muscleQuiz:generateQuestion" style="background: #f1f5f9; border: none; color: #475569; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
                     Skip Question
                 </button>
             </div>
@@ -397,7 +412,7 @@ export class MuscleAnatomyQuizModule {
 
             // Add a manual "Next" button since they got it wrong, let them read the correct answer
             setTimeout(() => {
-                feedback.innerHTML += `<br><button onclick="MuscleAnatomyQuiz.generateQuestion()" style="margin-top: 15px; background: #dc2626; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Next Question</button>`;
+                feedback.innerHTML += `<br><button data-action="muscleQuiz:generateQuestion" style="margin-top: 15px; background: #dc2626; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Next Question</button>`;
             }, 500);
         }
     }

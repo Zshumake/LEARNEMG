@@ -101,7 +101,7 @@ if (!window.EMGLocalization) {
             const pillsHTML = Object.keys(muscles).map(abbrev => {
                 const muscle = muscles[abbrev];
                 return `
-                    <div class="muscle-pill" onclick="EMGLocalization.selectMuscle('${abbrev}', '${region}')" data-muscle="${abbrev}">
+                    <div class="muscle-pill" data-action="emgSelectMuscle" data-muscle="${abbrev}" data-region="${region}">
                         <span class="muscle-pill-abbrev">${abbrev}</span>
                         <span class="muscle-pill-name">${muscle.fullName}</span>
                     </div>
@@ -194,6 +194,19 @@ if (!window.EMGLocalization) {
 
 export const NeedleLocalization = {
     initialize() {
+        // Register ActionBus handlers
+        if (window._registerAction) {
+            window._registerAction('emgSelectMuscle', (el) => {
+                const muscle = el.getAttribute('data-muscle');
+                const region = el.getAttribute('data-region');
+                if (window.EMGLocalization) window.EMGLocalization.selectMuscle(muscle, region);
+            });
+            window._registerAction('emgSwitchRegion', (el) => {
+                const region = el.getAttribute('data-region');
+                if (window.EMGLocalization) window.EMGLocalization.switchRegion(region);
+            });
+        }
+
         // Called after HTML is in the DOM -- show upper extremity muscles immediately
         if (window.EMGLocalization) {
             window.EMGLocalization.switchRegion('upper');
@@ -231,10 +244,10 @@ export const NeedleLocalization = {
                 <div class="control-section">
                     <h4>Select Region</h4>
                     <div class="region-selector">
-                        <button class="region-btn active" id="upper-region-btn" onclick="EMGLocalization.switchRegion('upper')">
+                        <button class="region-btn active" id="upper-region-btn" data-action="emgSwitchRegion" data-region="upper">
                             Upper Extremity
                         </button>
-                        <button class="region-btn" id="lower-region-btn" onclick="EMGLocalization.switchRegion('lower')">
+                        <button class="region-btn" id="lower-region-btn" data-action="emgSwitchRegion" data-region="lower">
                             Lower Extremity
                         </button>
                     </div>

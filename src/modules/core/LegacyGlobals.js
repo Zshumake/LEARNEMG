@@ -119,6 +119,10 @@ function _registerLegacyActions() {
             document.body.style.overflow = 'auto';
         }
     });
+
+    reg('closeModal', () => {
+        if (window.closeModal) window.closeModal();
+    });
 }
 _registerLegacyActions();
 

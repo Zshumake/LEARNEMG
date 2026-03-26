@@ -403,41 +403,41 @@ const generateContent = () => `
             
             <div class="nerve-list-group">
                 <div class="nerve-group-title">Upper Extremity</div>
-                <div class="nerve-item" data-nerve="median" onclick="selectNerve('median')">
+                <div class="nerve-item" data-nerve="median" data-action="selectNerve">
                     <span>Median Nerve</span><span class="root-badge">C6-T1</span>
                 </div>
-                <div class="nerve-item" data-nerve="ulnar" onclick="selectNerve('ulnar')">
+                <div class="nerve-item" data-nerve="ulnar" data-action="selectNerve">
                     <span>Ulnar Nerve</span><span class="root-badge">C8-T1</span>
                 </div>
-                <div class="nerve-item" data-nerve="radial" onclick="selectNerve('radial')">
+                <div class="nerve-item" data-nerve="radial" data-action="selectNerve">
                     <span>Radial Nerve</span><span class="root-badge">C5-T1</span>
                 </div>
-                <div class="nerve-item" data-nerve="musculocutaneous" onclick="selectNerve('musculocutaneous')">
+                <div class="nerve-item" data-nerve="musculocutaneous" data-action="selectNerve">
                     <span>Musculocutaneous</span><span class="root-badge">C5-C7</span>
                 </div>
-                <div class="nerve-item" data-nerve="axillary" onclick="selectNerve('axillary')">
+                <div class="nerve-item" data-nerve="axillary" data-action="selectNerve">
                     <span>Axillary Nerve</span><span class="root-badge">C5-C6</span>
                 </div>
             </div>
 
             <div class="nerve-list-group">
                 <div class="nerve-group-title">Lower Extremity</div>
-                <div class="nerve-item" data-nerve="sciatic" onclick="selectNerve('sciatic')">
+                <div class="nerve-item" data-nerve="sciatic" data-action="selectNerve">
                     <span>Sciatic Nerve</span><span class="root-badge">L4-S3</span>
                 </div>
-                <div class="nerve-item" data-nerve="tibial" onclick="selectNerve('tibial')">
+                <div class="nerve-item" data-nerve="tibial" data-action="selectNerve">
                     <span>Tibial Nerve</span><span class="root-badge">L4-S3</span>
                 </div>
-                <div class="nerve-item" data-nerve="peroneal" onclick="selectNerve('peroneal')">
+                <div class="nerve-item" data-nerve="peroneal" data-action="selectNerve">
                     <span>Peroneal Nerve</span><span class="root-badge">L4-S2</span>
                 </div>
-                <div class="nerve-item" data-nerve="femoral" onclick="selectNerve('femoral')">
+                <div class="nerve-item" data-nerve="femoral" data-action="selectNerve">
                     <span>Femoral Nerve</span><span class="root-badge">L2-L4</span>
                 </div>
-                <div class="nerve-item" data-nerve="obturator" onclick="selectNerve('obturator')">
+                <div class="nerve-item" data-nerve="obturator" data-action="selectNerve">
                     <span>Obturator Nerve</span><span class="root-badge">L2-L4</span>
                 </div>
-                <div class="nerve-item" data-nerve="sural" onclick="selectNerve('sural')">
+                <div class="nerve-item" data-nerve="sural" data-action="selectNerve">
                     <span>Sural Nerve</span><span class="root-badge">S1-S2</span>
                 </div>
             </div>
@@ -509,9 +509,9 @@ const generateContent = () => `
 
                 <!-- Footer Navigation -->
                 <div class="controls-footer">
-                    <button class="nav-btn secondary" id="prev-btn" onclick="previousStep()">Previous Base</button>
+                    <button class="nav-btn secondary" id="prev-btn" data-action="previousStep">Previous Base</button>
                     <div style="color: #64748b; font-size: 1.05em; font-weight: 600;">Location <span id="current-step-num" style="color: #0f172a; font-weight: 800;">1</span> of <span id="total-step-num">7</span></div>
-                    <button class="nav-btn primary" id="next-btn" onclick="nextStep()">Trace Forward</button>
+                    <button class="nav-btn primary" id="next-btn" data-action="nextStep">Trace Forward</button>
                 </div>
             </div>
         </div>
@@ -530,12 +530,15 @@ export const PathwayExplorer = {
 
     initialize() {
         window.pathwayExplorer = this.state;
-        window.selectNerve = this.selectNerve.bind(this);
-        window.showStep = this.showStep.bind(this);
-        window.nextStep = this.nextStep.bind(this);
-        window.previousStep = this.previousStep.bind(this);
 
-        window._pathwayCheckAnswer = function(btnEl, isCorrect, explanation) {
+        window._registerAction('selectNerve', (el) => this.selectNerve(el.dataset.nerve));
+        window._registerAction('showStep', (el) => this.showStep(parseInt(el.dataset.step, 10)));
+        window._registerAction('nextStep', () => this.nextStep());
+        window._registerAction('previousStep', () => this.previousStep());
+
+        window._registerAction('pathwayCheckAnswer', (btnEl) => {
+            const isCorrect = btnEl.dataset.isCorrect === 'true';
+            const explanation = btnEl.dataset.explanation;
             const container = btnEl.closest('.knowledge-check-card');
             if (!container) return;
             const allBtns = container.querySelectorAll('.kc-option-btn');
@@ -562,7 +565,7 @@ export const PathwayExplorer = {
                 explEl.style.display = 'block';
                 explEl.innerHTML = (isCorrect ? '<strong style="color:#16a34a;">Correct!</strong> ' : '<strong style="color:#dc2626;">Incorrect.</strong> ') + explanation;
             }
-        };
+        });
     },
 
     selectNerve(nerveName) {
@@ -658,7 +661,7 @@ export const PathwayExplorer = {
                 }
 
                 return `
-                    <div class="step-timeline-item ${stateClass}" onclick="showStep(${i})">
+                    <div class="step-timeline-item ${stateClass}" data-action="showStep" data-step="${i}">
                         <div class="timeline-dot"></div>
                         ${injuryHtml}
                         <div class="step-card">
@@ -675,7 +678,7 @@ export const PathwayExplorer = {
                 const optionsHtml = kc.options.map((opt, i) => {
                     const isCorrect = i === kc.correct;
                     const escapedExplanation = kc.explanation.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    return `<button class="kc-option-btn" data-correct="${isCorrect}" onclick="_pathwayCheckAnswer(this, ${isCorrect}, '${escapedExplanation}')" style="display:block;width:100%;text-align:left;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;font-size:0.95em;color:#334155;cursor:pointer;font-weight:500;transition:all 0.2s;font-family:inherit;"><strong style="margin-right:8px;color:#64748b;">${String.fromCharCode(65 + i)}.</strong>${opt}</button>`;
+                    return `<button class="kc-option-btn" data-correct="${isCorrect}" data-action="pathwayCheckAnswer" data-is-correct="${isCorrect}" data-explanation="${escapedExplanation}" style="display:block;width:100%;text-align:left;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;font-size:0.95em;color:#334155;cursor:pointer;font-weight:500;transition:all 0.2s;font-family:inherit;"><strong style="margin-right:8px;color:#64748b;">${String.fromCharCode(65 + i)}.</strong>${opt}</button>`;
                 }).join('');
 
                 stepsContainer.innerHTML += `

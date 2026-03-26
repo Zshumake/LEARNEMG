@@ -29,6 +29,15 @@ window.launchAnatomyQuiz = () => anatomyQuiz.launch();
 window.backToMuscleMenu = () => muscleLabMenu.show();
 window.showCardinalRules = () => referenceMaterials.showCardinalRules();
 
+// Register with ActionBus
+if (window._registerAction) {
+    window._registerAction('showStudyCards', () => studyCards.launch());
+    window._registerAction('showEMGChallenge', () => emgChallenge.launch());
+    window._registerAction('launchAnatomyQuiz', () => anatomyQuiz.launch());
+    window._registerAction('backToMuscleMenu', () => muscleLabMenu.show());
+    window._registerAction('showCardinalRules', () => referenceMaterials.showCardinalRules());
+}
+
 // Initialize Board Logic (if needed here or kept in Init)
 // initializeCandylandBoard(); // Kept in Initialization.js for now or moved here?
 

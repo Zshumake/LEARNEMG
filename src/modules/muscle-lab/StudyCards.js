@@ -23,6 +23,24 @@ export class StudyCardsModule {
     initGlobalBindings() {
         window.MuscleAnatomy = this;
         window.showStudyCards = this.launch;
+
+        // Register with ActionBus
+        if (window._registerAction) {
+            window._registerAction('studyCards:switchAnatomy', (el) => {
+                const region = el.getAttribute('data-region');
+                this.switchAnatomy(region);
+            });
+            window._registerAction('studyCards:toggleDetail', (el) => {
+                const muscle = el.getAttribute('data-muscle');
+                const type = el.getAttribute('data-type');
+                this.toggleDetail(muscle, type);
+            });
+            window._registerAction('studyCards:globalRevealAll', () => this.globalRevealAll());
+            window._registerAction('studyCards:globalRevealType', (el) => {
+                const type = el.getAttribute('data-type');
+                this.globalRevealType(type);
+            });
+        }
     }
 
     launch() {
@@ -145,7 +163,7 @@ export class StudyCardsModule {
             </style>
 
             <div class="muscle-lab-hero">
-                <button onclick="window.backToMuscleMenu()" style="position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <button data-action="backToMuscleMenu" style="position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"></path><polyline points="12 19 5 12 12 5"></polyline></svg> Menu
                 </button>
                 <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
@@ -162,20 +180,20 @@ export class StudyCardsModule {
             <!-- CARDS TAB -->
             <div id="cards-tab-content" class="tab-content">
                 <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
-                     <button class="region-btn active" data-region="lower" onclick="MuscleAnatomy.switchAnatomy('lower')" style="display: flex; align-items: center; gap: 8px;">
+                     <button class="region-btn active" data-region="lower" data-action="studyCards:switchAnatomy" style="display: flex; align-items: center; gap: 8px;">
                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Lower Extremity
                      </button>
-                     <button class="region-btn" data-region="upper" onclick="MuscleAnatomy.switchAnatomy('upper')" style="display: flex; align-items: center; gap: 8px;">
+                     <button class="region-btn" data-region="upper" data-action="studyCards:switchAnatomy" style="display: flex; align-items: center; gap: 8px;">
                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Upper Extremity
                      </button>
                 </div>
 
                 <div class="global-reveal-controls">
-                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealAll()" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Reveal All</button>
-                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('nerve')" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nerves</button>
-                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('roots')" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg> Roots</button>
-                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('cord')" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="8"></line><line x1="10" y1="1" x2="10" y2="8"></line><line x1="14" y1="1" x2="14" y2="8"></line></svg> Cords</button>
-                    <button class="global-reveal-btn" onclick="MuscleAnatomy.globalRevealType('actions')" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.92-10.24l-3.26-3.26"></path></svg> Actions</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealAll" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Reveal All</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="nerve" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nerves</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="roots" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg> Roots</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="cord" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="8"></line><line x1="10" y1="1" x2="10" y2="8"></line><line x1="14" y1="1" x2="14" y2="8"></line></svg> Cords</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="actions" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.92-10.24l-3.26-3.26"></path></svg> Actions</button>
                 </div>
 
                 <div id="muscle-anatomy-display"></div>
@@ -204,10 +222,10 @@ export class StudyCardsModule {
                     <div class="muscle-card-interactive" data-muscle="${name}">
                         <h4 class="muscle-name">${name}</h4>
                         <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
-                            <button class="muscle-btn nerve" onclick="MuscleAnatomy.toggleDetail('${name}', 'nerve')">Nerve</button>
-                            <button class="muscle-btn roots" onclick="MuscleAnatomy.toggleDetail('${name}', 'roots')">Roots</button>
-                            <button class="muscle-btn cord" onclick="MuscleAnatomy.toggleDetail('${name}', 'cord')">Cord</button>
-                            <button class="muscle-btn actions" onclick="MuscleAnatomy.toggleDetail('${name}', 'actions')">Actions</button>
+                            <button class="muscle-btn nerve" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="nerve">Nerve</button>
+                            <button class="muscle-btn roots" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="roots">Roots</button>
+                            <button class="muscle-btn cord" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="cord">Cord</button>
+                            <button class="muscle-btn actions" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="actions">Actions</button>
                         </div>
                         
                         <div class="muscle-detail" data-type="nerve" style="display: none;">

@@ -30,6 +30,22 @@ export class EMGChallengeSystem {
         this.nextCase = this.nextCase.bind(this);
         this.backToSettings = this.backToSettings.bind(this);
         this.toggleQuestionType = this.toggleQuestionType.bind(this);
+
+        // Register with ActionBus
+        if (window._registerAction) {
+            window._registerAction('emgChallenge:toggleQuestionType', (el) => {
+                const type = el.getAttribute('data-type');
+                this.toggleQuestionType(type);
+            });
+            window._registerAction('emgChallenge:startChallenge', () => this.startChallenge());
+            window._registerAction('emgChallenge:selectAnswer', (el) => {
+                const answer = el.getAttribute('data-answer');
+                this.selectAnswer(answer);
+            });
+            window._registerAction('emgChallenge:backToSettings', () => this.backToSettings());
+            window._registerAction('emgChallenge:submitAnswer', () => this.submitAnswer());
+            window._registerAction('emgChallenge:nextCase', () => this.nextCase());
+        }
     }
 
     launch() {
@@ -59,7 +75,7 @@ export class EMGChallengeSystem {
             margin: 0 auto;
             font-family: 'Inter', sans-serif;
         ">
-            <button class="hero-back-btn" onclick="window.backToMuscleMenu()" style="
+            <button class="hero-back-btn" data-action="backToMuscleMenu" style="
                 background: white;
                 border: 2px solid #e2e8f0;
                 padding: 10px 20px;
@@ -111,7 +127,7 @@ export class EMGChallengeSystem {
                 <p style="color: #64748b; margin-bottom: 25px; font-size: 1.05em;">Choose which localizations you want to master</p>
 
                 <div class="toggle-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                    <div class="toggle-option active" data-type="root" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('root')" style="
+                    <div class="toggle-option active" data-type="root" data-action="emgChallenge:toggleQuestionType" style="
                         display: flex;
                         align-items: center;
                         padding: 20px;
@@ -133,7 +149,7 @@ export class EMGChallengeSystem {
                         </div>
                     </div>
 
-                    <div class="toggle-option active" data-type="plexus" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('plexus')" style="
+                    <div class="toggle-option active" data-type="plexus" data-action="emgChallenge:toggleQuestionType" style="
                         display: flex;
                         align-items: center;
                         padding: 20px;
@@ -155,7 +171,7 @@ export class EMGChallengeSystem {
                         </div>
                     </div>
 
-                    <div class="toggle-option active" data-type="peripheral" onclick="window.EMGChallenge && EMGChallenge.toggleQuestionType('peripheral')" style="
+                    <div class="toggle-option active" data-type="peripheral" data-action="emgChallenge:toggleQuestionType" style="
                         display: flex;
                         align-items: center;
                         padding: 20px;
@@ -180,7 +196,7 @@ export class EMGChallengeSystem {
             </div>
 
             <div class="challenge-launch" style="text-align: center;">
-                <button class="launch-challenge-btn" onclick="window.EMGChallenge && EMGChallenge.startChallenge()" style="
+                <button class="launch-challenge-btn" data-action="emgChallenge:startChallenge" style="
                     background: linear-gradient(135deg, #8b5cf6, #6366f1);
                     color: white;
                     border: none;
@@ -320,7 +336,7 @@ export class EMGChallengeSystem {
             </div>
 
             <div class="challenge-controls" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 20px;">
-                <button id="challenge-back-btn" onclick="window.EMGChallenge && EMGChallenge.backToSettings()" style="
+                <button id="challenge-back-btn" data-action="emgChallenge:backToSettings" style="
                     background: white;
                     color: #64748b;
                     border: 2px solid #e2e8f0;
@@ -333,7 +349,7 @@ export class EMGChallengeSystem {
                 " onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='white'">
                     ← Back to Settings
                 </button>
-                <button id="challenge-submit-btn" onclick="window.EMGChallenge && EMGChallenge.submitAnswer()" disabled style="
+                <button id="challenge-submit-btn" data-action="emgChallenge:submitAnswer" disabled style="
                     background: linear-gradient(135deg, #10b981, #059669);
                     color: white;
                     border: none;
@@ -348,7 +364,7 @@ export class EMGChallengeSystem {
                 " onmouseover="if(!this.disabled) { this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.4)'; }" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(16, 185, 129, 0.3)'">
                     Submit Analysis
                 </button>
-                <button id="challenge-next-btn" onclick="window.EMGChallenge && EMGChallenge.nextCase()" style="display: none;
+                <button id="challenge-next-btn" data-action="emgChallenge:nextCase" style="display: none;
                     background: #10b981;
                     color: white;
                     border: none;
@@ -499,7 +515,7 @@ export class EMGChallengeSystem {
         const optionsContainer = document.getElementById('challenge-answer-options');
         if (optionsContainer) {
             optionsContainer.innerHTML = answerOptions.map(option => `
-                <button class="challenge-answer-btn" onclick="window.EMGChallenge && window.EMGChallenge.selectAnswer('${option.replace(/'/g, "\\'")}')" style="
+                <button class="challenge-answer-btn" data-action="emgChallenge:selectAnswer" data-answer="${option.replace(/"/g, '&quot;')}" style="
                     background: white;
                     border: 2px solid #e2e8f0;
                     border-radius: 12px;

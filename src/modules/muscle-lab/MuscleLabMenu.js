@@ -64,7 +64,7 @@ export class MuscleLabMenu {
                 align-items: center;
                 gap: 20px;
             ">
-                <button class="hero-back-btn" onclick="window.closeModal()" style="
+                <button class="hero-back-btn" data-action="closeModal" style="
                     position: absolute;
                     top: 20px;
                     left: 20px;
@@ -112,7 +112,7 @@ export class MuscleLabMenu {
                         </div>
 
                         <button
-                            onclick="if(window.showStudyCards) window.showStudyCards(); else logger.error('Study Cards not loaded');"
+                            data-action="showStudyCards"
                             class="dashboard-card-btn"
                             style="background: linear-gradient(135deg, #0ea5e9, #0284c7); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);"
                             onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(14, 165, 233, 0.4)'"
@@ -138,7 +138,7 @@ export class MuscleLabMenu {
                         </div>
 
                         <button
-                            onclick="if(window.launchAnatomyQuiz) window.launchAnatomyQuiz(); else logger.error('Anatomy Quiz not loaded');"
+                            data-action="launchAnatomyQuiz"
                             class="dashboard-card-btn"
                             style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);"
                             onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(16, 185, 129, 0.4)'"
@@ -164,7 +164,7 @@ export class MuscleLabMenu {
                         </div>
 
                         <button
-                            onclick="if(window.showEMGChallenge) window.showEMGChallenge(); else logger.error('EMG Challenge not loaded');"
+                            data-action="showEMGChallenge"
                             class="dashboard-card-btn"
                             style="background: linear-gradient(135deg, #6366f1, #4f46e5); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);"
                             onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(99, 102, 241, 0.4)'"

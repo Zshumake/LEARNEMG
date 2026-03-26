@@ -62,10 +62,10 @@ class ClinicalExamLabModule {
             <style>${this.getStyles()}</style>
             <div class="cel-container">
                 <div class="cel-tabs">
-                    <button id="cel-tab-study" class="cel-tab cel-tab-active" onclick="window._celModule.switchTab('study')">
+                    <button id="cel-tab-study" class="cel-tab cel-tab-active" data-action="celSwitchTab" data-tab="study">
                         ${ICONS.study} Study Mode
                     </button>
-                    <button id="cel-tab-builder" class="cel-tab" onclick="window._celModule.switchTab('builder')">
+                    <button id="cel-tab-builder" class="cel-tab" data-action="celSwitchTab" data-tab="builder">
                         ${ICONS.builder} Exam Builder
                     </button>
                 </div>
@@ -81,6 +81,15 @@ class ClinicalExamLabModule {
 
     initialize() {
         window._celModule = this;
+
+        window._registerAction('celSwitchTab', (el) => this.switchTab(el.dataset.tab));
+        window._registerAction('celToggleCategory', (el) => this.toggleCategory(el.dataset.category));
+        window._registerAction('celSelectDiagnosis', (el) => this.selectDiagnosis(el.dataset.diagnosisId));
+        window._registerAction('celToggleSection', (el) => this.toggleSection(el.dataset.sectionId));
+        window._registerAction('celBuildExam', () => this.buildExam());
+        window._registerAction('celCopyExam', () => this.copyExam());
+        window._registerAction('celToggleBuilderDx', (el) => this.toggleBuilderDx(el.dataset.builderDxId));
+
         const firstCat = this.categories[0];
         if (firstCat && firstCat.ids.length > 0) {
             setTimeout(() => this.selectDiagnosis(firstCat.ids[0]), 100);
@@ -106,7 +115,7 @@ class ClinicalExamLabModule {
                 <div id="cel-category-list" class="cel-category-list">
                     ${this.categories.map(cat => `
                         <div class="cel-category">
-                            <div class="cel-category-header" onclick="window._celModule.toggleCategory('${cat.name}')">
+                            <div class="cel-category-header" data-action="celToggleCategory" data-category="${cat.name}">
                                 <span>${cat.name}</span>
                                 <span class="cel-cat-count">${cat.ids.length}</span>
                             </div>
@@ -116,7 +125,7 @@ class ClinicalExamLabModule {
                                     if (!dx) return '';
                                     return `<div class="cel-dx-item ${dx.isInappropriate ? 'cel-dx-inappropriate' : ''}"
                                                 id="cel-dx-${id}"
-                                                onclick="window._celModule.selectDiagnosis('${id}')">
+                                                data-action="celSelectDiagnosis" data-diagnosis-id="${id}">
                                         ${dx.name}
                                         ${dx.isInappropriate ? '<span class="cel-badge-warn">Non-EMG</span>' : ''}
                                     </div>`;
@@ -216,7 +225,7 @@ class ClinicalExamLabModule {
 
                 <!-- History (collapsed, at top for context) -->
                 <div class="cel-section cel-history-section">
-                    <h3 class="cel-section-title" onclick="window._celModule.toggleSection('history-${dx.id}')">
+                    <h3 class="cel-section-title" data-action="celToggleSection" data-section-id="history-${dx.id}">
                         ${ICONS.history} Patient History <span class="cel-toggle" id="cel-arrow-history-${dx.id}">+</span>
                     </h3>
                     <div id="cel-section-history-${dx.id}" class="cel-section-body cel-collapsed">
@@ -348,7 +357,7 @@ class ClinicalExamLabModule {
                         const specVal = this.parseStatPercent(t.specificity);
                         const testId = `test-${dxId}-${i}`;
                         return `
-                        <div class="cel-test-card" onclick="window._celModule.toggleSection('${testId}')">
+                        <div class="cel-test-card" data-action="celToggleSection" data-section-id="${testId}">
                             <div class="cel-tc-header">
                                 <span class="cel-tc-name">${t.name}</span>
                                 <span class="cel-toggle cel-tc-toggle" id="cel-arrow-${testId}">+</span>
@@ -537,7 +546,7 @@ class ClinicalExamLabModule {
                                         const dx = this.data[id];
                                         if (!dx) return '';
                                         return `<label class="cel-builder-item" data-dx-name="${dx.name.toLowerCase()}" data-dx-id="${id}">
-                                            <input type="checkbox" onchange="window._celModule.toggleBuilderDx('${id}')" ${this.examBuilderSelections.has(id) ? 'checked' : ''}>
+                                            <input type="checkbox" data-action="celToggleBuilderDx" data-builder-dx-id="${id}" ${this.examBuilderSelections.has(id) ? 'checked' : ''}>
                                             <span>${dx.name}</span>
                                             ${dx.isInappropriate ? '<span class="cel-badge-warn-sm">Non-EMG</span>' : ''}
                                         </label>`;
@@ -545,7 +554,7 @@ class ClinicalExamLabModule {
                                 </div>
                             `).join('')}
                         </div>
-                        <button class="cel-build-btn" onclick="window._celModule.buildExam()">
+                        <button class="cel-build-btn" data-action="celBuildExam">
                             Build My Exam (<span id="cel-build-count">${this.examBuilderSelections.size}</span> selected)
                         </button>
                     </div>
@@ -607,7 +616,7 @@ class ClinicalExamLabModule {
                                 <span class="cel-stat-chip">${allSpecialTests.size} special tests</span>
                             </div>
                         </div>
-                        <button class="cel-copy-btn-hero" onclick="window._celModule.copyExam()">${ICONS.copy} Copy</button>
+                        <button class="cel-copy-btn-hero" data-action="celCopyExam">${ICONS.copy} Copy</button>
                     </div>
                     <div class="cel-built-diff">
                         <span class="cel-built-diff-label">Differential:</span>
@@ -658,7 +667,7 @@ class ClinicalExamLabModule {
                         const sensVal = this.parseStatPercent(t.sensitivity);
                         const specVal = this.parseStatPercent(t.specificity);
                         return `
-                        <div class="cel-test-card" onclick="window._celModule.toggleSection('${id}')">
+                        <div class="cel-test-card" data-action="celToggleSection" data-section-id="${id}">
                             <div class="cel-tc-header">
                                 <span class="cel-tc-name">${t.name}</span>
                                 <span class="cel-toggle cel-tc-toggle" id="cel-arrow-${id}">+</span>
