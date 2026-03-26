@@ -1,22 +1,21 @@
 import { BrachialPlexopathyData } from './BrachialPlexopathyData.js';
 
 export function generatePlexopathyContent() {
-    // Add window handler for EDX reveal
-    if (!window._bpToggleEdx) {
-        window._bpToggleEdx = function(id) {
-            const el = document.getElementById('bp-edx-' + id);
-            const btn = document.getElementById('bp-btn-' + id);
-            if (el) {
-                if (el.style.maxHeight === '0px' || !el.style.maxHeight) {
-                    el.style.maxHeight = '300px';
-                    if (btn) btn.textContent = 'Hide EDX Signature';
-                } else {
-                    el.style.maxHeight = '0px';
-                    if (btn) btn.textContent = 'View EDX Signature';
-                }
+    // Register EDX reveal action
+    window._registerAction('bpToggleEdx', (clickedEl) => {
+        const id = clickedEl.dataset.edxId;
+        const el = document.getElementById('bp-edx-' + id);
+        const btn = document.getElementById('bp-btn-' + id);
+        if (el) {
+            if (el.style.maxHeight === '0px' || !el.style.maxHeight) {
+                el.style.maxHeight = '300px';
+                if (btn) btn.textContent = 'Hide EDX Signature';
+            } else {
+                el.style.maxHeight = '0px';
+                if (btn) btn.textContent = 'View EDX Signature';
             }
-        };
-    }
+        }
+    });
 
     const md = (text) => text ? text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>') : '';
 
@@ -195,7 +194,7 @@ export function generatePlexopathyContent() {
                             </div>
                             <p style="margin: 0 0 8px; font-size: 0.93em; color: #334155;">${md(pattern.cause)}</p>
                             ${pattern.presentation ? `<p style="margin: 0 0 14px; font-size: 0.93em; color: #334155;">${md(pattern.presentation)}</p>` : '<div style="margin-bottom: 14px;"></div>'}
-                            <button id="bp-btn-${idx}" class="bp-edx-btn" style="background: ${c.btnBg};" onclick="window._bpToggleEdx(${idx})">View EDX Signature</button>
+                            <button id="bp-btn-${idx}" class="bp-edx-btn" style="background: ${c.btnBg};" data-action="bpToggleEdx" data-edx-id="${idx}">View EDX Signature</button>
                             <div id="bp-edx-${idx}" class="bp-edx-reveal" style="max-height: 0;">
                                 <div style="margin-top: 14px; background: white; padding: 16px; border-radius: 10px; border: 1px dashed ${c.accent}; font-size: 0.9em; color: ${c.titleColor};">
                                     ${md(pattern.edx)}

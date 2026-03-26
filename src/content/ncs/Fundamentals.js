@@ -5,46 +5,44 @@ export const Fundamentals = {
     data: NCSFundamentalsData,
 
     generateContent(module) {
-        // Ensure global tab switcher is defined
-        if (!window.NCS_switchTab) {
-            window.NCS_switchTab = function (tabName) {
-                document.querySelectorAll('.ncs-content').forEach(el => el.style.display = 'none');
-                const target = document.getElementById('content-' + tabName);
-                if (target) target.style.display = 'block';
+        // Register tab switcher action
+        window._registerAction('NCS_switchTab', (el) => {
+            const tabName = el.dataset.tab;
+            document.querySelectorAll('.ncs-content').forEach(e => e.style.display = 'none');
+            const target = document.getElementById('content-' + tabName);
+            if (target) target.style.display = 'block';
 
-                document.querySelectorAll('.ncs-tab').forEach(el => {
-                    el.classList.remove('active');
-                    el.style.background = 'transparent';
-                    el.style.color = '#475569';
-                });
+            document.querySelectorAll('.ncs-tab').forEach(e => {
+                e.classList.remove('active');
+                e.style.background = 'transparent';
+                e.style.color = '#475569';
+            });
 
-                const btn = document.getElementById('tab-' + tabName);
-                if (btn) {
-                    btn.classList.add('active');
-                    btn.style.background = '#2563eb'; // Blue theme for NCS
-                    btn.style.color = 'white';
+            const btn = document.getElementById('tab-' + tabName);
+            if (btn) {
+                btn.classList.add('active');
+                btn.style.background = '#2563eb'; // Blue theme for NCS
+                btn.style.color = 'white';
+            }
+        });
+
+        // Register Math Calculations action
+        window._registerAction('checkNCSCalc', (el) => {
+            const isCorrect = el.dataset.correct === 'true';
+            const parent = el.closest('.calc-card');
+            parent.querySelectorAll('button').forEach(b => {
+                b.disabled = true;
+                if (b === el) {
+                    b.style.background = isCorrect ? '#dcfce7' : '#fee2e2';
+                    b.style.borderColor = isCorrect ? '#22c55e' : '#ef4444';
+                    b.style.color = isCorrect ? '#166534' : '#991b1b';
                 }
-            };
-        }
-
-        // Logic for Math Calculations
-        if (!window.checkNCSCalc) {
-            window.checkNCSCalc = function (btn, isCorrect) {
-                const parent = btn.closest('.calc-card');
-                parent.querySelectorAll('button').forEach(b => {
-                    b.disabled = true;
-                    if (b === btn) {
-                        b.style.background = isCorrect ? '#dcfce7' : '#fee2e2';
-                        b.style.borderColor = isCorrect ? '#22c55e' : '#ef4444';
-                        b.style.color = isCorrect ? '#166534' : '#991b1b';
-                    }
-                });
-                const feedback = parent.querySelector('.calc-feedback');
-                feedback.style.display = 'block';
-                feedback.style.background = isCorrect ? '#f0fdf4' : '#fef2f2';
-                feedback.style.color = isCorrect ? '#15803d' : '#b91c1c';
-            };
-        }
+            });
+            const feedback = parent.querySelector('.calc-feedback');
+            feedback.style.display = 'block';
+            feedback.style.background = isCorrect ? '#f0fdf4' : '#fef2f2';
+            feedback.style.color = isCorrect ? '#15803d' : '#b91c1c';
+        });
 
         // Output the HTML
         return `
@@ -59,8 +57,8 @@ export const Fundamentals = {
             <!-- Navigation Tabs -->
             <div class="tabs-container" style="display: flex; flex-wrap: wrap; gap: 10px; background: #f8fafc; padding: 15px; border-radius: 20px; margin-bottom: 40px; border: 1px solid #e2e8f0;">
                 ${this.data.tabs.map((tab, i) => `
-                    <button onclick="NCS_switchTab('${tab.id}')" 
-                            class="ncs-tab ${i === 0 ? 'active' : ''}" 
+                    <button data-action="NCS_switchTab" data-tab="${tab.id}"
+                            class="ncs-tab ${i === 0 ? 'active' : ''}"
                             id="tab-${tab.id}"
                             style="flex: 1; min-width: 150px; padding: 12px 20px; background: ${i === 0 ? '#2563eb' : 'transparent'}; color: ${i === 0 ? 'white' : '#475569'}; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="${tab.icon}"></path></svg>
@@ -291,9 +289,9 @@ export const Fundamentals = {
                                 <p style="color: #1e293b; font-size: 1.1em; line-height: 1.6; margin-bottom: 25px;">${prac.question}</p>
                                 
                                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                                    <button class="calc-btn" onclick="checkNCSCalc(this, ${prac.answer === '30 m/s' || prac.answer === '50 m/s'})" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer}</button>
-                                    <button class="calc-btn" onclick="checkNCSCalc(this, false)" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer === '50 m/s' ? '40 m/s' : '40 m/s'}</button>
-                                    <button class="calc-btn" onclick="checkNCSCalc(this, false)" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer === '50 m/s' ? '60 m/s' : '50 m/s'}</button>
+                                    <button class="calc-btn" data-action="checkNCSCalc" data-correct="${prac.answer === '30 m/s' || prac.answer === '50 m/s'}" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer}</button>
+                                    <button class="calc-btn" data-action="checkNCSCalc" data-correct="false" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer === '50 m/s' ? '40 m/s' : '40 m/s'}</button>
+                                    <button class="calc-btn" data-action="checkNCSCalc" data-correct="false" style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s;">${prac.answer === '50 m/s' ? '60 m/s' : '50 m/s'}</button>
                                 </div>
 
                                 <div class="calc-feedback" style="display: none; padding: 15px; border-radius: 12px; font-size: 0.95em; line-height: 1.5; margin-top: 15px;">

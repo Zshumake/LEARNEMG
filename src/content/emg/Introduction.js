@@ -32,7 +32,8 @@ class IntroductionModule extends BaseContent {
         // Inject search logic globally for the terminology tab
         window.filterGlossary = this.handleGlossarySearch.bind(this);
 
-        window._introToggleRule = function(id) {
+        window._registerAction('introToggleRule', (el) => {
+            const id = el.dataset.ruleId;
             const detail = document.getElementById('rule-detail-' + id);
             const chevron = document.getElementById('rule-chevron-' + id);
             if (detail) {
@@ -44,7 +45,7 @@ class IntroductionModule extends BaseContent {
                     if (chevron) chevron.textContent = '+';
                 }
             }
-        };
+        });
     }
 
     handleGlossarySearch() {
@@ -114,7 +115,7 @@ class IntroductionModule extends BaseContent {
                             const firstSentence = rule.text.split('. ')[0] + '.';
                             const restOfText = rule.text.substring(firstSentence.length).trim();
                             return `
-                            <div class="emg-card" style="border-top: 4px solid ${rule.color}; cursor: pointer;" onclick="window._introToggleRule && window._introToggleRule(${rule.id})">
+                            <div class="emg-card" style="border-top: 4px solid ${rule.color}; cursor: pointer;" data-action="introToggleRule" data-rule-id="${rule.id}">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <div style="background: ${rule.color}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 800;">${rule.id}</div>

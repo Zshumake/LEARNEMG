@@ -16,7 +16,7 @@ export class BaseContent {
      * Standard initialization for tab-based content modules.
      */
     initTabNavigation(idPrefix, colorMap, sectionClass = '.intro-section') {
-        window.showIntroSection = (sectionId) => {
+        const showSection = (sectionId) => {
             // Hide all sections of this module type
             document.querySelectorAll(sectionClass).forEach(el => {
                 el.style.display = 'none';
@@ -48,9 +48,14 @@ export class BaseContent {
             }
         };
 
+        // Register via ActionBus
+        if (window._registerAction) {
+            window._registerAction('showIntroSection', (el) => showSection(el.dataset.sectionId));
+        }
+
         // Auto-select first tab
         if (this.config.defaultTab) {
-            setTimeout(() => window.showIntroSection(this.config.defaultTab), 100);
+            setTimeout(() => showSection(this.config.defaultTab), 100);
         }
     }
 

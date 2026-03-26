@@ -6,7 +6,8 @@ export default {
         logger.log('Initializing NCS Techniques Module');
 
         // Extremity Toggle Logic (UE vs LE)
-        window.showNCSExtremity = function (extremity) {
+        window._registerAction('showNCSExtremity', (el) => {
+            const extremity = el.dataset.extremity;
             const ueSection = document.getElementById('ncs-ue-pictures');
             const leSection = document.getElementById('ncs-le-pictures');
             const ueBtn = document.getElementById('ncs-ue-btn');
@@ -43,10 +44,11 @@ export default {
                     leBtn.style.border = 'none';
                 }
             }
-        };
+        });
 
         // Content Type Toggle Logic (Videos vs Pictures)
-        window.showNCSContentType = function (type) {
+        window._registerAction('showNCSContentType', (el) => {
+            const type = el.dataset.contentType;
             const videoSection = document.getElementById('ncs-videos-section');
             const picSection = document.getElementById('ncs-pictures-section');
             const videoBtn = document.getElementById('ncs-videos-btn');
@@ -85,11 +87,12 @@ export default {
                     picBtn.classList.add('active');
                 }
             }
-        };
+        });
 
         // Robust Gallery Navigation Logic for multiple images
-        window.navigateGallery = function (btn, direction) {
-            const gallery = btn.closest('.ncs-image-gallery');
+        window._registerAction('navigateGallery', (el) => {
+            const direction = parseInt(el.dataset.direction);
+            const gallery = el.closest('.ncs-image-gallery');
             const imgElement = gallery.querySelector('.ncs-gallery-image');
             const counter = gallery.querySelector('.gallery-counter');
 
@@ -121,7 +124,7 @@ export default {
 
             // Update counter UI (1-based index)
             if (counter) counter.innerText = `${newIndex + 1} / ${images.length}`;
-        };
+        });
     },
 
     // --- RENDER HELPERS ---
@@ -151,10 +154,10 @@ export default {
                     <img class="ncs-gallery-image" src="${data.images[0]}" style="width: 100%; height: 200px; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto;">
                     
                     ${hasMultipleImages ? `
-                        <button onclick="navigateGallery(this, -1)" class="gallery-nav-btn left">
+                        <button data-action="navigateGallery" data-direction="-1" class="gallery-nav-btn left">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
                         </button>
-                        <button onclick="navigateGallery(this, 1)" class="gallery-nav-btn right">
+                        <button data-action="navigateGallery" data-direction="1" class="gallery-nav-btn right">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
                         </button>
                         <div class="gallery-counter">1 / ${data.images.length}</div>
@@ -284,11 +287,11 @@ export default {
 
             <!-- Videos/Pictures Main Toggle -->
             <div style="display: flex; gap: 15px; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                <button id="ncs-videos-btn" onclick="showNCSContentType('videos')" class="active" 
+                <button id="ncs-videos-btn" data-action="showNCSContentType" data-content-type="videos" class="active"
                     style="flex: 1; padding: 16px 30px; border: none; border-radius: 12px; background: linear-gradient(135deg, #0d9488, #0e7490); color: white; font-size: 1.1em; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(13, 148, 136, 0.3); transition: all 0.2s;">
                     Instructional Videos
                 </button>
-                <button id="ncs-pictures-btn" onclick="showNCSContentType('pictures')" 
+                <button id="ncs-pictures-btn" data-action="showNCSContentType" data-content-type="pictures"
                     style="flex: 1; padding: 16px 30px; border: 2px solid rgba(139, 92, 246, 0.3); border-radius: 12px; background: white; color: #64748b; font-size: 1.1em; font-weight: 700; cursor: pointer; transition: all 0.2s;">
                     Picture Protocols
                 </button>
@@ -308,11 +311,11 @@ export default {
                 
                 <!-- Extremity Sub-Toggle -->
                  <div style="display: flex; gap: 15px; margin-bottom: 30px; max-width: 400px;">
-                    <button id="ncs-ue-btn" onclick="showNCSExtremity('ue')" class="active" 
+                    <button id="ncs-ue-btn" data-action="showNCSExtremity" data-extremity="ue" class="active"
                         style="flex: 1; padding: 12px 20px; border-radius: 8px; border:none; background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; font-weight: 700; font-size: 0.95em; cursor: pointer; box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);">
                         Upper Extremity
                     </button>
-                    <button id="ncs-le-btn" onclick="showNCSExtremity('le')" 
+                    <button id="ncs-le-btn" data-action="showNCSExtremity" data-extremity="le"
                         style="flex: 1; padding: 12px 20px; border-radius: 8px; border: 2px solid rgba(16, 185, 129, 0.3); background: white; color: #64748b; font-weight: 700; font-size: 0.95em; cursor: pointer;">
                         Lower Extremity
                     </button>

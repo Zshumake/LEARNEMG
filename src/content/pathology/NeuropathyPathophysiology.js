@@ -5,27 +5,26 @@ export const NeuropathyPathophysiology = {
     data: NeuropathyData,
 
     generateContent(module) {
-        // Ensure global tab switcher is defined
-        if (!window.Pathophys_switchTab) {
-            window.Pathophys_switchTab = function (tabName) {
-                document.querySelectorAll('.patho-content').forEach(el => el.style.display = 'none');
-                const target = document.getElementById('content-' + tabName);
-                if (target) target.style.display = 'block';
+        // Register tab switcher action
+        window._registerAction('Pathophys_switchTab', (el) => {
+            const tabName = el.dataset.tab;
+            document.querySelectorAll('.patho-content').forEach(e => e.style.display = 'none');
+            const target = document.getElementById('content-' + tabName);
+            if (target) target.style.display = 'block';
 
-                document.querySelectorAll('.patho-tab').forEach(el => {
-                    el.classList.remove('active');
-                    el.style.background = 'transparent';
-                    el.style.color = '#475569';
-                });
+            document.querySelectorAll('.patho-tab').forEach(e => {
+                e.classList.remove('active');
+                e.style.background = 'transparent';
+                e.style.color = '#475569';
+            });
 
-                const btn = document.getElementById('tab-' + tabName);
-                if (btn) {
-                    btn.classList.add('active');
-                    btn.style.background = '#6b21a8';
-                    btn.style.color = 'white';
-                }
-            };
-        }
+            const btn = document.getElementById('tab-' + tabName);
+            if (btn) {
+                btn.classList.add('active');
+                btn.style.background = '#6b21a8';
+                btn.style.color = 'white';
+            }
+        });
 
         return `
         <div class="intro-container">
@@ -77,8 +76,8 @@ export const NeuropathyPathophysiology = {
             <!-- Navigation Tabs -->
             <div class="tabs-container" style="display: flex; flex-wrap: wrap; gap: 10px; background: #f8fafc; padding: 15px; border-radius: 20px; margin-bottom: 40px; border: 1px solid #e2e8f0;">
                 ${this.data.tabs.map((tab, i) => `
-                    <button onclick="Pathophys_switchTab('${tab.id}')" 
-                            class="patho-tab ${i === 0 ? 'active' : ''}" 
+                    <button data-action="Pathophys_switchTab" data-tab="${tab.id}"
+                            class="patho-tab ${i === 0 ? 'active' : ''}"
                             id="tab-${tab.id}"
                             style="flex: 1; min-width: 150px; padding: 12px 20px; background: ${i === 0 ? '#6b21a8' : 'transparent'}; color: ${i === 0 ? 'white' : '#475569'}; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="${tab.icon}"></path></svg>

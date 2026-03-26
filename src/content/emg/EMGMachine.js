@@ -4,21 +4,20 @@ import { EMGMachineData } from './EMGMachineData.js';
 export const EMGMachine = {
     data: EMGMachineData,
     generateContent(module) {
-        // Ensure global handler is defined
-        if (!window.EMGMachine_switchTab) {
-            window.EMGMachine_switchTab = function (tabName) {
-                // Hide all sections
-                document.querySelectorAll('.tech-section').forEach(el => el.style.display = 'none');
-                // Show target
-                const target = document.getElementById('content-' + tabName);
-                if (target) target.style.display = 'block';
+        // Register tab switcher action
+        window._registerAction('EMGMachine_switchTab', (el) => {
+            const tabName = el.dataset.tab;
+            // Hide all sections
+            document.querySelectorAll('.tech-section').forEach(e => e.style.display = 'none');
+            // Show target
+            const target = document.getElementById('content-' + tabName);
+            if (target) target.style.display = 'block';
 
-                // Updates buttons
-                document.querySelectorAll('.tech-tab').forEach(el => el.classList.remove('active'));
-                const btn = document.getElementById('tab-' + tabName);
-                if (btn) btn.classList.add('active');
-            };
-        }
+            // Updates buttons
+            document.querySelectorAll('.tech-tab').forEach(e => e.classList.remove('active'));
+            const btn = document.getElementById('tab-' + tabName);
+            if (btn) btn.classList.add('active');
+        });
 
         return `
         <div class="emg-machine-container">
@@ -31,7 +30,7 @@ export const EMGMachine = {
             <!-- Navigation Tabs -->
             <div class="tabs-container">
                 ${this.data.tabs.map((tab, i) => `
-                    <button onclick="EMGMachine_switchTab('${tab.id}')" class="tech-tab ${i === 0 ? 'active' : ''}" id="tab-${tab.id}">${tab.label}</button>
+                    <button data-action="EMGMachine_switchTab" data-tab="${tab.id}" class="tech-tab ${i === 0 ? 'active' : ''}" id="tab-${tab.id}">${tab.label}</button>
                 `).join('')}
             </div>
 

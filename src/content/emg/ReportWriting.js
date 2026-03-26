@@ -5,8 +5,12 @@ export const ReportWritingModule = {
     currentStep: 1,
 
     initGlobalBindings() {
-        window.switchReportTab = (tab) => this.switchReportTab(tab);
-        window.showTutorialStep = (step) => this.showTutorialStep(step);
+        window._registerAction('switchReportTab', (el) => {
+            this.switchReportTab(el.dataset.tab);
+        });
+        window._registerAction('showTutorialStep', (el) => {
+            this.showTutorialStep(parseInt(el.dataset.step));
+        });
     },
 
     getIconSvg(iconName, color) {
@@ -168,12 +172,12 @@ export const ReportWritingModule = {
                 
                 <!-- Tab Navigation -->
                 <div style="display: flex; gap: 10px; margin-bottom: 40px; border-bottom: 2px solid #e2e8f0; padding-bottom: 0;">
-                    <button id="tutorial-tab" class="rw-nav-btn active" onclick="switchReportTab('tutorial')">
+                    <button id="tutorial-tab" class="rw-nav-btn active" data-action="switchReportTab" data-tab="tutorial">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             ${this.getIconSvg('FileSignature', 'currentColor')} Interactive Tutorial
                         </div>
                     </button>
-                    <button id="scenarios-tab" class="rw-nav-btn" onclick="switchReportTab('scenarios')">
+                    <button id="scenarios-tab" class="rw-nav-btn" data-action="switchReportTab" data-tab="scenarios">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             ${this.getIconSvg('Target', 'currentColor')} Ideal Reports (Samples)
                         </div>
@@ -275,7 +279,7 @@ export const ReportWritingModule = {
             }
 
             progressHTML += `
-                <div class="${btnClass}" style="${inlineStyle}" onclick="showTutorialStep(${i})">
+                <div class="${btnClass}" style="${inlineStyle}" data-action="showTutorialStep" data-step="${i}">
                     <div style="position: relative; z-index: 2;">
                         ${content}
                         <div class="rw-step-title">${stepData.title}</div>
@@ -357,13 +361,13 @@ export const ReportWritingModule = {
 
                 <div style="display: flex; justify-content: space-between; margin-top: 50px; padding-top: 30px; border-top: 1px solid #e2e8f0;">
                     ${currentStepIdx > 1 ? `
-                        <button onclick="showTutorialStep(${currentStepIdx - 1})" style="padding: 16px 45px; background: white; border: 2px solid #cbd5e1; color: #475569; border-radius: 16px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02);" onmouseover="this.style.background='#f8fafc'; this.style.borderColor='#94a3b8'" onmouseout="this.style.background='white'; this.style.borderColor='#cbd5e1'">← Previous</button>
+                        <button data-action="showTutorialStep" data-step="${currentStepIdx - 1}" style="padding: 16px 45px; background: white; border: 2px solid #cbd5e1; color: #475569; border-radius: 16px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02);" onmouseover="this.style.background='#f8fafc'; this.style.borderColor='#94a3b8'" onmouseout="this.style.background='white'; this.style.borderColor='#cbd5e1'">← Previous</button>
                     ` : '<div></div>'}
-                    
+
                     ${currentStepIdx < totalSteps ? `
-                        <button onclick="showTutorialStep(${currentStepIdx + 1})" style="padding: 16px 45px; background: linear-gradient(135deg, ${step.color}, ${step.color}dd); color: white; border-radius: 16px; border: none; font-weight: 700; font-size: 1.1rem; cursor: pointer; box-shadow: 0 8px 20px ${step.color}40; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px ${step.color}60'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px ${step.color}40'">Next Step →</button>
+                        <button data-action="showTutorialStep" data-step="${currentStepIdx + 1}" style="padding: 16px 45px; background: linear-gradient(135deg, ${step.color}, ${step.color}dd); color: white; border-radius: 16px; border: none; font-weight: 700; font-size: 1.1rem; cursor: pointer; box-shadow: 0 8px 20px ${step.color}40; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px ${step.color}60'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px ${step.color}40'">Next Step →</button>
                     ` : `
-                        <button onclick="showTutorialStep(1)" style="padding: 16px 45px; background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 16px; border: none; font-weight: 700; font-size: 1.1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px rgba(16, 185, 129, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(16, 185, 129, 0.25)'">↺ Start Masterclass Over</button>
+                        <button data-action="showTutorialStep" data-step="1" style="padding: 16px 45px; background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 16px; border: none; font-weight: 700; font-size: 1.1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px rgba(16, 185, 129, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(16, 185, 129, 0.25)'">↺ Start Masterclass Over</button>
                     `}
                 </div>
             </div>

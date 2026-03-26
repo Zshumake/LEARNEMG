@@ -54,7 +54,7 @@ export const UIComponents = {
         return `
             <div class="tabs-navigation-container" style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; justify-content: center;">
                 ${tabs.map(tab => `
-                    <button onclick="showIntroSection('${tab.id}')" id="${idPrefix}-${tab.id}-tab" class="intro-tab intro-tab-pill" 
+                    <button data-action="showIntroSection" data-section-id="${tab.id}" id="${idPrefix}-${tab.id}-tab" class="intro-tab intro-tab-pill"
                             style="padding: 14px 24px; font-size: 1em; color: ${DesignTokens.colors.text.muted}; background: white; cursor: pointer;">
                         ${tab.label}
                     </button>
