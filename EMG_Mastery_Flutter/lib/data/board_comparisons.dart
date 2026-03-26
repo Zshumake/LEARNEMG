@@ -223,4 +223,54 @@ class BoardComparisons {
     footnote:
         'Neurapraxia = conduction block, no Wallerian degeneration, no fibs/PSWs on EMG',
   );
+
+  // ─── 6. UMN vs LMN Lesions ──────────────────────────────────
+
+  static const umnVsLmn = (
+    title: 'UMN vs LMN Lesions',
+    columns: [
+      ComparisonColumn(label: 'UMN', color: Color(0xFF7C3AED)),
+      ComparisonColumn(label: 'LMN', color: Color(0xFFDC2626)),
+    ],
+    rows: [
+      ComparisonRow(
+        feature: 'Tone',
+        values: ['Spastic (velocity-dependent)', 'Flaccid (decreased)'],
+      ),
+      ComparisonRow(
+        feature: 'Reflexes',
+        values: ['Hyperreflexia', 'Hyporeflexia/areflexia'],
+      ),
+      ComparisonRow(
+        feature: 'Babinski',
+        values: ['Present (upgoing toes)', 'Absent (downgoing)'],
+      ),
+      ComparisonRow(
+        feature: 'Atrophy',
+        values: ['Minimal (disuse)', 'Significant (denervation)'],
+      ),
+      ComparisonRow(
+        feature: 'Fasciculations',
+        values: ['Absent', 'May be present'],
+      ),
+      ComparisonRow(
+        feature: 'Weakness Pattern',
+        values: ['Pyramidal (extensors > flexors in UE)', 'Follows myotome/peripheral nerve'],
+      ),
+      ComparisonRow(
+        feature: 'EMG Findings',
+        values: ['Normal (EMG tests LMN only)', 'Fibs/PSWs, large MUAPs, reduced recruitment'],
+      ),
+      ComparisonRow(
+        feature: 'NCS',
+        values: ['Normal', 'Reduced CMAP amplitude'],
+      ),
+      ComparisonRow(
+        feature: 'Examples',
+        values: ['Stroke, MS, SCI above conus', 'Radiculopathy, neuropathy, AHC disease'],
+      ),
+    ],
+    footnote:
+        'EMG/NCS only detects LMN pathology. Normal EMG does NOT rule out UMN disease.',
+  );
 }

@@ -519,6 +519,13 @@ class IntroductionModuleView extends StatelessWidget {
             rows: BoardComparisons.axonalVsDemyelinating.rows,
             footnote: BoardComparisons.axonalVsDemyelinating.footnote,
           ),
+          const SizedBox(height: 16),
+          ComparisonCard(
+            title: BoardComparisons.umnVsLmn.title,
+            columns: BoardComparisons.umnVsLmn.columns,
+            rows: BoardComparisons.umnVsLmn.rows,
+            footnote: BoardComparisons.umnVsLmn.footnote,
+          ),
           const SizedBox(height: 32),
           const Text(
             'Common Localization Patterns',
