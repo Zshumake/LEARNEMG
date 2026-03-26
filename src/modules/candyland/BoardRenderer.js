@@ -147,7 +147,7 @@ export class BoardRenderer {
     generatePodcastSection() {
         return `
             <!-- Learning Objectives Button -->
-            <button class="learning-objectives-btn" onclick="showLearningObjectives()" style="
+            <button class="learning-objectives-btn" data-action="showLearningObjectives" style="
                 margin-bottom: 20px;
                 width: 100%;
                 max-width: 450px;
@@ -157,7 +157,7 @@ export class BoardRenderer {
                 See Learning Objectives
             </button>
 
-            <button class="collapsible-podcasts-btn" onclick="togglePodcastsCollapsible()" style="
+            <button class="collapsible-podcasts-btn" data-action="togglePodcastsCollapsible" style="
                 background: linear-gradient(135deg, #f59e0b, #ea580c);
                 color: white;
                 border: none;

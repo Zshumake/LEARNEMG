@@ -1,16 +1,10 @@
 /**
- * LegacyGlobals.js — Global functions required by onclick handlers in HTML template strings.
+ * LegacyGlobals.js — Classic script (not an ES module).
  *
- * These window.* exports exist because content modules generate HTML via template
- * literals with inline onclick="window.fn()" attributes. They cannot use ES module
- * imports. When onclick handlers are migrated to event delegation, these can be removed.
+ * Registers ActionBus handlers for UI toggles and provides window.* functions
+ * that other modules call programmatically.
  *
- * Categories:
- *   1. Module launching (startLearningModule, generateMasteryPathway)
- *   2. Nerve navigation (showNerveType, showMedianSection, showUlnarSection)
- *   3. Quiz interaction (checkMedianAnswer)
- *   4. UI toggles (togglePodcastsCollapsible, showLearningObjectives, closeLearningObjectives)
- *   5. Modal management (closeModal polyfill, overlay/ESC handlers)
+ * When onclick handlers are fully migrated to data-action, this file can be deleted.
  */
 
 // ---------- Debug Logger (classic script version) ----------
@@ -31,11 +25,12 @@ const logger = {
 };
 
 // ---------- iOS Detection ----------
-if (typeof isIOS === 'undefined') {
+if (typeof window.isIOS === 'undefined') {
     window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 }
 
 // ---------- 1. Module Launching ----------
+// Called programmatically by CandylandCore.js, AppShell.js
 
 function startLearningModule(moduleIndex) {
     logger.log('Launching module:', moduleIndex);
@@ -86,106 +81,48 @@ window.generateLearningBoard = generateMasteryPathway;
 // Legacy modal flag (set by ModalSystem.js)
 window.isModalOpen = false;
 
-// ---------- 2. Nerve Navigation (used by PathwayExplorer onclick handlers) ----------
+// ---------- 2. UI Toggles — via ActionBus ----------
+// ActionBus (ES module) exposes window._registerAction after it loads.
+// Classic scripts load before modules, so we poll until it's ready.
 
-window.showNerveType = function (nerveType) {
-    // Hide all, show selected
-    document.querySelectorAll('.nerve-content').forEach(s => s.style.display = 'none');
-    const selected = document.getElementById(nerveType + '-content');
-    if (selected) selected.style.display = 'block';
+function _registerLegacyActions() {
+    const reg = window._registerAction;
+    if (!reg) {
+        setTimeout(_registerLegacyActions, 50);
+        return;
+    }
 
-    // Reset all buttons
-    document.querySelectorAll('.nerve-type-btn').forEach(btn => {
-        btn.style.background = '#f8fafc';
-        btn.style.border = '2px solid #e2e8f0';
-        btn.style.color = '#64748b';
+    reg('togglePodcastsCollapsible', () => {
+        const container = document.getElementById('podcasts-collapsible-container');
+        const icon = document.getElementById('podcast-toggle-icon');
+        if (!container) return;
+        const isHidden = container.style.display === 'none' || container.style.display === '';
+        container.style.display = isHidden ? 'block' : 'none';
+        if (icon) {
+            icon.textContent = isHidden ? '\u25B2' : '\u25BC';
+            icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
     });
 
-    // Highlight active
-    const activeBtn = document.querySelector('[data-nerve="' + nerveType + '"]');
-    if (activeBtn) {
-        if (nerveType === 'overview') {
-            activeBtn.style.background = '#fef3c7';
-            activeBtn.style.border = '2px solid #f59e0b';
-            activeBtn.style.color = '#d97706';
-        } else {
-            activeBtn.style.background = 'white';
-            activeBtn.style.border = '3px solid #3b82f6';
-            activeBtn.style.color = '#1e40af';
+    reg('showLearningObjectives', () => {
+        const modal = document.getElementById('learning-objectives-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-    }
-};
+    });
 
-function showNerveSection(containerClass, containerId, sectionId) {
-    // Hide all sections of this type
-    document.querySelectorAll('.' + containerClass).forEach(s => s.style.display = 'none');
-    const selected = document.getElementById(sectionId);
-    if (selected) selected.style.display = 'block';
-
-    // Update button styles within container
-    const container = document.getElementById(containerId);
-    if (container) {
-        container.querySelectorAll('.nerve-nav-btn').forEach(btn => {
-            btn.style.background = '#f8fafc';
-            btn.style.border = '2px solid #e2e8f0';
-            btn.querySelectorAll('h5, p').forEach(el => el.style.color = '#64748b');
-        });
-        const activeBtn = container.querySelector('[data-section="' + sectionId + '"]');
-        if (activeBtn) {
-            activeBtn.style.background = 'white';
-            activeBtn.style.border = '3px solid #3b82f6';
-            activeBtn.querySelectorAll('h5').forEach(el => el.style.color = '#1e40af');
+    reg('closeLearningObjectives', () => {
+        const modal = document.getElementById('learning-objectives-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
-    }
+    });
 }
+_registerLegacyActions();
 
-window.showMedianSection = function (sectionId) {
-    showNerveSection('median-section', 'median-content', sectionId);
-};
-
-window.showUlnarSection = function (sectionId) {
-    showNerveSection('ulnar-section', 'ulnar-content', sectionId);
-};
-
-// ---------- 3. Quiz Interaction ----------
-
-window.checkMedianAnswer = function (button, isCorrect) {
-    const buttons = button.parentNode.querySelectorAll('.quiz-option');
-    buttons.forEach(btn => btn.style.pointerEvents = 'none');
-
-    if (isCorrect) {
-        button.style.background = '#dcfce7';
-        button.style.border = '2px solid #059669';
-        button.style.color = '#059669';
-        button.innerHTML += ' ✓ Correct! Normal thenar sensation (palmar cutaneous branch) localizes to carpal tunnel.';
-    } else {
-        button.style.background = '#fef2f2';
-        button.style.border = '2px solid #dc2626';
-        button.style.color = '#dc2626';
-        button.innerHTML += ' ✗';
-    }
-};
-
-// ---------- 4. UI Toggles ----------
-
-function togglePodcastsCollapsible() {
-    const container = document.getElementById('podcasts-collapsible-container');
-    const icon = document.getElementById('podcast-toggle-icon');
-    const isHidden = container.style.display === 'none' || container.style.display === '';
-    container.style.display = isHidden ? 'block' : 'none';
-    icon.textContent = isHidden ? '▲' : '▼';
-    icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-}
-window.togglePodcastsCollapsible = togglePodcastsCollapsible;
-
-window.showLearningObjectives = function () {
-    const modal = document.getElementById('learning-objectives-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-};
-
+// Keep window.closeLearningObjectives for the touch handler below
 window.closeLearningObjectives = function () {
     const modal = document.getElementById('learning-objectives-modal');
     if (modal) {
@@ -194,7 +131,7 @@ window.closeLearningObjectives = function () {
     }
 };
 
-// ---------- 5. Modal Management ----------
+// ---------- 3. Modal Management ----------
 
 // Close general modal overlay on background click
 document.addEventListener('DOMContentLoaded', function () {

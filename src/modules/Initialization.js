@@ -17,6 +17,18 @@ import { ErnestCore } from './ernest/ErnestCore.js?v=20260317';
 import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
 import logger from '../utils/Logger.js';
 
+// --- ActionBus: inline setup (avoids ES module cache issues) ---
+const _actionHandlers = new Map();
+window._registerAction = (name, handler) => _actionHandlers.set(name, handler);
+window._unregisterAction = (name) => _actionHandlers.delete(name);
+document.body.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-action]');
+    if (!el) return;
+    const handler = _actionHandlers.get(el.dataset.action);
+    if (handler) handler(el, e);
+    else logger.warn(`ActionBus: no handler for "${el.dataset.action}"`);
+});
+
 
 class AppInitializer {
     constructor() {
