@@ -8,7 +8,7 @@
 import logger from '../../utils/Logger.js';
 export class QuizPlaceholders {
     init() {
-        logger.log('🚧 Quiz Placeholders Initialized');
+        logger.log('Quiz Placeholders Initialized');
         // Expose global functions for legacy onclick handlers
         window.startEMGAudioTest = (pgy) => this.startEMGAudioTest(pgy);
         window.startComprehensiveAssessment = (pgy) => this.startComprehensiveAssessment(pgy);
@@ -17,6 +17,15 @@ export class QuizPlaceholders {
         window.startTerminologyQuiz = () => this.startTerminologyQuiz();
         window.showNavigationHelp = () => this.showNavigationHelp();
         window.startReportWritingPractice = (pgy) => this.startReportWritingPractice(pgy);
+
+        // Event delegation for close-and-navigate buttons
+        if (window._registerAction) {
+            window._registerAction('closeAndShowTab', (el) => {
+                if (window.appComponents?.modal) window.appComponents.modal.closeModal();
+                const tab = parseInt(el.dataset.tab);
+                if (!isNaN(tab) && window.showTab) window.showTab(tab);
+            });
+        }
     }
 
     startEMGAudioTest(pgyLevel) {
@@ -67,7 +76,7 @@ export class QuizPlaceholders {
             </div>
             <p><strong>Direct Access:</strong></p>
             <div style="text-align: center; margin: 20px 0;">
-                <button onclick="closeModal(); showTab(13);" class="quiz-button primary">📝 Go to Report Writing</button>
+                <button data-action="closeAndShowTab" data-tab="13" class="quiz-button primary">Go to Report Writing</button>
             </div>
         `;
 
@@ -146,8 +155,8 @@ export class QuizPlaceholders {
             </div>
             <p><strong>Direct Access:</strong></p>
             <div style="text-align: center; margin: 20px 0;">
-                <button onclick="closeModal(); showTab(12);" class="quiz-button primary" style="margin-right: 10px;">📖 Go to Plexus Anatomy</button>
-                <button onclick="closeModal(); showTab(8);" class="quiz-button primary">🎓 Go to Muscle Lab</button>
+                <button data-action="closeAndShowTab" data-tab="12" class="quiz-button primary" style="margin-right: 10px;">Go to Plexus Anatomy</button>
+                <button data-action="closeAndShowTab" data-tab="8" class="quiz-button primary">Go to Muscle Lab</button>
             </div>
         `;
 
@@ -170,8 +179,8 @@ export class QuizPlaceholders {
             </div>
             <p><strong>Direct Access:</strong></p>
             <div style="text-align: center; margin: 20px 0;">
-                <button onclick="closeModal(); showTab(3);" class="quiz-button primary" style="margin-right: 10px;">📚 Go to EMG Terms</button>
-                <button onclick="closeModal(); showTab(5);" class="quiz-button primary">🔍 Go to Quick Reference</button>
+                <button data-action="closeAndShowTab" data-tab="3" class="quiz-button primary" style="margin-right: 10px;">Go to EMG Terms</button>
+                <button data-action="closeAndShowTab" data-tab="5" class="quiz-button primary">Go to Quick Reference</button>
             </div>
         `;
 

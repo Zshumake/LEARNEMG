@@ -203,3 +203,8 @@ if (!window.closeModal) {
         if (window.closeModalWithTransition) window.closeModalWithTransition();
     };
 }
+
+// Register closeModal for data-action delegation
+if (window._registerAction) {
+    window._registerAction('closeModal', () => window.closeModal());
+}

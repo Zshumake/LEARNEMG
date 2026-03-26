@@ -179,8 +179,8 @@ export class NCSUI {
                     </div>
                 </div>
                 <div style="text-align: center; margin: 30px 0;">
-                    <button onclick="window.returnToPGYNavigator(window.currentPGYLevel || 'pgy2')" 
-                            style="background: #6b9f78; color: white; border: none; padding: 12px 24px; 
+                    <button data-action="returnToPGYNavigator"
+                            style="background: #6b9f78; color: white; border: none; padding: 12px 24px;
                                     border-radius: 8px; cursor: pointer; font-weight: 600;">
                         ← Back to Learning Pathway
                     </button>
@@ -224,9 +224,9 @@ export class NCSUI {
                 </div>
                 
                 <div class="quiz-controls">
-                    <button id="quiz-submit" class="quiz-button primary" style="display:none;" onclick="window.appComponents.ncsUI.submitLandmarkAnswer()">Submit Answer</button>
-                    <button id="quiz-next" class="quiz-button primary" style="display:none;" onclick="window.appComponents.ncsUI.nextLandmarkQuestion()">Next Question</button>
-                    <button id="quiz-finish" class="quiz-button success" style="display:none;" onclick="window.appComponents.ncsUI.finishLandmarkQuiz()">View Results</button>
+                    <button id="quiz-submit" class="quiz-button primary" style="display:none;" data-action="ncsSubmitLandmarkAnswer">Submit Answer</button>
+                    <button id="quiz-next" class="quiz-button primary" style="display:none;" data-action="ncsNextLandmarkQuestion">Next Question</button>
+                    <button id="quiz-finish" class="quiz-button success" style="display:none;" data-action="ncsFinishLandmarkQuiz">View Results</button>
                 </div>
             </div>
 
@@ -482,10 +482,10 @@ export class NCSUI {
                 </div>
                 
                 <div style="text-align: center; margin-top: 30px;">
-                    <button onclick="window.closeModal()" 
-                            style="background: #6b7280; color: white; border: none; padding: 15px 30px; 
+                    <button data-action="closeModal"
+                            style="background: #6b7280; color: white; border: none; padding: 15px 30px;
                                     border-radius: 10px; font-size: 1.1em; cursor: pointer;">
-                        ← Back to Competencies
+                        Back to Competencies
                     </button>
                 </div>
             </div>
@@ -540,10 +540,10 @@ export class NCSUI {
                 </div>
                 
                 <div style="text-align: center; margin-top: 30px;">
-                    <button onclick="window.closeModal()" 
-                            style="background: #6b7280; color: white; border: none; padding: 15px 30px; 
+                    <button data-action="closeModal"
+                            style="background: #6b7280; color: white; border: none; padding: 15px 30px;
                                     border-radius: 10px; font-size: 1.1em; cursor: pointer;">
-                        ← Back to Competencies
+                        Back to Competencies
                     </button>
                 </div>
             </div>

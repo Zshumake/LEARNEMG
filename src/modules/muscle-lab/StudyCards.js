@@ -40,6 +40,9 @@ export class StudyCardsModule {
                 const type = el.getAttribute('data-type');
                 this.globalRevealType(type);
             });
+            window._registerAction('closeStudyCardModal', () => {
+                document.querySelector('.learning-modal-overlay.active')?.remove();
+            });
         }
     }
 
@@ -58,7 +61,7 @@ export class StudyCardsModule {
             activeCandylandModal.innerHTML = `
                 <div style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0; position: relative;">
                     <h2 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;">🧬 Advanced Muscle Study Lab</h2>
-                    <button class="modal-close-btn" onclick="document.querySelector('.learning-modal-overlay.active').remove()" style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">×</button>
+                    <button class="modal-close-btn" data-action="closeStudyCardModal" style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">x</button>
                 </div>
                 <div style="padding: 30px; background: white; border-radius: 0 0 15px 15px; overflow-y: auto; max-height: 80vh;">
                     ${content}

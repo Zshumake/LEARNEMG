@@ -32,6 +32,10 @@ class IntroductionModule extends BaseContent {
         // Inject search logic globally for the terminology tab
         window.filterGlossary = this.handleGlossarySearch.bind(this);
 
+        window._registerAction('openModulePodcast', (el) => {
+            window.openModulePodcast?.(el.dataset.moduleId, el.dataset.episodeId);
+        });
+
         window._registerAction('introToggleRule', (el) => {
             const id = el.dataset.ruleId;
             const detail = document.getElementById('rule-detail-' + id);
@@ -358,7 +362,7 @@ class IntroductionModule extends BaseContent {
                         <input type="text" id="glossary-search" onkeyup="window.filterGlossary()" placeholder="Search mastery terms..." style="padding: 12px; border-radius: 12px; border: 1px solid #fce7f3; width: 300px; box-shadow: ${DesignTokens.shadows.sm};">
                     </div>
                     <!-- NEW: Essential Terminology Podcast Banner -->
-                    <div class="podcast-play-banner" onclick="window.openModulePodcast('emg-introduction', 'emg-terminology')" style="
+                    <div class="podcast-play-banner" data-action="openModulePodcast" data-module-id="emg-introduction" data-episode-id="emg-terminology" style="
                         background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
                         border-radius: 16px;
                         padding: 25px;

@@ -9,6 +9,12 @@ export class ReferenceMaterials {
     constructor() {
         // Diagnostic mode flag
         this.diagnosticMode = false;
+
+        if (window._registerAction) {
+            window._registerAction('returnToPGYNavigator', () => {
+                window.returnToPGYNavigator?.(window.currentPGYLevel);
+            });
+        }
     }
 
     showCardinalRules() {
@@ -46,10 +52,10 @@ export class ReferenceMaterials {
                 </div>
             </div>
             <div style="text-align: center; margin: 30px 0;">
-                <button onclick="window.returnToPGYNavigator && window.returnToPGYNavigator(window.currentPGYLevel)" 
-                        style="background: #6b9f78; color: white; border: none; padding: 12px 24px; 
+                <button data-action="returnToPGYNavigator"
+                        style="background: #6b9f78; color: white; border: none; padding: 12px 24px;
                                border-radius: 8px; cursor: pointer; font-weight: 600;">
-                    ← Back to Learning Pathway
+                    Back to Learning Pathway
                 </button>
             </div>
         </div>

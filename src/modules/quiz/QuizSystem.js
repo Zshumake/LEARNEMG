@@ -7,11 +7,27 @@ export class QuizSystem {
     }
 
     init() {
-        logger.log('📝 Quiz System Initialized');
+        logger.log('Quiz System Initialized');
         // Expose global functions for legacy onclick handlers
         window.generateModuleQuiz = (questions) => this.generateModuleQuiz(questions);
         window.checkQuizAnswer = this.checkQuizAnswer;
         window.nextQuizQuestion = this.nextQuizQuestion;
+
+        // Event delegation for quiz interactions
+        if (window._registerAction) {
+            window._registerAction('checkQuizAnswer', (el) => {
+                const isCorrect = el.dataset.correct === 'true';
+                const explanation = decodeURIComponent(el.dataset.explanation);
+                const index = parseInt(el.dataset.index);
+                const total = parseInt(el.dataset.total);
+                this.checkQuizAnswer(el, isCorrect, explanation, index, total);
+            });
+            window._registerAction('nextQuizQuestion', (el) => {
+                const index = parseInt(el.dataset.index);
+                const total = parseInt(el.dataset.total);
+                this.nextQuizQuestion(index, total);
+            });
+        }
     }
 
     generateModuleQuiz(questions) {
@@ -27,8 +43,12 @@ export class QuizSystem {
                 </p>
                 <div class="quiz-options" style="display: grid; gap: 10px;">
                     ${q.options.map((option, optIndex) => `
-                        <button class="quiz-option" 
-                                onclick="checkQuizAnswer(this, ${optIndex === q.correct}, '${q.explanation.replace(/'/g, "\\'")}', ${index}, ${questions.length})"
+                        <button class="quiz-option"
+                                data-action="checkQuizAnswer"
+                                data-correct="${optIndex === q.correct}"
+                                data-explanation="${encodeURIComponent(q.explanation)}"
+                                data-index="${index}"
+                                data-total="${questions.length}"
                                 style="padding: 15px 20px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 1em; transition: all 0.3s; min-height: 48px;"
                                 onmouseover="this.style.background='#f1f5f9'; this.style.borderColor='#cbd5e1';"
                                 onmouseout="if(!this.classList.contains('correct') && !this.classList.contains('incorrect')) { this.style.background='#f8fafc'; this.style.borderColor='#e2e8f0'; }">
@@ -38,10 +58,12 @@ export class QuizSystem {
                 </div>
                 <div class="quiz-feedback" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
                 <button class="quiz-next-btn" style="margin-top: 20px; padding: 12px 24px; background: #0d9488; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; display: none; transition: all 0.3s;"
-                        onclick="nextQuizQuestion(${index}, ${questions.length})"
+                        data-action="nextQuizQuestion"
+                        data-index="${index}"
+                        data-total="${questions.length}"
                         onmouseover="this.style.background='#0f766e';"
                         onmouseout="this.style.background='#0d9488';">
-                    ${index === questions.length - 1 ? 'View Results' : 'Next Question →'}
+                    ${index === questions.length - 1 ? 'View Results' : 'Next Question'}
                 </button>
             </div>
         `).join('');
@@ -114,12 +136,9 @@ export class QuizSystem {
             button.classList.add('incorrect');
 
             // Highlight correct answer
-            allButtons.forEach((btn, idx) => {
+            allButtons.forEach((btn) => {
                 if (btn !== button && !btn.classList.contains('incorrect')) {
-                    // This is a bit hacky but consistent with how the inline onclick was set up
-                    // We check if the onclick string contains 'true' as the second argument
-                    const isThisCorrect = btn.onclick.toString().includes('true,');
-                    if (isThisCorrect) {
+                    if (btn.dataset.correct === 'true') {
                         btn.style.background = '#d1fae5';
                         btn.style.borderColor = '#10b981';
                         btn.style.color = '#065f46';
