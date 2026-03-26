@@ -1,4 +1,5 @@
 import { ReportWritingData } from './ReportWritingData.js';
+import logger from '../../utils/Logger.js';
 
 export const ReportWritingModule = {
     currentStep: 1,
@@ -27,7 +28,7 @@ export const ReportWritingModule = {
     },
 
     render() {
-        console.log('📝 Initializing Report Writing Module...');
+        logger.log('📝 Initializing Report Writing Module...');
         this.initGlobalBindings();
 
         return `

@@ -7,8 +7,9 @@
 
 import { CUSTOM_ICON_MAPPING } from '../candyland/BoardData.js';
 import { ErnestIcon } from '../../utils/ErnestIcon.js';
+import logger from '../../utils/Logger.js';
 
-console.log('🎧 Loading Ernest\'s Podcast episode data...');
+logger.log('🎧 Loading Ernest\'s Podcast episode data...');
 
 export const podcastEpisodes = {
     'emg-introduction': [

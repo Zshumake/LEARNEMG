@@ -1,4 +1,5 @@
 import { MODULE_DESCRIPTIONS } from '../candyland/BoardData.js';
+import logger from '../../utils/Logger.js';
 
 export function initializeCandylandBoard() {
     // Load saved progress from localStorage
@@ -18,7 +19,7 @@ export function initializeCandylandBoard() {
         }
     });
 
-    console.log('🍬 Candyland Board System Initialized');
+    logger.log('🍬 Candyland Board System Initialized');
 }
 
 // ================================================
@@ -90,7 +91,7 @@ function transitionToPage(targetPageId, callback) {
                 targetPageElement.classList.remove('page-transition-enter');
             }, 500);
         } else {
-            console.warn(`Target page element not found for transition`);
+            logger.warn(`Target page element not found for transition`);
             if (callback) callback();
         }
     }, 300);
@@ -106,7 +107,7 @@ function generateLearningBoard(pgyLevel) {
         // Ensure header is updated (Legacy support)
         updateBoardHeader(pgyLevel);
     } else {
-        console.error("Candyland Core not initialized");
+        logger.error("Candyland Core not initialized");
     }
 }
 
@@ -458,7 +459,7 @@ function launchMuscleQuiz() {
         if (window.showFocusedTab) {
             showFocusedTab(0, currentPGYLevel);
         } else {
-            console.error('showFocusedTab not found');
+            logger.error('showFocusedTab not found');
         }
     });
 }

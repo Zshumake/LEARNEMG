@@ -1,8 +1,9 @@
 import { NCSTechniquesData } from './NCSTechniquesData.js';
+import logger from '../../utils/Logger.js';
 
 export default {
     initialize() {
-        console.log('Initializing NCS Techniques Module');
+        logger.log('Initializing NCS Techniques Module');
 
         // Extremity Toggle Logic (UE vs LE)
         window.showNCSExtremity = function (extremity) {
@@ -97,7 +98,7 @@ export default {
             try {
                 images = JSON.parse(gallery.getAttribute('data-images') || '[]');
             } catch (e) {
-                console.error("Gallery JSON parse error:", e);
+                logger.error("Gallery JSON parse error:", e);
                 return;
             }
 

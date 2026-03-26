@@ -5,9 +5,10 @@
  * Extracted from emg-app-main.js
  */
 
+import logger from '../../utils/Logger.js';
 export class QuizPlaceholders {
     init() {
-        console.log('🚧 Quiz Placeholders Initialized');
+        logger.log('🚧 Quiz Placeholders Initialized');
         // Expose global functions for legacy onclick handlers
         window.startEMGAudioTest = (pgy) => this.startEMGAudioTest(pgy);
         window.startComprehensiveAssessment = (pgy) => this.startComprehensiveAssessment(pgy);
@@ -41,7 +42,7 @@ export class QuizPlaceholders {
         `;
 
         if (window.showModal) window.showModal('🔊 EMG Audio/Visual Recognition Test', content);
-        console.log(`EMG Audio test requested for: ${pgyLevel}`);
+        logger.log(`EMG Audio test requested for: ${pgyLevel}`);
     }
 
     startReportWritingPractice(pgyLevel) {
@@ -71,7 +72,7 @@ export class QuizPlaceholders {
         `;
 
         if (window.showModal) window.showModal('📝 Report Writing Practice', content);
-        console.log(`Report writing practice requested for: ${pgyLevel}`);
+        logger.log(`Report writing practice requested for: ${pgyLevel}`);
     }
 
     startComprehensiveAssessment(pgyLevel) {
@@ -104,7 +105,7 @@ export class QuizPlaceholders {
         `;
 
         if (window.showModal) window.showModal('🎯 Comprehensive Assessment', content);
-        console.log(`Comprehensive assessment requested for: ${pgyLevel}`);
+        logger.log(`Comprehensive assessment requested for: ${pgyLevel}`);
     }
 
     startConsultantChallenge() {
@@ -127,7 +128,7 @@ export class QuizPlaceholders {
         `;
 
         if (window.showModal) window.showModal('👑 Consultant-Level Challenge', content);
-        console.log(`Consultant-level challenge requested`);
+        logger.log(`Consultant-level challenge requested`);
     }
 
     startAnatomyQuiz() {
@@ -151,7 +152,7 @@ export class QuizPlaceholders {
         `;
 
         if (window.showModal) window.showModal('🧬 Peripheral Anatomy Quiz', content);
-        console.log('Anatomy quiz requested');
+        logger.log('Anatomy quiz requested');
     }
 
     startTerminologyQuiz() {
@@ -175,7 +176,7 @@ export class QuizPlaceholders {
         `;
 
         if (window.showModal) window.showModal('📚 EMG Terminology Quiz', content);
-        console.log('Terminology quiz requested');
+        logger.log('Terminology quiz requested');
     }
 
     showNavigationHelp() {

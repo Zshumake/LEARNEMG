@@ -1,3 +1,4 @@
+import logger from '../../utils/Logger.js';
 export class ErnestAPI {
     constructor() {
         this.apiKey = localStorage.getItem('ernest_api_key') || null;
@@ -26,7 +27,7 @@ export class ErnestAPI {
 
             if (data.models) {
                 const names = data.models.map(m => m.name.replace('models/', ''));
-                console.log('Available Models:', names);
+                logger.log('Available Models:', names);
 
                 const best = names.find(n => n === 'gemini-1.5-flash') ||
                     names.find(n => n === 'gemini-1.5-flash-latest') ||
@@ -42,7 +43,7 @@ export class ErnestAPI {
                 return best;
             }
         } catch (e) {
-            console.error("Discovery failed", e);
+            logger.error("Discovery failed", e);
         }
         return null;
     }

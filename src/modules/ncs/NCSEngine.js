@@ -4,10 +4,11 @@
  * Pure state management and calculation.
  */
 
+import logger from '../../utils/Logger.js';
 export class NCSEngine {
     constructor(ncsData) {
         if (!ncsData) {
-            console.error("NCSEngine initialized without data dependency!");
+            logger.error("NCSEngine initialized without data dependency!");
         }
         this.data = ncsData;
 

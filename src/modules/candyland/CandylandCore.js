@@ -1,5 +1,6 @@
 import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js?v=20260317';
 import { BoardRenderer } from './BoardRenderer.js?v=20260317d';
+import logger from '../../utils/Logger.js';
 
 export class CandylandCore {
     constructor() {
@@ -34,13 +35,13 @@ export class CandylandCore {
     }
 
     init() {
-        console.log('🚀 Grid Board System (Candyland) Initialized');
+        logger.log('🚀 Grid Board System (Candyland) Initialized');
         // Expose global hook for Initialization.js and legacy calls
         window.generateLearningBoard = (pgy) => this.generateLearningBoard(pgy);
     }
 
     generateLearningBoard(pgyLevel) {
-        console.log('🎯 Generating Grid EMG/NCS Pathway...');
+        logger.log('🎯 Generating Grid EMG/NCS Pathway...');
         this.currentPGYLevel = pgyLevel;
         window.currentPGYLevel = pgyLevel;
 
@@ -62,12 +63,12 @@ export class CandylandCore {
     }
 
     render(pgyLevel) {
-        console.log('🔄 CandylandCore: render called, redirecting to generateLearningBoard');
+        logger.log('🔄 CandylandCore: render called, redirecting to generateLearningBoard');
         this.generateLearningBoard(pgyLevel);
     }
 
     async handleModuleClick(moduleId, index) {
-        console.log(`Module clicked: ${moduleId} (Index: ${index})`);
+        logger.log(`Module clicked: ${moduleId} (Index: ${index})`);
 
         if (window.appComponents && window.appComponents.modal) {
             const modules = this.config[this.currentPGYLevel] || this.config['all'] || [];
@@ -81,13 +82,13 @@ export class CandylandCore {
                 const actualIndex = modules.indexOf(module);
                 window.appComponents.modal.showLearningModal(module, actualIndex, this.currentPGYLevel);
             } else {
-                console.error(`❌ Module not found for id: ${moduleId}, index: ${index} in PGY: ${this.currentPGYLevel}`);
+                logger.error(`❌ Module not found for id: ${moduleId}, index: ${index} in PGY: ${this.currentPGYLevel}`);
             }
         } else if (window.startLearningModule) {
             // Legacy fallback
             window.startLearningModule(index);
         } else {
-            console.error("❌ Modal system not available!");
+            logger.error("❌ Modal system not available!");
         }
     }
 

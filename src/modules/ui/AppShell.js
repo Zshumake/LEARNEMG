@@ -1,3 +1,4 @@
+import logger from '../../utils/Logger.js';
 export class AppShell {
     constructor() {
         this.containerId = 'app-root';
@@ -6,7 +7,7 @@ export class AppShell {
     render() {
         const root = document.getElementById(this.containerId);
         if (!root) {
-            console.error(`AppShell: Container #${this.containerId} not found`);
+            logger.error(`AppShell: Container #${this.containerId} not found`);
             return;
         }
 
@@ -157,7 +158,7 @@ export class AppShell {
             personaLabel.addEventListener('click', () => {
                 clickCount++;
                 if (clickCount >= 7) {
-                    console.log("🌟 Easter Egg Triggered: Switching Persona!");
+                    logger.log("🌟 Easter Egg Triggered: Switching Persona!");
                     if (window.appComponents && window.appComponents.ernestAI) {
                         window.appComponents.ernestAI.switchPersona();
                     }
@@ -168,7 +169,7 @@ export class AppShell {
     }
 
     transitionToJourney() {
-        console.log('🚀 AppShell: Transitioning to Journey');
+        logger.log('🚀 AppShell: Transitioning to Journey');
         const welcomeScreen = document.getElementById('pgy-selection');
         const learningBoard = document.getElementById('learning-board');
 

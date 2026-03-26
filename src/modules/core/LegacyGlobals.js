@@ -1,5 +1,20 @@
 
-
+// ---------- Debug Logger (classic script version) ----------
+const _legacyDebug = (() => {
+    try {
+        if (localStorage.getItem('DEBUG') === 'true') return true;
+        if (location.search.includes('debug')) return true;
+    } catch(e) {}
+    return false;
+})();
+const _noop = () => {};
+const logger = {
+    log:   _legacyDebug ? console.log.bind(console)   : _noop,
+    warn:  _legacyDebug ? console.warn.bind(console)   : _noop,
+    info:  _legacyDebug ? console.info.bind(console)   : _noop,
+    debug: _legacyDebug ? console.debug.bind(console)  : _noop,
+    error: console.error.bind(console),
+};
 
 // iOS detection (used by other modules)
 if (typeof isIOS === 'undefined') {
@@ -16,10 +31,10 @@ function loadProgressFromStorage() {
             window.currentPGYLevel = progressData.currentPGYLevel;
             window.completedModules = new Set(progressData.completedModules || []);
             window.currentModuleIndex = progressData.currentModuleIndex || 0;
-            console.log('✅ Progress loaded from storage');
+            logger.log('✅ Progress loaded from storage');
             return true;
         } catch (error) {
-            console.log('⚠️ Error loading progress:', error);
+            logger.log('⚠️ Error loading progress:', error);
             return false;
         }
     }
@@ -33,7 +48,7 @@ function loadProgressFromStorage() {
 
 // Launch learning module via unified system
 function startLearningModule(moduleIndex) {
-    console.log('🔍 Launching module:', moduleIndex);
+    logger.log('🔍 Launching module:', moduleIndex);
 
     if (window.appComponents && window.appComponents.modal) {
         // Get module data from global config (populated by CandylandCore/Initializers)
@@ -45,12 +60,12 @@ function startLearningModule(moduleIndex) {
         if (module) {
             window.appComponents.modal.showLearningModal(module, moduleIndex, pgyLevel);
         } else {
-            console.error("❌ Module not found for index:", moduleIndex);
+            logger.error("❌ Module not found for index:", moduleIndex);
         }
         return;
     }
 
-    console.error('❌ Modal System not initialized');
+    logger.error('❌ Modal System not initialized');
 }
 
 // Global exports for legacy compatibility
@@ -82,7 +97,7 @@ window.isModalOpen = false;
 
 // Global functions for nerve navigation (moved from modal content)
 window.showNerveType = function (nerveType) {
-    console.log('🔍 DEBUG: showNerveType called with:', nerveType);
+    logger.log('🔍 DEBUG: showNerveType called with:', nerveType);
     // Hide all nerve content sections
     document.querySelectorAll('.nerve-content').forEach(section => {
         section.style.display = 'none';
@@ -92,9 +107,9 @@ window.showNerveType = function (nerveType) {
     const selectedContent = document.getElementById(nerveType + '-content');
     if (selectedContent) {
         selectedContent.style.display = 'block';
-        console.log('✅ DEBUG: Showing content for:', nerveType);
+        logger.log('✅ DEBUG: Showing content for:', nerveType);
     } else {
-        console.log('❌ DEBUG: Content not found for:', nerveType);
+        logger.log('❌ DEBUG: Content not found for:', nerveType);
     }
 
     // Update nerve type button styles
@@ -116,12 +131,12 @@ window.showNerveType = function (nerveType) {
             activeBtn.style.border = '3px solid #3b82f6';
             activeBtn.style.color = '#1e40af';
         }
-        console.log('✅ DEBUG: Highlighted button for:', nerveType);
+        logger.log('✅ DEBUG: Highlighted button for:', nerveType);
     }
 };
 
 window.showMedianSection = function (sectionId) {
-    console.log('🔍 DEBUG: showMedianSection called with:', sectionId);
+    logger.log('🔍 DEBUG: showMedianSection called with:', sectionId);
     // Hide all median sections
     document.querySelectorAll('.median-section').forEach(section => {
         section.style.display = 'none';
@@ -131,7 +146,7 @@ window.showMedianSection = function (sectionId) {
     const selectedSection = document.getElementById(sectionId);
     if (selectedSection) {
         selectedSection.style.display = 'block';
-        console.log('✅ DEBUG: Showing median section:', sectionId);
+        logger.log('✅ DEBUG: Showing median section:', sectionId);
     }
 
     // Update button styles within median content
@@ -154,7 +169,7 @@ window.showMedianSection = function (sectionId) {
 };
 
 window.showUlnarSection = function (sectionId) {
-    console.log('🔍 DEBUG: showUlnarSection called with:', sectionId);
+    logger.log('🔍 DEBUG: showUlnarSection called with:', sectionId);
     // Hide all ulnar sections
     document.querySelectorAll('.ulnar-section').forEach(section => {
         section.style.display = 'none';
@@ -164,7 +179,7 @@ window.showUlnarSection = function (sectionId) {
     const selectedSection = document.getElementById(sectionId);
     if (selectedSection) {
         selectedSection.style.display = 'block';
-        console.log('✅ DEBUG: Showing ulnar section:', sectionId);
+        logger.log('✅ DEBUG: Showing ulnar section:', sectionId);
     }
 
     // Update ulnar button styles within ulnar content
@@ -188,7 +203,7 @@ window.showUlnarSection = function (sectionId) {
 
 // Global quiz function for median nerve content
 window.checkMedianAnswer = function (button, isCorrect) {
-    console.log('🔍 DEBUG: checkMedianAnswer called with isCorrect:', isCorrect);
+    logger.log('🔍 DEBUG: checkMedianAnswer called with isCorrect:', isCorrect);
     const buttons = button.parentNode.querySelectorAll('.quiz-option');
     buttons.forEach(btn => btn.style.pointerEvents = 'none');
 
@@ -218,7 +233,7 @@ window.checkMedianAnswer = function (button, isCorrect) {
 
 
 async function generateMasteryPathway(pgy = 'pgy2') {
-    console.log('🚀 Generating Mastery Pathway via Module System...', pgy);
+    logger.log('🚀 Generating Mastery Pathway via Module System...', pgy);
 
     // Retry mechanism to wait for modules to initialize
     const maxRetries = 50; // 5 seconds (100ms * 50)
@@ -227,7 +242,7 @@ async function generateMasteryPathway(pgy = 'pgy2') {
     while (!(window.appComponents && window.appComponents.candyland) && retries < maxRetries) {
         await new Promise(resolve => setTimeout(resolve, 100));
         retries++;
-        if (retries === 1) console.log('⏳ Waiting for Candyland module initialization...');
+        if (retries === 1) logger.log('⏳ Waiting for Candyland module initialization...');
     }
 
     if (window.appComponents && window.appComponents.candyland) {
@@ -238,10 +253,10 @@ async function generateMasteryPathway(pgy = 'pgy2') {
             // Fallback to render if generateLearningBoard is not found, but pass pgy
             await window.appComponents.candyland.render(pgy);
         } else {
-            console.error("❌ Candyland Component missing required methods!");
+            logger.error("❌ Candyland Component missing required methods!");
         }
     } else {
-        console.error("❌ Candyland Component not loaded after 2 seconds!");
+        logger.error("❌ Candyland Component not loaded after 2 seconds!");
     }
 }
 
@@ -261,12 +276,12 @@ function togglePodcastsCollapsible() {
         container.style.display = 'block';
         icon.textContent = '▲';
         icon.style.transform = 'rotate(180deg)';
-        console.log('🎧 Expanded podcast list');
+        logger.log('🎧 Expanded podcast list');
     } else {
         container.style.display = 'none';
         icon.textContent = '▼';
         icon.style.transform = 'rotate(0deg)';
-        console.log('🎧 Collapsed podcast list');
+        logger.log('🎧 Collapsed podcast list');
     }
 }
 
@@ -275,7 +290,7 @@ window.generateMasteryPathway = generateMasteryPathway;
 
 window.togglePodcastsCollapsible = togglePodcastsCollapsible;
 
-console.log('✨🎮 Enhanced Journey with Integrated Modal Systemeady!');
+logger.log('✨🎮 Enhanced Journey with Integrated Modal Systemeady!');
 
 
 
@@ -316,29 +331,29 @@ document.addEventListener('keydown', function (e) {
 
 // Learning Objectives Modal Functions - Global Scope
 window.showLearningObjectives = function () {
-    console.log('🎯 showLearningObjectives called');
+    logger.log('🎯 showLearningObjectives called');
     const modal = document.getElementById('learning-objectives-modal');
-    console.log('📋 Modal element:', modal);
+    logger.log('📋 Modal element:', modal);
     if (modal) {
-        console.log('✅ Modal found, displaying...');
+        logger.log('✅ Modal found, displaying...');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     } else {
-        console.error('❌ Modal not found!');
+        logger.error('❌ Modal not found!');
     }
 };
 
 window.closeLearningObjectives = function () {
-    console.warn('🚨 closeLearningObjectives() CALLED');
-    console.warn('📍 Call stack:', new Error().stack);
+    logger.warn('🚨 closeLearningObjectives() CALLED');
+    logger.warn('📍 Call stack:', new Error().stack);
 
     const modal = document.getElementById('learning-objectives-modal');
     if (modal) {
-        console.warn('✅ Learning objectives modal found, hiding it');
+        logger.warn('✅ Learning objectives modal found, hiding it');
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     } else {
-        console.warn('❌ Learning objectives modal NOT found');
+        logger.warn('❌ Learning objectives modal NOT found');
     }
 };
 
@@ -352,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Track touch start for gesture detection
         modal.addEventListener('touchstart', function (e) {
             touchStartTime = Date.now();
-            console.warn('📱 LEARNING-OBJ touchstart:', {
+            logger.warn('📱 LEARNING-OBJ touchstart:', {
                 touches: e.touches.length,
                 target: e.target.tagName,
                 targetClass: e.target.className,
@@ -364,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dx = e.touches[0].clientX - e.touches[1].clientX;
                 const dy = e.touches[0].clientY - e.touches[1].clientY;
                 touchStartDistance = Math.sqrt(dx * dx + dy * dy);
-                console.warn('🔍 LEARNING-OBJ MULTI-TOUCH:', {
+                logger.warn('🔍 LEARNING-OBJ MULTI-TOUCH:', {
                     distance: touchStartDistance,
                     touches: e.touches.length
                 });
@@ -383,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const isQuickTap = touchDuration < 300;
             const isSingleTouch = touchStartDistance === 0;
 
-            console.warn('👆 LEARNING-OBJ click event:', {
+            logger.warn('👆 LEARNING-OBJ click event:', {
                 target: e.target.tagName,
                 targetClass: e.target.className,
                 isModal: isModal,
@@ -395,10 +410,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (isModal && isQuickTap && isSingleTouch) {
-                console.warn('🚪 CLOSING learning objectives modal');
+                logger.warn('🚪 CLOSING learning objectives modal');
                 window.closeLearningObjectives();
             } else {
-                console.warn('✋ NOT closing learning objectives - conditions not met');
+                logger.warn('✋ NOT closing learning objectives - conditions not met');
             }
 
             // Reset for next interaction
@@ -413,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Polyfill for closeModal to ensure it exists even if core.js module binding is delayed
 if (!window.closeModal) {
     window.closeModal = function () {
-        console.log('Using global closeModal polyfill');
+        logger.log('Using global closeModal polyfill');
         const overlay = document.getElementById('modal-overlay');
         if (overlay) {
             overlay.style.transition = 'opacity 0.3s ease'; // Ensure transition exists

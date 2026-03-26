@@ -1,5 +1,6 @@
 
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
+import logger from '../../utils/Logger.js';
 
 export class StudyCardsModule {
     constructor() {
@@ -25,7 +26,7 @@ export class StudyCardsModule {
     }
 
     launch() {
-        console.log('🧬 Launching Advanced Muscle Study Lab...');
+        logger.log('🧬 Launching Advanced Muscle Study Lab...');
 
         const content = this.generateUI();
 
@@ -33,7 +34,7 @@ export class StudyCardsModule {
         const activeCandylandModal = document.querySelector('.learning-modal-overlay.active .learning-modal');
 
         if (activeCandylandModal) {
-            console.log('🧬 Injecting directly into active Candyland module...');
+            logger.log('🧬 Injecting directly into active Candyland module...');
 
             // Overwrite the entire inner modal to remove the header and close button, providing a unified experience.
             activeCandylandModal.innerHTML = `
@@ -50,7 +51,7 @@ export class StudyCardsModule {
         else if (window.showModal) {
             window.showModal('🧬 Advanced Muscle Study Lab', content);
         } else {
-            console.error("showModal not available");
+            logger.error("showModal not available");
         }
 
         // Initialize after DOM update

@@ -1,6 +1,7 @@
 // ErnestCharacter.js
 // Manages the Ernest Character (The "Frog" Cursor/Guide)
 
+import logger from '../utils/Logger.js';
 export class ErnestCharacter {
     constructor() {
         this.element = null;
@@ -14,7 +15,7 @@ export class ErnestCharacter {
 
     async init() {
         // Initialization logic for Ernest Character
-        console.log('🐸 Ernest Character is ready.');
+        logger.log('🐸 Ernest Character is ready.');
         return Promise.resolve();
     }
 

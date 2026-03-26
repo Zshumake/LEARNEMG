@@ -4,6 +4,7 @@
  * Replaces legacy path-based loading with strict mapping.
  */
 
+import logger from './Logger.js';
 const MODULE_MAP = {
     // DIRECT APPLICATION LAUNCHES (No file load needed)
     'plexus': {
@@ -80,7 +81,7 @@ const MODULE_MAP = {
 class ModuleLoader {
     constructor() {
         this.loadedModules = new Map();
-        console.log('📦 ModuleLoader: Initialized (v3 - App Support)');
+        logger.log('📦 ModuleLoader: Initialized (v3 - App Support)');
     }
 
     async loadModule(moduleId) {
@@ -89,17 +90,17 @@ class ModuleLoader {
             return this.loadedModules.get(moduleId);
         }
 
-        console.log(`📦 ModuleLoader: Loading '${moduleId}'...`);
+        logger.log(`📦 ModuleLoader: Loading '${moduleId}'...`);
 
         const loader = MODULE_MAP[moduleId];
         if (!loader) {
-            console.error(`❌ ModuleLoader: Unknown module '${moduleId}'`);
+            logger.error(`❌ ModuleLoader: Unknown module '${moduleId}'`);
             throw new Error(`Unknown module: ${moduleId}`);
         }
 
         // NEW: Check for Direct Application Launch
         if (typeof loader === 'object' && loader.type === 'application') {
-            console.log(`🚀 ModuleLoader: Launching Application '${moduleId}' directly`);
+            logger.log(`🚀 ModuleLoader: Launching Application '${moduleId}' directly`);
 
             // Generate a 'stub' module that auto-launches on init
             const appModule = {
@@ -111,7 +112,7 @@ class ModuleLoader {
                         <p>Launching Application...</p>
                     </div>`,
                 initialize: () => {
-                    console.log(`🚀 ModuleLoader: Executing launch sequence for ${moduleId}`);
+                    logger.log(`🚀 ModuleLoader: Executing launch sequence for ${moduleId}`);
                     if (loader.launch) loader.launch();
                 }
             };
@@ -122,7 +123,7 @@ class ModuleLoader {
 
         // NEW: Check for Inline Applications (rendered directly inside the modal)
         if (typeof loader === 'object' && loader.type === 'inline-app') {
-            console.log(`🚀 ModuleLoader: Injecting Application '${moduleId}' inline`);
+            logger.log(`🚀 ModuleLoader: Injecting Application '${moduleId}' inline`);
 
             const appModule = {
                 id: moduleId,
@@ -144,7 +145,7 @@ class ModuleLoader {
                     return '<div class="error-msg">Error generating inline app content</div>';
                 },
                 initialize: () => {
-                    console.log(`🚀 ModuleLoader: Initializing inline sequence for ${moduleId}`);
+                    logger.log(`🚀 ModuleLoader: Initializing inline sequence for ${moduleId}`);
                     if (typeof loader.initialize === 'function') loader.initialize();
                 }
             };
@@ -166,10 +167,10 @@ class ModuleLoader {
             if (!instance) instance = module;
 
             this.loadedModules.set(moduleId, instance);
-            console.log(`✅ ModuleLoader: Loaded '${moduleId}'`);
+            logger.log(`✅ ModuleLoader: Loaded '${moduleId}'`);
             return instance;
         } catch (error) {
-            console.error(`❌ ModuleLoader: Failed to load '${moduleId}'`, error);
+            logger.error(`❌ ModuleLoader: Failed to load '${moduleId}'`, error);
             throw error;
         }
     }

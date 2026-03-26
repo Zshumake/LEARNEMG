@@ -1,4 +1,5 @@
 import { PlexusManager } from './plexus/PlexusManager.js';
+import logger from '../utils/Logger.js';
 
 export class Plexus {
     constructor() {
@@ -18,7 +19,7 @@ export class Plexus {
         // Initialize plexus quiz with appropriate difficulty
         const quizData = this.createQuizData(pgyLevel);
         this.showQuizModal(quizData, pgyLevel);
-        console.log(`Plexus quiz started for: ${pgyLevel} `);
+        logger.log(`Plexus quiz started for: ${pgyLevel} `);
     }
 
     createQuizData(pgyLevel) {
@@ -289,7 +290,7 @@ export class Plexus {
         if (window.showModal) {
             window.showModal('🧠 Plexus Anatomy Challenge', content);
         } else {
-            console.error("ViewHelpers not loaded: showModal missing");
+            logger.error("ViewHelpers not loaded: showModal missing");
         }
 
         // Store quiz data in instance state
@@ -651,7 +652,7 @@ export class Plexus {
             }, 100);
 
         } else {
-            console.error("ViewHelpers not loaded: showModal missing");
+            logger.error("ViewHelpers not loaded: showModal missing");
         }
     }
 }

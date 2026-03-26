@@ -6,8 +6,9 @@ import { MuscleLabMenu } from './MuscleLabMenu.js';
 import { MuscleAnatomyQuizModule } from './MuscleAnatomyQuiz.js';
 import { ReferenceMaterials } from '../info/ReferenceMaterials.js';
 import { initializeCandylandBoard } from '../board/CandylandBoard.js';
+import logger from '../../utils/Logger.js';
 
-console.log('💪 Initializing Muscle Lab Core...');
+logger.log('💪 Initializing Muscle Lab Core...');
 
 // Initialize Modules
 const studyCards = new StudyCardsModule();

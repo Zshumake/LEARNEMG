@@ -1,4 +1,5 @@
 import { MuscleDatabase, LesionSites } from '../../data/MuscleDatabase.js';
+import logger from '../../utils/Logger.js';
 
 export class EMGChallengeSystem {
     constructor() {
@@ -32,7 +33,7 @@ export class EMGChallengeSystem {
     }
 
     launch() {
-        console.log('EMG Localization Challenge Launched...');
+        logger.log('EMG Localization Challenge Launched...');
 
         // Inject CSS if not present
         if (!document.getElementById('emg-challenge-css')) {
@@ -370,7 +371,7 @@ export class EMGChallengeSystem {
         if (window.showModal) {
             window.showModal('Clinical Case Challenge', emgChallengeContent, true);
         } else {
-            console.error('showModal is not defined');
+            logger.error('showModal is not defined');
         }
     }
 

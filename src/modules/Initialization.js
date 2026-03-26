@@ -15,6 +15,7 @@ import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260317';
 import { AudioController } from './audio/AudioController.js?v=20260317';
 import { ErnestCore } from './ernest/ErnestCore.js?v=20260317';
 import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
+import logger from '../utils/Logger.js';
 
 
 class AppInitializer {
@@ -40,7 +41,7 @@ class AppInitializer {
     }
 
     async init() {
-        console.log('🚀 Initializing Application Components...');
+        logger.log('🚀 Initializing Application Components...');
 
         // Expose components globally for legacy compatibility
         // This is crucial for the "Hybrid" phase of the architecture
@@ -63,31 +64,31 @@ class AppInitializer {
 
         // Legacy global shims for decoupled HTML elements
         window.showEMGChallenge = window.showEMGChallenge || (() => {
-            console.warn('showEMGChallenge called but MuscleLab is not fully initialized');
+            logger.warn('showEMGChallenge called but MuscleLab is not fully initialized');
             alert('EMG Challenge module is loading or not available in this context.');
         });
         window.showStudyCards = window.showStudyCards || (() => {
-            console.warn('showStudyCards called but Flashcards are not fully initialized');
+            logger.warn('showStudyCards called but Flashcards are not fully initialized');
             alert('Study Cards are loading or not available in this context.');
         });
 
         // Initialize Core Systems
         try {
             await this.ernest.init();
-            console.log('✅ Ernest Character Initialized');
+            logger.log('✅ Ernest Character Initialized');
 
             // Initialize Domain Systems
             this.candyland.init();
             this.quiz.init();
             // NCS doesn't have an async init, but we'll instantiate it
-            console.log('✅ Domain Systems Initialized');
+            logger.log('✅ Domain Systems Initialized');
 
             // Pre-load Plexus Manager (lightweight wrapper)
             this.plexus = new PlexusManager();
             window.appComponents.plexus = this.plexus;
 
         } catch (error) {
-            console.error('❌ Initialization Error:', error);
+            logger.error('❌ Initialization Error:', error);
         }
     }
 }
@@ -105,7 +106,7 @@ window.showInteractivePlexusAnatomy = () => {
     if (window.appComponents && window.appComponents.plexus) {
         window.appComponents.plexus.showInteractiveAnatomy();
     } else {
-        console.error("❌ Plexus module not initialized");
+        logger.error("❌ Plexus module not initialized");
     }
 };
 

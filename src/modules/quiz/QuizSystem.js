@@ -1,3 +1,4 @@
+import logger from '../../utils/Logger.js';
 export class QuizSystem {
     constructor() {
         // Bind methods
@@ -6,7 +7,7 @@ export class QuizSystem {
     }
 
     init() {
-        console.log('📝 Quiz System Initialized');
+        logger.log('📝 Quiz System Initialized');
         // Expose global functions for legacy onclick handlers
         window.generateModuleQuiz = (questions) => this.generateModuleQuiz(questions);
         window.checkQuizAnswer = this.checkQuizAnswer;

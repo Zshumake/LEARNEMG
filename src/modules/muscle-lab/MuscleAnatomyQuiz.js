@@ -1,4 +1,5 @@
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
+import logger from '../../utils/Logger.js';
 
 export class MuscleAnatomyQuizModule {
     constructor() {
@@ -29,7 +30,7 @@ export class MuscleAnatomyQuizModule {
     }
 
     launch() {
-        console.log('Quiz Module Launched...');
+        logger.log('Quiz Module Launched...');
 
         // Reset stats on launch
         this.testData.questionsAnswered = 0;
@@ -40,7 +41,7 @@ export class MuscleAnatomyQuizModule {
         if (window.showModal) {
             window.showModal('Anatomy Quiz Configuration', content, true);
         } else {
-            console.error("showModal not available");
+            logger.error("showModal not available");
         }
     }
 

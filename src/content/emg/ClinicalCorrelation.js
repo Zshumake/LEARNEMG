@@ -1,5 +1,6 @@
 
 
+import logger from '../../utils/Logger.js';
 const generateContent = function (module) {
     // Inject the external stylesheet if not already present
     if (!document.getElementById('clinical-correlation-styles')) {
@@ -17,7 +18,7 @@ const generateContent = function (module) {
             const currentPGY = (window.store && window.store.getPGYLevel) ? window.store.getPGYLevel() : (window.currentPGYLevel || 'all');
             window.appComponents.clinicalCases.showClinicalCases(currentPGY);
         } else {
-            console.error('❌ Clinical Cases engine not ready');
+            logger.error('❌ Clinical Cases engine not ready');
         }
     }, 50);
 

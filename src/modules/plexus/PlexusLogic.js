@@ -5,6 +5,7 @@
  * Handles graph traversal for pathfinding and clinical logic for lesion simulation.
  */
 
+import logger from '../../utils/Logger.js';
 export class PlexusLogic {
     constructor() {
         this.graph = { nodes: [], links: [] };
@@ -44,7 +45,7 @@ export class PlexusLogic {
             }
         });
 
-        console.log('🧠 PlexusLogic: Graph loaded with', this.nodeMap.size, 'nodes');
+        logger.log('🧠 PlexusLogic: Graph loaded with', this.nodeMap.size, 'nodes');
     }
 
     /**

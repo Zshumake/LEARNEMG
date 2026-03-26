@@ -1,3 +1,4 @@
+import logger from '../../utils/Logger.js';
 export class CompetencyManager {
     constructor() {
         this.currentCompetencyArea = 'all';
@@ -80,7 +81,7 @@ export class CompetencyManager {
         this.updateAreaInfo(competencyArea);
         this.filterContentByArea(competencyArea);
 
-        console.log(`Selected competency area: ${competencyArea}`);
+        logger.log(`Selected competency area: ${competencyArea}`);
     }
 
     updateAreaInfo(area) {
@@ -103,7 +104,7 @@ export class CompetencyManager {
             const shouldShow = area === 'all' || elementArea === area;
             element.style.display = shouldShow ? '' : 'none';
         });
-        console.log(`Filtered content for competency area: ${area}`);
+        logger.log(`Filtered content for competency area: ${area}`);
     }
 
     toggleNavigation(show = true) {

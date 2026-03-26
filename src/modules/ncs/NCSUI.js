@@ -4,10 +4,11 @@
  * Relies exclusively on `NCSEngine.js` for logic and state.
  */
 
+import logger from '../../utils/Logger.js';
 export class NCSUI {
     constructor(engine) {
         if (!engine) {
-            console.error("NCSUI initialized without an NCSEngine dependency!");
+            logger.error("NCSUI initialized without an NCSEngine dependency!");
         }
         this.engine = engine;
 

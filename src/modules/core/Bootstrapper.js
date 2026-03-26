@@ -1,5 +1,6 @@
 import { AppShell } from '../ui/AppShell.js?v=20260317';
 import { moduleLoader } from '../../utils/ModuleLoader.js?v=20260317';
+import logger from '../../utils/Logger.js';
 
 export class Bootstrapper {
     constructor() {
@@ -7,7 +8,7 @@ export class Bootstrapper {
     }
 
     start() {
-        console.log('🚀 Bootstrapper: Starting Application');
+        logger.log('🚀 Bootstrapper: Starting Application');
 
         // 1. Setup UI Shell
         this.shell.render();
@@ -43,10 +44,10 @@ export class Bootstrapper {
                     window.currentPGYLevel = progressData.currentPGYLevel;
                     window.completedModules = new Set(progressData.completedModules || []);
                     window.currentModuleIndex = progressData.currentModuleIndex || 0;
-                    console.log('✅ Progress loaded from storage');
+                    logger.log('✅ Progress loaded from storage');
                     return true;
                 } catch (error) {
-                    console.log('⚠️ Error loading progress:', error);
+                    logger.log('⚠️ Error loading progress:', error);
                     return false;
                 }
             }
@@ -60,7 +61,7 @@ export class Bootstrapper {
         }
 
         if (window.isIOS) {
-            console.warn('📱 iOS DETECTED - Enhanced tracking enabled');
+            logger.warn('📱 iOS DETECTED - Enhanced tracking enabled');
 
             // Track memory if available
             if (performance.memory) {
@@ -71,7 +72,7 @@ export class Bootstrapper {
                     const percentUsed = ((mem.usedJSHeapSize / mem.jsHeapSizeLimit) * 100).toFixed(1);
 
                     if (percentUsed > 90) {
-                        console.error('🚨 MEMORY CRITICAL: ' + percentUsed + '%');
+                        logger.error('🚨 MEMORY CRITICAL: ' + percentUsed + '%');
                     }
                 }, 5000);
             }
@@ -89,7 +90,7 @@ export class Bootstrapper {
 
             // Minimal crash tracking
             window.addEventListener('beforeunload', function (e) {
-                console.error('⚠️ PAGE UNLOAD - Something triggered navigation away from page');
+                logger.error('⚠️ PAGE UNLOAD - Something triggered navigation away from page');
             });
         }
     }

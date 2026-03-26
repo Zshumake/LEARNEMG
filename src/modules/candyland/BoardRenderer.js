@@ -1,5 +1,6 @@
 import { podcastEpisodes } from '../audio/AudioData.js';
 import { ErnestIcon } from '../../utils/ErnestIcon.js';
+import logger from '../../utils/Logger.js';
 
 export class BoardRenderer {
     constructor(core) {
@@ -117,7 +118,7 @@ export class BoardRenderer {
 
         // Ensure playExtraPodcast is safe (if not already defined by podcast-player.js)
         if (!window.playExtraPodcast) {
-            window.playExtraPodcast = (id) => console.log('Playing extra podcast:', id);
+            window.playExtraPodcast = (id) => logger.log('Playing extra podcast:', id);
         }
 
         // Ensure openModulePodcast is safe
@@ -126,19 +127,19 @@ export class BoardRenderer {
                 if (window.playModulePodcast) {
                     window.playModulePodcast(modId, epId);
                 } else {
-                    console.log('Playing module podcast:', modId, epId);
+                    logger.log('Playing module podcast:', modId, epId);
                 }
             };
         }
 
         // Ensure showLearningObjectives is safe
         if (!window.showLearningObjectives) {
-            window.showLearningObjectives = () => console.log('Show Learning Objectives clicked');
+            window.showLearningObjectives = () => logger.log('Show Learning Objectives clicked');
         }
 
         // Ensure showStudyCards is safe
         if (!window.showStudyCards) {
-            window.showStudyCards = () => console.log('Show Study Cards clicked (Module not loaded yet)');
+            window.showStudyCards = () => logger.log('Show Study Cards clicked (Module not loaded yet)');
         }
     }
 

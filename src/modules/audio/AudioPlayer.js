@@ -5,6 +5,7 @@
 // Decoupled from UI rendering.
 // ============================================================================
 
+import logger from '../../utils/Logger.js';
 export class AudioPlayer {
     constructor(stateCallback) {
         this.audio = new Audio();
@@ -57,7 +58,7 @@ export class AudioPlayer {
 
         // Error Handling
         this.audio.addEventListener('error', (e) => {
-            console.error('Audio Playback Error:', e);
+            logger.error('Audio Playback Error:', e);
             this.emitStateChange({ error: 'Playback failed' });
         });
     }
@@ -74,7 +75,7 @@ export class AudioPlayer {
         const playPromise = this.audio.play();
         if (playPromise !== undefined) {
             playPromise.catch(error => {
-                console.error("Auto-play prevented or fetch error:", error);
+                logger.error("Auto-play prevented or fetch error:", error);
                 this.emitStateChange({ isPlaying: false, error: 'Auto-play prevented' });
             });
         }

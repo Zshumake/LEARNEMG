@@ -1,6 +1,7 @@
 
 import { themeManager } from './ThemeManager.js';
 import { learningModulesConfig } from '../candyland/BoardData.js';
+import logger from '../../utils/Logger.js';
 
 export class ModalSystem {
     constructor() {
@@ -94,7 +95,7 @@ export class ModalSystem {
                 }
             }
         } catch (e) {
-            console.error("Error loading module:", e);
+            logger.error("Error loading module:", e);
             contentHTML = `<div class="error-msg">Error loading content: ${e.message}</div>`;
         }
 

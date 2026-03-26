@@ -4,6 +4,7 @@
  */
 
 // Detect iOS
+import logger from './Logger.js';
 if (typeof window.isIOS === 'undefined') {
     window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
@@ -38,7 +39,7 @@ export function showModal(title, content) {
     const modalBody = document.getElementById('modal-body');
 
     if (!overlay || !modalTitle || !modalBody) {
-        console.error('❌ Modal elements not found');
+        logger.error('❌ Modal elements not found');
         return;
     }
 

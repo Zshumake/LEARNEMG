@@ -1,6 +1,7 @@
 import { ErnestAPI } from './ErnestAPI.js?v=20260304-v1';
 import { ErnestUI } from './ErnestUI.js?v=20260304-v1';
 import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
+import logger from '../../utils/Logger.js';
 
 export class ErnestCore {
     constructor() {
@@ -75,7 +76,7 @@ export class ErnestCore {
     init() {
         this.ui.createUI(this.personas[this.currentPersonaId]);
         this.startIdleMonitor();
-        console.log('🎩 Ernest JRPG System Initialized (Modular Edition)');
+        logger.log('🎩 Ernest JRPG System Initialized (Modular Edition)');
     }
 
     switchPersona() {
@@ -293,7 +294,7 @@ export class ErnestCore {
     }
 
     async handleError(error, query) {
-        console.error("Gemini Error:", error);
+        logger.error("Gemini Error:", error);
 
         const isEarl = this.currentPersonaId === 'earl';
 

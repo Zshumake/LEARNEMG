@@ -4,6 +4,7 @@
  * Handles static informational content and reference guides.
  */
 
+import logger from '../../utils/Logger.js';
 export class ReferenceMaterials {
     constructor() {
         // Diagnostic mode flag
@@ -57,7 +58,7 @@ export class ReferenceMaterials {
         if (window.showModal) {
             window.showModal('🚨 Cardinal EMG/NCS Rules', content);
         } else {
-            console.error('showModal not found');
+            logger.error('showModal not found');
         }
     }
 

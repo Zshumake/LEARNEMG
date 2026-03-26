@@ -7,6 +7,7 @@ import { IntroductionData } from './IntroductionData.js';
 import { UIComponents } from '../../ui/UIComponents.js';
 import { DesignTokens } from '../../ui/DesignTokens.js';
 import { EMGMachine } from './EMGMachine.js';
+import logger from '../../utils/Logger.js';
 
 class IntroductionModule extends BaseContent {
     constructor() {
@@ -15,7 +16,7 @@ class IntroductionModule extends BaseContent {
     }
 
     initialize() {
-        console.log('📦 Initializing EMG Introduction Module (v2 Consolidated)');
+        logger.log('📦 Initializing EMG Introduction Module (v2 Consolidated)');
 
         const tabColors = {
             'philosophy': DesignTokens.gradients.foundations,

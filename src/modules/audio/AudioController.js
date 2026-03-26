@@ -15,6 +15,7 @@ import { PlayerControls } from './ui/PlayerControls.js';
 import { ProgressBar } from './ui/ProgressBar.js';
 import { VolumeControl } from './ui/VolumeControl.js';
 import { EpisodeInfo } from './ui/EpisodeInfo.js';
+import logger from '../../utils/Logger.js';
 
 
 export class AudioController {
@@ -56,7 +57,7 @@ export class AudioController {
     // GLOBAL EVENT BINDINGS (Replaces legacy window methods)
     // ========================================================================
     bindGlobalEvents() {
-        console.log('🎧 Setting up Audio Event Listeners...');
+        logger.log('🎧 Setting up Audio Event Listeners...');
 
         document.body.addEventListener('click', (e) => {
             const podcastTrigger = e.target.closest('[data-podcast-trigger="true"]');
@@ -82,10 +83,10 @@ export class AudioController {
     // ========================================================================
 
     playSpecificEpisode(moduleId, episodeId) {
-        console.log(`▶️ playSpecificEpisode called: module=${moduleId}, episode=${episodeId}`);
+        logger.log(`▶️ playSpecificEpisode called: module=${moduleId}, episode=${episodeId}`);
         // If switching modules or first load
         if (this.currentModuleId !== moduleId) {
-            console.log(`   Switching module from ${this.currentModuleId} to ${moduleId}`);
+            logger.log(`   Switching module from ${this.currentModuleId} to ${moduleId}`);
             this.loadModule(moduleId);
         }
 
@@ -117,12 +118,12 @@ export class AudioController {
     }
 
     loadEpisode(episodeId, autoPlay = false) {
-        console.log(`   Loading episode: ${episodeId}`);
+        logger.log(`   Loading episode: ${episodeId}`);
         const episodes = getModuleEpisodes(this.currentModuleId);
         const episode = episodes.find(e => e.id === episodeId);
 
         if (!episode) {
-            console.error(`❌ Episode not found: ${episodeId} in module ${this.currentModuleId}`);
+            logger.error(`❌ Episode not found: ${episodeId} in module ${this.currentModuleId}`);
             return;
         }
 

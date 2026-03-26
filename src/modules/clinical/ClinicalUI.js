@@ -1,5 +1,6 @@
 import { ClinicalRenderer } from './ClinicalRenderer.js';
 import { ClinicalTables } from './components/ClinicalTables.js';
+import logger from '../../utils/Logger.js';
 
 export class ClinicalUI {
     constructor(engine) {
@@ -53,7 +54,7 @@ export class ClinicalUI {
                 existingRoot.scrollTop = scrollTop;
                 this.container = existingRoot;
             } else {
-                console.log('Injecting directly into active Candyland module...');
+                logger.log('Injecting directly into active Candyland module...');
                 activeCandylandModal.innerHTML = `
                     <div style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0; position: relative;">
                         <h2 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;">Clinical Cases</h2>
@@ -268,7 +269,7 @@ export class ClinicalUI {
             }, 200);
 
         } catch (e) {
-            console.error(e);
+            logger.error(e);
             alert('Case not available.');
         }
     }

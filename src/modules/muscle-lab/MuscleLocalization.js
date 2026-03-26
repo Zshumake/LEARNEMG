@@ -4,13 +4,14 @@
  * for needle localization.
  */
 
+import logger from '../../utils/Logger.js';
 export class MuscleLocalization {
     constructor() {
         this.currentRegion = 'upper';
     }
 
     switchRegion(region) {
-        console.log(`[Target] Switching to ${region} extremity muscle localization`);
+        logger.log(`[Target] Switching to ${region} extremity muscle localization`);
         this.currentRegion = region;
 
         // Update button states

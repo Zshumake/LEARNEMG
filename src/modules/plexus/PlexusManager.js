@@ -1,6 +1,7 @@
 import { PlexusLogic } from './PlexusLogic.js';
 import { PlexusRenderer } from './PlexusRenderer.js?v=20260304-v5';
 import { generatePlexopathyContent } from '../../content/pathology/BrachialPlexopathy.js?v=20260304-v5';
+import logger from '../../utils/Logger.js';
 
 const MUSCLE_DETAILS = {
     // Upper Extremity
@@ -70,7 +71,7 @@ export class PlexusManager {
     }
 
     async initialize(containerId, initialPlexus = null) {
-        console.log('🚀 PlexusManager: Initializing...');
+        logger.log('🚀 PlexusManager: Initializing...');
 
         // Reset view state to anatomy upon re-initialization
         this.view = 'anatomy';
@@ -109,10 +110,10 @@ export class PlexusManager {
             const targetPlexus = initialPlexus || this.currentPlexus || 'brachial';
             this.switchPlexus(targetPlexus);
 
-            console.log('✅ PlexusManager: Initialization complete');
+            logger.log('✅ PlexusManager: Initialization complete');
             return true;
         } catch (error) {
-            console.error('❌ PlexusManager: Init failed', error);
+            logger.error('❌ PlexusManager: Init failed', error);
             return false;
         }
     }
@@ -126,7 +127,7 @@ export class PlexusManager {
             this.dataCache[type] = data;
             return true;
         } catch (e) {
-            console.error(`Failed to load ${type} data:`, e);
+            logger.error(`Failed to load ${type} data:`, e);
             return false;
         }
     }
@@ -400,7 +401,7 @@ export class PlexusManager {
             window.showModal('🧠 Advanced Plexus Systems', content);
             setTimeout(() => { this.initialize('plexus-viz-container'); }, 100);
         } else {
-            console.error("ViewHelpers not loaded: showModal missing");
+            logger.error("ViewHelpers not loaded: showModal missing");
         }
     }
 }

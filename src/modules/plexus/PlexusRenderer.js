@@ -5,6 +5,7 @@
  * Renders the plexus as an interactive force-directed graph.
  */
 
+import logger from '../../utils/Logger.js';
 export class PlexusRenderer {
     constructor(containerId, manager) {
         this.containerId = containerId;
@@ -19,7 +20,7 @@ export class PlexusRenderer {
     initialize() {
         const container = document.getElementById(this.containerId);
         if (!container) {
-            console.error('Renderer: Container not found', this.containerId);
+            logger.error('Renderer: Container not found', this.containerId);
             return;
         }
 
@@ -88,7 +89,7 @@ export class PlexusRenderer {
             // Tell the zoom behavior the container has changed size 
             this.zoomBehavior.extent([[0, 0], [this.width, this.height]]);
 
-            console.log(`[PlexusRenderer] Handled resize to ${this.width}x${this.height}`);
+            logger.log(`[PlexusRenderer] Handled resize to ${this.width}x${this.height}`);
         }
     }
 
@@ -240,7 +241,7 @@ export class PlexusRenderer {
 
         if (isNaN(xOffset) || isNaN(yOffset)) return;
 
-        console.log(`[PlexusRenderer] fitToScreen applying calculated transform - Scale: ${scale} OffsetX: ${xOffset} OffsetY: ${yOffset}`);
+        logger.log(`[PlexusRenderer] fitToScreen applying calculated transform - Scale: ${scale} OffsetX: ${xOffset} OffsetY: ${yOffset}`);
 
         const transform = d3.zoomIdentity.translate(xOffset, yOffset).scale(scale);
 
