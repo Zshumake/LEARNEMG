@@ -42,13 +42,13 @@ export const plexopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.2, amp: 28.0, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 22.0, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.1, amp: 25.0, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 28.0, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 22.0, velocity: 60, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.1, onset: 1.6, amp: 25.0, velocity: 56, dist: 10, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: "Absent", amp: 0, velocity: 0, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: "Absent", amp: 0, velocity: 0, abnormal: true }
+                { name: "Median Motor (APB)", latency: "Absent", amp: 0, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: "Absent", amp: 0, velocity: 0, dist: 8, abnormal: true }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "Absent", measureB: "Absent", deltaP: "N/A", abnormal: true }
@@ -109,14 +109,14 @@ export const plexopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 3.8, amp: 5.0, velocity: 32, abnormal: true },
-                { name: "Lat Antebrachial Cutaneous", peak: 4.2, amp: 4.5, velocity: 30, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 3.8, onset: 3.3, amp: 5.0, velocity: 32, dist: 10, abnormal: true },
+                { name: "Lat Antebrachial Cutaneous", peak: 4.2, onset: 3.7, amp: 4.5, velocity: 30, dist: 12, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -179,14 +179,14 @@ export const plexopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.2, amp: 35, velocity: 52, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 3.8, amp: 15, velocity: 45, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false },
-                { name: "Medial Antebrachial Cut", peak: 4.2, amp: 8, velocity: 42, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 35, velocity: 52, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 3.8, onset: 3.2, amp: 15, velocity: 45, dist: 14, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
+                { name: "Medial Antebrachial Cut", peak: 4.2, onset: 3.6, amp: 8, velocity: 42, dist: 12, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.5, amp: 3.5, velocity: 56, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 4.2, amp: 2.1, velocity: 45, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.5, amp: 3.5, velocity: 56, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 4.2, amp: 2.1, velocity: 45, dist: 8, abnormal: true }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.5", measureB: "2.4", deltaP: "0.1", abnormal: false }
@@ -237,15 +237,15 @@ export const plexopathyCases = {
         explanation: "Classic diabetic amyotrophy with acute onset severe thigh pain, proximal leg weakness, weight loss, and involvement of multiple lumbar plexus nerve territories.",
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false },
-                { name: "Lat Fem Cutaneous", peak: 4.5, amp: 8.0, velocity: 42, abnormal: true },
-                { name: "Saphenous Sensory", peak: 4.8, amp: 2.0, velocity: 35, abnormal: true }
+                { name: "Sural Sensory", peak: 3.8, onset: 3.1, amp: 15, velocity: 45, dist: 14, abnormal: false },
+                { name: "Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 48, dist: 14, abnormal: false },
+                { name: "Lat Fem Cutaneous", peak: 4.5, onset: 3.9, amp: 8.0, velocity: 42, dist: 14, abnormal: true },
+                { name: "Saphenous Sensory", peak: 4.8, onset: 4.2, amp: 2.0, velocity: 35, dist: 14, abnormal: true }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 3.0, velocity: 38, abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, dist: 9, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, dist: 10, abnormal: false },
+                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 3.0, velocity: 38, dist: 16, abnormal: true }
             ],
             comparison: []
         },

@@ -42,14 +42,14 @@ export const radialCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 4.5, amp: 8.0, velocity: 42, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 4.5, onset: 4.0, amp: 8.0, velocity: 42, dist: 10, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false },
-                { name: "Radial Motor (EIP)", latency: 5.2, amp: 2.0, velocity: 38, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false },
+                { name: "Radial Motor (EIP)", latency: 5.2, amp: 2.0, velocity: 38, dist: 10, abnormal: true }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.5", measureB: "4.8", deltaP: "2.3", abnormal: true }
@@ -115,15 +115,15 @@ export const radialCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Radial Sensory (Snuffbox)", peak: 2.8, amp: 18.0, velocity: 52, abnormal: false, comment: "Preserved distally in neurapraxia (conduction block)" },
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false }
+                { name: "Radial Sensory (Snuffbox)", peak: 2.8, onset: 2.3, amp: 18.0, velocity: 52, dist: 10, abnormal: false, comment: "Preserved distally in neurapraxia (conduction block)" },
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Radial Motor (EIP) - Below Groove", latency: 4.5, amp: 6.0, velocity: "N/A", abnormal: false },
-                { name: "Radial Motor (EIP) - Above Groove", latency: 8.5, amp: 0.5, velocity: 25, abnormal: true, comment: "Profound conduction block and slowing across the spiral groove" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Radial Motor (EIP) - Below Groove", latency: 4.5, amp: 6.0, velocity: "N/A", dist: 14, abnormal: false },
+                { name: "Radial Motor (EIP) - Above Groove", latency: 8.5, amp: 0.5, velocity: 25, dist: 12, abnormal: true, comment: "Profound conduction block and slowing across the spiral groove" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -189,13 +189,13 @@ export const radialCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Radial Sensory (Snuffbox)", peak: 4.8, amp: 4.0, velocity: 35, abnormal: true, comment: "Confirms isolated sensory radial involvement" },
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false }
+                { name: "Radial Sensory (Snuffbox)", peak: 4.8, onset: 4.3, amp: 4.0, velocity: 35, dist: 10, abnormal: true, comment: "Confirms isolated sensory radial involvement" },
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Radial Motor (EIP)", latency: 4.2, amp: 8.0, velocity: 58, abnormal: false, comment: "Normal motor function distal to the lesion" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false }
+                { name: "Radial Motor (EIP)", latency: 4.2, amp: 8.0, velocity: 58, dist: 10, abnormal: false, comment: "Normal motor function distal to the lesion" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false }
             ],
             comparison: []
         },
@@ -258,14 +258,14 @@ export const radialCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false, comment: "Crucial finding ruling out high radial neuropathy" },
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false }
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false, comment: "Crucial finding ruling out high radial neuropathy" },
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Radial Motor (EIP)", latency: 10.5, amp: 0.8, velocity: "N/A", abnormal: true, comment: "Low amplitude CMAP from a PIN-innervated muscle" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Radial Motor (EIP)", latency: 10.5, amp: 0.8, velocity: "N/A", dist: 10, abnormal: true, comment: "Low amplitude CMAP from a PIN-innervated muscle" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.5", measureB: "2.4", deltaP: "0.1", abnormal: false }

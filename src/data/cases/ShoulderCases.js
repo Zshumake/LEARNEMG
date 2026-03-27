@@ -42,14 +42,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, amp: 20, velocity: 62, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
+                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, onset: 1.9, amp: 20, velocity: 62, dist: 12, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
             ],
             motor: [
-                { name: "Suprascapular Motor (SS)", latency: 5.2, amp: 1.2, velocity: "N/A", abnormal: true, comment: "Prolonged latency and low amplitude" },
-                { name: "Suprascapular Motor (IS)", latency: 6.8, amp: 0.8, velocity: "N/A", abnormal: true },
-                { name: "Axillary Motor (Deltoid)", latency: 3.8, amp: 10.5, velocity: "N/A", abnormal: false, comment: "Spared" }
+                { name: "Suprascapular Motor (SS)", latency: 5.2, amp: 1.2, velocity: "N/A", dist: 10, abnormal: true, comment: "Prolonged latency and low amplitude" },
+                { name: "Suprascapular Motor (IS)", latency: 6.8, amp: 0.8, velocity: "N/A", dist: 10, abnormal: true },
+                { name: "Axillary Motor (Deltoid)", latency: 3.8, amp: 10.5, velocity: "N/A", dist: 12, abnormal: false, comment: "Spared" }
             ],
             comparison: []
         },
@@ -113,14 +113,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 42, velocity: 55, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 38, velocity: 62, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, amp: 22, velocity: 65, abnormal: false, comment: "Spared (localizes distal to the trunk)" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 42, velocity: 55, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 38, velocity: 62, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, onset: 1.9, amp: 22, velocity: 65, dist: 12, abnormal: false, comment: "Spared (localizes distal to the trunk)" }
             ],
             motor: [
-                { name: "Axillary Motor (Deltoid)", latency: 8.5, amp: 0.5, velocity: "N/A", abnormal: true, comment: "Low amplitude CMAP suggests severe axonal loss" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 14.0, velocity: 52, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Musculocutaneous Motor (Biceps)", latency: 4.8, amp: 12.0, velocity: "N/A", abnormal: false, comment: "Spared" }
+                { name: "Axillary Motor (Deltoid)", latency: 8.5, amp: 0.5, velocity: "N/A", dist: 12, abnormal: true, comment: "Low amplitude CMAP suggests severe axonal loss" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 14.0, velocity: 52, dist: 8, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Musculocutaneous Motor (Biceps)", latency: 4.8, amp: 12.0, velocity: "N/A", dist: 14, abnormal: false, comment: "Spared" }
             ],
             comparison: []
         },
@@ -184,14 +184,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lat Antebrach Cutaneous", peak: 2.8, amp: 20, velocity: 62, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Lat Antebrach Cutaneous", peak: 2.8, onset: 2.3, amp: 20, velocity: 62, dist: 12, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -258,14 +258,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 48, velocity: 58, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lat Antebrach Cutaneous", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Localizes the lesion to the musculocutaneous nerve or upper trunk" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 48, velocity: 58, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Lat Antebrach Cutaneous", peak: "Absent", onset: "NR", amp: "Absent", velocity: "N/A", dist: 12, abnormal: true, comment: "Localizes the lesion to the musculocutaneous nerve or upper trunk" }
             ],
             motor: [
-                { name: "Musculocutaneous Motor (Biceps)", latency: 8.2, amp: 0.8, velocity: "N/A", abnormal: true, comment: "Low amplitude and prolonged latency" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 14.2, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 15.0, velocity: 62, abnormal: false }
+                { name: "Musculocutaneous Motor (Biceps)", latency: 8.2, amp: 0.8, velocity: "N/A", dist: 14, abnormal: true, comment: "Low amplitude and prolonged latency" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 14.2, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 15.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -334,14 +334,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false },
-                { name: "Lat Antebrach Cutaneous", peak: 3.2, amp: 5.0, velocity: 52, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
+                { name: "Lat Antebrach Cutaneous", peak: 3.2, onset: 2.7, amp: 5.0, velocity: 52, dist: 12, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }

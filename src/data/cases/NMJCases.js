@@ -43,13 +43,13 @@ export const nMJCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
             ],
             comparison: [
                 { name: "Repetitive Nerve Stimulation (Median)", measureA: "Baseline Amp: 12.0mV", measureB: "4th Stim: 9.5mV", deltaP: "21% Decrement", abnormal: true },
@@ -117,18 +117,18 @@ export const nMJCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false },
-                { name: "Sural Sensory", peak: 3.2, amp: 22, velocity: 48, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
+                { name: "Sural Sensory", peak: 3.2, onset: 2.5, amp: 22, velocity: 48, dist: 14, abnormal: false },
+                { name: "Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 48, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 1.2, velocity: 55, abnormal: true },
-                { name: "Ulnar Motor (Baseline)", latency: 2.8, amp: 1.5, velocity: 58, abnormal: true },
-                { name: "Ulnar Motor (Post-Exercise)", latency: 2.8, amp: 4.8, velocity: 58, abnormal: false },
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 1.0, velocity: 48, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 1.5, velocity: 45, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 1.2, velocity: 55, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (Baseline)", latency: 2.8, amp: 1.5, velocity: 58, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (Post-Exercise)", latency: 2.8, amp: 4.8, velocity: 58, dist: 8, abnormal: false },
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 1.0, velocity: 48, dist: 9, abnormal: true },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 1.5, velocity: 45, dist: 10, abnormal: true }
             ],
             comparison: [
                 { name: "Post-Exercise Facilitation", measureA: "Baseline: 1.5mV", measureB: "4.8mV", deltaP: "220% Facilitation", abnormal: true },

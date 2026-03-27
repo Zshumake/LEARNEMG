@@ -1,46 +1,34 @@
-# Module 1 EMG Introduction -- Deep Audit & Enhancement
+# EMG/NCS Case Database - Full Medical Audit & Sierra Wave Compliance
 
-## Plan
+## Audit Summary
 
-### A. Medical Accuracy Fixes (both platforms)
-- [x] A1. Fix lower extremity temperature from 30C to 31C (per AANEM) -- Flutter + Web
-- [x] A2. Fix Wallerian degeneration sensory timeline: Day 6-10 -> Day 7-11 (Flutter)
-- [x] A3. Update ICD/pacemaker safety with evidence-based wording (both platforms)
+Reviewed all 13 case files (35+ cases). The case database is **medically strong overall**. Clinical presentations, differentials, teaching points, and localization logic are excellent. Found a few data accuracy bugs and structural gaps vs. Sierra Wave format.
 
-### B. Sync Missing Content
-- [x] B1. Add 5 mastery glossary terms to Flutter (already present -- confirmed all 5 exist)
+---
 
-### C. Add Inline Knowledge Checks (make tabs interactive)
-- [x] C1. Add 2-question knowledge check to Philosophy tab (Flutter)
-- [x] C2. Add 2-question knowledge check to EDX Basics tab (Flutter)
-- [x] C3. Add 2-question knowledge check to Technical tab (Flutter)
-- [x] C4. Add 2-question knowledge check to Localization tab (Flutter)
+## Phase 1: Medical Accuracy Fixes (Quick Wins)
 
-### D. Build & Verify
-- [x] D1. Flutter analyze, build, deploy
-- [ ] D2. Verify via preview
+- [ ] **Bug 1**: hand14 (CTS) - Ulnar Motor marked `abnormal: true` but values are normal (lat 2.8, amp 5.0, vel 62). Contradicts teaching that only median is affected. Fix: `abnormal: false`
+- [ ] **Bug 2**: ALS - Fibular Motor velocity 32 m/s is too slow for axonal disease (suggests demyelination). Fix: change to 40 m/s
+- [ ] **Bug 3**: hand14 - Ulnar Sensory velocity 67 m/s unrealistically high (typical 48-62). Fix: change to 60 m/s
+- [ ] **Bug 4**: ClinicalDataStandardizer reference values don't match standard lab norms (Ulnar motor amp 3.0 should be 6.0, Median sensory amp 10 should be 20, etc.)
 
-## Review
+---
 
-### Changes Made
+## Phase 2: Sierra Wave Display Format Enhancements
 
-**Medical Accuracy (A1-A3):**
-- Fixed lower extremity temperature threshold: 30C -> 31C per AANEM guidelines (2 locations in Flutter, 2 in Web)
-- Fixed Wallerian degeneration sensory timeline: Day 6-10 -> Day 7-11 (Flutter)
-- Rewrote ICD/pacemaker safety section with Schoeck 2007 evidence (zero inappropriate discharges in 77 patients), standard precautions (magnet available, notify cardiology, avoid EMG directly over generator), clarified NCS does NOT require ICD reprogramming. Updated on both platforms.
+- [ ] Add `onset` latency to all sensory studies (Sierra Wave shows both onset and peak)
+- [ ] Add `distance` field to all NCS entries (standard recording distances)
+- [ ] Standardize motor studies to show multiple stimulation sites (wrist, elbow, etc.)
+- [ ] Ensure all studies include normal reference values for display
 
-**Content Sync (B1):**
-- All 5 mastery glossary terms were already present in Flutter (Common Mode Rejection, Volume Conduction, Near-field Potential, Far-field Potential, Supramaximal Stimulation). No changes needed.
+---
 
-**Inline Knowledge Checks (C1-C4):**
-- Created a new `_InlineKnowledgeCheck` stateful widget with tap-to-reveal answer UX, color-coded feedback (green correct / red incorrect), and explanation panel
-- Added 2 questions to each of 4 tabs (8 total):
-  - Philosophy: cold hand trap scenario, clinical-electrical mismatch
-  - EDX Basics: early Wallerian degeneration timing, Sunderland Grade III recovery
-  - Technical: height as physiologic variable, 60 Hz noise identification/fix
-  - Localization: median neuropathy at wrist pattern, upper trunk/C5-C6 localization
+## Phase 3: EMG Table Format Standardization
 
-**Files Modified:**
-- `EMG_Mastery_Flutter/lib/data/introduction_data.dart` (3 edits: temp x2, Wallerian timeline, ICD safety)
-- `EMG_Mastery_Flutter/lib/features/learning/introduction_module_view.dart` (5 edits: 4 knowledge check sections + stateful widget)
-- `src/content/emg/IntroductionData.js` (3 edits: temp x2, ICD safety)
+- [ ] Standardize EMG fields: `insertionalActivity`, `fibs`, `psws`, `fasciculations`, `muapAmplitude`, `muapDuration`, `muapPhases`, `recruitment`
+
+---
+
+## All 35+ Cases Passed Medical Audit (No Changes Needed):
+CTS, Guyon's, Severe CTS, Double Crush, Cubital Tunnel, Klumpke's, C5/C6/C7/L5/S1 radiculopathies, MG, LEMS, Polymyositis, Diabetic PN, ALS (vel fix), GBS, CIDP, MMN, CMT, Small Fiber, Foot Drop, Tarsal Tunnel, Deep Peroneal, Femoral, Obturator, Piriformis, Baxter's, Suprascapular, Axillary, Long Thoracic, Musculocutaneous, PTS, Radial/Saturday Night, Wartenberg's, PIN, Pronator, AIN, Struthers, Avulsion, Erb's, Radiation Plexopathy, Diabetic Amyotrophy, Stroke

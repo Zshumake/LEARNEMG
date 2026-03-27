@@ -42,14 +42,14 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false },
-                { name: "Lat Antebrach Cutaneous", peak: 2.5, amp: 15.0, velocity: 52, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false },
+                { name: "Lat Antebrach Cutaneous", onset: 2.0, peak: 2.5, amp: 15.0, dist: 12, velocity: 52, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 62, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -114,13 +114,13 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 10.5, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 12.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 10.5, dist: 8, velocity: 55, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 12.0, dist: 8, velocity: 62, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -221,14 +221,14 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false },
-                { name: "Lat Antebrach Cutaneous", peak: 2.8, amp: 25, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false },
+                { name: "Lat Antebrach Cutaneous", onset: 2.3, peak: 2.8, amp: 25, dist: 12, velocity: 56, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 62, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -329,12 +329,12 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false }
+                { name: "Sural Sensory", onset: 3.1, peak: 3.8, amp: 15, dist: 14, velocity: 45, abnormal: false },
+                { name: "Fibular Sensory", onset: 2.6, peak: 3.2, amp: 18, dist: 14, velocity: 48, abnormal: false }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, dist: 9, velocity: 48, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, dist: 10, velocity: 45, abnormal: false }
             ],
             comparison: []
         },
@@ -403,12 +403,12 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false }
+                { name: "Sural Sensory", onset: 3.1, peak: 3.8, amp: 15, dist: 14, velocity: 45, abnormal: false },
+                { name: "Fibular Sensory", onset: 2.6, peak: 3.2, amp: 18, dist: 14, velocity: 48, abnormal: false }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 11.5, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, dist: 9, velocity: 48, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 11.5, dist: 10, velocity: 45, abnormal: false }
             ],
             comparison: [
                 { name: "H-Reflex (Tibial)", measureA: "Right Side: 35ms", measureB: "Left Side: 30ms", deltaP: "5ms Delay", abnormal: true }

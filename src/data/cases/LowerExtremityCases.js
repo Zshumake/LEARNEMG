@@ -42,14 +42,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 4.0, velocity: 48, abnormal: true }
+                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false, dist: 14, onset: 3.1 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 4.0, velocity: 48, abnormal: true, dist: 14, onset: 2.6 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB) - Ank", latency: 4.2, amp: 1.5, velocity: 48, abnormal: true },
-                { name: "Fibular Motor (EDB) - BFH", latency: 10.2, amp: 1.4, velocity: 45, abnormal: true },
-                { name: "Fibular Motor (EDB) - AFH", latency: 13.8, amp: 0.4, velocity: 28, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB) - Ank", latency: 4.2, amp: 1.5, velocity: 48, abnormal: true, dist: 9 },
+                { name: "Fibular Motor (EDB) - BFH", latency: 10.2, amp: 1.4, velocity: 45, abnormal: true, dist: 24 },
+                { name: "Fibular Motor (EDB) - AFH", latency: 13.8, amp: 0.4, velocity: 28, abnormal: true, dist: 10 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, dist: 10 }
             ],
             comparison: []
         },
@@ -114,14 +114,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false },
-                { name: "Medial Plantar Sensory", peak: 4.2, amp: 8.0, velocity: 32, abnormal: true },
-                { name: "Lateral Plantar Sensory", peak: 4.5, amp: 6.0, velocity: 30, abnormal: true }
+                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false, dist: 14, onset: 2.8 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false, dist: 14, onset: 2.6 },
+                { name: "Medial Plantar Sensory", peak: 4.2, amp: 8.0, velocity: 32, abnormal: true, dist: 14, onset: 3.6 },
+                { name: "Lateral Plantar Sensory", peak: 4.5, amp: 6.0, velocity: 30, abnormal: true, dist: 14, onset: 3.9 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.1, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 6.2, amp: 3.5, velocity: 42, abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 4.1, amp: 6.0, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 6.2, amp: 3.5, velocity: 42, abnormal: true, dist: 10 }
             ],
             comparison: []
         },
@@ -188,13 +188,13 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.1, amp: 15, velocity: 52, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Deep Peroneal Sensory", peak: 4.8, amp: 2.0, velocity: 30, abnormal: true, comment: "Confirms isolated first webspace involvement" }
+                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Fibular Sensory", peak: 3.1, amp: 15, velocity: 52, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.5 },
+                { name: "Deep Peroneal Sensory", peak: 4.8, amp: 2.0, velocity: 30, abnormal: true, comment: "Confirms isolated first webspace involvement", dist: 12, onset: 4.2 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 8.2, amp: 1.0, velocity: 45, abnormal: true, comment: "Prolonged distal latency localizes to the ankle" },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 48, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 8.2, amp: 1.0, velocity: 45, abnormal: true, comment: "Prolonged distal latency localizes to the ankle", dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 48, abnormal: false, dist: 10 }
             ],
             comparison: []
         },
@@ -259,14 +259,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.4, amp: 18, velocity: 46, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false },
-                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true }
+                { name: "Sural Sensory", peak: 3.4, amp: 18, velocity: 46, abnormal: false, dist: 14, onset: 2.7 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false, dist: 14, onset: 2.6 },
+                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, dist: 14, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Femoral Motor (Quad)", latency: 7.8, amp: 1.2, velocity: "N/A", abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, dist: 10 },
+                { name: "Femoral Motor (Quad)", latency: 7.8, amp: 1.2, velocity: "N/A", abnormal: true, dist: 16 }
             ],
             comparison: []
         },
@@ -330,14 +330,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Medial Thigh (Obturator)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms sensory involvement" }
+                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Medial Thigh (Obturator)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms sensory involvement", dist: 12, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Obturator Motor (Adductor)", latency: 8.5, amp: 1.2, velocity: "N/A", abnormal: true, comment: "Low amplitude CMAP" }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, dist: 10 },
+                { name: "Obturator Motor (Adductor)", latency: 8.5, amp: 1.2, velocity: "N/A", abnormal: true, comment: "Low amplitude CMAP", dist: 14 }
             ],
             comparison: []
         },
@@ -402,14 +402,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 4.5, amp: 8.0, velocity: 38, abnormal: true, comment: "Relatively low amplitude suggests post-ganglionic lesion" },
-                { name: "Fibular Sensory", peak: 3.8, amp: 10.0, velocity: 42, abnormal: true },
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false, comment: "Distractor - Normal" }
+                { name: "Sural Sensory", peak: 4.5, amp: 8.0, velocity: 38, abnormal: true, comment: "Relatively low amplitude suggests post-ganglionic lesion", dist: 14, onset: 3.8 },
+                { name: "Fibular Sensory", peak: 3.8, amp: 10.0, velocity: 42, abnormal: true, dist: 14, onset: 3.2 },
+                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.5 }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 52, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 3.5, velocity: 40, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.8, amp: 8.5, velocity: 42, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 52, abnormal: false, comment: "Distractor - Normal", dist: 8 },
+                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 3.5, velocity: 40, abnormal: true, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.8, amp: 8.5, velocity: 42, abnormal: true, dist: 10 }
             ],
             comparison: [
                 { name: "H-Reflex (Tibial)", measureA: "Right (Neutral): 32ms", measureB: "Right (FAIR): 38ms", deltaP: "Positional Delay", abnormal: true }
@@ -475,14 +475,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 20, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lateral Plantar Sensory", peak: 3.5, amp: 10, velocity: 42, abnormal: false, comment: "Often normal as the entrapment is motor-heavy" }
+                { name: "Sural Sensory", peak: 3.8, amp: 20, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Lateral Plantar Sensory", peak: 3.5, amp: 10, velocity: 42, abnormal: false, comment: "Often normal as the entrapment is motor-heavy", dist: 14, onset: 2.9 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, comment: "Spared (branch arises distal to this stim point)" },
-                { name: "Tibial Motor (ADQ)", latency: 8.5, amp: 1.5, velocity: "N/A", abnormal: true, comment: "Prolonged distal latency confirming branch-specific entrapment" }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, comment: "Distractor - Normal", dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, comment: "Spared (branch arises distal to this stim point)", dist: 10 },
+                { name: "Tibial Motor (ADQ)", latency: 8.5, amp: 1.5, velocity: "N/A", abnormal: true, comment: "Prolonged distal latency confirming branch-specific entrapment", dist: 10 }
             ],
             comparison: []
         },
@@ -546,13 +546,13 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lat Fem Cutaneous (LFCN)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms LFCN involvement" }
+                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Lat Fem Cutaneous (LFCN)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms LFCN involvement", dist: 14, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 8.0, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 8.0, velocity: 45, abnormal: false, dist: 10 }
             ],
             comparison: []
         },
@@ -616,14 +616,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, comment: "Key Localization - Abnormal" }
+                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.8 },
+                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, comment: "Key Localization - Abnormal", dist: 14, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 8.5, velocity: 40, abnormal: false, comment: "Rules out Femoral nerve" }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, dist: 10 },
+                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 8.5, velocity: 40, abnormal: false, comment: "Rules out Femoral nerve", dist: 16 }
             ],
             comparison: []
         },
