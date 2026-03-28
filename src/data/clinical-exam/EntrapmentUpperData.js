@@ -34,12 +34,12 @@ export const entrapmentUpperData = {
                 'Finger ROM normal'
             ],
             strength: [
-                { muscle: 'Abductor Pollicis Brevis (APB)', nerve: 'Median (recurrent branch)', root: 'C8-T1', action: 'Thumb palmar abduction', expectedFinding: 'WEAK', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Opponens Pollicis', nerve: 'Median (recurrent branch)', root: 'C8-T1', action: 'Thumb opposition', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'First/Second Lumbricals', nerve: 'Median', root: 'C8-T1', action: 'MCP flexion with IP extension (digits 2-3)', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor Pollicis Longus', nerve: 'Anterior Interosseous (Median)', root: 'C8-T1', action: 'Thumb IP flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Interossei', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger abduction/adduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Pronator Teres', nerve: 'Median (proximal)', root: 'C6-C7', action: 'Forearm pronation', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Thumb Abduction (APB)', grade: '3-4/5', finding: 'WEAK', note: 'Key localizing muscle for median nerve at wrist' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Wrist Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction (FDI)', grade: '5/5', finding: 'Normal', note: 'Ulnar-innervated -- normal in CTS' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Palmar thumb, index, middle, radial half of ring finger', modality: 'Light touch, two-point discrimination', expectedFinding: 'Decreased (2PD >6mm abnormal)' },
@@ -106,13 +106,12 @@ export const entrapmentUpperData = {
                 'Note if elbow flexion reproduces symptoms'
             ],
             strength: [
-                { muscle: 'First Dorsal Interosseous (FDI)', nerve: 'Ulnar', root: 'C8-T1', action: 'Index finger abduction', expectedFinding: 'WEAK', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Abductor Digiti Minimi (ADM)', nerve: 'Ulnar', root: 'C8-T1', action: 'Small finger abduction', expectedFinding: 'WEAK', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Adductor Pollicis', nerve: 'Ulnar', root: 'C8-T1', action: 'Thumb adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor Digitorum Profundus (4th/5th digits)', nerve: 'Ulnar', root: 'C8-T1', action: 'DIP flexion of ring/small finger', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor Carpi Ulnaris', nerve: 'Ulnar', root: 'C7-T1', action: 'Wrist flexion with ulnar deviation', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Abductor Pollicis Brevis', nerve: 'Median', root: 'C8-T1', action: 'Thumb palmar abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Extensor Digitorum', nerve: 'Radial (PIN)', root: 'C7-C8', action: 'Finger MCP extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Finger Abduction (FDI)', grade: '3-4/5', finding: 'WEAK', note: 'Key localizing muscle for ulnar nerve' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK', note: 'FDP to ring/small finger weak' },
+                { movement: 'Wrist Flexion', grade: '4+/5', finding: 'WEAK', note: 'FCU may be weak -- localizes to elbow, not wrist' },
+                { movement: 'Thumb Abduction (APB)', grade: '5/5', finding: 'Normal', note: 'Median-innervated -- normal excludes C8-T1 root' },
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Small finger and ulnar half of ring finger (palmar and dorsal)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -175,12 +174,12 @@ export const entrapmentUpperData = {
                 'Wrist and finger ROM typically normal'
             ],
             strength: [
-                { muscle: 'First Dorsal Interosseous', nerve: 'Ulnar (deep branch)', root: 'C8-T1', action: 'Index finger abduction', expectedFinding: 'WEAK', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Abductor Digiti Minimi', nerve: 'Ulnar (deep branch)', root: 'C8-T1', action: 'Small finger abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Adductor Pollicis', nerve: 'Ulnar (deep branch)', root: 'C8-T1', action: 'Thumb adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor Carpi Ulnaris', nerve: 'Ulnar', root: 'C7-T1', action: 'Wrist flexion/ulnar deviation', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Flexor Digitorum Profundus (4th/5th)', nerve: 'Ulnar', root: 'C8-T1', action: 'DIP flexion ring/small', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Abductor Pollicis Brevis', nerve: 'Median', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Finger Abduction (FDI)', grade: '3-4/5', finding: 'WEAK', note: 'Ulnar deep branch -- intrinsics weak' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Wrist Flexion', grade: '5/5', finding: 'Normal', note: 'FCU normal -- innervated proximal to Guyon canal' },
+                { movement: 'Thumb Abduction (APB)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Palmar surface small finger and ulnar ring finger', modality: 'Light touch, pinprick', expectedFinding: 'Decreased (if superficial branch involved)' },
@@ -239,11 +238,11 @@ export const entrapmentUpperData = {
                 'Active ROM may be limited by pain'
             ],
             strength: [
-                { muscle: 'Extensor Digitorum', nerve: 'Posterior Interosseous (Radial)', root: 'C7-C8', action: 'Finger MCP extension', expectedFinding: 'NORMAL (pain only — no true weakness)', mrcGrade: '5/5' },
-                { muscle: 'Extensor Carpi Ulnaris', nerve: 'Posterior Interosseous (Radial)', root: 'C7-C8', action: 'Wrist extension with ulnar deviation', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Supinator', nerve: 'Posterior Interosseous (Radial)', root: 'C5-C6', action: 'Forearm supination', expectedFinding: 'NORMAL but painful', mrcGrade: '5/5' },
-                { muscle: 'Wrist extensors (ECRL, ECRB)', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal', note: 'No true weakness -- pain syndrome only' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal', note: 'May be limited by pain' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Dorsal hand and forearm (superficial radial nerve)', modality: 'Light touch', expectedFinding: 'Normal' },
@@ -303,14 +302,12 @@ export const entrapmentUpperData = {
                 'Limited active finger MCP extension'
             ],
             strength: [
-                { muscle: 'Extensor Digitorum', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Finger MCP extension', expectedFinding: 'WEAK', mrcGrade: '0-3/5' },
-                { muscle: 'Extensor Carpi Ulnaris', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Wrist extension (ulnar deviation)', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Extensor Pollicis Longus', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Thumb IP extension', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Abductor Pollicis Longus', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Thumb abduction/radial deviation', expectedFinding: 'WEAK', mrcGrade: '3/5' },
-                { muscle: 'Supinator', nerve: 'PIN (Radial)', root: 'C5-C6', action: 'Forearm supination', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'ECRL/ECRB', nerve: 'Radial (proximal to PIN)', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Brachioradialis', nerve: 'Radial (proximal)', root: 'C5-C6', action: 'Forearm flexion in neutral', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Triceps', nerve: 'Radial (proximal)', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Finger Extension', grade: '0-3/5', finding: 'WEAK', note: 'Finger drop at MCP joints -- hallmark of PIN' },
+                { movement: 'Thumb Extension', grade: '2-3/5', finding: 'WEAK' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal', note: 'Preserved but deviates radially (ECU weak, ECRL intact)' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Dorsal hand / first web space (superficial radial nerve)', modality: 'Light touch', expectedFinding: 'Normal (PIN is purely motor)' },
@@ -368,12 +365,12 @@ export const entrapmentUpperData = {
                 'Limited active thumb IP and index DIP flexion'
             ],
             strength: [
-                { muscle: 'Flexor Pollicis Longus (FPL)', nerve: 'AIN (Median)', root: 'C8-T1', action: 'Thumb IP flexion', expectedFinding: 'WEAK', mrcGrade: '0-3/5' },
-                { muscle: 'Flexor Digitorum Profundus (index)', nerve: 'AIN (Median)', root: 'C8-T1', action: 'Index finger DIP flexion', expectedFinding: 'WEAK', mrcGrade: '0-3/5' },
-                { muscle: 'Pronator Quadratus', nerve: 'AIN (Median)', root: 'C8-T1', action: 'Forearm pronation (with elbow flexed)', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Pronator Teres', nerve: 'Median (proximal)', root: 'C6-C7', action: 'Forearm pronation', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Flexor Digitorum Superficialis', nerve: 'Median', root: 'C7-T1', action: 'PIP flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Abductor Pollicis Brevis', nerve: 'Median (recurrent)', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Grip Strength', grade: '3-4/5', finding: 'WEAK', note: 'FPL and index FDP weak -- cannot form OK sign' },
+                { movement: 'Thumb Abduction (APB)', grade: '5/5', finding: 'Normal', note: 'Recurrent branch spared -- distal to AIN' },
+                { movement: 'Wrist Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Median digits (thumb, index, middle)', modality: 'Light touch', expectedFinding: 'Normal (AIN is purely motor)' },
@@ -432,11 +429,12 @@ export const entrapmentUpperData = {
                 'Pain with active resisted pronation'
             ],
             strength: [
-                { muscle: 'Abductor Pollicis Brevis', nerve: 'Median (recurrent)', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor Pollicis Longus', nerve: 'AIN (Median)', root: 'C8-T1', action: 'Thumb IP flexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor Digitorum Profundus (index)', nerve: 'AIN (Median)', root: 'C8-T1', action: 'Index DIP flexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Pronator Teres', nerve: 'Median', root: 'C6-C7', action: 'Forearm pronation', expectedFinding: 'NORMAL or painful', mrcGrade: '5/5' },
-                { muscle: 'Interossei', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Thumb Abduction (APB)', grade: '4/5', finding: 'WEAK', note: 'Both APB and AIN muscles may be weak -- wider than CTS' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK', note: 'FPL and index FDP may be involved' },
+                { movement: 'Wrist Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction', grade: '5/5', finding: 'Normal', note: 'Ulnar-innervated -- normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Palmar thumb, index, middle, radial ring finger', modality: 'Light touch', expectedFinding: 'Decreased' },
@@ -493,10 +491,11 @@ export const entrapmentUpperData = {
             ],
             rom: ['Full ROM at wrist and fingers', 'Forearm pronation with ulnar deviation may reproduce symptoms'],
             strength: [
-                { muscle: 'Extensor Digitorum', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Finger extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Abductor Pollicis Longus', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Thumb abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Extensor Pollicis Longus', nerve: 'PIN (Radial)', root: 'C7-C8', action: 'Thumb extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal', note: 'Purely sensory nerve -- all strength normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Thumb Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Thumb Abduction', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Dorsal thumb and first web space', modality: 'Light touch, pinprick', expectedFinding: 'Decreased or hyperesthetic' },
@@ -556,12 +555,12 @@ export const entrapmentUpperData = {
                 'Active shoulder abduction and external rotation limited by weakness'
             ],
             strength: [
-                { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation (first 15 degrees)', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Infraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder external rotation', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Rhomboids', nerve: 'Dorsal scapular', root: 'C5', action: 'Scapular retraction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Serratus Anterior', nerve: 'Long thoracic', root: 'C5-C7', action: 'Scapular protraction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder External Rotation', grade: '3-4/5', finding: 'WEAK', note: 'Infraspinatus -- key localizer for suprascapular nerve' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK', note: 'Supraspinatus weak for initiation; deltoid compensates' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal', note: 'Normal deltoid/biceps excludes C5 radiculopathy' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Posterior shoulder', modality: 'Light touch', expectedFinding: 'Normal (suprascapular nerve has deep articular branches but NO cutaneous sensory innervation to the skin)' },
@@ -621,12 +620,12 @@ export const entrapmentUpperData = {
                 'Full passive ROM (unless concurrent injury)'
             ],
             strength: [
-                { muscle: 'Deltoid (all heads)', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction (anterior, middle, posterior)', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Teres Minor', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder external rotation', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Infraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder external rotation', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '2-3/5', finding: 'WEAK', note: 'Deltoid -- key localizer for axillary nerve' },
+                { movement: 'Shoulder External Rotation', grade: '3-4/5', finding: 'WEAK', note: 'Teres minor; normal infraspinatus distinguishes from suprascapular' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal', note: 'Normal biceps excludes C5 radiculopathy' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Lateral deltoid "regimental badge" area (superior lateral cutaneous nerve of arm)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -685,11 +684,11 @@ export const entrapmentUpperData = {
                 'Passive ROM typically full'
             ],
             strength: [
-                { muscle: 'Serratus Anterior', nerve: 'Long thoracic', root: 'C5-C7', action: 'Scapular protraction / wall push-up', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Trapezius', nerve: 'Spinal accessory', root: 'CN XI', action: 'Shoulder shrug', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Rhomboids', nerve: 'Dorsal scapular', root: 'C5', action: 'Scapular retraction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Scapular Protraction (Serratus Anterior)', grade: '2-3/5', finding: 'WEAK', note: 'Medial winging on wall push-up -- hallmark finding' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal', note: 'Normal deltoid/trapezius excludes other causes' },
+                { movement: 'Shoulder External Rotation', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'No cutaneous territory (long thoracic is purely motor)', modality: 'Light touch', expectedFinding: 'Normal everywhere' }
@@ -747,12 +746,12 @@ export const entrapmentUpperData = {
                 'Passive ROM normal'
             ],
             strength: [
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion (supinated forearm)', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Brachialis', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion (pronated forearm)', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Coracobrachialis', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Shoulder forward flexion/adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Brachioradialis', nerve: 'Radial', root: 'C5-C6', action: 'Elbow flexion (neutral forearm)', expectedFinding: 'NORMAL (compensates)', mrcGrade: '5/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Elbow Flexion', grade: '2-3/5', finding: 'WEAK', note: 'Biceps + brachialis; brachioradialis compensates in neutral' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal', note: 'Normal deltoid excludes C5-C6 radiculopathy' },
+                { movement: 'Shoulder External Rotation', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Lateral forearm (lateral antebrachial cutaneous nerve)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -812,11 +811,11 @@ export const entrapmentUpperData = {
                 'Active scapular retraction weak'
             ],
             strength: [
-                { muscle: 'Rhomboid Major/Minor', nerve: 'Dorsal scapular', root: 'C5', action: 'Scapular retraction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Levator Scapulae (partial)', nerve: 'Dorsal scapular + C3-C4', root: 'C3-C5', action: 'Scapular elevation', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Serratus Anterior', nerve: 'Long thoracic', root: 'C5-C7', action: 'Scapular protraction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Trapezius', nerve: 'Spinal accessory', root: 'CN XI', action: 'Shoulder shrug/scapular retraction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Scapular Retraction (Rhomboids)', grade: '3-4/5', finding: 'WEAK', note: 'Lateral scapular winging at rest -- key finding' },
+                { movement: 'Scapular Protraction (Serratus Anterior)', grade: '5/5', finding: 'Normal', note: 'Normal wall push-up excludes long thoracic' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'No cutaneous territory (purely motor nerve)', modality: 'Light touch', expectedFinding: 'Normal everywhere' }

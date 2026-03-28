@@ -33,14 +33,14 @@ export const traumaticData = {
             palpation: ['Clavicle fracture (palpate for step-off)', 'Shoulder subluxation (acromion prominence)', 'Supraclavicular mass (neuroma or pseudomeningocele)', 'Tinel sign along plexus (supraclavicular, infraclavicular)'],
             rom: ['Passive ROM full (unless joint injury) — active ROM limited by weakness', 'Shoulder: passive external rotation full but active absent (upper trunk)', 'Elbow: passive flexion/extension full', 'Wrist/hand: passive full, active limited in lower trunk injury'],
             strength: [
-                { muscle: 'Deltoid', nerve: 'Axillary (C5-C6)', root: 'Upper trunk', action: 'Shoulder abduction', expectedFinding: 'ABSENT in upper trunk injury', mrcGrade: '0-1/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous (C5-C6)', root: 'Upper trunk → lateral cord', action: 'Elbow flexion', expectedFinding: 'ABSENT in upper trunk injury', mrcGrade: '0-1/5' },
-                { muscle: 'Infraspinatus', nerve: 'Suprascapular (C5-C6)', root: 'Upper trunk', action: 'Shoulder external rotation', expectedFinding: 'ABSENT in upper trunk injury', mrcGrade: '0-1/5' },
-                { muscle: 'Wrist Extensors', nerve: 'Radial (C6-C7)', root: 'Middle/upper trunk → posterior cord', action: 'Wrist extension', expectedFinding: 'Variable — depends on extent', mrcGrade: '0-4/5' },
-                { muscle: 'Finger Flexors (FDP)', nerve: 'Median/Ulnar (C8-T1)', root: 'Lower trunk', action: 'Finger flexion', expectedFinding: 'ABSENT in lower trunk injury', mrcGrade: '0-1/5' },
-                { muscle: 'Hand Intrinsics', nerve: 'Ulnar/Median (C8-T1)', root: 'Lower trunk → medial cord', action: 'Finger abduction/adduction', expectedFinding: 'ABSENT in lower trunk injury', mrcGrade: '0-1/5' },
-                { muscle: 'Serratus Anterior', nerve: 'Long thoracic (C5-C7)', root: 'Proximal — direct from roots', action: 'Scapular protraction', expectedFinding: 'ABSENT if root avulsion C5-C7', mrcGrade: '0/5' },
-                { muscle: 'Rhomboids', nerve: 'Dorsal scapular (C5)', root: 'Proximal — direct from C5 root', action: 'Scapular retraction', expectedFinding: 'ABSENT if C5 root avulsion (preganglionic sign)', mrcGrade: '0/5' }
+                { movement: 'Shoulder Abduction', grade: '0-1/5', finding: 'WEAK', note: 'Upper trunk (C5-C6) -- absent in Erb palsy' },
+                { movement: 'Elbow Flexion', grade: '0-1/5', finding: 'WEAK', note: 'Upper trunk -- "waiter\'s tip" posture' },
+                { movement: 'Shoulder External Rotation', grade: '0-1/5', finding: 'WEAK' },
+                { movement: 'Wrist Extension', grade: '0-4/5', finding: 'WEAK', note: 'Variable -- depends on middle trunk involvement' },
+                { movement: 'Grip Strength', grade: '0-1/5', finding: 'WEAK', note: 'Lower trunk (C8-T1) -- absent in Klumpke palsy' },
+                { movement: 'Finger Abduction', grade: '0-1/5', finding: 'WEAK', note: 'Hand intrinsics lost in lower trunk injury' },
+                { movement: 'Scapular Protraction (Serratus Anterior)', grade: '0/5', finding: 'WEAK', note: 'If weak, indicates root avulsion (preganglionic)' },
+                { movement: 'Scapular Retraction (Rhomboids)', grade: '0/5', finding: 'WEAK', note: 'Rhomboid weakness = preganglionic C5 avulsion' }
             ],
             sensory: [
                 { area: 'Lateral arm (regimental badge)', modality: 'Light touch, pinprick', expectedFinding: 'ABSENT in upper trunk (axillary nerve territory — C5)' },
@@ -106,9 +106,10 @@ export const traumaticData = {
             palpation: ['Wound/scar over nerve course', 'Tinel sign at injury site (neuroma formation)', 'Advancing Tinel distally suggests regeneration', 'Compartment firmness (if compartment syndrome suspected)'],
             rom: ['Passive ROM: FULL (unless joint injury or contracture in chronic cases)', 'Active ROM: LIMITED only by motor deficit', 'Joint contracture may develop if not range for weeks/months'],
             strength: [
-                { muscle: 'Muscles distal to injury', nerve: 'Affected nerve', root: 'Variable', action: 'All actions innervated by injured nerve', expectedFinding: 'ABSENT (0/5) if complete transection; partial weakness if incomplete', mrcGrade: '0/5 (complete) or variable (incomplete)' },
-                { muscle: 'Muscles proximal to injury', nerve: 'Affected nerve (proximal branches)', root: 'Variable', action: 'Proximal actions', expectedFinding: 'NORMAL if injury is distal to branch point', mrcGrade: '5/5' },
-                { muscle: 'Muscles of adjacent nerves', nerve: 'Uninjured nerves', root: 'Variable', action: 'Various', expectedFinding: 'NORMAL — helps confirm single nerve lesion', mrcGrade: '5/5' }
+                { movement: 'Distal Movements (injured nerve)', grade: '0/5', finding: 'WEAK', note: 'All muscles distal to transection are paralyzed' },
+                { movement: 'Proximal Movements (injured nerve)', grade: '5/5', finding: 'Normal', note: 'Spared if branch point is proximal to injury' },
+                { movement: 'Adjacent Nerve Movements', grade: '5/5', finding: 'Normal', note: 'Normal in other nerve territories confirms single nerve lesion' },
+                { movement: 'Contralateral Side', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Autonomous zone of injured nerve', modality: 'Light touch, pinprick, temperature', expectedFinding: 'ABSENT (complete anesthesia in autonomous zone — area uniquely innervated by that nerve)' },

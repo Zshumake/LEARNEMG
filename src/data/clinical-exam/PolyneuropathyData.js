@@ -33,12 +33,12 @@ export const polyneuropathyData = {
             ],
             rom: ['May have ankle/toe stiffness from disuse', 'Charcot foot deformity limits ROM'],
             strength: [
-                { muscle: 'Extensor Hallucis Longus', nerve: 'Deep peroneal', root: 'L5', action: 'Great toe extension', expectedFinding: 'May be WEAK (early distal involvement)', mrcGrade: '4/5' },
-                { muscle: 'Intrinsic foot muscles', nerve: 'Plantar nerves', root: 'S1-S2', action: 'Toe flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'May be WEAK (later)', mrcGrade: '4/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Plantarflexion', expectedFinding: 'Usually NORMAL or mildly weak', mrcGrade: '4-5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Finger abduction', expectedFinding: 'NORMAL (unless advanced)', mrcGrade: '5/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Great Toe Extension (EHL)', grade: '4/5', finding: 'WEAK', note: 'Often earliest motor finding in length-dependent neuropathy' },
+                { movement: 'Ankle Dorsiflexion', grade: '4/5', finding: 'WEAK', note: 'Length-dependent pattern -- distal before proximal' },
+                { movement: 'Ankle Plantarflexion', grade: '4-5/5', finding: 'Normal' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal', note: 'Hands involved only when symptoms reach mid-calf' }
             ],
             sensory: [
                 { area: 'Toes and feet (stocking distribution)', modality: 'Vibration (128 Hz tuning fork)', expectedFinding: 'Decreased or absent — often first modality lost' },
@@ -102,12 +102,12 @@ export const polyneuropathyData = {
             ],
             rom: ['Limited by weakness, not by joint pathology'],
             strength: [
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '2-4/5 (symmetric)' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '2-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK', mrcGrade: '2-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK (as weakness ascends)', mrcGrade: '3-4/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Facial muscles', nerve: 'Facial (CN VII)', root: 'Pontine', action: 'Eye closure, smile', expectedFinding: 'WEAK (bilateral in 50%)', mrcGrade: '3-4/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '2-4/5', finding: 'WEAK', note: 'Ascending pattern -- legs weaken first' },
+                { movement: 'Knee Extension', grade: '2-4/5', finding: 'WEAK' },
+                { movement: 'Hip Flexion', grade: '2-4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '3-4/5', finding: 'WEAK', note: 'Arms involved as weakness ascends' },
+                { movement: 'Shoulder Abduction', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Elbow Flexion', grade: '3-4/5', finding: 'WEAK' }
             ],
             sensory: [
                 { area: 'Distal extremities (glove-stocking)', modality: 'Light touch, vibration', expectedFinding: 'Decreased (sensory loss is typically mild compared to motor)' },
@@ -168,12 +168,12 @@ export const polyneuropathyData = {
             ],
             rom: ['Limited by weakness'],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK (proximal involvement)', mrcGrade: '3-4/5' },
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip/pinch', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'WEAK', mrcGrade: '4/5' }
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Both proximal AND distal weakness -- distinguishes from typical polyneuropathy' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Ankle Dorsiflexion', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Wrist Extension', grade: '4/5', finding: 'WEAK' }
             ],
             sensory: [
                 { area: 'Distal extremities (stocking-glove)', modality: 'Vibration, proprioception', expectedFinding: 'Decreased (large fiber modalities preferentially affected)' },
@@ -236,12 +236,12 @@ export const polyneuropathyData = {
             ],
             rom: ['Ankle dorsiflexion may be limited (contracture)', 'Pes cavus deformity limits foot ROM'],
             strength: [
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Peronei', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Intrinsic foot muscles', nerve: 'Plantar', root: 'S1-S2', action: 'Toe function', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip/fine motor', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Plantarflexion', expectedFinding: 'May be mildly WEAK', mrcGrade: '4/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '3-4/5', finding: 'WEAK', note: 'Foot drop -- hallmark of CMT' },
+                { movement: 'Ankle Eversion', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Ankle Plantarflexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Finger Abduction', grade: '4/5', finding: 'WEAK', note: 'Intrinsic hand muscle atrophy in advanced cases' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal', note: 'Proximal strength preserved -- distal predominant' }
             ],
             sensory: [
                 { area: 'Distal legs and feet', modality: 'Vibration, proprioception', expectedFinding: 'Mildly decreased (less prominent than motor findings)' },
@@ -301,9 +301,11 @@ export const polyneuropathyData = {
             ],
             rom: ['Normal throughout'],
             strength: [
-                { muscle: 'All muscles', nerve: 'All', root: 'All', action: 'All motor testing', expectedFinding: 'NORMAL (large motor fibers unaffected)', mrcGrade: '5/5' },
-                { muscle: 'Intrinsic foot muscles', nerve: 'Plantar', root: 'S1-S2', action: 'Toe flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal', note: 'Motor strength fully preserved -- small fibers only' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Feet (distal)', modality: 'Pinprick, temperature (small fiber modalities)', expectedFinding: 'Decreased — small fiber loss' },
@@ -361,10 +363,12 @@ export const polyneuropathyData = {
             palpation: ['Tender calf muscles (myalgias)', 'No nerve enlargement'],
             rom: ['May have ankle contractures from disuse'],
             strength: [
-                { muscle: 'Intrinsic foot muscles', nerve: 'Plantar', root: 'S1-S2', action: 'Toe flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Plantarflexion', expectedFinding: 'May be WEAK', mrcGrade: '4-5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Fine motor', expectedFinding: 'Usually NORMAL', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '4/5', finding: 'WEAK', note: 'Length-dependent pattern' },
+                { movement: 'Ankle Plantarflexion', grade: '4-5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Feet and distal legs (stocking)', modality: 'Pinprick, temperature, vibration', expectedFinding: 'Decreased (all modalities)' },
@@ -415,10 +419,11 @@ export const polyneuropathyData = {
             palpation: ['No nerve enlargement', 'Feet may be tender to touch'],
             rom: ['Normal'],
             strength: [
-                { muscle: 'Intrinsic foot muscles', nerve: 'Plantar', root: 'S1-S2', action: 'Toe flexion', expectedFinding: 'May be mildly WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'Usually NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Fine motor', expectedFinding: 'Usually NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal', note: 'Predominantly sensory neuropathy -- motor typically preserved' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Feet and hands (stocking-glove)', modality: 'Vibration, proprioception', expectedFinding: 'Decreased (large fiber sensory neuropathy — especially with cisplatin/taxanes)' },
@@ -478,10 +483,12 @@ export const polyneuropathyData = {
             ],
             rom: ['Variable — depends on which nerves affected'],
             strength: [
-                { muscle: 'Pattern depends on nerves involved', nerve: 'Variable', root: 'Variable', action: 'Test all major named nerves', expectedFinding: 'ASYMMETRIC WEAKNESS', mrcGrade: 'Variable' },
-                { muscle: 'Tibialis Anterior (if peroneal)', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'WEAK on one side, NORMAL on other', mrcGrade: '0-3/5' },
-                { muscle: 'Wrist extensors (if radial)', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'WEAK (if radial involved)', mrcGrade: '2-3/5' },
-                { muscle: 'Hand intrinsics (if ulnar)', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger abduction', expectedFinding: 'WEAK (if ulnar involved)', mrcGrade: '3/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '0-3/5', finding: 'WEAK', note: 'ASYMMETRIC -- may be weak on one side, normal on other (peroneal nerve)' },
+                { movement: 'Wrist Extension', grade: '2-3/5', finding: 'WEAK', note: 'If radial nerve involved -- wrist drop' },
+                { movement: 'Finger Abduction', grade: '3/5', finding: 'WEAK', note: 'If ulnar nerve involved' },
+                { movement: 'Grip Strength', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal', note: 'Weakness maps to individual named nerves, not length-dependent' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Named nerve territories (asymmetric)', modality: 'All modalities', expectedFinding: 'Decreased in specific nerve distributions (NOT stocking-glove initially)' },
@@ -537,11 +544,12 @@ export const polyneuropathyData = {
             palpation: ['No nerve tenderness', 'No nerve enlargement usually'],
             rom: ['Limited by weakness in affected distributions'],
             strength: [
-                { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'WEAK (asymmetrically)', mrcGrade: '3-4/5' },
-                { muscle: 'FDI', nerve: 'Ulnar', root: 'C8-T1', action: 'Index abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'ADM', nerve: 'Ulnar', root: 'C8-T1', action: 'Small finger abduction', expectedFinding: 'May be NORMAL (patchy involvement)', mrcGrade: '5/5' },
-                { muscle: 'APB', nerve: 'Median', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'Usually NORMAL (distal predominant)', mrcGrade: '5/5' }
+                { movement: 'Wrist Extension', grade: '3-4/5', finding: 'WEAK', note: 'Asymmetric, upper extremity predominant' },
+                { movement: 'Finger Abduction', grade: '3-4/5', finding: 'WEAK', note: 'Patchy involvement -- some intrinsics weak, others spared' },
+                { movement: 'Thumb Abduction', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal', note: 'Distal predominant -- proximal spared' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL (purely motor — sensory sparing is a hallmark)' }

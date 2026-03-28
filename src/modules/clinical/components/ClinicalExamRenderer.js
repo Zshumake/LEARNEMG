@@ -61,12 +61,36 @@ export const ClinicalExamRenderer = {
         `;
     },
 
+    renderStrength: function (strength) {
+        if (!strength || !Array.isArray(strength) || strength.length === 0) return '<p style="margin:0; color:#94a3b8;">Not assessed</p>';
+        const rows = strength.map(s => {
+            const isWeak = s.finding && s.finding.toUpperCase().includes('WEAK');
+            const color = isWeak ? '#f59e0b' : '#10b981';
+            const bg = isWeak ? 'rgba(245,158,11,0.1)' : 'rgba(16,185,129,0.05)';
+            const icon = isWeak ? '&#9660;' : '&#10003;';
+            return `<tr style="background:${bg};">
+                <td style="padding:6px 10px; border-bottom:1px solid rgba(255,255,255,0.05); color:#f8fafc; font-weight:600;">${s.movement}</td>
+                <td style="padding:6px 10px; border-bottom:1px solid rgba(255,255,255,0.05); color:${color}; font-weight:700; text-align:center;">${s.grade}</td>
+                <td style="padding:6px 10px; border-bottom:1px solid rgba(255,255,255,0.05); color:${color}; font-size:0.85em;">${icon} ${s.finding}${s.note ? ` <span style="color:#94a3b8;">- ${s.note}</span>` : ''}</td>
+            </tr>`;
+        }).join('');
+        return `<table style="width:100%; border-collapse:collapse; font-size:0.9em;">
+            <thead><tr style="border-bottom:2px solid rgba(34,211,238,0.2);">
+                <th style="padding:6px 10px; text-align:left; color:#94a3b8; font-size:0.8em; text-transform:uppercase;">Movement</th>
+                <th style="padding:6px 10px; text-align:center; color:#94a3b8; font-size:0.8em; text-transform:uppercase;">Grade</th>
+                <th style="padding:6px 10px; text-align:left; color:#94a3b8; font-size:0.8em; text-transform:uppercase;">Finding</th>
+            </tr></thead>
+            <tbody>${rows}</tbody>
+        </table>`;
+    },
+
     renderPhysicalExam: function (exam) {
+        const strengthHtml = Array.isArray(exam.strength) ? this.renderStrength(exam.strength) : `<p style="margin:0; color:#e2e8f0; font-size:0.95em;">${exam.strength}</p>`;
         return `
             <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('hand', 'currentColor', '18')} Inspection</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.inspection}</p></div>
             <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('hand', 'currentColor', '18')} Palpation</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.palpation}</p></div>
             <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('neck', 'currentColor', '18')} Range of Motion</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.rom}</p></div>
-            <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('lightning', 'currentColor', '18')} Motor Strength</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.strength}</p></div>
+            <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('lightning', 'currentColor', '18')} Motor Strength</h5>${strengthHtml}</div>
             <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('target', 'currentColor', '18')} Sensation</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.sensation}</p></div>
             <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px;"><h5 style="margin: 0 0 8px 0; color: #22d3ee; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('wrench', 'currentColor', '18')} Reflexes</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.reflexes}</p></div>
             <div class="exam-category glass-card" style="padding: 20px; border-radius: 12px; grid-column: span 2;"><h5 style="margin: 0 0 8px 0; color: #c4b5fd; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">${ClinicalIcons.getSvgIcon('microscope', 'currentColor', '18')} Provocative & Special Tests</h5><p style="margin: 0; color: #e2e8f0; font-size: 0.95em;">${exam.specialTests}</p></div>

@@ -4,6 +4,7 @@
  * Two modes: Study Mode (browse diagnoses) and Exam Builder (build from differential).
  */
 import { clinicalExamData, DIAGNOSIS_CATEGORIES } from '../../data/clinical-exam/index.js?v=rootfix1';
+import { getMuscleTestSVG } from './MuscleTestAnatomy.js';
 
 // Inline SVG icons (no emojis)
 const ICONS = {
@@ -89,6 +90,7 @@ class ClinicalExamLabModule {
         window._registerAction('celBuildExam', () => this.buildExam());
         window._registerAction('celCopyExam', () => this.copyExam());
         window._registerAction('celToggleBuilderDx', (el) => this.toggleBuilderDx(el.dataset.builderDxId));
+        window._registerAction('celVisualTab', (el) => this.switchVisualTab(el.dataset.vtab));
 
         const firstCat = this.categories[0];
         if (firstCat && firstCat.ids.length > 0) {
@@ -160,7 +162,33 @@ class ClinicalExamLabModule {
         if (main) {
             main.innerHTML = this.renderDiagnosisDetail(dx);
             main.scrollTop = 0;
+            
+            // Auto-switch to anatomy tab if sensible
+            const bodyRegion = getCategoryBodyRegion(dx.category);
+            if (bodyRegion !== BODY_REGION.NONE) {
+                this.switchVisualTab('anatomy');
+            } else {
+                this.switchVisualTab('demo');
+            }
         }
+    }
+
+    // --- VISUAL PANEL HELPERS ---
+    switchVisualTab(tab) {
+        document.querySelectorAll('.cel-vview').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.cel-vtab').forEach(el => el.classList.remove('cel-vtab-active'));
+        const view = document.getElementById(`cel-vview-${tab}`);
+        if(view) view.style.display = 'block';
+        const btn = document.querySelector(`.cel-vtab[data-vtab="${tab}"]`);
+        if(btn) btn.classList.add('cel-vtab-active');
+    }
+
+    showDemo(action, title) {
+        this.switchVisualTab('demo');
+        const stage = document.getElementById('cel-demo-stage');
+        if (stage) stage.innerHTML = getMuscleTestSVG(action);
+        const caption = document.getElementById('cel-demo-caption');
+        if (caption) caption.textContent = `${title}: ${action}`;
     }
 
     // --- STATUS HELPERS ---
@@ -197,7 +225,7 @@ class ClinicalExamLabModule {
     // =========================================
     renderDiagnosisDetail(dx) {
         const pe = dx.physicalExam;
-        const abnormalStrength = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const abnormalStrength = (pe.strength || []).filter(s => this.getStatus(s.finding || s.expectedFinding) === 'abnormal').length;
         const totalStrength = (pe.strength || []).length;
         const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
         const totalSensory = (pe.sensory || []).length;
@@ -243,10 +271,21 @@ class ClinicalExamLabModule {
                 </div>` : ''}
 
                 <!-- Anatomical Diagram + Exam Grid -->
-                <div class="cel-exam-layout ${bodyRegion !== BODY_REGION.NONE ? 'cel-has-diagram' : ''}">
-                    ${bodyRegion !== BODY_REGION.NONE ? `
-                    <div class="cel-diagram-panel">
-                        ${this.renderAnatomicalDiagram(dx, bodyRegion)}
+                <div class="cel-exam-layout ${(bodyRegion !== BODY_REGION.NONE || totalStrength > 0) ? 'cel-has-diagram' : ''}">
+                    ${(bodyRegion !== BODY_REGION.NONE || totalStrength > 0) ? `
+                    <div class="cel-visual-panel">
+                        <div class="cel-vtabs">
+                            ${bodyRegion !== BODY_REGION.NONE ? `<button class="cel-vtab cel-vtab-active" data-action="celVisualTab" data-vtab="anatomy">Anatomy</button>` : ''}
+                            <button class="cel-vtab ${bodyRegion === BODY_REGION.NONE ? 'cel-vtab-active' : ''}" data-action="celVisualTab" data-vtab="demo">Patient Demo</button>
+                        </div>
+                        ${bodyRegion !== BODY_REGION.NONE ? `
+                        <div id="cel-vview-anatomy" class="cel-vview">
+                            ${this.renderAnatomicalDiagram(dx, bodyRegion)}
+                        </div>` : ''}
+                        <div id="cel-vview-demo" class="cel-vview" style="${bodyRegion !== BODY_REGION.NONE ? 'display:none;' : ''}">
+                            <div id="cel-demo-stage">${getMuscleTestSVG('idle')}</div>
+                            <div id="cel-demo-caption">Hover over a muscle test to see demonstration.</div>
+                        </div>
                     </div>` : ''}
 
                     <div class="cel-exam-content">
@@ -266,7 +305,7 @@ class ClinicalExamLabModule {
     // --- STRENGTH CARD GRID ---
     renderStrengthCards(strength) {
         if (!strength || strength.length === 0) return '';
-        const abnormal = strength.filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const abnormal = strength.filter(s => this.getStatus(s.finding || s.expectedFinding) === 'abnormal').length;
         const pct = Math.round((abnormal / strength.length) * 100);
         return `
             <div class="cel-card-section">
@@ -277,18 +316,17 @@ class ClinicalExamLabModule {
                 <div class="cel-summary-bar"><div class="cel-summary-fill cel-fill-abnormal" style="width:${pct}%"></div></div>
                 <div class="cel-muscle-grid">
                     ${strength.map(s => {
-                        const status = this.getStatus(s.expectedFinding);
+                        const status = this.getStatus(s.finding || s.expectedFinding);
+                        const safeMovement = (s.movement || s.action || '').replace(/'/g, "\\'");
                         return `
-                        <div class="cel-muscle-card cel-finding-${status}">
-                            <div class="cel-mc-top">
-                                <span class="cel-mc-name">${s.muscle}</span>
-                                <span class="cel-mrc-badge cel-mrc-${status}">${s.mrcGrade}</span>
+                        <div class="cel-muscle-card cel-finding-${status}" onmouseenter="if(window._celModule) window._celModule.showDemo('${safeMovement}', '${safeMovement}')">
+                            <div class="cel-mc-content">
+                                <div class="cel-mc-top">
+                                    <span class="cel-mc-name">${s.movement || s.muscle}</span>
+                                    <span class="cel-mrc-badge cel-mrc-${status}">${s.grade || s.mrcGrade}</span>
+                                </div>
+                                ${s.note ? `<div class="cel-mc-details"><span class="cel-mc-note">${s.note}</span></div>` : ''}
                             </div>
-                            <div class="cel-mc-details">
-                                <span class="cel-mc-nerve">${s.nerve}</span>
-                                <span class="cel-mc-root">${s.root}</span>
-                            </div>
-                            <div class="cel-mc-action">${s.action}</div>
                         </div>`;
                     }).join('')}
                 </div>
@@ -431,7 +469,7 @@ class ClinicalExamLabModule {
     // --- ANATOMICAL DIAGRAM ---
     renderAnatomicalDiagram(dx, region) {
         const pe = dx.physicalExam;
-        const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.muscle);
+        const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.finding || s.expectedFinding) === 'abnormal').map(s => s.movement || s.muscle);
         const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.area);
         // Only highlight the specific affected root for radiculopathies using explicit affectedRoot field
         const abnormalRoots = dx.affectedRoot ? [dx.affectedRoot] : [];
@@ -593,7 +631,7 @@ class ClinicalExamLabModule {
             (pe.inspection || []).forEach(item => { const key = item.substring(0, 60); if (!allInspection.has(key)) allInspection.set(key, { text: item }); });
             (pe.palpation || []).forEach(item => { const key = item.substring(0, 60); if (!allPalpation.has(key)) allPalpation.set(key, { text: item }); });
             (pe.rom || []).forEach(item => { const key = item.substring(0, 60); if (!allRom.has(key)) allRom.set(key, { text: item }); });
-            (pe.strength || []).forEach(s => { if (!allStrength.has(s.muscle)) allStrength.set(s.muscle, s); });
+            (pe.strength || []).forEach(s => { const key = s.movement || s.muscle; if (!allStrength.has(key)) allStrength.set(key, s); });
             (pe.sensory || []).forEach(s => { const key = s.area.substring(0, 50); if (!allSensory.has(key)) allSensory.set(key, s); });
             (pe.reflexes || []).forEach(r => { if (!allReflexes.has(r.reflex)) allReflexes.set(r.reflex, r); });
             (pe.specialTests || []).forEach(t => { if (!allSpecialTests.has(t.name)) allSpecialTests.set(t.name, t); });
@@ -794,15 +832,25 @@ class ClinicalExamLabModule {
             .cel-pearl-item { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; font-size: 0.88em; color: #065f46; line-height: 1.45; }
             .cel-pearl-dot { width: 6px; height: 6px; border-radius: 50%; background: #059669; flex-shrink: 0; margin-top: 6px; }
 
-            /* Exam Layout with Diagram */
-            .cel-exam-layout { display: flex; gap: 16px; margin-bottom: 16px; }
-            .cel-exam-layout.cel-has-diagram .cel-diagram-panel { width: 250px; flex-shrink: 0; }
+            /* Exam Layout with Visual Panel */
+            .cel-exam-layout { display: flex; gap: 20px; margin-bottom: 16px; flex-direction: row-reverse; }
+            .cel-exam-layout.cel-has-diagram .cel-visual-panel { width: 280px; flex-shrink: 0; position: sticky; top: 10px; align-self: flex-start; }
             .cel-exam-content { flex: 1; min-width: 0; }
-            .cel-diagram-panel { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; position: sticky; top: 0; align-self: flex-start; }
-            .cel-diagram-title { font-size: 0.8em; font-weight: 700; color: #334155; margin-bottom: 8px; text-align: center; }
-            .cel-diagram-legend { display: flex; justify-content: center; gap: 12px; margin-top: 8px; font-size: 0.72em; color: #64748b; }
-            .cel-legend-item { display: flex; align-items: center; gap: 4px; }
-            .cel-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+            .cel-visual-panel { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+            
+            .cel-vtabs { display: flex; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+            .cel-vtab { flex: 1; padding: 10px; border: none; background: transparent; color: #64748b; font-size: 0.85em; font-weight: 600; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
+            .cel-vtab:hover { color: #334155; }
+            .cel-vtab-active { color: #0d9488; border-bottom-color: #0d9488; background: white; }
+            .cel-vview { padding: 16px; }
+            
+            #cel-demo-stage { width: 100%; height: 260px; background: #f1f5f9; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden; }
+            #cel-demo-caption { text-align: center; font-size: 0.85em; font-weight: 600; color: #475569; padding: 8px; background: #f8fafc; border-radius: 6px; min-height: 40px; display: flex; align-items: center; justify-content: center; border: 1px dashed #cbd5e1; }
+            
+            .cel-diagram-title { font-size: 0.85em; font-weight: 700; color: #334155; margin-bottom: 12px; text-align: center; }
+            .cel-diagram-legend { display: flex; justify-content: center; gap: 12px; margin-top: 12px; font-size: 0.75em; color: #64748b; }
+            .cel-legend-item { display: flex; align-items: center; gap: 5px; }
+            .cel-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
             .cel-legend-abnormal { background: #fecaca; border: 1px solid #dc2626; }
             .cel-legend-normal { background: #e2e8f0; border: 1px solid #94a3b8; }
 
@@ -818,10 +866,11 @@ class ClinicalExamLabModule {
             .cel-fill-abnormal { background: #dc2626; }
 
             /* Muscle Cards */
-            .cel-muscle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
-            .cel-muscle-card { border-radius: 8px; border: 1px solid #e2e8f0; padding: 8px 10px; border-left: 4px solid; transition: transform 0.15s, box-shadow 0.15s; }
-            .cel-muscle-card:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.06); }
-            .cel-finding-abnormal { border-left-color: var(--cel-abnormal); background: var(--cel-abnormal-bg); }
+            .cel-muscle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+            .cel-muscle-card { border-radius: 8px; border: 1px solid #e2e8f0; padding: 10px 14px; border-left: 4px solid; transition: transform 0.15s, box-shadow 0.15s; display: flex; gap: 12px; align-items: center; background: white; cursor: pointer; }
+            .cel-mc-content { flex: 1; min-width: 0; }
+            .cel-muscle-card:hover { transform: translateX(2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: #cbd5e1; }
+            .cel-finding-abnormal { border-left-color: var(--cel-abnormal); }
             .cel-finding-uncertain { border-left-color: var(--cel-uncertain); background: var(--cel-uncertain-bg); }
             .cel-finding-normal { border-left-color: var(--cel-normal); background: var(--cel-normal-bg); }
             .cel-mc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
@@ -833,6 +882,7 @@ class ClinicalExamLabModule {
             .cel-mc-details { display: flex; gap: 8px; margin-bottom: 2px; }
             .cel-mc-nerve, .cel-mc-root { font-size: 0.75em; color: #64748b; }
             .cel-mc-action { font-size: 0.75em; color: #475569; font-style: italic; }
+            .cel-mc-note { font-size: 0.75em; color: #64748b; font-style: italic; }
 
             /* Sensory Cards */
             .cel-sensory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }

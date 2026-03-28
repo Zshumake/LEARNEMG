@@ -31,11 +31,12 @@ export const nmjData = {
             palpation: ['No muscle tenderness', 'No nerve enlargement'],
             rom: ['Full passive ROM — weakness is the limitation, not joint pathology'],
             strength: [
-                { muscle: 'Orbicularis Oculi', nerve: 'Facial (CN VII)', root: 'Pontine', action: 'Eyelid closure', expectedFinding: 'WEAK (cannot resist forced opening)', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction (sustained)', expectedFinding: 'WEAK with fatigue — test with sustained arm elevation', mrcGrade: '4/5 → 3/5 with fatigue' },
-                { muscle: 'Neck Flexors', nerve: 'C1-C4', root: 'Cervical', action: 'Head lifting from supine', expectedFinding: 'WEAK (head drop)', mrcGrade: '3-4/5' },
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip', expectedFinding: 'Usually NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK', note: 'Fatigable -- worsens with sustained arm elevation' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK', note: 'Test with repeated reps to demonstrate fatigue' },
+                { movement: 'Hip Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal', note: 'Distal strength typically preserved in MG' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL (NMJ disease does not affect sensory nerves)' }
@@ -92,11 +93,12 @@ export const nmjData = {
             palpation: ['Dry mouth (reduced saliva)', 'No muscle tenderness'],
             rom: ['Full passive ROM'],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK initially but IMPROVES with sustained effort', mrcGrade: '3/5 → 4/5 after 10 seconds of maximal effort' },
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK with facilitation', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Grip', nerve: 'Median/Ulnar', root: 'C8-T1', action: 'Grip strength', expectedFinding: 'WEAK but improves with repeated testing', mrcGrade: '4/5' },
-                { muscle: 'Orbicularis Oculi', nerve: 'Facial', root: 'Pontine', action: 'Eye closure', expectedFinding: 'Usually NORMAL (unlike MG)', mrcGrade: '5/5' }
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Proximal LE predominant -- improves briefly with repeated effort (facilitation)' },
+                { movement: 'Knee Extension', grade: '3/5', finding: 'WEAK', note: 'Initially weak, IMPROVES with sustained maximal effort (opposite of MG)' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK', note: 'Improves with repeated grip testing' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL' }

@@ -35,12 +35,12 @@ export const lumbosacralRadiculopathyData = {
                 'Hip flexion may be limited by weakness'
             ],
             strength: [
-                { muscle: 'Iliopsoas', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Sartorius', nerve: 'Femoral', root: 'L2-L3', action: 'Hip flexion + external rotation', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'Usually normal or mildly weak', mrcGrade: '4+/5 to 5/5' },
-                { muscle: 'Tibialis anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Hip Flexion', grade: '4/5', finding: 'WEAK', note: 'Primary L2 movement -- iliopsoas across femoral nerve' },
+                { movement: 'Knee Extension', grade: '4+/5', finding: 'Normal', note: 'Minimal involvement -- quad is predominantly L3-L4' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Anterior/upper thigh (L2 dermatome)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -101,12 +101,12 @@ export const lumbosacralRadiculopathyData = {
                 'Lumbar flexion may relieve symptoms (opens foramen)'
             ],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Iliopsoas', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Tibialis anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Peroneals', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Hip Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '4/5', finding: 'WEAK', note: 'Quad (femoral) + adductors (obturator) weak -- crosses nerves at L3' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Anterior thigh to knee (L3 dermatome)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -168,15 +168,13 @@ export const lumbosacralRadiculopathyData = {
                 'Lumbar flexion may relieve symptoms (opens foramen)'
             ],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK (KEY muscle)', mrcGrade: '4/5' },
-                { muscle: 'Tibialis anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK (L4 contribution)', mrcGrade: '4/5' },
-                { muscle: 'Tibialis posterior', nerve: 'Tibial', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'May have mild weakness', mrcGrade: '4+/5' },
-                { muscle: 'Hip flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'May be mildly weak', mrcGrade: '4+/5' },
-                { muscle: 'Peroneals', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'EHL', nerve: 'Deep peroneal', root: 'L5', action: 'Great toe extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gluteus medius', nerve: 'Superior gluteal', root: 'L4-S1', action: 'Hip abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Knee Extension', grade: '4/5', finding: 'WEAK', note: 'KEY L4 muscle -- quad (femoral) weak' },
+                { movement: 'Ankle Dorsiflexion', grade: '4/5', finding: 'WEAK', note: 'Tibialis anterior (deep peroneal) -- crosses nerves at L4 root' },
+                { movement: 'Ankle Inversion', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Hip Flexion', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Medial leg — knee to medial malleolus (L4 dermatome / saphenous territory overlap)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -242,16 +240,13 @@ export const lumbosacralRadiculopathyData = {
                 'Active ankle dorsiflexion limited by weakness'
             ],
             strength: [
-                { muscle: 'Tibialis anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Extensor hallucis longus', nerve: 'Deep peroneal', root: 'L5', action: 'Great toe extension', expectedFinding: 'WEAK (very sensitive for L5)', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Extensor digitorum longus', nerve: 'Deep peroneal', root: 'L5', action: 'Toe extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tibialis posterior', nerve: 'Tibial', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'WEAK (KEY: NORMAL in fibular neuropathy)', mrcGrade: '4/5' },
-                { muscle: 'Peroneus longus/brevis', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Gluteus medius', nerve: 'Superior gluteal', root: 'L4-S1', action: 'Hip abduction', expectedFinding: 'WEAK (KEY: NORMAL in fibular neuropathy)', mrcGrade: '4/5' },
-                { muscle: 'Tensor fasciae latae', nerve: 'Superior gluteal', root: 'L4-S1', action: 'Hip flexion/abduction/IR', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Hamstrings (medial)', nerve: 'Sciatic (tibial division)', root: 'L5-S1', action: 'Knee flexion', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius/soleus', nerve: 'Tibial', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Great Toe Extension (EHL)', grade: '3-4/5', finding: 'WEAK', note: 'Most sensitive L5 motor finding -- often earliest sign' },
+                { movement: 'Ankle Eversion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Ankle Inversion', grade: '4/5', finding: 'WEAK', note: 'Tibialis posterior (tibial nerve) -- NORMAL in fibular neuropathy' },
+                { movement: 'Hip Abduction', grade: '4/5', finding: 'WEAK', note: 'Gluteus medius (superior gluteal) -- NORMAL in fibular neuropathy' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Lateral leg, dorsum of foot, great toe (web space between 1st-2nd toes)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -321,17 +316,13 @@ export const lumbosacralRadiculopathyData = {
                 'Difficulty with deep squatting (plantarflexion + hip extension weakness)'
             ],
             strength: [
-                { muscle: 'Gastrocnemius/soleus', nerve: 'Tibial', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'WEAK (test with single-leg heel raise x10)', mrcGrade: '4/5' },
-                { muscle: 'Gluteus maximus', nerve: 'Inferior gluteal', root: 'L5-S2', action: 'Hip extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Hamstrings (biceps femoris long head)', nerve: 'Sciatic (tibial division)', root: 'L5-S2', action: 'Knee flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Peroneus longus/brevis', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'WEAK (S1 contribution)', mrcGrade: '4+/5' },
-                { muscle: 'Flexor digitorum longus', nerve: 'Tibial', root: 'S1-S2', action: 'Toe DIP flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Flexor hallucis longus', nerve: 'Tibial', root: 'S1-S2', action: 'Great toe IP flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Abductor hallucis', nerve: 'Medial plantar', root: 'S1-S2', action: 'Great toe abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Abductor digiti minimi pedis', nerve: 'Lateral plantar', root: 'S1-S2', action: 'Small toe abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tibialis anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gluteus medius', nerve: 'Superior gluteal', root: 'L4-S1', action: 'Hip abduction', expectedFinding: 'NORMAL (L5 predominant)', mrcGrade: '5/5' }
+                { movement: 'Ankle Plantarflexion', grade: '4/5', finding: 'WEAK', note: 'Test with single-leg heel raise x10 for subtle weakness' },
+                { movement: 'Hip Extension', grade: '4/5', finding: 'WEAK', note: 'Gluteus maximus (inferior gluteal) weak' },
+                { movement: 'Ankle Eversion', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Posterior calf, lateral foot, sole of foot, small toe (S1 dermatome)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
