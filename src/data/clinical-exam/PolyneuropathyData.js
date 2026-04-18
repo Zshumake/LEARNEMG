@@ -59,6 +59,37 @@ export const polyneuropathyData = {
                 { name: 'Tandem Gait', technique: 'Walk heel-to-toe', positiveFinding: 'Unsteady or unable (balance impairment from sensory loss)' }
             ]
         },
+        examSequence: {
+            screen: {
+                prompt: 'Patient with diabetes reports numbness and burning in both feet. Which muscles should you test first to check for distal weakness?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Dorsiflexion' },
+                    { type: 'strength', key: 'Ankle Plantarflexion' },
+                    { type: 'strength', key: 'Great Toe Extension (EHL)' }
+                ],
+                reasoning: 'Testing distal lower extremity muscles screens for the length-dependent pattern of diabetic polyneuropathy. EHL and ankle dorsiflexion are often the earliest motor findings. Relatively preserved plantarflexion confirms the distal-to-proximal gradient.'
+            },
+            localize: {
+                prompt: 'Distal toe and ankle weakness detected. How do you confirm length-dependent polyneuropathy and rule out radiculopathy?',
+                tests: [
+                    { type: 'sensory', key: 'Toes and feet (stocking distribution)' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'strength', key: 'Knee Extension' },
+                    { type: 'strength', key: 'Hip Flexion' }
+                ],
+                reasoning: 'Decreased vibration sense in the feet with absent ankle jerks confirms distal sensory and reflex involvement. Normal proximal strength (knee extension, hip flexion) establishes the length-dependent gradient -- weakness is distal, sparing proximal muscles. This rules out radiculopathy or motor neuron disease where proximal muscles would be involved.'
+            },
+            confirm: {
+                prompt: 'Findings suggest length-dependent polyneuropathy. What sensory tests confirm the pattern and assess severity?',
+                tests: [
+                    { type: 'specialTest', key: 'Vibration Testing (128 Hz Tuning Fork)' },
+                    { type: 'specialTest', key: 'Semmes-Weinstein Monofilament (10g)' },
+                    { type: 'sensory', key: 'Hands and fingers' },
+                    { type: 'specialTest', key: 'Romberg Test' }
+                ],
+                reasoning: 'Vibration testing and monofilament confirm large-fiber sensory loss in a stocking pattern. Testing hands assesses whether the neuropathy has progressed to stocking-glove level (hands involved when symptoms reach mid-calf). Positive Romberg indicates proprioceptive loss contributing to balance impairment.'
+            }
+        },
         keyDistinguishingFindings: [
             'SYMMETRIC and LENGTH-DEPENDENT — starts distally, ascends symmetrically',
             'Sensory > motor involvement — sensory loss with relatively preserved strength',

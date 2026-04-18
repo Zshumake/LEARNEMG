@@ -166,7 +166,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'A radiculopathy is an injury to a spinal nerve root -- the thick bundle of motor and sensory fibers that exits the spinal cord through a bony opening called the neural foramen. The most common cause in younger patients is a herniated disc; in older patients, it\'s degenerative foraminal stenosis from bone spurs (osteophytes).',
+            'A radiculopathy is an injury to a spinal nerve root -- the thick bundle of motor and sensory fibers that exit the spinal cord through a bony opening called the neural foramen. The most common cause in younger patients is a herniated disc; in older patients, it\'s degenerative foraminal stenosis from bone spurs (osteophytes).',
             style: TextStyle(
               fontSize: 15,
               color: Color(0xFF334155),

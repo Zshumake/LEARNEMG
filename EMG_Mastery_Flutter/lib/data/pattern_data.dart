@@ -194,7 +194,7 @@ class PatternData {
         ClinicalPearl(
           label: "The Sound",
           value:
-              "A rhythmic, rhythmic bursting. 'Marching soldiers' hitting the pavement.",
+              "A rhythmic grouped bursting. 'Marching soldiers' hitting the pavement.",
         ),
         ClinicalPearl(
           label: "The Look",

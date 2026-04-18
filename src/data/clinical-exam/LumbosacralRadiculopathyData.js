@@ -266,6 +266,36 @@ export const lumbosacralRadiculopathyData = {
                 { name: 'Great Toe Extension Against Resistance', technique: 'Resist great toe extension (EHL)', positiveFinding: 'Weakness (very sensitive for L5 — often earliest motor finding)' }
             ]
         },
+        examSequence: {
+            screen: {
+                prompt: 'Patient reports back pain radiating to the foot with foot drop. Which muscles should you test first to identify L5 myotome involvement?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Dorsiflexion' },
+                    { type: 'strength', key: 'Great Toe Extension (EHL)' },
+                    { type: 'strength', key: 'Hip Abduction' }
+                ],
+                reasoning: 'Ankle dorsiflexion, great toe extension (EHL -- often the earliest sign), and hip abduction are the key L5 myotome muscles. Testing hip abduction is critical because it crosses the superior gluteal nerve, which helps distinguish L5 radiculopathy from fibular neuropathy.'
+            },
+            localize: {
+                prompt: 'Dorsiflexion, EHL, and hip abduction are weak. How do you localize to L5 root and rule out fibular neuropathy and S1?',
+                tests: [
+                    { type: 'sensory', key: 'Lateral leg, dorsum of foot, great toe (web space between 1st-2nd toes)' },
+                    { type: 'strength', key: 'Ankle Plantarflexion' },
+                    { type: 'strength', key: 'Ankle Inversion' },
+                    { type: 'reflex', key: 'Medial hamstring reflex (L5)' }
+                ],
+                reasoning: 'Sensory loss over the lateral leg and dorsal foot localizes to L5. Normal plantarflexion rules out S1. Weak ankle inversion (tibialis posterior, tibial nerve) is the KEY finding that distinguishes L5 radiculopathy from fibular neuropathy, since tibialis posterior is normal in fibular neuropathy. The medial hamstring reflex, when diminished, supports L5.'
+            },
+            confirm: {
+                prompt: 'Findings suggest L5 radiculopathy. What provocative tests confirm nerve root compression?',
+                tests: [
+                    { type: 'specialTest', key: 'Straight Leg Raise (Lasegue)' },
+                    { type: 'specialTest', key: 'Crossed Straight Leg Raise' },
+                    { type: 'specialTest', key: 'Heel Walk Test' }
+                ],
+                reasoning: 'Positive SLR (radicular pain below knee at <60 degrees) is highly sensitive for L5/S1 disc herniation. Crossed SLR is less sensitive but highly specific. Difficulty with heel walking confirms tibialis anterior weakness (L5 motor function).'
+            }
+        },
         keyDistinguishingFindings: [
             'Weakness across MULTIPLE peripheral nerves (deep peroneal + tibial + superficial peroneal + superior gluteal) = myotomal pattern = ROOT level',
             'KEY vs fibular neuropathy: Tibialis posterior (inversion) WEAK in L5, NORMAL in fibular neuropathy',
@@ -340,6 +370,36 @@ export const lumbosacralRadiculopathyData = {
                 { name: 'Single-Leg Heel Raise Test', technique: 'Stand on one leg and perform 10 consecutive heel raises', positiveFinding: 'Cannot complete 10 repetitions on affected side (sensitive for subtle gastroc weakness)' },
                 { name: 'Toe Walk Test', technique: 'Walk on tiptoes', positiveFinding: 'Weakness on affected side, difficulty maintaining toe-walk' }
             ]
+        },
+        examSequence: {
+            screen: {
+                prompt: 'Patient reports back pain radiating to the calf and sole of foot. Which muscles should you test first to identify S1 myotome involvement?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Plantarflexion' },
+                    { type: 'strength', key: 'Hip Extension' },
+                    { type: 'strength', key: 'Ankle Eversion' }
+                ],
+                reasoning: 'Ankle plantarflexion (gastrocnemius/soleus), hip extension (gluteus maximus), and ankle eversion are key S1 myotome muscles. Test plantarflexion with single-leg heel raises x10 for subtle weakness detection.'
+            },
+            localize: {
+                prompt: 'Plantarflexion and hip extension are weak. How do you localize to S1 and distinguish from L5?',
+                tests: [
+                    { type: 'reflex', key: 'Ankle jerk / Achilles reflex (S1-S2)' },
+                    { type: 'sensory', key: 'Posterior calf, lateral foot, sole of foot, small toe (S1 dermatome)' },
+                    { type: 'strength', key: 'Ankle Dorsiflexion' },
+                    { type: 'reflex', key: 'Medial hamstring reflex (L5)' }
+                ],
+                reasoning: 'Diminished or absent ankle jerk is the most reliable S1 finding and the single best clinical sign. Sensory loss over the lateral foot and sole confirms S1 dermatome. Normal dorsiflexion rules out L5. Normal medial hamstring reflex further excludes L5 involvement.'
+            },
+            confirm: {
+                prompt: 'Findings suggest S1 radiculopathy. What provocative tests and functional tests confirm the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Straight Leg Raise (Lasegue)' },
+                    { type: 'specialTest', key: 'Single-Leg Heel Raise Test' },
+                    { type: 'specialTest', key: 'Crossed Straight Leg Raise' }
+                ],
+                reasoning: 'SLR is most commonly positive at L5-S1 levels. Single-leg heel raise test (should do 10+ reps) is the most sensitive functional test for subtle gastrocnemius weakness. Crossed SLR adds specificity for disc herniation.'
+            }
         },
         keyDistinguishingFindings: [
             'Ankle jerk (Achilles reflex) diminished/absent is the MOST RELIABLE clinical finding',

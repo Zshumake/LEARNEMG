@@ -130,6 +130,37 @@ export const cervicalRadiculopathyData = {
                 { name: 'Neck Distraction Test', technique: 'Manual axial traction', positiveFinding: 'Relieves symptoms' }
             ]
         },
+        examSequence: {
+            screen: {
+                prompt: 'Patient reports neck pain radiating to the hand. Which muscles should you test first to identify C6 myotome involvement?',
+                tests: [
+                    { type: 'strength', key: 'Elbow Flexion' },
+                    { type: 'strength', key: 'Wrist Extension' },
+                    { type: 'strength', key: 'Grip Strength' }
+                ],
+                reasoning: 'Elbow flexion (biceps/brachioradialis) and wrist extension are the key C6 myotome muscles. Testing grip as well helps rule out C8 involvement. Weakness in elbow flexion and wrist extension with normal grip points to C6.'
+            },
+            localize: {
+                prompt: 'Elbow flexion and wrist extension are weak. How do you localize to C6 and distinguish from C5 and C7?',
+                tests: [
+                    { type: 'reflex', key: 'Brachioradialis (C5-C6)' },
+                    { type: 'reflex', key: 'Biceps (C5-C6)' },
+                    { type: 'sensory', key: 'Lateral forearm, thumb, and index finger (thumb tip is KEY testing point)' },
+                    { type: 'strength', key: 'Shoulder Abduction' },
+                    { type: 'reflex', key: 'Triceps (C7)' }
+                ],
+                reasoning: 'Diminished brachioradialis reflex is the most reliable C6 finding. Sensory loss at the thumb tip localizes to C6. Normal-ish shoulder abduction distinguishes from C5 (where deltoid is prominently weak). Normal triceps reflex excludes C7.'
+            },
+            confirm: {
+                prompt: 'Findings suggest C6 radiculopathy. What provocative tests and additional checks confirm the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Spurling Test' },
+                    { type: 'specialTest', key: 'Bakody Sign' },
+                    { type: 'specialTest', key: 'Upper Limb Tension Test' }
+                ],
+                reasoning: 'Positive Spurling test reproducing radicular pain to the lateral forearm and thumb is highly specific for cervical radiculopathy. Bakody sign (relief with hand on head) and positive ULTT further support nerve root compression at C6.'
+            }
+        },
         keyDistinguishingFindings: [
             'Brachioradialis reflex is the MOST RELIABLE C6 reflex',
             'Elbow flexion + wrist extension weakness pattern (across musculocutaneous + radial nerves)',
@@ -198,6 +229,36 @@ export const cervicalRadiculopathyData = {
                 { name: 'Neck Distraction Test', technique: 'Manual axial traction', positiveFinding: 'Relieves symptoms' },
                 { name: 'Lhermitte Sign', technique: 'Cervical flexion', positiveFinding: 'Electric shock sensation down spine — suggests concurrent myelopathy, NOT specific to C7' }
             ]
+        },
+        examSequence: {
+            screen: {
+                prompt: 'Patient reports neck pain radiating to the middle finger. Which muscles should you test first to identify C7 myotome involvement?',
+                tests: [
+                    { type: 'strength', key: 'Elbow Extension' },
+                    { type: 'strength', key: 'Wrist Flexion' },
+                    { type: 'strength', key: 'Finger Extension' }
+                ],
+                reasoning: 'Elbow extension (triceps), wrist flexion, and finger extension are the key C7 myotome muscles. Weakness across these muscles -- which span radial and median nerves -- points to a root-level C7 pattern rather than a single peripheral nerve.'
+            },
+            localize: {
+                prompt: 'Triceps, wrist flexion, and finger extension are weak. How do you localize to C7 and distinguish from C6?',
+                tests: [
+                    { type: 'reflex', key: 'Triceps (C7)' },
+                    { type: 'sensory', key: 'Middle finger (KEY sensory point for C7)' },
+                    { type: 'reflex', key: 'Biceps (C5-C6)' },
+                    { type: 'reflex', key: 'Brachioradialis (C5-C6)' }
+                ],
+                reasoning: 'Diminished triceps reflex is the key C7 reflex. Sensory loss at the middle finger tip localizes to C7. Normal biceps and brachioradialis reflexes exclude C6 involvement and confirm isolated C7 root pathology.'
+            },
+            confirm: {
+                prompt: 'Findings suggest C7 radiculopathy. What provocative tests confirm the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Spurling Test' },
+                    { type: 'specialTest', key: 'Upper Limb Tension Test (Median Nerve Bias)' },
+                    { type: 'specialTest', key: 'Lhermitte Sign' }
+                ],
+                reasoning: 'Positive Spurling test reproducing pain to the posterior forearm and middle finger confirms cervical radiculopathy. ULTT with median nerve bias may reproduce C7 symptoms. Lhermitte sign should be checked to rule out concurrent myelopathy.'
+            }
         },
         keyDistinguishingFindings: [
             'MOST COMMON cervical radiculopathy level',

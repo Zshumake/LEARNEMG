@@ -129,6 +129,19 @@ class PodcastMiniPlayer extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
                     ),
+                    if (controller.hasNext) ...[
+                      const SizedBox(width: 8),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.skip_next_rounded,
+                          color: Colors.white70,
+                          size: 24,
+                        ),
+                        onPressed: () => controller.playNext(),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                    ],
                     const SizedBox(width: 8),
                     IconButton(
                       icon: const Icon(

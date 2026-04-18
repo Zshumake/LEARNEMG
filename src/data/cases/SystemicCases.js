@@ -41,17 +41,17 @@ export const systemicCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 4.8, onset: 4.2, amp: 4.0, velocity: 38, dist: 14, abnormal: true },
-                { name: "Ulnar Sensory (Little)", peak: 4.2, onset: 3.6, amp: 6.0, velocity: 42, dist: 14, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", peak: 3.8, onset: 3.3, amp: 5.0, velocity: 45, dist: 10, abnormal: true },
+                { name: "Median Sensory (Index)", peak: 4.8, onset: 4.2, amp: 4.0, velocity: 33, dist: 14, abnormal: true },
+                { name: "Ulnar Sensory (Little)", peak: 4.2, onset: 3.6, amp: 6.0, velocity: 39, dist: 14, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", peak: 3.8, onset: 3.3, amp: 5.0, velocity: 30, dist: 10, abnormal: true },
                 { name: "Sural Sensory", peak: 0, onset: "NR", amp: 0, velocity: 0, dist: 14, abnormal: true },
-                { name: "Fibular Sensory", peak: 0, onset: "NR", amp: 0, velocity: 0, dist: 14, abnormal: true }
+                { name: "Superficial Fibular Sensory", peak: 0, onset: "NR", amp: 0, velocity: 0, dist: 14, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 5.2, amp: 4.8, velocity: 44, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 4.8, amp: 5.2, velocity: 45, dist: 8, abnormal: true },
-                { name: "Fibular Motor (EDB)", latency: 7.2, amp: 0.8, velocity: 35, dist: 9, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 6.8, amp: 2.2, velocity: 36, dist: 10, abnormal: true }
+                { name: "Median Motor (APB)", latency: 5.2, amp: 4.8, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 4.8, amp: 5.2, velocity: 0, dist: 8, abnormal: true },
+                { name: "Fibular Motor (EDB)", latency: 7.2, amp: 0.8, velocity: 0, dist: 9, abnormal: true },
+                { name: "Tibial Motor (AH)", latency: 6.8, amp: 2.2, velocity: 0, dist: 10, abnormal: true }
             ],
             comparison: []
         },
@@ -120,30 +120,28 @@ export const systemicCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
-                { name: "Sural Sensory", peak: 3.2, onset: 2.5, amp: 15, velocity: 45, dist: 14, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 48, dist: 14, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false },
+                { name: "Sural Sensory", peak: 3.2, onset: 2.5, amp: 15, velocity: 56, dist: 14, abnormal: false },
+                { name: "Superficial Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 54, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 2.5, velocity: 48, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 3.2, amp: 3.2, velocity: 49, dist: 8, abnormal: true },
-                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 2.5, velocity: 40, dist: 9, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 2.8, velocity: 40, dist: 10, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 2.5, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 3.2, amp: 3.2, velocity: 0, dist: 8, abnormal: true },
+                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 2.5, velocity: 0, dist: 9, abnormal: true },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 2.8, velocity: 0, dist: 10, abnormal: true }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.5", measureB: "2.4", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, fascic: "2+", fibs: "1+", motorUnits: "Large/Poly", recruitment: "Reduced" },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, fascic: "2+", fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
             { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, fascic: "2+", fibs: "1+", motorUnits: "Large/Poly", recruitment: "Reduced" },
-            { muscle: "Tongue", abnormal: true, fascic: "3+" },
-            { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: true, fascic: "2+", fibs: "3+" },
-            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, fascic: "1+", fibs: "2+" },
-            { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: true, fascic: "1+", fibs: "2+" },
+            { muscle: "Tongue", abnormal: true, fascic: "3+", fibs: "2+" },
+            { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: true, fascic: "2+", fibs: "3+", motorUnits: "Large/Poly", recruitment: "Reduced" },
+            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, fascic: "1+", fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
+            { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: true, fascic: "1+", fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
             { muscle: "Thoracic Paraspinals (T10)", abnormal: true, fibs: "2+", fascic: "1+" }
         ],
         teachingPoints: [
@@ -198,25 +196,27 @@ export const systemicCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 4.8, onset: 4.2, amp: 8.0, velocity: 32, dist: 14, abnormal: true },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
-                { name: "Sural Sensory", peak: 3.5, onset: 2.8, amp: 15, velocity: 45, dist: 14, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 48, dist: 14, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 4.8, onset: 4.2, amp: 8.0, velocity: 33, dist: 14, abnormal: true },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false },
+                { name: "Sural Sensory", peak: 3.5, onset: 2.8, amp: 15, velocity: 50, dist: 14, abnormal: false },
+                { name: "Superficial Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 54, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 6.2, amp: 5.2, velocity: 45, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 5.8, amp: 4.8, velocity: 42, dist: 8, abnormal: true },
-                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 2.5, velocity: 32, dist: 9, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 6.5, amp: 3.0, velocity: 30, dist: 10, abnormal: true }
+                { name: "Median Motor (APB) - Wrist", latency: 6.2, amp: 5.2, velocity: 0, dist: 8, abnormal: true },
+                { name: "Median Motor (APB) - Elbow", latency: 14.5, amp: 1.8, velocity: 27, dist: 22, abnormal: true, comment: "Conduction block (55% amplitude drop) + temporal dispersion" },
+                { name: "Ulnar Motor (ADM) - Wrist", latency: 5.8, amp: 4.8, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (ADM) - BE", latency: 13.2, amp: 2.0, velocity: 28, dist: 22, abnormal: true, comment: "Conduction block (47% amplitude drop)" },
+                { name: "Fibular Motor (EDB) - Ankle", latency: 5.2, amp: 2.5, velocity: 0, dist: 9, abnormal: true },
+                { name: "Fibular Motor (EDB) - Knee", latency: 22.5, amp: 0.3, velocity: 25, dist: 30, abnormal: true, comment: "Conduction block (70% amplitude drop)" },
+                { name: "Tibial Motor (AH)", latency: 6.5, amp: 3.0, velocity: 0, dist: 10, abnormal: true }
             ],
             comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false },
                 { name: "F-waves (Ulnar)", measureA: "Right Side", measureB: "65ms", deltaP: "Marked Delay", abnormal: true }
             ]
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, recruitment: "Reduced" },
+            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, recruitment: "Reduced", comment: "No fibrillations yet -- too early (3 days) for Wallerian degeneration" },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, recruitment: "Reduced" },
             { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, recruitment: "Reduced" },
             { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, recruitment: "Reduced" },
@@ -277,21 +277,21 @@ export const systemicCases = {
             sensory: [
                 { name: "Median Sensory (Index)", peak: "Absent", onset: "NR", amp: 0, velocity: 0, dist: 14, abnormal: true },
                 { name: "Ulnar Sensory (Little)", peak: "Absent", onset: "NR", amp: 0, velocity: 0, dist: 14, abnormal: true },
-                { name: "Sural Sensory", peak: 5.2, onset: 4.5, amp: 4.0, velocity: 32, dist: 14, abnormal: true }
+                { name: "Sural Sensory", peak: 5.2, onset: 4.5, amp: 4.0, velocity: 31, dist: 14, abnormal: true }
             ],
             motor: [
                 { name: "Median Motor (APB) - Wrist", latency: 8.5, amp: 2.2, velocity: "N/A", dist: 8, abnormal: true, comment: "Marked Distal Latency Delay" },
-                { name: "Median Motor (APB) - Elbow", latency: 18.2, amp: 1.8, velocity: 22, dist: 24, abnormal: true, comment: "Slowing & Temporal Dispersion" },
+                { name: "Median Motor (APB) - Elbow", latency: 18.2, amp: 1.8, velocity: 25, dist: 24, abnormal: true, comment: "Slowing & Temporal Dispersion" },
                 { name: "F-waves (Median)", measureA: "Right Side", measureB: "58ms", deltaP: "Marked Delay", abnormal: true },
                 { name: "Fibular Motor (EDB) - Ank", latency: 9.8, amp: 0.8, velocity: "N/A", dist: 9, abnormal: true },
-                { name: "Fibular Motor (EDB) - Knee", latency: 24.5, amp: 0.4, velocity: 18, dist: 32, abnormal: true, comment: "Conduction Block/Dispersion" }
+                { name: "Fibular Motor (EDB) - Knee", latency: 24.5, amp: 0.4, velocity: 22, dist: 32, abnormal: true, comment: "Conduction Block/Dispersion" }
             ],
             comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, motorUnits: "Polyphasic", recruitment: "Reduced" },
             { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: true, motorUnits: "Polyphasic", recruitment: "Reduced", comment: "Proximal involvement" },
-            { muscle: "Deltoid", nerve: "Axillary", root: "C5", abnormal: true, motorUnits: "Polyphasic", recruitment: "Reduced", comment: "Proximal involvement" },
+            { muscle: "Deltoid", nerve: "Axillary", root: "C5-C6", abnormal: true, motorUnits: "Polyphasic", recruitment: "Reduced", comment: "Proximal involvement" },
             { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5", abnormal: true, motorUnits: "Polyphasic", recruitment: "Reduced" },
             { muscle: "Lumbar Paraspinals (L4)", abnormal: false, comment: "Often spared despite root involvement" }
         ],
@@ -346,15 +346,17 @@ export const systemicCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 42.0, velocity: 58, dist: 14, abnormal: false, comment: "Normal (Pure Motor)" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 38.0, velocity: 60, dist: 14, abnormal: false, comment: "Normal (Pure Motor)" },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 26.0, velocity: 56, dist: 10, abnormal: false, comment: "Normal (Pure Motor)" }
+                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 42.0, velocity: 54, dist: 14, abnormal: false, comment: "Normal (Pure Motor)" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 38.0, velocity: 64, dist: 14, abnormal: false, comment: "Normal (Pure Motor)" },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 26.0, velocity: 53, dist: 10, abnormal: false, comment: "Normal (Pure Motor)" }
             ],
             motor: [
                 { name: "Median Motor (APB) - Wrist", latency: 3.8, amp: 11.5, velocity: "N/A", dist: 8, abnormal: false },
-                { name: "Median Motor (APB) - Elbow", latency: 10.5, amp: 4.2, velocity: 35, dist: 24, abnormal: true, comment: "63% Conduction Block at Forearm" },
+                { name: "Median Motor (APB) - Elbow", latency: 10.5, amp: 4.2, velocity: 36, dist: 24, abnormal: true, comment: "63% Conduction Block at Forearm" },
                 { name: "Ulnar Motor (ADM) - Wrist", latency: 3.1, amp: 14.0, velocity: "N/A", dist: 8, abnormal: false },
-                { name: "Ulnar Motor (ADM) - BE", latency: 8.2, amp: 13.5, velocity: 55, dist: 22, abnormal: false }
+                { name: "Ulnar Motor (ADM) - BE", latency: 8.2, amp: 13.5, velocity: 43, dist: 22, abnormal: false },
+                { name: "Radial Motor (EIP) - Forearm", latency: 4.0, amp: 6.0, velocity: 0, dist: 10, abnormal: false },
+                { name: "Radial Motor (EIP) - Upper Arm", latency: 8.5, amp: 1.2, velocity: 27, dist: 12, abnormal: true, comment: "Conduction block (80% amplitude drop) at non-entrapment site" }
             ],
             comparison: [
                 { name: "Median Motor (Left Side)", latency: 3.6, amp: 12.0, velocity: 58, abnormal: false, comment: "Normal comparison" }
@@ -425,11 +427,11 @@ export const systemicCases = {
             ],
             motor: [
                 { name: "Median Motor (APB) - Wrist", latency: 12.0, amp: 4.5, velocity: "N/A", dist: 8, abnormal: true, comment: "Uniform Marked Delay" },
-                { name: "Median Motor (APB) - Elbow", latency: 26.5, amp: 4.2, velocity: 20, dist: 24, abnormal: true, comment: "No Block/Dispersion" },
+                { name: "Median Motor (APB) - Elbow", latency: 26.5, amp: 4.2, velocity: 17, dist: 24, abnormal: true, comment: "No Block/Dispersion" },
                 { name: "Ulnar Motor (ADM) - Wrist", latency: 10.5, amp: 4.0, velocity: "N/A", dist: 8, abnormal: true },
-                { name: "Ulnar Motor (ADM) - BE", latency: 24.2, amp: 3.8, velocity: 18, dist: 22, abnormal: true },
+                { name: "Ulnar Motor (ADM) - BE", latency: 24.2, amp: 3.8, velocity: 16, dist: 22, abnormal: true },
                 { name: "Fibular Motor (EDB) - Ank", latency: 14.5, amp: 0.8, velocity: "N/A", dist: 9, abnormal: true },
-                { name: "Fibular Motor (EDB) - Knee", latency: 32.5, amp: 0.8, velocity: 15, dist: 32, abnormal: true }
+                { name: "Fibular Motor (EDB) - Knee", latency: 32.5, amp: 0.8, velocity: 18, dist: 32, abnormal: true }
             ],
             comparison: []
         },
@@ -492,15 +494,15 @@ export const systemicCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false, comment: "Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 38, velocity: 60, dist: 14, abnormal: false, comment: "Normal" },
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false, comment: "Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 38, velocity: 64, dist: 14, abnormal: false, comment: "Normal" },
                 { name: "Sural Sensory", peak: 3.8, onset: 3.1, amp: 18, velocity: 45, dist: 14, abnormal: false, comment: "Normal (measures large fibers)" }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.6, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false },
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, dist: 9, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, dist: 10, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.6, amp: 12.0, velocity: 0, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 0, dist: 8, abnormal: false },
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 0, dist: 9, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 0, dist: 10, abnormal: false }
             ],
             comparison: []
         },

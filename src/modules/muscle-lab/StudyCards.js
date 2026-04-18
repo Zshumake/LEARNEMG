@@ -2,13 +2,39 @@
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
 import logger from '../../utils/Logger.js';
 
+// Sub-region mapping for "By Region" grouping
+const REGION_MAP = {
+    UE: {
+        'Shoulder & Scapular': ['Trapezius', 'Rhomboid', 'Serratus', 'Supraspinatus', 'Infraspinatus', 'Subscapularis', 'Teres', 'Pectoralis', 'Latissimus', 'Deltoid', 'Levator'],
+        'Arm': ['Biceps', 'Brachialis', 'Coracobrachialis', 'Triceps', 'Anconeus'],
+        'Forearm': ['Pronator', 'Flexor carpi', 'Flexor digitorum', 'Flexor pollicis', 'Palmaris', 'Brachioradialis', 'Extensor carpi', 'Extensor digitorum', 'Extensor pollicis', 'Extensor indicis', 'Abductor pollicis longus', 'Supinator'],
+        'Hand': ['Abductor pollicis brevis', 'Opponens', 'First dorsal', 'Adductor pollicis', 'Abductor digiti', 'Flexor digiti', 'Inteross', 'Lumbrical']
+    },
+    LE: {
+        'Hip & Gluteal': ['Gluteus', 'Piriformis', 'Iliopsoas', 'Tensor', 'Pectineus'],
+        'Thigh': ['Rectus femoris', 'Vastus', 'Sartorius', 'Adductor', 'Obturator', 'Gracilis', 'Biceps femoris', 'Semitendinosus', 'Semimembranosus'],
+        'Leg': ['Tibialis', 'Extensor hallucis', 'Extensor digitorum longus', 'Peroneus', 'Gastrocnemius', 'Soleus', 'Plantaris', 'Popliteus', 'Flexor digitorum longus', 'Flexor hallucis longus'],
+        'Foot': ['Extensor digitorum brevis', 'Abductor hallucis', 'Flexor digitorum brevis', 'Abductor digiti minimi pedis', 'Inteross']
+    }
+};
+
+function getSubRegion(muscleName, regionCode) {
+    const map = REGION_MAP[regionCode] || {};
+    for (const [subRegion, keywords] of Object.entries(map)) {
+        if (keywords.some(kw => muscleName.toLowerCase().includes(kw.toLowerCase()))) return subRegion;
+    }
+    return 'Other';
+}
+
 export class StudyCardsModule {
     constructor() {
         this.muscleDatabase = MuscleDatabase;
         this.currentRegion = 'lower';
         this.currentAnatomyType = 'nerve';
+        this.groupBy = 'nerve';
+        this.searchQuery = '';
+        this.expandedGroups = new Set();
 
-        // Bind high-level methods
         this.launch = this.launch.bind(this);
         this.switchAnatomy = this.switchAnatomy.bind(this);
         this.displayMuscles = this.displayMuscles.bind(this);
@@ -16,7 +42,6 @@ export class StudyCardsModule {
         this.globalRevealAll = this.globalRevealAll.bind(this);
         this.globalRevealType = this.globalRevealType.bind(this);
 
-        // Expose globally for HTML onclicks
         this.initGlobalBindings();
     }
 
@@ -24,21 +49,22 @@ export class StudyCardsModule {
         window.MuscleAnatomy = this;
         window.showStudyCards = this.launch;
 
-        // Register with ActionBus
         if (window._registerAction) {
             window._registerAction('studyCards:switchAnatomy', (el) => {
-                const region = el.getAttribute('data-region');
-                this.switchAnatomy(region);
+                this.switchAnatomy(el.getAttribute('data-region'));
             });
             window._registerAction('studyCards:toggleDetail', (el) => {
-                const muscle = el.getAttribute('data-muscle');
-                const type = el.getAttribute('data-type');
-                this.toggleDetail(muscle, type);
+                this.toggleDetail(el.getAttribute('data-muscle'), el.getAttribute('data-type'));
             });
             window._registerAction('studyCards:globalRevealAll', () => this.globalRevealAll());
             window._registerAction('studyCards:globalRevealType', (el) => {
-                const type = el.getAttribute('data-type');
-                this.globalRevealType(type);
+                this.globalRevealType(el.getAttribute('data-type'));
+            });
+            window._registerAction('studyCards:setGroupBy', (el) => {
+                this.setGroupBy(el.getAttribute('data-mode'));
+            });
+            window._registerAction('studyCards:toggleGroup', (el) => {
+                this.toggleGroup(el.getAttribute('data-group'));
             });
             window._registerAction('closeStudyCardModal', () => {
                 document.querySelector('.learning-modal-overlay.active')?.remove();
@@ -46,39 +72,83 @@ export class StudyCardsModule {
         }
     }
 
+    // --- Search & Grouping ---
+
+    filterBySearch(value) {
+        this.searchQuery = value.trim().toLowerCase();
+        this.displayMuscles(this.currentRegion);
+    }
+
+    setGroupBy(mode) {
+        this.groupBy = mode;
+        this.expandedGroups.clear();
+        document.querySelectorAll('.group-by-pill').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+        this.displayMuscles(this.currentRegion);
+    }
+
+    toggleGroup(groupName) {
+        const body = document.getElementById(`mg-body-${this.slugify(groupName)}`);
+        const chevron = document.getElementById(`mg-chev-${this.slugify(groupName)}`);
+        if (!body) return;
+        const isHidden = body.style.display === 'none';
+        body.style.display = isHidden ? 'block' : 'none';
+        if (chevron) chevron.textContent = isHidden ? '-' : '+';
+        if (isHidden) this.expandedGroups.add(groupName); else this.expandedGroups.delete(groupName);
+    }
+
+    slugify(str) { return str.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase(); }
+
+    groupMuscles(muscles, regionCode) {
+        const groups = {};
+        muscles.forEach(([name, data]) => {
+            let keys = [];
+            switch (this.groupBy) {
+                case 'nerve': keys = [data.peripheralNerve || data.nerve || 'Unknown']; break;
+                case 'root': keys = data.roots || ['Unknown']; break;
+                case 'region': keys = [getSubRegion(name, regionCode)]; break;
+                case 'cord': keys = [data.cord || 'N/A']; break;
+                default: keys = ['All'];
+            }
+            keys.forEach(key => {
+                if (!groups[key]) groups[key] = [];
+                groups[key].push([name, data]);
+            });
+        });
+        // Sort groups
+        const sorted = Object.entries(groups).sort(([a], [b]) => {
+            if (this.groupBy === 'root') {
+                const order = ['C3','C4','C5','C6','C7','C8','T1','L1','L2','L3','L4','L5','S1','S2','S3'];
+                return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
+            }
+            return a.localeCompare(b);
+        });
+        return sorted;
+    }
+
+    // --- Launch & Display ---
+
     launch() {
-        logger.log('🧬 Launching Advanced Muscle Study Lab...');
-
+        logger.log('Launching Advanced Muscle Study Lab...');
         const content = this.generateUI();
-
-        // 1. Candyland Core Integration Check: If we are already inside a Candyland modal, inject directly into it.
         const activeCandylandModal = document.querySelector('.learning-modal-overlay.active .learning-modal');
 
         if (activeCandylandModal) {
-            logger.log('🧬 Injecting directly into active Candyland module...');
-
-            // Overwrite the entire inner modal to remove the header and close button, providing a unified experience.
             activeCandylandModal.innerHTML = `
                 <div style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0; position: relative;">
-                    <h2 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;">🧬 Advanced Muscle Study Lab</h2>
-                    <button class="modal-close-btn" data-action="closeStudyCardModal" style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">x</button>
+                    <h2 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;">Advanced Muscle Study Lab</h2>
+                    <button class="modal-close-btn" data-action="closeStudyCardModal" style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">x</button>
                 </div>
                 <div style="padding: 30px; background: white; border-radius: 0 0 15px 15px; overflow-y: auto; max-height: 80vh;">
                     ${content}
                 </div>
             `;
-        }
-        // 2. Fallback to global modal if launched outside Candyland
-        else if (window.showModal) {
-            window.showModal('🧬 Advanced Muscle Study Lab', content);
+        } else if (window.showModal) {
+            window.showModal('Advanced Muscle Study Lab', content);
         } else {
             logger.error("showModal not available");
         }
 
-        // Initialize after DOM update
-        setTimeout(() => {
-            this.initializeDisplay();
-        }, 500);
+        setTimeout(() => this.initializeDisplay(), 500);
     }
 
     initializeDisplay() {
@@ -86,83 +156,51 @@ export class StudyCardsModule {
     }
 
     generateUI() {
+        const count = Object.keys(this.muscleDatabase).length;
         return `
             <style>
-                /* Advanced Muscle Lab Styling - Inline for encapsulation */
                 .muscle-lab-hero {
                     background: linear-gradient(135deg, #14b8a6, #06b6d4, #8b5cf6, #14b8a6);
                     background-size: 300% 300%;
                     animation: gradient-shift 15s ease infinite;
-                    border-radius: 25px;
-                    padding: 40px;
-                    margin: 20px 0;
-                    text-align: center;
-                    color: white;
+                    border-radius: 25px; padding: 40px; margin: 20px 0;
+                    text-align: center; color: white;
                     box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3);
+                    position: relative;
                 }
-                @keyframes gradient-shift {
-                    0% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
-                    100% { background-position: 0% 50%; }
-                }
-                .muscle-lab-tabs {
-                    display: none; /* Tabs hidden since quiz is moved */
-                }
-                .muscle-tab {
-                    padding: 15px 30px; border: none; background: transparent;
-                    color: #64748b; font-weight: 600; cursor: pointer; border-radius: 10px;
-                    font-size: 1.1rem; flex: 1; transition: all 0.3s;
-                }
-                .muscle-tab.active {
-                    background: linear-gradient(135deg, #14b8a6, #06b6d4);
-                    color: white; shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
-                }
-                .muscle-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                    gap: 20px;
-                }
-                .muscle-card-interactive {
-                    background: white; border: 2px solid rgba(20, 184, 166, 0.15);
-                    border-radius: 12px; padding: 20px; transition: all 0.3s;
-                }
-                .muscle-card-interactive:hover {
-                    border-color: #14b8a6; transform: translateY(-3px);
-                    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.2);
-                }
-                .muscle-name {
-                    font-size: 1.2rem; margin: 0 0 15px 0;
-                    color: #0f766e;
-                }
-                .muscle-btn {
-                    padding: 6px 12px; border: 1px solid #ccfbf1; border-radius: 6px;
-                    background: #f0fdfa; color: #0d9488; cursor: pointer;
-                    font-size: 0.85rem; margin-right: 5px; margin-bottom: 5px;
-                }
-                .muscle-btn.active {
-                    background: #0d9488; color: white; border-color: #0d9488;
-                }
-                .muscle-detail {
-                    margin-top: 10px; padding: 10px; background: #f0f9ff;
-                    border-left: 3px solid #0ea5e9; border-radius: 4px;
-                    font-size: 0.9rem;
-                }
-                .global-reveal-controls {
-                    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
-                    margin-bottom: 30px;
-                }
-                .global-reveal-btn {
-                     padding: 10px 20px; border-radius: 20px; border: none;
-                     background: #e2e8f0; color: #475569; cursor: pointer; font-weight: 600;
-                }
+                @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+                .muscle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+                .muscle-card-interactive { background: white; border: 2px solid rgba(20, 184, 166, 0.15); border-radius: 12px; padding: 18px; transition: all 0.3s; }
+                .muscle-card-interactive:hover { border-color: #14b8a6; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(20, 184, 166, 0.15); }
+                .muscle-name { font-size: 1.05rem; margin: 0 0 12px 0; color: #0f766e; font-weight: 700; }
+                .muscle-btn { padding: 5px 10px; border: 1px solid #ccfbf1; border-radius: 6px; background: #f0fdfa; color: #0d9488; cursor: pointer; font-size: 0.8rem; }
+                .muscle-btn.active { background: #0d9488; color: white; border-color: #0d9488; }
+                .muscle-detail { margin-top: 8px; padding: 8px 10px; background: #f0f9ff; border-left: 3px solid #0ea5e9; border-radius: 4px; font-size: 0.85rem; }
+                .global-reveal-controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+                .global-reveal-btn { padding: 8px 16px; border-radius: 20px; border: none; background: #e2e8f0; color: #475569; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
                 .global-reveal-btn:hover { background: #cbd5e1; }
-                .region-btn {
-                    padding: 12px 24px; border-radius: 25px; border: 2px solid #e2e8f0;
-                    background: white; color: #64748b; font-weight: 600; cursor: pointer;
-                }
-                .region-btn.active {
-                    border-color: #14b8a6; color: #0d9488; background: #f0fdfa;
-                }
+                .region-btn { padding: 10px 20px; border-radius: 25px; border: 2px solid #e2e8f0; background: white; color: #64748b; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+                .region-btn.active { border-color: #14b8a6; color: #0d9488; background: #f0fdfa; }
+
+                /* New: Search & Group By */
+                .muscle-search-wrap { max-width: 500px; margin: 0 auto 16px; position: relative; }
+                .muscle-search-input { width: 100%; padding: 12px 16px 12px 40px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+                .muscle-search-input:focus { border-color: #14b8a6; }
+                .muscle-search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+                .group-by-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+                .group-by-pill { padding: 8px 16px; border-radius: 20px; border: 2px solid #e2e8f0; background: white; color: #64748b; cursor: pointer; font-weight: 600; font-size: 0.82rem; transition: all 0.2s; }
+                .group-by-pill.active { border-color: #8b5cf6; color: #7c3aed; background: #f5f3ff; }
+                .group-by-pill:hover { border-color: #a78bfa; }
+
+                /* New: Collapsible Groups */
+                .muscle-group { margin-bottom: 12px; border: 1px solid #e2e8f0; border-radius: 14px; overflow: hidden; }
+                .muscle-group-header { display: flex; align-items: center; padding: 14px 18px; background: #f8fafc; cursor: pointer; transition: background 0.2s; gap: 10px; user-select: none; }
+                .muscle-group-header:hover { background: #f0fdfa; }
+                .group-name { font-weight: 700; font-size: 0.95rem; color: #1e293b; flex: 1; }
+                .group-count { background: #f0fdfa; color: #0d9488; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 700; }
+                .group-chevron { width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #64748b; font-size: 1rem; transition: all 0.2s; }
+                .muscle-group-body { padding: 16px; background: white; }
+                .muscle-no-results { text-align: center; padding: 40px; color: #94a3b8; font-size: 1rem; }
             </style>
 
             <div class="muscle-lab-hero">
@@ -172,31 +210,41 @@ export class StudyCardsModule {
                 <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
                 </div>
-                <h2>Advanced Muscle Laboratory</h2>
-                <p>Comprehensive Muscle Database</p>
-                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px;">
-                    <div><strong>${Object.keys(this.muscleDatabase).length}</strong> Muscles</div>
-                    <div><strong>∞</strong> Variations</div>
+                <h2 style="margin: 0 0 6px;">Advanced Muscle Laboratory</h2>
+                <p style="margin: 0; opacity: 0.8;">Comprehensive Muscle Database</p>
+                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 16px;">
+                    <div><strong>${count}</strong> Muscles</div>
                 </div>
             </div>
 
-            <!-- CARDS TAB -->
-            <div id="cards-tab-content" class="tab-content">
-                <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
-                     <button class="region-btn active" data-region="lower" data-action="studyCards:switchAnatomy" style="display: flex; align-items: center; gap: 8px;">
-                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Lower Extremity
-                     </button>
-                     <button class="region-btn" data-region="upper" data-action="studyCards:switchAnatomy" style="display: flex; align-items: center; gap: 8px;">
-                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Upper Extremity
-                     </button>
+            <div id="cards-tab-content">
+                <!-- Region Toggle -->
+                <div style="text-align: center; margin-bottom: 16px; display: flex; justify-content: center; gap: 12px;">
+                    <button class="region-btn active" data-region="lower" data-action="studyCards:switchAnatomy">Lower Extremity</button>
+                    <button class="region-btn" data-region="upper" data-action="studyCards:switchAnatomy">Upper Extremity</button>
                 </div>
 
+                <!-- Search Bar -->
+                <div class="muscle-search-wrap">
+                    <svg class="muscle-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" class="muscle-search-input" placeholder="Search muscles, nerves, or roots..." oninput="window.MuscleAnatomy.filterBySearch(this.value)">
+                </div>
+
+                <!-- Group By Pills -->
+                <div class="group-by-row">
+                    <button class="group-by-pill active" data-mode="nerve" data-action="studyCards:setGroupBy">By Nerve</button>
+                    <button class="group-by-pill" data-mode="root" data-action="studyCards:setGroupBy">By Root</button>
+                    <button class="group-by-pill" data-mode="region" data-action="studyCards:setGroupBy">By Region</button>
+                    <button class="group-by-pill" data-mode="cord" data-action="studyCards:setGroupBy">By Cord/Trunk</button>
+                </div>
+
+                <!-- Global Reveal -->
                 <div class="global-reveal-controls">
-                    <button class="global-reveal-btn" data-action="studyCards:globalRevealAll" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Reveal All</button>
-                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="nerve" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nerves</button>
-                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="roots" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg> Roots</button>
-                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="cord" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="8"></line><line x1="10" y1="1" x2="10" y2="8"></line><line x1="14" y1="1" x2="14" y2="8"></line></svg> Cords</button>
-                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="actions" style="display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.92-10.24l-3.26-3.26"></path></svg> Actions</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealAll">Reveal All</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="nerve">Nerves</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="roots">Roots</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="cord">Cords</button>
+                    <button class="global-reveal-btn" data-action="studyCards:globalRevealType" data-type="actions">Actions</button>
                 </div>
 
                 <div id="muscle-anatomy-display"></div>
@@ -206,8 +254,8 @@ export class StudyCardsModule {
 
     switchAnatomy(region) {
         this.currentRegion = region;
+        this.expandedGroups.clear();
         this.displayMuscles(region);
-
         document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
         document.querySelector(`[data-region="${region}"]`)?.classList.add('active');
     }
@@ -217,34 +265,58 @@ export class StudyCardsModule {
         if (!display) return;
 
         const regionCode = region === 'upper' ? 'UE' : 'LE';
-        const muscles = Object.entries(this.muscleDatabase).filter(([_, data]) => data.region === regionCode);
+        let muscles = Object.entries(this.muscleDatabase).filter(([_, d]) => d.region === regionCode);
 
-        display.innerHTML = `
-            <div class="muscle-grid">
-                ${muscles.map(([name, data]) => `
-                    <div class="muscle-card-interactive" data-muscle="${name}">
-                        <h4 class="muscle-name">${name}</h4>
-                        <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
-                            <button class="muscle-btn nerve" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="nerve">Nerve</button>
-                            <button class="muscle-btn roots" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="roots">Roots</button>
-                            <button class="muscle-btn cord" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="cord">Cord</button>
-                            <button class="muscle-btn actions" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="actions">Actions</button>
-                        </div>
-                        
-                        <div class="muscle-detail" data-type="nerve" style="display: none;">
-                            <strong>Nerve:</strong> ${data.peripheralNerve}
-                        </div>
-                        <div class="muscle-detail" data-type="roots" style="display: none;">
-                            <strong>Roots:</strong> ${data.roots.join(', ')}
-                        </div>
-                        <div class="muscle-detail" data-type="cord" style="display: none;">
-                            <strong>Cord/Trunk:</strong> ${data.cord || 'N/A'}
-                        </div>
-                        <div class="muscle-detail" data-type="actions" style="display: none;">
-                            <strong>Actions:</strong> ${data.actions}
+        // Apply search filter
+        if (this.searchQuery) {
+            muscles = muscles.filter(([name, data]) => {
+                const haystack = [name, data.peripheralNerve || '', data.nerve || '', (data.roots || []).join(' '), data.cord || '', data.actions || ''].join(' ').toLowerCase();
+                return haystack.includes(this.searchQuery);
+            });
+        }
+
+        if (muscles.length === 0) {
+            const escaped = this.searchQuery.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            display.innerHTML = `<div class="muscle-no-results">No muscles match "${escaped}"</div>`;
+            return;
+        }
+
+        const groups = this.groupMuscles(muscles, regionCode);
+
+        display.innerHTML = groups.map(([groupName, groupMuscles]) => {
+            const slug = this.slugify(groupName);
+            const isExpanded = this.expandedGroups.has(groupName) || this.searchQuery.length > 0;
+            return `
+                <div class="muscle-group">
+                    <div class="muscle-group-header" data-action="studyCards:toggleGroup" data-group="${groupName}">
+                        <span class="group-name">${groupName}</span>
+                        <span class="group-count">${groupMuscles.length} muscle${groupMuscles.length !== 1 ? 's' : ''}</span>
+                        <span class="group-chevron" id="mg-chev-${slug}">${isExpanded ? '-' : '+'}</span>
+                    </div>
+                    <div class="muscle-group-body" id="mg-body-${slug}" style="display: ${isExpanded ? 'block' : 'none'};">
+                        <div class="muscle-grid">
+                            ${groupMuscles.map(([name, data]) => this.renderMuscleCard(name, data)).join('')}
                         </div>
                     </div>
-                `).join('')}
+                </div>
+            `;
+        }).join('');
+    }
+
+    renderMuscleCard(name, data) {
+        return `
+            <div class="muscle-card-interactive" data-muscle="${name}">
+                <h4 class="muscle-name">${name}</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px;">
+                    <button class="muscle-btn nerve" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="nerve">Nerve</button>
+                    <button class="muscle-btn roots" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="roots">Roots</button>
+                    <button class="muscle-btn cord" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="cord">Cord</button>
+                    <button class="muscle-btn actions" data-action="studyCards:toggleDetail" data-muscle="${name}" data-type="actions">Actions</button>
+                </div>
+                <div class="muscle-detail" data-type="nerve" style="display: none;"><strong>Nerve:</strong> ${data.peripheralNerve || 'N/A'}</div>
+                <div class="muscle-detail" data-type="roots" style="display: none;"><strong>Roots:</strong> ${(data.roots || []).join(', ') || 'N/A'}</div>
+                <div class="muscle-detail" data-type="cord" style="display: none;"><strong>Cord/Trunk:</strong> ${data.cord || 'N/A'}</div>
+                <div class="muscle-detail" data-type="actions" style="display: none;"><strong>Actions:</strong> ${data.actions || 'N/A'}</div>
             </div>
         `;
     }
@@ -252,14 +324,12 @@ export class StudyCardsModule {
     toggleDetail(muscleName, type) {
         const card = Array.from(document.querySelectorAll(`[data-muscle]`)).find(el => el.dataset.muscle === muscleName);
         if (!card) return;
-
         const detail = card.querySelector(`.muscle-detail[data-type="${type}"]`);
         const btn = card.querySelector(`.muscle-btn.${type}`);
-
         if (detail && btn) {
             const isHidden = detail.style.display === 'none';
             detail.style.display = isHidden ? 'block' : 'none';
-            if (isHidden) btn.classList.add('active'); else btn.classList.remove('active');
+            btn.classList.toggle('active', isHidden);
         }
     }
 

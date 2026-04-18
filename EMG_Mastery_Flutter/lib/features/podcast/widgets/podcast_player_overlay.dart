@@ -176,6 +176,12 @@ class PodcastPlayerOverlay extends StatelessWidget {
                     children: [
                       _buildSpeedButton(controller),
                       _controlButton(
+                        Icons.skip_previous_rounded,
+                        28,
+                        controller.hasPrevious ? () => controller.playPrevious() : null,
+                        disabled: !controller.hasPrevious,
+                      ),
+                      _controlButton(
                         Icons.replay_10_rounded,
                         32,
                         () => controller.seek(
@@ -209,6 +215,12 @@ class PodcastPlayerOverlay extends StatelessWidget {
                           controller.position +
                               const Duration(seconds: 15),
                         ),
+                      ),
+                      _controlButton(
+                        Icons.skip_next_rounded,
+                        28,
+                        controller.hasNext ? () => controller.playNext() : null,
+                        disabled: !controller.hasNext,
                       ),
                       _controlButton(
                         Icons.stop_rounded,
@@ -259,6 +271,44 @@ class PodcastPlayerOverlay extends StatelessWidget {
                       ),
                     ),
                   ],
+
+                  // Transcript
+                  if (episode.transcript != null &&
+                      episode.transcript!.isNotEmpty) ...[
+                    const SizedBox(height: 24),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'TRANSCRIPT SUMMARY',
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.4),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF59E0B).withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                        ),
+                      ),
+                      child: Text(
+                        episode.transcript!,
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.8),
+                          fontSize: 14,
+                          height: 1.6,
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -268,10 +318,10 @@ class PodcastPlayerOverlay extends StatelessWidget {
     );
   }
 
-  Widget _controlButton(IconData icon, double size, VoidCallback onTap) {
+  Widget _controlButton(IconData icon, double size, VoidCallback? onTap, {bool disabled = false}) {
     return IconButton(
-      onPressed: onTap,
-      icon: Icon(icon, color: Colors.white, size: size),
+      onPressed: disabled ? null : onTap,
+      icon: Icon(icon, color: disabled ? Colors.white24 : Colors.white, size: size),
     );
   }
 

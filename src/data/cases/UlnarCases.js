@@ -44,18 +44,16 @@ export const ulnarCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", onset: 3.6, peak: 4.2, amp: 6.0, dist: 14, velocity: 42, abnormal: true },
-                { name: "Dorsal Ulnar Cutaneous", onset: 4.0, peak: 4.5, amp: 5.0, dist: 10, velocity: 40, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 3.6, peak: 4.2, amp: 6.0, dist: 14, velocity: 39, abnormal: true },
+                { name: "Dorsal Ulnar Cutaneous", onset: 4.0, peak: 4.5, amp: 5.0, dist: 10, velocity: 25, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 4.2, dist: 8, velocity: 38, abnormal: true, comment: "Focal slowing (>10m/s drop) across the elbow segment" }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 0, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 4.2, dist: 8, velocity: 0, abnormal: true, comment: "Focal slowing (>10m/s drop) across the elbow segment" }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
@@ -113,24 +111,23 @@ export const ulnarCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false, comment: "Spared (C6-C7)" },
-                { name: "Ulnar Sensory (Little)", onset: 3.9, peak: 4.5, amp: 5.0, dist: 14, velocity: 40, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false, comment: "Spared (C6)" },
-                { name: "Medial Antebrachial Cut", onset: 4.2, peak: 4.8, amp: 4.0, dist: 12, velocity: 38, abnormal: true, comment: "Key Localization - Abnormal" }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false, comment: "Spared (C6-C7)" },
+                { name: "Ulnar Sensory (Little)", onset: 3.9, peak: 4.5, amp: 5.0, dist: 14, velocity: 36, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false, comment: "Spared (C6)" },
+                { name: "Medial Antebrachial Cut", onset: 3.2, peak: 3.8, amp: 4.0, dist: 12, velocity: 38, abnormal: true, comment: "Key Localization - Abnormal" }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 3.5, dist: 8, velocity: 52, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 3.0, amp: 2.5, dist: 8, velocity: 48, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 3.5, dist: 8, velocity: 0, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 3.0, amp: 2.5, dist: 8, velocity: 0, abnormal: true }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, fibs: "2+", recruitment: "Reduced" },
-            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, fibs: "2+", recruitment: "Reduced" },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, fibs: "1+", recruitment: "Reduced" },
-            { muscle: "Flexor Carpi Ulnaris", nerve: "Ulnar", root: "C8", abnormal: true, fibs: "1+", recruitment: "Reduced" },
+            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, fibs: "2+", psw: "2+", recruitment: "Reduced" },
+            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, fibs: "2+", psw: "2+", recruitment: "Reduced" },
+            { muscle: "ADM", nerve: "Ulnar", root: "C8-T1", abnormal: true, fibs: "2+", psw: "2+", recruitment: "Reduced", comment: "Confirms ulnar C8-T1 involvement" },
+            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, fibs: "1+", psw: "1+", recruitment: "Reduced" },
+            { muscle: "Flexor Carpi Ulnaris", nerve: "Ulnar", root: "C8", abnormal: true, fibs: "1+", psw: "1+", recruitment: "Reduced" },
             { muscle: "Biceps", nerve: "Musculocutaneous", root: "C5-C6", abnormal: false, comment: "Distractor - Normal" },
             { muscle: "Deltoid", nerve: "Axillary", root: "C5", abnormal: false, comment: "Distractor - Normal" },
             { muscle: "C8-T1 Paraspinals", abnormal: false, fibs: "0", comment: "Confirms post-ganglionic" }

@@ -307,6 +307,35 @@ export const NeuropathyPathophysiology = {
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Length-Dependent vs Non-Length-Dependent Patterns -->
+                    ${this.data.atlas.patterns ? `
+                    <div style="margin-top: 40px;">
+                        <div style="background: linear-gradient(135deg, #1e293b, #0f172a); padding: 30px; border-radius: 24px 24px 0 0; color: white; text-align: center;">
+                            <h3 style="margin-bottom: 15px; font-size: 1.8em; font-weight: 900;">${this.data.atlas.patterns.title}</h3>
+                            <p style="font-size: 1.05em; opacity: 0.8; margin: 0;">${this.data.atlas.patterns.text}</p>
+                        </div>
+                        <div style="background: white; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 24px 24px; padding: 30px;">
+                            ${this.data.atlas.patterns.sections.map(section => `
+                                <div style="background: ${section.bg}; border: 2px solid ${section.color}20; border-left: 6px solid ${section.color}; border-radius: 16px; padding: 25px; margin-bottom: 25px;">
+                                    <h4 style="color: ${section.color}; font-size: 1.4em; font-weight: 900; margin-bottom: 10px;">${section.name}</h4>
+                                    <p style="color: #475569; font-size: 1em; margin-bottom: 18px; line-height: 1.6;">${section.description}</p>
+                                    <ul style="list-style: none; padding: 0; margin: 0;">
+                                        ${section.points.map(point => `
+                                            <li style="padding: 10px 0; border-bottom: 1px solid ${section.color}15; color: #334155; font-size: 0.95em; line-height: 1.7;">${point}</li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            `).join('')}
+
+                            <div class="resident-pearl">
+                                <h4>Teaching Pearl</h4>
+                                <p style="font-size: 1em; line-height: 1.8; color: #92400e;">${this.data.atlas.patterns.pearl}</p>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+
                 </div>
             </div>
 

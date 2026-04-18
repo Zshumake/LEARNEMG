@@ -17,7 +17,7 @@ export const NeedleLocalizationData = {
             pitfalls: "If you insert the needle electrode too deeply, you will overshoot the superficial APB and inadvertently sample the deeper opponens pollicis muscle.",
             pearl: "This muscle is the quintessential recording site for median nerve motor conduction studies. It will show abnormalities in virtually all median nerve entrapment syndromes, most notably severe Carpal Tunnel Syndrome, with the sole exception being Anterior Interosseous Nerve syndrome. It is also a classic indicator for Klumpke's palsy involving the C8 and T1 roots."
         },
-        "Bicep": {
+        "Biceps": {
             fullName: "Biceps Brachii",
             innervation: "Musculocutaneous Nerve, Lateral Cord, Anterior Division, Upper Trunk, C5, C6",
             origin: "Long Head originates from the supraglenoid tuberosity of the scapula. Short Head originates from the apex of the coracoid process.",
@@ -42,8 +42,8 @@ export const NeedleLocalizationData = {
         "FDI": {
             fullName: "First Dorsal Interosseous",
             innervation: "Ulnar Nerve, Medial Cord, Anterior Division, Lower Trunk, C8, T1",
-            origin: "The lateral border of the third metacarpal bone.",
-            insertion: "The medial side of the base of the proximal phalanx.",
+            origin: "The adjacent sides of the first and second metacarpal bones (fills the web space between thumb and index finger).",
+            insertion: "The lateral side of the base of the proximal phalanx of the index finger, and the extensor expansion.",
             position: "Place the hand flat on the table in full pronation, with the thumb stretched out in full radial abduction.",
             electrodeInsertion: "Pinch the meaty web space between the thumb and index finger. Insert the needle at the free edge of this web space, directing the tip back toward the proximal end of the first metacarpal bone.",
             testManeuver: "Ask the patient to forcefully press their index finger laterally against your resisting finger (abduction of the index finger).",
@@ -72,7 +72,7 @@ export const NeedleLocalizationData = {
             pitfalls: "If the needle electrode is pushed too deeply, it will pass right through the pronator teres and sample the deeper flexor digitorum sublimis. If inserted too far toward the ulnar side, it will hit the flexor carpi radialis.",
             pearl: "This is the most proximal forearm muscle innervated by the median nerve. Because the median nerve must physically pierce through the two heads of this muscle to enter the forearm, it is a prime location for traumatic compression, known as Pronator Teres Syndrome. Sampling this muscle helps differentiate a high median nerve injury from a classic carpal tunnel entrapment at the wrist."
         },
-        "Tricep": {
+        "Triceps": {
             fullName: "Triceps Brachii (Lateral Head)",
             innervation: "Radial Nerve, Posterior Cord, Posterior Division, Middle and Lower Trunk, C6, C7, C8",
             origin: "The posterior surface of the humerus, situated above the radial groove.",
@@ -131,7 +131,7 @@ export const NeedleLocalizationData = {
         },
         "Tibialis Post": {
             fullName: "Tibialis Posterior",
-            innervation: "Tibial Nerve, Sciatic Nerve, Anterior Division Sacral Plexus, L5, S1",
+            innervation: "Tibial Nerve, Tibial Division of Sciatic Nerve, Sacral Plexus, L5, S1",
             origin: "The interosseous membrane, the posterior surface of the tibia, and the upper two-thirds of the medial fibula.",
             insertion: "The tuberosity of the navicular bone, sending strong aponeurotic slips across the plantar foot to the cuneiforms and metatarsal bases.",
             position: "Have the patient lie prone with their feet hanging over the edge of the bed and the thigh slightly internally rotated to expose the medial calf.",

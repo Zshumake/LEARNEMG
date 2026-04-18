@@ -6,6 +6,22 @@ import logger from '../../utils/Logger.js';
 export class ModalSystem {
     constructor() {
         this.activeModal = null;
+        this.registerActions();
+    }
+
+    registerActions() {
+        if (window._registerAction) {
+            window._registerAction('modalCloseReturn', (el) => {
+                const index = parseInt(el.dataset.index, 10);
+                this.closeModal(index);
+            });
+            window._registerAction('launchApplication', (el) => {
+                const moduleId = el.dataset.moduleId;
+                if (window.moduleLoader) {
+                    window.moduleLoader.launchApplication(moduleId);
+                }
+            });
+        }
     }
 
     /**
@@ -30,7 +46,7 @@ export class ModalSystem {
                             <span class="breadcrumb-separator">→</span>
                             <span>${pgyLevel.toUpperCase()}</span>
                         </div>
-                        <button class="modal-close-btn" onclick="window.appComponents.modal.closeModal(${index})">Return to Journey</button>
+                        <button class="modal-close-btn" data-action="modalCloseReturn" data-index="${index}">Return to Journey</button>
                     </div>
 
                     <!-- Learning Content Area -->
@@ -86,7 +102,7 @@ export class ModalSystem {
                     contentHTML = `
                         <div style="text-align:center; padding: 40px;">
                             <h3>Interactive Application</h3>
-                            <button onclick="window.moduleLoader.launchApplication('${moduleId}')" 
+                            <button data-action="launchApplication" data-module-id="${moduleId}"
                                 style="padding: 15px 30px; font-size: 1.2em; background: #4f46e5; color: white; border-radius: 8px; border: none; cursor: pointer;">
                                 Launch ${module.title}
                             </button>

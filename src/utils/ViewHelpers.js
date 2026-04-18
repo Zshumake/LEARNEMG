@@ -110,7 +110,7 @@ export function showPlaceholderContent(tabNumber, contentType) {
                     This learning module will include interactive content, quizzes, and clinical scenarios.
                 </p>
             </div>
-            <button onclick="closeModalWithTransition()"
+            <button data-action="closeModalWithTransition"
                     style="background: #6b9f78; color: white; border: none; padding: 12px 24px;
                            border-radius: 8px; cursor: pointer; font-weight: 600;">
                 Close
@@ -128,3 +128,8 @@ window.closeModalWithTransition = closeModalWithTransition;
 window.closeGeneralModal = closeModalWithTransition;
 window.handleImageError = handleImageError;
 window.showPlaceholderContent = showPlaceholderContent;
+
+// ActionBus registration
+if (window._registerAction) {
+    window._registerAction('closeModalWithTransition', () => closeModalWithTransition());
+}

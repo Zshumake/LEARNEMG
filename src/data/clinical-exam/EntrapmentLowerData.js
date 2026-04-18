@@ -65,7 +65,38 @@ export const entrapmentLowerData = {
             'Tinel at fibular head localizes to compression site',
             'Both deep AND superficial peroneal territories affected (dorsiflexion + eversion + dorsal foot numbness)',
             'EMG: Conduction block or slowing across fibular head; denervation in peroneal-innervated muscles only; NORMAL tibialis posterior and paraspinals'
-        ]
+        ],
+        examSequence: {
+            screen: {
+                prompt: 'A patient presents with foot drop. Which muscles should you test first to determine whether the pattern fits fibular nerve vs. tibial nerve involvement?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Dorsiflexion' },
+                    { type: 'strength', key: 'Ankle Eversion' },
+                    { type: 'strength', key: 'Ankle Plantarflexion' }
+                ],
+                reasoning: 'Ankle dorsiflexion and eversion are innervated by the common fibular nerve. Plantarflexion is tibial. In fibular neuropathy, dorsiflexion and eversion are weak while plantarflexion is normal. If all three are weak, consider a more proximal lesion (sciatic neuropathy, lumbosacral plexopathy, or L5 radiculopathy).'
+            },
+            localize: {
+                prompt: 'Dorsiflexion and eversion are weak but plantarflexion is normal. How do you confirm this is a fibular nerve lesion rather than L5 radiculopathy?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Inversion' },
+                    { type: 'strength', key: 'Great Toe Extension (EHL)' },
+                    { type: 'sensory', key: 'Dorsum of foot (superficial peroneal territory)' },
+                    { type: 'sensory', key: 'Lateral lower leg' }
+                ],
+                reasoning: 'Ankle inversion (tibialis posterior) is innervated by the tibial nerve but shares the L5 root with dorsiflexors. NORMAL inversion strongly favors fibular neuropathy over L5 radiculopathy. EHL weakness confirms deep peroneal involvement. Sensory loss over the dorsal foot and lateral leg matches the superficial peroneal and lateral cutaneous nerve of calf territories, both branches of the common fibular nerve.'
+            },
+            confirm: {
+                prompt: 'The pattern points to common fibular neuropathy. What confirmatory tests help localize the compression site and exclude L5 radiculopathy?',
+                tests: [
+                    { type: 'specialTest', key: 'Tinel at Fibular Head' },
+                    { type: 'specialTest', key: 'Hip Abduction Test' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'reflex', key: 'Knee jerk (L3-L4)' }
+                ],
+                reasoning: 'A positive Tinel sign at the fibular head localizes the compression to that site. Normal hip abduction (gluteus medius, superior gluteal nerve, L5) further excludes L5 radiculopathy. Reflexes should be normal in fibular neuropathy since the knee jerk (L3-L4) and ankle jerk (S1) arcs do not involve the common fibular nerve.'
+            }
+        }
     },
 
     deep_peroneal_ankle: {
@@ -189,7 +220,37 @@ export const entrapmentLowerData = {
             'Normal ankle jerk (reflex arc is proximal to tarsal tunnel compression)',
             'Normal tibialis posterior and gastrocnemius (innervated proximal to tunnel)',
             'EMG: Prolonged distal motor latency to abductor hallucis; may show denervation in intrinsic foot muscles'
-        ]
+        ],
+        examSequence: {
+            screen: {
+                prompt: 'A patient has burning pain on the sole of the foot. Which muscles should you test first to assess for a distal tibial nerve pattern?',
+                tests: [
+                    { type: 'strength', key: 'Toe Flexion/Spreading' },
+                    { type: 'strength', key: 'Ankle Plantarflexion' },
+                    { type: 'strength', key: 'Ankle Dorsiflexion' }
+                ],
+                reasoning: 'Intrinsic foot muscles (toe flexion/spreading) are innervated by the medial and lateral plantar nerves, the terminal branches of the posterior tibial nerve that pass through the tarsal tunnel. In tarsal tunnel syndrome, these may be weak while plantarflexion (gastrocnemius/soleus, innervated proximal to the tunnel) and dorsiflexion (deep peroneal nerve) remain normal. This distal-only tibial pattern is the screening clue.'
+            },
+            localize: {
+                prompt: 'Intrinsic foot muscles are weak but proximal muscles are normal. How do you localize this to the tarsal tunnel rather than a more proximal tibial or S1 lesion?',
+                tests: [
+                    { type: 'sensory', key: 'Sole of foot (medial and lateral plantar distributions)' },
+                    { type: 'sensory', key: 'Dorsum of foot' },
+                    { type: 'strength', key: 'Ankle Inversion' }
+                ],
+                reasoning: 'Sensory loss on the sole (plantar surface) with NORMAL dorsal foot sensation localizes to the plantar nerve branches of the posterior tibial nerve. Normal ankle inversion (tibialis posterior) confirms the lesion is distal to the tibialis posterior branch point, consistent with compression within the tarsal tunnel. In S1 radiculopathy, the ankle jerk would be diminished and sensory loss would follow the S1 dermatome (lateral foot).'
+            },
+            confirm: {
+                prompt: 'The pattern fits tarsal tunnel syndrome. What confirmatory tests clinch the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Tinel Sign at Tarsal Tunnel' },
+                    { type: 'specialTest', key: 'Dorsiflexion-Eversion Test' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'reflex', key: 'Knee jerk (L3-L4)' }
+                ],
+                reasoning: 'A positive Tinel sign behind the medial malleolus localizes compression to the tarsal tunnel. The dorsiflexion-eversion test stretches the tibial nerve through the tunnel and reproduces plantar symptoms. Normal reflexes are expected because the ankle jerk (S1) and knee jerk (L3-L4) reflex arcs are entirely proximal to the tarsal tunnel. Abnormal reflexes would point to radiculopathy or polyneuropathy instead.'
+            }
+        }
     },
 
     femoral_neuropathy: {

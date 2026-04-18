@@ -10,6 +10,8 @@ class PodcastData {
         audioFile: 'Podcasts/EMG Intro.m4a',
         description:
             'Comprehensive introduction to electrodiagnostic medicine fundamentals',
+        transcript:
+            'Covers the history of electrodiagnostic medicine, indications for referral, basic equipment setup (Sierra Wave, Cadwell), and the two main components of EDX testing: nerve conduction studies (NCS) and needle electromyography (EMG). Discusses when EDX is appropriate, common referral patterns, and how to set patient expectations.',
       ),
       PodcastEpisode(
         id: 'emg-terminology',
@@ -17,6 +19,8 @@ class PodcastData {
         duration: '64:49',
         audioFile: 'Podcasts/Essential Terminology.m4a',
         description: 'Master the essential vocabulary and definitions',
+        transcript:
+            'Defines key terms: CMAP, SNAP, latency (onset vs peak), amplitude, conduction velocity, temporal dispersion, conduction block, F-waves, H-reflexes, insertional activity, fibrillation potentials, positive sharp waves, fasciculation potentials, MUAPs (amplitude, duration, phases, recruitment). Explains normal vs abnormal values and clinical significance of each parameter.',
       ),
     ],
     'plexus-anatomy': [
@@ -26,6 +30,8 @@ class PodcastData {
         duration: '39:07',
         audioFile: 'Podcasts/Peripheral Anatomy.m4a',
         description: 'Comprehensive exploration of peripheral nerve anatomy',
+        transcript:
+            'Reviews the structure of peripheral nerves from axon to epineurium. Covers the brachial plexus (roots C5-T1, trunks, divisions, cords, terminal branches) and lumbosacral plexus. Key focus on clinically relevant anatomy: median nerve course through carpal tunnel, ulnar nerve at cubital tunnel, fibular nerve at fibular head. Includes mnemonic devices for plexus organization.',
       ),
       PodcastEpisode(
         id: 'plexus-anomalous',
@@ -33,6 +39,8 @@ class PodcastData {
         duration: '14:47',
         audioFile: 'Podcasts/Anamolous Anatomy.m4a',
         description: 'Explore anatomical variations and anomalies',
+        transcript:
+            'Discusses Martin-Gruber anastomosis (median-to-ulnar forearm communication, present in ~15-30% of people), Riche-Cannieu anastomosis (ulnar-to-median hand communication), and accessory peroneal nerve. Explains how these variants affect NCS interpretation and can cause confusing electrodiagnostic findings.',
       ),
       PodcastEpisode(
         id: 'plexus-plexopathies',
@@ -41,9 +49,11 @@ class PodcastData {
         audioFile: 'Podcasts/Plexopathies.m4a',
         description:
             'Detailed exploration of brachial and lumbosacral plexus disorders',
+        transcript:
+            'Covers upper trunk (Erb-Duchenne), lower trunk (Klumpke), lateral/medial/posterior cord lesions. Differentiates plexopathy from radiculopathy using SNAP preservation rule. Discusses Parsonage-Turner syndrome, radiation plexopathy vs neoplastic infiltration, and diabetic amyotrophy.',
       ),
     ],
-    'radiculopathy': [
+    'radiculopathy-pathophysiology': [
       PodcastEpisode(
         id: 'radiculopathy-ep1',
         title: 'Radiculopathy Pathophysiology',

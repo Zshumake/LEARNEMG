@@ -10,7 +10,15 @@ export class ErnestCharacter {
     }
 
     setupEventListeners() {
-        // Any specific listeners if needed
+        if (window._registerAction) {
+            window._registerAction('openModule', (el) => {
+                const moduleId = el.dataset.moduleId;
+                const moduleIndex = parseInt(el.dataset.moduleIndex, 10);
+                if (window.openModule) {
+                    window.openModule(moduleId, moduleIndex);
+                }
+            });
+        }
     }
 
     async init() {
@@ -270,7 +278,7 @@ export class ErnestCharacter {
         descriptionBox.innerHTML = `
             <h4>${module.title}</h4>
             <p>${this.getDescriptionText(module)}</p>
-            <button class="ernest-go-button" onclick="window.openModule('${module.id}', ${moduleIndex})">
+            <button class="ernest-go-button" data-action="openModule" data-module-id="${module.id}" data-module-index="${moduleIndex}">
                 🚀 Let's Go!
             </button>
         `;

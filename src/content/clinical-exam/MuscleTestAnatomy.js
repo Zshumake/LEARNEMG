@@ -238,33 +238,30 @@ function svgThumbAbd() {
 }
 
 function svgGrip() {
-    // Lateral view: hand closing into fist
+    // Lateral view: hand squeezing into fist then releasing
     return `<svg viewBox="0 0 100 100" style="width:100%;height:100%;display:block;" xmlns="http://www.w3.org/2000/svg">
         <style>
             ${sharedStyle(HIGHLIGHT, HIGHLIGHT_GLOW)}
-            .fingers-group { animation: gripClose 1.8s infinite alternate ease-in-out; }
-            .f1 { transform-origin: 65px 35px; }
-            .f2 { transform-origin: 68px 32px; }
-            .f3 { transform-origin: 66px 34px; }
-            .f4 { transform-origin: 62px 38px; }
-            @keyframes gripClose {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(30deg); }
-            }
+            .f1 { transform-origin: 68px 30px; animation: g1 1.8s infinite alternate ease-in-out; }
+            .f2 { transform-origin: 69px 35px; animation: g2 1.8s infinite alternate ease-in-out; }
+            .f3 { transform-origin: 68px 40px; animation: g3 1.8s infinite alternate ease-in-out; }
+            .f4 { transform-origin: 66px 44px; animation: g4 1.8s infinite alternate ease-in-out; }
+            @keyframes g1 { 0% { transform: rotate(0deg); } 100% { transform: rotate(50deg); } }
+            @keyframes g2 { 0% { transform: rotate(0deg); } 100% { transform: rotate(55deg); } }
+            @keyframes g3 { 0% { transform: rotate(0deg); } 100% { transform: rotate(50deg); } }
+            @keyframes g4 { 0% { transform: rotate(0deg); } 100% { transform: rotate(45deg); } }
         </style>
         <!-- Forearm stub -->
         <path d="M5,38 Q25,32 45,35 Q47,42 45,48 Q25,48 5,45 Z" class="limb" />
         <!-- Palm -->
         <path d="M45,30 Q55,26 68,30 Q72,40 68,50 Q55,54 45,50 Z" class="limb active" />
-        <!-- Thumb wrapping -->
+        <!-- Thumb (static, wraps over when fist closes) -->
         <path d="M50,50 Q48,56 52,60 Q56,62 60,58 Q58,52 56,48" class="limb" stroke-width="1" />
-        <!-- Fingers curling -->
-        <g class="fingers-group">
-            <g class="f1"><path d="M68,32 Q76,28 80,32 Q78,36 72,36 Z" class="limb" /></g>
-            <g class="f2"><path d="M68,36 Q78,33 82,37 Q80,42 72,40 Z" class="limb" /></g>
-            <g class="f3"><path d="M67,40 Q76,38 80,42 Q78,46 70,44 Z" class="limb" /></g>
-            <g class="f4"><path d="M65,44 Q72,43 76,46 Q74,50 68,48 Z" class="limb" /></g>
-        </g>
+        <!-- Fingers: each pivots at its knuckle on the palm edge -->
+        <g class="f1"><path d="M68,28 L78,26 Q80,28 80,31 L70,32 Z" class="limb" /></g>
+        <g class="f2"><path d="M69,33 L80,31 Q82,34 81,37 L70,37 Z" class="limb" /></g>
+        <g class="f3"><path d="M68,38 L79,37 Q80,40 79,43 L69,42 Z" class="limb" /></g>
+        <g class="f4"><path d="M66,43 L75,42 Q76,45 75,48 L67,47 Z" class="limb" /></g>
         <text x="50" y="85" class="label">Grip Strength</text>
     </svg>`;
 }

@@ -10,7 +10,7 @@
     {
       "name": "Web App (Node fallback)",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", "-c", "-1"],
+      "runtimeArgs": ["http-server", ".", "-c", "-1", "-p", "8080"],
       "port": 8080,
       "autoPort": true
     }

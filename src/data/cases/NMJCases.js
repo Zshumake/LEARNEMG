@@ -43,24 +43,23 @@ export const nMJCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 0, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 0, dist: 8, abnormal: false }
             ],
             comparison: [
-                { name: "Repetitive Nerve Stimulation (Median)", measureA: "Baseline Amp: 12.0mV", measureB: "4th Stim: 9.5mV", deltaP: "21% Decrement", abnormal: true },
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
+                { name: "Repetitive Nerve Stimulation (Median)", measureA: "Baseline Amp: 12.0mV", measureB: "4th Stim: 9.5mV", deltaP: "21% Decrement", abnormal: true }
             ]
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false },
             { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false },
-            { muscle: "Frontalis (Single Fiber)", abnormal: true, motorUnits: "Increased Jitter/Blocking" }
+            { muscle: "Orbicularis Oculi (Single Fiber)", abnormal: true, motorUnits: "Increased Jitter/Blocking" }
         ],
         teachingPoints: [
             "Myasthenia Gravis (MG) is a post-synaptic NMJ disorder; standard NCS and needle EMG are typically normal.",
@@ -117,22 +116,22 @@ export const nMJCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
-                { name: "Sural Sensory", peak: 3.2, onset: 2.5, amp: 22, velocity: 48, dist: 14, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 48, dist: 14, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false },
+                { name: "Sural Sensory", peak: 3.2, onset: 2.5, amp: 22, velocity: 56, dist: 14, abnormal: false },
+                { name: "Superficial Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 54, dist: 14, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 1.2, velocity: 55, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (Baseline)", latency: 2.8, amp: 1.5, velocity: 58, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (Post-Exercise)", latency: 2.8, amp: 4.8, velocity: 58, dist: 8, abnormal: false },
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 1.0, velocity: 48, dist: 9, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 1.5, velocity: 45, dist: 10, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 1.2, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (Baseline)", latency: 2.8, amp: 1.5, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (Post-Exercise)", latency: 2.8, amp: 4.8, velocity: 0, dist: 8, abnormal: false },
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 1.0, velocity: 0, dist: 9, abnormal: true },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 1.5, velocity: 0, dist: 10, abnormal: true }
             ],
             comparison: [
-                { name: "Post-Exercise Facilitation", measureA: "Baseline: 1.5mV", measureB: "4.8mV", deltaP: "220% Facilitation", abnormal: true },
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
+                { name: "RNS 3Hz (Ulnar-ADM)", measureA: "Baseline: 1.5mV", measureB: "4th Stim: 1.1mV", deltaP: "27% Decrement", abnormal: true },
+                { name: "Post-Exercise Facilitation", measureA: "Baseline: 1.5mV", measureB: "4.8mV", deltaP: "220% Facilitation", abnormal: true }
             ]
         },
         emgStudies: [

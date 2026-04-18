@@ -130,10 +130,10 @@ function generateModuleSquare(module, index) {
     }
 
     const isClickable = !isLocked;
-    const clickHandler = isClickable ? `navigateToModule(${index})` : '';
+    // clickHandler removed - using data-action instead
 
     return `
-        <div class="module-square ${statusClass}" onclick="${clickHandler}" data-module-index="${index}" data-module-id="${module.id}">
+        <div class="module-square ${statusClass}" ${isClickable ? `data-action="navigateToModule" data-index="${index}"` : ''} data-module-index="${index}" data-module-id="${module.id}">
             <div class="module-icon">${module.icon}</div>
             <div class="module-title">${module.title}</div>
             <div class="module-competency">${module.competency}</div>
@@ -211,7 +211,7 @@ function loadModuleContent(contentId) {
                     <li>Complete assessment exercises</li>
                     <li>Apply knowledge to clinical scenarios</li>
                 </ul>
-                <button class="complete-module-btn" onclick="completeModule('${contentId}')">
+                <button class="complete-module-btn" data-action="completeModule" data-content-id="${contentId}">
                     Mark as Complete
                 </button>
             </div>
@@ -230,7 +230,7 @@ function showExistingContent(sectionId) {
             <div class="content-placeholder">
                 <h3>📚 Learning Content</h3>
                 <p>This module integrates with existing educational content.</p>
-                <button class="complete-module-btn" onclick="completeCurrentModule()">
+                <button class="complete-module-btn" data-action="completeCurrentModule">
                     Mark as Complete
                 </button>
             </div>
@@ -361,7 +361,7 @@ function showCompletionMessage(callback) {
             <div class="completion-icon">🎉</div>
             <h3>Module Complete!</h3>
             <p>Great job! You've successfully completed this learning module.</p>
-            <button class="return-to-board-btn" onclick="${callback.name}()">
+            <button class="return-to-board-btn" data-action="returnToBoard">
                 Return to Learning Board
             </button>
         </div>
@@ -419,10 +419,10 @@ function showPlexusContent() {
             <div class="plexus-module">
                 <h3>🦴 Interactive Plexus Anatomy</h3>
                 <p>Master brachial and lumbosacral plexus anatomy through interactive learning.</p>
-                <button class="launch-plexus-btn" onclick="launchPlexusDiagram()">
+                <button class="launch-plexus-btn" data-action="launchPlexusDiagram">
                     🚀 Launch Interactive Plexus
                 </button>
-                <button class="complete-module-btn" onclick="completeCurrentModule()">
+                <button class="complete-module-btn" data-action="completeCurrentModule">
                     Mark as Complete
                 </button>
             </div>
@@ -443,10 +443,10 @@ function showMuscleQuiz() {
         <div class="muscle-quiz-module">
             <h3>💪 Muscle Localization Quiz</h3>
             <p>Test your knowledge of muscle anatomy and innervation patterns.</p>
-            <button class="launch-quiz-btn" onclick="launchMuscleQuiz()">
+            <button class="launch-quiz-btn" data-action="launchMuscleQuiz">
                 🎯 Start Muscle Quiz
             </button>
-            <button class="complete-module-btn" onclick="completeCurrentModule()">
+            <button class="complete-module-btn" data-action="completeCurrentModule">
                 Mark as Complete
             </button>
         </div>
@@ -499,3 +499,19 @@ window.positionErnest = positionErnest;
 window.moveErnestToNextModule = moveErnestToNextModule;
 window.ernestCelebration = ernestCelebration;
 window.showErnestSpeechBubble = showErnestSpeechBubble;
+
+// ActionBus registrations for data-action handlers
+if (window._registerAction) {
+    window._registerAction('navigateToModule', (el) => {
+        const index = parseInt(el.dataset.index, 10);
+        navigateToModule(index);
+    });
+    window._registerAction('completeModule', (el) => {
+        const contentId = el.dataset.contentId;
+        completeModule(contentId);
+    });
+    window._registerAction('completeCurrentModule', () => completeCurrentModule());
+    window._registerAction('returnToBoard', () => returnToBoard());
+    window._registerAction('launchPlexusDiagram', () => launchPlexusDiagram());
+    window._registerAction('launchMuscleQuiz', () => launchMuscleQuiz());
+}

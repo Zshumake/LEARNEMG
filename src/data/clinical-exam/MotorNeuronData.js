@@ -60,6 +60,38 @@ export const motorNeuronData = {
                 { name: 'FVC (Forced Vital Capacity)', technique: 'Bedside spirometry', positiveFinding: 'FVC <80% predicted suggests respiratory muscle involvement' }
             ]
         },
+        examSequence: {
+            screen: {
+                prompt: 'Patient presents with progressive painless weakness. Which muscles should you test to assess for widespread involvement across multiple levels?',
+                tests: [
+                    { type: 'strength', key: 'Grip Strength' },
+                    { type: 'strength', key: 'Finger Abduction (FDI)' },
+                    { type: 'strength', key: 'Shoulder Abduction' },
+                    { type: 'strength', key: 'Ankle Dorsiflexion' }
+                ],
+                reasoning: 'Testing muscles across multiple spinal levels (hand intrinsics = C8-T1, shoulder = C5, ankle = L5) screens for the widespread weakness that characterizes ALS. Weakness at multiple levels that does not fit a single nerve or root pattern is a red flag for motor neuron disease.'
+            },
+            localize: {
+                prompt: 'Widespread weakness detected across multiple levels. How do you confirm both UMN and LMN involvement -- the hallmark of ALS?',
+                tests: [
+                    { type: 'reflex', key: 'Biceps (C5-C6)' },
+                    { type: 'reflex', key: 'Knee jerk (L3-L4)' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'sensory', key: 'All distributions' }
+                ],
+                reasoning: 'Hyperactive reflexes (UMN signs) in weak, atrophied limbs (LMN signs) is the hallmark of ALS. The combination of brisk reflexes with wasting in the same limb is the key finding. Normal sensory exam is a cardinal feature -- any sensory loss should prompt reconsideration of the diagnosis.'
+            },
+            confirm: {
+                prompt: 'UMN + LMN signs are present with normal sensation. What specific tests confirm ALS and assess severity?',
+                tests: [
+                    { type: 'specialTest', key: 'Split Hand Assessment' },
+                    { type: 'specialTest', key: 'Babinski Sign' },
+                    { type: 'specialTest', key: 'Hoffmann Sign' },
+                    { type: 'specialTest', key: 'Jaw Jerk' }
+                ],
+                reasoning: 'Split hand sign (APB weaker than ADM) is relatively specific for ALS (97% specificity). Babinski and Hoffmann signs confirm UMN involvement in the limbs. Brisk jaw jerk indicates bulbar UMN involvement, expanding the affected regions and supporting the diagnosis across multiple body segments.'
+            }
+        },
         keyDistinguishingFindings: [
             'UMN + LMN signs in SAME body region is the hallmark: brisk reflexes (UMN) with atrophy and fasciculations (LMN) in the same limb',
             'NO SENSORY LOSS — any sensory finding should prompt reconsideration of diagnosis',

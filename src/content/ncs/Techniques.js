@@ -280,7 +280,7 @@ export default {
                     </div>
                     <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #cbd5e1;">
                         <strong style="color: #8b5cf6; font-size: 1.1em; display: block; margin-bottom: 8px;">Sensory Studies (SNAP)</strong>
-                        <span style="color: #475569; font-size: 0.95em; line-height: 1.5; display: block;">G1 is placed directly over the sensory nerve exactly 14 cm away from the stimulator. G2 is placed 3-4 cm distally along the nerve path. Accurate distance measurement down to the millimeter is mandatory, as sensory signals are tiny and travel infinitely fast.</span>
+                        <span style="color: #475569; font-size: 0.95em; line-height: 1.5; display: block;">G1 is placed directly over the sensory nerve exactly 14 cm away from the stimulator. G2 is placed 3-4 cm distally along the nerve path. Accurate distance measurement down to the millimeter is mandatory, as sensory signals are tiny (microvolts) and even small distance errors significantly affect velocity calculations.</span>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,25 @@ import logger from '../../utils/Logger.js';
 export class BoardRenderer {
     constructor(core) {
         this.core = core;
+        this.registerActions();
+    }
+
+    registerActions() {
+        if (window._registerAction) {
+            window._registerAction('handleModuleClick', (el) => {
+                const moduleId = el.dataset.moduleId;
+                const index = parseInt(el.dataset.index, 10);
+                if (window.appComponents?.candyland) {
+                    window.appComponents.candyland.handleModuleClick(moduleId, index);
+                }
+            });
+            window._registerAction('playExtraPodcast', (el) => {
+                const topicId = el.dataset.topicId;
+                if (window.playExtraPodcast) {
+                    window.playExtraPodcast(topicId);
+                }
+            });
+        }
     }
 
 
@@ -501,7 +520,7 @@ export class BoardRenderer {
                     gap: 12px;
                     box-sizing: border-box;
                     clear: both;"
-                 onclick="window.appComponents.candyland.handleModuleClick('${module.id}', -1)"
+                 data-action="handleModuleClick" data-module-id="${module.id}" data-index="-1"
                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 22px rgba(124, 58, 237, 0.35)'"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 14px rgba(124, 58, 237, 0.25)'">
                 <div style="flex-shrink: 0; width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
@@ -525,7 +544,7 @@ export class BoardRenderer {
             <div class="hero-module"
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
-                 onclick="window.appComponents.candyland.handleModuleClick('${module.id}', ${index - 1})">
+                 data-action="handleModuleClick" data-module-id="${module.id}" data-index="${index - 1}">
                 <div class="hero-content">
                     <img src="${module.customIcon || ''}" alt="${module.title || ''}" class="hero-icon">
                     <div class="hero-text">
@@ -547,7 +566,7 @@ export class BoardRenderer {
             <div class="module-card"
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
-                 onclick="window.appComponents.candyland.handleModuleClick('${module.id}', ${index - 1})">
+                 data-action="handleModuleClick" data-module-id="${module.id}" data-index="${index - 1}">
                 <img src="${module.customIcon || ''}"
                      alt="${module.title || ''}"
                      class="module-icon"
@@ -564,7 +583,7 @@ export class BoardRenderer {
         ];
 
         return topics.map(topic => `
-            <div onclick="if(window.playExtraPodcast) window.playExtraPodcast('${topic.id}')" style="
+            <div data-action="playExtraPodcast" data-topic-id="${topic.id}" style="
                 background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 6px; padding: 8px;
                 cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                 onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"

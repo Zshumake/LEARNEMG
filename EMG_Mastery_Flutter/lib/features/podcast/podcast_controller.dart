@@ -15,6 +15,10 @@ class PodcastController extends ChangeNotifier {
   double _speed = 1.0;
   String? _errorMessage;
 
+  // Queue
+  List<PodcastEpisode> _queue = [];
+  int _queueIndex = -1;
+
   // Persistence
   SharedPreferences? _prefs;
   final Set<String> _completedEpisodes = {};
@@ -35,6 +39,10 @@ class PodcastController extends ChangeNotifier {
   double get speed => _speed;
   String? get errorMessage => _errorMessage;
   bool get hasError => _errorMessage != null;
+  List<PodcastEpisode> get queue => _queue;
+  int get queueIndex => _queueIndex;
+  bool get hasNext => _queueIndex >= 0 && _queueIndex < _queue.length - 1;
+  bool get hasPrevious => _queueIndex > 0;
 
   bool isCompleted(String episodeId) => _completedEpisodes.contains(episodeId);
 
@@ -69,6 +77,10 @@ class PodcastController extends ChangeNotifier {
             pos.inSeconds >= _duration.inSeconds - 2 &&
             _currentEpisode != null) {
           _markCompleted(_currentEpisode!.id);
+          // Auto-advance to next in queue
+          if (hasNext) {
+            Future.delayed(const Duration(milliseconds: 500), () => playNext());
+          }
         }
       }
     });
@@ -79,6 +91,29 @@ class PodcastController extends ChangeNotifier {
     });
   }
 
+  // --- Queue management ---
+
+  void setQueue(List<PodcastEpisode> episodes, int startIndex) {
+    _queue = List.from(episodes);
+    _queueIndex = startIndex.clamp(0, episodes.length - 1);
+  }
+
+  Future<void> playNext() async {
+    if (hasNext) {
+      _queueIndex++;
+      await playEpisode(_queue[_queueIndex]);
+    }
+  }
+
+  Future<void> playPrevious() async {
+    if (hasPrevious) {
+      _queueIndex--;
+      await playEpisode(_queue[_queueIndex]);
+    }
+  }
+
+  // --- Playback ---
+
   Future<void> playEpisode(PodcastEpisode episode) async {
     if (_currentEpisode?.id == episode.id) {
       if (!_player.playing) {
@@ -88,9 +123,12 @@ class PodcastController extends ChangeNotifier {
     }
 
     _currentEpisode = episode;
+    _errorMessage = null;
     notifyListeners();
 
-    _errorMessage = null;
+    // Sync queue index if episode is in current queue
+    final idx = _queue.indexWhere((e) => e.id == episode.id);
+    if (idx >= 0) _queueIndex = idx;
 
     try {
       await _player.setAsset('assets/${episode.audioFile}');
@@ -104,7 +142,18 @@ class PodcastController extends ChangeNotifier {
       await _player.play();
     } catch (e) {
       debugPrint("Error playing podcast: $e");
-      _errorMessage = 'Could not load audio. Please try again.';
+      final err = e.toString().toLowerCase();
+      String msg;
+      if (err.contains('unable to load') || err.contains('not found') || err.contains('asset')) {
+        msg = 'Audio file not found: ${episode.audioFile}';
+      } else if (err.contains('format') || err.contains('codec')) {
+        msg = 'Unsupported audio format.';
+      } else if (err.contains('permission')) {
+        msg = 'Storage permission required.';
+      } else {
+        msg = 'Could not load audio: ${e.runtimeType}';
+      }
+      _errorMessage = msg;
       notifyListeners();
     }
   }
@@ -158,6 +207,8 @@ class PodcastController extends ChangeNotifier {
     }
     await _player.stop();
     _currentEpisode = null;
+    _queue = [];
+    _queueIndex = -1;
     notifyListeners();
   }
 

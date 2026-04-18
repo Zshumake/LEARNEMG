@@ -12,10 +12,10 @@ export const plexopathyCases = {
             medications: "Metformin, Lisinopril"
         },
         physicalExam: {
-            inspection: "Left arm appears atrophic. Ptosis and miosis on left (Horner's syndrome). Winged scapula.",
+            inspection: "Left arm appears atrophic. Ptosis, miosis, and anhidrosis on left (Horner's syndrome). Winged scapula.",
             palpation: "Supraclavicular tenderness. No masses palpable.",
             rom: "Severely limited shoulder abduction and flexion. Limited elbow flexion and extension.",
-            strength: "1-2/5 proximal muscles, 2-3/5 distal muscles throughout left arm",
+            strength: "0-1/5 throughout all muscle groups of left upper extremity",
             sensation: "Decreased throughout C5-T1 distribution",
             reflexes: "Absent biceps, triceps, brachioradialis on left. Normal on right.",
             specialTests: "Positive Tinel's sign at Erb's point. Horner's syndrome confirmed."
@@ -42,29 +42,34 @@ export const plexopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 28.0, velocity: 58, dist: 14, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 22.0, velocity: 60, dist: 14, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.1, onset: 1.6, amp: 25.0, velocity: 56, dist: 10, abnormal: false }
+                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 28.0, velocity: 54, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 22.0, velocity: 64, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.1, onset: 1.6, amp: 25.0, velocity: 63, dist: 10, abnormal: false }
             ],
             motor: [
                 { name: "Median Motor (APB)", latency: "Absent", amp: 0, velocity: 0, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: "Absent", amp: 0, velocity: 0, dist: 8, abnormal: true }
+                { name: "Ulnar Motor (ADM)", latency: "Absent", amp: 0, velocity: 0, dist: 8, abnormal: true },
+                { name: "Radial Motor (EIP)", latency: 0, amp: 0, velocity: 0, dist: 10, abnormal: true, comment: "Absent -- C7-C8 motor axons disrupted at root level" },
+                { name: "Musculocutaneous Motor (Biceps)", latency: 0, amp: 0, velocity: 0, dist: 14, abnormal: true, comment: "Absent -- C5-C6 motor axons avulsed" }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "Absent", measureB: "Absent", deltaP: "N/A", abnormal: true }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, fibs: "3+", recruitment: "None" },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: true, fibs: "3+", recruitment: "None" },
             { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, fibs: "3+", recruitment: "None" },
-            { muscle: "Cervical Paraspinals", abnormal: true, fibs: "3+" }
+            { muscle: "Deltoid", nerve: "Axillary", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "None", comment: "No voluntary MUAPs" },
+            { muscle: "Biceps", nerve: "Musculocutaneous", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "None" },
+            { muscle: "Infraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "None" },
+            { muscle: "Triceps", nerve: "Radial", root: "C6-C8", abnormal: true, fibs: "3+", recruitment: "None" },
+            { muscle: "Cervical Paraspinals (C5-T1)", nerve: "Posterior Primary Rami", root: "C5-T1", abnormal: true, fibs: "3+", recruitment: "Reduced", comment: "Confirms root-level (preganglionic) injury" }
         ],
         teachingPoints: [
             "Traumatic avulsion results in a 'pan-plexopathy' with severe multi-segmental denervation.",
-            "The presence of Horner's syndrome (ptosis, miosis) suggests a T1 root avulsion (pre-ganglionic sympathetic lesion).",
+            "The presence of Horner's syndrome (ptosis, miosis, anhidrosis) suggests a T1 root avulsion (pre-ganglionic sympathetic lesion).",
             "Paraspinal denervation confirms that the lesion is at the level of the root (pre-plexus).",
-            "Preserved SNAPs in an anesthetic/paralyzed limb are pathognomonic for pre-ganglionic (root-level) injury, as the lesion is proximal to the dorsal root ganglion."
+            "Preserved SNAPs in an anesthetic/paralyzed limb are pathognomonic for pre-ganglionic (root-level) injury, as the lesion is proximal to the dorsal root ganglion.",
+            "Electrodiagnostic testing should be performed at least 2-3 weeks post-injury to allow Wallerian degeneration to develop. NCS/EMG findings evolve over time."
         ]
     },
 
@@ -109,26 +114,27 @@ export const plexopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 58, dist: 14, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 60, dist: 14, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 3.8, onset: 3.3, amp: 5.0, velocity: 32, dist: 10, abnormal: true },
-                { name: "Lat Antebrachial Cutaneous", peak: 4.2, onset: 3.7, amp: 4.5, velocity: 30, dist: 12, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 2.2, onset: 1.8, amp: 15, velocity: 28, dist: 5, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.0, onset: 1.6, amp: 12, velocity: 31, dist: 5, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.5, onset: 2.0, amp: 3.0, velocity: 25, dist: 5, abnormal: true },
+                { name: "Lat Antebrachial Cutaneous", peak: 2.8, onset: 2.2, amp: 2.5, velocity: 27, dist: 6, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, dist: 8, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, dist: 8, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.2, amp: 4.0, velocity: 0, dist: 4, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 5.0, velocity: 0, dist: 4, abnormal: false },
+                { name: "Musculocutaneous Motor (Biceps)", latency: 0, amp: 0, velocity: 0, dist: 6, abnormal: true, comment: "Absent -- upper trunk (C5-C6) motor disrupted" },
+                { name: "Axillary Motor (Deltoid)", latency: 0, amp: 0, velocity: 0, dist: 5, abnormal: true, comment: "Absent -- upper trunk (C5-C6) motor disrupted" }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false, comment: "Lower trunk fibers preserved" },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false, comment: "Lower trunk fibers preserved" },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false, comment: "Middle/Lower trunk fibers involved but often EIP is spared in upper trunk lesions" },
-            { muscle: "Deltoid", abnormal: true, fibs: "2+", recruitment: "Reduced" },
-            { muscle: "Biceps", abnormal: true, fibs: "3+", recruitment: "Reduced" },
-            { muscle: "Cervical Paraspinals", abnormal: false, fibs: "0" }
+            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false, comment: "Spared -- EIP is innervated via C7-C8, not affected in upper trunk lesions" },
+            { muscle: "Deltoid", nerve: "Axillary", root: "C5-C6", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Biceps", nerve: "Musculocutaneous", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
+            { muscle: "Infraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Cervical Paraspinals", abnormal: false, fibs: "0", comment: "Normal -- suggests post-ganglionic (trunk-level) injury rather than root avulsion" }
         ],
         teachingPoints: [
             "Erb's Palsy results from traction on the upper trunk (C5-C6) during delivery.",
@@ -179,18 +185,16 @@ export const plexopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 35, velocity: 52, dist: 14, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 3.8, onset: 3.2, amp: 15, velocity: 45, dist: 14, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 56, dist: 10, abnormal: false },
-                { name: "Medial Antebrachial Cut", peak: 4.2, onset: 3.6, amp: 8, velocity: 42, dist: 12, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 3.2, onset: 2.6, amp: 35, velocity: 54, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 3.8, onset: 3.2, amp: 15, velocity: 44, dist: 14, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false },
+                { name: "Medial Antebrachial Cut", peak: 4.2, onset: 3.6, amp: 8, velocity: 33, dist: 12, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.5, amp: 3.5, velocity: 56, dist: 8, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 4.2, amp: 2.1, velocity: 45, dist: 8, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.5, amp: 3.5, velocity: 0, dist: 8, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 4.2, amp: 2.1, velocity: 0, dist: 8, abnormal: true }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.5", measureB: "2.4", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: true, fibs: "None", motorUnits: "Myokymic discharges observed", recruitment: "Reduced" },
@@ -238,14 +242,14 @@ export const plexopathyCases = {
         ncsStudies: {
             sensory: [
                 { name: "Sural Sensory", peak: 3.8, onset: 3.1, amp: 15, velocity: 45, dist: 14, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 48, dist: 14, abnormal: false },
-                { name: "Lat Fem Cutaneous", peak: 4.5, onset: 3.9, amp: 8.0, velocity: 42, dist: 14, abnormal: true },
-                { name: "Saphenous Sensory", peak: 4.8, onset: 4.2, amp: 2.0, velocity: 35, dist: 14, abnormal: true }
+                { name: "Superficial Fibular Sensory", peak: 3.2, onset: 2.6, amp: 18, velocity: 54, dist: 14, abnormal: false },
+                { name: "Lat Fem Cutaneous", peak: 4.5, onset: 3.9, amp: 8.0, velocity: 36, dist: 14, abnormal: true },
+                { name: "Saphenous Sensory", peak: 4.8, onset: 4.2, amp: 2.0, velocity: 33, dist: 14, abnormal: true }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, dist: 9, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, dist: 10, abnormal: false },
-                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 3.0, velocity: 38, dist: 16, abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 0, dist: 9, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 0, dist: 10, abnormal: false },
+                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 3.0, velocity: 0, dist: 16, abnormal: true }
             ],
             comparison: []
         },

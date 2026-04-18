@@ -498,3 +498,359 @@ Module 12 Tutorial is fully functional and provides significant educational valu
 - User specifically requests Template Generator
 - Additional development time available
 - Other high-priority modules/features completed
+
+---
+
+# FUTURE: Brachial Plexus Visualization Improvements
+
+## Current State
+The plexus system uses D3.js with fixed-position grid layout, two interaction modes (Pathfinding + Lesion Simulator), 20 quiz questions, and a 59-muscle reference dictionary. Anatomy is accurate. Core issues are UX clarity, not content.
+
+## Planned Improvements
+
+### Phase 1: Interactive Clarity (High Impact, Moderate Effort)
+
+**1. Animated Pathfinding**
+Instead of highlighting the entire path at once, animate it step-by-step: root lights up first, then trunk, then division, then cord, then terminal nerve. Each step takes ~300ms with a glowing pulse. This teaches the anatomical sequence instead of just showing the answer.
+- File: `PlexusRenderer.js` -- add `animatePath(nodeIds, delay)` method
+- Use D3 transitions with staggered delays
+
+**2. Hover Tooltips on All Nodes**
+Currently info only appears on click. Add hover tooltips showing:
+- Node name and type (e.g., "Upper Trunk (C5-C6)")
+- For nerves: key muscles innervated (top 3)
+- For roots: which trunk they feed
+- File: `PlexusRenderer.js` -- add tooltip div, show on mouseover
+
+**3. Search/Filter by Muscle Name**
+Text input that highlights the path from a muscle back to its root. Type "biceps" and the musculocutaneous -> lateral cord -> anterior divisions -> upper trunk -> C5/C6 path lights up.
+- File: `PlexusManager.js` -- add search input, reverse-lookup from MUSCLE_DETAILS
+
+**4. Division Node Prominence**
+Divisions (anterior/posterior) are the least visible layer. Add distinct styling:
+- Anterior divisions: filled circles (solid)
+- Posterior divisions: hollow circles (stroke only)
+- This teaches the anterior/posterior split visually
+- File: `PlexusRenderer.js` -- conditional fill based on node label
+
+### Phase 2: Clinical Correlation (High Impact, Higher Effort)
+
+**5. "Build a Case" Mode**
+User selects clinical findings (weak deltoid, absent biceps reflex, numb lateral arm) and the system highlights which structure is most likely injured. Reverse of Lesion Simulator -- instead of "what happens if X is cut", it's "what's cut if these findings exist".
+- New mode button alongside Pathfinding and Lesion Simulator
+- File: `PlexusManager.js` -- add `buildCase()` method
+- Uses intersection of ancestor sets to find common lesion point
+
+**6. EMG Prediction Overlay**
+When a lesion is simulated, show predicted NCS/EMG findings:
+- Which SNAPs would be abnormal vs preserved (pre vs post-ganglionic)
+- Which muscles would show fibrillations
+- Expected timeline for changes
+- Renders as a side panel next to the plexus diagram
+- File: `PlexusLogic.js` -- extend `getLesionEffects()` with NCS predictions
+
+**7. Side-by-Side Comparison**
+Compare two lesion sites (e.g., upper trunk vs C5 root) showing which findings differ. Key for teaching localization.
+- Split-screen view with two plexus diagrams
+- Differences highlighted in contrasting colors
+- File: New component or extend PlexusManager
+
+### Phase 3: Polish (Lower Priority)
+
+**8. Keyboard Navigation**
+- Arrow keys to move between nodes
+- Enter to select/click
+- Escape to deselect
+- Tab to cycle through modes
+
+**9. SVG Export**
+- "Save as Image" button exports the current view as PNG/SVG
+- Useful for study materials and presentations
+
+**10. Mobile Optimization**
+- Touch gestures for zoom/pan
+- Responsive layout for smaller screens
+- Collapsible side panels
+
+## Execution Estimate
+- Phase 1 (items 1-4): ~4 hours
+- Phase 2 (items 5-7): ~6 hours
+- Phase 3 (items 8-10): ~3 hours
+
+## Priority Recommendation
+Start with Phase 1 items 1-3 (animated pathfinding, hover tooltips, muscle search). These three changes alone would dramatically improve comprehension for residents learning plexus anatomy for the first time.
+
+---
+
+# FUTURE: Radiculopathy Module Visual Aids
+
+## Context
+The radiculopathy module has excellent text content (9/10 audit score) but lacks visual aids. For residents learning EMG localization, seeing the anatomy is as important as reading about it.
+
+## Visual Aid Ideas (Priority Order)
+
+### 1. Dermatome/Myotome Body Map (Highest Impact)
+Interactive SVG body figure (front + back views) with clickable dermatome regions. Click C6 -> thumb/index light up in the dermatome color, biceps/brachioradialis highlight as myotome muscles, biceps reflex arc shown. This is the #1 visual residents need -- "where does this root go?"
+- Could reuse the anatomy diagram system from ClinicalExamLab (body region SVGs already exist)
+- Each root gets a distinct color
+- Toggle between dermatome view (sensory) and myotome view (motor)
+
+### 2. "Behind the DRG" Animation
+Animated cross-section of the spinal canal showing:
+- Nerve root exiting through foramen
+- DRG location (outside the canal)
+- Disc herniation compressing the root PROXIMAL to DRG
+- Arrow showing why sensory axons distal to DRG survive (the telephone wire analogy, but visual)
+- This is THE core concept of radiculopathy EMG -- it deserves a dedicated animation
+
+### 3. EMG Timeline Infographic
+Visual timeline showing when findings appear after nerve root injury:
+- Day 0: injury (red flash)
+- Day 3-5: paraspinal fibrillations begin appearing (closest to root)
+- Day 7-10: proximal limb muscles (deltoid, biceps)
+- Day 14-21: distal muscles (hand intrinsics, foot)
+- Each milestone shown as a body silhouette with the affected region glowing
+- Teaches the "proximal to distal" wave of denervation
+
+### 4. L5 vs Peroneal Nerve Comparison Diagram
+Side-by-side anatomical diagram showing:
+- LEFT: L5 root with ALL downstream muscles highlighted (TA, EHL, glut med, tib post)
+- RIGHT: Common fibular nerve with ONLY its muscles highlighted (TA, EHL -- no glut med, no tib post)
+- The overlap (TA, EHL) shown in one color, the differentiators (glut med, tib post) in another
+- This is the single most tested clinical question in EMG boards
+
+### 5. Disc-Level vs Root-Level Diagram
+Shows why an L4-L5 disc herniation affects the L5 root (not L4):
+- Sagittal view of lumbar spine
+- Each disc labeled
+- Arrows showing which root exits at each level
+- The classic "traversing vs exiting root" concept
+- Residents consistently get confused by this -- a visual solves it instantly
+
+## Implementation Approach
+- SVG-based (inline, no external image dependencies)
+- Same style as existing anatomy diagrams in ClinicalExamLab
+- Interactive where possible (click to highlight, hover for info)
+- Can be added as a new "Visual Atlas" tab within the radiculopathy module
+- Reuse the existing tab system pattern from ClinicalExamLab
+
+## Effort Estimate
+- Body map (item 1): ~3 hours (most complex, reuse existing SVG patterns)
+- DRG animation (item 2): ~2 hours
+- Timeline infographic (item 3): ~1.5 hours
+- L5 vs Peroneal (item 4): ~1 hour
+- Disc-level diagram (item 5): ~1.5 hours
+
+---
+
+# FUTURE: EMG Needle Localization Muscle Expansion
+
+## Current State
+13 muscles with full needle localization protocols (origin, insertion, patient position, electrode insertion, test maneuver, pitfalls, clinical pearl). The underlying MuscleDatabase.js has 65+ muscles but without needle-specific protocols.
+
+## Muscles to Add (user will provide images later)
+
+### Phase 1: High-Priority Clinical EMG Muscles (15 muscles)
+
+**Shoulder/Scapular:**
+1. Infraspinatus -- Suprascapular N, C5-C6 (rotator cuff, upper trunk evaluation)
+2. Rhomboid Major -- Dorsal Scapular N, C5 (scapular winging, C5 root)
+3. Serratus Anterior -- Long Thoracic N, C5-C7 (winged scapula, Parsonage-Turner)
+4. Latissimus Dorsi -- Thoracodorsal N, C6-C8 (posterior cord evaluation)
+
+**Forearm:**
+5. Brachioradialis -- Radial N, C5-C6 (radial nerve, C6 root)
+6. FCR -- Median N, C6-C7 (median nerve, C7 root)
+7. FCU -- Ulnar N, C8-T1 (ulnar nerve, cubital tunnel)
+8. EDC -- Posterior Interosseous N, C7-C8 (PIN syndrome, C7 root)
+
+**Hand:**
+9. ADM -- Ulnar N, C8-T1 (ulnar recording site, lower trunk)
+10. Opponens Pollicis -- Median N, C8-T1 (deep to APB, CTS)
+
+**Lower Extremity:**
+11. Iliopsoas -- Lumbar Plexus, L1-L3 (proximal LE, lumbar root)
+12. Rectus Femoris -- Femoral N, L2-L4 (quad component, femoral nerve)
+13. Gluteus Maximus -- Inferior Gluteal N, L5-S2 (S1 root, hip extension)
+14. Gluteus Medius -- Superior Gluteal N, L5-S1 (L5 vs peroneal differentiator)
+15. Soleus -- Tibial N, S1-S2 (deep to gastroc, S1 root)
+
+### Phase 2: Complete Limb Coverage (20 muscles)
+
+**Upper Extremity:**
+16. Brachialis -- Musculocutaneous/Radial N, C5-C6
+17. Supinator -- Posterior Interosseous N, C5-C6
+18. ECRL -- Radial N, C6-C7
+19. ECU -- Posterior Interosseous N, C7-C8
+20. EPL -- Posterior Interosseous N, C7-C8
+21. APL -- Posterior Interosseous N, C7-C8
+22. FPL -- Anterior Interosseous N, C8-T1
+23. FDP (index) -- Anterior Interosseous N, C8-T1
+24. FDP (ring/small) -- Ulnar N, C8-T1
+25. FDS -- Median N, C7-T1
+26. Pronator Quadratus -- Anterior Interosseous N, C8-T1
+27. Adductor Pollicis -- Ulnar N, C8-T1
+
+**Lower Extremity:**
+28. Vastus Medialis -- Femoral N, L2-L4
+29. Biceps Femoris Short Head -- Peroneal division Sciatic, L5-S2
+30. Biceps Femoris Long Head -- Tibial division Sciatic, L5-S2
+31. Semitendinosus -- Tibial division Sciatic, L5-S2
+32. Semimembranosus -- Tibial division Sciatic, L5-S2
+33. Adductor Longus -- Obturator N, L2-L4
+34. Tensor Fasciae Latae -- Superior Gluteal N, L4-S1
+35. EDB -- Deep Peroneal N, L5-S1
+
+### Phase 3: Paraspinals + Specialized (12 muscles)
+
+**Paraspinals:**
+36. Cervical Paraspinals (technique for C5-C8 levels)
+37. Thoracic Paraspinals (technique for T6-T12)
+38. Lumbar Paraspinals (technique for L3-S1)
+
+**Bulbar/Cranial:**
+39. Genioglossus (Tongue) -- Hypoglossal CN XII
+40. Masseter -- Trigeminal CN V3
+41. Orbicularis Oris -- Facial CN VII
+42. Orbicularis Oculi -- Facial CN VII
+43. Mentalis -- Facial CN VII
+44. Frontalis -- Facial CN VII
+45. Nasalis -- Facial CN VII
+
+**Other:**
+46. FDL -- Tibial N, L5-S1
+47. FHL -- Tibial N, S1-S2
+
+## Data Format Per Muscle
+Each entry needs: fullName, innervation (nerve + cord + trunk + roots), origin, insertion, position, electrodeInsertion, testManeuver, pitfalls, pearl. Image path will be added when photos are available.
+
+## Execution Strategy
+- Write all data entries first (text only, no images)
+- User provides clinical photos later
+- Phase 1 alone brings coverage from 13 to 28 muscles (covers all standard EMG exam muscles)
+- Full expansion to 47 muscles would be the most comprehensive EMG localization reference available
+
+---
+
+# FUTURE: Muscle Study Lab UX Redesign
+
+## Current State
+3 learning modes (Study Cards, Quiz, EMG Challenge) with 70+ muscles. Anatomy data is 100% accurate. UX needs modernization: heavy inline CSS, no responsive design, no progress tracking, dense layouts.
+
+## Planned Improvements (User-Selected Priorities)
+
+### 1. Filterable Smart Grouping (High Impact, ~3 hours)
+Replace the flat grid of all muscles with organized, filterable groups:
+- **Group By options**: Nerve Family (Median, Ulnar, Radial, etc.), Root Level (C5, C6, C7...), Region (Shoulder, Forearm, Hand, Hip, Thigh, Leg, Foot), Plexus Level (Trunk, Cord, Terminal)
+- **Search bar**: Type "biceps" or "C6" and instantly filter
+- **Collapsible sections**: Click "Median Nerve (12 muscles)" to expand
+- **Badge counts**: Show how many muscles per group
+- File: `StudyCards.js` -- add filter state, group-by dropdown, search input
+- Data: Already organized in `MuscleDatabase.js` by nerve/root/cord -- just need UI grouping logic
+
+### 2. Progress Tracking + Spaced Repetition (~4 hours)
+Track learning across sessions using localStorage:
+- **Per-muscle mastery**: Track correct/incorrect quiz answers per muscle
+- **Mastery levels**: New (gray) -> Learning (yellow) -> Familiar (blue) -> Mastered (green)
+- **Progress dashboard**: Ring chart showing 45/70 mastered, 15 learning, 10 new
+- **Spaced repetition**: Muscles answered wrong appear more frequently in quizzes
+- **Streak counter**: "5-day study streak!" motivates daily use
+- File: New `ProgressTracker.js` utility
+- Storage: localStorage with keys like `muscle_progress_{muscleName}`
+- Integration: `MuscleAnatomyQuiz.js` updates progress after each answer
+
+### 3. Visual Nerve-to-Muscle Map (~5 hours)
+Interactive SVG body diagram integrated into Study Cards:
+- **Front + back body outline** with clickable regions
+- **Click a nerve** (e.g., "Median Nerve" label) -> all median-innervated muscles highlight on the body
+- **Click a root level** (e.g., "C6") -> all C6 muscles highlight in a distinct color
+- **Bidirectional**: Click a muscle on the body -> shows its nerve, root, cord, actions in a detail panel
+- **Color coding**: Each nerve family gets a color (Median=blue, Ulnar=purple, Radial=green, etc.)
+- Reuse SVG patterns from ClinicalExamLab anatomy diagrams
+- File: New `MuscleBodyMap.js` component
+- Add as a new tab alongside Study Cards, Quiz, EMG Challenge
+
+## Design Principles
+- Match existing app aesthetic (teal accents, white cards, subtle shadows, 12-20px border radius)
+- Mobile-responsive from the start (min-width 320px)
+- Accessible (ARIA labels, not color-only coding)
+- Fast (no heavy dependencies, inline SVG)
+
+## Execution Order
+1. Filterable Smart Grouping first (quick win, immediately useful)
+2. Progress Tracking second (motivates daily use)
+3. Visual Nerve Map third (most complex, highest wow factor)
+
+---
+
+# FUTURE: Basic Pattern Recognition -- 6 Critical Gaps to Fill
+
+## Current State
+Module covers 9 patterns well (fibs/PSWs, CRDs, myokymic, myotonic, fasciculations, polyphasic MUAPs, recruitment, endplate). Scored 98/100 on audit. But missing foundational patterns that residents need.
+
+## Patterns to Add
+
+### 1. Normal MUAPs (CRITICAL -- no baseline currently taught)
+- 2-4 phases, duration 5-15ms (varies by muscle/age), amplitude 200uV-5mV
+- Triphasic morphology: initial positive -> negative -> positive
+- Duration increases with age and in proximal muscles
+- Amplitude varies dramatically by muscle (deltoid ~1mV, FDI ~500uV)
+- Sound: regular "thump-thump" during voluntary contraction
+- Include a table of normal MUAP duration by muscle (at minimum: deltoid, biceps, FDI, TA, gastroc)
+- Teaching pearl: "You MUST know what normal looks like before you can call anything abnormal"
+
+### 2. Neurogenic MUAP Morphology (HIGH)
+- Large amplitude (>5mV in some muscles), long duration (>15ms), polyphasic (>4 phases)
+- Mechanism: surviving motor neurons adopt orphaned muscle fibers (collateral sprouting)
+- Reduced recruitment: few units firing at high rates (>15-20 Hz before next unit recruits)
+- Sound: "loud, thick thuds" firing rapidly
+- Seen in: chronic radiculopathy, motor neuron disease, chronic entrapment neuropathy
+- Teaching pearl: "Big MUAPs = the surviving neurons are doing the work of many"
+
+### 3. Myopathic MUAP Morphology (HIGH)
+- Small amplitude (<300uV), short duration (<5ms), polyphasic, may be complex
+- Early/rapid recruitment: many units fire at low rates even with minimal effort
+- Mechanism: each motor unit has fewer functioning muscle fibers (fiber loss/necrosis)
+- Sound: "buzzy, full interference pattern" even with weak contraction
+- Seen in: inflammatory myopathy, muscular dystrophy, toxic myopathy
+- Teaching pearl: "Small MUAPs with full recruitment = the workforce is weak, not missing"
+- Key contrast table: Neurogenic (big/few/fast) vs Myopathic (small/many/early) vs Normal
+
+### 4. Nascent/Reinnervation MUAPs (HIGH -- prognosis indicator)
+- Small, polyphasic, UNSTABLE (amplitude/duration vary beat-to-beat)
+- Duration 3-8ms, amplitude 100-500uV, 5+ phases
+- Mechanism: newly sprouted nerve terminal reaches muscle fiber but connection is immature
+- Sound: irregular, "scratchy" or "crinkly" -- not the clean thump of normal MUAPs
+- Timing: appear 2-4 months after nerve injury as reinnervation begins
+- Prognostic significance: presence = good sign (nerve is recovering)
+- Distinguishing from myopathic: nascent are unstable and in a neurogenic recruitment pattern; myopathic are stable with early recruitment
+- Teaching pearl: "Seeing nascent units after a nerve injury is like seeing green shoots after a forest fire -- recovery is happening"
+
+### 5. Insertional Activity Spectrum (HIGH)
+Currently only endplate activity is covered. Need the full spectrum:
+- **Normal**: Brief burst (<300ms) of sharp spikes during needle movement, stops when needle stops
+- **Increased**: Prolonged activity (>300ms) that persists after needle stops moving. Indicates irritable membrane: active denervation, inflammatory myopathy, or early neuropathy
+- **Decreased**: Minimal response to needle movement. Indicates fibrotic/atrophic muscle: chronic severe denervation, advanced muscular dystrophy, or fibrosis
+- **Electrical Silence**: No response at all. Ominous: end-stage muscle replacement by fat/fibrous tissue
+- Teaching pearl: "Insertional activity is your first clue before you even ask the patient to contract. Normal = quick burst and done. Too much = something is irritating the membrane. Too little = the muscle may be gone."
+
+### 6. Cramp Potentials & Doublets/Triplets (MEDIUM)
+**Cramp potentials:**
+- Normal MUAPs firing at extremely high rates (up to 150 Hz) involuntarily
+- Distinguished from voluntary contraction by: abrupt onset, inability to relax, spreads across muscle
+- Sound: loud, full interference pattern that the patient cannot turn off
+- Clinical: usually benign (nocturnal leg cramps, exercise cramps) but check for neuromyotonia or ALS if recurrent
+- Teaching pearl: "Cramp = normal motors firing at max speed involuntarily. It's not a new pattern, it's normal patterns going haywire."
+
+**Doublets/Triplets:**
+- Same motor unit fires 2-3 times in rapid succession (5-20ms inter-spike interval)
+- Distinguished from fasciculations (single discharge) and myokymia (grouped, repetitive, same unit)
+- Seen in: early reinnervation, hyperexcitability states, tetany
+- Teaching pearl: "A fasciculation is a single pop. A doublet is a quick double-tap. Myokymia is a whole burst."
+
+## Implementation
+- Add to BasicPatternsData.js as new pattern entries following existing format (title, description, clinicalPearls array with Sound/Look/Rate/Significance)
+- Add corresponding quiz questions (2-3 per new pattern)
+- Add to Flutter pattern_data.dart for mobile sync
+- Estimated time: ~3 hours for all 6 patterns
+- Total: ~9 hours for all 5, or ~5 hours for top 3

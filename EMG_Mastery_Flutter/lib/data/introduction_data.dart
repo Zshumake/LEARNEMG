@@ -11,9 +11,9 @@ class IntroductionData {
       core: CorePhilosophy(
         title: "Your High-Tech Stethoscope",
         text:
-            "Welcome to the EMG lab! If you're feeling a bit overwhelmed by the wires, the beep-boop sounds, and the massive amount of data on the screens, don't worry—that's every resident's first-day experience. Think of an Electrodiagnostic (EDX) study not as a separate test, but as a direct 'Super-Physical Exam.' Just like you use a stethoscope to hear the heart better, we use this machine to hear the electrical language of nerves and muscles. We aren't just looking for 'abnormal numbers' or checking boxes; we are hunt-tracking for the exact spot where a patient's symptoms are originating. Every single study is a live, unfolding puzzle that you will solve in real-time by adjusting your plan based on every waveform you capture. You are the investigator, and the machine is your forensic tool.",
+            "Welcome to the EMG lab! If you're feeling a bit overwhelmed by the wires, the electronic sounds, and the massive amount of data on the screens, don't worry—that's every resident's first-day experience. Think of an Electrodiagnostic (EDX) study not as a separate test, but as a direct 'Super-Physical Exam.' Just like you use a stethoscope to hear the heart better, we use this machine to hear the electrical language of nerves and muscles. We aren't just looking for 'abnormal numbers' or checking boxes; we are searching for the exact spot where a patient's symptoms are originating. Every single study is a live, unfolding puzzle that you will solve in real-time by adjusting your plan based on every waveform you capture. You are the investigator, and the machine is your forensic tool.",
         aim:
-            "The Golden Rule: We aren't here to 'do an EMG.' We are here to LOCALIZE. Every shock and every needle insertion is a question directed at the nervous system. Our goal is to tell the referring physician exactly which nerve is affected, precisely where the lesion is (the wrist? the elbow? the neck?), and what the 'flavor' of the injury is (is it broken wires or just peeling insulation?).",
+            "The Golden Rule: We aren't here to 'do an EMG.' We are here to LOCALIZE. Every shock and every needle insertion is a question directed at the nervous system. Our goal is to tell the referring physician exactly which nerve is affected, precisely where the lesion is (the wrist? the elbow? the neck?), and what the nature of the injury is (is it broken wires or just peeling insulation?).",
         pearl:
             "Senior Resident's Tip: If you find yourself mindlessly following a template, STOP. Re-examine the patient. Every finding should either support your theory or force you to create a new one. In this lab, we don't just 'run the nerves'—we interrogate them.",
       ),
@@ -28,7 +28,7 @@ class IntroductionData {
           step: 2,
           title: "Physical Exam: The Anchor",
           detail:
-              "Never skip the manual exam! If you see atrophy (muscle wasting) in the First Dorsal Interosseous (FDI), you know you're likely to find something 'loud' in the Ulnar nerve or the T1 root. Sensory loss in a specific dermatome or changes in the deep tendon reflexes (like a lost ankle jerk) tell the machine where to focus its attention. If you don't check for these first, you're just stabbing in the dark. The machine's job is to objectively quantify and confirm your clinical exam, not to serve as a substitute for your eyes and hands.",
+              "Never skip the manual exam! If you see atrophy (muscle wasting) in the First Dorsal Interosseous (FDI), you know you're likely to find something 'loud' in the Ulnar nerve or the T1 root. Sensory loss in a specific dermatome or changes in the deep tendon reflexes (like a lost ankle jerk) tell the machine where to focus its attention. If you don't check for these first, you're just testing without a focused clinical hypothesis. The machine's job is to objectively quantify and confirm your clinical exam, not to serve as a substitute for your eyes and hands.",
         ),
         PhilosophyStep(
           step: 3,
@@ -57,7 +57,7 @@ class IntroductionData {
           title: 'The Marriage of Data & Exam',
           color: '#f59e0b',
           text:
-              "The machine is just a tool, and tools can be misapplied. If the computer says a nerve is completely dead, but the patient can move their fingers with 5/5 strength, then the machine (or your setup) is wrong. The clinical exam and the electrical data MUST marriage; if they don't, keep investigating until you find the technical error. We treat the patient, not the computer screen. When in doubt, re-verify your electrode placement and stimulation site.",
+              "The machine is just a tool, and tools can be misapplied. If the computer says a nerve is completely dead, but the patient can move their fingers with 5/5 strength, then the machine (or your setup) is wrong. The clinical exam and the electrical data MUST align; if they don't, keep investigating until you find the technical error. We treat the patient, not the computer screen. When in doubt, re-verify your electrode placement and stimulation site.",
         ),
         CardinalRule(
           id: 4,
@@ -101,7 +101,7 @@ class IntroductionData {
         AnatomyPhysiologyDetail(
           title: "Saltatory Conduction: The 'Leap-Frog' Miracle",
           detail:
-              "Our nerves don't just 'flow' electricity like a slow stream of water through a pipe. They use a brilliant evolutionary trick to save energy and dramatically increase speed: the electrical signal 'jumps' between small gaps in the insulation called Nodes of Ranvier. This leap-frogging process (Saltatory Conduction) allows signals to travel at incredible speeds—up to 120 meters per second (270 miles per hour)! If the 'insulation' (Myelin) is damaged or peeled away, the signal can no longer jump. It either has to crawl slowly along the bare wire or it simply gets stuck and fails to arrive at all. This is why patients with demyelinating diseases feel sudden weakness or 'heavy' limbs.",
+              "Our nerves don't just 'flow' electricity like a slow stream of water through a pipe. They use a brilliant evolutionary trick to save energy and dramatically increase speed: the electrical signal 'jumps' between small gaps in the insulation called Nodes of Ranvier. This leap-frogging process (Saltatory Conduction) allows signals to travel at incredible speeds—up to 120 meters per second (nearly 270 miles per hour in the fastest fibers)! If the 'insulation' (Myelin) is damaged or peeled away, the signal can no longer jump. It either has to crawl slowly along the bare wire or it simply gets stuck and fails to arrive at all. This is why patients with demyelinating diseases feel sudden weakness or 'heavy' limbs.",
         ),
         AnatomyPhysiologyDetail(
           title: "The DRG: The 'Junction' for Sensation",
@@ -457,7 +457,7 @@ class IntroductionData {
           term: "Wallerian Degeneration",
           category: "Pathology",
           definition:
-              "The 'Delayed Crash.' When you cut a nerve, the part that is still attached to the hand doesn't die instantly. It takes about 3 to 7 days for the motor wires to physically dissolve. This is why if someone has a trauma today, we usually ask them to come back in 1 to 2 weeks for their EMG.",
+              "The 'Delayed Crash.' When you cut a nerve, the part that is still attached to the hand doesn't die instantly. Motor amplitudes begin to decline by days 3-5, with changes fully developed by days 7-10. This is why if someone has a trauma today, we usually ask them to come back in 1 to 2 weeks for their EMG.",
         ),
       ],
       masteryTerms: [
@@ -530,7 +530,7 @@ class IntroductionData {
 
   static final MartinGruberContent martinGruber = MartinGruberContent(
     title: 'Martin-Gruber Anastomosis (MGA)',
-    prevalence: 'Present in 15-30% of the population (often bilateral)',
+    prevalence: 'Present in 15-30% of the population (bilateral in approximately 60% of individuals who have MGA)',
     description: 'A crossover of motor nerve fibers from the median nerve to the ulnar nerve in the forearm. Fibers leave the median nerve (typically from the AIN branch) and join the ulnar nerve, innervating ulnar hand muscles via the median nerve trunk.',
     clinicalImpact: [
       'The ulnar CMAP amplitude may appear LARGER when stimulating at the elbow vs. the wrist (because the crossover fibers join the ulnar nerve in the forearm)',

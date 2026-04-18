@@ -15,21 +15,21 @@ export const radiculopathyCases = {
             inspection: "Holding right arm in adducted position",
             palpation: "Cervical paraspinal muscle spasm, tender over C4-C5 region",
             rom: "Limited cervical extension and right lateral flexion",
-            strength: "Deltoid 3/5, biceps 4/5, supraspinatus 3/5 on right. Left side normal",
+            strength: "Deltoid 3/5, biceps 4/5, infraspinatus 3/5 on right. Left side normal",
             sensation: "Decreased sensation over lateral shoulder (C5 dermatome)",
             reflexes: "Biceps reflex diminished (1+) on right. Triceps and brachioradialis normal",
             specialTests: "Positive Spurling's test on right"
         },
         differentialDiagnosis: [
             { name: "C5 Radiculopathy", ruleOut: "N/A (Correct Diagnosis)" },
-            { name: "Axillary Neuropathy", ruleOut: "Would affect deltoid but spare biceps and supraspinatus; here multiple C5 muscles from different nerves are involved." },
+            { name: "Axillary Neuropathy", ruleOut: "Would affect deltoid but spare biceps and infraspinatus; here multiple C5 muscles from different nerves are involved." },
             { name: "Suprascapular Neuropathy", ruleOut: "Would spare the deltoid and biceps; here deltoid and biceps are clinically weak." },
             { name: "Rotator Cuff Tear", ruleOut: "Shoulder pain and weakness can mimic this, but denervation on EMG and Spurling's sign point to a neurological root cause." }
         ],
         requiresEMG: true,
         emgIndication: "INDICATED",
         correctDiagnosis: "Right C5 Radiculopathy",
-        explanation: "Right C5 radiculopathy confirmed by weakness in a multi-nerve C5 distribution (Deltoid, Biceps, Supraspinatus) with associated cervical paraspinal denervation and normal SNAPs (LABC), localizing the lesion to the pre-ganglionic root level.",
+        explanation: "Right C5 radiculopathy confirmed by weakness in a multi-nerve C5 distribution (Deltoid, Biceps, Infraspinatus) with associated cervical paraspinal denervation and normal SNAPs (LABC), localizing the lesion to the pre-ganglionic root level.",
         reviewOfSystems: {
             constitutional: "No fevers or weight loss.",
             musculoskeletal: "Severe right neck and shoulder pain. No joint swelling.",
@@ -42,26 +42,24 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false },
-                { name: "Lat Antebrach Cutaneous", onset: 2.0, peak: 2.5, amp: 15.0, dist: 12, velocity: 52, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 64, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false },
+                { name: "Lat Antebrach Cutaneous", onset: 2.0, peak: 2.5, amp: 15.0, dist: 12, velocity: 60, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 0, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 0, abnormal: false }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
             { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "Deltoid", abnormal: true, fibs: "3+", motorUnits: "Large/Poly", recruitment: "Reduced" },
-            { muscle: "Biceps", abnormal: true, fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
-            { muscle: "Supraspinatus", abnormal: true, fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
+            { muscle: "Deltoid", nerve: "Axillary", root: "C5-C6", abnormal: true, fibs: "3+", motorUnits: "Large/Poly", recruitment: "Reduced" },
+            { muscle: "Biceps", nerve: "Musculocutaneous", root: "C5-C6", abnormal: true, fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
+            { muscle: "Infraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "2+", motorUnits: "Large/Poly", recruitment: "Reduced" },
             { muscle: "Cervical Paraspinals (C5)", abnormal: true, fibs: "2+" }
         ],
         teachingPoints: [
@@ -114,13 +112,13 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 64, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 10.5, dist: 8, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 12.0, dist: 8, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 10.5, dist: 8, velocity: 0, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 12.0, dist: 8, velocity: 0, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
@@ -157,6 +155,16 @@ export const radiculopathyCases = {
                 insertionalActivity: "Increased",
                 spontaneousActivity: "1+ fibrillations",
                 recruitment: "Mildly reduced",
+                motorUnits: "Polyphasic units",
+                abnormal: true
+            },
+            {
+                muscle: "Pronator Teres",
+                nerve: "Median",
+                root: "C6-C7",
+                insertionalActivity: "Increased",
+                spontaneousActivity: "1+ fibrillations",
+                recruitment: "Mildly Reduced",
                 motorUnits: "Polyphasic units",
                 abnormal: true
             },
@@ -221,23 +229,21 @@ export const radiculopathyCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false },
-                { name: "Lat Antebrach Cutaneous", onset: 2.3, peak: 2.8, amp: 25, dist: 12, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.2, peak: 2.8, amp: 35, dist: 14, velocity: 64, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false },
+                { name: "Lat Antebrach Cutaneous", onset: 2.3, peak: 2.8, amp: 25, dist: 12, velocity: 52, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 0, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 0, abnormal: false }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "LMN:C8-T1, Sensory sparing:C6", abnormal: false },
+            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false },
             { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: true, recruitment: "Reduced" },
+            { muscle: "EIP", nerve: "Posterior Interosseous/Radial", root: "C7-C8", abnormal: true, insertionalActivity: "Increased", spontaneousActivity: "1+ fibrillations", recruitment: "Reduced", motorUnits: "Polyphasic units" },
             {
                 muscle: "Triceps",
                 nerve: "Radial",
@@ -266,6 +272,16 @@ export const radiculopathyCases = {
                 spontaneousActivity: "2+ fibrillations",
                 recruitment: "Mildly reduced",
                 motorUnits: "Polyphasic units",
+                abnormal: true
+            },
+            {
+                muscle: "EDC",
+                nerve: "Posterior Interosseous/Radial",
+                root: "C7-C8",
+                insertionalActivity: "Increased",
+                spontaneousActivity: "2+ fibrillations, 1+ PSWs",
+                recruitment: "Reduced",
+                motorUnits: "Large, polyphasic units",
                 abnormal: true
             },
             {
@@ -330,11 +346,11 @@ export const radiculopathyCases = {
         ncsStudies: {
             sensory: [
                 { name: "Sural Sensory", onset: 3.1, peak: 3.8, amp: 15, dist: 14, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", onset: 2.6, peak: 3.2, amp: 18, dist: 14, velocity: 48, abnormal: false }
+                { name: "Superficial Fibular Sensory", onset: 2.6, peak: 3.2, amp: 18, dist: 14, velocity: 54, abnormal: false }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, dist: 9, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, dist: 10, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, dist: 9, velocity: 0, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, dist: 10, velocity: 0, abnormal: false }
             ],
             comparison: []
         },
@@ -404,11 +420,11 @@ export const radiculopathyCases = {
         ncsStudies: {
             sensory: [
                 { name: "Sural Sensory", onset: 3.1, peak: 3.8, amp: 15, dist: 14, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", onset: 2.6, peak: 3.2, amp: 18, dist: 14, velocity: 48, abnormal: false }
+                { name: "Superficial Fibular Sensory", onset: 2.6, peak: 3.2, amp: 18, dist: 14, velocity: 54, abnormal: false }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, dist: 9, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 11.5, dist: 10, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, dist: 9, velocity: 0, abnormal: false },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 11.5, dist: 10, velocity: 0, abnormal: false }
             ],
             comparison: [
                 { name: "H-Reflex (Tibial)", measureA: "Right Side: 35ms", measureB: "Left Side: 30ms", deltaP: "5ms Delay", abnormal: true }
@@ -417,6 +433,7 @@ export const radiculopathyCases = {
         emgStudies: [
             { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: true, fibs: "2+", recruitment: "Reduced", motorUnits: "Large/Poly" },
             { muscle: "Gluteus Maximus", nerve: "Inferior gluteal", root: "L5-S1-S2", abnormal: true, fibs: "1+", recruitment: "Reduced", motorUnits: "Large/Poly" },
+            { muscle: "Biceps Femoris (Short Head)", nerve: "Peroneal division of Sciatic", root: "S1-S2", abnormal: true, fibs: "1+", recruitment: "Reduced", motorUnits: "Large/Poly" },
             { muscle: "Lumbar Paraspinals (S1)", nerve: "Dorsal rami", root: "S1", abnormal: true, fibs: "3+", recruitment: "N/A", motorUnits: "N/A" },
             { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: false },
             { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L5-S1", abnormal: false },

@@ -75,7 +75,7 @@ export const NeuropathyData = {
                 bg: "#eff6ff",
                 icon: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z",
                 mechanism: "Sustained pressure causes local ischemia that damages the delicate Schwann cells. The myelin sheath physically unspools or breaks apart at the site of compression. The underlying axon 'wire' remains perfectly intact.",
-                findings: "Because the insulation is missing, the electrical signal either 'leaks' and travels incredibly slowly, or it fails to jump the gap entirely (<strong>Conduction Block</strong>). The patient experiences profound weakness or numbness.",
+                findings: "Without insulation, the electrical signal 'leaks' and travels slowly through the demyelinated segment (<strong>Conduction Slowing</strong>). If demyelination is severe enough, the signal completely fails to propagate across that segment (<strong>Conduction Block</strong> -- defined as >50% amplitude drop between proximal and distal stimulation). A third phenomenon, <strong>Temporal Dispersion</strong>, occurs when patchy demyelination causes different axons to conduct at different speeds, spreading the waveform out in time and making it look wider and more polyphasic.",
                 prognosis: "Excellent! The Schwann cells simply need to re-wrap the nerve. Remyelination takes <strong>weeks to months</strong>. Because the axon never died, the muscle never atrophies."
             },
             {
@@ -146,13 +146,13 @@ export const NeuropathyData = {
         intro: "Erlanger-Gasser Classification of Nerve Fibers",
         text: "The peripheral nerve is a mixed cable of different wire types. The machine you use daily (NCS) is actually blind to half of these wires!",
         fibers: [
-            { type: "Group A-alpha (Aα)", speed: "70-120 m/s", size: "Massive, Heavily Myelinated", func: "Extrafusal Motor driving (muscle contraction) and Proprioception. The 'High-Speed Internet' lines." },
-            { type: "Group A-beta (Aβ)", speed: "30-70 m/s", size: "Large, Moderately Myelinated", func: "Touch, Pressure, and Vibration. (These are the purely sensory fibers we test during a SNAP)." },
-            { type: "Group A-gamma (Aγ)", speed: "15-30 m/s", size: "Medium Myelinated", func: "Intrafusal Motor to muscle spindles (maintains muscle tone)." },
-            { type: "Group A-delta (Aδ)", speed: "12-30 m/s", size: "Small, Thinly Myelinated", func: "Sharp, pricking, 'Fast' Pain and Cold temperature." },
+            { type: "Group A-alpha (Aα)", speed: "70-120 m/s", size: "Massive, Heavily Myelinated", func: "Motor efferents to skeletal muscles AND proprioceptive afferents (Ia from muscle spindles, Ib from Golgi tendon organs). The high-speed motor and sensory highway." },
+            { type: "Group A-beta (Aβ)", speed: "30-70 m/s", size: "Large, Moderately Myelinated", func: "Touch, pressure, and vibration (Meissner's, Pacinian, Merkel cells). These are the sensory fibers measured in SNAP studies." },
+            { type: "Group A-gamma (Aγ)", speed: "15-30 m/s", size: "Medium Myelinated", func: "Intrafusal motor to muscle spindles (maintains spindle sensitivity during contraction -- the quiet background worker)." },
+            { type: "Group A-delta (Aδ)", speed: "12-30 m/s", size: "Small, Thinly Myelinated", func: "Sharp, pricking 'first pain' and cold sensation. Fast enough to trigger your withdrawal reflex." },
             { type: "Group C", speed: "0.5-2 m/s", size: "Tiny, Unmyelinated", func: "Dull, aching, 'Slow' Pain, Warm temperature, and Autonomic functions (sweating, heart rate). The 'Dial-up Internet'." }
         ],
-        pearl: "The Great Blind Spot of EDX: Standard nerve conduction studies ONLY measure the massive, heavily myelinated A-alpha and A-beta fibers. If a patient presents with severe burning pain and temperature loss in their feet, but normal strength and vibration, they likely have a Small Fiber Neuropathy (targeting A-delta and C fibers). Their EMG/NCS will be completely, 100% NORMAL. You must diagnose small fiber disease clinically or via punch skin biopsy, not with EDX!"
+        pearl: "The Great Blind Spot of EDX: Standard nerve conduction studies ONLY measure the massive, heavily myelinated A-alpha and A-beta fibers. If a patient presents with severe burning pain and temperature loss in their feet, but normal strength and vibration, they likely have a Small Fiber Neuropathy (targeting A-delta and C fibers). Their EMG/NCS will be completely, 100% NORMAL. Diagnosis requires clinical correlation plus specialized testing -- skin punch biopsy (measuring intraepidermal nerve fiber density, the gold standard) or quantitative sensory testing (QST). These are not available in the standard EMG lab, so a normal EDX does NOT rule out neuropathy!"
     },
 
     atlas: {
@@ -223,6 +223,51 @@ export const NeuropathyData = {
                 edx: "Prolonged medial/lateral plantar latencies",
                 sign: "Burning plantar pain, worse with standing"
             }
-        ]
+        ],
+        patterns: {
+            title: "Length-Dependent vs Non-Length-Dependent: Why the Pattern Matters",
+            text: "The single most important question when you encounter a polyneuropathy on EDX is not 'how bad is it?' -- it is 'does this follow a length-dependent pattern?' The answer completely changes your differential diagnosis and workup.",
+            sections: [
+                {
+                    name: "Length-Dependent (Dying Back)",
+                    color: "#3b82f6",
+                    bg: "#eff6ff",
+                    description: "The longest axons fail first because they have the greatest metabolic burden. The cell body simply cannot maintain its most distant projections when metabolic resources are depleted.",
+                    points: [
+                        "<strong>Pattern:</strong> Toes first, then feet, then ankles, then hands (when legs are affected to mid-calf level, hands start). Always symmetric and gradual.",
+                        "<strong>The Garden Hose Analogy:</strong> The axon is like a garden hose running from New York to Los Angeles -- the tip in LA dries up first when the water pressure drops.",
+                        "<strong>Common Causes:</strong> Diabetes (most common by far), B12 deficiency, alcohol, chemotherapy (cisplatin, vincristine), uremia, hereditary (CMT).",
+                        "<strong>NCS Pattern:</strong> Sural SNAP absent or reduced BEFORE upper extremity SNAPs are affected. Tibial CMAP reduced before median/ulnar CMAPs. Conduction velocities mildly slow (axonal range, not demyelinating range).",
+                        "<strong>EMG Pattern:</strong> Denervation in intrinsic foot muscles first (EDB, AH), then tibialis anterior, then hand intrinsics (FDI, APB) -- following the length gradient precisely."
+                    ]
+                },
+                {
+                    name: "Non-Length-Dependent (Patchy/Proximal)",
+                    color: "#ef4444",
+                    bg: "#fef2f2",
+                    description: "Does NOT follow the longest-axons-first rule. The pattern can be proximal, asymmetric, multifocal, or affect upper extremities before lower. This is a red flag that the mechanism is NOT simple metabolic or toxic injury.",
+                    points: [
+                        "<strong>Pattern:</strong> Can be proximal, asymmetric, multifocal, or affect upper before lower. The key distinction: if it does not fit stocking-glove, STOP and reconsider the diagnosis entirely.",
+                        "<strong>Demyelinating Causes:</strong> GBS and CIDP attack myelin randomly along the nerve, not by length. Look for conduction block, temporal dispersion, and markedly prolonged distal latencies.",
+                        "<strong>Vasculitic Causes:</strong> Mononeuritis multiplex -- random nerve infarction from vessel inflammation. Individual named nerves drop out in a stepwise, asymmetric fashion.",
+                        "<strong>Inflammatory Causes:</strong> Sarcoidosis, Sjogren's syndrome -- immune attack targets ganglia or nerve segments without respect to length.",
+                        "<strong>Motor Neuron Disease:</strong> Anterior horn cells die in a seemingly random distribution. Upper and lower motor neuron signs coexist. This is not technically a neuropathy but must be in the differential.",
+                        "<strong>NCS Pattern:</strong> Conduction block, temporal dispersion, patchy amplitude reductions that do not follow a distal-to-proximal gradient. Sensory gangionopathy shows diffusely absent SNAPs with preserved CMAPs."
+                    ]
+                },
+                {
+                    name: "Clinical Decision Point",
+                    color: "#22c55e",
+                    bg: "#f0fdf4",
+                    description: "The pattern tells you WHERE to look for the cause. Getting this right on the first visit saves weeks of unnecessary testing.",
+                    points: [
+                        "<strong>Length-dependent + symmetric =</strong> Metabolic/toxic workup: HbA1c, fasting glucose, B12 (with methylmalonic acid), folate, TSH, SPEP with immunofixation, CBC, CMP, ESR.",
+                        "<strong>Non-length-dependent or asymmetric =</strong> Inflammatory/immune workup: Lumbar puncture (elevated protein in CIDP/GBS), anti-ganglioside antibodies (GM1, GQ1b), anti-MAG, paraneoplastic panel, vasculitis labs (ANCA, CRP), imaging (MRI of plexus or roots).",
+                        "<strong>The pattern is the prescription:</strong> A symmetric stocking-glove neuropathy in a diabetic does not need a lumbar puncture. A patchy, multifocal neuropathy in a young patient does not need an HbA1c. Ordering the wrong workup wastes time and money."
+                    ]
+                }
+            ],
+            pearl: "When a resident shows you an EMG with bilateral sural SNAPs absent but normal median sensory, that is length-dependent -- think diabetes. But if the sural is NORMAL and the median SNAP is absent, that is NOT length-dependent -- think about demyelinating disease, vasculitis, or sensory ganglionopathy. The pattern of which nerves are abnormal matters more than how abnormal they are."
+        }
     }
 };

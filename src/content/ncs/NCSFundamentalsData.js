@@ -66,7 +66,7 @@ export const NCSFundamentalsData = {
                 color: "#475569"
             }
         ],
-        pearl: "The Great Blind Spot of Electrodiagnosis: Standard NCS equipment only has the resolution to 'see' the massive A-alpha (motor) and A-beta (sensory) fibers. We are completely blind to the A-delta and C fibers. If a patient comes to your clinic complaining of severe burning pain in their feet and loss of temperature sensation, but they have normal strength and vibration, they likely have a Small Fiber Neuropathy. Their EDX study will be 100% normal. You must diagnose small fiber disease clinicaly or with a specialized skin punch biopsy."
+        pearl: "The Great Blind Spot of Electrodiagnosis: Standard NCS equipment only has the resolution to 'see' the massive A-alpha (motor) and A-beta (sensory) fibers. We are completely blind to the A-delta and C fibers. If a patient comes to your clinic complaining of severe burning pain in their feet and loss of temperature sensation, but they have normal strength and vibration, they likely have a Small Fiber Neuropathy. Their EDX study will be 100% normal. You must diagnose small fiber disease clinically or with a specialized skin punch biopsy (measuring intraepidermal nerve fiber density)."
     },
 
     methods: {
@@ -178,7 +178,7 @@ export const NCSFundamentalsData = {
         { term: "Near-field Potential", definition: "An electrical signal recorded by an electrode located very close to the biological generator (e.g., standard sensory or motor responses). The voltage changes dynamically as the signal moves." },
         { term: "Far-field Potential", definition: "An electrical signal recorded at a massive distance from the generator. Because it is so far away, the voltage change hits all recording electrodes instantaneously at exactly the same time. The massive stimulus artifact is a far-field potential." },
         { term: "Phase Cancellation", definition: "In sensory studies, fast fibers arrive at the electrode early (creating an upward wave), and slower fibers arrive later (creating a downward wave). These opposite waves smash into each other and cancel each other out, artificially reducing the total amplitude the machine reads." },
-        { term: "H-Reflex", definition: "An electrical analog of the tendon monosynaptic reflex. It bypasses the muscle spindle by directly stimulating the Ia afferent fibers, travels up to the spinal cord, synapses once, and returns down the motor neuron. Clinically useful for S1 radiculopathy assessment." },
+        { term: "H-Reflex", definition: "An electrical analog of the tendon monosynaptic reflex. Instead of tapping a tendon to stretch the spindle, we directly activate the Ia afferent sensory fibers with a submaximal electrical stimulus. The signal travels up to the spinal cord, synapses once on the alpha motor neuron, and returns down to the muscle. Clinically most useful for S1 radiculopathy (tibial nerve H-reflex) -- a prolonged or absent H-reflex is one of the most sensitive EDX findings for S1 root dysfunction." },
         { term: "Temporal Dispersion", definition: "The broadening of a waveform due to individual nerve fibers conducting at different speeds, common in demyelinating neuropathies. The signals arrive at the recording electrode at different times, spreading the waveform out like a fan." },
         { term: "Cathode", definition: "The active (black) pole of the stimulator where depolarization of the nerve actually begins. Must always be aimed toward recording electrodes to avoid artificially prolonged latency measurements." },
         { term: "Anode", definition: "The positive (red) pole of the stimulator. If placed between the cathode and recording electrodes, it can cause 'anodal block', preventing the action potential from propagating past the stimulation site." },
@@ -247,5 +247,54 @@ export const NCSFundamentalsData = {
             correct: 1,
             explanation: "The chemical transmission across the NMJ is incredibly slow compared to nerve conduction. Subtracting the latencies isolates the pure nerve travel time so our calculated velocity isn't artificially slow."
         }
-    ]
+    ],
+
+    normalValues: {
+        title: "Quick Reference: Normal NCS Values",
+        pearl: "These are approximate adult values for age <60. Values decrease with age and vary by lab. Always use YOUR lab's specific normative data.",
+        sensory: [
+            { nerve: "Median (Index)", latency: "<3.5 ms (onset)", amplitude: ">20 uV", velocity: ">50 m/s", distance: "14 cm" },
+            { nerve: "Ulnar (Little)", latency: "<3.1 ms (onset)", amplitude: ">10 uV", velocity: ">50 m/s", distance: "14 cm" },
+            { nerve: "Radial (Snuffbox)", latency: "<2.9 ms (onset)", amplitude: ">15 uV", velocity: ">50 m/s", distance: "10 cm" },
+            { nerve: "Sural", latency: "<4.0 ms (onset)", amplitude: ">6 uV", velocity: ">40 m/s", distance: "14 cm" },
+            { nerve: "Superficial Fibular", latency: "<4.0 ms (onset)", amplitude: ">6 uV", velocity: ">40 m/s", distance: "14 cm" }
+        ],
+        motor: [
+            { nerve: "Median (APB)", distalLatency: "<4.4 ms", amplitude: ">4.0 mV", velocity: ">50 m/s", fWave: "<31 ms" },
+            { nerve: "Ulnar (ADM)", distalLatency: "<3.5 ms", amplitude: ">6.0 mV", velocity: ">50 m/s (forearm); >50 across elbow", fWave: "<32 ms" },
+            { nerve: "Fibular (EDB)", distalLatency: "<6.0 ms", amplitude: ">2.0 mV", velocity: ">40 m/s", fWave: "<56 ms" },
+            { nerve: "Tibial (AH)", distalLatency: "<5.5 ms", amplitude: ">3.0 mV", velocity: ">40 m/s", fWave: "<56 ms" }
+        ]
+    },
+
+    fWaves: {
+        title: "F-Waves: The Proximal Probe",
+        description: "F-waves are late motor responses that test the ENTIRE length of the motor nerve -- from the stimulation site, all the way up to the anterior horn cell in the spinal cord, and back down again. Think of it as sending a signal on a round trip. The signal goes up (antidromic), bounces off a small percentage of motor neurons, and comes back down (orthodromic) to twitch the muscle.",
+        keyPoints: [
+            "F-waves are NOT reflexes -- they are backfired motor neuron responses (no synapse involved)",
+            "Only 1-5% of motor neurons 'backfire' on each stimulus, so F-waves vary in shape and latency from stimulus to stimulus",
+            "Report the MINIMUM latency from 10-20 stimuli (the fastest round trip)",
+            "F-wave persistence: percentage of stimuli that produce an F-wave (normal >80%)",
+            "Absent or prolonged F-waves suggest proximal nerve pathology (radiculopathy, GBS, proximal entrapment)",
+            "F-waves are most useful when distal NCS are normal but you suspect a proximal lesion"
+        ],
+        clinicalUse: [
+            { condition: "GBS/AIDP", finding: "Absent or prolonged F-waves are often the EARLIEST abnormality -- they can be abnormal before distal studies change" },
+            { condition: "Radiculopathy", finding: "May be prolonged on the affected side, but sensitivity is low (~50%). Normal F-waves do NOT rule out radiculopathy" },
+            { condition: "Polyneuropathy", finding: "Prolonged F-waves reflect the cumulative slowing along the entire nerve length" },
+            { condition: "Thoracic Outlet", finding: "Can help evaluate proximal conduction in suspected TOS (though sensitivity is limited)" }
+        ],
+        pearl: "F-wave latency depends on the patient's height (longer arms/legs = longer F-wave). Always compare to height-adjusted normative data or the contralateral side."
+    },
+
+    latencyTeaching: {
+        title: "Onset vs Peak Latency: Which One Do You Measure?",
+        description: "This trips up every resident. There are TWO latencies you can measure on a sensory waveform, and the rules are different for sensory vs motor studies.",
+        rules: [
+            { study: "Motor NCS (CMAP)", measure: "Always measure ONSET latency (where the waveform first leaves baseline). The onset represents the fastest-conducting motor fibers reaching the muscle.", why: "Motor onset latency is consistent and reproducible because large myelinated fibers arrive at nearly the same time." },
+            { study: "Sensory NCS (SNAP)", measure: "Measure ONSET latency for conduction velocity calculations. Some labs also report PEAK latency for comparison studies.", why: "Onset latency gives the most accurate velocity. Peak latency is used in median-radial comparison studies because the peaks are easier to identify on small waveforms." },
+            { study: "Comparison Studies", measure: "Use PEAK latency for median-radial and median-ulnar digit comparisons.", why: "When comparing two nerves over the same distance, peak-to-peak is more reliable because onset can be obscured by baseline noise on tiny SNAPs." }
+        ],
+        pearl: "The cardinal rule: onset for velocity, peak for comparison. If you mix them up, your velocity calculations will be wrong and your comparison studies will be meaningless."
+    }
 };

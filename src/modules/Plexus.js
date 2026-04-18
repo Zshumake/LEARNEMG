@@ -13,6 +13,19 @@ export class Plexus {
         this.nextQuestion = this.nextQuestion.bind(this);
         this.finishQuiz = this.finishQuiz.bind(this);
         this.showInteractiveAnatomy = this.showInteractiveAnatomy.bind(this);
+
+        // Register ActionBus handlers
+        if (window._registerAction) {
+            window._registerAction('plexusSubmitAnswer', () => {
+                window.appComponents.plexus.submitAnswer();
+            });
+            window._registerAction('plexusNextQuestion', () => {
+                window.appComponents.plexus.nextQuestion();
+            });
+            window._registerAction('plexusFinishQuiz', () => {
+                window.appComponents.plexus.finishQuiz();
+            });
+        }
     }
 
     startQuiz(pgyLevel) {
@@ -139,7 +152,7 @@ export class Plexus {
                 type: 'multiple_choice',
                 options: ["Tibialis anterior", "Extensor hallucis longus", "Tibialis posterior", "Peroneus longus"],
                 correct: 2,
-                explanation: "Tibialis posterior is innervated by the tibial nerve (not the fibular nerve) at L5. If it is weak along with fibular-innervated muscles, the lesion must be proximal to where the sciatic nerve divides -- pointing to L5 radiculopathy rather than fibular neuropathy."
+                explanation: "Tibialis posterior is innervated by the tibial nerve (not the fibular nerve) at L5-S1. If it is weak along with fibular-innervated muscles, the lesion must be proximal to where the sciatic nerve divides -- pointing to L5 radiculopathy rather than fibular neuropathy."
             },
             {
                 id: 12,
@@ -244,8 +257,12 @@ export class Plexus {
         const allowedDifficulties = pgyLevels[pgyLevel] || ['pgy2'];
         const filteredQuestions = allQuestions.filter(q => allowedDifficulties.includes(q.difficulty));
 
-        // Shuffle and select 6 questions
-        const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
+        // Fisher-Yates shuffle and select 6 questions
+        const shuffled = [...filteredQuestions];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
         return shuffled.slice(0, Math.min(6, shuffled.length));
     }
 
@@ -267,9 +284,9 @@ export class Plexus {
                 </div>
                 
                 <div class="quiz-controls">
-                    <button id="plexus-submit" class="quiz-button primary" style="display:none;" onclick="window.appComponents.plexus.submitAnswer()">Submit Answer</button>
-                    <button id="plexus-next" class="quiz-button primary" style="display:none;" onclick="window.appComponents.plexus.nextQuestion()">Next Question</button>
-                    <button id="plexus-finish" class="quiz-button success" style="display:none;" onclick="window.appComponents.plexus.finishQuiz()">View Results</button>
+                    <button id="plexus-submit" class="quiz-button primary" style="display:none;" data-action="plexusSubmitAnswer">Submit Answer</button>
+                    <button id="plexus-next" class="quiz-button primary" style="display:none;" data-action="plexusNextQuestion">Next Question</button>
+                    <button id="plexus-finish" class="quiz-button success" style="display:none;" data-action="plexusFinishQuiz">View Results</button>
                 </div>
             </div>
 
@@ -617,8 +634,8 @@ export class Plexus {
                     </select>
                     
                     <div class="mode-toggles">
-                        <button onclick="window.appComponents.plexus.manager.setMode('discovery')" class="mode-btn active">Discovery</button>
-                        <button onclick="window.appComponents.plexus.manager.setMode('lesion')" class="mode-btn">Lesion Simulator</button>
+                        <button data-action="plexusSetMode" data-mode="discovery" class="mode-btn active">Discovery</button>
+                        <button data-action="plexusSetMode" data-mode="lesion" class="mode-btn">Lesion Simulator</button>
                     </div>
                     
                     <div style="flex-grow: 1;"></div>

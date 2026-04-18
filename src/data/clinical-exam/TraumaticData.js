@@ -39,7 +39,7 @@ export const traumaticData = {
                 { movement: 'Wrist Extension', grade: '0-4/5', finding: 'WEAK', note: 'Variable -- depends on middle trunk involvement' },
                 { movement: 'Grip Strength', grade: '0-1/5', finding: 'WEAK', note: 'Lower trunk (C8-T1) -- absent in Klumpke palsy' },
                 { movement: 'Finger Abduction', grade: '0-1/5', finding: 'WEAK', note: 'Hand intrinsics lost in lower trunk injury' },
-                { movement: 'Scapular Protraction (Serratus Anterior)', grade: '0/5', finding: 'WEAK', note: 'If weak, indicates root avulsion (preganglionic)' },
+                { movement: 'Scapular Protraction (Serratus Anterior)', grade: '0/5', finding: 'WEAK', note: 'If weak, indicates preganglionic root-level injury (long thoracic nerve branches before plexus formation)' },
                 { movement: 'Scapular Retraction (Rhomboids)', grade: '0/5', finding: 'WEAK', note: 'Rhomboid weakness = preganglionic C5 avulsion' }
             ],
             sensory: [

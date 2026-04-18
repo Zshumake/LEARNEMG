@@ -82,9 +82,9 @@ export const plexopathyData = {
                 'Numbness in medial forearm and ulnar digits',
                 'Mechanism: upward traction on adducted arm (opposite of Erb-Duchenne)',
                 'May be caused by Pancoast tumor (lung apex) or thoracic outlet syndrome',
-                'Horner syndrome (ptosis, miosis, anhidrosis) if T1 root involved'
+                'Horner syndrome ABSENT in lower trunk plexopathy; if present, reclassify as T1 root avulsion (preganglionic lesion)'
             ],
-            associatedSymptoms: ['Medial arm/forearm pain', 'Hand clumsiness', 'Horner syndrome (ptosis, miosis)'],
+            associatedSymptoms: ['Medial arm/forearm pain', 'Hand clumsiness', 'Horner syndrome absent (its presence would indicate T1 root avulsion, not trunk-level injury)'],
             redFlags: ['Horner syndrome (suggests root avulsion or Pancoast tumor — GET IMAGING)', 'Weight loss/smoking history (Pancoast tumor)', 'Progressive course'],
             commonMisdiagnoses: ['Cubital tunnel syndrome', 'C8-T1 radiculopathy', 'Ulnar neuropathy', 'Thoracic outlet syndrome']
         },
@@ -106,12 +106,15 @@ export const plexopathyData = {
                 { movement: 'Thumb Abduction (APB)', grade: '3/5', finding: 'WEAK', note: 'Both median (APB) and ulnar (FDI) weak = C8-T1 lower trunk' },
                 { movement: 'Grip Strength', grade: '3-4/5', finding: 'WEAK' },
                 { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal', note: 'Upper trunk spared' },
+                { movement: 'Wrist Flexion (FCU)', grade: '4/5', finding: 'WEAK', note: 'FCU receives C8 via ulnar nerve -- mild weakness localizes to lower trunk' },
+                { movement: 'Finger Flexion (FDP 4-5)', grade: '3-4/5', finding: 'WEAK', note: 'FDP to ring/small via ulnar C8 and median C8' },
                 { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
                 { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Medial forearm (medial antebrachial cutaneous — from medial cord/lower trunk)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
                 { area: 'Ring and small fingers (ulnar distribution)', modality: 'Light touch', expectedFinding: 'Decreased' },
+                { area: 'Medial arm (medial brachial cutaneous territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased -- medial cord/lower trunk origin' },
                 { area: 'Lateral arm (C5-C6 territory)', modality: 'Light touch', expectedFinding: 'Normal' }
             ],
             reflexes: [
@@ -347,7 +350,7 @@ export const plexopathyData = {
                 { movement: 'Shoulder Abduction', grade: '2-3/5', finding: 'WEAK', note: 'Supraspinatus + infraspinatus commonly affected -- patchy distribution' },
                 { movement: 'Elbow Flexion', grade: '3-4/5', finding: 'WEAK' },
                 { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
-                { movement: 'Grip Strength', grade: '3/5', finding: 'WEAK', note: 'AIN variant may cause thumb/index DIP flexion weakness' },
+                { movement: 'Grip Strength', grade: '4-5/5', finding: 'Normal', note: 'Usually preserved; may be weak in AIN variant (thumb/index DIP flexion weakness)' },
                 { movement: 'Finger Abduction (FDI)', grade: '5/5', finding: 'Normal' },
                 { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' }
             ],

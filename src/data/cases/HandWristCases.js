@@ -44,13 +44,13 @@ export const handWristCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 3.9, peak: 4.5, amp: 8.0, dist: 14, velocity: 30, abnormal: true },
-                { name: "Ulnar Sensory (Little)", onset: 1.9, peak: 2.5, amp: 38.0, dist: 14, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 3.9, peak: 4.5, amp: 8.0, dist: 14, velocity: 36, abnormal: true },
+                { name: "Ulnar Sensory (Little)", onset: 1.9, peak: 2.5, amp: 38.0, dist: 14, velocity: 74, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 5.8, amp: 4.2, dist: 8, velocity: 52, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 5.0, dist: 8, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 5.8, amp: 4.2, dist: 8, velocity: 0, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 5.0, dist: 8, velocity: 0, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Ulnar Comp (Digit 4)", measureA: "4.8", measureB: "2.4", deltaP: "2.4", abnormal: true },
@@ -112,19 +112,17 @@ export const handWristCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", onset: 2.9, peak: 3.5, amp: 6.2, dist: 14, velocity: 52, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false },
-                { name: "Dorsal Ulnar Cutaneous", onset: 1.7, peak: 2.2, amp: 25, dist: 10, velocity: 62, abnormal: false }
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 2.9, peak: 3.5, amp: 6.2, dist: 14, velocity: 48, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false },
+                { name: "Dorsal Ulnar Cutaneous", onset: 1.7, peak: 2.2, amp: 25, dist: 10, velocity: 59, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 62, abnormal: false },
-                { name: "Ulnar Motor (FDI)", latency: 3.2, amp: 4.5, dist: 8, velocity: 58, abnormal: true }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 0, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 0, abnormal: false },
+                { name: "Ulnar Motor (FDI)", latency: 3.2, amp: 4.5, dist: 8, velocity: 0, abnormal: true }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false },
@@ -187,12 +185,12 @@ export const handWristCases = {
         ncsStudies: {
             sensory: [
                 { name: "Median Sensory (Index)", onset: "NR", peak: "Absent", amp: 0, dist: 14, velocity: 0, abnormal: true },
-                { name: "Ulnar Sensory (Little)", onset: 2.1, peak: 2.8, amp: 35, dist: 14, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false }
+                { name: "Ulnar Sensory (Little)", onset: 2.1, peak: 2.8, amp: 35, dist: 14, velocity: 67, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 8.2, amp: 1.2, dist: 8, velocity: 45, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 8.2, amp: 1.2, dist: 8, velocity: 0, abnormal: true },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, dist: 8, velocity: 0, abnormal: false }
             ],
             comparison: [
                 { name: "Median-Radial Thumb Comp", measureA: "Absent", measureB: "2.3", deltaP: "N/A", abnormal: true }
@@ -257,13 +255,13 @@ export const handWristCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", onset: 3.2, peak: 3.8, amp: 10, dist: 14, velocity: 52, abnormal: true },
-                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 56, abnormal: false },
+                { name: "Median Sensory (Index)", onset: 2.5, peak: 3.1, amp: 45, dist: 14, velocity: 56, abnormal: false },
+                { name: "Ulnar Sensory (Little)", onset: 3.2, peak: 3.8, amp: 10, dist: 14, velocity: 44, abnormal: true },
+                { name: "Radial Sensory (Snuffbox)", onset: 1.9, peak: 2.4, amp: 25, dist: 10, velocity: 53, abnormal: false },
                 { name: "Medial Antebrachial Cut", onset: 2.2, peak: 2.8, amp: 15, dist: 12, velocity: 55, abnormal: false }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 55, abnormal: false },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, dist: 8, velocity: 0, abnormal: false },
                 { name: "Ulnar Motor (ADM) - BE", latency: 2.8, amp: 8.5, dist: 22, velocity: 55, abnormal: false },
                 { name: "Ulnar Motor (ADM) - AE", latency: 7.2, amp: 4.8, dist: 24, velocity: 32, abnormal: true }
             ],
