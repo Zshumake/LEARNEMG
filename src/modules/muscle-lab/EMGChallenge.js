@@ -1,4 +1,5 @@
 import { MuscleDatabase, LesionSites } from '../../data/MuscleDatabase.js';
+import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
 
 export class EMGChallengeSystem {
@@ -31,21 +32,20 @@ export class EMGChallengeSystem {
         this.backToSettings = this.backToSettings.bind(this);
         this.toggleQuestionType = this.toggleQuestionType.bind(this);
 
-        // Register with ActionBus
-        if (window._registerAction) {
-            window._registerAction('emgChallenge:toggleQuestionType', (el) => {
-                const type = el.getAttribute('data-type');
-                this.toggleQuestionType(type);
-            });
-            window._registerAction('emgChallenge:startChallenge', () => this.startChallenge());
-            window._registerAction('emgChallenge:selectAnswer', (el) => {
-                const answer = el.getAttribute('data-answer');
-                this.selectAnswer(answer);
-            });
-            window._registerAction('emgChallenge:backToSettings', () => this.backToSettings());
-            window._registerAction('emgChallenge:submitAnswer', () => this.submitAnswer());
-            window._registerAction('emgChallenge:nextCase', () => this.nextCase());
-        }
+        // Register with ActionBus (uses polling helper because this constructor
+        // runs BEFORE Initialization.js defines window._registerAction)
+        registerAction('emgChallenge:toggleQuestionType', (el) => {
+            const type = el.getAttribute('data-type');
+            this.toggleQuestionType(type);
+        });
+        registerAction('emgChallenge:startChallenge', () => this.startChallenge());
+        registerAction('emgChallenge:selectAnswer', (el) => {
+            const answer = el.getAttribute('data-answer');
+            this.selectAnswer(answer);
+        });
+        registerAction('emgChallenge:backToSettings', () => this.backToSettings());
+        registerAction('emgChallenge:submitAnswer', () => this.submitAnswer());
+        registerAction('emgChallenge:nextCase', () => this.nextCase());
     }
 
     launch() {

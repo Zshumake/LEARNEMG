@@ -1,4 +1,5 @@
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
+import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
 
 export class MuscleAnatomyQuizModule {
@@ -28,20 +29,19 @@ export class MuscleAnatomyQuizModule {
         window.MuscleAnatomyQuiz = this;
         window.launchAnatomyQuiz = this.launch;
 
-        // Register with ActionBus
-        if (window._registerAction) {
-            window._registerAction('muscleQuiz:startQuiz', () => this.startQuiz());
-            window._registerAction('muscleQuiz:checkAnswer', (el) => {
-                const answer = el.getAttribute('data-answer');
-                const idx = parseInt(el.getAttribute('data-idx'), 10);
-                this.checkAnswer(answer, idx);
-            });
-            window._registerAction('muscleQuiz:generateQuestion', () => this.generateQuestion());
-            window._registerAction('muscleQuiz:backToSetup', () => {
-                document.getElementById('quiz-setup').style.display = 'block';
-                document.getElementById('active-quiz-area').style.display = 'none';
-            });
-        }
+        // Register with ActionBus (uses polling helper because this constructor
+        // runs BEFORE Initialization.js defines window._registerAction)
+        registerAction('muscleQuiz:startQuiz', () => this.startQuiz());
+        registerAction('muscleQuiz:checkAnswer', (el) => {
+            const answer = el.getAttribute('data-answer');
+            const idx = parseInt(el.getAttribute('data-idx'), 10);
+            this.checkAnswer(answer, idx);
+        });
+        registerAction('muscleQuiz:generateQuestion', () => this.generateQuestion());
+        registerAction('muscleQuiz:backToSetup', () => {
+            document.getElementById('quiz-setup').style.display = 'block';
+            document.getElementById('active-quiz-area').style.display = 'none';
+        });
     }
 
     launch() {

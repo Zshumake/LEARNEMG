@@ -1,5 +1,6 @@
 
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
+import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
 
 // Sub-region mapping for "By Region" grouping
@@ -49,27 +50,27 @@ export class StudyCardsModule {
         window.MuscleAnatomy = this;
         window.showStudyCards = this.launch;
 
-        if (window._registerAction) {
-            window._registerAction('studyCards:switchAnatomy', (el) => {
-                this.switchAnatomy(el.getAttribute('data-region'));
-            });
-            window._registerAction('studyCards:toggleDetail', (el) => {
-                this.toggleDetail(el.getAttribute('data-muscle'), el.getAttribute('data-type'));
-            });
-            window._registerAction('studyCards:globalRevealAll', () => this.globalRevealAll());
-            window._registerAction('studyCards:globalRevealType', (el) => {
-                this.globalRevealType(el.getAttribute('data-type'));
-            });
-            window._registerAction('studyCards:setGroupBy', (el) => {
-                this.setGroupBy(el.getAttribute('data-mode'));
-            });
-            window._registerAction('studyCards:toggleGroup', (el) => {
-                this.toggleGroup(el.getAttribute('data-group'));
-            });
-            window._registerAction('closeStudyCardModal', () => {
-                document.querySelector('.learning-modal-overlay.active')?.remove();
-            });
-        }
+        // Uses polling helper because this constructor runs BEFORE
+        // Initialization.js defines window._registerAction
+        registerAction('studyCards:switchAnatomy', (el) => {
+            this.switchAnatomy(el.getAttribute('data-region'));
+        });
+        registerAction('studyCards:toggleDetail', (el) => {
+            this.toggleDetail(el.getAttribute('data-muscle'), el.getAttribute('data-type'));
+        });
+        registerAction('studyCards:globalRevealAll', () => this.globalRevealAll());
+        registerAction('studyCards:globalRevealType', (el) => {
+            this.globalRevealType(el.getAttribute('data-type'));
+        });
+        registerAction('studyCards:setGroupBy', (el) => {
+            this.setGroupBy(el.getAttribute('data-mode'));
+        });
+        registerAction('studyCards:toggleGroup', (el) => {
+            this.toggleGroup(el.getAttribute('data-group'));
+        });
+        registerAction('closeStudyCardModal', () => {
+            document.querySelector('.learning-modal-overlay.active')?.remove();
+        });
     }
 
     // --- Search & Grouping ---
