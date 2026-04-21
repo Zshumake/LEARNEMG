@@ -506,6 +506,11 @@ export class ClinicalUI {
     _handleEMGDecisionClick(isIndicated) {
         const evaluation = this.engine.evaluateEMGDecision(isIndicated);
 
+        // Visually mark the chosen card
+        document.querySelectorAll('#emg-decision-step .emg-choice').forEach(el => {
+            el.classList.toggle('selected', el.dataset.value === String(isIndicated));
+        });
+
         const feedbackDiv = document.getElementById('emg-decision-feedback');
         if (feedbackDiv) {
             feedbackDiv.innerHTML = ClinicalRenderer.renderEMGDecisionFeedback(evaluation);
