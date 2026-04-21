@@ -176,7 +176,7 @@ export class ErnestUI {
     createTooltip(persona) {
         const tooltip = document.createElement('div');
         tooltip.className = 'jrpg-ernest-tooltip';
-        tooltip.innerHTML = `<img src="${persona.image}" id="jrpg-tooltip-face"> <span>Ask ${persona.name.split(' ')[0]}</span>`;
+        tooltip.innerHTML = `${this._renderTooltipAvatar(persona)} <span>Ask ${persona.name.split(' ')[0]}</span>`;
         tooltip.id = 'jrpg-ernest-tooltip';
         document.body.appendChild(tooltip);
         this.ui.tooltip = tooltip;
@@ -264,9 +264,9 @@ export class ErnestUI {
         this.ui.floater.innerHTML = this._buildFloaterSVG();
 
         if (this.ui.tooltip) {
-            const face = this.ui.tooltip.querySelector('img');
+            const oldAvatar = this.ui.tooltip.querySelector('.jrpg-tooltip-avatar');
             const text = this.ui.tooltip.querySelector('span');
-            if (face) face.src = p.image;
+            if (oldAvatar) oldAvatar.outerHTML = this._renderTooltipAvatar(p);
             if (text) text.textContent = `Ask ${p.name.split(' ')[0]}`;
         }
         // Update the main chat window mascot
@@ -274,6 +274,33 @@ export class ErnestUI {
         if (artContainer) {
             artContainer.innerHTML = this._buildErnestSVG();
         }
+    }
+
+    /** Returns a compact inline SVG avatar for the "Ask {persona}" tooltip. */
+    _renderTooltipAvatar(persona) {
+        const pId = (this.core && this.core.currentPersonaId)
+            || (persona === this.core?.personas?.earl ? 'earl' : 'ernest');
+        const color = persona.color || '#6b9f78';
+
+        if (pId === 'earl') {
+            // Grumpy red avatar — closed eyes, flat mouth
+            return `<span class="jrpg-tooltip-avatar" aria-hidden="true" style="background:${color};">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 10 L10 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 10 L18 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 16 L16 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </span>`;
+        }
+        // Cheerful green Ernest — round eyes, smile, lightning accent
+        return `<span class="jrpg-tooltip-avatar" aria-hidden="true" style="background:${color};">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8.5" cy="10" r="1.6" fill="white"/>
+                <circle cx="15.5" cy="10" r="1.6" fill="white"/>
+                <path d="M7.5 14 Q12 18 16.5 14" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                <path d="M19 4 L17 8 L19 8 L17 12" stroke="#fde68a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+        </span>`;
     }
 
     /** Returns the full-body SVG for the chat panel. */
