@@ -228,6 +228,21 @@ export const ERNEST_STYLES = `
                 height: 20px;
                 border-radius: 50%;
             }
+            .jrpg-ernest-tooltip .jrpg-tooltip-avatar {
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 auto;
+                box-shadow: 0 0 0 2px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.3);
+            }
+            .jrpg-ernest-tooltip .jrpg-tooltip-avatar svg {
+                width: 16px;
+                height: 16px;
+                display: block;
+            }
             /* Loading Dots */
             .jrpg-typing-dots {
                 display: inline-block;
