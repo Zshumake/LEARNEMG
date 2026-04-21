@@ -13,7 +13,7 @@ import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260317';
 import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260317';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260421-clinical';
 import { AudioController } from './audio/AudioController.js?v=20260317';
-import { ErnestCore } from './ernest/ErnestCore.js?v=20260317';
+import { ErnestCore } from './ernest/ErnestCore.js?v=20260421-personafix';
 import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
 import logger from '../utils/Logger.js';
 
