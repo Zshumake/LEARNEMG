@@ -42,20 +42,20 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 4.0, velocity: 48, abnormal: true }
+                { name: "Sural Sensory", peak: 3.8, amp: 15, velocity: 45, abnormal: false, dist: 14, onset: 3.1 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 4.0, velocity: 54, abnormal: true, dist: 14, onset: 2.6 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB) - Ank", latency: 4.2, amp: 1.5, velocity: 48, abnormal: true },
-                { name: "Fibular Motor (EDB) - BFH", latency: 10.2, amp: 1.4, velocity: 45, abnormal: true },
-                { name: "Fibular Motor (EDB) - AFH", latency: 13.8, amp: 0.4, velocity: 28, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB) - Ank", latency: 4.2, amp: 1.5, velocity: 0, abnormal: true, dist: 9 },
+                { name: "Fibular Motor (EDB) - BFH", latency: 10.2, amp: 1.4, velocity: 40, abnormal: true, dist: 24 },
+                { name: "Fibular Motor (EDB) - AFH", latency: 13.8, amp: 0.4, velocity: 28, abnormal: true, dist: 10 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 0, abnormal: false, dist: 10 }
             ],
             comparison: []
         },
         emgStudies: [
             { muscle: "Extensor Hallucis Longus", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, fibs: "3+", recruitment: "Severely reduced", motorUnits: "Single large unit" },
-            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, fibs: "2+", recruitment: "No voluntary activity", motorUnits: "None" },
+            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: true, fibs: "2+", recruitment: "Severely Reduced", motorUnits: "None" },
             { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: false, comment: "Distractor - Normal" },
             { muscle: "Fibularis Longus", nerve: "Superficial peroneal", root: "L5-S1-S2", abnormal: true, fibs: "2+", recruitment: "Reduced", motorUnits: "Polyphasic units" },
             { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L3-L4", abnormal: false, comment: "Distractor - Normal" },
@@ -114,14 +114,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false },
-                { name: "Medial Plantar Sensory", peak: 4.2, amp: 8.0, velocity: 32, abnormal: true },
-                { name: "Lateral Plantar Sensory", peak: 4.5, amp: 6.0, velocity: 30, abnormal: true }
+                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 50, abnormal: false, dist: 14, onset: 2.8 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 18, velocity: 54, abnormal: false, dist: 14, onset: 2.6 },
+                { name: "Medial Plantar Sensory", peak: 4.2, amp: 8.0, velocity: 28, abnormal: true, dist: 10, onset: 3.6 },
+                { name: "Lateral Plantar Sensory", peak: 4.5, amp: 6.0, velocity: 26, abnormal: true, dist: 10, onset: 3.9 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.1, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 6.2, amp: 3.5, velocity: 42, abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 4.1, amp: 6.0, velocity: 0, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 6.2, amp: 3.5, velocity: 0, abnormal: true, dist: 10 }
             ],
             comparison: []
         },
@@ -188,13 +188,13 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.1, amp: 15, velocity: 52, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Deep Peroneal Sensory", peak: 4.8, amp: 2.0, velocity: 30, abnormal: true, comment: "Confirms isolated first webspace involvement" }
+                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Superficial Fibular Sensory", peak: 3.1, amp: 15, velocity: 56, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.5 },
+                { name: "Deep Peroneal Sensory", peak: 4.8, amp: 2.0, velocity: 29, abnormal: true, comment: "Confirms isolated first webspace involvement", dist: 12, onset: 4.2 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 8.2, amp: 1.0, velocity: 45, abnormal: true, comment: "Prolonged distal latency localizes to the ankle" },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 48, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 8.2, amp: 1.0, velocity: 0, abnormal: true, comment: "Prolonged distal latency localizes to the ankle", dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 0, abnormal: false, dist: 10 }
             ],
             comparison: []
         },
@@ -259,31 +259,106 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.4, amp: 18, velocity: 46, abnormal: false },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false },
-                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true }
+                { name: "Sural Sensory", peak: 3.4, amp: 18, velocity: 52, abnormal: false, dist: 14, onset: 2.7 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 18, velocity: 54, abnormal: false, dist: 14, onset: 2.6 },
+                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, dist: 14, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Femoral Motor (Quad)", latency: 7.8, amp: 1.2, velocity: "N/A", abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 0, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 0, abnormal: false, dist: 10 },
+                { name: "Femoral Motor (Quad)", latency: 7.8, amp: 1.2, velocity: 0, abnormal: true, dist: 16 }
             ],
             comparison: []
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false, comment: "Distractor - Normal" },
             { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: true, fibs: "2+", recruitment: "Reduced", motorUnits: "Polyphasic units" },
             { muscle: "Adductor Longus", nerve: "Obturator", root: "L2-L4", abnormal: false },
-            { muscle: "Iliopsoas", nerve: "Femoral/L1-L2", root: "L1-L3", abnormal: true, fibs: "1+", recruitment: "Reduced" },
-            { muscle: "Tibialis Anterior", nerve: "Deep peroneal", root: "L4-L5-S1", abnormal: false, comment: "Distractor - Normal" },
+            { muscle: "Iliopsoas", nerve: "Femoral/L1-L2", root: "L1-L3", abnormal: false, comment: "Spared -- branches arise proximal to inguinal ligament, confirming distal femoral lesion" },
+            { muscle: "Tibialis Anterior", nerve: "Deep Peroneal", root: "L4-L5", abnormal: false, comment: "Normal -- peroneal territory spared" },
+            { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: false, comment: "Normal -- S1 territory spared" },
             { muscle: "Lumbar Paraspinals (L3-L4)", abnormal: false, fibs: "0" }
         ],
         teachingPoints: [
             "Femoral neuropathy is often distinguished from L3-L4 radiculopathy by testing the Hip Adductors (Obturator nerve, same roots).",
             "An abnormal Saphenous SNAP localizes the lesion as post-ganglionic (at the nerve or plexus level), whereas a radiculopathy would typically spare the SNAP.",
             "Iatrogenic femoral nerve injury can occur during pelvic or inguinal surgeries due to compression or retractors."
+        ]
+    },
+
+    retroperitoneal_hematoma: {
+        title: "Anticoagulated Patient with Sudden Thigh Weakness",
+        difficulty: "difficult",
+        presentation: {
+            age: 68,
+            gender: "Female",
+            occupation: "Retired Teacher",
+            chiefComplaint: "Sudden severe right groin pain followed by inability to extend the right knee",
+            history: "On warfarin for atrial fibrillation. INR check 2 weeks ago was 4.2 (supratherapeutic). Developed sudden severe right groin and flank pain after a coughing episode. Within 24 hours noticed numbness on the front of the thigh and inability to lift the leg or straighten the knee. Came to ED where she could not bear weight.",
+            pmh: "Atrial fibrillation, hypertension, hyperlipidemia",
+            medications: "Warfarin (held), metoprolol, atorvastatin"
+        },
+        physicalExam: {
+            inspection: "Right thigh appears slightly larger than left (compartment fullness). No bruising visible externally.",
+            palpation: "Marked tenderness deep in the right iliac fossa and groin. The patient holds the hip in flexion for comfort (psoas sign).",
+            rom: "Right hip extension causes severe pain (the patient cannot fully extend at the hip). Knee ROM normal passively.",
+            strength: "Right Hip Flexion (Iliopsoas): 2/5 -- both pain-limited and weak. Right Knee Extension (Quadriceps): 1/5. Hip Adduction: 5/5. Ankle dorsiflexion and plantarflexion: 5/5.",
+            sensation: "Decreased light touch and pinprick over the anterior thigh (femoral cutaneous distribution) and medial leg (saphenous distribution).",
+            reflexes: "Right patellar reflex: ABSENT. Left patellar reflex: 2+. Achilles reflexes: 2+ bilaterally.",
+            specialTests: "Positive psoas sign (pain on hip extension). Negative straight leg raise. NO fever."
+        },
+        differentialDiagnosis: [
+            { name: "Femoral Neuropathy from Retroperitoneal/Iliacus Hematoma", ruleOut: "N/A (Correct Diagnosis)" },
+            { name: "L3-L4 Radiculopathy", ruleOut: "Adductor strength is normal (Obturator nerve, L2-L4 -- shares roots). A radiculopathy would also affect the adductors. Lumbar paraspinals would also be denervated." },
+            { name: "Diabetic Amyotrophy", ruleOut: "Patient is non-diabetic. Diabetic amyotrophy presents subacutely with severe pain followed by patchy proximal weakness, often bilateral. The acute onset after anticoagulation overdose is very specific." },
+            { name: "Lumbosacral Plexopathy", ruleOut: "Would typically affect both femoral AND obturator distributions. Adductor preservation rules this out." },
+            { name: "Pure Femoral Nerve Compression at Inguinal Ligament", ruleOut: "The iliopsoas weakness (innervated by femoral branches arising PROXIMAL to the inguinal ligament) localizes the lesion proximal to the ligament -- in the retroperitoneum/iliacus muscle, where the nerve travels through the iliac fossa." }
+        ],
+        requiresEMG: true,
+        emgIndication: "INDICATED",
+        correctDiagnosis: "Femoral Neuropathy due to Iliacus / Retroperitoneal Hematoma",
+        explanation: "Acute femoral neuropathy from compression by an expanding hematoma in the iliacus muscle and retroperitoneal space. The supratherapeutic INR caused spontaneous bleeding. Key localization: iliopsoas weakness (along with quadriceps) tells you the lesion is PROXIMAL to the inguinal ligament -- iliopsoas is innervated by femoral nerve branches that arise WITHIN the iliac fossa, before the nerve passes under the inguinal ligament. This is the classic presentation -- elderly anticoagulated patient with sudden flank/groin pain, psoas sign, and femoral nerve dysfunction. Time-sensitive: requires reversal of anticoagulation and possible surgical decompression.",
+        reviewOfSystems: {
+            constitutional: "No fever or chills. Mild lightheadedness. Hemoglobin dropped from 12.5 to 9.8 over 24 hours.",
+            musculoskeletal: "Severe right groin and flank pain. Knee 'gives out'.",
+            neurological: "Numbness anterior thigh. Cannot straighten the knee.",
+            cardiovascular: "Atrial fibrillation, well-controlled rate."
+        },
+        humoralData: {
+            labs: ["INR: 4.2 (supratherapeutic, target 2-3)", "Hemoglobin: 9.8 g/dL (down from 12.5)", "Platelets: 220k (normal)", "Creatinine: 0.9 (normal)"],
+            imaging: ["CT Abdomen/Pelvis WITH contrast: Large 8x6 cm hematoma in the right iliacus and psoas compartment, extending into the retroperitoneal space. Mass effect on the femoral nerve in the iliac fossa.", "No active extravasation."]
+        },
+        ncsStudies: {
+            sensory: [
+                { name: "Sural Sensory", peak: 3.4, amp: 16, velocity: 50, abnormal: false, dist: 14, onset: 2.8 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 18, velocity: 54, abnormal: false, dist: 14, onset: 2.6 },
+                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, dist: 14, onset: "NR", comment: "Absent on right; normal 6 uV on left side" }
+            ],
+            motor: [
+                { name: "Fibular Motor (EDB)", latency: 4.4, amp: 5.5, velocity: 0, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.6, amp: 11.0, velocity: 0, abnormal: false, dist: 10 },
+                { name: "Femoral Motor (Quad) - Right", latency: 0, amp: 0, velocity: 0, abnormal: true, dist: 16, comment: "ABSENT response on right" },
+                { name: "Femoral Motor (Quad) - Left", latency: 4.8, amp: 6.5, velocity: 0, abnormal: false, dist: 16, comment: "Normal contralateral comparison" }
+            ],
+            comparison: []
+        },
+        emgStudies: [
+            { muscle: "Iliopsoas", nerve: "Femoral (proximal branches)", root: "L1-L3", abnormal: true, fibs: "2+", recruitment: "Severely Reduced", comment: "ABNORMAL -- localizes lesion PROXIMAL to inguinal ligament (within iliac fossa)" },
+            { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: true, fibs: "3+", recruitment: "None", motorUnits: "No voluntary MUAPs" },
+            { muscle: "Vastus Medialis", nerve: "Femoral", root: "L2-L4", abnormal: true, fibs: "3+", recruitment: "None" },
+            { muscle: "Rectus Femoris", nerve: "Femoral", root: "L2-L4", abnormal: true, fibs: "3+", recruitment: "None" },
+            { muscle: "Adductor Longus", nerve: "Obturator", root: "L2-L4", abnormal: false, comment: "SPARED -- excludes L2-L4 radiculopathy or lumbar plexopathy" },
+            { muscle: "Tibialis Anterior", nerve: "Deep Peroneal", root: "L4-L5", abnormal: false, comment: "Normal -- excludes L4 radiculopathy" },
+            { muscle: "Medial Gastrocnemius", nerve: "Tibial", root: "S1-S2", abnormal: false },
+            { muscle: "Gluteus Medius", nerve: "Superior Gluteal", root: "L4-L5-S1", abnormal: false, comment: "Normal -- further excludes lumbar plexopathy" },
+            { muscle: "Lumbar Paraspinals (L2-L4)", abnormal: false, fibs: "0", comment: "Normal -- excludes radiculopathy" }
+        ],
+        teachingPoints: [
+            "Femoral neuropathy from a retroperitoneal/iliacus hematoma is a CLASSIC complication of supratherapeutic anticoagulation. Always ask about anticoagulants in any acute femoral neuropathy.",
+            "ILIOPSOAS WEAKNESS is the key localizing finding: the femoral nerve gives off branches to the iliopsoas WITHIN the iliac fossa, BEFORE passing under the inguinal ligament. If iliopsoas is weak, the lesion is proximal to the ligament (in the retroperitoneum).",
+            "Pure inguinal ligament compression (e.g., post-surgical) SPARES the iliopsoas because those branches have already left the main nerve.",
+            "Adductor sparing distinguishes femoral neuropathy from L3-L4 radiculopathy (the obturator nerve shares those roots).",
+            "The psoas sign (pain with hip extension) is highly suggestive of an iliopsoas/retroperitoneal mass.",
+            "Treatment: reverse anticoagulation, supportive care, sometimes surgical decompression. Early recognition prevents permanent quadriceps weakness."
         ]
     },
 
@@ -330,14 +405,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Medial Thigh (Obturator)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms sensory involvement" }
+                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 15, velocity: 54, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Medial Thigh (Obturator)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Specialized study -- not routinely available in most EMG labs", dist: 12, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Obturator Motor (Adductor)", latency: 8.5, amp: 1.2, velocity: "N/A", abnormal: true, comment: "Low amplitude CMAP" }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 0, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 0, abnormal: false, dist: 10 },
+                { name: "Obturator Motor (Adductor)", latency: 8.5, amp: 1.2, velocity: 0, abnormal: true, comment: "Technically challenging -- recorded with needle electrode in adductor", dist: 14 }
             ],
             comparison: []
         },
@@ -402,14 +477,12 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 4.5, amp: 8.0, velocity: 38, abnormal: true, comment: "Relatively low amplitude suggests post-ganglionic lesion" },
-                { name: "Fibular Sensory", peak: 3.8, amp: 10.0, velocity: 42, abnormal: true },
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false, comment: "Distractor - Normal" }
+                { name: "Sural Sensory", peak: 4.5, amp: 8.0, velocity: 37, abnormal: false, comment: "Low-normal; compare to contralateral side", dist: 14, onset: 3.8 },
+                { name: "Superficial Fibular Sensory", peak: 3.8, amp: 10.0, velocity: 44, abnormal: false, dist: 14, onset: 3.2 }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 52, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 3.5, velocity: 40, abnormal: true },
-                { name: "Tibial Motor (AH)", latency: 4.8, amp: 8.5, velocity: 42, abnormal: true }
+                { name: "Fibular Motor (EDB)", latency: 5.2, amp: 3.5, velocity: 0, abnormal: true, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.8, amp: 8.5, velocity: 0, abnormal: false, dist: 10, comment: "Normal amplitude" }
             ],
             comparison: [
                 { name: "H-Reflex (Tibial)", measureA: "Right (Neutral): 32ms", measureB: "Right (FAIR): 38ms", deltaP: "Positional Delay", abnormal: true }
@@ -430,6 +503,90 @@ export const lowerExtremityCases = {
             "Localization Pearl: **Sparing of the Gluteus Maximus** (Inferior Gluteal nerve) and **Normal Paraspinals** distinguishes this from an S1 radiculopathy.",
             "H-reflex testing in the FAIR position (Flexion, Adduction, Internal Rotation) can increase diagnostic sensitivity by physically compressing the nerve during the test.",
             "Normal Sural SNAP would be expected in radiculopathy; in piriformis syndrome (post-ganglionic), it is often abnormal."
+        ]
+    },
+
+    sciatic_injury: {
+        title: "Foot Drop and Hamstring Weakness After Hip Replacement",
+        difficulty: "difficult",
+        presentation: {
+            age: 67,
+            gender: "Female",
+            occupation: "Retired Nurse",
+            chiefComplaint: "Right foot drop and posterior thigh weakness following total hip arthroplasty 6 weeks ago",
+            history: "Underwent right total hip arthroplasty 6 weeks ago for severe osteoarthritis. Surgery was uncomplicated per the operative note, though it took longer than expected due to a difficult anatomy. Awoke from anesthesia with right foot drop and inability to bend the knee. Has been working with physical therapy with minimal improvement. Now presents for EMG to localize the lesion and assess prognosis.",
+            pmh: "Osteoarthritis, hypothyroidism",
+            medications: "Levothyroxine, oxycodone PRN"
+        },
+        physicalExam: {
+            inspection: "Right calf and anterior compartment atrophy beginning. Right foot held in equinus position. Steppage gait.",
+            palpation: "No tenderness over the sciatic notch. Healed surgical scar over the lateral hip.",
+            rom: "Passive ankle and knee ROM normal. Active dorsiflexion and plantarflexion absent.",
+            strength: "Right Hip Abduction (Glut Med): 5/5 (NORMAL). Right Hip Extension (Glut Max): 5/5 (NORMAL). Right Knee Flexion (Hamstrings): 2/5. Right Ankle Dorsiflexion (TA): 0/5. Right Ankle Plantarflexion (Gastroc): 1/5. Right Ankle Eversion (Peroneus): 0/5. Right Ankle Inversion (Tib Post): 1/5.",
+            sensation: "Decreased light touch and pinprick over the entire foot, lateral lower leg, and posterior calf below the mid-thigh. Sensation preserved in the anteromedial thigh (saphenous distribution -- femoral nerve).",
+            reflexes: "Right Achilles reflex: ABSENT. Right Patellar reflex: 2+ (NORMAL). Left reflexes 2+ throughout.",
+            specialTests: "Negative straight leg raise. Tinel's sign at the sciatic notch is mildly positive."
+        },
+        differentialDiagnosis: [
+            { name: "Sciatic Nerve Injury (Post-Hip Arthroplasty)", ruleOut: "N/A (Correct Diagnosis)" },
+            { name: "Common Fibular (Peroneal) Neuropathy at Fibular Head", ruleOut: "Would only affect the peroneal division (TA, EHL, peroneus). Tibial-innervated muscles (gastrocnemius, tibialis posterior) and the hamstrings would be NORMAL. Here BOTH divisions are affected." },
+            { name: "L5-S1 Radiculopathy", ruleOut: "Would involve the gluteal muscles (Inferior Gluteal nerve, L5-S1) and lumbar paraspinals -- both are NORMAL here. Femoral nerve sensory territory (saphenous) preserved." },
+            { name: "Lumbosacral Plexopathy", ruleOut: "Would also involve gluteal muscles (Superior and Inferior Gluteal nerves, which arise from the sacral plexus PROXIMAL to the sciatic nerve takeoff). Glut max and glut med are normal here." },
+            { name: "Cauda Equina Syndrome", ruleOut: "Bilateral, includes saddle anesthesia and bowel/bladder dysfunction. Patient has neither." }
+        ],
+        requiresEMG: true,
+        emgIndication: "INDICATED",
+        correctDiagnosis: "Sciatic Nerve Injury at the Hip (Post-Arthroplasty)",
+        explanation: "Sciatic nerve injury is one of the most feared complications of total hip arthroplasty (incidence ~0.5-2%). The nerve is at risk from direct surgical trauma, retractor compression, limb lengthening (stretch injury), or hematoma compression. In this case, both the peroneal and tibial divisions are affected -- though the PERONEAL DIVISION is typically more vulnerable due to its position (more lateral, fewer protective fascicles, tethered at the fibular head). Critical localization: the GLUTEAL muscles are SPARED. The superior and inferior gluteal nerves arise from the sacral plexus PROXIMAL to where the sciatic nerve forms, so they are anatomically protected from a hip-level sciatic injury. This single finding rules out a plexus or root-level lesion.",
+        reviewOfSystems: {
+            constitutional: "No fever or systemic symptoms.",
+            musculoskeletal: "Right hip surgical pain has resolved. Now mainly leg/foot weakness.",
+            neurological: "Foot drop, knee flexion weakness, sensory loss in foot and lateral leg.",
+            psychiatric: "Mild depression about loss of mobility."
+        },
+        humoralData: {
+            labs: ["CBC: Normal", "BMP: Normal"],
+            imaging: ["MRI Pelvis: No focal mass or hematoma. Mild scarring around the sciatic nerve at the level of the prosthesis.", "MRI Lumbar Spine: Mild degenerative changes, no significant root compression."]
+        },
+        ncsStudies: {
+            sensory: [
+                { name: "Sural Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, dist: 14, onset: "NR", comment: "ABSENT on right; normal on left (15 uV)" },
+                { name: "Superficial Fibular Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, dist: 14, onset: "NR", comment: "ABSENT on right; normal on left (12 uV)" },
+                { name: "Saphenous Sensory", peak: 3.6, amp: 8, velocity: 39, abnormal: false, dist: 14, onset: 3.6, comment: "NORMAL -- femoral nerve territory preserved" }
+            ],
+            motor: [
+                { name: "Fibular Motor (EDB) - Right", latency: 0, amp: 0, velocity: 0, abnormal: true, dist: 9, comment: "ABSENT" },
+                { name: "Fibular Motor (TA) - Right", latency: 6.8, amp: 0.4, velocity: 0, abnormal: true, dist: 9, comment: "Severely reduced -- alternative recording site" },
+                { name: "Tibial Motor (AH) - Right", latency: 5.8, amp: 1.2, velocity: 0, abnormal: true, dist: 10, comment: "Severely reduced" },
+                { name: "Fibular Motor (EDB) - Left", latency: 4.4, amp: 5.5, velocity: 0, abnormal: false, dist: 9, comment: "Normal contralateral" },
+                { name: "Tibial Motor (AH) - Left", latency: 4.6, amp: 11.0, velocity: 0, abnormal: false, dist: 10, comment: "Normal contralateral" }
+            ],
+            comparison: [
+                { name: "H-Reflex (Tibial)", measureA: "Right: ABSENT", measureB: "Left: 30 ms", deltaP: "Absent on affected side", abnormal: true }
+            ]
+        },
+        emgStudies: [
+            { muscle: "Tibialis Anterior", nerve: "Deep Peroneal (Sciatic-Peroneal Div)", root: "L4-L5", abnormal: true, fibs: "3+", psw: "3+", recruitment: "None", motorUnits: "No voluntary MUAPs" },
+            { muscle: "Extensor Hallucis Longus", nerve: "Deep Peroneal (Sciatic-Peroneal Div)", root: "L5-S1", abnormal: true, fibs: "3+", psw: "3+", recruitment: "None" },
+            { muscle: "Peroneus Longus", nerve: "Superficial Peroneal (Sciatic-Peroneal Div)", root: "L5-S1", abnormal: true, fibs: "3+", psw: "3+", recruitment: "None" },
+            { muscle: "Medial Gastrocnemius", nerve: "Tibial (Sciatic-Tibial Div)", root: "S1-S2", abnormal: true, fibs: "2+", psw: "2+", recruitment: "Severely Reduced" },
+            { muscle: "Tibialis Posterior", nerve: "Tibial (Sciatic-Tibial Div)", root: "L5-S1", abnormal: true, fibs: "2+", recruitment: "Severely Reduced" },
+            { muscle: "Biceps Femoris (Short Head)", nerve: "Sciatic (Peroneal Division -- branches in thigh)", root: "L5-S1", abnormal: true, fibs: "2+", recruitment: "Reduced", comment: "KEY -- short head innervated by peroneal division of sciatic in the thigh. Confirms sciatic-level lesion." },
+            { muscle: "Biceps Femoris (Long Head)", nerve: "Sciatic (Tibial Division -- branches in thigh)", root: "L5-S1-S2", abnormal: true, fibs: "1+", recruitment: "Reduced" },
+            { muscle: "Semimembranosus", nerve: "Sciatic (Tibial Division)", root: "L5-S1-S2", abnormal: true, fibs: "1+", recruitment: "Reduced" },
+            { muscle: "Gluteus Maximus", nerve: "Inferior Gluteal", root: "L5-S1-S2", abnormal: false, comment: "SPARED -- KEY localizing finding. Excludes plexopathy and root lesion." },
+            { muscle: "Gluteus Medius", nerve: "Superior Gluteal", root: "L4-L5-S1", abnormal: false, comment: "SPARED -- further excludes plexopathy" },
+            { muscle: "Tensor Fasciae Latae", nerve: "Superior Gluteal", root: "L4-L5", abnormal: false },
+            { muscle: "Vastus Lateralis", nerve: "Femoral", root: "L2-L4", abnormal: false, comment: "Normal -- femoral nerve preserved" },
+            { muscle: "Lumbar Paraspinals (L4-S1)", abnormal: false, fibs: "0", comment: "Normal -- excludes radiculopathy" }
+        ],
+        teachingPoints: [
+            "Sciatic nerve injury is a feared complication of total hip arthroplasty (incidence 0.5-2%). Always ask about recent hip surgery in any 'foot drop' patient.",
+            "The PERONEAL DIVISION of the sciatic is more vulnerable than the tibial division. It has fewer fascicles, more connective tissue, less mobility, and is positioned more laterally/posteriorly. Even in a complete sciatic injury, peroneal-innervated muscles are often more severely affected.",
+            "GLUTEAL SPARING is the key localizing finding. The superior gluteal (glut med, TFL) and inferior gluteal (glut max) nerves branch from the sacral plexus PROXIMAL to where the sciatic nerve forms and exits the pelvis. A sciatic injury at or below the hip will SPARE these muscles -- ruling out plexopathy.",
+            "BICEPS FEMORIS SHORT HEAD is the only hamstring innervated by the PERONEAL division of the sciatic in the thigh. If it's abnormal, the lesion is at or proximal to the mid-thigh -- not at the fibular head. This distinguishes a sciatic injury from a common fibular nerve lesion.",
+            "Common pitfall: A patient with foot drop after hip surgery is often misdiagnosed with peroneal neuropathy. Always test the hamstrings (especially BFSH) and the gluteal muscles to localize correctly.",
+            "Prognosis: Depends on severity. Complete axonotmesis takes 6-18 months for partial recovery. Many patients have permanent residual foot drop."
         ]
     },
 
@@ -475,14 +632,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 20, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lateral Plantar Sensory", peak: 3.5, amp: 10, velocity: 42, abnormal: false, comment: "Often normal as the entrapment is motor-heavy" }
+                { name: "Sural Sensory", peak: 3.8, amp: 20, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Lateral Plantar Sensory", peak: 3.5, amp: 10, velocity: 34, abnormal: false, comment: "Often normal as the entrapment is motor-heavy", dist: 10, onset: 2.9 }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, comment: "Spared (branch arises distal to this stim point)" },
-                { name: "Tibial Motor (ADQ)", latency: 8.5, amp: 1.5, velocity: "N/A", abnormal: true, comment: "Prolonged distal latency confirming branch-specific entrapment" }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, comment: "Distractor - Normal", dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, comment: "Spared (branch arises distal to this stim point)", dist: 10 },
+                { name: "Tibial Motor (ADQ)", latency: 8.5, amp: 1.5, velocity: "N/A", abnormal: true, comment: "Prolonged distal latency confirming branch-specific entrapment", dist: 10 }
             ],
             comparison: []
         },
@@ -546,13 +703,13 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lat Fem Cutaneous (LFCN)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms LFCN involvement" }
+                { name: "Sural Sensory", peak: 3.8, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 3.1 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 15, velocity: 50, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Lat Fem Cutaneous (LFCN)", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Confirms LFCN involvement", dist: 14, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 8.0, velocity: 45, abnormal: false }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.5, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 8.0, velocity: 45, abnormal: false, dist: 10 }
             ],
             comparison: []
         },
@@ -616,14 +773,14 @@ export const lowerExtremityCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, comment: "Key Localization - Abnormal" }
+                { name: "Sural Sensory", peak: 3.5, amp: 18, velocity: 45, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.8 },
+                { name: "Superficial Fibular Sensory", peak: 3.2, amp: 18, velocity: 48, abnormal: false, comment: "Distractor - Normal", dist: 14, onset: 2.6 },
+                { name: "Saphenous Sensory", peak: "Absent", amp: 0, velocity: 0, abnormal: true, comment: "Key Localization - Abnormal", dist: 14, onset: "NR" }
             ],
             motor: [
-                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false },
-                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false },
-                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 8.5, velocity: 40, abnormal: false, comment: "Rules out Femoral nerve" }
+                { name: "Fibular Motor (EDB)", latency: 4.2, amp: 6.0, velocity: 48, abnormal: false, dist: 9 },
+                { name: "Tibial Motor (AH)", latency: 4.5, amp: 12.0, velocity: 45, abnormal: false, dist: 10 },
+                { name: "Femoral Motor (Quad)", latency: 5.2, amp: 8.5, velocity: 40, abnormal: false, comment: "Rules out Femoral nerve", dist: 16 }
             ],
             comparison: []
         },

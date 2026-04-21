@@ -1,6 +1,9 @@
 import { ClinicalIcons } from './ClinicalIcons.js';
 import { ClinicalShellRenderer } from './ClinicalShellRenderer.js';
 
+// Featured lecture cases -- flagged with a star in the patient case load grid
+const STARRED_CASE_IDS = new Set(['parsonage', 'klumpke', 'complex1', 'retroperitoneal_hematoma', 'sciatic_injury']);
+
 export const ClinicalDashboardRenderer = {
     renderDashboard: function (pgyLevel, caseDatabase, selectedDifficulty = 'all') {
         let caseListHtml = '';
@@ -12,18 +15,31 @@ export const ClinicalDashboardRenderer = {
             </h3>`;
             caseListHtml += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 10px;">';
 
-            for (const [id, caseData] of Object.entries(caseDatabase)) {
+            // Sort: starred lecture cases first, then everything else (stable within groups)
+            const entries = Object.entries(caseDatabase).sort(([idA], [idB]) => {
+                const aStar = STARRED_CASE_IDS.has(idA) ? 0 : 1;
+                const bStar = STARRED_CASE_IDS.has(idB) ? 0 : 1;
+                return aStar - bStar;
+            });
+
+            for (const [id, caseData] of entries) {
                 if (selectedDifficulty !== 'all' && caseData.difficulty !== selectedDifficulty) continue;
 
                 const difficultyColor = caseData.difficulty === 'beginner' ? '#10b981' : (caseData.difficulty === 'intermediate' ? '#f59e0b' : '#ef4444');
+                const starred = STARRED_CASE_IDS.has(id);
+                const starBadge = starred
+                    ? '<span title="Lecture case" style="position: absolute; top: 10px; right: 12px; color: #f59e0b; font-size: 22px; line-height: 1; text-shadow: 0 1px 2px rgba(245,158,11,0.25);">&#9733;</span>'
+                    : '';
+                const starredBorder = starred ? 'box-shadow: 0 4px 6px -1px rgba(245,158,11,0.25), 0 0 0 2px #fbbf24; ' : 'box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); ';
 
                 caseListHtml += `
-                    <div class="difficulty-card" data-action="startCase" data-id="${id}" 
-                         style="width: auto; padding: 20px; border-bottom: 4px solid ${difficultyColor}; text-align: left; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;">
-                        <div style="font-size: 1.1em; font-weight: 700; color: #0f172a; margin-bottom: 8px;">${caseData.title}</div>
+                    <div class="difficulty-card${starred ? ' starred-case' : ''}" data-action="startCase" data-id="${id}"
+                         style="position: relative; width: auto; padding: 20px; border-bottom: 4px solid ${difficultyColor}; text-align: left; background: white; border-radius: 12px; ${starredBorder}transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;">
+                        ${starBadge}
+                        <div style="font-size: 1.1em; font-weight: 700; color: #0f172a; margin-bottom: 8px; padding-right: ${starred ? '28px' : '0'};">${caseData.title}</div>
                         <div style="font-size: 11px; letter-spacing: 1px; color: #64748b; text-transform: uppercase; display: flex; align-items: center; gap: 5px; font-weight: 600;">
                             <span style="width: 8px; height: 8px; border-radius: 50%; background: ${difficultyColor};"></span>
-                            ${caseData.difficulty}
+                            ${caseData.difficulty}${starred ? ' <span style="margin-left: 8px; color: #d97706; letter-spacing: 0.5px;">&middot; LECTURE</span>' : ''}
                         </div>
                     </div>
                  `;

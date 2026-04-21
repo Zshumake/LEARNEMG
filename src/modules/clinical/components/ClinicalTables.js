@@ -41,7 +41,6 @@ export const ClinicalTables = {
                     <thead>
                         <tr>
                             <th class="text-left">Nerve / Site</th>
-                            <th>Onset (ms)</th>
                             <th>Peak Lat (ms)</th>
                             <th>Amp (µV)</th>
                             <th>Segment (cm)</th>
@@ -54,7 +53,6 @@ export const ClinicalTables = {
                 html += `
                     <tr>
                         <td class="text-left" style="font-weight: 600;">${s.name || s.site || s.nerve}</td>
-                        <td>${this.formatKinetic(s.onset, false, 'latency')}</td>
                         <td>${this.formatKinetic(s.peak || s.peakLatency, s.abnormal, 'latency')}</td>
                         <td>${this.formatKinetic(s.amp || s.ptAmp || s.amplitude, s.abnormal, 'ampcv')}</td>
                         <td>${this.formatKinetic(s.dist, false, 'dist')}</td>

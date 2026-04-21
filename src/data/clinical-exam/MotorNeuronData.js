@@ -35,12 +35,13 @@ export const motorNeuronData = {
             ],
             rom: ['ROM limited by weakness, no joint pathology'],
             strength: [
-                { muscle: 'First Dorsal Interosseous', nerve: 'Ulnar', root: 'C8-T1', action: 'Index abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'APB (Split hand)', nerve: 'Median', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'WEAK (often more than hypothenar = split hand)', mrcGrade: '3/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tongue', nerve: 'Hypoglossal (CN XII)', root: 'Brainstem', action: 'Tongue protrusion', expectedFinding: 'WEAK with atrophy and fasciculations (bulbar ALS)', mrcGrade: 'Variable' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'May be WEAK', mrcGrade: '4/5' }
+                { movement: 'Thumb Abduction (APB)', grade: '3/5', finding: 'WEAK', note: 'Split hand sign: APB weaker than hypothenar -- relatively specific for ALS' },
+                { movement: 'Finger Abduction (FDI)', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Ankle Dorsiflexion', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK', note: 'Widespread weakness across multiple levels -- hallmark of ALS' },
+                { movement: 'Ankle Plantarflexion', grade: '4/5', finding: 'WEAK' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL (sensory sparing is cardinal feature)' }
@@ -58,6 +59,38 @@ export const motorNeuronData = {
                 { name: 'Split Hand Assessment', technique: 'Compare thenar (APB) vs hypothenar (ADM) bulk', positiveFinding: 'APB atrophy disproportionate to ADM = split hand sign (relatively specific for ALS)', sensitivity: '55%', specificity: '97%' },
                 { name: 'FVC (Forced Vital Capacity)', technique: 'Bedside spirometry', positiveFinding: 'FVC <80% predicted suggests respiratory muscle involvement' }
             ]
+        },
+        examSequence: {
+            screen: {
+                prompt: 'Patient presents with progressive painless weakness. Which muscles should you test to assess for widespread involvement across multiple levels?',
+                tests: [
+                    { type: 'strength', key: 'Grip Strength' },
+                    { type: 'strength', key: 'Finger Abduction (FDI)' },
+                    { type: 'strength', key: 'Shoulder Abduction' },
+                    { type: 'strength', key: 'Ankle Dorsiflexion' }
+                ],
+                reasoning: 'Testing muscles across multiple spinal levels (hand intrinsics = C8-T1, shoulder = C5, ankle = L5) screens for the widespread weakness that characterizes ALS. Weakness at multiple levels that does not fit a single nerve or root pattern is a red flag for motor neuron disease.'
+            },
+            localize: {
+                prompt: 'Widespread weakness detected across multiple levels. How do you confirm both UMN and LMN involvement -- the hallmark of ALS?',
+                tests: [
+                    { type: 'reflex', key: 'Biceps (C5-C6)' },
+                    { type: 'reflex', key: 'Knee jerk (L3-L4)' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'sensory', key: 'All distributions' }
+                ],
+                reasoning: 'Hyperactive reflexes (UMN signs) in weak, atrophied limbs (LMN signs) is the hallmark of ALS. The combination of brisk reflexes with wasting in the same limb is the key finding. Normal sensory exam is a cardinal feature -- any sensory loss should prompt reconsideration of the diagnosis.'
+            },
+            confirm: {
+                prompt: 'UMN + LMN signs are present with normal sensation. What specific tests confirm ALS and assess severity?',
+                tests: [
+                    { type: 'specialTest', key: 'Split Hand Assessment' },
+                    { type: 'specialTest', key: 'Babinski Sign' },
+                    { type: 'specialTest', key: 'Hoffmann Sign' },
+                    { type: 'specialTest', key: 'Jaw Jerk' }
+                ],
+                reasoning: 'Split hand sign (APB weaker than ADM) is relatively specific for ALS (97% specificity). Babinski and Hoffmann signs confirm UMN involvement in the limbs. Brisk jaw jerk indicates bulbar UMN involvement, expanding the affected regions and supporting the diagnosis across multiple body segments.'
+            }
         },
         keyDistinguishingFindings: [
             'UMN + LMN signs in SAME body region is the hallmark: brisk reflexes (UMN) with atrophy and fasciculations (LMN) in the same limb',
@@ -98,10 +131,12 @@ export const motorNeuronData = {
             palpation: ['Fasciculations palpable', 'Muscles may feel soft/atrophic'],
             rom: ['Limited by weakness only'],
             strength: [
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Fine motor', expectedFinding: 'WEAK (asymmetric)', mrcGrade: '3-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'Variable', mrcGrade: '4-5/5' }
+                { movement: 'Finger Abduction (FDI)', grade: '3-4/5', finding: 'WEAK', note: 'Asymmetric hand weakness often the presenting feature' },
+                { movement: 'Grip Strength', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Ankle Dorsiflexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '4-5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL' }
@@ -157,11 +192,12 @@ export const motorNeuronData = {
             palpation: ['Gynecomastia palpable', 'Fasciculations palpable in face and limbs'],
             rom: ['Limited by weakness'],
             strength: [
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK (proximal predominant)', mrcGrade: '3-4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Fine motor', expectedFinding: 'Mildly WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tongue/Facial', nerve: 'CN VII/XII', root: 'Brainstem', action: 'Speech/swallowing', expectedFinding: 'WEAK', mrcGrade: 'Variable' }
+                { movement: 'Shoulder Abduction', grade: '3-4/5', finding: 'WEAK', note: 'Proximal predominant -- Kennedy is proximal > distal' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Finger Abduction (FDI)', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Distal extremities', modality: 'Vibration', expectedFinding: 'Decreased (sensory neuropathy — KEY distinction from ALS)' },
@@ -218,11 +254,12 @@ export const motorNeuronData = {
             palpation: ['Fasciculations palpable', 'Muscles may feel soft'],
             rom: ['Scoliosis limits trunk ROM', 'Joint contractures possible in chronic cases'],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK (proximal predominant)', mrcGrade: '3-4/5' },
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'Less WEAK (distal relatively spared)', mrcGrade: '4-5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Fine motor', expectedFinding: 'Relatively preserved', mrcGrade: '4-5/5' }
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Proximal > distal, symmetric -- hallmark of SMA' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Ankle Dorsiflexion', grade: '4-5/5', finding: 'Normal', note: 'Distal relatively spared' },
+                { movement: 'Grip Strength', grade: '4-5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction (FDI)', grade: '4-5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All', expectedFinding: 'NORMAL' }

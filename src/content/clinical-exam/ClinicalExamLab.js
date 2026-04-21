@@ -4,11 +4,37 @@
  * Two modes: Study Mode (browse diagnoses) and Exam Builder (build from differential).
  */
 import { clinicalExamData, DIAGNOSIS_CATEGORIES } from '../../data/clinical-exam/index.js?v=rootfix1';
+import { clinicalCasesData } from '../../data/cases/index.js';
+import { ClinicalTables } from '../../modules/clinical/components/ClinicalTables.js';
+
+// Featured/starred cases for presentation
+const STARRED_CASES = new Set(['parsonage_turner', 'lower_trunk_plexopathy', 'traumatic_brachial_plexus', 'femoral_neuropathy', 'piriformis_sciatic']);
+
+// Maps clinical-exam diagnosis IDs to NCS/EMG case database IDs
+const DIAGNOSIS_TO_CASE_MAP = {
+    cts: 'hand14', cubital_tunnel: 'hand5', guyons_canal: 'guyon',
+    pronator_syndrome: 'pronator', ain_syndrome: 'ain', pin_syndrome: 'pin',
+    wartenberg: 'wartenberg', suprascapular: 'suprascapular', axillary: 'axillary',
+    long_thoracic: 'long_thoracic', musculocutaneous: 'musculocutaneous',
+    fibular_neuropathy: 'footdrop', tarsal_tunnel: 'tarsal',
+    deep_peroneal_ankle: 'deep_peroneal_ankle', femoral_neuropathy: 'retroperitoneal_hematoma',
+    obturator_neuropathy: 'obturator', meralgia_paresthetica: 'meralgia',
+    piriformis_sciatic: 'sciatic_injury', baxters: 'baxters', saphenous: 'saphenous_isolated',
+    radial_tunnel: 'radialneuropathy', parsonage_turner: 'parsonage',
+    radiation_plexopathy: 'radiationplexopathy', lumbosacral_plexopathy: 'diabeticplexopathy',
+    c5_radiculopathy: 'c5radiculopathy', c6_radiculopathy: 'c6radiculopathy',
+    c7_radiculopathy: 'c7radiculopathy', l5_radiculopathy: 'l5radiculopathy',
+    s1_radiculopathy: 's1radiculopathy',
+    diabetic_polyneuropathy: 'polyneuropathy', gbs: 'gbs', cidp: 'cidp',
+    cmt: 'cmt', small_fiber: 'small_fiber', mmn: 'mmn',
+    als: 'als', myasthenia_gravis: 'mg', lems: 'lems', polymyositis: 'myopathy',
+};
 
 // Inline SVG icons (no emojis)
 const ICONS = {
     study: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
     builder: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+    coach: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
     history: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
     exam: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
     key: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
@@ -68,6 +94,9 @@ class ClinicalExamLabModule {
                     <button id="cel-tab-builder" class="cel-tab" data-action="celSwitchTab" data-tab="builder">
                         ${ICONS.builder} Exam Builder
                     </button>
+                    <button id="cel-tab-coach" class="cel-tab" data-action="celSwitchTab" data-tab="coach">
+                        ${ICONS.coach} Exam Coach
+                    </button>
                 </div>
                 <div id="cel-study-panel" class="cel-panel">
                     ${this.renderStudyMode()}
@@ -75,12 +104,16 @@ class ClinicalExamLabModule {
                 <div id="cel-builder-panel" class="cel-panel" style="display:none;">
                     ${this.renderExamBuilder()}
                 </div>
+                <div id="cel-coach-panel" class="cel-panel" style="display:none;">
+                    ${this.renderCoachMode()}
+                </div>
             </div>
         `;
     }
 
     initialize() {
         window._celModule = this;
+        this.coachState = null; // { diagnosisId, phase: 'screen'|'localize'|'confirm'|'summary' }
 
         window._registerAction('celSwitchTab', (el) => this.switchTab(el.dataset.tab));
         window._registerAction('celToggleCategory', (el) => this.toggleCategory(el.dataset.category));
@@ -89,6 +122,9 @@ class ClinicalExamLabModule {
         window._registerAction('celBuildExam', () => this.buildExam());
         window._registerAction('celCopyExam', () => this.copyExam());
         window._registerAction('celToggleBuilderDx', (el) => this.toggleBuilderDx(el.dataset.builderDxId));
+        window._registerAction('celSelectCoachDx', (el) => this.selectCoachDiagnosis(el.dataset.diagnosisId));
+        window._registerAction('celCoachNext', () => this.advanceCoachPhase());
+        window._registerAction('celCoachReveal', (el) => this.revealCoachFinding(parseInt(el.dataset.idx)));
 
         const firstCat = this.categories[0];
         if (firstCat && firstCat.ids.length > 0) {
@@ -99,10 +135,12 @@ class ClinicalExamLabModule {
     // --- Tab Switching ---
     switchTab(tab) {
         this.currentTab = tab;
-        document.getElementById('cel-study-panel').style.display = tab === 'study' ? 'flex' : 'none';
-        document.getElementById('cel-builder-panel').style.display = tab === 'builder' ? 'block' : 'none';
-        document.getElementById('cel-tab-study').className = `cel-tab ${tab === 'study' ? 'cel-tab-active' : ''}`;
-        document.getElementById('cel-tab-builder').className = `cel-tab ${tab === 'builder' ? 'cel-tab-active' : ''}`;
+        ['study', 'builder', 'coach'].forEach(t => {
+            const panel = document.getElementById(`cel-${t}-panel`);
+            const btn = document.getElementById(`cel-tab-${t}`);
+            if (panel) panel.style.display = t === tab ? (t === 'study' || t === 'coach' ? 'flex' : 'block') : 'none';
+            if (btn) btn.className = `cel-tab ${t === tab ? 'cel-tab-active' : ''}`;
+        });
     }
 
     // --- STUDY MODE ---
@@ -123,10 +161,11 @@ class ClinicalExamLabModule {
                                 ${cat.ids.map(id => {
                                     const dx = this.data[id];
                                     if (!dx) return '';
-                                    return `<div class="cel-dx-item ${dx.isInappropriate ? 'cel-dx-inappropriate' : ''}"
+                                    const starred = STARRED_CASES.has(id);
+                                    return `<div class="cel-dx-item ${dx.isInappropriate ? 'cel-dx-inappropriate' : ''} ${starred ? 'cel-dx-starred' : ''}"
                                                 id="cel-dx-${id}"
                                                 data-action="celSelectDiagnosis" data-diagnosis-id="${id}">
-                                        ${dx.name}
+                                        ${starred ? '<span class="cel-star">&#9733;</span>' : ''}${dx.name}
                                         ${dx.isInappropriate ? '<span class="cel-badge-warn">Non-EMG</span>' : ''}
                                     </div>`;
                                 }).join('')}
@@ -197,7 +236,7 @@ class ClinicalExamLabModule {
     // =========================================
     renderDiagnosisDetail(dx) {
         const pe = dx.physicalExam;
-        const abnormalStrength = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const abnormalStrength = (pe.strength || []).filter(s => this.getStatus(s.finding || s.expectedFinding) === 'abnormal').length;
         const totalStrength = (pe.strength || []).length;
         const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
         const totalSensory = (pe.sensory || []).length;
@@ -212,7 +251,7 @@ class ClinicalExamLabModule {
                 <div class="cel-hero ${dx.isInappropriate ? 'cel-hero-warn' : ''}">
                     <div class="cel-hero-content">
                         <span class="cel-hero-cat">${dx.category}</span>
-                        <h2 class="cel-hero-title">${dx.name}</h2>
+                        <h2 class="cel-hero-title">${STARRED_CASES.has(dx.id) ? '<span class="cel-star-hero">&#9733;</span> ' : ''}${dx.name}</h2>
                         <div class="cel-hero-stats">
                             ${totalStrength ? `<span class="cel-stat-chip ${abnormalStrength ? 'cel-chip-abnormal' : 'cel-chip-normal'}">${abnormalStrength}/${totalStrength} muscles abnormal</span>` : ''}
                             ${totalSensory ? `<span class="cel-stat-chip ${abnormalSensory ? 'cel-chip-abnormal' : 'cel-chip-normal'}">${abnormalSensory}/${totalSensory} sensory abnormal</span>` : ''}
@@ -259,6 +298,204 @@ class ClinicalExamLabModule {
                         ${this.renderExamList('Range of Motion', ICONS.rom, pe.rom)}
                     </div>
                 </div>
+
+                ${this.renderEDXLink(dx.id)}
+            </div>
+        `;
+    }
+
+    // --- EDX CASE LINKING ---
+    renderEDXLink(diagnosisId) {
+        const caseId = DIAGNOSIS_TO_CASE_MAP[diagnosisId];
+        if (!caseId) return '';
+        const caseData = clinicalCasesData[caseId];
+        if (!caseData) return '';
+
+        return `
+            <div class="cel-edx-section">
+                <div class="cel-edx-header" data-action="celToggleSection" data-section-id="edx-${diagnosisId}">
+                    <span class="cel-edx-icon">${ICONS.exam}</span>
+                    <span>View EDX Study Findings</span>
+                    <span class="cel-edx-case-name">${caseData.correctDiagnosis || caseData.title || ''}</span>
+                    <span class="cel-toggle" id="cel-arrow-edx-${diagnosisId}">+</span>
+                </div>
+                <div id="cel-section-edx-${diagnosisId}" class="cel-section-body cel-collapsed">
+                    <div class="cel-edx-tables">
+                        ${ClinicalTables.generateNCSTable(caseData)}
+                        ${ClinicalTables.generateEMGTable(caseData.emgStudies || caseData.emgFindings || [])}
+                    </div>
+                    ${caseData.teachingPoints?.length ? `
+                    <div class="cel-edx-teaching">
+                        <strong>EDX Teaching Points</strong>
+                        <ul>${caseData.teachingPoints.map(t => `<li>${t}</li>`).join('')}</ul>
+                    </div>` : ''}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- EXAM SEQUENCE COACH ---
+    renderCoachMode() {
+        const coachDiagnoses = Object.entries(this.data).filter(([, dx]) => dx.examSequence);
+        if (coachDiagnoses.length === 0) {
+            return `<div class="cel-coach-empty">No exam sequence data available yet. Check back soon!</div>`;
+        }
+        // Group by category
+        const groups = {};
+        coachDiagnoses.forEach(([id, dx]) => {
+            const cat = dx.category || 'Other';
+            if (!groups[cat]) groups[cat] = [];
+            groups[cat].push({ id, name: dx.name });
+        });
+        return `
+            <div class="cel-coach-sidebar">
+                <h3 class="cel-sidebar-title">Guided Cases</h3>
+                ${Object.entries(groups).map(([cat, items]) => `
+                    <div class="cel-coach-group-label">${cat}</div>
+                    ${items.map(d => `
+                        <div class="cel-sidebar-item" data-action="celSelectCoachDx" data-diagnosis-id="${d.id}">${d.name}</div>
+                    `).join('')}
+                `).join('')}
+            </div>
+            <div class="cel-coach-main" id="cel-coach-main">
+                <div class="cel-coach-placeholder">
+                    <div class="cel-coach-placeholder-icon">${ICONS.coach}</div>
+                    <h3>Exam Sequence Coach</h3>
+                    <p>Learn the clinical reasoning ORDER of the physical exam.</p>
+                    <p><strong>Screen</strong> (quick movements) &rarr; <strong>Localize</strong> (targeted tests) &rarr; <strong>Confirm</strong> (special tests)</p>
+                    <p>Select a case from the left to begin.</p>
+                </div>
+            </div>
+        `;
+    }
+
+    selectCoachDiagnosis(id) {
+        this.coachState = { diagnosisId: id, phase: 'screen', revealed: [] };
+        // Highlight selected item
+        document.querySelectorAll('.cel-coach-sidebar .cel-sidebar-item').forEach(el => {
+            el.classList.toggle('cel-sidebar-active', el.dataset.diagnosisId === id);
+        });
+        this.renderCoachPhase();
+    }
+
+    advanceCoachPhase() {
+        if (!this.coachState) return;
+        const phases = ['screen', 'localize', 'confirm', 'summary'];
+        const idx = phases.indexOf(this.coachState.phase);
+        if (idx < phases.length - 1) {
+            this.coachState.phase = phases[idx + 1];
+            this.coachState.revealed = [];
+            this.renderCoachPhase();
+        }
+    }
+
+    revealCoachFinding(idx) {
+        const el = document.querySelector(`.cel-coach-finding[data-idx="${idx}"]`);
+        if (el) {
+            el.classList.remove('cel-coach-hidden');
+            el.classList.add('cel-coach-revealed');
+        }
+        if (this.coachState) this.coachState.revealed.push(idx);
+    }
+
+    renderCoachPhase() {
+        const main = document.getElementById('cel-coach-main');
+        if (!main || !this.coachState) return;
+
+        const dx = this.data[this.coachState.diagnosisId];
+        if (!dx || !dx.examSequence) return;
+
+        const { phase } = this.coachState;
+        const phases = ['screen', 'localize', 'confirm'];
+        const phaseLabels = ['Screen', 'Localize', 'Confirm'];
+
+        if (phase === 'summary') {
+            main.innerHTML = `
+                <div class="cel-coach-summary">
+                    <div class="cel-coach-complete">Clinical reasoning complete!</div>
+                    <h3>${dx.name}</h3>
+                    ${dx.keyDistinguishingFindings?.length ? `
+                    <div class="cel-pearls">
+                        ${dx.keyDistinguishingFindings.map(f => `<div class="cel-pearl-item"><span class="cel-pearl-dot"></span> ${f}</div>`).join('')}
+                    </div>` : ''}
+                    ${this.renderEDXLink(this.coachState.diagnosisId)}
+                </div>
+            `;
+            return;
+        }
+
+        const phaseData = dx.examSequence[phase];
+        if (!phaseData) return;
+        const pe = dx.physicalExam;
+        const currentIdx = phases.indexOf(phase);
+
+        // Look up actual findings for each test
+        const findings = (phaseData.tests || []).map(t => {
+            let match = null;
+            if (t.type === 'strength') match = (pe.strength || []).find(s => (s.movement || s.muscle) === t.key);
+            else if (t.type === 'sensory') match = (pe.sensory || []).find(s => s.area === t.key);
+            else if (t.type === 'reflex') match = (pe.reflexes || []).find(r => r.reflex === t.key);
+            else if (t.type === 'specialTest') match = (pe.specialTests || []).find(s => s.name === t.key);
+            return { ...t, match };
+        });
+
+        main.innerHTML = `
+            <div class="cel-coach-content">
+                <div class="cel-coach-progress">
+                    ${phases.map((p, i) => `
+                        <div class="cel-cp-step ${i === currentIdx ? 'cel-cp-active' : i < currentIdx ? 'cel-cp-done' : ''}">
+                            <div class="cel-cp-circle">${i < currentIdx ? '&#10003;' : i + 1}</div>
+                            <span class="cel-cp-label">${phaseLabels[i]}</span>
+                        </div>
+                        ${i < phases.length - 1 ? '<div class="cel-cp-line"></div>' : ''}
+                    `).join('')}
+                </div>
+
+                <div class="cel-coach-prompt">
+                    <div class="cel-coach-phase-label">${phaseLabels[currentIdx]}</div>
+                    <p>${phaseData.prompt}</p>
+                </div>
+
+                <div class="cel-coach-findings">
+                    ${findings.map((f, i) => {
+                        const m = f.match;
+                        if (!m) return `<div class="cel-coach-finding cel-coach-hidden" data-idx="${i}" data-action="celCoachReveal" data-idx="${i}"><div class="cel-cf-type">${f.type}</div><div class="cel-cf-key">${f.key}</div><div class="cel-cf-result">No data</div></div>`;
+
+                        let result = '', status = 'normal';
+                        if (f.type === 'strength') {
+                            result = `${m.grade} - ${m.finding || m.expectedFinding}`;
+                            status = this.getStatus(m.finding || m.expectedFinding);
+                        } else if (f.type === 'sensory') {
+                            result = m.expectedFinding;
+                            status = this.getStatus(m.expectedFinding);
+                        } else if (f.type === 'reflex') {
+                            result = m.expectedFinding;
+                            status = this.getStatus(m.expectedFinding);
+                        } else if (f.type === 'specialTest') {
+                            result = m.positiveFinding || m.expectedFinding || 'Positive';
+                            status = 'abnormal';
+                        }
+
+                        return `
+                        <div class="cel-coach-finding cel-coach-hidden cel-finding-${status}" data-idx="${i}" data-action="celCoachReveal">
+                            <div class="cel-cf-type">${f.type}</div>
+                            <div class="cel-cf-key">${f.key}</div>
+                            <div class="cel-cf-result">${result}</div>
+                            ${m.note ? `<div class="cel-cf-note">${m.note}</div>` : ''}
+                        </div>`;
+                    }).join('')}
+                </div>
+
+                <div class="cel-coach-reasoning" data-action="celToggleSection" data-section-id="coach-reasoning">
+                    <strong>Clinical Reasoning <span class="cel-toggle" id="cel-arrow-coach-reasoning">+</span></strong>
+                </div>
+                <div id="cel-section-coach-reasoning" class="cel-section-body cel-collapsed">
+                    <div class="cel-coach-reasoning-text">${phaseData.reasoning}</div>
+                </div>
+
+                <button class="cel-coach-next-btn" data-action="celCoachNext">
+                    ${currentIdx < phases.length - 1 ? `Next: ${phaseLabels[currentIdx + 1]} &rarr;` : 'View Summary &rarr;'}
+                </button>
             </div>
         `;
     }
@@ -266,7 +503,7 @@ class ClinicalExamLabModule {
     // --- STRENGTH CARD GRID ---
     renderStrengthCards(strength) {
         if (!strength || strength.length === 0) return '';
-        const abnormal = strength.filter(s => this.getStatus(s.expectedFinding) === 'abnormal').length;
+        const abnormal = strength.filter(s => this.getStatus(s.finding || s.expectedFinding) === 'abnormal').length;
         const pct = Math.round((abnormal / strength.length) * 100);
         return `
             <div class="cel-card-section">
@@ -277,18 +514,16 @@ class ClinicalExamLabModule {
                 <div class="cel-summary-bar"><div class="cel-summary-fill cel-fill-abnormal" style="width:${pct}%"></div></div>
                 <div class="cel-muscle-grid">
                     ${strength.map(s => {
-                        const status = this.getStatus(s.expectedFinding);
+                        const status = this.getStatus(s.finding || s.expectedFinding);
                         return `
-                        <div class="cel-muscle-card cel-finding-${status}">
-                            <div class="cel-mc-top">
-                                <span class="cel-mc-name">${s.muscle}</span>
-                                <span class="cel-mrc-badge cel-mrc-${status}">${s.mrcGrade}</span>
+                        <div class="cel-muscle-card cel-finding-${status}" >
+                            <div class="cel-mc-content">
+                                <div class="cel-mc-top">
+                                    <span class="cel-mc-name">${s.movement || s.muscle}</span>
+                                    <span class="cel-mrc-badge cel-mrc-${status}">${s.grade || s.mrcGrade}</span>
+                                </div>
+                                ${s.note ? `<div class="cel-mc-details"><span class="cel-mc-note">${s.note}</span></div>` : ''}
                             </div>
-                            <div class="cel-mc-details">
-                                <span class="cel-mc-nerve">${s.nerve}</span>
-                                <span class="cel-mc-root">${s.root}</span>
-                            </div>
-                            <div class="cel-mc-action">${s.action}</div>
                         </div>`;
                     }).join('')}
                 </div>
@@ -431,7 +666,7 @@ class ClinicalExamLabModule {
     // --- ANATOMICAL DIAGRAM ---
     renderAnatomicalDiagram(dx, region) {
         const pe = dx.physicalExam;
-        const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.muscle);
+        const abnormalMuscles = (pe.strength || []).filter(s => this.getStatus(s.finding || s.expectedFinding) === 'abnormal').map(s => s.movement || s.muscle);
         const abnormalSensory = (pe.sensory || []).filter(s => this.getStatus(s.expectedFinding) === 'abnormal').map(s => s.area);
         // Only highlight the specific affected root for radiculopathies using explicit affectedRoot field
         const abnormalRoots = dx.affectedRoot ? [dx.affectedRoot] : [];
@@ -593,7 +828,7 @@ class ClinicalExamLabModule {
             (pe.inspection || []).forEach(item => { const key = item.substring(0, 60); if (!allInspection.has(key)) allInspection.set(key, { text: item }); });
             (pe.palpation || []).forEach(item => { const key = item.substring(0, 60); if (!allPalpation.has(key)) allPalpation.set(key, { text: item }); });
             (pe.rom || []).forEach(item => { const key = item.substring(0, 60); if (!allRom.has(key)) allRom.set(key, { text: item }); });
-            (pe.strength || []).forEach(s => { if (!allStrength.has(s.muscle)) allStrength.set(s.muscle, s); });
+            (pe.strength || []).forEach(s => { const key = s.movement || s.muscle; if (!allStrength.has(key)) allStrength.set(key, s); });
             (pe.sensory || []).forEach(s => { const key = s.area.substring(0, 50); if (!allSensory.has(key)) allSensory.set(key, s); });
             (pe.reflexes || []).forEach(r => { if (!allReflexes.has(r.reflex)) allReflexes.set(r.reflex, r); });
             (pe.specialTests || []).forEach(t => { if (!allSpecialTests.has(t.name)) allSpecialTests.set(t.name, t); });
@@ -794,15 +1029,20 @@ class ClinicalExamLabModule {
             .cel-pearl-item { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; font-size: 0.88em; color: #065f46; line-height: 1.45; }
             .cel-pearl-dot { width: 6px; height: 6px; border-radius: 50%; background: #059669; flex-shrink: 0; margin-top: 6px; }
 
+            /* Starred/Featured Cases */
+            .cel-star { color: #f59e0b; font-size: 0.9em; margin-right: 4px; }
+            .cel-dx-starred { background: linear-gradient(90deg, rgba(245,158,11,0.08), transparent); border-left: 2px solid #f59e0b; }
+            .cel-star-hero { color: #fbbf24; }
+
             /* Exam Layout with Diagram */
             .cel-exam-layout { display: flex; gap: 16px; margin-bottom: 16px; }
             .cel-exam-layout.cel-has-diagram .cel-diagram-panel { width: 250px; flex-shrink: 0; }
             .cel-exam-content { flex: 1; min-width: 0; }
             .cel-diagram-panel { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; position: sticky; top: 0; align-self: flex-start; }
             .cel-diagram-title { font-size: 0.8em; font-weight: 700; color: #334155; margin-bottom: 8px; text-align: center; }
-            .cel-diagram-legend { display: flex; justify-content: center; gap: 12px; margin-top: 8px; font-size: 0.72em; color: #64748b; }
-            .cel-legend-item { display: flex; align-items: center; gap: 4px; }
-            .cel-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+            .cel-diagram-legend { display: flex; justify-content: center; gap: 12px; margin-top: 12px; font-size: 0.75em; color: #64748b; }
+            .cel-legend-item { display: flex; align-items: center; gap: 5px; }
+            .cel-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
             .cel-legend-abnormal { background: #fecaca; border: 1px solid #dc2626; }
             .cel-legend-normal { background: #e2e8f0; border: 1px solid #94a3b8; }
 
@@ -818,10 +1058,11 @@ class ClinicalExamLabModule {
             .cel-fill-abnormal { background: #dc2626; }
 
             /* Muscle Cards */
-            .cel-muscle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
-            .cel-muscle-card { border-radius: 8px; border: 1px solid #e2e8f0; padding: 8px 10px; border-left: 4px solid; transition: transform 0.15s, box-shadow 0.15s; }
-            .cel-muscle-card:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.06); }
-            .cel-finding-abnormal { border-left-color: var(--cel-abnormal); background: var(--cel-abnormal-bg); }
+            .cel-muscle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+            .cel-muscle-card { border-radius: 8px; border: 1px solid #e2e8f0; padding: 10px 14px; border-left: 4px solid; transition: transform 0.15s, box-shadow 0.15s; display: flex; gap: 12px; align-items: center; background: white; }
+            .cel-mc-content { flex: 1; min-width: 0; }
+            .cel-muscle-card:hover { transform: translateX(2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: #cbd5e1; }
+            .cel-finding-abnormal { border-left-color: var(--cel-abnormal); }
             .cel-finding-uncertain { border-left-color: var(--cel-uncertain); background: var(--cel-uncertain-bg); }
             .cel-finding-normal { border-left-color: var(--cel-normal); background: var(--cel-normal-bg); }
             .cel-mc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
@@ -833,6 +1074,7 @@ class ClinicalExamLabModule {
             .cel-mc-details { display: flex; gap: 8px; margin-bottom: 2px; }
             .cel-mc-nerve, .cel-mc-root { font-size: 0.75em; color: #64748b; }
             .cel-mc-action { font-size: 0.75em; color: #475569; font-style: italic; }
+            .cel-mc-note { font-size: 0.75em; color: #64748b; font-style: italic; }
 
             /* Sensory Cards */
             .cel-sensory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
@@ -932,6 +1174,67 @@ class ClinicalExamLabModule {
             .cel-test-stats { font-weight: 400; color: #64748b; font-size: 0.85em; }
             .cel-test-technique { font-size: 0.88em; color: #475569; margin-bottom: 3px; }
             .cel-test-positive { font-size: 0.88em; color: #0d9488; }
+
+            /* Coach Mode */
+            #cel-coach-panel { gap: 20px; min-height: 600px; }
+            .cel-coach-sidebar { width: 220px; flex-shrink: 0; background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px; max-height: 700px; overflow-y: auto; }
+            .cel-coach-group-label { font-size: 0.72em; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin: 12px 0 4px; padding-top: 8px; border-top: 1px solid #f1f5f9; }
+            .cel-coach-group-label:first-of-type { margin-top: 0; border-top: none; }
+            .cel-coach-main { flex: 1; min-width: 0; }
+            .cel-coach-placeholder { text-align: center; padding: 60px 30px; color: #64748b; }
+            .cel-coach-placeholder-icon { margin-bottom: 12px; transform: scale(2); display: inline-block; color: #0d9488; }
+            .cel-coach-placeholder h3 { color: #1e293b; margin: 8px 0; }
+            .cel-coach-placeholder p { max-width: 400px; margin: 6px auto; font-size: 0.9em; line-height: 1.5; }
+            .cel-coach-empty { text-align: center; padding: 40px; color: #94a3b8; }
+
+            .cel-coach-progress { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 20px; padding: 16px; background: white; border-radius: 12px; border: 1px solid #e2e8f0; }
+            .cel-cp-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+            .cel-cp-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; background: #f1f5f9; color: #94a3b8; border: 2px solid #e2e8f0; transition: all 0.3s; }
+            .cel-cp-active .cel-cp-circle { background: #0d9488; color: white; border-color: #0d9488; box-shadow: 0 0 0 4px rgba(13,148,136,0.15); }
+            .cel-cp-done .cel-cp-circle { background: #10b981; color: white; border-color: #10b981; }
+            .cel-cp-label { font-size: 0.72em; font-weight: 600; color: #94a3b8; }
+            .cel-cp-active .cel-cp-label { color: #0d9488; }
+            .cel-cp-done .cel-cp-label { color: #10b981; }
+            .cel-cp-line { width: 40px; height: 2px; background: #e2e8f0; margin: 0 8px; margin-bottom: 18px; }
+
+            .cel-coach-prompt { background: white; border-left: 4px solid #0d9488; padding: 18px 20px; border-radius: 0 12px 12px 0; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+            .cel-coach-phase-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #0d9488; margin-bottom: 6px; }
+            .cel-coach-prompt p { margin: 0; font-size: 1.05em; color: #1e293b; font-weight: 500; line-height: 1.5; }
+
+            .cel-coach-findings { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-bottom: 16px; }
+            .cel-coach-finding { padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: white; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; }
+            .cel-coach-hidden { filter: blur(6px); opacity: 0.3; }
+            .cel-coach-hidden::after { content: 'Click to reveal'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85em; color: #64748b; filter: none; background: rgba(255,255,255,0.7); }
+            .cel-coach-revealed { filter: none; opacity: 1; }
+            .cel-cf-type { font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; margin-bottom: 4px; }
+            .cel-cf-key { font-weight: 700; font-size: 0.9em; color: #1e293b; margin-bottom: 4px; }
+            .cel-cf-result { font-size: 0.85em; font-weight: 600; }
+            .cel-finding-abnormal .cel-cf-result { color: #dc2626; }
+            .cel-finding-normal .cel-cf-result { color: #059669; }
+            .cel-cf-note { font-size: 0.78em; color: #64748b; margin-top: 4px; font-style: italic; }
+
+            .cel-coach-reasoning { padding: 12px 16px; background: #f0fdf4; border-radius: 10px; border: 1px solid #bbf7d0; cursor: pointer; margin-bottom: 12px; }
+            .cel-coach-reasoning strong { font-size: 0.88em; color: #166534; display: flex; align-items: center; justify-content: space-between; }
+            .cel-coach-reasoning-text { padding: 12px 16px; font-size: 0.88em; color: #166534; line-height: 1.6; }
+
+            .cel-coach-next-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #0d9488, #0f766e); color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+            .cel-coach-next-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,148,136,0.3); }
+
+            .cel-coach-complete { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 14px 20px; border-radius: 10px; font-size: 1.1em; font-weight: 700; text-align: center; margin-bottom: 16px; }
+            .cel-coach-summary h3 { text-align: center; margin: 12px 0 16px; color: #1e293b; }
+
+            /* EDX Case Link */
+            .cel-edx-section { margin-top: 20px; border: 2px solid #bfdbfe; border-radius: 14px; overflow: hidden; background: white; }
+            .cel-edx-header { display: flex; align-items: center; gap: 8px; padding: 14px 18px; background: linear-gradient(135deg, #eff6ff, #dbeafe); cursor: pointer; font-weight: 700; font-size: 0.92em; color: #1e40af; transition: background 0.2s; }
+            .cel-edx-header:hover { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+            .cel-edx-icon { display: flex; }
+            .cel-edx-case-name { margin-left: auto; font-weight: 500; font-size: 0.85em; color: #3b82f6; }
+            .cel-edx-tables { padding: 16px; overflow-x: auto; }
+            .cel-edx-tables table { font-size: 0.82em; }
+            .cel-edx-teaching { padding: 0 16px 16px; }
+            .cel-edx-teaching strong { display: block; font-size: 0.85em; color: #1e40af; margin-bottom: 6px; }
+            .cel-edx-teaching ul { margin: 0; padding-left: 18px; font-size: 0.82em; color: #334155; line-height: 1.6; }
+            .cel-edx-teaching li { margin-bottom: 4px; }
 
             /* Animation */
             @keyframes celFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }

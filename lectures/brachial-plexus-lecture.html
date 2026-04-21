@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Localizing the Lesion -- 5 Cases</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f172a; color: #f8fafc; }
+    .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+    .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; opacity: 0; transition: opacity 0.4s; }
+    .slide.active { display: flex; opacity: 1; }
+    .slide.title-slide { background: linear-gradient(135deg, #0f172a, #1e293b, #334155); justify-content: center; text-align: center; }
+    .slide.case-1 { background: linear-gradient(135deg, #064e3b, #065f46); }
+    .slide.case-2 { background: linear-gradient(135deg, #1e3a8a, #1e40af); }
+    .slide.case-3 { background: linear-gradient(135deg, #7f1d1d, #991b1b); }
+    .slide.case-4 { background: linear-gradient(135deg, #581c87, #6b21a8); }
+    .slide.case-5 { background: linear-gradient(135deg, #134e4a, #115e59); }
+    .slide.pause { background: linear-gradient(135deg, #1e293b, #334155); border-left: 8px solid #f59e0b; }
+    .slide.pearl { background: linear-gradient(135deg, #422006, #78350f); border-left: 8px solid #fbbf24; }
+
+    .case-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.7em; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; background: rgba(255,255,255,0.15); align-self: flex-start; }
+    h1 { font-size: 3.2em; font-weight: 900; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+    h2 { font-size: 2.4em; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.01em; }
+    h3 { font-size: 1.6em; font-weight: 700; margin-bottom: 16px; color: #fbbf24; }
+    h4 { font-size: 1.2em; font-weight: 700; margin-bottom: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+    p, li { font-size: 1.4em; line-height: 1.6; margin-bottom: 12px; }
+    .subtitle { font-size: 1.5em; opacity: 0.8; margin-bottom: 40px; }
+    ul { list-style: none; padding: 0; }
+    li { padding-left: 28px; position: relative; }
+    li::before { content: '→'; position: absolute; left: 0; color: #fbbf24; font-weight: 800; }
+
+    .pause-banner { background: rgba(245, 158, 11, 0.2); border: 2px solid #f59e0b; padding: 24px; border-radius: 16px; margin-top: 30px; }
+    .pause-banner .label { font-size: 0.85em; font-weight: 800; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px; }
+    .pause-banner .instruction { font-size: 1.4em; font-weight: 600; color: #fef3c7; }
+
+    .pearl-icon { font-size: 4em; color: #fbbf24; margin-bottom: 20px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+    .card { background: rgba(255,255,255,0.08); padding: 20px 26px; border-radius: 14px; border-left: 4px solid #fbbf24; }
+    .card h4 { color: #fbbf24; font-size: 0.9em; margin-bottom: 8px; }
+    .card p { font-size: 1.1em; line-height: 1.5; margin: 0; }
+
+    .nav { position: absolute; bottom: 20px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 100; pointer-events: none; }
+    .slide-counter { background: rgba(0,0,0,0.4); padding: 8px 16px; border-radius: 20px; font-size: 0.85em; font-weight: 600; color: #cbd5e1; pointer-events: auto; }
+    .nav-hint { background: rgba(0,0,0,0.4); padding: 8px 16px; border-radius: 20px; font-size: 0.75em; color: #94a3b8; pointer-events: auto; }
+
+    .progress { position: absolute; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #f59e0b, #fbbf24); transition: width 0.3s; z-index: 200; }
+
+    .key-finding { background: rgba(251, 191, 36, 0.15); border: 2px solid #fbbf24; padding: 16px 24px; border-radius: 12px; margin: 16px 0; font-size: 1.3em; font-weight: 700; }
+
+    .demographic-bar { display: flex; gap: 30px; margin-bottom: 30px; padding: 16px 24px; background: rgba(0,0,0,0.3); border-radius: 12px; font-size: 1em; }
+    .demographic-bar div { display: flex; flex-direction: column; }
+    .demographic-bar .label { color: #94a3b8; font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.05em; }
+    .demographic-bar .value { color: #f8fafc; font-weight: 700; font-size: 1.1em; }
+
+    /* Click-to-reveal diagnosis */
+    .reveal { cursor: pointer; transition: all 0.4s; }
+    .reveal.hidden { filter: blur(14px); user-select: none; opacity: 0.5; }
+    .reveal-prompt { display: inline-block; background: rgba(251, 191, 36, 0.2); border: 2px dashed #fbbf24; padding: 12px 24px; border-radius: 12px; color: #fbbf24; font-weight: 700; font-size: 1.1em; margin-top: 30px; cursor: pointer; transition: all 0.2s; }
+    .reveal-prompt:hover { background: rgba(251, 191, 36, 0.3); }
+    .reveal-prompt.hidden-prompt { display: inline-block; }
+    .reveal-prompt.shown-prompt { display: none; }
+</style>
+</head>
+<body>
+<div class="deck">
+    <div class="progress" id="progress"></div>
+
+    <!-- ============== TITLE ============== -->
+    <section class="slide title-slide active">
+        <h1>Localizing the Lesion</h1>
+        <p class="subtitle">Five Cases from the Plexus to the Foot</p>
+        <p style="font-size:1.2em;opacity:0.6;margin-top:40px;">Press <kbd style="background:#334155;padding:4px 10px;border-radius:6px;">→</kbd> to advance, <kbd style="background:#334155;padding:4px 10px;border-radius:6px;">←</kbd> to go back</p>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>The Localization Mindset</h2>
+        <p style="font-size:1.4em;opacity:0.85;margin-bottom:30px;">Every peripheral nerve case is the same puzzle: where exactly is the lesion?</p>
+        <ul style="text-align:left;max-width:900px;margin:0 auto;font-size:1.2em;">
+            <li>Use SNAP integrity to separate <strong>pre-ganglionic</strong> from <strong>post-ganglionic</strong> lesions</li>
+            <li>Use paraspinal EMG to confirm or exclude <strong>root-level</strong> involvement</li>
+            <li>Use the pattern of weak muscles (and the spared ones) to find the <strong>most distal common ancestor</strong> in the nerve tree</li>
+            <li>Use one "key muscle" or "key SNAP" per case to lock in the diagnosis</li>
+        </ul>
+        <p style="font-size:1.15em;margin-top:30px;opacity:0.75;">Five cases. Same toolkit. Different answers.</p>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>The Five Cases</h2>
+        <p style="font-size:1.2em;opacity:0.8;margin-bottom:30px;">Work through each one. Localize the lesion before peeking at the answer.</p>
+        <div class="grid-2" style="max-width:1100px;margin:0 auto;font-size:0.9em;">
+            <div class="card" style="border-left-color:#10b981;">
+                <h4 style="color:#10b981;">Case 1 -- Upper Extremity</h4>
+                <h3 style="color:#f8fafc;font-size:1.2em;">Severe Shoulder Pain Followed by Weakness</h3>
+                <p>35M painter, no trauma, recent viral illness.</p>
+            </div>
+            <div class="card" style="border-left-color:#3b82f6;">
+                <h4 style="color:#3b82f6;">Case 2 -- Upper Extremity</h4>
+                <h3 style="color:#f8fafc;font-size:1.2em;">Hand Weakness After a Fall</h3>
+                <p>24M bike messenger, traction injury.</p>
+            </div>
+            <div class="card" style="border-left-color:#ef4444;">
+                <h4 style="color:#ef4444;">Case 3 -- Upper Extremity</h4>
+                <h3 style="color:#f8fafc;font-size:1.2em;">Flail Arm After Motorcycle Accident</h3>
+                <p>62M, high-energy trauma, complete arm paralysis.</p>
+            </div>
+            <div class="card" style="border-left-color:#a855f7;">
+                <h4 style="color:#a855f7;">Case 4 -- Lower Extremity</h4>
+                <h3 style="color:#f8fafc;font-size:1.2em;">Sudden Groin Pain and Buckling Knee</h3>
+                <p>68F on warfarin with supratherapeutic INR.</p>
+            </div>
+        </div>
+        <div style="max-width:1100px;margin:20px auto 0;">
+            <div class="card" style="border-left-color:#14b8a6;">
+                <h4 style="color:#14b8a6;">Case 5 -- Lower Extremity</h4>
+                <h3 style="color:#f8fafc;font-size:1.2em;">Foot Drop and Hamstring Weakness After Surgery</h3>
+                <p>67F, 6 weeks post-hip arthroplasty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== CASE 1: PARSONAGE-TURNER ============== -->
+
+    <section class="slide case-1">
+        <span class="case-tag">Case 1 of 5</span>
+        <h1>Severe Shoulder Pain Followed by Weakness</h1>
+        <p class="subtitle">35-year-old painter</p>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Open the Clinical Exam Lab and select the Parsonage-Turner case (starred). Show the History section.</div>
+        </div>
+    </section>
+
+    <section class="slide case-1">
+        <span class="case-tag">Case 1 -- History</span>
+        <h2>The Story</h2>
+        <div class="demographic-bar">
+            <div><span class="label">Age</span><span class="value">35</span></div>
+            <div><span class="label">Sex</span><span class="value">Male</span></div>
+            <div><span class="label">Occupation</span><span class="value">Painter</span></div>
+        </div>
+        <ul>
+            <li>Severe right shoulder pain for 1 week, then weakness</li>
+            <li>"Deep, agonizing" pain that kept him awake at night</li>
+            <li>Pain subsided after 10 days, then he noticed he couldn't lift his arm</li>
+            <li>Viral illness 3 weeks ago</li>
+            <li>NO trauma</li>
+        </ul>
+    </section>
+
+    <section class="slide case-1">
+        <span class="case-tag">Case 1 -- Physical Exam</span>
+        <h2>What You'll Find</h2>
+        <ul>
+            <li>Rapid atrophy of right deltoid and supraspinatus</li>
+            <li>Shoulder abduction (deltoid): <strong>2/5</strong></li>
+            <li>External rotation (infraspinatus): <strong>2/5</strong></li>
+            <li>Elbow flexion (biceps): <strong>3/5</strong></li>
+            <li>Hand strength: 5/5 (normal)</li>
+            <li>Patchy numbness over lateral shoulder (axillary patch)</li>
+            <li>Negative Spurling's maneuver</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show the Physical Exam tab. Point out the multi-nerve, patchy pattern (deltoid + supraspinatus + biceps).</div>
+        </div>
+    </section>
+
+    <section class="slide case-1">
+        <span class="case-tag">Case 1 -- NCS</span>
+        <h2>Nerve Conduction Studies</h2>
+        <h4>Sensory</h4>
+        <ul style="font-size:1.2em;">
+            <li>Median sensory: NORMAL (45 uV)</li>
+            <li>Ulnar sensory: NORMAL (35 uV)</li>
+            <li>Radial sensory: NORMAL (25 uV)</li>
+            <li>Lateral Antebrachial Cutaneous (LABC): <strong>ABNORMAL (5 uV)</strong></li>
+        </ul>
+        <h4 style="margin-top:24px;">Motor</h4>
+        <ul style="font-size:1.2em;">
+            <li>Axillary motor (deltoid): <strong>LOW (1.5 mV)</strong></li>
+            <li>Musculocutaneous motor (biceps): <strong>LOW (2.8 mV)</strong></li>
+            <li>Median, Ulnar motor: NORMAL</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show NCS table in the case. Highlight the abnormal LABC SNAP (post-ganglionic) and the low axillary/musculocutaneous CMAPs.</div>
+        </div>
+    </section>
+
+    <section class="slide case-1">
+        <span class="case-tag">Case 1 -- EMG</span>
+        <h2>Needle EMG</h2>
+        <ul style="font-size:1.2em;">
+            <li>Deltoid: <strong>3+ fibrillations, reduced recruitment</strong></li>
+            <li>Infraspinatus: <strong>3+ fibrillations, reduced recruitment</strong></li>
+            <li>Biceps: <strong>2+ fibrillations, reduced recruitment</strong></li>
+            <li>Serratus Anterior: <strong>2+ fibrillations, reduced recruitment</strong></li>
+            <li>Pronator Teres: <strong>NORMAL (the patchy clue!)</strong></li>
+            <li>Hand intrinsics (APB, FDI): NORMAL</li>
+            <li>C5-C6 Paraspinals: <strong>NORMAL</strong></li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show the EMG table. Emphasize the patchy involvement and the NORMAL paraspinals.</div>
+        </div>
+    </section>
+
+    <section class="slide case-1">
+        <span class="case-tag">Case 1 -- Diagnosis</span>
+        <h2>What's Your Diagnosis?</h2>
+        <p style="font-size:1.3em;opacity:0.85;margin-bottom:10px;">Pain-then-weakness, patchy multi-nerve pattern, normal paraspinals, abnormal LABC SNAP.</p>
+        <span class="reveal-prompt" onclick="this.previousElementSibling.previousElementSibling; this.parentElement.querySelector('.reveal').classList.remove('hidden'); this.style.display='none';">Click to reveal diagnosis</span>
+        <div class="reveal hidden">
+            <h3 style="font-size:2em;">Parsonage-Turner Syndrome</h3>
+            <p style="font-size:1.3em;margin-top:20px;">Also called: Neuralgic Amyotrophy, Acute Brachial Neuritis, Idiopathic Brachial Plexopathy</p>
+            <h4 style="margin-top:30px;">Key Features That Confirm It</h4>
+            <ul>
+                <li>Pain-weakness temporal sequence</li>
+                <li>Patchy, multi-nerve pattern (not following any single trunk/cord)</li>
+                <li>Normal paraspinals (post-ganglionic)</li>
+                <li>Predilection for shoulder girdle nerves: Long thoracic, Suprascapular, Axillary, Musculocutaneous, AIN</li>
+                <li>30% of cases are bilateral</li>
+                <li>70-80% recover by 2-3 years</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Parsonage-Turner Pearl 1</span>
+        <h2>The Pain-Weakness Sequence</h2>
+        <p style="font-size:1.6em;margin:20px 0;">The hallmark of Parsonage-Turner is <strong>severe pain that PRECEDES the weakness</strong>.</p>
+        <div class="key-finding">
+            Pain comes first (days to weeks), then weakness develops as the pain resolves.
+        </div>
+        <p style="margin-top:20px;font-size:1.2em;opacity:0.9;">If a patient has pain AND weakness simultaneously, think compression. If pain came first then weakness followed -- think Parsonage-Turner.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Parsonage-Turner Pearl 2</span>
+        <h2>Why It Wasn't Radiculopathy</h2>
+        <p style="font-size:1.4em;">The weakness involves muscles from <strong>three different peripheral nerves</strong>:</p>
+        <div class="grid-2" style="margin-top:24px;">
+            <div class="card">
+                <h4>Axillary Nerve</h4>
+                <p>Deltoid (C5-C6)</p>
+            </div>
+            <div class="card">
+                <h4>Suprascapular Nerve</h4>
+                <p>Supraspinatus, Infraspinatus (C5-C6)</p>
+            </div>
+            <div class="card">
+                <h4>Musculocutaneous</h4>
+                <p>Biceps, Brachialis (C5-C6)</p>
+            </div>
+            <div class="card">
+                <h4>Long Thoracic</h4>
+                <p>Serratus Anterior (C5-C7)</p>
+            </div>
+        </div>
+        <p style="margin-top:24px;font-size:1.2em;">A C5 root would affect ALL these. But the pattern is patchy -- some nerves spared, others severely affected. That's PTS.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Parsonage-Turner Pearl 3</span>
+        <h2>The LABC SNAP Tells the Story</h2>
+        <div class="key-finding">
+            The Lateral Antebrachial Cutaneous SNAP is the sensory branch of the musculocutaneous nerve.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">In PTS affecting the musculocutaneous nerve, the LABC SNAP is <strong>abnormal</strong>. This confirms the lesion is <strong>post-ganglionic</strong> -- the sensory axons have undergone Wallerian degeneration distal to the dorsal root ganglion.</p>
+        <p style="font-size:1.2em;margin-top:20px;opacity:0.9;">If this were a C6 root lesion, the LABC would be NORMAL because the DRG is spared.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Parsonage-Turner Pearl 4</span>
+        <h2>Normal Paraspinals = Post-Ganglionic</h2>
+        <div class="key-finding">
+            The posterior primary ramus branches off the nerve root almost immediately after it exits the spinal cord. If the lesion is at the root level, paraspinals will show denervation.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">In PTS, paraspinals are <strong>typically normal</strong> (though they CAN be abnormal in 10-20% of cases). Combined with abnormal SNAPs, this localizes the lesion to the plexus or peripheral nerve level -- not the root.</p>
+    </section>
+
+    <!-- ============== CASE 2: KLUMPKE'S ============== -->
+
+    <section class="slide case-2">
+        <span class="case-tag">Case 2 of 5</span>
+        <h1>Hand Weakness After a Fall</h1>
+        <p class="subtitle">24-year-old bike messenger</p>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Open the Clinical Exam Lab and select the Lower Trunk Plexopathy case (starred). Show the History section.</div>
+        </div>
+    </section>
+
+    <section class="slide case-2">
+        <span class="case-tag">Case 2 -- History</span>
+        <h2>The Story</h2>
+        <div class="demographic-bar">
+            <div><span class="label">Age</span><span class="value">24</span></div>
+            <div><span class="label">Sex</span><span class="value">Male</span></div>
+            <div><span class="label">Occupation</span><span class="value">Bike Messenger</span></div>
+        </div>
+        <ul>
+            <li>Fell from a height, reflexively grabbed a tree branch</li>
+            <li>Sudden upward traction on right arm</li>
+            <li>Immediate sharp axillary pain, medial arm/hand numbness</li>
+            <li>Now 4 weeks later: progressive "clawing" of the hand</li>
+            <li>Cannot perform fine motor tasks</li>
+        </ul>
+    </section>
+
+    <section class="slide case-2">
+        <span class="case-tag">Case 2 -- Physical Exam</span>
+        <h2>The Classic Findings</h2>
+        <ul>
+            <li>Atrophy of <strong>thenar AND hypothenar</strong> eminences</li>
+            <li>"Claw hand" posture (MCP hyperextension, IP flexion of digits 4-5)</li>
+            <li>Hand intrinsics (APB, FDI, ADM): <strong>2/5</strong></li>
+            <li>Finger flexors (FPL/FDP): 3/5</li>
+            <li>Wrist flexors (FCU): 4/5</li>
+            <li>Triceps, deltoid: <strong>5/5 (proximal sparing)</strong></li>
+            <li>Sensory loss: medial arm, forearm, ulnar hand (digits 4-5)</li>
+            <li><strong>NO Horner's syndrome</strong></li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show the Physical Exam. Emphasize the BOTH thenar AND hypothenar atrophy -- this is the giveaway for C8-T1.</div>
+        </div>
+    </section>
+
+    <section class="slide case-2">
+        <span class="case-tag">Case 2 -- NCS</span>
+        <h2>Nerve Conduction Studies</h2>
+        <h4>Sensory (the key to localization)</h4>
+        <ul style="font-size:1.15em;">
+            <li>Median sensory (index): NORMAL (C6-C7 territory)</li>
+            <li>Radial sensory: NORMAL (C6 territory)</li>
+            <li>Ulnar sensory (little finger): <strong>ABNORMAL (5 uV)</strong></li>
+            <li><strong>Medial Antebrachial Cutaneous (MAC): ABNORMAL (4 uV)</strong></li>
+        </ul>
+        <h4 style="margin-top:20px;">Motor</h4>
+        <ul style="font-size:1.15em;">
+            <li>Median motor (APB): LOW (3.5 mV)</li>
+            <li>Ulnar motor (ADM): LOW (2.5 mV)</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show the NCS table. Circle/highlight the MAC SNAP value -- this is the single most important finding in this case.</div>
+        </div>
+    </section>
+
+    <section class="slide case-2">
+        <span class="case-tag">Case 2 -- EMG</span>
+        <h2>Needle EMG</h2>
+        <ul style="font-size:1.15em;">
+            <li>APB (Median, C8-T1): <strong>2+ fibs, 2+ PSWs, reduced recruitment</strong></li>
+            <li>FDI (Ulnar, C8-T1): <strong>2+ fibs, 2+ PSWs, reduced recruitment</strong></li>
+            <li>ADM (Ulnar, C8-T1): <strong>2+ fibs, 2+ PSWs, reduced recruitment</strong></li>
+            <li>EIP (Radial, C7-C8): <strong>1+ fibs, reduced recruitment</strong></li>
+            <li>FCU (Ulnar, C8): <strong>1+ fibs, reduced recruitment</strong></li>
+            <li>Biceps (Musculocutaneous, C5-C6): NORMAL</li>
+            <li>Deltoid (Axillary, C5-C6): NORMAL</li>
+            <li><strong>C8-T1 Paraspinals: NORMAL</strong></li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show the EMG table. Emphasize the C8-T1 myotome involvement spanning median + ulnar + radial nerves, with normal paraspinals.</div>
+        </div>
+    </section>
+
+    <section class="slide case-2">
+        <span class="case-tag">Case 2 -- Diagnosis</span>
+        <h2>What's Your Diagnosis?</h2>
+        <p style="font-size:1.3em;opacity:0.85;margin-bottom:10px;">Acute traction injury, claw hand, both thenar + hypothenar atrophy, abnormal MAC SNAP, normal paraspinals, no Horner's.</p>
+        <span class="reveal-prompt" onclick="this.parentElement.querySelector('.reveal').classList.remove('hidden'); this.style.display='none';">Click to reveal diagnosis</span>
+        <div class="reveal hidden">
+            <h3 style="font-size:2em;">Right Lower Trunk Brachial Plexopathy</h3>
+            <p style="font-size:1.2em;opacity:0.9;">(Klumpke's Palsy)</p>
+            <h4 style="margin-top:30px;">Localization Logic</h4>
+            <ul>
+                <li>BOTH median + ulnar territories affected -> proximal to peripheral nerves</li>
+                <li>EIP (radial nerve, C8) affected -> spans nerve boundaries -> root or lower trunk</li>
+                <li>Abnormal MAC SNAP -> POST-ganglionic -> NOT a root lesion</li>
+                <li>Normal paraspinals -> confirms not at root level</li>
+                <li>No Horner's -> confirms not T1 root avulsion</li>
+                <li>Proximal muscles (biceps, deltoid) spared -> NOT a pan-plexopathy</li>
+                <li><strong>Conclusion: Lower trunk lesion, post-ganglionic</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Klumpke's Pearl 1</span>
+        <h2>Thenar AND Hypothenar Atrophy</h2>
+        <div class="key-finding">
+            The thenar muscles are MEDIAN-innervated. The hypothenar muscles are ULNAR-innervated. If BOTH are weak, you've crossed peripheral nerve boundaries -- the lesion must be PROXIMAL to where median and ulnar separate.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">This puts the lesion at the lower trunk (C8-T1), the medial cord, or the C8-T1 roots. Now you need to figure out WHICH of those three.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Klumpke's Pearl 2</span>
+        <h2>The MAC SNAP Is the Money Test</h2>
+        <div class="key-finding">
+            The Medial Antebrachial Cutaneous nerve is the sensory branch of the medial cord. It carries C8-T1 sensory information from the medial forearm.
+        </div>
+        <h4 style="margin-top:24px;">Why It Matters</h4>
+        <ul>
+            <li>If the lesion is at the <strong>C8 or T1 ROOT</strong> -- pre-ganglionic -- the MAC SNAP is <strong>NORMAL</strong> (DRG intact)</li>
+            <li>If the lesion is at the <strong>LOWER TRUNK or MEDIAL CORD</strong> -- post-ganglionic -- the MAC SNAP is <strong>ABNORMAL</strong> (Wallerian degeneration distal to DRG)</li>
+        </ul>
+        <p style="font-size:1.3em;margin-top:24px;font-weight:700;color:#fbbf24;">An abnormal MAC SNAP is the single best test to distinguish lower trunk plexopathy from C8 radiculopathy.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Klumpke's Pearl 3</span>
+        <h2>No Horner's Syndrome</h2>
+        <div class="key-finding">
+            Horner's syndrome (ptosis, miosis, anhidrosis) requires disruption of the sympathetic chain at the T1 root level.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">Its <strong>absence</strong> here tells us this is NOT a T1 root avulsion. It's a post-ganglionic lesion at the lower trunk level.</p>
+        <p style="font-size:1.2em;margin-top:20px;opacity:0.9;">If you see Horner's in a "Klumpke-pattern" presentation, that's actually a root avulsion, not a true Klumpke's.</p>
+    </section>
+
+    <!-- ============== CASE 3: ROOT AVULSION ============== -->
+
+    <section class="slide case-3">
+        <span class="case-tag">Case 3 of 5</span>
+        <h1>Flail Arm After Motorcycle Accident</h1>
+        <p class="subtitle">62-year-old construction worker</p>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Open the Clinical Exam Lab and select the Traumatic Brachial Plexus case (starred). Show the History.</div>
+        </div>
+    </section>
+
+    <section class="slide case-3">
+        <span class="case-tag">Case 3 -- History</span>
+        <h2>The Story</h2>
+        <div class="demographic-bar">
+            <div><span class="label">Age</span><span class="value">62</span></div>
+            <div><span class="label">Sex</span><span class="value">Male</span></div>
+            <div><span class="label">Occupation</span><span class="value">Construction Worker</span></div>
+        </div>
+        <ul>
+            <li>6-month history after motorcycle accident</li>
+            <li>Initial shoulder pain, then progressive weakness in entire left arm</li>
+            <li>Numbness from shoulder to fingertips</li>
+            <li>"Arm is dead weight"</li>
+            <li>10 lb weight loss from muscle atrophy</li>
+            <li>Healed clavicle fracture on imaging</li>
+        </ul>
+    </section>
+
+    <section class="slide case-3">
+        <span class="case-tag">Case 3 -- Physical Exam</span>
+        <h2>What You'll Find</h2>
+        <ul>
+            <li>Entire left arm atrophic</li>
+            <li>Strength: <strong>0-1/5 throughout</strong> all muscle groups</li>
+            <li>Sensation: <strong>decreased throughout C5-T1 distribution</strong></li>
+            <li>Reflexes: <strong>absent</strong> biceps, triceps, brachioradialis</li>
+            <li><strong>Horner's syndrome</strong>: ptosis, miosis, anhidrosis on left</li>
+            <li>Winged scapula (long thoracic involvement)</li>
+            <li>Positive Tinel's at Erb's point</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show Physical Exam. Point out the Horner's syndrome -- this is the red flag for T1 root avulsion.</div>
+        </div>
+    </section>
+
+    <section class="slide case-3">
+        <span class="case-tag">Case 3 -- NCS</span>
+        <h2>Nerve Conduction Studies</h2>
+        <h4>Sensory -- THE PATHOGNOMONIC FINDING</h4>
+        <ul style="font-size:1.15em;">
+            <li>Median sensory: <strong>NORMAL (28 uV)</strong></li>
+            <li>Ulnar sensory: <strong>NORMAL (22 uV)</strong></li>
+            <li>Radial sensory: <strong>NORMAL (25 uV)</strong></li>
+        </ul>
+        <h4 style="margin-top:20px;">Motor -- All Absent</h4>
+        <ul style="font-size:1.15em;">
+            <li>Median motor (APB): ABSENT</li>
+            <li>Ulnar motor (ADM): ABSENT</li>
+            <li>Radial motor (EIP): ABSENT</li>
+            <li>Musculocutaneous motor (biceps): ABSENT</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show the NCS table. STOP and emphasize: "The patient has NO SENSATION in this arm, yet ALL the SNAPs are NORMAL. How is that possible?"</div>
+        </div>
+    </section>
+
+    <section class="slide case-3">
+        <span class="case-tag">Case 3 -- EMG</span>
+        <h2>Needle EMG</h2>
+        <ul style="font-size:1.15em;">
+            <li>Deltoid (Axillary, C5-C6): <strong>3+ fibs, no MUAPs</strong></li>
+            <li>Biceps (Musculocutaneous, C5-C6): <strong>3+ fibs, no MUAPs</strong></li>
+            <li>Infraspinatus (Suprascapular, C5-C6): <strong>3+ fibs, no MUAPs</strong></li>
+            <li>Triceps (Radial, C6-C8): <strong>3+ fibs, no MUAPs</strong></li>
+            <li>EIP (Radial, C7-C8): <strong>3+ fibs, no MUAPs</strong></li>
+            <li>APB (Median, C8-T1): <strong>3+ fibs, no MUAPs</strong></li>
+            <li>FDI (Ulnar, C8-T1): <strong>3+ fibs, no MUAPs</strong></li>
+            <li><strong>Cervical Paraspinals (C5-T1): 3+ fibs, reduced recruitment</strong></li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show EMG. Highlight that EVERY muscle from C5-T1 is denervated AND the paraspinals are abnormal -- confirming pan-plexopathy at the root level.</div>
+        </div>
+    </section>
+
+    <section class="slide case-3">
+        <span class="case-tag">Case 3 -- Diagnosis</span>
+        <h2>What's Your Diagnosis?</h2>
+        <p style="font-size:1.3em;opacity:0.85;margin-bottom:10px;">Anesthetic flail arm, preserved SNAPs, abnormal paraspinals, Horner's syndrome, pseudomeningoceles on MRI.</p>
+        <span class="reveal-prompt" onclick="this.parentElement.querySelector('.reveal').classList.remove('hidden'); this.style.display='none';">Click to reveal diagnosis</span>
+        <div class="reveal hidden">
+            <h3 style="font-size:2em;">Traumatic C5-T1 Root Avulsions</h3>
+            <h4 style="margin-top:30px;">The Pathognomonic Pattern</h4>
+            <ul>
+                <li>Complete clinical anesthesia + paralysis (C5-T1)</li>
+                <li>SNAPs preserved (pre-ganglionic)</li>
+                <li>CMAPs absent</li>
+                <li>Paraspinal denervation (root-level)</li>
+                <li>Horner's syndrome (T1 sympathetic disruption)</li>
+                <li>MRI: pseudomeningoceles at the affected levels</li>
+            </ul>
+            <p style="font-size:1.3em;margin-top:20px;color:#fbbf24;">Prognosis: very poor. Surgical nerve transfer is the only intervention.</p>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Root Avulsion Pearl 1</span>
+        <h2>Horner's Syndrome = T1 Avulsion</h2>
+        <div class="key-finding">
+            The sympathetic fibers to the head and face exit the spinal cord at T1 and travel through the sympathetic chain to the superior cervical ganglion.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">If you avulse the T1 root, you disrupt these sympathetic fibers BEFORE they leave the spinal canal. The result: ipsilateral Horner's syndrome.</p>
+        <div class="grid-2" style="margin-top:24px;">
+            <div class="card"><h4>Ptosis</h4><p>Drooping eyelid (Mueller's muscle)</p></div>
+            <div class="card"><h4>Miosis</h4><p>Constricted pupil</p></div>
+            <div class="card"><h4>Anhidrosis</h4><p>No sweating on that side of face</p></div>
+            <div class="card"><h4>Significance</h4><p>VERY poor prognosis -- root is gone</p></div>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Root Avulsion Pearl 2</span>
+        <h2>Preserved SNAPs in an Anesthetic Limb</h2>
+        <div class="key-finding">
+            This pattern -- SNAPs preserved despite complete clinical anesthesia -- is PATHOGNOMONIC for pre-ganglionic root avulsion.
+        </div>
+        <h4 style="margin-top:24px;">The Anatomy</h4>
+        <p style="font-size:1.3em;">The dorsal root ganglion (DRG) sits OUTSIDE the spinal canal, in the neural foramen. Sensory cell bodies live in the DRG, with two axons:</p>
+        <ul style="margin-top:16px;">
+            <li>One axon goes <strong>centrally</strong> (DRG -> spinal cord)</li>
+            <li>One axon goes <strong>peripherally</strong> (DRG -> skin)</li>
+        </ul>
+        <p style="font-size:1.3em;margin-top:20px;">A root avulsion happens BETWEEN the DRG and the spinal cord. The peripheral axon is still attached to its cell body in the DRG -- so it does NOT undergo Wallerian degeneration. The patient has no sensation centrally, but the peripheral nerve still works.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Root Avulsion Pearl 3</span>
+        <h2>Paraspinal Denervation Confirms Root-Level</h2>
+        <div class="key-finding">
+            The posterior primary ramus branches off the spinal nerve immediately after it exits the foramen, BEFORE the nerve forms the brachial plexus.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">If paraspinals show denervation, the lesion <strong>must be at or proximal to the root level</strong>. This rules out plexopathy and localizes to the spinal nerve or root.</p>
+        <p style="font-size:1.2em;margin-top:20px;opacity:0.9;">In root avulsion: paraspinals abnormal + SNAPs preserved + Horner's = the complete pathognomonic triad.</p>
+    </section>
+
+    <!-- ============== CASE 4: RETROPERITONEAL HEMATOMA ============== -->
+
+    <section class="slide case-4">
+        <span class="case-tag">Case 4 of 5</span>
+        <h1>Sudden Groin Pain and Buckling Knee</h1>
+        <p class="subtitle">68-year-old woman on warfarin</p>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Open the Clinical Exam Lab and select the Femoral Neuropathy case (starred). Show the History.</div>
+        </div>
+    </section>
+
+    <section class="slide case-4">
+        <span class="case-tag">Case 4 -- History</span>
+        <h2>The Story</h2>
+        <div class="demographic-bar">
+            <div><span class="label">Age</span><span class="value">68</span></div>
+            <div><span class="label">Sex</span><span class="value">Female</span></div>
+            <div><span class="label">PMH</span><span class="value">A-fib on warfarin</span></div>
+        </div>
+        <ul>
+            <li>INR check 2 weeks ago: <strong>4.2 (supratherapeutic)</strong></li>
+            <li>Sudden severe right groin and flank pain after a coughing episode</li>
+            <li>Within 24 hours: numbness anterior thigh, can't lift the leg or straighten the knee</li>
+            <li>Hemoglobin dropped from 12.5 to 9.8 g/dL</li>
+            <li>Now in the ED, cannot bear weight</li>
+        </ul>
+    </section>
+
+    <section class="slide case-4">
+        <span class="case-tag">Case 4 -- Physical Exam</span>
+        <h2>What You'll Find</h2>
+        <ul>
+            <li>Right thigh slightly larger than left (compartment fullness)</li>
+            <li>Marked tenderness deep in the right iliac fossa</li>
+            <li>Patient holds the hip in <strong>flexion</strong> for comfort (psoas sign)</li>
+            <li>Hip Flexion (Iliopsoas): <strong>2/5</strong></li>
+            <li>Knee Extension (Quadriceps): <strong>1/5</strong></li>
+            <li>Hip Adduction (Adductors): <strong>5/5 (NORMAL)</strong></li>
+            <li>Ankle muscles: <strong>5/5 (NORMAL)</strong></li>
+            <li>Right patellar reflex: <strong>ABSENT</strong></li>
+            <li>Decreased sensation anterior thigh + medial leg (saphenous distribution)</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show Physical Exam. Emphasize iliopsoas weakness AND adductor sparing -- these are the two key findings.</div>
+        </div>
+    </section>
+
+    <section class="slide case-4">
+        <span class="case-tag">Case 4 -- NCS</span>
+        <h2>Nerve Conduction Studies</h2>
+        <h4>Sensory</h4>
+        <ul style="font-size:1.15em;">
+            <li>Sural sensory: NORMAL (S1-S2)</li>
+            <li>Superficial fibular sensory: NORMAL (L5-S1)</li>
+            <li><strong>Saphenous sensory: ABSENT on the right</strong> (normal 6 uV on left)</li>
+        </ul>
+        <h4 style="margin-top:20px;">Motor</h4>
+        <ul style="font-size:1.15em;">
+            <li>Fibular motor (EDB): NORMAL</li>
+            <li>Tibial motor (AH): NORMAL</li>
+            <li><strong>Femoral motor (Quad) -- right: ABSENT</strong></li>
+            <li>Femoral motor (Quad) -- left: 6.5 mV (normal)</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show NCS. Highlight the side-to-side femoral motor comparison -- this is how you confirm a femoral nerve lesion.</div>
+        </div>
+    </section>
+
+    <section class="slide case-4">
+        <span class="case-tag">Case 4 -- EMG</span>
+        <h2>Needle EMG</h2>
+        <ul style="font-size:1.1em;">
+            <li><strong>Iliopsoas: 2+ fibs, severely reduced recruitment</strong> (KEY FINDING)</li>
+            <li>Vastus Lateralis: 3+ fibs, no MUAPs</li>
+            <li>Vastus Medialis: 3+ fibs, no MUAPs</li>
+            <li>Rectus Femoris: 3+ fibs, no MUAPs</li>
+            <li>Adductor Longus (Obturator): <strong>NORMAL</strong> (excludes L2-L4 radic)</li>
+            <li>Tibialis Anterior (Deep peroneal): NORMAL</li>
+            <li>Gluteus Medius (Sup gluteal): NORMAL (excludes plexopathy)</li>
+            <li>Lumbar Paraspinals: <strong>NORMAL</strong> (excludes radiculopathy)</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show EMG. Walk through the logic: iliopsoas + quad weak (femoral) BUT adductor + paraspinals + glut med normal. Localizes proximal femoral.</div>
+        </div>
+    </section>
+
+    <section class="slide case-4">
+        <span class="case-tag">Case 4 -- Diagnosis</span>
+        <h2>What's Your Diagnosis?</h2>
+        <p style="font-size:1.3em;opacity:0.85;margin-bottom:10px;">Anticoagulated patient, sudden groin pain + femoral nerve dysfunction, iliopsoas weak, adductors and paraspinals normal.</p>
+        <span class="reveal-prompt" onclick="this.parentElement.querySelector('.reveal').classList.remove('hidden'); this.style.display='none';">Click to reveal diagnosis</span>
+        <div class="reveal hidden">
+            <h3 style="font-size:2em;">Femoral Neuropathy from Iliacus / Retroperitoneal Hematoma</h3>
+            <h4 style="margin-top:30px;">Localization Logic</h4>
+            <ul>
+                <li>Femoral nerve dysfunction (quad weak, saphenous SNAP absent)</li>
+                <li>ILIOPSOAS WEAK -> lesion is proximal to inguinal ligament -> in the iliac fossa</li>
+                <li>Adductors normal -> NOT a plexopathy, NOT an L3-L4 radic</li>
+                <li>Paraspinals normal -> NOT a radiculopathy</li>
+                <li>Anticoagulation history -> hematoma is the etiology</li>
+                <li><strong>CT confirms: 8x6 cm hematoma in iliacus and retroperitoneum</strong></li>
+            </ul>
+            <p style="font-size:1.2em;margin-top:20px;color:#fbbf24;">Treatment: reverse anticoagulation, supportive care, sometimes surgical decompression.</p>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Retroperitoneal Hematoma Pearl 1</span>
+        <h2>The Anticoagulation Red Flag</h2>
+        <div class="key-finding">
+            Acute femoral neuropathy + anticoagulation = retroperitoneal/iliacus hematoma until proven otherwise.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">This is a TIME-SENSITIVE diagnosis. The hematoma compresses the femoral nerve in the iliac fossa. Delay in recognition can lead to permanent quadriceps weakness.</p>
+        <p style="font-size:1.2em;margin-top:20px;opacity:0.9;">Other causes of femoral neuropathy: post-pelvic surgery (compression by retractors), lithotomy position (prolonged hip flexion), psoas abscess, diabetes (femoral neuropathy variant of diabetic amyotrophy).</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Retroperitoneal Hematoma Pearl 2</span>
+        <h2>Iliopsoas Weakness Localizes the Lesion</h2>
+        <div class="key-finding">
+            The femoral nerve gives off branches to the iliopsoas WITHIN the iliac fossa, BEFORE passing under the inguinal ligament.
+        </div>
+        <h4 style="margin-top:24px;">Two Possible Lesions, One Differentiator</h4>
+        <div class="grid-2" style="margin-top:20px;">
+            <div class="card">
+                <h4>At the Inguinal Ligament</h4>
+                <p>Quadriceps weak<br><strong>Iliopsoas SPARED</strong><br>Cause: post-surgical, compression, hernia repair</p>
+            </div>
+            <div class="card">
+                <h4>In the Iliac Fossa (Retroperitoneum)</h4>
+                <p>Quadriceps weak<br><strong>Iliopsoas ALSO weak</strong><br>Cause: hematoma, abscess, tumor</p>
+            </div>
+        </div>
+        <p style="font-size:1.2em;margin-top:20px;">Weak iliopsoas = lesion is PROXIMAL = something in the retroperitoneum. Order a CT.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Retroperitoneal Hematoma Pearl 3</span>
+        <h2>The Saphenous SNAP</h2>
+        <div class="key-finding">
+            The saphenous nerve is the sensory branch of the femoral nerve. An absent saphenous SNAP confirms a post-ganglionic femoral nerve lesion.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">If this were an L3-L4 radiculopathy (pre-ganglionic), the saphenous SNAP would be NORMAL because the DRG is intact.</p>
+        <p style="font-size:1.2em;margin-top:20px;opacity:0.9;">Always compare to the contralateral side -- the saphenous SNAP can be tricky to obtain even in healthy patients.</p>
+    </section>
+
+    <!-- ============== CASE 5: SCIATIC INJURY ============== -->
+
+    <section class="slide case-5">
+        <span class="case-tag">Case 5 of 5</span>
+        <h1>Foot Drop and Hamstring Weakness After Surgery</h1>
+        <p class="subtitle">67-year-old woman, 6 weeks post-op</p>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Open the Clinical Exam Lab and select the Sciatic case (starred -- piriformis_sciatic, now linked to the hip arthroplasty case).</div>
+        </div>
+    </section>
+
+    <section class="slide case-5">
+        <span class="case-tag">Case 5 -- History</span>
+        <h2>The Story</h2>
+        <div class="demographic-bar">
+            <div><span class="label">Age</span><span class="value">67</span></div>
+            <div><span class="label">Sex</span><span class="value">Female</span></div>
+            <div><span class="label">Recent</span><span class="value">R total hip arthroplasty 6 weeks ago</span></div>
+        </div>
+        <ul>
+            <li>Surgery for severe osteoarthritis -- complicated by difficult anatomy and longer-than-expected duration</li>
+            <li>Awoke from anesthesia with right foot drop and inability to bend the knee</li>
+            <li>6 weeks of physical therapy with minimal improvement</li>
+            <li>Now presents for EMG to localize the lesion and assess prognosis</li>
+        </ul>
+    </section>
+
+    <section class="slide case-5">
+        <span class="case-tag">Case 5 -- Physical Exam</span>
+        <h2>What You'll Find</h2>
+        <ul style="font-size:1.05em;">
+            <li>Right calf and anterior compartment atrophy beginning</li>
+            <li>Right foot in equinus position, steppage gait</li>
+            <li>Hip Abduction (Glut Med): <strong>5/5 NORMAL</strong></li>
+            <li>Hip Extension (Glut Max): <strong>5/5 NORMAL</strong></li>
+            <li>Knee Flexion (Hamstrings): <strong>2/5</strong></li>
+            <li>Ankle Dorsiflexion (TA): <strong>0/5</strong></li>
+            <li>Ankle Plantarflexion (Gastroc): <strong>1/5</strong></li>
+            <li>Ankle Eversion (Peroneus): <strong>0/5</strong></li>
+            <li>Sensation lost: foot, lateral leg, posterior calf</li>
+            <li>Sensation PRESERVED: anteromedial thigh (saphenous = femoral nerve)</li>
+            <li>Achilles reflex: ABSENT. Patellar reflex: NORMAL.</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show Physical Exam. Emphasize: hip muscles NORMAL, hamstrings WEAK, foot WEAK. Both peroneal AND tibial divisions affected.</div>
+        </div>
+    </section>
+
+    <section class="slide case-5">
+        <span class="case-tag">Case 5 -- NCS</span>
+        <h2>Nerve Conduction Studies</h2>
+        <h4>Sensory -- right side</h4>
+        <ul style="font-size:1.1em;">
+            <li><strong>Sural sensory: ABSENT</strong> (normal 15 uV on left)</li>
+            <li><strong>Superficial fibular sensory: ABSENT</strong> (normal 12 uV on left)</li>
+            <li>Saphenous sensory: NORMAL (femoral territory preserved)</li>
+        </ul>
+        <h4 style="margin-top:20px;">Motor -- right side</h4>
+        <ul style="font-size:1.1em;">
+            <li>Fibular motor (EDB): ABSENT</li>
+            <li>Fibular motor (TA): 0.4 mV (severely reduced)</li>
+            <li>Tibial motor (AH): 1.2 mV (severely reduced)</li>
+            <li>Left side: all NORMAL</li>
+            <li>Tibial H-reflex: ABSENT on right</li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show NCS. Both peroneal AND tibial divisions are abnormal -- this is what differentiates sciatic from a pure peroneal lesion at the fibular head.</div>
+        </div>
+    </section>
+
+    <section class="slide case-5">
+        <span class="case-tag">Case 5 -- EMG</span>
+        <h2>Needle EMG</h2>
+        <ul style="font-size:1em;">
+            <li>Tibialis Anterior (Sciatic-Peroneal): 3+ fibs, NO MUAPs</li>
+            <li>EHL (Sciatic-Peroneal): 3+ fibs, NO MUAPs</li>
+            <li>Peroneus Longus (Sciatic-Peroneal): 3+ fibs, NO MUAPs</li>
+            <li>Medial Gastrocnemius (Sciatic-Tibial): 2+ fibs, severely reduced</li>
+            <li>Tibialis Posterior (Sciatic-Tibial): 2+ fibs, severely reduced</li>
+            <li><strong>Biceps Femoris SHORT HEAD (Sciatic-Peroneal in thigh): 2+ fibs</strong></li>
+            <li>Biceps Femoris Long Head (Sciatic-Tibial in thigh): 1+ fibs</li>
+            <li>Gluteus Maximus (Inferior Gluteal): <strong>NORMAL</strong></li>
+            <li>Gluteus Medius (Superior Gluteal): <strong>NORMAL</strong></li>
+            <li>Vastus Lateralis (Femoral): <strong>NORMAL</strong></li>
+            <li>Lumbar Paraspinals: <strong>NORMAL</strong></li>
+        </ul>
+        <div class="pause-banner">
+            <div class="label">App Action</div>
+            <div class="instruction">Show EMG. Highlight: hamstrings + foot all denervated, but glutes + paraspinals + femoral all normal. Classic sciatic-at-hip pattern.</div>
+        </div>
+    </section>
+
+    <section class="slide case-5">
+        <span class="case-tag">Case 5 -- Diagnosis</span>
+        <h2>What's Your Diagnosis?</h2>
+        <p style="font-size:1.3em;opacity:0.85;margin-bottom:10px;">Post-hip arthroplasty foot drop, hamstring weakness, BFSH denervated, glutes spared, paraspinals normal.</p>
+        <span class="reveal-prompt" onclick="this.parentElement.querySelector('.reveal').classList.remove('hidden'); this.style.display='none';">Click to reveal diagnosis</span>
+        <div class="reveal hidden">
+            <h3 style="font-size:2em;">Sciatic Nerve Injury at the Hip</h3>
+            <p style="font-size:1.2em;opacity:0.9;">Post-Total Hip Arthroplasty</p>
+            <h4 style="margin-top:30px;">Localization Logic</h4>
+            <ul>
+                <li>Both peroneal AND tibial divisions affected -> NOT a pure peroneal lesion</li>
+                <li>Hamstrings weak (including BFSH) -> lesion proximal to mid-thigh</li>
+                <li>GLUTEALS SPARED -> NOT a plexopathy or root lesion</li>
+                <li>Paraspinals normal -> NOT a radiculopathy</li>
+                <li>Femoral nerve normal -> isolated sciatic injury</li>
+                <li><strong>Conclusion: Sciatic nerve injury at the hip level</strong></li>
+            </ul>
+            <p style="font-size:1.2em;margin-top:20px;color:#fbbf24;">Prognosis: 6-18 months for partial recovery. Many patients have permanent residual foot drop.</p>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Sciatic Injury Pearl 1</span>
+        <h2>Sciatic Injury After Hip Surgery</h2>
+        <div class="key-finding">
+            Sciatic nerve injury occurs in 0.5-2% of total hip arthroplasties. It is one of the most feared complications.
+        </div>
+        <h4 style="margin-top:24px;">Mechanisms</h4>
+        <ul>
+            <li>Direct surgical trauma (rare with modern techniques)</li>
+            <li>Retractor compression</li>
+            <li>Limb lengthening (stretch injury) -- common with revision surgery</li>
+            <li>Hematoma compression in the post-operative period</li>
+            <li>Thermal injury from cement</li>
+        </ul>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Sciatic Injury Pearl 2</span>
+        <h2>Gluteal Sparing Localizes the Lesion</h2>
+        <div class="key-finding">
+            The superior and inferior gluteal nerves arise from the sacral plexus PROXIMAL to where the sciatic nerve forms and exits the pelvis.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">If the gluteal muscles are normal, the lesion CANNOT be at the plexus or root level. It must be at or below the hip -- exactly where the sciatic nerve is at risk during a hip arthroplasty.</p>
+        <div class="grid-2" style="margin-top:20px;">
+            <div class="card"><h4>Gluteus Maximus weak?</h4><p>NO -> Lesion below the inferior gluteal nerve takeoff. Sciatic at hip or below.</p></div>
+            <div class="card"><h4>Gluteus Maximus weak + foot drop?</h4><p>YES -> Sacral plexopathy or L5-S1 radiculopathy. NOT a sciatic injury.</p></div>
+        </div>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Sciatic Injury Pearl 3</span>
+        <h2>Why the Peroneal Division Is More Vulnerable</h2>
+        <div class="key-finding">
+            Even in a complete sciatic injury, the peroneal division is often MORE severely affected than the tibial division.
+        </div>
+        <h4 style="margin-top:24px;">The Anatomical Reasons</h4>
+        <ul>
+            <li>Fewer fascicles -> less protective architecture</li>
+            <li>More connective tissue around fascicles -> more susceptible to compression</li>
+            <li>Positioned more lateral and posterior in the sciatic trunk -> closer to surgical instruments</li>
+            <li>Tethered at the fibular head -> less mobility under stretch</li>
+        </ul>
+        <p style="font-size:1.2em;margin-top:20px;">A patient may present looking like a "common fibular palsy" but actually have a partial sciatic injury. The tipoff: hamstring weakness or any tibial-distribution involvement.</p>
+    </section>
+
+    <section class="slide pearl">
+        <div class="pearl-icon">★</div>
+        <span class="case-tag" style="background:#fbbf24;color:#422006;">Sciatic Injury Pearl 4</span>
+        <h2>The Biceps Femoris Short Head Test</h2>
+        <div class="key-finding">
+            The short head of the biceps femoris is the ONLY hamstring innervated by the peroneal division of the sciatic nerve.
+        </div>
+        <p style="font-size:1.3em;margin-top:20px;">If BFSH is denervated, the lesion is at or proximal to the mid-thigh where the peroneal division branches off to supply it.</p>
+        <h4 style="margin-top:20px;">Why It Matters</h4>
+        <ul>
+            <li>Common fibular palsy at fibular head: BFSH is NORMAL</li>
+            <li>Sciatic injury at the hip: BFSH is ABNORMAL</li>
+            <li>This single muscle distinguishes the two diagnoses</li>
+        </ul>
+    </section>
+
+    <!-- ============== SUMMARY ============== -->
+
+    <section class="slide title-slide">
+        <h2>Putting It All Together</h2>
+        <p style="font-size:1.4em;margin-bottom:30px;">Three brachial plexus presentations -- one anatomical principle ties them together.</p>
+        <div class="key-finding" style="font-size:1.4em;text-align:left;">
+            SNAP integrity is the single most important test for distinguishing root avulsion from plexopathy.
+        </div>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>Comparison: Brachial Plexus Cases</h2>
+        <table style="width:100%;border-collapse:collapse;font-size:0.95em;margin-top:20px;">
+            <tr style="background:rgba(251,191,36,0.2);">
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Feature</th>
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Parsonage-Turner</th>
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Klumpke's</th>
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Root Avulsion</th>
+            </tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>Mechanism</strong></td><td style="padding:8px;border:1px solid #475569;">Inflammatory</td><td style="padding:8px;border:1px solid #475569;">Traction</td><td style="padding:8px;border:1px solid #475569;">High-energy trauma</td></tr>
+            <tr style="background:rgba(0,0,0,0.2);"><td style="padding:8px;border:1px solid #475569;"><strong>Pattern</strong></td><td style="padding:8px;border:1px solid #475569;">Patchy multi-nerve</td><td style="padding:8px;border:1px solid #475569;">Lower trunk (C8-T1)</td><td style="padding:8px;border:1px solid #475569;">Pan-plexopathy</td></tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>SNAPs</strong></td><td style="padding:8px;border:1px solid #475569;">LABC abnormal</td><td style="padding:8px;border:1px solid #475569;">Ulnar/MAC abnormal</td><td style="padding:8px;border:1px solid #475569;"><strong>PRESERVED</strong></td></tr>
+            <tr style="background:rgba(0,0,0,0.2);"><td style="padding:8px;border:1px solid #475569;"><strong>Paraspinals</strong></td><td style="padding:8px;border:1px solid #475569;">Normal</td><td style="padding:8px;border:1px solid #475569;">Normal</td><td style="padding:8px;border:1px solid #475569;"><strong>Abnormal</strong></td></tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>Horner's</strong></td><td style="padding:8px;border:1px solid #475569;">No</td><td style="padding:8px;border:1px solid #475569;">No</td><td style="padding:8px;border:1px solid #475569;">Yes</td></tr>
+            <tr style="background:rgba(0,0,0,0.2);"><td style="padding:8px;border:1px solid #475569;"><strong>Localization</strong></td><td style="padding:8px;border:1px solid #475569;">Post-ganglionic, multifocal</td><td style="padding:8px;border:1px solid #475569;">Post-ganglionic, lower trunk</td><td style="padding:8px;border:1px solid #475569;"><strong>Pre-ganglionic, root</strong></td></tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>Prognosis</strong></td><td style="padding:8px;border:1px solid #475569;">Good (70-80%)</td><td style="padding:8px;border:1px solid #475569;">Moderate</td><td style="padding:8px;border:1px solid #475569;">Very poor</td></tr>
+        </table>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>Comparison: Lower Extremity Cases</h2>
+        <table style="width:100%;border-collapse:collapse;font-size:0.95em;margin-top:20px;">
+            <tr style="background:rgba(251,191,36,0.2);">
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Feature</th>
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Retroperitoneal Hematoma (Femoral)</th>
+                <th style="padding:10px;text-align:left;border:1px solid #475569;">Sciatic at Hip (Post-THA)</th>
+            </tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>Mechanism</strong></td><td style="padding:8px;border:1px solid #475569;">Hematoma compression in iliac fossa</td><td style="padding:8px;border:1px solid #475569;">Surgical stretch / retractor / hematoma</td></tr>
+            <tr style="background:rgba(0,0,0,0.2);"><td style="padding:8px;border:1px solid #475569;"><strong>History clue</strong></td><td style="padding:8px;border:1px solid #475569;">Anticoagulation, supratherapeutic INR</td><td style="padding:8px;border:1px solid #475569;">Recent total hip arthroplasty</td></tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>Key weak muscles</strong></td><td style="padding:8px;border:1px solid #475569;">Quadriceps + ILIOPSOAS (proximal!)</td><td style="padding:8px;border:1px solid #475569;">Foot drop + hamstrings (BFSH!)</td></tr>
+            <tr style="background:rgba(0,0,0,0.2);"><td style="padding:8px;border:1px solid #475569;"><strong>Key spared muscles</strong></td><td style="padding:8px;border:1px solid #475569;">Adductors (rules out plexus/L3-L4)</td><td style="padding:8px;border:1px solid #475569;">GLUTEALS (rules out plexus)</td></tr>
+            <tr><td style="padding:8px;border:1px solid #475569;"><strong>Localizing feature</strong></td><td style="padding:8px;border:1px solid #475569;">Iliopsoas weak = proximal to inguinal lig</td><td style="padding:8px;border:1px solid #475569;">Glut max normal = below inferior gluteal nerve takeoff</td></tr>
+            <tr style="background:rgba(0,0,0,0.2);"><td style="padding:8px;border:1px solid #475569;"><strong>Critical action</strong></td><td style="padding:8px;border:1px solid #475569;">Reverse anticoagulation, consider surgical decompression</td><td style="padding:8px;border:1px solid #475569;">EMG at 6 weeks for prognosis</td></tr>
+        </table>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>Five Take-Home Points</h2>
+        <ul style="text-align:left;max-width:1100px;margin:30px auto 0;font-size:1.15em;">
+            <li><strong>Pain BEFORE weakness + patchy multi-nerve pattern</strong> = Parsonage-Turner. Don't miss this.</li>
+            <li><strong>The MAC SNAP is your money test</strong> for lower trunk plexopathy vs C8 radiculopathy.</li>
+            <li><strong>Preserved SNAPs in an anesthetic limb is pathognomonic</strong> for pre-ganglionic root avulsion. Always check paraspinals to confirm.</li>
+            <li><strong>Iliopsoas weakness in femoral neuropathy</strong> localizes the lesion proximal to the inguinal ligament -- think retroperitoneal hematoma in anticoagulated patients.</li>
+            <li><strong>Gluteal sparing in foot drop + hamstring weakness</strong> means sciatic injury at the hip, not plexopathy or radiculopathy. Always test BFSH.</li>
+        </ul>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>The Five Cases, Revealed</h2>
+        <div class="grid-2" style="max-width:1150px;margin:0 auto;font-size:0.85em;">
+            <div class="card" style="border-left-color:#10b981;">
+                <h4 style="color:#10b981;">Case 1</h4>
+                <h3 style="color:#f8fafc;font-size:1.15em;margin-bottom:6px;">Parsonage-Turner Syndrome</h3>
+                <p style="font-size:0.95em;">Severe shoulder pain followed by weakness. Patchy multi-nerve, post-ganglionic, normal paraspinals.</p>
+            </div>
+            <div class="card" style="border-left-color:#3b82f6;">
+                <h4 style="color:#3b82f6;">Case 2</h4>
+                <h3 style="color:#f8fafc;font-size:1.15em;margin-bottom:6px;">Klumpke's Lower Trunk Plexopathy</h3>
+                <p style="font-size:0.95em;">Hand weakness after fall. C8-T1 distribution, abnormal MAC SNAP, normal paraspinals.</p>
+            </div>
+            <div class="card" style="border-left-color:#ef4444;">
+                <h4 style="color:#ef4444;">Case 3</h4>
+                <h3 style="color:#f8fafc;font-size:1.15em;margin-bottom:6px;">C5-T1 Root Avulsion</h3>
+                <p style="font-size:0.95em;">Flail arm after MVA. Preserved SNAPs, abnormal paraspinals, Horner's syndrome.</p>
+            </div>
+            <div class="card" style="border-left-color:#a855f7;">
+                <h4 style="color:#a855f7;">Case 4</h4>
+                <h3 style="color:#f8fafc;font-size:1.15em;margin-bottom:6px;">Retroperitoneal Hematoma</h3>
+                <p style="font-size:0.95em;">Anticoagulated patient with sudden groin pain. Iliopsoas weakness localizes proximal to inguinal ligament.</p>
+            </div>
+        </div>
+        <div style="max-width:1150px;margin:14px auto 0;">
+            <div class="card" style="border-left-color:#14b8a6;">
+                <h4 style="color:#14b8a6;">Case 5</h4>
+                <h3 style="color:#f8fafc;font-size:1.15em;margin-bottom:6px;">Sciatic Nerve Injury Post-Hip Arthroplasty</h3>
+                <p style="font-size:0.95em;">Foot drop + hamstring weakness, gluteal sparing, BFSH involved.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide title-slide">
+        <h2>One Toolkit, Five Diagnoses</h2>
+        <p style="font-size:1.3em;opacity:0.85;max-width:1000px;margin:20px auto 0;">Every case used the same three tools: SNAPs to separate pre- vs post-ganglionic, paraspinals to confirm root-level, and the pattern of weak vs spared muscles to find the most distal common ancestor.</p>
+        <p style="font-size:1.5em;margin-top:50px;color:#fbbf24;">Questions?</p>
+    </section>
+
+    <div class="nav">
+        <div class="slide-counter" id="counter">1 / 1</div>
+        <div class="nav-hint">← → arrows | Space to advance | F11 fullscreen</div>
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    const progress = document.getElementById('progress');
+    let current = 0;
+
+    function showSlide(idx) {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[idx].classList.add('active');
+        counter.textContent = `${idx + 1} / ${slides.length}`;
+        progress.style.width = `${((idx + 1) / slides.length) * 100}%`;
+    }
+
+    function next() { if (current < slides.length - 1) { current++; showSlide(current); } }
+    function prev() { if (current > 0) { current--; showSlide(current); } }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+        else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+        else if (e.key === 'Home') { current = 0; showSlide(0); }
+        else if (e.key === 'End') { current = slides.length - 1; showSlide(current); }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.nav')) return;
+        const rect = document.documentElement.getBoundingClientRect();
+        if (e.clientX < rect.width / 3) prev();
+        else next();
+    });
+
+    showSlide(0);
+</script>
+</body>
+</html>

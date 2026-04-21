@@ -56,22 +56,122 @@ export const ClinicalShellRenderer = {
                     </div>
 
                     <div id="emg-decision-step" style="display: none; width: 100%; transition: all 0.4s ease;">
+                        <style>
+                            #emg-decision-step .emg-decision-grid {
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 24px;
+                                margin: 0 auto 30px auto;
+                                max-width: 780px;
+                                width: 100%;
+                            }
+                            #emg-decision-step .emg-choice {
+                                position: relative;
+                                width: 100% !important;
+                                min-height: 200px;
+                                padding: 32px 28px !important;
+                                border-radius: 18px !important;
+                                background: linear-gradient(160deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+                                border: 1px solid rgba(148, 163, 184, 0.18) !important;
+                                cursor: pointer;
+                                text-align: center;
+                                overflow: hidden;
+                                box-sizing: border-box;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                                            border-color 0.3s ease,
+                                            box-shadow 0.4s ease,
+                                            background 0.4s ease;
+                            }
+                            #emg-decision-step .emg-choice::before {
+                                content: "";
+                                position: absolute;
+                                inset: 0;
+                                background: radial-gradient(circle at 50% 0%, var(--glow), transparent 65%);
+                                opacity: 0;
+                                transition: opacity 0.4s ease;
+                                pointer-events: none;
+                            }
+                            #emg-decision-step .emg-choice::after {
+                                content: "";
+                                position: absolute;
+                                top: 0; left: 0; right: 0;
+                                height: 3px;
+                                background: var(--accent);
+                                transform: scaleX(0.25);
+                                transform-origin: center;
+                                opacity: 0.7;
+                                transition: transform 0.4s ease, opacity 0.3s ease;
+                            }
+                            #emg-decision-step .emg-choice:hover {
+                                transform: translateY(-6px);
+                                border-color: var(--accent) !important;
+                                box-shadow: 0 18px 40px -12px var(--glow), 0 0 0 1px var(--accent) inset;
+                            }
+                            #emg-decision-step .emg-choice:hover::before { opacity: 0.35; }
+                            #emg-decision-step .emg-choice:hover::after { transform: scaleX(1); opacity: 1; }
+                            #emg-decision-step .emg-choice:active { transform: translateY(-2px) scale(0.99); }
+                            #emg-decision-step .emg-choice.selected {
+                                transform: translateY(-6px);
+                                border-color: var(--accent) !important;
+                                box-shadow: 0 18px 40px -12px var(--glow), 0 0 0 2px var(--accent) inset;
+                            }
+                            #emg-decision-step .emg-choice.selected::before { opacity: 0.45; }
+                            #emg-decision-step .emg-choice.selected::after { transform: scaleX(1); opacity: 1; }
+                            #emg-decision-step .emg-choice--yes { --accent: #10b981; --glow: rgba(16, 185, 129, 0.35); }
+                            #emg-decision-step .emg-choice--no  { --accent: #ef4444; --glow: rgba(239, 68, 68, 0.35); }
+                            #emg-decision-step .emg-choice .emg-icon-wrap {
+                                position: relative;
+                                width: 68px; height: 68px;
+                                display: flex; align-items: center; justify-content: center;
+                                margin-bottom: 18px;
+                                border-radius: 50%;
+                                background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+                                color: var(--accent);
+                                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                            }
+                            #emg-decision-step .emg-choice:hover .emg-icon-wrap,
+                            #emg-decision-step .emg-choice.selected .emg-icon-wrap { transform: scale(1.12) rotate(-4deg); }
+                            #emg-decision-step .emg-choice .emg-title {
+                                font-weight: 700;
+                                font-size: 1.35em;
+                                color: #f8fafc;
+                                letter-spacing: 0.3px;
+                                position: relative;
+                                z-index: 1;
+                            }
+                            #emg-decision-step .emg-choice .emg-subtitle {
+                                font-size: 0.95em;
+                                color: #94a3b8;
+                                margin: 8px 0 0 0;
+                                max-width: 260px;
+                                line-height: 1.45;
+                                position: relative;
+                                z-index: 1;
+                            }
+                            @media (max-width: 640px) {
+                                #emg-decision-step .emg-decision-grid { grid-template-columns: 1fr; }
+                            }
+                        </style>
                         <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #f8fafc;">
                             <div style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; padding: 8px; border-radius: 8px;">${ClinicalIcons.getSvgIcon('lightning', 'currentColor')}</div>
                             Diagnostic Plan
                         </h3>
                         <p style="color: #94a3b8; margin-bottom: 30px;">Is an Electrodiagnostic (EMG/NCS) evaluation indicated for this presentation?</p>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-                            <div class="difficulty-card glass-card" data-action="emgIndicated" data-value="true" style="padding: 30px; border-bottom: 4px solid #10b981; border-radius: 12px; cursor: pointer; text-align: center; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-                                <div style="margin-bottom: 15px; color: #10b981;">${ClinicalIcons.getSvgIcon('check', 'currentColor', '48')}</div>
-                                <div style="font-weight: 700; font-size: 1.2em; color: #f8fafc;">Indicated</div>
-                                <p style="font-size: 0.9em; color: #94a3b8; margin: 8px 0 0 0;">Proceed with studies to localize lesion</p>
+
+                        <div class="emg-decision-grid">
+                            <div class="emg-choice emg-choice--yes" data-action="emgIndicated" data-value="true">
+                                <div class="emg-icon-wrap">${ClinicalIcons.getSvgIcon('check', 'currentColor', '44')}</div>
+                                <div class="emg-title">Indicated</div>
+                                <p class="emg-subtitle">Proceed with studies to localize lesion</p>
                             </div>
-                            <div class="difficulty-card glass-card" data-action="emgIndicated" data-value="false" style="padding: 30px; border-bottom: 4px solid #ef4444; border-radius: 12px; cursor: pointer; text-align: center; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-                                <div style="margin-bottom: 15px; color: #ef4444;">${ClinicalIcons.getSvgIcon('x', 'currentColor', '48')}</div>
-                                <div style="font-weight: 700; font-size: 1.2em; color: #f8fafc;">Not Indicated</div>
-                                <p style="font-size: 0.9em; color: #94a3b8; margin: 8px 0 0 0;">Rely on clinical diagnosis alone</p>
+                            <div class="emg-choice emg-choice--no" data-action="emgIndicated" data-value="false">
+                                <div class="emg-icon-wrap">${ClinicalIcons.getSvgIcon('x', 'currentColor', '44')}</div>
+                                <div class="emg-title">Not Indicated</div>
+                                <p class="emg-subtitle">Rely on clinical diagnosis alone</p>
                             </div>
                         </div>
                         <div id="emg-decision-feedback" style="display: none;"></div>

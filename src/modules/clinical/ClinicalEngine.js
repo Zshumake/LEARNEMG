@@ -37,17 +37,54 @@ export class ClinicalEngine {
 
     // --- Evaluation Logic ---
 
-    _isMatch(userTerm, expectedTerm) {
-        userTerm = userTerm.toLowerCase().trim();
-        expectedTerm = expectedTerm.toLowerCase().trim();
-        if (expectedTerm.includes(userTerm) || userTerm.includes(expectedTerm)) return true;
+    // Normalize for matching: lowercase, strip punctuation (keep hyphens for C8-T1),
+    // collapse whitespace
+    _normalize(text) {
+        return (text || '')
+            .toLowerCase()
+            .replace(/[()[\]{}'",.;:!?]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
 
+    // Tokenize a normalized string, dropping common stopwords so "ulnar and median"
+    // compares the same as "ulnar median"
+    _tokenize(text) {
+        const stopwords = new Set(['of', 'the', 'and', 'or', 'a', 'an', 'at', 's', 'with', 'in', 'on', 'to']);
+        return text.split(' ').filter(t => t.length > 1 && !stopwords.has(t));
+    }
+
+    // Does a single user-entered term correspond to an expected differential name?
+    _matchTerm(userTerm, expectedName) {
+        const user = this._normalize(userTerm);
+        const expected = this._normalize(expectedName);
+        if (!user || !expected) return false;
+
+        // Whole-string containment either direction (e.g. "klumpke" inside expected)
+        if (expected.includes(user) || user.includes(expected)) return true;
+
+        // Synonym bridge (e.g. "cts" <-> "carpal tunnel")
         for (const [abbr, terms] of Object.entries(this.synonyms)) {
-            if (userTerm === abbr || terms.includes(userTerm)) {
-                if (terms.some(t => expectedTerm.includes(t)) || expectedTerm.includes(abbr)) return true;
-            }
+            const userHitsSyn = user === abbr || terms.some(t => user.includes(t));
+            const expectedHitsSyn = expected.includes(abbr) || terms.some(t => expected.includes(t));
+            if (userHitsSyn && expectedHitsSyn) return true;
         }
-        return false;
+
+        // Token-based fallback: any distinctive user token (>=5 chars) that appears
+        // in the expected name counts as a match -- handles "klumpke palsy" ->
+        // "Lower Trunk Brachial Plexopathy (Klumpke's)" via the token "klumpke"
+        const userTokens = this._tokenize(user);
+        if (userTokens.length === 0) return false;
+        if (userTokens.some(t => t.length >= 5 && expected.includes(t))) return true;
+
+        // If the user typed several short tokens, require a majority to match
+        const matchCount = userTokens.filter(t => expected.includes(t)).length;
+        return matchCount >= Math.ceil(userTokens.length * 0.6) && matchCount > 0;
+    }
+
+    // Kept for backwards compatibility -- delegates to the new matcher
+    _isMatch(userTerm, expectedTerm) {
+        return this._matchTerm(userTerm, expectedTerm);
     }
 
     analyzeDifferential(userInputStr) {
@@ -55,39 +92,39 @@ export class ClinicalEngine {
             return { matched: [], unmatched: [], totalExpected: 0, expectedData: [] };
         }
 
-        const inputLower = (userInputStr || '').trim().toLowerCase();
         const expectedDifferentials = this.currentCase.differentialDiagnosis;
+        const expectedNames = expectedDifferentials.map(e => typeof e === 'string' ? e : e.name);
 
-        const matchedDiagnoses = [];
-        const unmatchedDiagnoses = [];
+        // Split the user input into individual differentials. Residents type them
+        // separated by commas, newlines, semicolons, or " and "
+        const userTerms = (userInputStr || '')
+            .split(/[,;\n\/]+|\s+and\s+/i)
+            .map(t => t.trim())
+            .filter(t => t.length > 0);
 
-        if (inputLower === '') {
-            // If the user entered nothing, they matched nothing.
+        if (userTerms.length === 0) {
             return {
                 matched: [],
-                unmatched: expectedDifferentials.map(expected => typeof expected === 'string' ? expected : expected.name),
+                unmatched: expectedNames,
                 totalExpected: expectedDifferentials.length,
                 expectedData: expectedDifferentials
             };
         }
 
+        const matched = [];
+        const unmatched = [];
         expectedDifferentials.forEach(expected => {
-            const expectedName = typeof expected === 'string' ? expected : expected.name;
-            const expectedLower = expectedName.toLowerCase();
-
-            // We check if the expected word is in the user's string
-            if (inputLower.includes(expectedLower) || this._isMatch(expectedLower, inputLower)) {
-                matchedDiagnoses.push(expectedName);
-            } else {
-                unmatchedDiagnoses.push(expectedName);
-            }
+            const name = typeof expected === 'string' ? expected : expected.name;
+            const hit = userTerms.some(userTerm => this._matchTerm(userTerm, name));
+            if (hit) matched.push(name);
+            else unmatched.push(name);
         });
 
         return {
-            matched: matchedDiagnoses,
-            unmatched: unmatchedDiagnoses,
+            matched,
+            unmatched,
             totalExpected: expectedDifferentials.length,
-            expectedData: expectedDifferentials // Expose original records for UI feedback
+            expectedData: expectedDifferentials
         };
     }
 

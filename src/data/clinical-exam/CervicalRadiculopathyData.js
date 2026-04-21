@@ -38,15 +38,12 @@ export const cervicalRadiculopathyData = {
                 'Painful arc with shoulder abduction'
             ],
             strength: [
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '3/5 to 4/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Infraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder external rotation', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Brachioradialis', nerve: 'Radial', root: 'C5-C6', action: 'Forearm flexion in neutral', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Rhomboids', nerve: 'Dorsal scapular', root: 'C5', action: 'Scapular retraction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Finger abduction/opposition', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '3-4/5', finding: 'WEAK', note: 'Deltoid (axillary) + supraspinatus (suprascapular) -- crosses multiple nerves at C5 root' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction (FDI)', grade: '5/5', finding: 'Normal', note: 'C8-T1 muscles spared -- localizes to C5' }
             ],
             sensory: [
                 { area: 'Lateral arm (deltoid patch / regimental badge area)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -110,14 +107,12 @@ export const cervicalRadiculopathyData = {
                 'Elbow flexion and wrist extension may be painful'
             ],
             strength: [
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Brachioradialis', nerve: 'Radial', root: 'C5-C6', action: 'Forearm flexion in neutral', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'ECRL/ECRB (Wrist extensors)', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Pronator teres', nerve: 'Median', root: 'C6-C7', action: 'Forearm pronation', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Supinator', nerve: 'Radial (PIN)', root: 'C5-C6', action: 'Forearm supination', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'May have mild weakness', mrcGrade: '4+/5' },
-                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'FDI / Hand intrinsics', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK', note: 'Biceps (musculocutaneous) + brachioradialis (radial) -- crosses nerves at C6' },
+                { movement: 'Wrist Extension', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction (FDI)', grade: '5/5', finding: 'Normal', note: 'C8-T1 spared -- localizes to C6' }
             ],
             sensory: [
                 { area: 'Lateral forearm, thumb, and index finger (thumb tip is KEY testing point)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -134,6 +129,37 @@ export const cervicalRadiculopathyData = {
                 { name: 'Upper Limb Tension Test', technique: 'Shoulder abduction, elbow extension, wrist extension, forearm supination', positiveFinding: 'Reproduces C6 radicular symptoms' },
                 { name: 'Neck Distraction Test', technique: 'Manual axial traction', positiveFinding: 'Relieves symptoms' }
             ]
+        },
+        examSequence: {
+            screen: {
+                prompt: 'Patient reports neck pain radiating to the hand. Which muscles should you test first to identify C6 myotome involvement?',
+                tests: [
+                    { type: 'strength', key: 'Elbow Flexion' },
+                    { type: 'strength', key: 'Wrist Extension' },
+                    { type: 'strength', key: 'Grip Strength' }
+                ],
+                reasoning: 'Elbow flexion (biceps/brachioradialis) and wrist extension are the key C6 myotome muscles. Testing grip as well helps rule out C8 involvement. Weakness in elbow flexion and wrist extension with normal grip points to C6.'
+            },
+            localize: {
+                prompt: 'Elbow flexion and wrist extension are weak. How do you localize to C6 and distinguish from C5 and C7?',
+                tests: [
+                    { type: 'reflex', key: 'Brachioradialis (C5-C6)' },
+                    { type: 'reflex', key: 'Biceps (C5-C6)' },
+                    { type: 'sensory', key: 'Lateral forearm, thumb, and index finger (thumb tip is KEY testing point)' },
+                    { type: 'strength', key: 'Shoulder Abduction' },
+                    { type: 'reflex', key: 'Triceps (C7)' }
+                ],
+                reasoning: 'Diminished brachioradialis reflex is the most reliable C6 finding. Sensory loss at the thumb tip localizes to C6. Normal-ish shoulder abduction distinguishes from C5 (where deltoid is prominently weak). Normal triceps reflex excludes C7.'
+            },
+            confirm: {
+                prompt: 'Findings suggest C6 radiculopathy. What provocative tests and additional checks confirm the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Spurling Test' },
+                    { type: 'specialTest', key: 'Bakody Sign' },
+                    { type: 'specialTest', key: 'Upper Limb Tension Test' }
+                ],
+                reasoning: 'Positive Spurling test reproducing radicular pain to the lateral forearm and thumb is highly specific for cervical radiculopathy. Bakody sign (relief with hand on head) and positive ULTT further support nerve root compression at C6.'
+            }
         },
         keyDistinguishingFindings: [
             'Brachioradialis reflex is the MOST RELIABLE C6 reflex',
@@ -180,16 +206,13 @@ export const cervicalRadiculopathyData = {
                 'Elbow extension against resistance may be painful/weak'
             ],
             strength: [
-                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'WEAK (KEY muscle for C7)', mrcGrade: '4/5' },
-                { muscle: 'FCR (Wrist flexors)', nerve: 'Median', root: 'C6-C7', action: 'Wrist flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'EDC (Finger extensors)', nerve: 'Radial (PIN)', root: 'C7-C8', action: 'Finger MCP extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'ECRL/ECRB (Wrist extensors)', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Pronator teres', nerve: 'Median', root: 'C6-C7', action: 'Forearm pronation', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Latissimus dorsi', nerve: 'Thoracodorsal', root: 'C6-C8', action: 'Shoulder adduction/extension', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Pectoralis major (sternal head)', nerve: 'Medial/Lateral pectoral', root: 'C7-T1', action: 'Shoulder adduction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Finger abduction/opposition', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Elbow Extension', grade: '4/5', finding: 'WEAK', note: 'Triceps is the KEY C7 muscle' },
+                { movement: 'Wrist Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Wrist Extension', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Finger Extension', grade: '4/5', finding: 'WEAK', note: 'Weakness crosses radial + median nerves -- myotomal C7 pattern' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction (FDI)', grade: '5/5', finding: 'Normal', note: 'C8-T1 spared' }
             ],
             sensory: [
                 { area: 'Middle finger (KEY sensory point for C7)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -206,6 +229,36 @@ export const cervicalRadiculopathyData = {
                 { name: 'Neck Distraction Test', technique: 'Manual axial traction', positiveFinding: 'Relieves symptoms' },
                 { name: 'Lhermitte Sign', technique: 'Cervical flexion', positiveFinding: 'Electric shock sensation down spine — suggests concurrent myelopathy, NOT specific to C7' }
             ]
+        },
+        examSequence: {
+            screen: {
+                prompt: 'Patient reports neck pain radiating to the middle finger. Which muscles should you test first to identify C7 myotome involvement?',
+                tests: [
+                    { type: 'strength', key: 'Elbow Extension' },
+                    { type: 'strength', key: 'Wrist Flexion' },
+                    { type: 'strength', key: 'Finger Extension' }
+                ],
+                reasoning: 'Elbow extension (triceps), wrist flexion, and finger extension are the key C7 myotome muscles. Weakness across these muscles -- which span radial and median nerves -- points to a root-level C7 pattern rather than a single peripheral nerve.'
+            },
+            localize: {
+                prompt: 'Triceps, wrist flexion, and finger extension are weak. How do you localize to C7 and distinguish from C6?',
+                tests: [
+                    { type: 'reflex', key: 'Triceps (C7)' },
+                    { type: 'sensory', key: 'Middle finger (KEY sensory point for C7)' },
+                    { type: 'reflex', key: 'Biceps (C5-C6)' },
+                    { type: 'reflex', key: 'Brachioradialis (C5-C6)' }
+                ],
+                reasoning: 'Diminished triceps reflex is the key C7 reflex. Sensory loss at the middle finger tip localizes to C7. Normal biceps and brachioradialis reflexes exclude C6 involvement and confirm isolated C7 root pathology.'
+            },
+            confirm: {
+                prompt: 'Findings suggest C7 radiculopathy. What provocative tests confirm the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Spurling Test' },
+                    { type: 'specialTest', key: 'Upper Limb Tension Test (Median Nerve Bias)' },
+                    { type: 'specialTest', key: 'Lhermitte Sign' }
+                ],
+                reasoning: 'Positive Spurling test reproducing pain to the posterior forearm and middle finger confirms cervical radiculopathy. ULTT with median nerve bias may reproduce C7 symptoms. Lhermitte sign should be checked to rule out concurrent myelopathy.'
+            }
         },
         keyDistinguishingFindings: [
             'MOST COMMON cervical radiculopathy level',
@@ -253,16 +306,14 @@ export const cervicalRadiculopathyData = {
                 'Grip weakness limits functional activities'
             ],
             strength: [
-                { muscle: 'FDP (all fingers)', nerve: 'Median + Ulnar', root: 'C8-T1', action: 'Finger DIP flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'FDI', nerve: 'Ulnar', root: 'C8-T1', action: 'Index finger abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'ADM', nerve: 'Ulnar', root: 'C8-T1', action: 'Small finger abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Interossei', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger ab/adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'FPL', nerve: 'Median (AIN)', root: 'C8-T1', action: 'Thumb IP flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'EIP/EDM', nerve: 'Radial (PIN)', root: 'C8', action: 'Index/small finger extension', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'APB', nerve: 'Median', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'May be WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Triceps', nerve: 'Radial', root: 'C7-C8', action: 'Elbow extension', expectedFinding: 'May be WEAK (minor C8 contribution)', mrcGrade: '4+/5' },
-                { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Biceps/Deltoid', nerve: 'Musculocutaneous/Axillary', root: 'C5-C6', action: 'Elbow flexion/Shoulder abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Grip Strength', grade: '4/5', finding: 'WEAK', note: 'Finger flexors weak across median + ulnar -- C8 myotomal pattern' },
+                { movement: 'Finger Abduction (FDI)', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Thumb Abduction (APB)', grade: '4+/5', finding: 'WEAK', note: 'Both median (APB) and ulnar (FDI) intrinsics weak -- not a single nerve' },
+                { movement: 'Finger Extension', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Elbow Extension', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Ring finger (ulnar side), small finger, distal medial hand', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -328,14 +379,13 @@ export const cervicalRadiculopathyData = {
                 'Grip weakness affects functional activities'
             ],
             strength: [
-                { muscle: 'APB', nerve: 'Median', root: 'C8-T1', action: 'Thumb abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Opponens pollicis', nerve: 'Median', root: 'C8-T1', action: 'Thumb opposition', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'FDI', nerve: 'Ulnar', root: 'C8-T1', action: 'Index finger abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'All interossei', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger abduction/adduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'ADM', nerve: 'Ulnar', root: 'C8-T1', action: 'Small finger abduction', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Lumbricals 1-4', nerve: 'Median + Ulnar', root: 'C8-T1', action: 'MCP flexion with IP extension', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'FDP', nerve: 'Median + Ulnar', root: 'C8-T1', action: 'Finger DIP flexion', expectedFinding: 'May have mild weakness', mrcGrade: '4+/5' },
-                { muscle: 'All proximal muscles', nerve: 'Various', root: 'C5-C7', action: 'Various', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Thumb Abduction (APB)', grade: '4/5', finding: 'WEAK', note: 'Median-innervated -- weak in T1 but NOT in ulnar neuropathy' },
+                { movement: 'Finger Abduction (FDI)', grade: '4/5', finding: 'WEAK', note: 'Ulnar-innervated -- both median + ulnar intrinsics weak = root level' },
+                { movement: 'Grip Strength', grade: '4+/5', finding: 'WEAK' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Medial forearm (medial antebrachial cutaneous territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },

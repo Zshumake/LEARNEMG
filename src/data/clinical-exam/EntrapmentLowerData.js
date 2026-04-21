@@ -36,13 +36,12 @@ export const entrapmentLowerData = {
                 'Limited active dorsiflexion and eversion'
             ],
             strength: [
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK', mrcGrade: '0-3/5' },
-                { muscle: 'Extensor Hallucis Longus', nerve: 'Deep peroneal', root: 'L5', action: 'Great toe extension', expectedFinding: 'WEAK', mrcGrade: '0-3/5' },
-                { muscle: 'Extensor Digitorum Longus', nerve: 'Deep peroneal', root: 'L5', action: 'Toe extension', expectedFinding: 'WEAK', mrcGrade: '0-3/5' },
-                { muscle: 'Peroneus Longus/Brevis', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'WEAK', mrcGrade: '2-4/5' },
-                { muscle: 'Tibialis Posterior', nerve: 'Tibial', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius/Soleus', nerve: 'Tibial', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gluteus Medius', nerve: 'Superior gluteal', root: 'L5', action: 'Hip abduction', expectedFinding: 'NORMAL (KEY — weak in L5 radiculopathy)', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '0-3/5', finding: 'WEAK', note: 'Foot drop -- hallmark of fibular neuropathy' },
+                { movement: 'Great Toe Extension (EHL)', grade: '0-3/5', finding: 'WEAK' },
+                { movement: 'Ankle Eversion', grade: '2-4/5', finding: 'WEAK', note: 'Superficial peroneal branch' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal', note: 'KEY -- tibial nerve; weak in L5 radiculopathy' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal', note: 'Normal hip abduction also excludes L5 radiculopathy' }
             ],
             sensory: [
                 { area: 'Dorsum of foot (superficial peroneal territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -66,7 +65,38 @@ export const entrapmentLowerData = {
             'Tinel at fibular head localizes to compression site',
             'Both deep AND superficial peroneal territories affected (dorsiflexion + eversion + dorsal foot numbness)',
             'EMG: Conduction block or slowing across fibular head; denervation in peroneal-innervated muscles only; NORMAL tibialis posterior and paraspinals'
-        ]
+        ],
+        examSequence: {
+            screen: {
+                prompt: 'A patient presents with foot drop. Which muscles should you test first to determine whether the pattern fits fibular nerve vs. tibial nerve involvement?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Dorsiflexion' },
+                    { type: 'strength', key: 'Ankle Eversion' },
+                    { type: 'strength', key: 'Ankle Plantarflexion' }
+                ],
+                reasoning: 'Ankle dorsiflexion and eversion are innervated by the common fibular nerve. Plantarflexion is tibial. In fibular neuropathy, dorsiflexion and eversion are weak while plantarflexion is normal. If all three are weak, consider a more proximal lesion (sciatic neuropathy, lumbosacral plexopathy, or L5 radiculopathy).'
+            },
+            localize: {
+                prompt: 'Dorsiflexion and eversion are weak but plantarflexion is normal. How do you confirm this is a fibular nerve lesion rather than L5 radiculopathy?',
+                tests: [
+                    { type: 'strength', key: 'Ankle Inversion' },
+                    { type: 'strength', key: 'Great Toe Extension (EHL)' },
+                    { type: 'sensory', key: 'Dorsum of foot (superficial peroneal territory)' },
+                    { type: 'sensory', key: 'Lateral lower leg' }
+                ],
+                reasoning: 'Ankle inversion (tibialis posterior) is innervated by the tibial nerve but shares the L5 root with dorsiflexors. NORMAL inversion strongly favors fibular neuropathy over L5 radiculopathy. EHL weakness confirms deep peroneal involvement. Sensory loss over the dorsal foot and lateral leg matches the superficial peroneal and lateral cutaneous nerve of calf territories, both branches of the common fibular nerve.'
+            },
+            confirm: {
+                prompt: 'The pattern points to common fibular neuropathy. What confirmatory tests help localize the compression site and exclude L5 radiculopathy?',
+                tests: [
+                    { type: 'specialTest', key: 'Tinel at Fibular Head' },
+                    { type: 'specialTest', key: 'Hip Abduction Test' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'reflex', key: 'Knee jerk (L3-L4)' }
+                ],
+                reasoning: 'A positive Tinel sign at the fibular head localizes the compression to that site. Normal hip abduction (gluteus medius, superior gluteal nerve, L5) further excludes L5 radiculopathy. Reflexes should be normal in fibular neuropathy since the knee jerk (L3-L4) and ankle jerk (S1) arcs do not involve the common fibular nerve.'
+            }
+        }
     },
 
     deep_peroneal_ankle: {
@@ -99,10 +129,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full ankle ROM unless blocked by osteophyte'],
             strength: [
-                { muscle: 'Extensor Digitorum Brevis (EDB)', nerve: 'Deep peroneal', root: 'L5-S1', action: 'Toe extension at MTP', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL (innervated proximal to ankle)', mrcGrade: '5/5' },
-                { muscle: 'Extensor Hallucis Longus', nerve: 'Deep peroneal', root: 'L5', action: 'Great toe extension', expectedFinding: 'NORMAL (innervated proximal to ankle)', mrcGrade: '5/5' },
-                { muscle: 'Peroneus Longus/Brevis', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Toe Extension (EDB)', grade: '3-4/5', finding: 'WEAK', note: 'Only muscle affected -- very focal lesion' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal', note: 'Normal TA distinguishes from proximal fibular lesion' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'First web space (between great and second toe)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -162,11 +193,11 @@ export const entrapmentLowerData = {
                 'Eversion or dorsiflexion may reproduce symptoms (stretches nerve)'
             ],
             strength: [
-                { muscle: 'Abductor Hallucis', nerve: 'Medial plantar (Tibial)', root: 'L5-S1', action: 'Great toe abduction', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Intrinsic foot muscles', nerve: 'Lateral plantar (Tibial)', root: 'S1-S2', action: 'Toe flexion/spreading', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tibialis Posterior', nerve: 'Tibial (proximal)', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius/Soleus', nerve: 'Tibial (proximal)', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Toe Flexion/Spreading', grade: '4/5', finding: 'WEAK', note: 'Intrinsic foot muscles -- difficult to assess' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal', note: 'Tibialis posterior innervated proximal to tunnel' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal', note: 'Gastrocnemius innervated proximal to tunnel' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Sole of foot (medial and lateral plantar distributions)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -189,7 +220,37 @@ export const entrapmentLowerData = {
             'Normal ankle jerk (reflex arc is proximal to tarsal tunnel compression)',
             'Normal tibialis posterior and gastrocnemius (innervated proximal to tunnel)',
             'EMG: Prolonged distal motor latency to abductor hallucis; may show denervation in intrinsic foot muscles'
-        ]
+        ],
+        examSequence: {
+            screen: {
+                prompt: 'A patient has burning pain on the sole of the foot. Which muscles should you test first to assess for a distal tibial nerve pattern?',
+                tests: [
+                    { type: 'strength', key: 'Toe Flexion/Spreading' },
+                    { type: 'strength', key: 'Ankle Plantarflexion' },
+                    { type: 'strength', key: 'Ankle Dorsiflexion' }
+                ],
+                reasoning: 'Intrinsic foot muscles (toe flexion/spreading) are innervated by the medial and lateral plantar nerves, the terminal branches of the posterior tibial nerve that pass through the tarsal tunnel. In tarsal tunnel syndrome, these may be weak while plantarflexion (gastrocnemius/soleus, innervated proximal to the tunnel) and dorsiflexion (deep peroneal nerve) remain normal. This distal-only tibial pattern is the screening clue.'
+            },
+            localize: {
+                prompt: 'Intrinsic foot muscles are weak but proximal muscles are normal. How do you localize this to the tarsal tunnel rather than a more proximal tibial or S1 lesion?',
+                tests: [
+                    { type: 'sensory', key: 'Sole of foot (medial and lateral plantar distributions)' },
+                    { type: 'sensory', key: 'Dorsum of foot' },
+                    { type: 'strength', key: 'Ankle Inversion' }
+                ],
+                reasoning: 'Sensory loss on the sole (plantar surface) with NORMAL dorsal foot sensation localizes to the plantar nerve branches of the posterior tibial nerve. Normal ankle inversion (tibialis posterior) confirms the lesion is distal to the tibialis posterior branch point, consistent with compression within the tarsal tunnel. In S1 radiculopathy, the ankle jerk would be diminished and sensory loss would follow the S1 dermatome (lateral foot).'
+            },
+            confirm: {
+                prompt: 'The pattern fits tarsal tunnel syndrome. What confirmatory tests clinch the diagnosis?',
+                tests: [
+                    { type: 'specialTest', key: 'Tinel Sign at Tarsal Tunnel' },
+                    { type: 'specialTest', key: 'Dorsiflexion-Eversion Test' },
+                    { type: 'reflex', key: 'Ankle jerk (S1)' },
+                    { type: 'reflex', key: 'Knee jerk (L3-L4)' }
+                ],
+                reasoning: 'A positive Tinel sign behind the medial malleolus localizes compression to the tarsal tunnel. The dorsiflexion-eversion test stretches the tibial nerve through the tunnel and reproduces plantar symptoms. Normal reflexes are expected because the ankle jerk (S1) and knee jerk (L3-L4) reflex arcs are entirely proximal to the tarsal tunnel. Abnormal reflexes would point to radiculopathy or polyneuropathy instead.'
+            }
+        }
     },
 
     femoral_neuropathy: {
@@ -226,12 +287,12 @@ export const entrapmentLowerData = {
                 'Passive knee ROM typically normal'
             ],
             strength: [
-                { muscle: 'Quadriceps (Rectus Femoris, Vastus group)', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Iliopsoas', nerve: 'Femoral + L1-L3 direct branches', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'May be WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Sartorius', nerve: 'Femoral', root: 'L2-L3', action: 'Hip flexion + knee flexion + external rotation', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Hip adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hamstrings', nerve: 'Sciatic (tibial division)', root: 'L5-S2', action: 'Knee flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Knee Extension', grade: '2-3/5', finding: 'WEAK', note: 'Quadriceps -- hallmark of femoral neuropathy' },
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Iliopsoas may be involved' },
+                { movement: 'Hip Adduction', grade: '5/5', finding: 'Normal', note: 'Obturator nerve -- normal excludes lumbar plexopathy' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Anterior thigh (anterior femoral cutaneous nerve)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -287,11 +348,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full passive hip ROM', 'Active hip adduction limited by weakness'],
             strength: [
-                { muscle: 'Adductor Longus', nerve: 'Obturator (anterior division)', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Adductor Magnus (partial)', nerve: 'Obturator (posterior division)', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Gracilis', nerve: 'Obturator', root: 'L2-L3', action: 'Hip adduction + knee flexion', expectedFinding: 'WEAK', mrcGrade: '4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Iliopsoas', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Hip Adduction', grade: '3-4/5', finding: 'WEAK', note: 'Isolated adductor weakness is the hallmark' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal', note: 'Femoral nerve -- normal excludes lumbar plexopathy' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Medial thigh (obturator nerve cutaneous branch)', modality: 'Light touch', expectedFinding: 'Decreased (small and variable territory)' },
@@ -346,10 +407,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full hip ROM', 'Hip extension may worsen symptoms (stretches nerve)'],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hip adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Iliopsoas', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal', note: 'Purely sensory nerve -- all strength normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Adduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Anterolateral thigh (lateral femoral cutaneous nerve territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased, hyperesthetic, or allodynic' },
@@ -410,12 +472,12 @@ export const entrapmentLowerData = {
                 'Straight leg raise may be positive'
             ],
             strength: [
-                { muscle: 'Hamstrings (Biceps Femoris, Semimembranosus)', nerve: 'Sciatic (tibial division)', root: 'L5-S2', action: 'Knee flexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal (via sciatic)', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'WEAK (if peroneal division affected)', mrcGrade: '3-4/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial (via sciatic)', root: 'S1-S2', action: 'Ankle plantarflexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Peronei', nerve: 'Superficial peroneal (via sciatic)', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Gluteus Medius', nerve: 'Superior gluteal', root: 'L5', action: 'Hip abduction', expectedFinding: 'NORMAL (branches off BEFORE piriformis)', mrcGrade: '5/5' },
-                { muscle: 'Gluteus Maximus', nerve: 'Inferior gluteal', root: 'L5-S2', action: 'Hip extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '3-4/5', finding: 'WEAK', note: 'Peroneal division more vulnerable -- foot drop common' },
+                { movement: 'Ankle Eversion', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Ankle Plantarflexion', grade: '4/5', finding: 'WEAK', note: 'Tibial division may also be affected' },
+                { movement: 'Great Toe Extension (EHL)', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal', note: 'Normal glutei -- branches proximal to piriformis' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Lateral lower leg and dorsum of foot (peroneal)', modality: 'Light touch', expectedFinding: 'Decreased' },
@@ -473,10 +535,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full ankle ROM', 'Toe ROM normal'],
             strength: [
-                { muscle: 'Abductor Digiti Quinti (Minimi)', nerve: 'First branch lateral plantar (Baxter nerve)', root: 'S1-S2', action: 'Small toe abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Abductor Hallucis', nerve: 'Medial plantar', root: 'L5-S1', action: 'Great toe abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Posterior', nerve: 'Tibial', root: 'L4-L5', action: 'Ankle inversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Toe Abduction (ADQ)', grade: '3-4/5', finding: 'WEAK', note: 'ADQ atrophy is pathognomonic for Baxter neuropathy' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Medial plantar heel (small area)', modality: 'Light touch', expectedFinding: 'May have subtle decreased sensation' },
@@ -527,9 +590,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full knee and ankle ROM'],
             strength: [
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hip adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Ankle dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal', note: 'Purely sensory nerve -- normal quads excludes femoral neuropathy' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Medial lower leg and medial ankle (saphenous nerve)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -581,9 +646,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full ankle ROM'],
             strength: [
-                { muscle: 'Peroneus Longus/Brevis', nerve: 'Superficial peroneal', root: 'L5-S1', action: 'Ankle eversion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Gastrocnemius', nerve: 'Tibial', root: 'S1-S2', action: 'Plantarflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal', note: 'Purely sensory nerve -- all strength normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Lateral ankle and lateral foot (sural territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased' },
@@ -634,8 +701,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full toe ROM'],
             strength: [
-                { muscle: 'Intrinsic foot muscles', nerve: 'Plantar nerves', root: 'S1-S2', action: 'Toe flexion/spreading', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Toe Flexion/Spreading', grade: '5/5', finding: 'Normal', note: 'No motor deficit -- perineural fibrosis only' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Adjacent sides of affected toes (3rd/4th web space typically)', modality: 'Light touch', expectedFinding: 'Decreased in the web space' },
@@ -687,10 +757,11 @@ export const entrapmentLowerData = {
             ],
             rom: ['Full hip ROM', 'Hip extension may worsen symptoms'],
             strength: [
-                { muscle: 'Internal oblique (partial)', nerve: 'Ilioinguinal', root: 'L1', action: 'Trunk rotation', expectedFinding: 'May be subtly WEAK', mrcGrade: '4+/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Hip adductors', nerve: 'Obturator', root: 'L2-L4', action: 'Hip adduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Iliopsoas', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal', note: 'Primarily sensory -- normal motor excludes femoral/L1-L2' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Adduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Inguinal region, medial proximal thigh, root of penis/labia (ilioinguinal territory)', modality: 'Light touch, pinprick', expectedFinding: 'Decreased or hyperesthetic' },
