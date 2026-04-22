@@ -103,15 +103,13 @@ export class AppShell {
                 const randomEarlState = earlAnimations[Math.floor(Math.random() * earlAnimations.length)];
                 ernestContainer.classList.add(randomEarlState);
             } else {
-                const entryStates = ['sleeping', 'dancing', 'jumping', 'waving'];
+                const entryStates = ['dancing', 'jumping', 'waving'];
                 const randomState = entryStates[Math.floor(Math.random() * entryStates.length)];
                 ernestContainer.classList.add(randomState);
 
                 // Set corresponding dialogue and gestures for Ernest
                 if (speechBubbleText) {
-                    if (randomState === 'sleeping') {
-                        speechBubbleText.innerHTML = "Zzz... *Snores in 60Hz hum*... Wake up, Doctor. The clinic waitlist is growing. Click to begin.";
-                    } else if (randomState === 'dancing') {
+                    if (randomState === 'dancing') {
                         ernestContainer.setAttribute('data-gesture-l', 'palm');
                         ernestContainer.setAttribute('data-gesture-r', 'palm');
                         speechBubbleText.innerHTML = "Rhythm and recruitment! If you can't keep the beat, you can't read a MUAP. Click and let's get into the flow.";
@@ -126,27 +124,16 @@ export class AppShell {
                 }
             }
 
-            // Wake up / resolve action on click
+            // Playful poke response on click (preserves current dancing/jumping/waving state)
             ernestContainer.addEventListener('click', () => {
-                if (ernestContainer.classList.contains('sleeping')) {
-                    ernestContainer.classList.remove('sleeping');
-                    ernestContainer.classList.add('awake');
-                    ernestContainer.removeAttribute('data-gesture-l');
-                    ernestContainer.removeAttribute('data-gesture-r');
-                    if (speechBubbleText) {
-                        speechBubbleText.innerHTML = "Good. You're awake. Focused H&P is done? Good. I'm Ernest. Let's start dissecting these waveforms. No noise, just signal. Ready?";
-                    }
-                } else {
-                    // Playful poke response, without breaking his current dancing/jumping state
-                    if (speechBubbleText) {
-                        const responses = [
-                            "Check your ground, that's unstable.",
-                            "Latency is the key to life, Doctor. Don't forget it.",
-                            "Are you stimulating or just guessing? Match the signal.",
-                            "Knowledge is the best filter for noise. Keep studying."
-                        ];
-                        speechBubbleText.innerHTML = responses[Math.floor(Math.random() * responses.length)];
-                    }
+                if (speechBubbleText) {
+                    const responses = [
+                        "Check your ground, that's unstable.",
+                        "Latency is the key to life, Doctor. Don't forget it.",
+                        "Are you stimulating or just guessing? Match the signal.",
+                        "Knowledge is the best filter for noise. Keep studying."
+                    ];
+                    speechBubbleText.innerHTML = responses[Math.floor(Math.random() * responses.length)];
                 }
             });
         }
