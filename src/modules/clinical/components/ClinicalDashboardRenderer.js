@@ -1,8 +1,12 @@
 import { ClinicalIcons } from './ClinicalIcons.js';
 import { ClinicalShellRenderer } from './ClinicalShellRenderer.js';
 
-// Featured lecture cases -- flagged with a star in the patient case load grid
-const STARRED_CASE_IDS = new Set(['parsonage', 'klumpke', 'complex1', 'retroperitoneal_hematoma', 'sciatic_injury']);
+// Featured lecture cases -- flagged with a star in the patient case load grid.
+// Order here IS the lecture order (Case 1 -> Case 5) and controls display order at the top of the grid.
+const STARRED_CASE_ORDER = ['parsonage', 'klumpke', 'complex1', 'retroperitoneal_hematoma', 'sciatic_injury'];
+const STARRED_CASE_IDS = new Set(STARRED_CASE_ORDER);
+const STARRED_RANK = new Map(STARRED_CASE_ORDER.map((id, i) => [id, i]));
+console.log('[ClinicalDashboardRenderer] build=caseorder-v2 STARRED_CASE_ORDER=', STARRED_CASE_ORDER);
 
 export const ClinicalDashboardRenderer = {
     renderDashboard: function (pgyLevel, caseDatabase, selectedDifficulty = 'all') {
@@ -15,11 +19,14 @@ export const ClinicalDashboardRenderer = {
             </h3>`;
             caseListHtml += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 10px;">';
 
-            // Sort: starred lecture cases first, then everything else (stable within groups)
+            // Sort: starred lecture cases first, in explicit lecture order (Case 1 -> Case 5), then everything else
             const entries = Object.entries(caseDatabase).sort(([idA], [idB]) => {
-                const aStar = STARRED_CASE_IDS.has(idA) ? 0 : 1;
-                const bStar = STARRED_CASE_IDS.has(idB) ? 0 : 1;
-                return aStar - bStar;
+                const aStar = STARRED_CASE_IDS.has(idA);
+                const bStar = STARRED_CASE_IDS.has(idB);
+                if (aStar && bStar) return STARRED_RANK.get(idA) - STARRED_RANK.get(idB);
+                if (aStar) return -1;
+                if (bStar) return 1;
+                return 0;
             });
 
             for (const [id, caseData] of entries) {

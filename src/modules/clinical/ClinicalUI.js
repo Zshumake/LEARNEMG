@@ -1,4 +1,4 @@
-import { ClinicalRenderer } from './ClinicalRenderer.js';
+import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260422-caseorder-v2';
 import { ClinicalTables } from './components/ClinicalTables.js';
 import logger from '../../utils/Logger.js';
 

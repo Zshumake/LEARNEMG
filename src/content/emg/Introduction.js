@@ -188,7 +188,7 @@ class IntroductionModule extends BaseContent {
 
                     <div class="emg-card" style="border-top: 5px solid #f59e0b; margin-bottom: 25px;">
                         <h5 style="color: #92400e; margin-bottom: 15px;">When to Order the EMG: Temporal Evolution of EDX Findings After Nerve Injury</h5>
-                        <p style="font-size: 0.9em; color: #475569; margin-bottom: 15px;">Timing matters. Ordering an EMG too early or too late can lead to missed or misinterpreted findings. Source: Preston & Shapiro, Dumitru.</p>
+                        <p style="font-size: 0.9em; color: #475569; margin-bottom: 15px;">Timing matters. Ordering an EMG too early or too late can lead to missed or misinterpreted findings.</p>
                         <div style="display: flex; flex-direction: column; gap: 8px;">
                             ${this.data.temporalEvolution.map((t, i) => `
                                 <div style="display: flex; gap: 15px; align-items: flex-start; padding: 10px; background: ${i % 2 === 0 ? '#fffbeb' : '#fff'}; border-radius: 8px;">
