@@ -1,5 +1,5 @@
 import { ErnestAPI } from './ErnestAPI.js?v=20260304-v1';
-import { ErnestUI } from './ErnestUI.js?v=20260304-v1';
+import { ErnestUI } from './ErnestUI.js?v=20260421-personafix';
 import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
 import logger from '../../utils/Logger.js';
 
@@ -164,9 +164,7 @@ export class ErnestCore {
         }
     }
 
-    promptApiKey() {
-        window.open('https://aistudio.google.com/app/apikey', '_blank');
-
+    promptApiKey(onDone) {
         // Use the new custom HTML modal instead of the browser's blocked prompt()
         this.ui.showApiKeyModal((key) => {
             if (key) {
@@ -176,9 +174,19 @@ export class ErnestCore {
                         this.ui.ui.setupBtn.style.display = 'none';
                     }
                 } else {
-                    alert("That doesn't look like a valid key (should start with 'AIza'). Please try again.");
+                    this.chat.addToChat('ernest', "That key didn't look valid — keys from Google AI Studio are usually long strings starting with \"AIza\". Try pasting again via the Setup Key button.");
+                    // Make sure the Setup Key button is available to retry
+                    if (this.ui.ui.setupBtn) {
+                        this.ui.ui.setupBtn.style.display = '';
+                    }
+                }
+            } else {
+                // User cancelled — make sure the Setup Key button is visible
+                if (!this.api.apiKey && this.ui.ui.setupBtn) {
+                    this.ui.ui.setupBtn.style.display = '';
                 }
             }
+            if (typeof onDone === 'function') onDone();
         });
     }
 
@@ -244,12 +252,23 @@ export class ErnestCore {
 
         if (!this.api.apiKey) {
             this.chat.removeLoadingMessage();
-            this.chat.addToChat('ernest', "My circuits require an API Key to function. Please configure it below.");
+            this.chat.addToChat('ernest', "My circuits need an API Key to answer. Opening the setup window now — paste your Google Gemini key (starts with AIza) and I'll be online.");
 
             // Reset to idle
             if (window.appComponents && window.appComponents.ernest) {
                 window.appComponents.ernest.playAnimation('idle');
             }
+
+            // Auto-open the setup modal so the user isn't stuck. After they
+            // save a key, re-run the original query automatically.
+            const originalQuery = finalQuery;
+            setTimeout(() => {
+                this.promptApiKey(() => {
+                    if (this.api.apiKey) {
+                        this.processQuery(originalQuery, systemPromptOverride);
+                    }
+                });
+            }, 400);
             return;
         }
 

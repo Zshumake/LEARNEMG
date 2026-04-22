@@ -176,7 +176,7 @@ export class ErnestUI {
     createTooltip(persona) {
         const tooltip = document.createElement('div');
         tooltip.className = 'jrpg-ernest-tooltip';
-        tooltip.innerHTML = `${this._renderTooltipAvatar(persona)} <span>Ask ${persona.name.split(' ')[0]}</span>`;
+        tooltip.innerHTML = `${this._renderTooltipAvatar(persona)} <span class="jrpg-tooltip-text">Ask ${persona.name.split(' ')[0]}</span>`;
         tooltip.id = 'jrpg-ernest-tooltip';
         document.body.appendChild(tooltip);
         this.ui.tooltip = tooltip;
@@ -265,7 +265,7 @@ export class ErnestUI {
 
         if (this.ui.tooltip) {
             const oldAvatar = this.ui.tooltip.querySelector('.jrpg-tooltip-avatar');
-            const text = this.ui.tooltip.querySelector('span');
+            const text = this.ui.tooltip.querySelector('.jrpg-tooltip-text');
             if (oldAvatar) oldAvatar.outerHTML = this._renderTooltipAvatar(p);
             if (text) text.textContent = `Ask ${p.name.split(' ')[0]}`;
         }

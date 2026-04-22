@@ -11,12 +11,21 @@ export class ErnestAPI {
     }
 
     setApiKey(key) {
-        if (key && key.startsWith('AIza')) {
-            localStorage.setItem('ernest_api_key', key);
-            this.apiKey = key;
-            return true;
+        if (!key) return false;
+        // Trim whitespace/newlines that often sneak in on copy-paste
+        const cleaned = String(key).trim().replace(/\s+/g, '');
+        if (!cleaned) return false;
+
+        // Google Gemini keys start with 'AIza'. If they don't, still accept
+        // them (some enterprise/proxy keys use other prefixes) but log a
+        // warning so we're not silently rejecting valid keys.
+        if (!cleaned.startsWith('AIza')) {
+            logger.warn(`Saving API key that does not start with "AIza" (length=${cleaned.length}). Google AI Studio keys normally start with "AIza".`);
         }
-        return false;
+
+        localStorage.setItem('ernest_api_key', cleaned);
+        this.apiKey = cleaned;
+        return true;
     }
 
     async discoverWorkingModel() {
