@@ -216,7 +216,7 @@ export class QuizPlaceholders {
                 <h4>🔍 Available Tools:</h4>
                 <ul>
                     <li>📖 <strong>Case Studies:</strong> Interactive clinical scenarios</li>
-                    <li>📍 <strong>NCS Landmarks Quiz:</strong> Preston & Shapiro electrode placement</li>
+                    <li>📍 <strong>NCS Landmarks Quiz:</strong> Standard electrode placement</li>
                     <li>🧠 <strong>Plexus Anatomy Quiz:</strong> Interactive visual diagrams</li>
                     <li>📝 <strong>Report Writing:</strong> Professional EMG reporting practice</li>
                     <li>🎓 <strong>Muscle Lab:</strong> Advanced anatomy tools (PGY-3+)</li>
