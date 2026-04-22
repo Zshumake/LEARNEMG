@@ -6,6 +6,7 @@ import { ClinicalShellRenderer } from './ClinicalShellRenderer.js';
 const STARRED_CASE_ORDER = ['parsonage', 'klumpke', 'complex1', 'retroperitoneal_hematoma', 'sciatic_injury'];
 const STARRED_CASE_IDS = new Set(STARRED_CASE_ORDER);
 const STARRED_RANK = new Map(STARRED_CASE_ORDER.map((id, i) => [id, i]));
+console.log('[ClinicalDashboardRenderer] build=caseorder-v2 STARRED_CASE_ORDER=', STARRED_CASE_ORDER);
 
 export const ClinicalDashboardRenderer = {
     renderDashboard: function (pgyLevel, caseDatabase, selectedDifficulty = 'all') {
