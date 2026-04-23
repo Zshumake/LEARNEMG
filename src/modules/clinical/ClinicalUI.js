@@ -1,5 +1,5 @@
-import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260423-nocomments';
-import { ClinicalTables } from './components/ClinicalTables.js?v=20260423-nocomments';
+import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260423-ncscv';
+import { ClinicalTables } from './components/ClinicalTables.js?v=20260423-ncscv';
 import logger from '../../utils/Logger.js';
 
 export class ClinicalUI {

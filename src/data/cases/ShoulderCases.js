@@ -310,7 +310,7 @@ export const shoulderCases = {
         differentialDiagnosis: [
             { name: "Parsonage-Turner Syndrome (Neuralgic Amyotrophy)", ruleOut: "N/A (Correct Diagnosis)" },
             { name: "C5-C6 Radiculopathy", ruleOut: "Radiculopathy would involve the paraspinal muscles and usually cause neck pain. Patchy involvement of the axillary, suprascapular, and musculocutaneous nerves without paraspinal denervation points to a post-ganglionic lesion." },
-            { name: "Brachial Plexopathy (Upper Trunk)", ruleOut: "A trunk lesion would involve all muscles in that division; PTS is characterized by 'patchy' involvement of individual nerves often from different trunks/cords." },
+            { name: "Brachial Plexopathy (Upper Trunk)", ruleOut: "An upper trunk lesion would affect ALL C5-C6 muscles uniformly AND spare muscles outside the C5-C6 distribution. Here Brachioradialis (C5-C6, Radial) is SPARED while Pronator Quadratus (C7-C8, AIN) is INVOLVED -- a non-anatomical, patchy pattern that crosses trunk boundaries and is characteristic of PTS rather than a single trunk lesion." },
             { name: "Rotator Cuff Tear", ruleOut: "While causing pain and limited ROM, a tear would not explain the multi-focal weakness, muscle atrophy, or the neurogenic findings on EMG." },
             { name: "Mononeuritis Multiplex", ruleOut: "Usually associated with vasculitis and more systemic symptoms; PTS is more likely given the preceding viral illness and focal shoulder girdle predilection." }
         ],
@@ -344,23 +344,27 @@ export const shoulderCases = {
             comparison: []
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false, comment: "Distractor - Normal" },
+            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false },
+            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false },
+            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false },
             { muscle: "Deltoid", nerve: "Axillary", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
             { muscle: "Infraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
-            { muscle: "Serratus Anterior", nerve: "Long Thoracic", root: "C5-C7", abnormal: true, fibs: "2+", recruitment: "Reduced", comment: "Long thoracic nerve commonly affected in PTS" },
             { muscle: "Supraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
-            { muscle: "Pronator Teres", nerve: "Median", root: "C6-C7", abnormal: false, comment: "Spared -- demonstrates patchy, non-anatomical pattern" },
             { muscle: "Biceps", nerve: "Musculocutaneous", root: "C5-C6", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Brachioradialis", nerve: "Radial", root: "C5-C6", abnormal: false },
+            { muscle: "Serratus Anterior", nerve: "Long Thoracic", root: "C5-C7", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Pronator Quadratus", nerve: "Anterior Interosseous", root: "C7-C8", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Pronator Teres", nerve: "Median", root: "C6-C7", abnormal: false },
+            { muscle: "Triceps", nerve: "Radial", root: "C6-C8", abnormal: false },
             { muscle: "C5-C6 Paraspinals", abnormal: false, fibs: "0" }
         ],
         teachingPoints: [
             "Parsonage-Turner Syndrome (Neuralgic Amyotrophy) is an idiopathic inflammatory plexitis/neuropathy.",
-            "The hallmark is 'patchy' involvement of the brachial plexus, often affecting individual nerves (Long thoracic, Axillary, Suprascapular) rather than traditional trunks or cords.",
+            "The hallmark is 'patchy' involvement of the brachial plexus, often affecting individual nerves (Long Thoracic, Axillary, Suprascapular, Anterior Interosseous) rather than traditional trunks or cords.",
+            "Key differentiator from Upper Trunk Plexopathy: sparing of some C5-C6 muscles (e.g., Brachioradialis) AND involvement of muscles OUTSIDE the C5-C6 distribution (e.g., AIN-innervated Pronator Quadratus, C7-C8). A trunk lesion would not cross these boundaries.",
             "Normal Cervical Paraspinal EMG identifies the lesion as post-ganglionic (at the plexus or nerve level), ruling out radiculopathy.",
-            "PTS can be bilateral in approximately 30% of cases",
-            "Anterior interosseous nerve (AIN) variant is a well-recognized presentation with isolated thumb/index DIP flexion weakness"
+            "PTS can be bilateral in approximately 30% of cases.",
+            "Anterior interosseous nerve (AIN) variant is a well-recognized presentation with isolated thumb/index DIP flexion weakness."
         ]
     }
 };

@@ -22,6 +22,7 @@ export const plexopathyCases = {
         },
         differentialDiagnosis: [
             { name: "Traumatic Brachial Plexus Root Avulsions (C5-T1)", ruleOut: "N/A (Correct Diagnosis)" },
+            { name: "Post-Ganglionic Brachial Plexopathy (Trunk/Cord Level)", ruleOut: "A post-ganglionic lesion would abolish SNAPs (axonal disruption distal to the DRG) and spare the cervical paraspinals (innervated by posterior primary rami that branch off proximal to the plexus). Here SNAPs are preserved and paraspinals show active denervation -- both findings localize the lesion PRE-ganglionically, at the root level. Horner's syndrome further supports T1 root avulsion." },
             { name: "Cervical Spinal Cord Injury", ruleOut: "Would typically involve bilateral symptoms or long tract signs (legs)." },
             { name: "Multifocal Motor Neuropathy", ruleOut: "Typically asymmetric but distal-predominant and purely motor; sensory loss makes this unlikely." },
             { name: "Severe Diabetic Polyneuropathy", ruleOut: "Would be length-dependent (stocking-glove) and symmetric." }

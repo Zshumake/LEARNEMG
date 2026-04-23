@@ -1,17 +1,25 @@
 export const ClinicalTables = {
     formatKinetic: function (val, isAbnormal, type) {
-        // "No response" case: a numeric 0 on an abnormal row means the
-        // response was ABSENT (standard EDX convention). Render as "NR"
-        // instead of a dash so it doesn't read as "not tested."
-        // `type === 'dist'` is the segment-distance column and is not a
-        // physiologic measure, so 0 there still means "n/a."
-        if (val === 0 && isAbnormal && type !== 'dist') {
+        // "No response" case: a numeric 0 in the AMPLITUDE column on an
+        // abnormal row means the response was ABSENT (standard EDX
+        // convention). Render as "NR" instead of a dash so it doesn't
+        // read as "not tested."
+        //
+        // We restrict this to type === 'amp' -- a zero velocity on an
+        // abnormal row usually just means the CV wasn't calculated
+        // (e.g. only distal stim was done), not that there was no
+        // response. Treating that as NR was misleading. Authors who
+        // truly want NR in another column can put the string "Absent"
+        // in the data (handled below).
+        if (val === 0 && isAbnormal && type === 'amp') {
             return `<span class="abnormal-value" style="font-weight:700;">NR</span>`;
         }
 
         if (!val || val === '-' || val === 'Nml') return val || '-';
 
-        // String aliases for "no response" -- render as a clear NR badge.
+        // String aliases for "no response" -- render as a clear NR badge
+        // regardless of column, so authors can mark a truly absent
+        // latency/velocity by writing "Absent" or "NR" in the data.
         const lowered = String(val).trim().toLowerCase();
         if (lowered === 'absent' || lowered === 'nr' || lowered === 'no response') {
             return `<span class="abnormal-value" style="font-weight:700;">NR</span>`;
@@ -20,7 +28,7 @@ export const ClinicalTables = {
         let abClass = '';
         if (isAbnormal) {
             if (type === 'latency') abClass = 'value-pulse-high';
-            else if (type === 'ampcv') abClass = 'value-pulse-low';
+            else if (type === 'amp' || type === 'cv') abClass = 'value-pulse-low';
             else abClass = 'abnormal-value';
         }
 
@@ -74,9 +82,9 @@ export const ClinicalTables = {
                     <tr>
                         <td class="text-left" style="font-weight: 600;">${s.name || s.site || s.nerve}</td>
                         <td>${this.formatKinetic(s.peak || s.peakLatency, s.abnormal, 'latency')}</td>
-                        <td>${this.formatKinetic(s.amp || s.ptAmp || s.amplitude, s.abnormal, 'ampcv')}</td>
+                        <td>${this.formatKinetic(s.amp || s.ptAmp || s.amplitude, s.abnormal, 'amp')}</td>
                         <td>${this.formatKinetic(s.dist, false, 'dist')}</td>
-                        <td>${this.formatKinetic(s.velocity || s.vel || s.cv, s.abnormal, 'ampcv')}</td>
+                        <td>${this.formatKinetic(s.velocity || s.vel || s.cv, s.abnormal, 'cv')}</td>
                     </tr>
                 `;
             });
@@ -104,9 +112,9 @@ export const ClinicalTables = {
                     <tr>
                         <td class="text-left" style="font-weight: 600;">${m.name || m.site || m.nerve}</td>
                         <td>${this.formatKinetic(m.onset || m.distalLatency || m.latency, m.abnormal, 'latency')}</td>
-                        <td>${this.formatKinetic(m.amp || m.opAmp || m.amplitude, m.abnormal, 'ampcv')}</td>
+                        <td>${this.formatKinetic(m.amp || m.opAmp || m.amplitude, m.abnormal, 'amp')}</td>
                         <td>${this.formatKinetic(m.dist, false, 'dist')}</td>
-                        <td>${this.formatKinetic(m.velocity || m.vel || m.cv, m.abnormal, 'ampcv')}</td>
+                        <td>${this.formatKinetic(m.velocity || m.vel || m.cv, m.abnormal, 'cv')}</td>
                     </tr>
                 `;
             });
