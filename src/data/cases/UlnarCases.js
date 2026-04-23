@@ -118,7 +118,8 @@ export const ulnarCases = {
             ],
             motor: [
                 { name: "Median Motor (APB)", latency: 3.8, amp: 3.5, dist: 8, velocity: 0, abnormal: true },
-                { name: "Ulnar Motor (ADM)", latency: 3.0, amp: 2.5, dist: 8, velocity: 0, abnormal: true }
+                { name: "Ulnar Motor (ADM)", latency: 3.0, amp: 2.5, dist: 8, velocity: 0, abnormal: true },
+                { name: "Radial Motor (EIP)", latency: 3.0, amp: 2.0, dist: 6, velocity: 54, abnormal: true }
             ],
             comparison: []
         },
