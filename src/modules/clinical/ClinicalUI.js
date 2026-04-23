@@ -1,5 +1,5 @@
-import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260422-clinical-reset';
-import { ClinicalTables } from './components/ClinicalTables.js';
+import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260422-nrfix';
+import { ClinicalTables } from './components/ClinicalTables.js?v=20260422-nrfix';
 import logger from '../../utils/Logger.js';
 
 export class ClinicalUI {
