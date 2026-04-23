@@ -41,24 +41,54 @@ export const IntroductionData = {
                 title: "The Motor Unit: The fundamental 'Team'",
                 detail: "Think of this like a 'Squad' in a competitive sport. You have the Coach (the Motor Neuron cell body sitting safely in the spinal cord), the Messenger (the Axon/wire traveling out to the field), and the Players (the individual Muscle Fibers). When the Coach sends a play, the entire team acts together as one functional, inseparable block. In some diseases (like ALS), the Coach dies; in others (like a trauma), the Messenger wire is cut; and in some (like Muscular Dystrophy), the Players themselves get sick. Our diagnostic job is to use electricity to interrogate each part of this team and figure out where the breakdown in communication is happening. If the 'players' are shouting but the 'coach' isn't hearing them, we know where to look.",
                 image: "images/anatomy/motor_unit.png",
+                imageAttribution: "Daniel Walsh and Alan Sved, via Wikimedia Commons",
+                imageLicense: "CC BY-SA 4.0",
+                imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Motor_unit.png",
                 pearl: "Clinical Pearl: On EMG, we can actually 'hear' the team firing. If the team is smaller (fewer players), the sound is thin and high-pitched. If the team has been 're-recruited' by a new coach, the sound becomes a deep, jagged rumble."
+            },
+            {
+                title: "The Neuromuscular Junction: The 'Handshake'",
+                detail: "Every signal has to cross a tiny gap at the very end of its journey — the Neuromuscular Junction (NMJ). The axon terminal dumps acetylcholine into a microscopic cleft, ACh binds receptors on the muscle fiber, sodium floods in, and the muscle contracts. This single handshake is the target of three distinct disease families, each breaking a different part of the mechanism. Myasthenia Gravis attacks the postsynaptic ACh receptor itself (fewer receivers). Lambert-Eaton Myasthenic Syndrome (LEMS) attacks the presynaptic voltage-gated calcium channel (fewer ACh packets released). Botulism toxin cleaves the SNARE release machinery (ACh gets stuck in the terminal). On EDX, these jump out with Repetitive Nerve Stimulation — low-frequency stim produces a DECREMENT in MG, while high-frequency stim (or post-exercise) produces an INCREMENT in LEMS.",
+                image: "images/anatomy/neuromuscular_junction.jpg",
+                imageAttribution: "OpenStax, Anatomy & Physiology, via Wikimedia Commons",
+                imageLicense: "CC BY 4.0",
+                imageSourceUrl: "https://commons.wikimedia.org/wiki/File:1009_Motor_End_Plate_and_Innervation.jpg",
+                pearl: "Clinical Pearl: If a CMAP is small but conduction velocities, sensory responses, and needle exam are all normal, run repetitive stimulation before you close the study. You may have just caught an NMJ disorder hiding in the noise."
             },
             {
                 title: "Nerve 'Wiring' and Protection",
                 detail: "A peripheral nerve is not just a single wire; it is a massive, high-capacity cable containing thousands of individual fibers grouped together. They are protected by three specialized layers of 'armor': 1. The Epineurium (the heavy-duty outer jacket that protects against compression), 2. The Perineurium (the internal shielding that groups wires into bundles called fascicles—this is the blood-nerve barrier), and 3. The Endoneurium (the delicate individual wrap for each wire). This complex shielding is why a minor 'stretch' injury might heal quickly (if the armor is intact), while a severe 'crush' can be devastating because the internal roadmap for regrowth has been physically obliterated.",
-                image: "images/anatomy/nerve_structure_new.png"
+                image: "images/anatomy/nerve_structure.jpg",
+                imageAttribution: "OpenStax College, Anatomy & Physiology, via Wikimedia Commons",
+                imageLicense: "CC BY 3.0",
+                imageSourceUrl: "https://commons.wikimedia.org/wiki/File:1319_Nerve_StructureN.jpg"
             }
         ],
         physiology: [
             {
                 title: "Saltatory Conduction: The 'Leap-Frog' Miracle",
                 detail: "Our nerves don't just 'flow' electricity like a slow stream of water through a pipe. They use a brilliant evolutionary trick to save energy and dramatically increase speed: the electrical signal 'jumps' between small gaps in the insulation called Nodes of Ranvier. This leap-frogging process (Saltatory Conduction) allows signals to travel at incredible speeds—up to 120 meters per second (nearly 270 miles per hour in the fastest fibers)! If the 'insulation' (Myelin) is damaged or peeled away, the signal can no longer jump. It either has to crawl slowly along the bare wire or it simply gets stuck and fails to arrive at all. This is why patients with demyelinating diseases feel sudden weakness or 'heavy' limbs.",
-                image: "images/anatomy/saltatory_conduction.png"
+                image: "images/anatomy/saltatory_conduction.svg",
+                imageAttribution: "Helixitta, via Wikimedia Commons",
+                imageLicense: "CC BY-SA 4.0",
+                imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Propagation_of_action_potential_along_myelinated_nerve_fiber_en.svg"
             },
             {
                 title: "The DRG: The 'Junction' for Sensation",
                 detail: "Sensory nerves have a special, off-site 'command center' called the Dorsal Root Ganglion (DRG) that sits just outside the spinal cord in the intervertebral foramen. This is the single most important anatomical landmark in the entire EDX lab! Because the DRG is outside the spine, any injury *inside* the spine (like a herniated disc) happens 'behind' the DRG. This means the sensory nerve fibers in the arm remain attached to their 'power source' and will look PERFECT on our machine, even if the patient is totally numb. If the sensory response is dead, the problem MUST be 'in front' of the DRG (in the arm/nerve itself). This one fact allows us to differentiate a 'slipped disc' from a 'nerve hit' instantly.",
-                image: "images/anatomy/primary_neuron_localization.png"
+                image: "images/anatomy/drg_anatomy.svg",
+                imageAttribution: "Mysid (vectorized); based on original by Tristanb, via Wikimedia Commons",
+                imageLicense: "CC BY-SA 3.0",
+                imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Spinal_nerve.svg"
+            },
+            {
+                title: "From Root to Terminal Nerve: The Wiring Hierarchy",
+                detail: "Every peripheral nerve you stimulate in the lab traces back through a predictable chain. Ventral (motor) and dorsal (sensory) roots exit the spinal cord at each vertebral level. They merge just outside the canal — past the DRG — to form the spinal nerve. Spinal nerves then weave together into plexuses (cervical C1–C4, brachial C5–T1, lumbar L1–L4, sacral L5–S4), which rebundle into the peripheral nerves we know by name: median, ulnar, radial, musculocutaneous, tibial, peroneal, femoral. This layered hierarchy is why a C6 radiculopathy and a musculocutaneous neuropathy can both weaken the biceps but look COMPLETELY different on EDX — the C6 lesion is behind the DRG (sensory preserved), the musculocutaneous lesion is past the DRG (sensory dead). Every localization decision you'll ever make on EDX boils down to knowing where your lesion sits on this diagram.",
+                image: "images/anatomy/spinal_nerve_formation.jpg",
+                imageAttribution: "OpenStax, Anatomy & Physiology, via Wikimedia Commons",
+                imageLicense: "CC BY 4.0",
+                imageSourceUrl: "https://commons.wikimedia.org/wiki/File:1321_Spinal_Nerve_Plexuses.jpg",
+                pearl: "Clinical Pearl: Weakness along one peripheral nerve distribution = nerve lesion. Weakness across one root with preserved sensory = radiculopathy. Weakness spanning multiple nerves from one cord or plexus = plexopathy. Read the map before you reach for a diagnosis."
             }
         ],
         equipment: {
