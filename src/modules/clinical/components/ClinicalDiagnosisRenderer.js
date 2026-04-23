@@ -82,10 +82,7 @@ export const ClinicalDiagnosisRenderer = {
                     <div style="font-size: 1.8em; font-weight: 800; color: #f8fafc;">${currentCase.correctDiagnosis}</div>
                 </div>
 
-                <div style="background: rgba(6, 182, 212, 0.05); border-left: 4px solid ${color}; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 30px;">
-                    <h5 style="margin: 0 0 10px 0; color: ${color}; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Diagnostic Synthesis</h5>
-                    <p style="margin: 0; line-height: 1.6; font-size: 1.05em; color: #e2e8f0;">${currentCase.explanation}</p>
-                </div>
+                <!-- Diagnostic Synthesis (currentCase.explanation) removed: it was often generic and didn't match the specific findings of each case. Key Evidence Review + Differential Exclusion Logic below do this job better and are data-driven. -->
 
                 <div style="margin-bottom: 30px;">
                     <h5 style="margin: 0 0 15px 0; color: #94a3b8; text-transform: uppercase; font-size: 0.85em; letter-spacing: 1px; font-weight: 700;">Key Evidence Review</h5>

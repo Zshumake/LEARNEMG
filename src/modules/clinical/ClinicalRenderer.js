@@ -3,8 +3,8 @@ import { ClinicalEvaluator } from './ClinicalEvaluator.js';
 import { ClinicalIcons } from './components/ClinicalIcons.js';
 import { ClinicalDashboardRenderer } from './components/ClinicalDashboardRenderer.js?v=20260422-caseorder-v2';
 import { ClinicalShellRenderer } from './components/ClinicalShellRenderer.js';
-import { ClinicalExamRenderer } from './components/ClinicalExamRenderer.js';
-import { ClinicalDiagnosisRenderer } from './components/ClinicalDiagnosisRenderer.js';
+import { ClinicalExamRenderer } from './components/ClinicalExamRenderer.js?v=20260422-clinical-reset';
+import { ClinicalDiagnosisRenderer } from './components/ClinicalDiagnosisRenderer.js?v=20260422-clinical-reset';
 
 export const ClinicalRenderer = {
     getSvgIcon: function (name, color, size) {

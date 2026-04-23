@@ -1,4 +1,4 @@
-import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260422-caseorder-v2';
+import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260422-clinical-reset';
 import { ClinicalTables } from './components/ClinicalTables.js';
 import logger from '../../utils/Logger.js';
 
@@ -222,6 +222,9 @@ export class ClinicalUI {
         try {
             const caseData = this.engine.loadCase(caseId);
 
+            // Clear stale input/feedback from any previous case before we render this one.
+            this._resetCaseState();
+
             // UI Transitions
             const selDiv = document.getElementById('case-selection');
             const intDiv = document.getElementById('case-interface');
@@ -274,8 +277,48 @@ export class ClinicalUI {
         }
     }
 
+    _resetCaseState() {
+        // Clear any user input from a prior case.
+        const diffInput = document.getElementById('differential-input');
+        if (diffInput) diffInput.value = '';
+
+        const finalInput = document.getElementById('final-diagnosis');
+        if (finalInput) finalInput.value = '';
+
+        // Wipe feedback panels so stale reasoning doesn't linger.
+        ['differential-feedback', 'emg-decision-feedback', 'diagnosis-feedback'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.innerHTML = '';
+                el.style.display = 'none';
+            }
+        });
+
+        // Hide "continue" buttons that only appear after a prior submission.
+        ['continue-to-studies', 'continue-after-decision'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.style.display = 'none';
+        });
+
+        // Deselect any previously-chosen EMG decision card.
+        document.querySelectorAll('#emg-decision-step .emg-choice.selected').forEach(el => {
+            el.classList.remove('selected');
+        });
+
+        // Clear results tables (old NCS/EMG rendered for the previous case).
+        ['ncs-results', 'emg-details'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = '';
+        });
+        const emgTitle = document.getElementById('emg-results');
+        if (emgTitle) emgTitle.style.display = 'none';
+
+        this._updateProgress(0);
+    }
+
     startNewCase() {
         this.engine.currentCase = null;
+        this._resetCaseState();
 
         // Reset state
         const selDiv = document.getElementById('case-selection');

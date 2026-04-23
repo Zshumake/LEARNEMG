@@ -49,14 +49,15 @@ export const ClinicalExamRenderer = {
                         ${Object.entries(caseData.reviewOfSystems).map(([sys, val]) => `<div><strong style="color: #f8fafc;">${sys.charAt(0).toUpperCase() + sys.slice(1)}:</strong> ${val}</div>`).join('')}
                     </div>
                 </div>` : ''}
-                ${caseData.humoralData && ((caseData.humoralData.labs && caseData.humoralData.labs.length > 0) || (caseData.humoralData.imaging && caseData.humoralData.imaging.length > 0)) ? `
+                ${caseData.humoralData && caseData.humoralData.labs && caseData.humoralData.labs.length > 0 ? `
                 <div class="history-card glass-card" style="padding: 20px; border-radius: 12px; grid-column: span 2;">
-                    <h5 style="color: #94a3b8; font-size: 0.85em; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 0.5px;">Ancillary Studies (Labs/Imaging)</h5>
+                    <h5 style="color: #94a3b8; font-size: 0.85em; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 0.5px;">Ancillary Labs</h5>
                     <div style="font-size: 0.9em; color: #e2e8f0; display: flex; flex-direction: column; gap: 8px;">
-                        ${caseData.humoralData.labs && caseData.humoralData.labs.length > 0 ? `<div><strong style="color: #f8fafc;">Labs:</strong> ${caseData.humoralData.labs.join(', ')}</div>` : ''}
-                        ${caseData.humoralData.imaging && caseData.humoralData.imaging.length > 0 ? `<div><strong style="color: #f8fafc;">Imaging:</strong> ${caseData.humoralData.imaging.join(', ')}</div>` : ''}
+                        <div><strong style="color: #f8fafc;">Labs:</strong> ${caseData.humoralData.labs.join(', ')}</div>
                     </div>
                 </div>` : ''}
+                <!-- Imaging intentionally hidden in case history: it was often diagnostic and gave the answer away before the learner could reason through it. -->
+
             </div>
         `;
     },
