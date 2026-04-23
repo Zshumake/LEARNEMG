@@ -1,5 +1,5 @@
 import { handWristCases } from './HandWristCases.js?v=20260317';
-import { ulnarCases } from './UlnarCases.js?v=20260317';
+import { ulnarCases } from './UlnarCases.js?v=20260423-klumpke-radial';
 import { medianForearmCases } from './MedianForearmCases.js?v=20260317';
 import { radialCases } from './RadialCases.js?v=20260317';
 import { shoulderCases } from './ShoulderCases.js?v=20260317';
