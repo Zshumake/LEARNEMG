@@ -136,7 +136,7 @@ class IntroductionModule extends BaseContent {
                     </div>
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizPhilosophy) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizPhilosophy, { title: 'Clinical Philosophy Check', subtitle: 'Confirm your grasp of the cardinal rules before moving on' }) : ''}
                     </div>
                 </div>
 
@@ -216,7 +216,7 @@ class IntroductionModule extends BaseContent {
                     `, { title: "EDX Machine Fundamentals", borderLeftColor: '#6366f1' })}
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizBasics) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizBasics, { title: 'EDX Basics Check', subtitle: 'Anatomy, physiology, and Sunderland grading' }) : ''}
                     </div>
                 </div>
 
@@ -276,7 +276,7 @@ class IntroductionModule extends BaseContent {
                     </div>
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizTechnical) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizTechnical, { title: 'Technical Excellence Check', subtitle: 'Temperature, artifacts, Martin-Gruber, and safety' }) : ''}
                     </div>
                 </div>
 
@@ -344,14 +344,8 @@ class IntroductionModule extends BaseContent {
                         </div>
                     `, { title: "Additional Pattern Recognition", borderLeftColor: '#059669', style: 'margin-top: 25px;' })}
 
-                    <div style="margin-top: 30px;">
-                        <h4 style="color: #1e293b; margin-bottom: 15px;">Clinical Localization Challenge</h4>
-                        <p style="color: #64748b; font-size: 0.9em; margin-bottom: 20px;">Test your understanding of electrodiagnostic localization with these clinical scenarios.</p>
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.localizationScenarios) : ''}
-                    </div>
-
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizLocalization) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz([...this.data.quizLocalization, ...this.data.localizationScenarios], { title: 'Localization Challenge', subtitle: 'Vignette-driven scenarios to test your localizing logic' }) : ''}
                     </div>
                 </div>
 
@@ -423,7 +417,7 @@ class IntroductionModule extends BaseContent {
                     </div>
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizGlossary) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizGlossary, { title: 'Terminology Check', subtitle: 'Lock in the vocabulary of electrodiagnostics' }) : ''}
                     </div>
                 </div>
 

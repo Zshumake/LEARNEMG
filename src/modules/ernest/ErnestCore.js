@@ -1,4 +1,4 @@
-import { ErnestAPI } from './ErnestAPI.js?v=20260304-v1';
+import { ErnestAPI } from './ErnestAPI.js?v=20260422-quotafix';
 import { ErnestUI } from './ErnestUI.js?v=20260421-personafix';
 import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
 import logger from '../../utils/Logger.js';
@@ -356,10 +356,32 @@ export class ErnestCore {
                     ? "Every pathway is clogged. Give me 10 seconds before you bother me again."
                     : "Phew! All my circuits are busy right now. Give me about 10 seconds to cool down and try again!");
             }
-        } else if (error.message.includes('Quota') || error.message.includes('429')) {
-            this.chat.addToChat(this.currentPersonaId, isEarl
-                ? "You've exhausted my patience (and your API quota). Silence for 60 seconds."
-                : "Whoa! Too many questions! My neurons are overheating (Quota limit). Give me a minute!");
+        } else if (error.message.includes('Quota') || error.message.toLowerCase().includes('quota') || error.message.includes('429') || error.message.toUpperCase().includes('RESOURCE_EXHAUSTED')) {
+            // AUTO-RECOVERY: Per-model quotas on Gemini's free tier are brutal
+            // (especially on preview/latest aliases). Blacklist the currently
+            // failing model and ask discoverWorkingModel for a different one.
+            const failedModel = this.api.preferredModel;
+            const recoverMsg = isEarl
+                ? "Quota maxed out on this model. Rerouting through a less-abused pathway..."
+                : "Quota hit on this model! Let me swap to a fresher neural pathway...";
+            this.chat.addToChat(this.currentPersonaId, recoverMsg);
+
+            // Clear stale preferred model so discoverWorkingModel returns something fresh
+            if (failedModel) {
+                localStorage.removeItem('ernest_preferred_model');
+                this.api.preferredModel = null;
+            }
+
+            const workingModel = await this.api.discoverWorkingModel(failedModel);
+            if (workingModel && workingModel !== failedModel) {
+                this.chat.addToChat(this.currentPersonaId, `Switched to ${workingModel}. Retrying your question...`);
+                this.api.setModel(workingModel);
+                this.processQuery(query);
+            } else {
+                this.chat.addToChat(this.currentPersonaId, isEarl
+                    ? "Every model's quota is tapped. Wait an hour or upgrade your API plan. I'll be waiting."
+                    : "All Gemini models on this API key are quota-limited right now. Google's free tier resets every minute (RPM) and every day (RPD). Wait ~60 seconds, or enable a paid billing plan at https://aistudio.google.com for higher limits.");
+            }
         } else {
             this.chat.addToChat(this.currentPersonaId, `System Error: ${error.message}`);
         }

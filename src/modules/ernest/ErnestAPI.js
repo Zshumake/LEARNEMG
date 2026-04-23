@@ -28,7 +28,7 @@ export class ErnestAPI {
         return true;
     }
 
-    async discoverWorkingModel() {
+    async discoverWorkingModel(exclude = null) {
         try {
             const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${this.apiKey}`;
             const response = await fetch(url);
@@ -38,16 +38,23 @@ export class ErnestAPI {
                 const names = data.models.map(m => m.name.replace('models/', ''));
                 logger.log('Available Models:', names);
 
-                const best = names.find(n => n === 'gemini-1.5-flash') ||
-                    names.find(n => n === 'gemini-1.5-flash-latest') ||
-                    names.find(n => n === 'gemini-2.0-flash') ||
-                    names.find(n => n === 'gemini-2.0-flash-001') ||
-                    names.find(n => n === 'gemini-flash-latest') ||
-                    names.find(n => n.includes('flash') && n.includes('1.5')) ||
-                    names.find(n => n.includes('flash') && n.includes('2.0')) ||
-                    names.find(n => n === 'gemini-pro-latest') ||
-                    names.find(n => n.includes('flash')) ||
-                    names.find(n => n.includes('gemini'));
+                // Optionally exclude a model that just failed (e.g., quota-limited)
+                const pool = exclude ? names.filter(n => n !== exclude) : names;
+
+                // Prefer models with the most generous free-tier quotas first.
+                // gemini-1.5-flash has the highest RPD (1500) when available.
+                // gemini-2.0-flash is the next best. Preview/latest aliases
+                // often inherit stricter preview limits, so they rank lower.
+                const best = pool.find(n => n === 'gemini-1.5-flash') ||
+                    pool.find(n => n === 'gemini-1.5-flash-latest') ||
+                    pool.find(n => n === 'gemini-2.0-flash') ||
+                    pool.find(n => n === 'gemini-2.0-flash-001') ||
+                    pool.find(n => n === 'gemini-flash-latest') ||
+                    pool.find(n => n.includes('flash') && n.includes('1.5')) ||
+                    pool.find(n => n.includes('flash') && n.includes('2.0')) ||
+                    pool.find(n => n === 'gemini-pro-latest') ||
+                    pool.find(n => n.includes('flash')) ||
+                    pool.find(n => n.includes('gemini'));
 
                 return best;
             }

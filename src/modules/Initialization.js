@@ -4,7 +4,7 @@ import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260317';
 import { PlexusManager } from './plexus/PlexusManager.js?v=20260317';
 import { ModalSystem } from './ui/ModalSystem.js?v=20260317';
 import { CandylandCore } from './candyland/CandylandCore.js?v=20260317e';
-import { QuizSystem } from './quiz/QuizSystem.js?v=20260317';
+import { QuizSystem } from './quiz/QuizSystem.js?v=20260422-quizoverhaul';
 import { NCSData } from './ncs/NCSData.js?v=20260317';
 import { NCSEngine } from './ncs/NCSEngine.js?v=20260317';
 import { NCSUI } from './ncs/NCSUI.js?v=20260317';
@@ -13,7 +13,7 @@ import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260317';
 import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260422-caseorder-v2';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260421-clinical';
 import { AudioController } from './audio/AudioController.js?v=20260317';
-import { ErnestCore } from './ernest/ErnestCore.js?v=20260421-personafix';
+import { ErnestCore } from './ernest/ErnestCore.js?v=20260422-quotafix';
 import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
 import logger from '../utils/Logger.js';
 
