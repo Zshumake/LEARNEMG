@@ -1,5 +1,5 @@
 import { ErnestAPI } from './ErnestAPI.js?v=20260422-quotafix';
-import { ErnestUI } from './ErnestUI.js?v=20260421-personafix';
+import { ErnestUI } from './ErnestUI.js?v=20260422-apikeylink';
 import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
 import logger from '../../utils/Logger.js';
 
@@ -159,9 +159,9 @@ export class ErnestCore {
     }
 
     resetApiKey() {
-        if (confirm("Reset Ernest API Key? This will clear your current key and reload the page.")) {
-            this.api.resetApiKey(true);
-        }
+        // Open the modal directly — it has a link to Google AI Studio.
+        // No confirm dialog or page reload needed: Save replaces the stored key in place.
+        this.promptApiKey();
     }
 
     promptApiKey(onDone) {
