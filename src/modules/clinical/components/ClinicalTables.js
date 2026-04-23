@@ -65,10 +65,14 @@ export const ClinicalTables = {
                     <tbody>
             `;
             sensory.forEach(s => {
-                const commentHtml = s.comment ? `<div style="font-size:0.8em; color:#94a3b8; font-style:italic; font-weight:400; margin-top:3px;">${s.comment}</div>` : '';
+                // Row `comment` fields are intentionally NOT rendered: many comments
+                // in the case data name the diagnosis or explicitly rule out
+                // differentials, which would let the learner short-circuit the
+                // reasoning. The learner has to read the numbers and draw their
+                // own conclusion.
                 html += `
                     <tr>
-                        <td class="text-left" style="font-weight: 600;">${s.name || s.site || s.nerve}${commentHtml}</td>
+                        <td class="text-left" style="font-weight: 600;">${s.name || s.site || s.nerve}</td>
                         <td>${this.formatKinetic(s.peak || s.peakLatency, s.abnormal, 'latency')}</td>
                         <td>${this.formatKinetic(s.amp || s.ptAmp || s.amplitude, s.abnormal, 'ampcv')}</td>
                         <td>${this.formatKinetic(s.dist, false, 'dist')}</td>
@@ -96,10 +100,9 @@ export const ClinicalTables = {
                     <tbody>
             `;
             motor.forEach(m => {
-                const commentHtml = m.comment ? `<div style="font-size:0.8em; color:#94a3b8; font-style:italic; font-weight:400; margin-top:3px;">${m.comment}</div>` : '';
                 html += `
                     <tr>
-                        <td class="text-left" style="font-weight: 600;">${m.name || m.site || m.nerve}${commentHtml}</td>
+                        <td class="text-left" style="font-weight: 600;">${m.name || m.site || m.nerve}</td>
                         <td>${this.formatKinetic(m.onset || m.distalLatency || m.latency, m.abnormal, 'latency')}</td>
                         <td>${this.formatKinetic(m.amp || m.opAmp || m.amplitude, m.abnormal, 'ampcv')}</td>
                         <td>${this.formatKinetic(m.dist, false, 'dist')}</td>
@@ -171,10 +174,9 @@ export const ClinicalTables = {
             const abAmp = (f.amp && f.amp !== 'Nml');
             const abRecrt = (f.recruitment || f.recrt) && (f.recruitment !== 'Normal' && f.recruitment !== 'Nml' && f.recrt !== 'Nml' && f.recrt !== 'Normal');
 
-            const commentHtml = f.comment ? `<div style="font-size:0.8em; color:#94a3b8; font-style:italic; font-weight:400; margin-top:3px;">${f.comment}</div>` : '';
             html += `
                 <tr>
-                    <td class="text-left" style="font-weight: 600;">${f.muscle}${commentHtml}</td>
+                    <td class="text-left" style="font-weight: 600;">${f.muscle}</td>
                     <td>${this.formatKinetic(f.insAct || f.insertionalActivity || 'Nml', false, 'other')}</td>
                     <td>${this.formatKinetic(f.fibs || f.spontaneousActivity || '0', hasDenervation, 'latency')}</td>
                     <td>${this.formatKinetic(f.fascic || '0', hasFascic, 'latency')}</td>

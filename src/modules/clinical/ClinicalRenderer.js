@@ -1,4 +1,4 @@
-import { ClinicalTables } from './components/ClinicalTables.js?v=20260422-nrfix';
+import { ClinicalTables } from './components/ClinicalTables.js?v=20260423-nocomments';
 import { ClinicalEvaluator } from './ClinicalEvaluator.js';
 import { ClinicalIcons } from './components/ClinicalIcons.js';
 import { ClinicalDashboardRenderer } from './components/ClinicalDashboardRenderer.js?v=20260422-caseorder-v2';
