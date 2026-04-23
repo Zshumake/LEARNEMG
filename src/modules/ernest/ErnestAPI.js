@@ -1,4 +1,28 @@
 import logger from '../../utils/Logger.js';
+
+/**
+ * Collapse a model name down to its "family" so different version aliases
+ * are treated as the same underlying model (they share the same quota
+ * bucket on Google's free tier).
+ *
+ *   gemini-2.0-flash           -> gemini-2.0-flash
+ *   gemini-2.0-flash-001       -> gemini-2.0-flash  (dated version)
+ *   gemini-flash-latest        -> gemini-flash      (alias)
+ *   gemini-2.5-flash-preview-04-17 -> gemini-2.5-flash
+ *
+ * -lite, -pro, -flash are substantive model-type markers and preserved.
+ */
+export function modelFamily(name) {
+    if (!name) return '';
+    return String(name)
+        .replace(/-preview-\d{2}-\d{2}$/, '')
+        .replace(/-preview-\d{4}-\d{2}-\d{2}$/, '')
+        .replace(/-preview$/, '')
+        .replace(/-exp(-\d{2}-\d{2})?$/, '')
+        .replace(/-\d{3,4}$/, '')
+        .replace(/-latest$/, '');
+}
+
 export class ErnestAPI {
     constructor() {
         this.apiKey = localStorage.getItem('ernest_api_key') || null;
@@ -29,30 +53,50 @@ export class ErnestAPI {
     }
 
     async discoverWorkingModel(exclude = null) {
+        // `exclude` accepts a single model name, an array of names, or null.
+        // Exclusion is done by FAMILY so `gemini-2.0-flash` and
+        // `gemini-2.0-flash-001` (same underlying model, same quota) are
+        // treated as equivalent and can't ping-pong.
+        const excludeList = exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [];
+        const excludeFamilies = new Set(excludeList.map(n => modelFamily(n)).filter(Boolean));
+
         try {
             const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${this.apiKey}`;
             const response = await fetch(url);
             const data = await response.json();
 
             if (data.models) {
-                const names = data.models.map(m => m.name.replace('models/', ''));
+                const names = data.models
+                    .filter(m => {
+                        // Must support generateContent and not be an embedding model
+                        const methods = m.supportedGenerationMethods || [];
+                        return methods.includes('generateContent');
+                    })
+                    .map(m => m.name.replace('models/', ''))
+                    .filter(n => !n.includes('embedding') && !n.includes('aqa'));
                 logger.log('Available Models:', names);
 
-                // Optionally exclude a model that just failed (e.g., quota-limited)
-                const pool = exclude ? names.filter(n => n !== exclude) : names;
+                // Filter out the whole quota family of anything that already failed
+                const pool = names.filter(n => !excludeFamilies.has(modelFamily(n)));
 
-                // Prefer models with the most generous free-tier quotas first.
-                // gemini-1.5-flash has the highest RPD (1500) when available.
-                // gemini-2.0-flash is the next best. Preview/latest aliases
-                // often inherit stricter preview limits, so they rank lower.
-                const best = pool.find(n => n === 'gemini-1.5-flash') ||
-                    pool.find(n => n === 'gemini-1.5-flash-latest') ||
+                if (pool.length === 0) {
+                    return null;
+                }
+
+                // Preference order. `-lite` variants have the most generous
+                // free-tier RPD limits. Newer generations preferred. `-latest`
+                // and preview aliases rank lower because they inherit preview
+                // limits.
+                const best = pool.find(n => n === 'gemini-2.5-flash-lite') ||
+                    pool.find(n => n === 'gemini-2.0-flash-lite') ||
+                    pool.find(n => n === 'gemini-2.5-flash') ||
                     pool.find(n => n === 'gemini-2.0-flash') ||
                     pool.find(n => n === 'gemini-2.0-flash-001') ||
+                    pool.find(n => n.includes('lite') && n.includes('flash')) ||
+                    pool.find(n => n.includes('flash') && n.includes('2.5')) ||
+                    pool.find(n => n.includes('flash') && n.includes('2.0')) ||
                     pool.find(n => n === 'gemini-flash-latest') ||
                     pool.find(n => n.includes('flash') && n.includes('1.5')) ||
-                    pool.find(n => n.includes('flash') && n.includes('2.0')) ||
-                    pool.find(n => n === 'gemini-pro-latest') ||
                     pool.find(n => n.includes('flash')) ||
                     pool.find(n => n.includes('gemini'));
 
