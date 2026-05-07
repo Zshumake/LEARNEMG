@@ -38,12 +38,15 @@
             // Also check screen width for responsiveness
             const isSmallScreen = window.innerWidth <= 800;
 
-            // If mobile/small screen and not already in the mobile version, redirect
+            // If mobile/small screen and not already in the mobile version, redirect.
+            // The ?v= cache-buster forces Safari to fetch fresh HTML when the
+            // mobile build's base href changes -- without it, iPhone Safari
+            // serves the previously cached /mobile/ entry and the relative
+            // asset URLs (flutter_bootstrap.js, manifest.json) 404.
             if ((isMobile || isSmallScreen) && !window.location.pathname.includes('/mobile')) {
-                // Determine target path
                 const currentPath = window.location.pathname;
-                const newPath = currentPath.endsWith('/') ? currentPath + 'mobile/' : currentPath + '/mobile/';
-                window.location.href = window.location.origin + newPath;
+                const basePath = currentPath.endsWith('/') ? currentPath + 'mobile/' : currentPath + '/mobile/';
+                window.location.href = window.location.origin + basePath + '?v=20260507-basehref';
             }
         })();
     </script>
