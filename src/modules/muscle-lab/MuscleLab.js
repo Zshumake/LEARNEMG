@@ -1,5 +1,5 @@
 
-import { StudyCardsModule } from './StudyCards.js?v=20260421-revamp';
+import { StudyCardsModule } from './StudyCards.js?v=20260507-stickysplit';
 import { EMGChallengeSystem } from './EMGChallenge.js?v=20260421-clinical';
 import { MuscleLocalization } from './MuscleLocalization.js';
 import { MuscleLabMenu } from './MuscleLabMenu.js';

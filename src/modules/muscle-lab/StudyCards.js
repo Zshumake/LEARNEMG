@@ -185,17 +185,31 @@ export class StudyCardsModule {
                 }
                 @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-                /* Sticky toolbar */
-                .muscle-toolbar {
+                /* Sticky selection bar -- ONLY the region tabs + search are
+                   pinned. Keeps the most-frequently-changed controls always
+                   accessible without burning ~3 rows of screen on the
+                   set-and-forget config (Mode / Group-by / Reveal). */
+                .muscle-toolbar-pinned {
                     position: sticky; top: 0; z-index: 20;
                     background: rgba(255,255,255,0.97);
                     backdrop-filter: blur(8px);
                     border: 1px solid #e2e8f0;
                     border-radius: 14px;
-                    padding: 14px 16px 12px;
-                    margin-bottom: 16px;
+                    padding: 10px 14px;
+                    margin-bottom: 10px;
                     box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
-                    display: flex; flex-direction: column; gap: 10px;
+                }
+
+                /* Non-sticky config -- scrolls away with the page so the
+                   card grid gets the full screen once the user starts
+                   scrolling through results. */
+                .muscle-toolbar-config {
+                    background: #f8fafc;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 14px;
+                    padding: 10px 14px 8px;
+                    margin-bottom: 14px;
+                    display: flex; flex-direction: column; gap: 8px;
                 }
                 .toolbar-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; align-items: center; }
                 .toolbar-label { font-size: 0.72rem; font-weight: 700; color: #64748b; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 4px; }
@@ -277,8 +291,9 @@ export class StudyCardsModule {
             </div>
 
             <div id="cards-tab-content">
-                <!-- Sticky control bar: region, search, mode, group-by, and (quiz-only) reveal -->
-                <div class="muscle-toolbar">
+                <!-- Pinned: region tabs + search. The frequently-touched
+                     controls follow the user; everything else scrolls away. -->
+                <div class="muscle-toolbar-pinned">
                     <div class="toolbar-row">
                         <button class="region-btn active" data-region="lower" data-action="studyCards:switchAnatomy">Lower Extremity</button>
                         <button class="region-btn" data-region="upper" data-action="studyCards:switchAnatomy">Upper Extremity</button>
@@ -287,7 +302,11 @@ export class StudyCardsModule {
                             <input type="text" class="muscle-search-input" placeholder="Search muscles, nerves, or roots..." oninput="window.MuscleAnatomy.filterBySearch(this.value)">
                         </div>
                     </div>
+                </div>
 
+                <!-- Scrollable config: set-and-forget, no need to follow the
+                     user down the page. Scroll up to change. -->
+                <div class="muscle-toolbar-config">
                     <div class="toolbar-row">
                         <span class="toolbar-label">Mode</span>
                         <button class="reveal-mode-btn active" data-mode="browse" data-action="studyCards:setRevealMode">Browse (all info)</button>
