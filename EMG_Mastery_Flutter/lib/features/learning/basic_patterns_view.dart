@@ -4,6 +4,7 @@ import '../../data/models/pattern_model.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
+import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/widgets/video_player_widget.dart';
 import '../../core/widgets/waveform_card.dart';
 import '../../data/podcast_data.dart';
@@ -16,31 +17,24 @@ class BasicPatternsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          _buildHero(),
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: const TabBar(
-              indicatorColor: Color(0xFFF59E0B),
-              labelColor: Color(0xFFF59E0B),
-              unselectedLabelColor: Color(0xFF94A3B8),
-              labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
-              tabs: [
-                Tab(text: 'Pattern Library'),
-                Tab(text: 'Practice Quiz'),
-              ],
-            ),
-          ),
-          const Expanded(
-            child: TabBarView(
-              children: [
-                KeepAliveTabWrapper(child: _PatternLibraryTab()),
-                KeepAliveTabWrapper(child: _QuizTab()),
-              ],
-            ),
-          ),
-        ],
+      child: ScrollableModuleScaffold(
+        headerSlivers: [_buildHero()],
+        tabBar: const TabBar(
+          indicatorColor: Color(0xFFF59E0B),
+          labelColor: Color(0xFFF59E0B),
+          unselectedLabelColor: Color(0xFF94A3B8),
+          labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
+          tabs: [
+            Tab(text: 'Pattern Library'),
+            Tab(text: 'Practice Quiz'),
+          ],
+        ),
+        body: const TabBarView(
+          children: [
+            KeepAliveTabWrapper(child: _PatternLibraryTab()),
+            KeepAliveTabWrapper(child: _QuizTab()),
+          ],
+        ),
       ),
     );
   }

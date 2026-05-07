@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
+import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../data/podcast_data.dart';
 import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../core/widgets/decision_tree.dart';
@@ -16,31 +17,24 @@ class RadiculopathyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          _buildHero(),
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: const TabBar(
-              indicatorColor: Color(0xFFC2410C),
-              labelColor: Color(0xFFC2410C),
-              unselectedLabelColor: Color(0xFF94A3B8),
-              labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
-              tabs: [
-                Tab(text: 'Learning'),
-                Tab(text: 'Practice Quiz'),
-              ],
-            ),
-          ),
-          const Expanded(
-            child: TabBarView(
-              children: [
-                KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
-                KeepAliveTabWrapper(child: _QuizTab()),
-              ],
-            ),
-          ),
-        ],
+      child: ScrollableModuleScaffold(
+        headerSlivers: [_buildHero()],
+        tabBar: const TabBar(
+          indicatorColor: Color(0xFFC2410C),
+          labelColor: Color(0xFFC2410C),
+          unselectedLabelColor: Color(0xFF94A3B8),
+          labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
+          tabs: [
+            Tab(text: 'Learning'),
+            Tab(text: 'Practice Quiz'),
+          ],
+        ),
+        body: const TabBarView(
+          children: [
+            KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
+            KeepAliveTabWrapper(child: _QuizTab()),
+          ],
+        ),
       ),
     );
   }

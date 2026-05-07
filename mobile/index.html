@@ -15,12 +15,10 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
 
-    NOTE: We intentionally OMIT <base href="..."> here. With no base href, all
-    relative URLs resolve against the current page URL, which is what we want
-    on GitHub Pages where this is served from /LEARNEMG/mobile/ rather than
-    /mobile/. A static base href = white screen on iPhone (404 on
-    flutter_bootstrap.js). Re-introduced 2026-03-09, broken by next
-    `flutter build web`, refixed 2026-04-29.
+    NOTE: We intentionally OMIT <base href="..."> here. The deploy lives at
+    https://shuhub.xyz/LEARNEMG/mobile/, NOT /mobile/. A static base href
+    causes flutter_bootstrap.js to 404 -> white screen on iPhone. Letting URLs
+    resolve relative to the page URL is correct for any deploy path.
   -->
 
   <meta charset="UTF-8">
