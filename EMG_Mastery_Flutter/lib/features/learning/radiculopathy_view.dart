@@ -3,8 +3,6 @@ import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/scrollable_module_scaffold.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../core/widgets/decision_tree.dart';
 import '../../data/clinical_decision_trees.dart';
 import '../../core/widgets/diagram_card.dart';
@@ -88,10 +86,6 @@ class _RadiculopathyLearningTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PodcastTriggerCard(
-            episode: PodcastData.getEpisodesByModule('radiculopathy').first,
-          ),
-          const SizedBox(height: 20),
           const DiagramCard(
             imagePath: 'assets/images/pathology/radiculopathy_pathophysiology.png',
             caption: 'Radiculopathy -- Nerve Root Compression at the Spine',

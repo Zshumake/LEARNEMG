@@ -5,8 +5,6 @@ import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/module_hero_header.dart';
 import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/theme/app_theme.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../core/widgets/diagram_card.dart';
 import '../../core/widgets/comparison_card.dart';
 import '../../data/board_comparisons.dart';
@@ -20,17 +18,11 @@ class PlexusClinicalView extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: ScrollableModuleScaffold(
-        headerSlivers: [
-          const ModuleHeroHeader(
+        headerSlivers: const [
+          ModuleHeroHeader(
             title: 'Brachial Plexus Masterclass',
             subtitle: 'Mastering Geographic Neuro-Localization',
             color: AppTheme.modulePlexus,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: PodcastTriggerCard(
-              episode: PodcastData.getEpisodesByModule('plexus-anatomy').first,
-            ),
           ),
         ],
         tabBar: const TabBar(

@@ -7,8 +7,6 @@ import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/widgets/video_player_widget.dart';
 import '../../core/widgets/waveform_card.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 
 class BasicPatternsView extends StatelessWidget {
   const BasicPatternsView({super.key});
@@ -93,10 +91,6 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PodcastTriggerCard(
-            episode: PodcastData.getEpisodesByModule('basic-patterns').first,
-          ),
-          const SizedBox(height: 20),
           _buildObjectives(),
           const SizedBox(height: 30),
           _buildAnalysisFramework(),

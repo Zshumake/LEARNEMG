@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../data/introduction_data.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../data/models/introduction_content.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/content_card.dart';
@@ -650,12 +648,6 @@ class IntroductionModuleView extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppTheme.textHeading,
             ),
-          ),
-          const SizedBox(height: 16),
-          PodcastTriggerCard(
-            episode: PodcastData.getEpisodesByModule(
-              'emg-introduction',
-            ).firstWhere((ep) => ep.id == 'emg-terminology'),
           ),
           const SizedBox(height: 16),
           GlossaryList(terms: content.terminology.glossary),

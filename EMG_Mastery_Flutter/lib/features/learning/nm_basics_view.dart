@@ -7,8 +7,6 @@ import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/module_hero_header.dart';
 import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/theme/app_theme.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../core/widgets/waveform_card.dart';
 import '../../core/widgets/decision_tree.dart';
 import '../../data/clinical_decision_trees.dart';
@@ -28,12 +26,6 @@ class NMBasicsView extends StatelessWidget {
             title: NMBasicsData.title,
             subtitle: NMBasicsData.subtitle,
             color: AppTheme.moduleNMBasics,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: PodcastTriggerCard(
-              episode: PodcastData.getEpisodesByModule('neuropathy-pathophysiology').first,
-            ),
           ),
         ],
         tabBar: const TabBar(
