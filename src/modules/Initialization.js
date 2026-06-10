@@ -1,8 +1,8 @@
 import { moduleLoader } from '../utils/ModuleLoader.js?v=rootfix1';
 import { Bootstrapper } from './core/Bootstrapper.js?v=20260317';
-import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260317';
+import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260610-cleanup';
 import { PlexusManager } from './plexus/PlexusManager.js?v=20260317';
-import { ModalSystem } from './ui/ModalSystem.js?v=20260317';
+import { ModalSystem } from './ui/ModalSystem.js?v=20260610-cleanup';
 import { CandylandCore } from './candyland/CandylandCore.js?v=20260610-cleanup';
 import { QuizSystem } from './quiz/QuizSystem.js?v=20260317';
 import { NCSData } from './ncs/NCSData.js?v=20260317';

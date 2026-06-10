@@ -2,10 +2,16 @@
 import { themeManager } from './ThemeManager.js';
 import { learningModulesConfig } from '../candyland/BoardData.js';
 import logger from '../../utils/Logger.js';
+import { registerAction } from '../../utils/ActionBus.js';
 
 export class ModalSystem {
     constructor() {
         this.activeModal = null;
+        // Learning-modal buttons go through the ActionBus (were inline onclick).
+        registerAction('closeLearningModal', (el) =>
+            window.appComponents?.modal?.closeModal(parseInt(el.dataset.index, 10)));
+        registerAction('launchApp', (el) =>
+            window.moduleLoader?.launchApplication(el.dataset.moduleId));
     }
 
     /**
@@ -30,7 +36,7 @@ export class ModalSystem {
                             <span class="breadcrumb-separator">→</span>
                             <span>${pgyLevel.toUpperCase()}</span>
                         </div>
-                        <button class="modal-close-btn" onclick="window.appComponents.modal.closeModal(${index})">Return to Journey</button>
+                        <button class="modal-close-btn" data-action="closeLearningModal" data-index="${index}">Return to Journey</button>
                     </div>
 
                     <!-- Learning Content Area -->
@@ -86,7 +92,7 @@ export class ModalSystem {
                     contentHTML = `
                         <div style="text-align:center; padding: 40px;">
                             <h3>Interactive Application</h3>
-                            <button onclick="window.moduleLoader.launchApplication('${moduleId}')" 
+                            <button data-action="launchApp" data-module-id="${moduleId}"
                                 style="padding: 15px 30px; font-size: 1.2em; background: #4f46e5; color: white; border-radius: 8px; border: none; cursor: pointer;">
                                 Launch ${module.title}
                             </button>

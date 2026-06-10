@@ -270,7 +270,7 @@ export class ErnestCharacter {
         descriptionBox.innerHTML = `
             <h4>${module.title}</h4>
             <p>${this.getDescriptionText(module)}</p>
-            <button class="ernest-go-button" onclick="window.openModule('${module.id}', ${moduleIndex})">
+            <button class="ernest-go-button" data-action="moduleClick" data-module-id="${module.id}" data-module-index="${moduleIndex}">
                 🚀 Let's Go!
             </button>
         `;
