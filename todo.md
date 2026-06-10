@@ -37,6 +37,17 @@
 - [x] **De-coupled `showModal`**: 8 modules now `import { showModal }` from ViewHelpers instead of reaching for `window.showModal`. Verified: all import and the modal opens.
 - [x] Confirmed (fresh import-graph sweep) that the dead-code removal left **no orphaned files** behind.
 
+### Round 3 (inline onclick → data-action bus)
+After dead-code removal only **15** `onclick` handlers remained (the bus is click-only; 56 hover + 19 change/input handlers can't use it). Migrated the 9 reachable/verifiable ones to the existing ActionBus:
+- [x] **Board tiles** (BoardRenderer ×4: module cards, hero, featured, podcast rows) → `data-action="moduleClick"/"playExtraPodcast"`, registered in the BoardRenderer constructor. Verified at real boot: a tile click routes to `handleModuleClick(id, index)` with index parsed as a number.
+- [x] **index.html close buttons ×2** → `closeModal` / `closeLearningObjectives` (already-registered actions). Verified real `×` clicks close their modals.
+- [x] **ModalSystem ×2** (learning-modal close + app launch) → `closeLearningModal` / `launchApp`, registered in constructor. Verified real close-button click.
+- [x] **ErnestCharacter ×1**: routed a dead `window.openModule` reference to `moduleClick`. (See finding below.)
+- [x] Bumped the cache-bust `?v=` chain (BoardRenderer→CandylandCore→Initialization, + ErnestCharacter/ModalSystem) so the edits actually load; also retired the shipped `?v=bus9-caseorder-debug` debug tag.
+- [x] **Regression check on the earlier dead-code removal:** the deleted `board/CandylandBoard.js` set ~16 `window.*` globals as an import side-effect. Cross-referenced all 16 against live code — only `window.openModule` was still referenced (ErnestCharacter), and that path is unreachable (`.module-square` is never rendered by the current board). **No user-facing regression**; dangling reference cleaned up anyway.
+
+**Deferred (still onclick):** 5 compound/deep PlexusManager handlers (build-case & compare features — multi-statement DOM manipulation, hard to verify without driving the plexus UI) and 1 low-value "Coming Soon" placeholder in ViewHelpers.
+
 ---
 
 ## DEFERRED ⏭️ (documented, NOT done — higher risk / "massive change", needs your eyes)
@@ -45,7 +56,7 @@ Per CLAUDE.md ("keep every change simple and minimal"), I did not force these th
 
 - **Mascot SVG dedup (3 live copies, ~1,000 lines).** On inspection these are *divergent*, not clean duplicates: `ErnestIcon` uses per-instance namespaced gradient/clip IDs (collision-safe for the 8 icon sites); `ErnestUI`/`AppShell` use fixed IDs and carry an extra mouth path. Neither is a superset — consolidating is a merge-and-migrate across 10+ render sites with visual-regression risk. Needs a human to eyeball all three surfaces.
 - **Color palette centralization** (3,251 hardcoded hexes, 226 distinct; a `:root` token set exists but is bypassed). Mechanical but high visual-regression risk; do per-color behind screenshot diffs.
-- **Migrate 102 inline `on*=` handlers → the existing `data-action` bus** + delete 80 `window.*` globals. High value, but large and risky; the bus already exists and 27 files use it, so it can be done incrementally later.
+- **Inline handler migration (partially done — see Round 3).** Remaining: 5 compound PlexusManager `onclick`s + 1 ViewHelpers placeholder; **56 hover (`onmouseover/out`) handlers → CSS `:hover`** (the click-only bus can't take them; some are functional `showModuleDescription` calls needing addEventListener instead); **19 `onchange/oninput/onfocus/onblur` handlers** would need the bus extended to delegate those event types.
 - **Extract 56 embedded `<style>` blocks** from JS template strings into real CSS; convert the top ~143 repeated inline-style strings to utility classes.
 - **Replace 13 remaining `alert()`s** with an in-app toast/modal (the dead "not yet implemented" ones are already gone; the rest are real validation feedback — a UX change).
 - **Move ~300 lines of static modal markup out of `index.html`** into a JS template.
