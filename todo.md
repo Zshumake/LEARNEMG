@@ -30,6 +30,13 @@
 
 **Verification:** app boots with zero console errors/warnings; `appComponents` initializes; mascot renders; the edited Clinical and muscle-lab modules import and render correctly.
 
+### Round 2 (follow-up cleanup)
+- [x] Removed `lectures/` (standalone presentation material the app never references) + `werewolf.jpeg`
+- [x] **Fixed mobile-redirect URL bug** (`index.html`): old code produced `/index.html/mobile/`; now derives the page directory (works for `/`, `/index.html`, subpaths), tightened the guard to `/mobile/`, and uses `location.replace()` (no back-button trap). Verified across all path shapes.
+- [x] **Modal a11y**: `role="dialog" aria-modal="true" aria-labelledby` on both overlays + `aria-label="Close"` on both close buttons (were exposing only "×").
+- [x] **De-coupled `showModal`**: 8 modules now `import { showModal }` from ViewHelpers instead of reaching for `window.showModal`. Verified: all import and the modal opens.
+- [x] Confirmed (fresh import-graph sweep) that the dead-code removal left **no orphaned files** behind.
+
 ---
 
 ## DEFERRED ⏭️ (documented, NOT done — higher risk / "massive change", needs your eyes)
@@ -42,7 +49,6 @@ Per CLAUDE.md ("keep every change simple and minimal"), I did not force these th
 - **Extract 56 embedded `<style>` blocks** from JS template strings into real CSS; convert the top ~143 repeated inline-style strings to utility classes.
 - **Replace 13 remaining `alert()`s** with an in-app toast/modal (the dead "not yet implemented" ones are already gone; the rest are real validation feedback — a UX change).
 - **Move ~300 lines of static modal markup out of `index.html`** into a JS template.
-- **Mobile redirect bug** (`index.html:34-49`): builds a malformed URL (`/index.html/mobile/`) when not served from the origin root, and uses a fragile `.includes('/mobile')` guard. Works at root (the normal deploy), so left alone — fix is deploy-path-dependent.
 - **Replace hand-maintained `?v=` cache-bust tags** (58 in src + 5 in index.html) with a single build/deploy versioning step.
 - **Split the giant `generateContent()` family** (8 funcs, 348–603 lines) and `EMGChallenge.launch()` (~714 lines).
 - **Flutter:** 37 `withOpacity` deprecations left as-is (the `.withValues()` swap can shift rendered alpha — needs visual review).
