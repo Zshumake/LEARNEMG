@@ -12,6 +12,10 @@ backup-module-extraction-20251118/
 ios/App/App/public/
 ios/App/Pods/
 ios/App/.bundle/
+# Compiled Flutter web build (1.7GB of generated output). Regenerate with
+# `flutter build web` from EMG_Mastery_Flutter/. If you deploy by serving this
+# repo directly, build mobile/ as part of deploy instead of committing it.
+mobile/
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
