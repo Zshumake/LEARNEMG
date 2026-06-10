@@ -1,6 +1,7 @@
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
 import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
+import { shuffle } from '../../utils/shuffle.js';
 
 export class MuscleAnatomyQuizModule {
     constructor() {
@@ -371,7 +372,7 @@ export class MuscleAnatomyQuizModule {
             const ans = this.getCorrectAnswer(m, type);
             if (ans && ans !== 'N/A') options.add(ans);
         }
-        return Array.from(options).sort(() => Math.random() - 0.5);
+        return shuffle(options);
     }
 
     checkAnswer(selected, idx) {

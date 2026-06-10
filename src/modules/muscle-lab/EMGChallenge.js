@@ -1,6 +1,7 @@
 import { MuscleDatabase, LesionSites } from '../../data/MuscleDatabase.js';
 import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
+import { shuffle } from '../../utils/shuffle.js';
 
 export class EMGChallengeSystem {
     constructor() {
@@ -840,7 +841,7 @@ export class EMGChallengeSystem {
     }
 
     selectRandomMuscles(muscleArray, count) {
-        const shuffled = [...muscleArray].sort(() => Math.random() - 0.5);
+        const shuffled = shuffle(muscleArray);
         return shuffled.slice(0, Math.min(count, muscleArray.length));
     }
 
@@ -859,7 +860,7 @@ export class EMGChallengeSystem {
         const sameLesions = Object.keys(this.lesionSites[region]).filter(name => name !== correctLesion);
 
         const sameTypeLesions = sameLesions.filter(name => this.lesionSites[region][name].type === correctType);
-        const shuffledSameType = [...sameTypeLesions].sort(() => Math.random() - 0.5);
+        const shuffledSameType = shuffle(sameTypeLesions);
         shuffledSameType.slice(0, 3).forEach(lesion => options.push(lesion));
 
         if (options.length < 4) {
@@ -867,10 +868,10 @@ export class EMGChallengeSystem {
                 this.lesionSites[region][name].type !== correctType &&
                 !options.includes(name)
             );
-            const shuffledDifferent = [...differentTypeLesions].sort(() => Math.random() - 0.5);
+            const shuffledDifferent = shuffle(differentTypeLesions);
             shuffledDifferent.slice(0, 4 - options.length).forEach(lesion => options.push(lesion));
         }
-        return options.sort(() => Math.random() - 0.5);
+        return shuffle(options);
     }
 
     displayCase() {

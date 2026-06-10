@@ -5,6 +5,7 @@
  */
 
 import logger from '../../utils/Logger.js';
+import { shuffle } from '../../utils/shuffle.js';
 export class NCSEngine {
     constructor(ncsData) {
         if (!ncsData) {
@@ -54,7 +55,7 @@ export class NCSEngine {
         const allQuestions = this.data.LANDMARK_QUESTIONS || [];
 
         const filteredQuestions = allQuestions.filter(q => allowedDifficulties.includes(q.difficulty));
-        const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
+        const shuffled = shuffle(filteredQuestions);
 
         return shuffled.slice(0, Math.min(5, shuffled.length));
     }
