@@ -44,6 +44,11 @@ tasks/
 trash/
 large_files/
 
+# Local agent / editor artifacts
+.claude/worktrees/
+EMG_Mastery_Flutter/.claude/
+**/.mcp.json
+
 # Tempoary Files
 temp_*.html
 lumbo_backup_temp.js
