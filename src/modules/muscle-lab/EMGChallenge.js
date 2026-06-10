@@ -1,4 +1,5 @@
 import { MuscleDatabase, LesionSites } from '../../data/MuscleDatabase.js';
+import { showModal } from '../../utils/ViewHelpers.js';
 import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
 import { shuffle } from '../../utils/shuffle.js';
@@ -758,8 +759,8 @@ export class EMGChallengeSystem {
             </div>
         `;
 
-        if (window.showModal) {
-            window.showModal('Clinical Case Challenge', emgChallengeContent, true);
+        if (showModal) {
+            showModal('Clinical Case Challenge', emgChallengeContent, true);
         } else {
             logger.error('showModal is not defined');
         }

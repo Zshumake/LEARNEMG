@@ -1,4 +1,5 @@
 import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260422-caseorder-v2';
+import { showModal } from '../../utils/ViewHelpers.js';
 import { ClinicalTables } from './components/ClinicalTables.js';
 import logger from '../../utils/Logger.js';
 
@@ -63,8 +64,8 @@ export class ClinicalUI {
                 `;
                 this.container = document.getElementById('clinical-root');
             }
-        } else if (window.showModal) {
-            window.showModal('Clinical Cases', `<div id="clinical-root">${content}</div>`);
+        } else if (showModal) {
+            showModal('Clinical Cases', `<div id="clinical-root">${content}</div>`);
             this.container = document.getElementById('clinical-root');
         }
 

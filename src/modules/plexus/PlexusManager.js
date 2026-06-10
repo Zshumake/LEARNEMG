@@ -2,6 +2,7 @@ import { PlexusLogic } from './PlexusLogic.js';
 import { PlexusRenderer } from './PlexusRenderer.js?v=20260304-v5';
 import { generatePlexopathyContent } from '../../content/pathology/BrachialPlexopathy.js?v=20260304-v5';
 import logger from '../../utils/Logger.js';
+import { showModal } from '../../utils/ViewHelpers.js';
 
 const MUSCLE_DETAILS = {
     // Upper Extremity
@@ -718,8 +719,8 @@ export class PlexusManager {
 
     showInteractiveAnatomy() {
         const content = this.getHTMLContent();
-        if (window.showModal) {
-            window.showModal('🧠 Advanced Plexus Systems', content);
+        if (showModal) {
+            showModal('🧠 Advanced Plexus Systems', content);
             setTimeout(() => { this.initialize('plexus-viz-container'); }, 100);
         } else {
             logger.error("ViewHelpers not loaded: showModal missing");

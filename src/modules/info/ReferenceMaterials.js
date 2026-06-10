@@ -5,6 +5,7 @@
  */
 
 import logger from '../../utils/Logger.js';
+import { showModal } from '../../utils/ViewHelpers.js';
 export class ReferenceMaterials {
     constructor() {
         // Diagnostic mode flag
@@ -61,8 +62,8 @@ export class ReferenceMaterials {
         </div>
         `;
 
-        if (window.showModal) {
-            window.showModal('🚨 Cardinal EMG/NCS Rules', content);
+        if (showModal) {
+            showModal('🚨 Cardinal EMG/NCS Rules', content);
         } else {
             logger.error('showModal not found');
         }

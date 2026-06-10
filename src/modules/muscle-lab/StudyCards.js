@@ -2,6 +2,7 @@
 import { MuscleDatabase } from '../../data/MuscleDatabase.js';
 import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
+import { showModal } from '../../utils/ViewHelpers.js';
 
 // Sub-region mapping for "By Region" grouping
 const REGION_MAP = {
@@ -157,8 +158,8 @@ export class StudyCardsModule {
                     ${content}
                 </div>
             `;
-        } else if (window.showModal) {
-            window.showModal('Advanced Muscle Study Lab', content);
+        } else if (showModal) {
+            showModal('Advanced Muscle Study Lab', content);
         } else {
             logger.error("showModal not available");
         }

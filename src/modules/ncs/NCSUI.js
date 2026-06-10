@@ -5,6 +5,7 @@
  */
 
 import logger from '../../utils/Logger.js';
+import { showModal } from '../../utils/ViewHelpers.js';
 export class NCSUI {
     constructor(engine) {
         if (!engine) {
@@ -187,7 +188,7 @@ export class NCSUI {
                 </div>
             </div>
         `;
-        if (window.showModal) window.showModal('⚡ Basic NCS Principles', content);
+        if (showModal) showModal('⚡ Basic NCS Principles', content);
     }
 
     showTechniqueVideos() {
@@ -261,7 +262,7 @@ export class NCSUI {
             </style>
         `;
 
-        if (window.showModal) window.showModal('📍 NCS Landmarks Quiz', content);
+        if (showModal) showModal('📍 NCS Landmarks Quiz', content);
 
         // Inject dynamic state
         this._renderCurrentQuestion();
@@ -395,7 +396,7 @@ export class NCSUI {
             </div>
         `;
 
-        if (window.showModal) window.showModal('📍 NCS Landmarks Quiz Results', content);
+        if (showModal) showModal('📍 NCS Landmarks Quiz Results', content);
     }
 
     /* =========================================================================
@@ -490,7 +491,7 @@ export class NCSUI {
                 </div>
             </div>
         `;
-        if (window.showModal) window.showModal('NCS Protocols for Radiculopathy', content);
+        if (showModal) showModal('NCS Protocols for Radiculopathy', content);
     }
 
     showNeuropathyProtocols() {
@@ -548,6 +549,6 @@ export class NCSUI {
                 </div>
             </div>
         `;
-        if (window.showModal) window.showModal('NCS Protocols for Peripheral Neuropathy', content);
+        if (showModal) showModal('NCS Protocols for Peripheral Neuropathy', content);
     }
 }
