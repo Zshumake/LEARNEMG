@@ -5,7 +5,6 @@ import { MuscleLocalization } from './MuscleLocalization.js';
 import { MuscleLabMenu } from './MuscleLabMenu.js';
 import { MuscleAnatomyQuizModule } from './MuscleAnatomyQuiz.js?v=20260421-busfix';
 import { ReferenceMaterials } from '../info/ReferenceMaterials.js';
-import { initializeCandylandBoard } from '../board/CandylandBoard.js';
 import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
 
@@ -37,9 +36,6 @@ registerAction('showEMGChallenge', () => emgChallenge.launch());
 registerAction('launchAnatomyQuiz', () => anatomyQuiz.launch());
 registerAction('backToMuscleMenu', () => muscleLabMenu.show());
 registerAction('showCardinalRules', () => referenceMaterials.showCardinalRules());
-
-// Initialize Board Logic (if needed here or kept in Init)
-// initializeCandylandBoard(); // Kept in Initialization.js for now or moved here?
 
 export const MuscleLab = {
     studyCards,

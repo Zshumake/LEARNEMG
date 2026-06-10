@@ -188,7 +188,7 @@ export class ClinicalUI {
                             const matrix = new DOMMatrixReadOnly(computedStyle.transform);
                             tx = matrix.e || 0;
                             ty = matrix.f || 0;
-                        } catch (err) { }
+                        } catch { /* unparseable transform: fall back to tx/ty = 0 */ }
                     }
 
                     const centerX = (rect.left - tx) + (rect.width / 2);
