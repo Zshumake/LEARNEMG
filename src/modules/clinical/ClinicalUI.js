@@ -9,9 +9,6 @@ export class ClinicalUI {
 
         // Bind methods so they can be securely used in event listeners
         this.startSpecificCase = this.startSpecificCase.bind(this);
-        this.startBeginnerCases = this.startBeginnerCases.bind(this);
-        this.startIntermediateCases = this.startIntermediateCases.bind(this);
-        this.startExpertCases = this.startExpertCases.bind(this);
         this.startNewCase = this.startNewCase.bind(this);
 
         this.showPhysicalExam = this.showPhysicalExam.bind(this);
@@ -308,11 +305,6 @@ export class ClinicalUI {
             this.renderDashboard('all');
         }
     }
-
-    // Stubbed category loaders
-    startBeginnerCases() { alert('Category filter not yet implemented. Please select a specific case.'); }
-    startIntermediateCases() { alert('Category filter not yet implemented. Please select a specific case.'); }
-    startExpertCases() { alert('Category filter not yet implemented. Please select a specific case.'); }
 
     // --- State & Stepping Handlers ---
 
