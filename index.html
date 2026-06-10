@@ -74,7 +74,7 @@
             <div
                 style="padding: 25px; border-bottom: 2px solid #e5e7eb; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 15px 15px 0 0;">
                 <h2 id="modal-title" style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;"></h2>
-                <button onclick="closeGeneralModal()" aria-label="Close"
+                <button data-action="closeModal" aria-label="Close"
                     style="position: absolute; top: 20px; right: 20px; background: #ef4444; color: white; border: none; font-size: 20px; cursor: pointer; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s;">×</button>
             </div>
             <div id="modal-body" style="padding: 30px; background: white; border-radius: 0 0 15px 15px;">
@@ -98,7 +98,7 @@
         <div class="modal-content learning-objectives-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="learning-objectives-title">EMG/NCS Learning Objectives</h2>
-                <button class="modal-close" onclick="closeLearningObjectives()" aria-label="Close">&times;</button>
+                <button class="modal-close" data-action="closeLearningObjectives" aria-label="Close">&times;</button>
             </div>
             <div class="modal-body">
                 <!-- PGY-2 Section (Prominent) -->
