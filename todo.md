@@ -52,7 +52,18 @@ After dead-code removal only **15** `onclick` handlers remained (the bus is clic
 - [x] **Diagnosed:** 14 of 32 podcast files had spaces in their names. Flutter's web build writes those assets percent-encoded on disk (`ALS%20and%20mimics.m4a` literally), `just_audio` requests the single-encoded URL, the server decodes once → **404 for every spaced episode** (all the named/topical ones users tap first). EDX_1–15 were fine; desktop web app was fine (serves source files with real spaces).
 - [x] **Fixed (not hidden):** renamed the 14 files to underscores (`git mv`), updated `podcast_data.dart` + web `AudioData.js` (14 refs each, all 32 verified to resolve on disk), rebuilt Flutter web (`--base-href /mobile/`), redeployed to `mobile/`, removed the 14 stale `%20` files, bumped the web cache-bust chain.
 - [x] **Verified:** every episode URL returns 206 on both apps; previously-broken episode reaches `canplay` in-browser (duration matches listed runtime); Flutter app boots; desktop boots with no console errors.
-- ⚠️ **Production note:** the stale `build/web` had `--base-href /LEARNEMG/mobile/` (GitHub Pages?). If deploying there, rebuild with that base href — the fix itself carries over.
+- ⚠️ **Production note:** the stale `build/web` had `--base-href /LEARNEMG/mobile/` (GitHub Pages?). If deploying there, rebuild with that base href — the fix itself carries over. *(Superseded by round 5: deploy branch builds with NO base href.)*
+
+### Round 5 (swarm audit → P0 fixes → production deploy, presentation night)
+- [x] **49-agent swarm audit** of every Flutter module + 4 cross-cutting sweeps, findings adversarially verified → 42 confirmed findings, synthesized into P0/P1/P2 + an explicit "don't do tonight" list.
+- [x] **Second demo-killer found & fixed:** web `setAsset` base64s entire 25–100MB episodes into a `data:` URI before playback (iOS tab kill). Now `kIsWeb` → `setUrl` streams (verified live 206 ranged requests).
+- [x] **P0 set applied:** opt-in tab keep-alive (quiz/terminology only), `cacheWidth` caps, dashboard BackdropFilter removed, Ernest RepaintBoundary + frozen chat header + cancelled tap timers, WaveformCard RepaintBoundary, muscle-lab mounted guard, branded splash, no parser-blocking YouTube script, preload/preconnect.
+- [x] **Merged into the real deploy branch** (`claude/eloquent-davinci` — serves GitHub Pages): kept its newer content work (clinical NR/Klumpke/PTS fixes, quiz overhaul, Ernest quota fix, scrolling heroes, podcast cards out of modules) + all session fixes; resolved the parallel data-action migrations in our favor (verified names). Single **no-base-href build** works at `/mobile/` and `/LEARNEMG/mobile/` alike.
+- [x] **Deployed** (push f89f532 → Pages built) and **live-verified**: QR target 200, all renamed podcasts 206, splash live, iframe_api gone, gzip on.
+- [x] **Fixed account-wide Pages outage:** the `shuhub.xyz` custom domain was broken at GitHub's edge (TLS fail + 503) and every github.io URL 301'd into it. Removed the domain from the user site (re-add after the presentation if wanted).
+- [x] **QR code:** `qr-emg-mastery.png` → https://zshumake.github.io/LEARNEMG/mobile/
+- ⚠️ Origin remote URL embeds an **expired PAT** — pushes fail with it; used `gh` auth instead. Consider `git remote set-url origin https://github.com/Zshumake/LEARNEMG.git` + `gh auth setup-git`.
+- 🔄 Swarm re-run for the 6 modules lost to API overload is in flight; P1/P2 fixes deferred to after the presentation (clinical_case_data lazy split, PNG→WebP, podcast re-encode, position-tick notifier split).
 
 ---
 
