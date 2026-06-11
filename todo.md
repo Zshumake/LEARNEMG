@@ -65,6 +65,13 @@ After dead-code removal only **15** `onclick` handlers remained (the bus is clic
 - ⚠️ Origin remote URL embeds an **expired PAT** — pushes fail with it; used `gh` auth instead. Consider `git remote set-url origin https://github.com/Zshumake/LEARNEMG.git` + `gh auth setup-git`.
 - 🔄 Swarm re-run for the 6 modules lost to API overload is in flight; P1/P2 fixes deferred to after the presentation (clinical_case_data lazy split, PNG→WebP, podcast re-encode, position-tick notifier split).
 
+### Round 6 (presentation night: podcasts out, demo key in, Pages fixed)
+- [x] **Podcast system removed from the Flutter app** (user call — slow buffering + 1.6GB deploy weight): banner, library, mini player, overlay, controller, data, and the `assets/Podcasts/` bundle line. Deployed `mobile/` shrank **1.7GB → 93MB**. Source m4a files remain tracked. (Buffering spinners were built first and remain in history if podcasts return.)
+- [x] **Ernest demo key for the crowd**: baked base64 via `--dart-define=ERNEST_DEMO_KEY_B64` (raw key never in source or bundle; user-saved keys take precedence). Verified live end-to-end against the Gemini API. **Revert after the talk: rebuild without the define + delete the key in AI Studio.**
+- [x] **Fixed dead model id**: `gemini-1.5-flash-latest` is retired → `gemini-2.5-flash-lite`.
+- [x] **Visible Ernest↔Earl swap button** in the chat header (was a hidden 7-tap easter egg; both characters are native Flutter CustomPainters — no SVG dependency).
+- [x] **Pages build failures fixed**: added `.nojekyll` (Jekyll was processing the multi-GB tree) and untracked the root `Podcasts` symlink (Pages rejects symlinks; stays on disk for local dev). Build now ~3 min and green; live bundle byte-identical to local.
+
 ---
 
 ## DEFERRED ⏭️ (documented, NOT done — higher risk / "massive change", needs your eyes)
