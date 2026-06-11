@@ -9,6 +9,7 @@ class PodcastController extends ChangeNotifier {
 
   PodcastEpisode? _currentEpisode;
   bool _isPlaying = false;
+  bool _isLoading = false;
   Duration _position = Duration.zero;
   Duration _lastNotifiedPosition = Duration.zero;
   Duration _lastSavedPosition = Duration.zero;
@@ -35,6 +36,11 @@ class PodcastController extends ChangeNotifier {
 
   PodcastEpisode? get currentEpisode => _currentEpisode;
   bool get isPlaying => _isPlaying;
+
+  /// True from the moment an episode is tapped until audio is actually
+  /// ready/playing — drives the buffering spinners. Streaming a 25-60MB
+  /// episode takes a few seconds; without this the player looks dead.
+  bool get isLoading => _isLoading;
   Duration get position => _position;
   Duration get duration => _duration;
   double get speed => _speed;
@@ -57,6 +63,8 @@ class PodcastController extends ChangeNotifier {
   void _initListeners() {
     _player.playerStateStream.listen((state) {
       _isPlaying = state.playing;
+      _isLoading = state.processingState == ProcessingState.loading ||
+          state.processingState == ProcessingState.buffering;
       notifyListeners();
     });
 
@@ -125,6 +133,7 @@ class PodcastController extends ChangeNotifier {
 
     _currentEpisode = episode;
     _errorMessage = null;
+    _isLoading = true; // instant feedback before the stream reports loading
     notifyListeners();
 
     // Sync queue index if episode is in current queue
@@ -151,6 +160,7 @@ class PodcastController extends ChangeNotifier {
 
       await _player.play();
     } catch (e) {
+      _isLoading = false;
       debugPrint("Error playing podcast: $e");
       final err = e.toString().toLowerCase();
       String msg;

@@ -189,7 +189,7 @@ class PodcastPlayerOverlay extends StatelessWidget {
                               const Duration(seconds: 15),
                         ),
                       ),
-                      // Play/Pause
+                      // Play/Pause (spinner while the stream buffers)
                       GestureDetector(
                         onTap: () => controller.togglePlayPause(),
                         child: Container(
@@ -199,13 +199,21 @@ class PodcastPlayerOverlay extends StatelessWidget {
                             color: Color(0xFFF59E0B),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
-                            controller.isPlaying
-                                ? Icons.pause_rounded
-                                : Icons.play_arrow_rounded,
-                            size: 40,
-                            color: const Color(0xFF0F172A),
-                          ),
+                          child: controller.isLoading
+                              ? const Padding(
+                                  padding: EdgeInsets.all(20),
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 3.5,
+                                    color: Color(0xFF0F172A),
+                                  ),
+                                )
+                              : Icon(
+                                  controller.isPlaying
+                                      ? Icons.pause_rounded
+                                      : Icons.play_arrow_rounded,
+                                  size: 40,
+                                  color: const Color(0xFF0F172A),
+                                ),
                         ),
                       ),
                       _controlButton(

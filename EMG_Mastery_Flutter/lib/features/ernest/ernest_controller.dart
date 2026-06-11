@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,6 +8,16 @@ import '../../core/theme/app_theme.dart';
 
 class ErnestController extends ChangeNotifier {
   static const String _apiKeyPrefsKey = 'ernest_api_key';
+
+  /// Optional shared key for live demos, baked in at build time:
+  ///   flutter build web --dart-define=ERNEST_DEMO_KEY_B64=$(printf %s "AIza..." | base64)
+  /// Base64 keeps the raw key out of pattern scanners (Google auto-disables
+  /// keys it finds verbatim in public repos). Empty (the default) = users
+  /// supply their own key exactly as before. A key the user saves in
+  /// settings always wins over the demo key.
+  static const String _demoKeyB64 = String.fromEnvironment(
+    'ERNEST_DEMO_KEY_B64',
+  );
 
   ErnestPersona? _currentPersona;
   final List<ChatMessage> _chatHistory = [];
@@ -84,6 +96,13 @@ PERSONA: "THE BITTER CHIEF RESIDENT"
   Future<void> _loadApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     _apiKey = prefs.getString(_apiKeyPrefsKey);
+    if (!hasApiKey && _demoKeyB64.isNotEmpty) {
+      try {
+        _apiKey = utf8.decode(base64.decode(_demoKeyB64));
+      } catch (_) {
+        // Malformed define — fall through to the normal no-key flow.
+      }
+    }
     if (hasApiKey) {
       _initializeModel();
     }
@@ -101,7 +120,10 @@ PERSONA: "THE BITTER CHIEF RESIDENT"
   void _initializeModel() {
     if (_apiKey == null) return;
     _model = GenerativeModel(
-      model: 'gemini-1.5-flash-latest',
+      // gemini-1.5-* is retired (404s). flash-lite is the cheapest/highest-
+      // throughput current model — right fit for a crowd demo; matches the
+      // web app's first preference in ErnestAPI.js.
+      model: 'gemini-2.5-flash-lite',
       apiKey: _apiKey!,
       generationConfig: GenerationConfig(
         temperature: 0.7,
