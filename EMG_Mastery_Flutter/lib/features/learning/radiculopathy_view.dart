@@ -36,7 +36,7 @@ class RadiculopathyView extends StatelessWidget {
             child: TabBarView(
               children: [
                 KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
-                KeepAliveTabWrapper(child: _QuizTab()),
+                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
               ],
             ),
           ),

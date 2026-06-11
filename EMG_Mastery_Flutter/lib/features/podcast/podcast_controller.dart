@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -93,7 +94,16 @@ class PodcastController extends ChangeNotifier {
     _errorMessage = null;
 
     try {
-      await _player.setAsset('assets/${episode.audioFile}');
+      if (kIsWeb) {
+        // On web, setAsset loads the ENTIRE file via rootBundle and base64s
+        // it into a data: URI — a 100MB episode becomes ~235MB of memory
+        // before playback (instant iOS Safari tab kill). setUrl streams via
+        // a plain <audio> element instead; the relative URL resolves against
+        // the /mobile/ base href to the same deployed asset files.
+        await _player.setUrl('assets/assets/${episode.audioFile}');
+      } else {
+        await _player.setAsset('assets/${episode.audioFile}');
+      }
 
       // Resume from saved position
       final savedPos = _getSavedPosition(episode.id);

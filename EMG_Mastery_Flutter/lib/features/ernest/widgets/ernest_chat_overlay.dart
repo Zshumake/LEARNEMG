@@ -101,12 +101,17 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
       ),
       child: Row(
         children: [
-          const AnimatedErnestWidget(
-            size: 100,
-            showSpeechBubble: false,
-            isInteractive: true,
-            allowPersonaToggle: false,
-            allowChatOpening: false,
+          // Frozen (TickerMode off): the chat header doesn't need the
+          // 60fps idle animation set running behind the conversation.
+          const TickerMode(
+            enabled: false,
+            child: AnimatedErnestWidget(
+              size: 100,
+              showSpeechBubble: false,
+              isInteractive: true,
+              allowPersonaToggle: false,
+              allowChatOpening: false,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(

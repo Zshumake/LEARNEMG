@@ -782,6 +782,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
   }
 
   void _nextQuestion() {
+    if (!mounted) return; // reached via Future.delayed; route may be gone
     final allMuscles = MuscleData.muscleDatabase.values.where((m) {
       if (_region == 'upper') return m.region == 'UE';
       if (_region == 'lower') return m.region == 'LE';

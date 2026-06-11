@@ -36,7 +36,7 @@ class BasicPatternsView extends StatelessWidget {
             child: TabBarView(
               children: [
                 KeepAliveTabWrapper(child: _PatternLibraryTab()),
-                KeepAliveTabWrapper(child: _QuizTab()),
+                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
               ],
             ),
           ),

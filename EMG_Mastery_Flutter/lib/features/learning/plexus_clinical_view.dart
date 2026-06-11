@@ -48,7 +48,7 @@ class PlexusClinicalView extends StatelessWidget {
             child: TabBarView(
               children: [
                 KeepAliveTabWrapper(child: _ClinicalGuideTab()),
-                KeepAliveTabWrapper(child: _QuizTab()),
+                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
               ],
             ),
           ),

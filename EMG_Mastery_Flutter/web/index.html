@@ -19,23 +19,53 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="EMG/NCS Mastery — interactive electrodiagnostic medicine learning.">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="emg_mastery">
+  <meta name="apple-mobile-web-app-title" content="EMG Mastery">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>emg_mastery</title>
+  <title>EMG Mastery</title>
   <link rel="manifest" href="manifest.json">
-  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <!-- Start fetching the app bundle ASAP and pre-warm the CanvasKit CDN.
+       (The YouTube iframe_api script that used to load here was unused:
+       the youtube_player_iframe plugin bootstraps its own API inside its
+       iframe, and blocking the parser on youtube.com hurt first paint.) -->
+  <link rel="preload" href="main.dart.js" as="script">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 </head>
 
 <body>
+  <!-- Branded splash shown until Flutter renders its first frame, instead
+       of a long blank white page while ~4MB of JS+CanvasKit downloads. -->
+  <div id="splash"
+    style="position:fixed;inset:0;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;background:#F8FAFC;font-family:-apple-system,'Segoe UI',sans-serif;z-index:9999">
+    <h2 style="color:#6366F1;margin:0;font-weight:800;letter-spacing:-0.5px">EMG/NCS Mastery</h2>
+    <div
+      style="width:34px;height:34px;border:4px solid #E2E8F0;border-top-color:#6366F1;border-radius:50%;animation:splashspin 0.9s linear infinite">
+    </div>
+    <p style="color:#64748B;margin:0;font-size:14px">Loading the learning system&hellip;</p>
+    <style>
+      @keyframes splashspin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </div>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var s = document.getElementById('splash');
+      if (s) s.remove();
+    });
+  </script>
+
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
