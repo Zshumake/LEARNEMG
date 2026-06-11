@@ -139,6 +139,19 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // Swap between Ernest and Earl (was a hidden 7-tap easter egg)
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                icon: const Icon(
+                  Icons.swap_horiz_rounded,
+                  color: Colors.white70,
+                  size: 20,
+                ),
+                onPressed: () => controller.switchPersona(),
+                tooltip: persona.id == 'ernest'
+                    ? "Talk to Earl instead"
+                    : "Bring Ernest back",
+              ),
               IconButton(
                 visualDensity: VisualDensity.compact,
                 icon: const Icon(
