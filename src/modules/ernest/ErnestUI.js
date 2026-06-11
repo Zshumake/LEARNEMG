@@ -1,4 +1,4 @@
-import { ERNEST_STYLES } from './ErnestStyles.js?v=20260317';
+import { ERNEST_STYLES } from './ErnestStyles.js?v=20260422-apikeylink';
 
 export class ErnestUI {
     constructor(core) {
@@ -46,7 +46,7 @@ export class ErnestUI {
                     <button class="jrpg-ernest-btn primary" id="jrpg-ernest-send">Send</button>
 
                     <button class="jrpg-ernest-btn" id="jrpg-ernest-close" title="Minimize">▼</button>
-                    <button class="jrpg-ernest-btn" id="jrpg-ernest-reset" title="Reset API Key">⚙️</button>
+                    <button class="jrpg-ernest-btn" id="jrpg-ernest-reset" title="Change API Key">⚙️</button>
                     ${!this.core.api.apiKey ? '<button class="jrpg-ernest-btn primary" id="jrpg-ernest-setup">Setup Key</button>' : ''}
                 </div>
             </div>
@@ -75,7 +75,11 @@ export class ErnestUI {
         apiModal.innerHTML = `
             <div class="jrpg-ernest-modal">
                 <h3>Configure Ernest API Key</h3>
-                <p>To use Ernest as your AI companion, please provide a Google Gemini API Key. It will be stored securely in your browser's local storage.</p>
+                <p>Ernest uses a Google Gemini API key. It's free, takes ~30 seconds to get, and is stored only in your browser's local storage.</p>
+                <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="jrpg-ernest-modal-link" id="jrpg-ernest-apikey-link">
+                    <span class="jrpg-ernest-modal-link-text">Get a free key from Google AI Studio</span>
+                    <span class="jrpg-ernest-modal-link-arrow">&rarr;</span>
+                </a>
                 <input type="text" id="jrpg-ernest-apikey-input" placeholder="Paste your API key here (starts with AIza...)">
                 <div class="jrpg-ernest-modal-actions">
                     <button class="jrpg-ernest-btn" id="jrpg-ernest-apikey-cancel">Cancel</button>

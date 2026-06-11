@@ -1,5 +1,5 @@
-import { ErnestAPI } from './ErnestAPI.js?v=20260304-v1';
-import { ErnestUI } from './ErnestUI.js?v=20260421-personafix';
+import { ErnestAPI, modelFamily } from './ErnestAPI.js?v=20260422-quotaloopfix';
+import { ErnestUI } from './ErnestUI.js?v=20260422-apikeylink';
 import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
 import logger from '../../utils/Logger.js';
 
@@ -159,9 +159,9 @@ export class ErnestCore {
     }
 
     resetApiKey() {
-        if (confirm("Reset Ernest API Key? This will clear your current key and reload the page.")) {
-            this.api.resetApiKey(true);
-        }
+        // Open the modal directly — it has a link to Google AI Studio.
+        // No confirm dialog or page reload needed: Save replaces the stored key in place.
+        this.promptApiKey();
     }
 
     promptApiKey(onDone) {
@@ -241,7 +241,7 @@ export class ErnestCore {
         this.processQuery(finalQuery);
     }
 
-    async processQuery(finalQuery, systemPromptOverride = null) {
+    async processQuery(finalQuery, systemPromptOverride = null, retryCtx = null) {
         this.chat.showLoadingMessage();
         this.isThinking = true;
 
@@ -284,7 +284,7 @@ export class ErnestCore {
             this.chat.addToChat(this.currentPersonaId, explanation);
         } catch (error) {
             this.chat.removeLoadingMessage();
-            this.handleError(error, finalQuery);
+            this.handleError(error, finalQuery, systemPromptOverride, retryCtx);
         }
 
         this.isThinking = false;
@@ -312,57 +312,121 @@ export class ErnestCore {
         return this.processQuery(highYieldPrompt);
     }
 
-    async handleError(error, query) {
+    // Hard cap on model swaps per user question. Anything higher and we're
+    // just spamming the user with "Quota hit"/"Switched to..." pairs while
+    // every alias of the same underlying model hits the same quota bucket.
+    static get MAX_MODEL_SWAPS() { return 2; }
+
+    _newRetryCtx() {
+        return { failedFamilies: new Set(), attempts: 0 };
+    }
+
+    _markFailed(ctx, modelName) {
+        const fam = modelFamily(modelName);
+        if (fam) ctx.failedFamilies.add(fam);
+    }
+
+    async handleError(error, query, systemPromptOverride = null, retryCtx = null) {
         logger.error("Gemini Error:", error);
 
         const isEarl = this.currentPersonaId === 'earl';
+        const ctx = retryCtx || this._newRetryCtx();
+        const msg = error.message || '';
+        const lower = msg.toLowerCase();
 
-        if (error.message.includes('not found') || error.message.includes('404')) {
-            const msg = isEarl
-                ? "Standard model missing. Typical. Rerouting to backup processors..."
-                : "Main brain offline! Scanning frequencies for a new signal...";
-            this.chat.addToChat(this.currentPersonaId, msg);
-
-            const workingModel = await this.api.discoverWorkingModel();
-            if (workingModel) {
-                this.chat.addToChat(this.currentPersonaId, `Found valid signal: ${workingModel}. Retrying...`);
-                this.api.setModel(workingModel);
-                // Retry
-                this.processQuery(query);
-            } else {
-                this.chat.addToChat(this.currentPersonaId, "Critical failure: No working models found. Check API key settings.");
-            }
-            return;
-        }
-
-        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+        // --- Network: non-recoverable by model-swapping ---
+        if (msg.includes('Failed to fetch') || msg.includes('NetworkError')) {
             this.chat.addToChat(this.currentPersonaId, isEarl
                 ? "Connection severed. Are you in a lead-lined room? Check your Wi-Fi."
                 : "Signal lost! I can't reach the cloud! Check your connection!");
-        } else if (error.message.toLowerCase().includes('503') || error.message.toLowerCase().includes('overloaded') || error.message.toLowerCase().includes('demand')) {
-            const msg = isEarl
-                ? "The server is currently overwhelmed by your presence. Searching for a neural pathway that can handle the burden..."
-                : "Brain freeze! Too much demand on my primary sector! Let me switch neural pathways...";
-            this.chat.addToChat(this.currentPersonaId, msg);
-
-            // AUTO-RECOVERY: Try to find a new model and retry immediately
-            const workingModel = await this.api.discoverWorkingModel();
-            if (workingModel && workingModel !== this.api.preferredModel) {
-                this.chat.addToChat(this.currentPersonaId, `Neural shift complete! Retrying with ${workingModel}...`);
-                this.api.setModel(workingModel);
-                this.processQuery(query);
-            } else {
-                this.chat.addToChat(this.currentPersonaId, isEarl
-                    ? "Every pathway is clogged. Give me 10 seconds before you bother me again."
-                    : "Phew! All my circuits are busy right now. Give me about 10 seconds to cool down and try again!");
-            }
-        } else if (error.message.includes('Quota') || error.message.includes('429')) {
-            this.chat.addToChat(this.currentPersonaId, isEarl
-                ? "You've exhausted my patience (and your API quota). Silence for 60 seconds."
-                : "Whoa! Too many questions! My neurons are overheating (Quota limit). Give me a minute!");
-        } else {
-            this.chat.addToChat(this.currentPersonaId, `System Error: ${error.message}`);
+            return;
         }
+
+        // --- 404 / model not found ---
+        if (msg.includes('not found') || msg.includes('404')) {
+            return this._swapAndRetry(query, systemPromptOverride, ctx, {
+                blurb: isEarl
+                    ? "Standard model missing. Typical. Rerouting to backup processors..."
+                    : "Main brain offline! Scanning frequencies for a new signal...",
+                exhaustedBlurb: isEarl
+                    ? "No models available on this key. Fix your setup."
+                    : "No working models found on this API key. Try a fresh key from Google AI Studio.",
+                // 404 is reliably a "this named model doesn't exist" — clear the preferred
+                // model and swap, but don't blacklist by family (different model entirely).
+                markFailed: true
+            });
+        }
+
+        // --- 503 / overloaded ---
+        if (lower.includes('503') || lower.includes('overloaded') || lower.includes('demand')) {
+            return this._swapAndRetry(query, systemPromptOverride, ctx, {
+                blurb: isEarl
+                    ? "The server is currently overwhelmed by your presence. Searching for a neural pathway that can handle the burden..."
+                    : "Brain freeze! Too much demand on my primary sector! Let me switch neural pathways...",
+                exhaustedBlurb: isEarl
+                    ? "Every pathway is clogged. Give me 60 seconds before you bother me again."
+                    : "All my circuits are busy right now! Give me ~60 seconds to cool down, then try again.",
+                markFailed: true
+            });
+        }
+
+        // --- Quota / 429 / RESOURCE_EXHAUSTED ---
+        if (msg.includes('Quota') || lower.includes('quota') || msg.includes('429') || msg.toUpperCase().includes('RESOURCE_EXHAUSTED')) {
+            return this._swapAndRetry(query, systemPromptOverride, ctx, {
+                blurb: isEarl
+                    ? "Quota maxed out on this model. Rerouting through a less-abused pathway..."
+                    : "Quota hit on this model! Let me swap to a fresher neural pathway...",
+                exhaustedBlurb: isEarl
+                    ? "Every model's quota is tapped on this API key. Wait an hour or upgrade your plan."
+                    : "All Gemini models on this API key are quota-limited right now. Google's free tier resets every minute (RPM) and every day (RPD). Wait about 60 seconds before asking again — or enable a paid billing plan at https://aistudio.google.com for higher limits.",
+                markFailed: true
+            });
+        }
+
+        // --- Everything else: surface the raw error ---
+        this.chat.addToChat(this.currentPersonaId, `System Error: ${msg}`);
+    }
+
+    /**
+     * Shared recovery path for 404 / 503 / quota errors. Handles:
+     *   - retry cap (ErnestCore.MAX_MODEL_SWAPS)
+     *   - family-level failure tracking so alias ping-pong is impossible
+     *   - clearing stale `preferredModel` in localStorage
+     *   - recursive retry of the same query with the new model
+     */
+    async _swapAndRetry(query, systemPromptOverride, ctx, { blurb, exhaustedBlurb, markFailed }) {
+        const failedModel = this.api.preferredModel;
+
+        if (markFailed) this._markFailed(ctx, failedModel);
+        ctx.attempts++;
+
+        // Always clear the stale preferred model so we don't keep writing
+        // dead aliases back into localStorage across sessions.
+        if (failedModel) {
+            localStorage.removeItem('ernest_preferred_model');
+            this.api.preferredModel = null;
+        }
+
+        if (ctx.attempts > ErnestCore.MAX_MODEL_SWAPS) {
+            this.chat.addToChat(this.currentPersonaId, exhaustedBlurb);
+            return;
+        }
+
+        this.chat.addToChat(this.currentPersonaId, blurb);
+
+        const excludeList = Array.from(ctx.failedFamilies);
+        const workingModel = await this.api.discoverWorkingModel(excludeList);
+
+        // discoverWorkingModel already filters by family, so anything it
+        // returns is genuinely new. Double-check defensively.
+        if (!workingModel || ctx.failedFamilies.has(modelFamily(workingModel))) {
+            this.chat.addToChat(this.currentPersonaId, exhaustedBlurb);
+            return;
+        }
+
+        this.api.setModel(workingModel);
+        this.chat.addToChat(this.currentPersonaId, `Switched to ${workingModel}. Retrying your question...`);
+        this.processQuery(query, systemPromptOverride, ctx);
     }
 
     async explainVisiblePage() {

@@ -78,6 +78,7 @@ class PodcastLibraryScreen extends StatelessWidget {
                             isPlaying,
                             controller.isPlaying && isPlaying,
                             controller.isCompleted(ep.id),
+                            episodes,
                           ),
                         );
                       },
@@ -271,6 +272,7 @@ class PodcastLibraryScreen extends StatelessWidget {
     bool isActive,
     bool isActuallyPlaying,
     bool isCompleted,
+    List<PodcastEpisode> categoryEpisodes,
   ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
@@ -295,6 +297,7 @@ class PodcastLibraryScreen extends StatelessWidget {
       child: InkWell(
         onTap: () {
           final ctrl = context.read<PodcastController>();
+          ctrl.setQueue(categoryEpisodes, categoryEpisodes.indexOf(episode));
           ctrl.playEpisode(episode);
           showModalBottomSheet(
             context: context,

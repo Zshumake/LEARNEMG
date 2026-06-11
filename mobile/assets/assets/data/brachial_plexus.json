@@ -1,0 +1,555 @@
+{
+    "nodes": [
+        {
+            "id": "root_c5",
+            "label": "C5",
+            "type": "root",
+            "level": 0,
+            "order": 1,
+            "yOffset": -60,
+            "row": 2
+        },
+        {
+            "id": "root_c6",
+            "label": "C6",
+            "type": "root",
+            "level": 0,
+            "order": 2,
+            "yOffset": -30,
+            "row": 4
+        },
+        {
+            "id": "root_c7",
+            "label": "C7",
+            "type": "root",
+            "level": 0,
+            "order": 3,
+            "yOffset": 0,
+            "row": 6
+        },
+        {
+            "id": "root_c8",
+            "label": "C8",
+            "type": "root",
+            "level": 0,
+            "order": 4,
+            "yOffset": 30,
+            "row": 8
+        },
+        {
+            "id": "root_t1",
+            "label": "T1",
+            "type": "root",
+            "level": 0,
+            "order": 5,
+            "yOffset": 60,
+            "row": 10
+        },
+        {
+            "id": "trunk_upper",
+            "label": "Upper Trunk",
+            "type": "trunk",
+            "level": 1,
+            "order": 1,
+            "yOffset": -45,
+            "row": 3
+        },
+        {
+            "id": "trunk_middle",
+            "label": "Middle Trunk",
+            "type": "trunk",
+            "level": 1,
+            "order": 2,
+            "yOffset": 0,
+            "row": 6
+        },
+        {
+            "id": "trunk_inferior",
+            "label": "Inferior Trunk",
+            "type": "trunk",
+            "level": 1,
+            "order": 3,
+            "yOffset": 45,
+            "row": 9
+        },
+        {
+            "id": "div_ant_upper",
+            "label": "Ant. Div (Upper)",
+            "type": "division",
+            "level": 2,
+            "order": 1,
+            "yOffset": -75,
+            "row": 2
+        },
+        {
+            "id": "div_post_upper",
+            "label": "Post. Div (Upper)",
+            "type": "division",
+            "level": 2,
+            "order": 2,
+            "yOffset": -45,
+            "row": 4
+        },
+        {
+            "id": "div_ant_middle",
+            "label": "Ant. Div (Middle)",
+            "type": "division",
+            "level": 2,
+            "order": 3,
+            "yOffset": -15,
+            "row": 5
+        },
+        {
+            "id": "div_post_middle",
+            "label": "Post. Div (Middle)",
+            "type": "division",
+            "level": 2,
+            "order": 4,
+            "yOffset": 15,
+            "row": 7
+        },
+        {
+            "id": "div_ant_inferior",
+            "label": "Ant. Div (Inf)",
+            "type": "division",
+            "level": 2,
+            "order": 6,
+            "yOffset": 75,
+            "row": 10
+        },
+        {
+            "id": "div_post_inferior",
+            "label": "Post. Div (Inf)",
+            "type": "division",
+            "level": 2,
+            "order": 5,
+            "yOffset": 45,
+            "row": 8
+        },
+        {
+            "id": "cord_lateral",
+            "label": "Lateral Cord",
+            "type": "cord",
+            "level": 3,
+            "order": 1,
+            "yOffset": -60,
+            "row": 3
+        },
+        {
+            "id": "cord_posterior",
+            "label": "Posterior Cord",
+            "type": "cord",
+            "level": 3,
+            "order": 2,
+            "yOffset": 0,
+            "row": 6
+        },
+        {
+            "id": "cord_medial",
+            "label": "Medial Cord",
+            "type": "cord",
+            "level": 3,
+            "order": 3,
+            "yOffset": 60,
+            "row": 9
+        },
+        {
+            "id": "nerve_dorsal_scapular",
+            "label": "Dorsal Scapular",
+            "type": "branch",
+            "level": 0.5,
+            "order": 1,
+            "yOffset": -100,
+            "row": 0.5,
+            "muscles": [
+                "Rhomboid Major",
+                "Rhomboid Minor",
+                "Levator Scapulae"
+            ]
+        },
+        {
+            "id": "nerve_long_thoracic",
+            "label": "Long Thoracic",
+            "type": "branch",
+            "level": 1.5,
+            "order": 2,
+            "yOffset": 100,
+            "row": 11,
+            "muscles": [
+                "Serratus Anterior"
+            ]
+        },
+        {
+            "id": "nerve_suprascapular",
+            "label": "Suprascapular",
+            "type": "branch",
+            "level": 1.5,
+            "order": 1,
+            "yOffset": -90,
+            "row": 1,
+            "muscles": [
+                "Supraspinatus",
+                "Infraspinatus"
+            ]
+        },
+        {
+            "id": "nerve_subclavius",
+            "label": "N. to Subclavius",
+            "type": "branch",
+            "level": 1.5,
+            "order": 2,
+            "yOffset": -70,
+            "row": 4.5,
+            "muscles": [
+                "Subclavius"
+            ]
+        },
+        {
+            "id": "nerve_lat_pectoral",
+            "label": "Lat. Pectoral",
+            "type": "branch",
+            "level": 3.5,
+            "order": 1,
+            "yOffset": -100,
+            "row": 1.5,
+            "muscles": [
+                "Pectoralis Major"
+            ]
+        },
+        {
+            "id": "nerve_musculocutaneous",
+            "label": "Musculocutaneous",
+            "type": "nerve",
+            "level": 4,
+            "order": 1,
+            "yOffset": -90,
+            "row": 2,
+            "muscles": [
+                "Biceps Brachii",
+                "Brachialis",
+                "Coracobrachialis"
+            ]
+        },
+        {
+            "id": "nerve_median_lat_root",
+            "label": "Lat. Root Median",
+            "type": "branch",
+            "level": 3.5,
+            "order": 4,
+            "yOffset": -10,
+            "row": 4.5
+        },
+        {
+            "id": "nerve_upper_subscapular",
+            "label": "Upper Subscapular",
+            "type": "branch",
+            "level": 3.5,
+            "order": 1,
+            "yOffset": -30,
+            "row": 4.5,
+            "muscles": [
+                "Subscapularis (upper half)"
+            ]
+        },
+        {
+            "id": "nerve_thoracodorsal",
+            "label": "Thoracodorsal",
+            "type": "branch",
+            "level": 3.5,
+            "order": 2,
+            "yOffset": -10,
+            "row": 5.5,
+            "muscles": [
+                "Latissimus Dorsi"
+            ]
+        },
+        {
+            "id": "nerve_lower_subscapular",
+            "label": "Lower Subscapular",
+            "type": "branch",
+            "level": 3.5,
+            "order": 3,
+            "yOffset": 10,
+            "row": 6.5,
+            "muscles": [
+                "Subscapularis (lower half)",
+                "Teres Major"
+            ]
+        },
+        {
+            "id": "nerve_axillary",
+            "label": "Axillary",
+            "type": "nerve",
+            "level": 4,
+            "order": 2,
+            "yOffset": -45,
+            "row": 5,
+            "muscles": [
+                "Deltoid",
+                "Teres Minor"
+            ]
+        },
+        {
+            "id": "nerve_radial",
+            "label": "Radial",
+            "type": "nerve",
+            "level": 4,
+            "order": 3,
+            "yOffset": 0,
+            "row": 7,
+            "muscles": [
+                "Triceps Brachii",
+                "Brachioradialis",
+                "Extensor Carpi Radialis Longus",
+                "Extensor Carpi Radialis Brevis",
+                "Supinator",
+                "Extensor Digitorum",
+                "Extensor Carpi Ulnaris",
+                "Abductor Pollicis Longus",
+                "Extensor Pollicis Brevis",
+                "Extensor Pollicis Longus",
+                "Extensor Indicis"
+            ]
+        },
+        {
+            "id": "nerve_med_pectoral",
+            "label": "Med. Pectoral",
+            "type": "branch",
+            "level": 3.5,
+            "order": 1,
+            "yOffset": 40,
+            "row": 10.5,
+            "muscles": [
+                "Pectoralis Major",
+                "Pectoralis Minor"
+            ]
+        },
+        {
+            "id": "nerve_med_cut_arm",
+            "label": "Med. Cut. Arm",
+            "type": "branch",
+            "level": 3.5,
+            "order": 2,
+            "yOffset": 70,
+            "row": 11.5,
+            "muscles": [],
+            "description": "Sensory: Provides sensation to the medial aspect of the arm."
+        },
+        {
+            "id": "nerve_med_cut_forearm",
+            "label": "Med. Cut. Forearm",
+            "type": "branch",
+            "level": 3.5,
+            "order": 3,
+            "yOffset": 100,
+            "row": 12.5,
+            "muscles": [],
+            "description": "Sensory: Provides sensation to the medial aspect of the forearm."
+        },
+        {
+            "id": "nerve_ulnar",
+            "label": "Ulnar",
+            "type": "nerve",
+            "level": 4,
+            "order": 5,
+            "yOffset": 90,
+            "row": 10,
+            "muscles": [
+                "Flexor Carpi Ulnaris",
+                "Flexor Digitorum Profundus (medial half)",
+                "Abductor Digiti Minimi",
+                "Flexor Digiti Minimi Brevis",
+                "Opponens Digiti Minimi",
+                "Lumbricals 3 & 4",
+                "Dorsal Interossei",
+                "Palmar Interossei",
+                "Adductor Pollicis"
+            ]
+        },
+        {
+            "id": "nerve_median_med_root",
+            "label": "Med. Root Median",
+            "type": "branch",
+            "level": 3.5,
+            "order": 5,
+            "yOffset": 20,
+            "row": 7.5
+        },
+        {
+            "id": "nerve_median",
+            "label": "Median Nerve",
+            "type": "nerve",
+            "level": 4.5,
+            "order": 4,
+            "yOffset": 45,
+            "row": 6,
+            "muscles": [
+                "Pronator Teres",
+                "Flexor Carpi Radialis",
+                "Palmaris Longus",
+                "Flexor Digitorum Superficialis",
+                "Flexor Digitorum Profundus (lateral half)",
+                "Flexor Pollicis Longus",
+                "Pronator Quadratus",
+                "Abductor Pollicis Brevis",
+                "Opponens Pollicis",
+                "Flexor Pollicis Brevis (superficial head)",
+                "Lumbricals 1 & 2"
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": "root_c5",
+            "target": "trunk_upper"
+        },
+        {
+            "source": "root_c6",
+            "target": "trunk_upper"
+        },
+        {
+            "source": "root_c7",
+            "target": "trunk_middle"
+        },
+        {
+            "source": "root_c8",
+            "target": "trunk_inferior"
+        },
+        {
+            "source": "root_t1",
+            "target": "trunk_inferior"
+        },
+        {
+            "source": "trunk_upper",
+            "target": "div_ant_upper"
+        },
+        {
+            "source": "trunk_upper",
+            "target": "div_post_upper"
+        },
+        {
+            "source": "trunk_middle",
+            "target": "div_ant_middle"
+        },
+        {
+            "source": "trunk_middle",
+            "target": "div_post_middle"
+        },
+        {
+            "source": "trunk_inferior",
+            "target": "div_ant_inferior"
+        },
+        {
+            "source": "trunk_inferior",
+            "target": "div_post_inferior"
+        },
+        {
+            "source": "div_ant_upper",
+            "target": "cord_lateral"
+        },
+        {
+            "source": "div_ant_middle",
+            "target": "cord_lateral"
+        },
+        {
+            "source": "div_post_upper",
+            "target": "cord_posterior"
+        },
+        {
+            "source": "div_post_middle",
+            "target": "cord_posterior"
+        },
+        {
+            "source": "div_post_inferior",
+            "target": "cord_posterior"
+        },
+        {
+            "source": "div_ant_inferior",
+            "target": "cord_medial"
+        },
+        {
+            "source": "root_c5",
+            "target": "nerve_dorsal_scapular"
+        },
+        {
+            "source": "root_c5",
+            "target": "nerve_long_thoracic"
+        },
+        {
+            "source": "root_c6",
+            "target": "nerve_long_thoracic"
+        },
+        {
+            "source": "root_c7",
+            "target": "nerve_long_thoracic"
+        },
+        {
+            "source": "trunk_upper",
+            "target": "nerve_suprascapular"
+        },
+        {
+            "source": "trunk_upper",
+            "target": "nerve_subclavius"
+        },
+        {
+            "source": "cord_lateral",
+            "target": "nerve_lat_pectoral"
+        },
+        {
+            "source": "cord_lateral",
+            "target": "nerve_musculocutaneous"
+        },
+        {
+            "source": "cord_lateral",
+            "target": "nerve_median_lat_root"
+        },
+        {
+            "source": "cord_posterior",
+            "target": "nerve_upper_subscapular"
+        },
+        {
+            "source": "cord_posterior",
+            "target": "nerve_thoracodorsal"
+        },
+        {
+            "source": "cord_posterior",
+            "target": "nerve_lower_subscapular"
+        },
+        {
+            "source": "cord_posterior",
+            "target": "nerve_axillary"
+        },
+        {
+            "source": "cord_posterior",
+            "target": "nerve_radial"
+        },
+        {
+            "source": "cord_medial",
+            "target": "nerve_med_pectoral"
+        },
+        {
+            "source": "cord_medial",
+            "target": "nerve_med_cut_arm"
+        },
+        {
+            "source": "cord_medial",
+            "target": "nerve_med_cut_forearm"
+        },
+        {
+            "source": "cord_medial",
+            "target": "nerve_ulnar"
+        },
+        {
+            "source": "cord_medial",
+            "target": "nerve_median_med_root"
+        },
+        {
+            "source": "nerve_median_lat_root",
+            "target": "nerve_median"
+        },
+        {
+            "source": "nerve_median_med_root",
+            "target": "nerve_median"
+        }
+    ]
+}

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../data/introduction_data.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../data/models/introduction_content.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/content_card.dart';
 import 'widgets/glossary_list.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
+import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/diagram_card.dart';
@@ -22,9 +21,10 @@ class IntroductionModuleView extends StatelessWidget {
 
     return DefaultTabController(
       length: 7,
-      child: Column(
-        children: [
-          // Hero Header
+      child: ScrollableModuleScaffold(
+        headerSlivers: [
+          // Hero Header -- scrolls off the top so the content area gets back
+          // the full screen on small phones.
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(24),
@@ -54,45 +54,35 @@ class IntroductionModuleView extends StatelessWidget {
               ),
             ),
           ),
-
-          // Scrollable TabBar (6 tabs)
-          Container(
-            color: Colors.white,
-            child: const TabBar(
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              labelColor: AppTheme.primary,
-              unselectedLabelColor: AppTheme.textMuted,
-              indicatorColor: AppTheme.primary,
-              indicatorSize: TabBarIndicatorSize.tab,
-              tabs: [
-                Tab(text: 'Philosophy'),
-                Tab(text: 'EDX Basics'),
-                Tab(text: 'Instrumentation'),
-                Tab(text: 'Technical'),
-                Tab(text: 'Localization'),
-                Tab(text: 'Terminology'),
-                Tab(text: 'Quiz'),
-              ],
-            ),
-          ),
-
-          // Tab Content
-          Expanded(
-            child: TabBarView(
-              children: [
-                KeepAliveTabWrapper(child: _buildPhilosophyTab(content)),
-                KeepAliveTabWrapper(child: _buildBasicsTab(content)),
-                KeepAliveTabWrapper(child: _buildInstrumentationTab()),
-                KeepAliveTabWrapper(child: _buildTechnicalTab(content)),
-                KeepAliveTabWrapper(child: _buildLocalizationTab(content)),
-                KeepAliveTabWrapper(
-                    keepAlive: true, child: _buildTerminologyTab(content)),
-                KeepAliveTabWrapper(keepAlive: true, child: _buildQuizTab()),
-              ],
-            ),
-          ),
         ],
+        tabBar: const TabBar(
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
+          labelColor: AppTheme.primary,
+          unselectedLabelColor: AppTheme.textMuted,
+          indicatorColor: AppTheme.primary,
+          indicatorSize: TabBarIndicatorSize.tab,
+          tabs: [
+            Tab(text: 'Philosophy'),
+            Tab(text: 'EDX Basics'),
+            Tab(text: 'Instrumentation'),
+            Tab(text: 'Technical'),
+            Tab(text: 'Localization'),
+            Tab(text: 'Terminology'),
+            Tab(text: 'Quiz'),
+          ],
+        ),
+        body: TabBarView(
+          children: [
+            KeepAliveTabWrapper(child: _buildPhilosophyTab(content)),
+            KeepAliveTabWrapper(child: _buildBasicsTab(content)),
+            KeepAliveTabWrapper(child: _buildInstrumentationTab()),
+            KeepAliveTabWrapper(child: _buildTechnicalTab(content)),
+            KeepAliveTabWrapper(child: _buildLocalizationTab(content)),
+            KeepAliveTabWrapper(keepAlive: true, child: _buildTerminologyTab(content)),
+            KeepAliveTabWrapper(keepAlive: true, child: _buildQuizTab()),
+          ],
+        ),
       ),
     );
   }
@@ -658,12 +648,6 @@ class IntroductionModuleView extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppTheme.textHeading,
             ),
-          ),
-          const SizedBox(height: 16),
-          PodcastTriggerCard(
-            episode: PodcastData.getEpisodesByModule(
-              'emg-introduction',
-            ).firstWhere((ep) => ep.id == 'emg-terminology'),
           ),
           const SizedBox(height: 16),
           GlossaryList(terms: content.terminology.glossary),

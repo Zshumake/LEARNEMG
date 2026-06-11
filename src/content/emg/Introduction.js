@@ -84,6 +84,32 @@ class IntroductionModule extends BaseContent {
         `).join('');
     }
 
+    _renderBasicsCard(item, borderColor, titleColor) {
+        const hasAttribution = item.imageAttribution && item.imageSourceUrl;
+        const isSvg = item.image && item.image.toLowerCase().endsWith('.svg');
+        return `
+            <div class="emg-card" style="border-top: 5px solid ${borderColor};">
+                <h5 style="color: ${titleColor}; margin-bottom: 15px;">${item.title}</h5>
+                ${item.image ? `
+                    <figure style="margin: 0 0 15px 0;">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0; background: ${isSvg ? '#ffffff' : 'transparent'}; display: block;">
+                        ${hasAttribution ? `
+                            <figcaption style="font-size: 0.7em; color: #94a3b8; margin-top: 6px; font-style: italic; line-height: 1.4; padding: 0 2px;">
+                                Source: <a href="${item.imageSourceUrl}" target="_blank" rel="noopener" style="color: #64748b; text-decoration: underline;">${item.imageAttribution}</a>${item.imageLicense ? ` &bull; ${item.imageLicense}` : ''}
+                            </figcaption>
+                        ` : ''}
+                    </figure>
+                ` : ''}
+                <p style="font-size: 0.95em; color: #475569; line-height: 1.5;">${item.detail}</p>
+                ${item.pearl ? `
+                    <div style="margin-top: 14px; padding: 12px 14px; background: #fefce8; border-left: 4px solid #eab308; border-radius: 6px; font-size: 0.85em; color: #713f12; line-height: 1.5;">
+                        ${item.pearl}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
     generateContent() {
         return `
             ${this.getStandardStyles()}
@@ -136,27 +162,15 @@ class IntroductionModule extends BaseContent {
                     </div>
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizPhilosophy) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizPhilosophy, { title: 'Clinical Philosophy Check', subtitle: 'Confirm your grasp of the cardinal rules before moving on' }) : ''}
                     </div>
                 </div>
 
                 <!-- 2. EDX Basics -->
                 <div id="intro-basics-section" class="emg-intro-section" style="display: none;">
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-bottom: 30px;">
-                        ${this.data.basics.anatomy.map(item => `
-                            <div class="emg-card" style="border-top: 5px solid #7c3aed;">
-                                <h5 style="color: #4c1d95; margin-bottom: 15px;">${item.title}</h5>
-                                ${item.image ? `<img src="${item.image}" alt="${item.title}" style="width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0;">` : ''}
-                                <p style="font-size: 0.95em; color: #475569; line-height: 1.5;">${item.detail}</p>
-                            </div>
-                        `).join('')}
-                        ${this.data.basics.physiology.map(item => `
-                            <div class="emg-card" style="border-top: 5px solid #8b5cf6;">
-                                <h5 style="color: #4c1d95; margin-bottom: 15px;">${item.title}</h5>
-                                ${item.image ? `<img src="${item.image}" alt="${item.title}" style="width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0;">` : ''}
-                                <p style="font-size: 0.95em; color: #475569; line-height: 1.5;">${item.detail}</p>
-                            </div>
-                        `).join('')}
+                        ${this.data.basics.anatomy.map(item => this._renderBasicsCard(item, '#7c3aed', '#4c1d95')).join('')}
+                        ${this.data.basics.physiology.map(item => this._renderBasicsCard(item, '#8b5cf6', '#4c1d95')).join('')}
                     </div>
                     
                     <div class="emg-card" style="border-top: 5px solid #0ea5e9; margin-bottom: 25px;">
@@ -216,7 +230,7 @@ class IntroductionModule extends BaseContent {
                     `, { title: "EDX Machine Fundamentals", borderLeftColor: '#6366f1' })}
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizBasics) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizBasics, { title: 'EDX Basics Check', subtitle: 'Anatomy, physiology, and Sunderland grading' }) : ''}
                     </div>
                 </div>
 
@@ -276,7 +290,7 @@ class IntroductionModule extends BaseContent {
                     </div>
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizTechnical) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizTechnical, { title: 'Technical Excellence Check', subtitle: 'Temperature, artifacts, Martin-Gruber, and safety' }) : ''}
                     </div>
                 </div>
 
@@ -344,14 +358,8 @@ class IntroductionModule extends BaseContent {
                         </div>
                     `, { title: "Additional Pattern Recognition", borderLeftColor: '#059669', style: 'margin-top: 25px;' })}
 
-                    <div style="margin-top: 30px;">
-                        <h4 style="color: #1e293b; margin-bottom: 15px;">Clinical Localization Challenge</h4>
-                        <p style="color: #64748b; font-size: 0.9em; margin-bottom: 20px;">Test your understanding of electrodiagnostic localization with these clinical scenarios.</p>
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.localizationScenarios) : ''}
-                    </div>
-
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizLocalization) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz([...this.data.quizLocalization, ...this.data.localizationScenarios], { title: 'Localization Challenge', subtitle: 'Vignette-driven scenarios to test your localizing logic' }) : ''}
                     </div>
                 </div>
 
@@ -423,7 +431,7 @@ class IntroductionModule extends BaseContent {
                     </div>
 
                     <div style="margin-top: 40px;">
-                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizGlossary) : ''}
+                        ${typeof window.generateModuleQuiz === 'function' ? window.generateModuleQuiz(this.data.quizGlossary, { title: 'Terminology Check', subtitle: 'Lock in the vocabulary of electrodiagnostics' }) : ''}
                     </div>
                 </div>
 

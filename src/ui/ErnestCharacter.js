@@ -10,7 +10,15 @@ export class ErnestCharacter {
     }
 
     setupEventListeners() {
-        // Any specific listeners if needed
+        if (window._registerAction) {
+            window._registerAction('openModule', (el) => {
+                const moduleId = el.dataset.moduleId;
+                const moduleIndex = parseInt(el.dataset.moduleIndex, 10);
+                if (window.openModule) {
+                    window.openModule(moduleId, moduleIndex);
+                }
+            });
+        }
     }
 
     async init() {

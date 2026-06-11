@@ -49,7 +49,7 @@ export const RadiculopathyData = {
                     bullets: [
                         "Trigger: Heavy lifting or sudden twisting",
                         "Pain: Sudden, sharp, \"electric shock\" pain",
-                        "EMG Timing: Often done too early (wait 3 weeks!)"
+                        "EMG Timing: Wait 3 weeks for optimal limb findings (earlier EMG may be falsely negative)"
                     ]
                 },
                 {
@@ -94,10 +94,10 @@ export const RadiculopathyData = {
                 { root: "C7", weakness: "Triceps, FCR, Finger Ext", reflex: "Triceps", proTip: "\"Most common cervical root. Triceps is your best friend here.\"" },
                 { root: "C8", weakness: "FDI, ADM, EIP, FDP (index)", reflex: "None specific", proTip: "The 'Hand Root.' All intrinsic hand muscles get C8 contribution. Key differentiator from T1: C8 affects BOTH median AND ulnar muscles PLUS the radial-innervated EIP. If EIP is abnormal, the lesion must be at C8 root or lower trunk." },
                 { root: "T1", weakness: "APB, Opponens, FDI (all hand intrinsics)", reflex: "None specific", proTip: "Pure hand intrinsic root. Clinically mimics medial cord or combined ulnar + median neuropathy. The key: T1 radiculopathy has NORMAL SNAPs (preganglionic), while cord/nerve lesions have ABSENT SNAPs. Horner syndrome (ptosis, miosis) suggests T1 root avulsion." },
-                { root: "L2", weakness: "Iliopsoas, Adductor Longus", reflex: "Cremasteric (L1-L2)", proTip: "The 'Hip Flexion Root.' Isolated L2 radiculopathy is rare. Weakness in hip flexion with numbness in the upper anterior thigh. Must differentiate from femoral neuropathy (which also affects quadriceps) and lumbar plexopathy (which affects both femoral and obturator territories)." },
+                { root: "L2", weakness: "Iliopsoas, Adductor Longus", reflex: "Cremasteric (L1-L2)", proTip: "The 'Hip Flexion Root.' Isolated L2 radiculopathy is rare. Distinguish from femoral neuropathy by checking adductors (obturator nerve, L2-L4) and L2 paraspinals -- both would be spared in a pure femoral lesion. Lumbar plexopathy affects both femoral and obturator territories." },
                 { root: "L3", weakness: "Quadriceps, Iliopsoas, Adductors", reflex: "Patellar (L3-L4)", proTip: "The 'Knee Extension Root' (shared with L4). L3 contributes heavily to hip flexion and knee extension. Patients have trouble climbing stairs and rising from chairs. Distinguish from L4 by the relative sparing of tibialis anterior (which is L4-L5, not L3)." },
                 { root: "L4", weakness: "Quadriceps, Tibialis Anterior, Tibialis Posterior", reflex: "Patellar (L3-L4)", proTip: "The 'Knee Jerk Root.' L4 radiculopathy causes knee extension weakness AND ankle dorsiflexion weakness (tibialis anterior gets L4-L5). The patellar reflex is the signature reflex. Key differentiator from L5: in L4, the quadriceps is weak (L5 spares it). In L5, the gluteus medius is weak (L4 spares it)." },
-                { root: "L5", weakness: "Tib Ant, EHL, Glut Med", reflex: "Med Hamst.", proTip: "\"Always check the Glut Med. If it's abnormal, the lesion is in the root, not the peroneal nerve!\"" },
+                { root: "L5", weakness: "Tib Ant, EHL, Glut Med", reflex: "None reliable (medial hamstring variable)", proTip: "\"Always check the Glut Med. If it's abnormal, the lesion is in the root, not the peroneal nerve!\"" },
                 { root: "S1", weakness: "Gastroc, Soleus, Glut Max", reflex: "Achilles", proTip: "\"The 'Foot Slapping' root. Look for S1 paraspinals down low.\"" }
             ]
         },
@@ -120,7 +120,7 @@ export const RadiculopathyData = {
         title: "Final Senior Resident \"Truths\"",
         list: [
             "**The Paraspinals are NOT optional.** You will find the diagnosis there 10-20% of the time when everything else looks normal. If you skip them, you're guessing, not diagnosing.",
-            "**Rule #2: Rule out the \"Impersonators\".** For every L5 radikulopathy, verify the Fibular (Peroneal) nerve. For every C6, check the Median nerve. *Prove* it's the root by finding abnormalities \"upstream\" of where the plexus begins.",
+            "**Rule #2: Rule out the \"Impersonators\".** For every L5 radiculopathy, verify the Fibular (Peroneal) nerve. For every C6, check the Median nerve. *Prove* it's the root by finding abnormalities \"upstream\" of where the plexus begins.",
             "**Symmetry is a trap.** Don't just look at the bad leg. Look at the good one too. Comparison is your best diagnostic tool."
         ]
     },

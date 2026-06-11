@@ -348,6 +348,36 @@ export const ERNEST_STYLES = `
                 font-size: 0.95em;
                 line-height: 1.5;
             }
+            .jrpg-ernest-modal-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 10px 14px;
+                margin: 0 0 16px 0;
+                background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 8px;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 0.9em;
+                font-weight: 600;
+                box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);
+                transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+            }
+            .jrpg-ernest-modal-link:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 10px rgba(15, 118, 110, 0.35);
+                background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+            }
+            .jrpg-ernest-modal-link:active {
+                transform: translateY(0);
+            }
+            .jrpg-ernest-modal-link-arrow {
+                transition: transform 0.15s ease;
+            }
+            .jrpg-ernest-modal-link:hover .jrpg-ernest-modal-link-arrow {
+                transform: translateX(3px);
+            }
             .jrpg-ernest-modal input {
                 width: 100%;
                 padding: 12px;

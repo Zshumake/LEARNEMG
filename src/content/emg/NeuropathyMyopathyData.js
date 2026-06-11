@@ -189,6 +189,16 @@ export const NeuropathyMyopathyData = {
                 feature: "Pattern of Weakness",
                 myopathy: { text: "Proximal Focus", sub: "Shoulders, hips, and neck flexors" },
                 neuropathy: { text: "Distal Focus", sub: "Hands, feet, and distal extremities" }
+            },
+            {
+                feature: "Reflexes",
+                myopathy: { text: "Usually Preserved", sub: "Normal reflexes despite weakness is a classic myopathy clue" },
+                neuropathy: { text: "Distally Diminished", sub: "Ankle jerk lost early in length-dependent neuropathy" }
+            },
+            {
+                feature: "Serum CK",
+                myopathy: { text: "Often Elevated", sub: "Can be >1000 IU/L in inflammatory types; normal in steroid myopathy" },
+                neuropathy: { text: "Normal", sub: "Nerve damage does not release muscle enzymes" }
             }
         ],
         glossary: [

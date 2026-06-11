@@ -73,7 +73,7 @@ export const NCSTechniquesData = {
                 title: "Ulnar Motor",
                 images: ["images/ncs/ulnar_motor_at_the_wrist.png", "images/ncs/ulnar_motor_ncs_below_the_elbow.png", "images/ncs/ulnar_motor_ncs_above_the_elbow.png"],
                 protocol: "Place G1 over the dense belly of the Abductor Digiti Minimi (ADM) muscle. Place G2 on the 5th MCP joint of the pinky. Stimulate at the medial wrist next to the FCU tendon, 8 cm proximal to G1. Next, stimulate below the elbow (exactly 3 cm distal to the medial epicondyle). Finally, stimulate above the elbow on the medial humerus, ensuring a 10 to 12 cm gap from the below-elbow site.",
-                pearl: "The ulnar nerve slips tightly behind the medial epicondyle (the funny bone). If you fail to bend the patient's elbow to at least 90 degrees during the study, the nerve becomes slack and winds around the bone. This slack falsely increases your distance measurement, resulting in an artificially calculated slow conduction velocity that mimics a neuropathy when the nerve is perfectly healthy. Always flex the elbow."
+                pearl: "The ulnar nerve slips tightly behind the medial epicondyle. If you fail to bend the patient's elbow to at least 90 degrees during the study, the nerve becomes slack and winds around the bone. This slack falsely increases your distance measurement, resulting in an artificially slow conduction velocity that mimics a neuropathy when the nerve is perfectly healthy. Always flex the elbow."
             },
             {
                 title: "Deep Ulnar Motor (FDI)",
@@ -99,7 +99,7 @@ export const NCSTechniquesData = {
                 title: "Ulnar Sensory",
                 images: ["images/ncs/ulnar_sensory_ncs.png"],
                 protocol: "Place ring electrodes on the little finger (Digit 5). G1 goes at the MCP joint, and G2 sits 3 to 4 cm distally near the DIP joint. Stimulate the medial wrist adjacent to the FCU tendon, 14 cm proximal to G1.",
-                pearl: "When testing the ulnar sensory nerve, the electrical shock often hits the adjacent ulnar motor fibers by accident. This triggers a massive muscle twitch in the hand, and the electrical volume of that muscle firing can completely eclipse the tiny sensory nerve waveform on your screen. If this happens, ask the patient to splay their fingers wide open to physically move the twitching muscles further away from your recording rings."
+                pearl: "When testing the ulnar sensory nerve, the electrical shock often hits the adjacent ulnar motor fibers by accident. This triggers a muscle twitch in the hand, and the motor artifact can completely obscure the much smaller sensory waveform on your screen. If this happens, ask the patient to splay their fingers wide open to physically move the twitching muscles further away from your recording rings."
             },
             {
                 title: "Dorsal Ulnar Cutaneous",
@@ -171,7 +171,7 @@ export const NCSTechniquesData = {
                 title: "Peroneal Motor (EDB)",
                 images: ["images/fibular_peroneal_motor_at_the_ankle.png", "images/fibular_peronal_motor_at_the_fibular_head.png", "images/fibular_peronal_motor_at_the_popliteal_fossa.png"],
                 protocol: "Place G1 on the fleshy bump of the Extensor Digitorum Brevis (EDB) on the top-lateral aspect of the foot. Place G2 on the MTP joint of the little toe. First, stimulate the anterior ankle lateral to the thick tibialis anterior tendon, exactly 9 cm proximal to G1. Next, stimulate the lateral calf, 1 to 2 fingerbreadths directly below the bony fibular head. Finally, stimulate the popliteal fossa slightly laterally, exactly 10 to 12 cm proximal to the below-fibular head site.",
-                pearl: "Crucially, you MUST always perform three distinct stimulations to thoroughly bracket the fibular neck (above the neck, below the neck, and ankle). This bone is the 'danger zone' for nerve crush injuries. If your amplitude fired from below the fibula is magically larger than the amplitude fired at the ankle, suspect an accessory deep peroneal nerve anomalous connection arriving from behind the lateral malleolus."
+                pearl: "Crucially, you MUST always perform three distinct stimulations to thoroughly bracket the fibular neck (above the neck, below the neck, and ankle). This bone is the 'danger zone' for nerve crush injuries. If the amplitude stimulated below the fibular head is unexpectedly larger than the amplitude stimulated at the ankle, suspect an accessory deep peroneal nerve -- an anomalous motor branch that bypasses the ankle and arrives from behind the lateral malleolus."
             },
             {
                 title: "Peroneal Motor (TA)",
@@ -189,7 +189,7 @@ export const NCSTechniquesData = {
                 title: "Medial Plantar Motor",
                 images: ["images/ncs/medial_plantar_motor_study_at_medial_malleolus.png"],
                 protocol: "Place G1 slightly proximal and posterior to the prominent navicular bone on the inner foot, resting centrally on the Abductor Hallucis Brevis (AHB). Stimulate precisely at the medial ankle behind the medial malleolus, exactly 9 cm proximal to G1.",
-                pearl: "This targeted test is exquisite for definitively diagnosing Tarsal Tunnel Syndrome as the tibial nerve passes beneath the flexor retinaculum. Because amplitudes vary significantly in the general population, you absolutely must perform a strict side-to-side comparison of the sick foot against the asymptomatic foot to confirm suspected pathology."
+                pearl: "This targeted test is highly sensitive for diagnosing Tarsal Tunnel Syndrome as the tibial nerve passes beneath the flexor retinaculum. Because amplitudes vary significantly in the general population, you absolutely must perform a strict side-to-side comparison of the sick foot against the asymptomatic foot to confirm suspected pathology."
             },
             {
                 title: "Lateral Plantar Motor",
@@ -233,7 +233,7 @@ export const NCSTechniquesData = {
                 title: "Lateral Plantar Sensory",
                 images: ["images/ncs/lateral_plantar_sensory.png"],
                 protocol: "Maintain the exact same G1 recording position behind the medial malleolus. Move your stimulating ring electrodes sequentially to the little toe (digit 5), hooking the active cathode as far proximal on the MTP joint as physically possible.",
-                pearl: "Like the medial sensory test, this is exquisitely difficult to obtain through thick plantar fascia. If the orthodromic approach (stimulating the toes and recording the ankle) completely fails due to tough skin, you can reverse the polarity and fire antidromically (stimulating the ankle and recording the toes), which occasionally yields a cleaner artifact profile."
+                pearl: "Like the medial sensory test, this is technically very difficult to obtain through thick plantar fascia. If the orthodromic approach (stimulating the toes and recording the ankle) completely fails due to tough skin, you can reverse the polarity and fire antidromically (stimulating the ankle and recording the toes), which occasionally yields a cleaner artifact profile."
             }
         ],
         lowerExtremityMixed: [
@@ -252,7 +252,7 @@ export const NCSTechniquesData = {
             {
                 title: "Soleus H-Reflex",
                 images: ["images/soleus_h_reflex.png"],
-                protocol: "Place G1 slightly distal to the junction of the medial and lateral bellies of the gastrocnemius muscle (approx 2 fingerbreadths above the soleus insertion onto the Achilles tendon). Place G2 on the Achilles tendon itself. Stimulate the tibial nerve at the popliteal fossa. Crucially, the cathode (black prong) MUST face proximally/superiorly (towards the spinal cord) rather than distally like a normal motor NCS, because you are trying to measure the afferent Ia sensory fibers traveling UP to the cord, not the efferent motor fibers traveling DOWN.",
+                protocol: "Place G1 over the soleus muscle -- the recording site is on the medial posterior calf, approximately 2 fingerbreadths distal to where the gastrocnemius bellies merge (this overlies the soleus deep to the gastrocnemius). Place G2 on the Achilles tendon itself. Stimulate the tibial nerve in the popliteal fossa. Crucially, the cathode (black prong) MUST face proximally/superiorly (towards the spinal cord) rather than distally like a normal motor NCS, because you are selectively activating the Ia sensory afferent fibers traveling UP to the cord, not the efferent motor fibers traveling DOWN.",
                 pearl: "This is the electrical equivalent of striking the Achilles tendon with a reflex hammer. The electrical signal travels all the way up the sensory nerve into the spinal cord, synapses in the S1 nerve root, and physically fires back down the motor nerve to twitch the calf. If a patient has an aggressive S1 radiculopathy (a pinched nerve in their lower spine), this elegant, long-distance loop will be delayed or completely destroyed."
             }
         ]

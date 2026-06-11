@@ -29,12 +29,12 @@ export const myopathyData = {
             palpation: ['Muscles may be tender', 'No joint swelling (unless overlap syndrome)'],
             rom: ['Limited active ROM by weakness', 'Full passive ROM'],
             strength: [
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Hip Flexors (Iliopsoas)', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Neck Flexors', nerve: 'Cervical', root: 'C1-C4', action: 'Head lift from supine', expectedFinding: 'WEAK (head drop in severe cases)', mrcGrade: '3-4/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'Relatively NORMAL (distal sparing)', mrcGrade: '4-5/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '3-4/5', finding: 'WEAK', note: 'Proximal > distal pattern' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Difficulty rising from chair' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal', note: 'Distal strength preserved -- distinguishes from neuropathy' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL (myopathy does not affect sensory nerves)' }
@@ -94,11 +94,12 @@ export const myopathyData = {
             palpation: ['Muscles may be tender', 'Periungual capillary changes visible'],
             rom: ['Limited by weakness', 'Full passive ROM'],
             strength: [
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Neck Flexors', nerve: 'Cervical', root: 'C1-C4', action: 'Head lift', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '3-4/5', finding: 'WEAK', note: 'Proximal > distal, same pattern as PM' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All', expectedFinding: 'NORMAL' }
@@ -155,11 +156,12 @@ export const myopathyData = {
             palpation: ['Forearm muscles may feel firm/fibrotic', 'No joint swelling'],
             rom: ['Limited active ROM in affected muscles', 'May develop finger flexion contractures'],
             strength: [
-                { muscle: 'Wrist/Finger Flexors (FDP, FDS)', nerve: 'Median/Ulnar', root: 'C7-T1', action: 'Finger/wrist flexion', expectedFinding: 'WEAK (hallmark — finger flexors weaker than extensors)', mrcGrade: '3/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK (hallmark — may be asymmetric)', mrcGrade: '3/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'May be WEAK', mrcGrade: '4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'Less WEAK than in PM/DM', mrcGrade: '4/5' },
-                { muscle: 'Wrist Extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'Relatively NORMAL (flexors > extensors weakness)', mrcGrade: '4-5/5' }
+                { movement: 'Wrist Flexion', grade: '3/5', finding: 'WEAK', note: 'Finger FLEXORS weaker than extensors -- hallmark of IBM' },
+                { movement: 'Grip Strength', grade: '3/5', finding: 'WEAK', note: 'Difficulty opening jars -- early complaint' },
+                { movement: 'Knee Extension', grade: '3/5', finding: 'WEAK', note: 'May be asymmetric -- knee buckling and falls' },
+                { movement: 'Ankle Dorsiflexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK', note: 'Less affected than in PM/DM' },
+                { movement: 'Wrist Extension', grade: '4-5/5', finding: 'Normal', note: 'Flexors > extensors weakness is characteristic' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All', expectedFinding: 'NORMAL' }
@@ -217,12 +219,13 @@ export const myopathyData = {
             palpation: ['Calves feel firm/rubbery (fibrous tissue)', 'No joint swelling'],
             rom: ['Heel cord contractures common', 'Hip flexion contractures', 'IT band tightness'],
             strength: [
-                { muscle: 'Hip Extensors (Gluteus Maximus)', nerve: 'Inferior gluteal', root: 'L5-S2', action: 'Hip extension', expectedFinding: 'WEAK', mrcGrade: '2-3/5' },
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Neck Flexors', nerve: 'Cervical', root: 'C1-C4', action: 'Head lift', expectedFinding: 'WEAK', mrcGrade: '3/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip', expectedFinding: 'Relatively preserved', mrcGrade: '4-5/5' }
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Proximal girdle weakness -- Gower sign positive' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Elbow Flexion', grade: '4/5', finding: 'WEAK' },
+                { movement: 'Grip Strength', grade: '4-5/5', finding: 'Normal', note: 'Distal strength relatively preserved' },
+                { movement: 'Ankle Dorsiflexion', grade: '4-5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '4/5', finding: 'WEAK', note: 'Calf pseudohypertrophy despite weakness' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All', expectedFinding: 'NORMAL' }
@@ -276,11 +279,12 @@ export const myopathyData = {
             palpation: ['No muscle tenderness (non-inflammatory)', 'No joint swelling'],
             rom: ['Limited by weakness only'],
             strength: [
-                { muscle: 'Hip Flexors', nerve: 'Femoral', root: 'L1-L3', action: 'Hip flexion', expectedFinding: 'WEAK (hip girdle most affected)', mrcGrade: '3-4/5' },
-                { muscle: 'Quadriceps', nerve: 'Femoral', root: 'L2-L4', action: 'Knee extension', expectedFinding: 'WEAK', mrcGrade: '3-4/5' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'WEAK (less than hips)', mrcGrade: '4/5' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar/Median', root: 'C8-T1', action: 'Grip', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Tibialis Anterior', nerve: 'Deep peroneal', root: 'L4-L5', action: 'Dorsiflexion', expectedFinding: 'NORMAL (distal sparing)', mrcGrade: '5/5' }
+                { movement: 'Hip Flexion', grade: '3-4/5', finding: 'WEAK', note: 'Hip girdle most affected -- difficulty rising from chair' },
+                { movement: 'Knee Extension', grade: '3-4/5', finding: 'WEAK' },
+                { movement: 'Shoulder Abduction', grade: '4/5', finding: 'WEAK', note: 'Less affected than hips' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal', note: 'Distal sparing confirms myopathic pattern' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All', expectedFinding: 'NORMAL' }

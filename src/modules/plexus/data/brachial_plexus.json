@@ -326,25 +326,36 @@
         },
         {
             "id": "nerve_med_cut_arm",
-            "label": "Med. Cut. Arm",
+            "label": "MBC (Med. Cut. Arm)",
             "type": "branch",
             "level": 3.5,
             "order": 2,
             "yOffset": 70,
             "row": 11.5,
             "muscles": [],
-            "description": "Sensory: Provides sensation to the medial aspect of the arm."
+            "description": "Medial Brachial Cutaneous (MBC). Sensory branch off the medial cord. Provides sensation to the medial arm. Key SNAP for lower trunk / medial cord lesions (spares post-ganglionic in radiculopathies)."
         },
         {
             "id": "nerve_med_cut_forearm",
-            "label": "Med. Cut. Forearm",
+            "label": "MAC (Med. Antebrach. Cut.)",
             "type": "branch",
             "level": 3.5,
             "order": 3,
             "yOffset": 100,
             "row": 12.5,
             "muscles": [],
-            "description": "Sensory: Provides sensation to the medial aspect of the forearm."
+            "description": "Medial Antebrachial Cutaneous (MAC). Sensory branch off the medial cord. Provides sensation to the medial forearm. Critical SNAP for diagnosing lower trunk / medial cord plexopathies (e.g., true neurogenic TOS)."
+        },
+        {
+            "id": "nerve_lac",
+            "label": "LAC (Lat. Antebrach. Cut.)",
+            "type": "branch",
+            "level": 4.5,
+            "order": 1,
+            "yOffset": -110,
+            "row": 1,
+            "muscles": [],
+            "description": "Lateral Antebrachial Cutaneous (LAC). Sensory terminal branch of the musculocutaneous nerve. Provides sensation to the lateral forearm. Critical SNAP for upper trunk / lateral cord lesions (e.g., Parsonage-Turner, upper trunk plexopathy)."
         },
         {
             "id": "nerve_ulnar",
@@ -550,6 +561,10 @@
         {
             "source": "nerve_median_med_root",
             "target": "nerve_median"
+        },
+        {
+            "source": "nerve_musculocutaneous",
+            "target": "nerve_lac"
         }
     ]
 }

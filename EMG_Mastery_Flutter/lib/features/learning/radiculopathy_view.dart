@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
+import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/widgets/decision_tree.dart';
 import '../../data/clinical_decision_trees.dart';
 import '../../core/widgets/diagram_card.dart';
@@ -16,31 +15,24 @@ class RadiculopathyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          _buildHero(),
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: const TabBar(
-              indicatorColor: Color(0xFFC2410C),
-              labelColor: Color(0xFFC2410C),
-              unselectedLabelColor: Color(0xFF94A3B8),
-              labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
-              tabs: [
-                Tab(text: 'Learning'),
-                Tab(text: 'Practice Quiz'),
-              ],
-            ),
-          ),
-          const Expanded(
-            child: TabBarView(
-              children: [
-                KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
-                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
-              ],
-            ),
-          ),
-        ],
+      child: ScrollableModuleScaffold(
+        headerSlivers: [_buildHero()],
+        tabBar: const TabBar(
+          indicatorColor: Color(0xFFC2410C),
+          labelColor: Color(0xFFC2410C),
+          unselectedLabelColor: Color(0xFF94A3B8),
+          labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
+          tabs: [
+            Tab(text: 'Learning'),
+            Tab(text: 'Practice Quiz'),
+          ],
+        ),
+        body: const TabBarView(
+          children: [
+            KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
+            KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
+          ],
+        ),
       ),
     );
   }
@@ -94,10 +86,6 @@ class _RadiculopathyLearningTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PodcastTriggerCard(
-            episode: PodcastData.getEpisodesByModule('radiculopathy').first,
-          ),
-          const SizedBox(height: 20),
           const DiagramCard(
             imagePath: 'assets/images/pathology/radiculopathy_pathophysiology.png',
             caption: 'Radiculopathy -- Nerve Root Compression at the Spine',
@@ -166,7 +154,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'A radiculopathy is an injury to a spinal nerve root -- the thick bundle of motor and sensory fibers that exits the spinal cord through a bony opening called the neural foramen. The most common cause in younger patients is a herniated disc; in older patients, it\'s degenerative foraminal stenosis from bone spurs (osteophytes).',
+            'A radiculopathy is an injury to a spinal nerve root -- the thick bundle of motor and sensory fibers that exit the spinal cord through a bony opening called the neural foramen. The most common cause in younger patients is a herniated disc; in older patients, it\'s degenerative foraminal stenosis from bone spurs (osteophytes).',
             style: TextStyle(
               fontSize: 15,
               color: Color(0xFF334155),

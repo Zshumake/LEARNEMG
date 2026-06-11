@@ -45,8 +45,10 @@
                 // Use the directory of the current page so this works whether the
                 // page is served as "/" or as "/index.html" (the old code produced
                 // "/index.html/mobile/"). replace() avoids a back-button redirect loop.
+                // The ?v= query forces iPhone Safari to fetch fresh /mobile/ HTML
+                // after a deploy instead of serving its cached copy.
                 const baseDir = path.endsWith('/') ? path : path.slice(0, path.lastIndexOf('/') + 1);
-                window.location.replace(window.location.origin + baseDir + 'mobile/');
+                window.location.replace(window.location.origin + baseDir + 'mobile/?v=20260611-deploy');
             }
         })();
     </script>
@@ -59,7 +61,7 @@
     <div id="app-root"></div>
     <script type="module" src="src/utils/ViewHelpers.js"></script>
 
-    <script type="module" src="src/modules/Initialization.js?v=20260611-podcasts"></script>
+    <script type="module" src="src/modules/Initialization.js?v=20260611-deploy"></script>
 
     <!-- Support Scripts -->
     <script src="https://d3js.org/d3.v7.min.js"></script>

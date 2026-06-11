@@ -1,19 +1,19 @@
-import { moduleLoader } from '../utils/ModuleLoader.js?v=rootfix1';
+import { moduleLoader } from '../utils/ModuleLoader.js?v=20260422-edxart';
 import { Bootstrapper } from './core/Bootstrapper.js?v=20260317';
-import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260610-cleanup';
+import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260611-deploy';
 import { PlexusManager } from './plexus/PlexusManager.js?v=20260317';
-import { ModalSystem } from './ui/ModalSystem.js?v=20260610-cleanup';
-import { CandylandCore } from './candyland/CandylandCore.js?v=20260611-podcasts';
-import { QuizSystem } from './quiz/QuizSystem.js?v=20260317';
+import { ModalSystem } from './ui/ModalSystem.js?v=20260611-deploy';
+import { CandylandCore } from './candyland/CandylandCore.js?v=20260611-deploy';
+import { QuizSystem } from './quiz/QuizSystem.js?v=20260422-quizoverhaul';
 import { NCSData } from './ncs/NCSData.js?v=20260317';
 import { NCSEngine } from './ncs/NCSEngine.js?v=20260317';
 import { NCSUI } from './ncs/NCSUI.js?v=20260317';
-import { clinicalCasesData } from '../data/cases/index.js?v=20260317-v2';
+import { clinicalCasesData } from '../data/cases/index.js?v=20260423-pts-plexdx';
 import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260317';
-import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260422-caseorder-v2';
-import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260421-clinical';
+import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260611-deploy';
+import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260611-deploy';
 import { AudioController } from './audio/AudioController.js?v=20260611-podcasts';
-import { ErnestCore } from './ernest/ErnestCore.js?v=20260421-personafix';
+import { ErnestCore } from './ernest/ErnestCore.js?v=20260422-quotaloopfix';
 import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
 import logger from '../utils/Logger.js';
 

@@ -5,9 +5,8 @@ import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/module_hero_header.dart';
+import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/theme/app_theme.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../core/widgets/waveform_card.dart';
 import '../../core/widgets/decision_tree.dart';
 import '../../data/clinical_decision_trees.dart';
@@ -21,72 +20,61 @@ class NMBasicsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 5,
-      child: Column(
-        children: [
+      child: ScrollableModuleScaffold(
+        headerSlivers: [
           ModuleHeroHeader(
             title: NMBasicsData.title,
             subtitle: NMBasicsData.subtitle,
             color: AppTheme.moduleNMBasics,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: PodcastTriggerCard(
-              episode: PodcastData.getEpisodesByModule('neuropathy-pathophysiology').first,
-            ),
-          ),
-          Container(
-            color: const Color(0xFFF8FAFC),
-            child: const TabBar(
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              labelColor: AppTheme.moduleNMBasics,
-              unselectedLabelColor: Color(0xFF64748B),
-              indicatorColor: AppTheme.moduleNMBasics,
-              indicatorWeight: 3,
-              labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
-              tabs: [
-                Tab(
-                  text: "MYOPATHY",
-                  icon: Icon(Icons.fitness_center_rounded, size: 20),
-                ),
-                Tab(
-                  text: "NEUROPATHY",
-                  icon: Icon(Icons.bolt_rounded, size: 20),
-                ),
-                Tab(
-                  text: "CLASSIFICATION",
-                  icon: Icon(Icons.list_alt_rounded, size: 20),
-                ),
-                Tab(
-                  text: "COMPARISON",
-                  icon: Icon(Icons.compare_arrows_rounded, size: 20),
-                ),
-                Tab(text: "QUIZ", icon: Icon(Icons.quiz_outlined, size: 20)),
-              ],
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                KeepAliveTabWrapper(
-                  child: _DeepDiveTab(
-                    data: NMBasicsData.myopathy,
-                    color: const Color(0xFF7C3AED),
-                  ),
-                ),
-                KeepAliveTabWrapper(
-                  child: _DeepDiveTab(
-                    data: NMBasicsData.neuropathy,
-                    color: const Color(0xFF0284C7),
-                  ),
-                ),
-                const KeepAliveTabWrapper(child: _ClassificationTab()),
-                const KeepAliveTabWrapper(child: _ComparisonTab()),
-                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
-              ],
-            ),
-          ),
         ],
+        tabBar: const TabBar(
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
+          labelColor: AppTheme.moduleNMBasics,
+          unselectedLabelColor: Color(0xFF64748B),
+          indicatorColor: AppTheme.moduleNMBasics,
+          indicatorWeight: 3,
+          labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
+          tabs: [
+            Tab(
+              text: "MYOPATHY",
+              icon: Icon(Icons.fitness_center_rounded, size: 20),
+            ),
+            Tab(
+              text: "NEUROPATHY",
+              icon: Icon(Icons.bolt_rounded, size: 20),
+            ),
+            Tab(
+              text: "CLASSIFICATION",
+              icon: Icon(Icons.list_alt_rounded, size: 20),
+            ),
+            Tab(
+              text: "COMPARISON",
+              icon: Icon(Icons.compare_arrows_rounded, size: 20),
+            ),
+            Tab(text: "QUIZ", icon: Icon(Icons.quiz_outlined, size: 20)),
+          ],
+        ),
+        body: TabBarView(
+          children: [
+            KeepAliveTabWrapper(
+              child: _DeepDiveTab(
+                data: NMBasicsData.myopathy,
+                color: const Color(0xFF7C3AED),
+              ),
+            ),
+            KeepAliveTabWrapper(
+              child: _DeepDiveTab(
+                data: NMBasicsData.neuropathy,
+                color: const Color(0xFF0284C7),
+              ),
+            ),
+            const KeepAliveTabWrapper(child: _ClassificationTab()),
+            const KeepAliveTabWrapper(child: _ComparisonTab()),
+            KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
+          ],
+        ),
       ),
     );
   }

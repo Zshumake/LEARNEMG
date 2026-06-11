@@ -6,17 +6,17 @@
 
 const REFERENCE_VALUES = {
     motor: {
-        "Median": { lat: 4.2, amp: 5.0, vel: 50 },
-        "Ulnar": { lat: 4.2, amp: 3.0, vel: 53 },
-        "Fibular": { lat: 6.5, amp: 2.0, vel: 40 },
-        "Tibial": { lat: 6.0, amp: 4.0, vel: 40 },
-        "Radial": { lat: 3.5, amp: 2.0, vel: 50 }
+        "Median": { lat: 4.4, amp: 4.0, vel: 49, dist: 8 },
+        "Ulnar": { lat: 3.3, amp: 6.0, vel: 49, dist: 8 },
+        "Fibular": { lat: 6.5, amp: 2.0, vel: 44, dist: 9 },
+        "Tibial": { lat: 5.8, amp: 3.0, vel: 41, dist: 10 },
+        "Radial": { lat: 5.0, amp: 2.0, vel: 50, dist: 10 }
     },
     sensory: {
-        "Median": { peak: 3.6, amp: 10, vel: 39 },
-        "Ulnar": { peak: 3.8, amp: 15, vel: 38 },
-        "Radial": { peak: 2.9, amp: 15, vel: 50 },
-        "Sural": { peak: 4.4, amp: 6, vel: 40 }
+        "Median": { peak: 3.5, amp: 20, vel: 50, dist: 14, onsetOffset: 0.6 },
+        "Ulnar": { peak: 3.1, amp: 17, vel: 50, dist: 14, onsetOffset: 0.6 },
+        "Radial": { peak: 2.9, amp: 15, vel: 50, dist: 10, onsetOffset: 0.5 },
+        "Sural": { peak: 4.4, amp: 6, vel: 40, dist: 14, onsetOffset: 0.7 }
     }
 };
 
@@ -68,16 +68,23 @@ export class ClinicalDataStandardizer {
             }
         }
 
-        // Fill in missing reference strings even if abnormal (if available)
+        // Fill in missing reference strings and Sierra Wave fields for ALL studies
         if (ref) {
             if (type === 'motor') {
                 study.normOnset = study.normOnset || `<${ref.lat}`;
                 study.normAmp = study.normAmp || `>${ref.amp}`;
                 study.normVelocity = study.normVelocity || `>${ref.vel}`;
+                // Auto-populate distance if missing
+                if (!study.dist && ref.dist) study.dist = ref.dist;
             } else {
                 study.normPeak = study.normPeak || `<${ref.peak}`;
                 study.normAmp = study.normAmp || `>${ref.amp}`;
                 study.normVelocity = study.normVelocity || `>${ref.vel}`;
+                // Auto-populate onset and distance if missing
+                if (!study.onset && study.peak && typeof study.peak === 'number' && ref.onsetOffset) {
+                    study.onset = +(study.peak - ref.onsetOffset).toFixed(1);
+                }
+                if (!study.dist && ref.dist) study.dist = ref.dist;
             }
         }
 

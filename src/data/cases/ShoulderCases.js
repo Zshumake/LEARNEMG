@@ -42,14 +42,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, amp: 20, velocity: 62, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false },
+                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, onset: 1.9, amp: 20, velocity: 63, dist: 12, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
             ],
             motor: [
-                { name: "Suprascapular Motor (SS)", latency: 5.2, amp: 1.2, velocity: "N/A", abnormal: true, comment: "Prolonged latency and low amplitude" },
-                { name: "Suprascapular Motor (IS)", latency: 6.8, amp: 0.8, velocity: "N/A", abnormal: true },
-                { name: "Axillary Motor (Deltoid)", latency: 3.8, amp: 10.5, velocity: "N/A", abnormal: false, comment: "Spared" }
+                { name: "Suprascapular Motor (SS)", latency: 5.2, amp: 1.2, velocity: 0, dist: 10, abnormal: true, comment: "Prolonged latency and low amplitude" },
+                { name: "Suprascapular Motor (IS)", latency: 6.8, amp: 0.8, velocity: 0, dist: 13, abnormal: true },
+                { name: "Axillary Motor (Deltoid)", latency: 3.8, amp: 10.5, velocity: 0, dist: 12, abnormal: false, comment: "Spared" }
             ],
             comparison: []
         },
@@ -113,14 +113,14 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 42, velocity: 55, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 38, velocity: 62, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, amp: 22, velocity: 65, abnormal: false, comment: "Spared (localizes distal to the trunk)" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 42, velocity: 56, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 38, velocity: 64, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Lateral Antebrachial Cutaneous", peak: 2.4, onset: 1.9, amp: 22, velocity: 63, dist: 12, abnormal: false, comment: "Spared (localizes distal to the trunk)" }
             ],
             motor: [
-                { name: "Axillary Motor (Deltoid)", latency: 8.5, amp: 0.5, velocity: "N/A", abnormal: true, comment: "Low amplitude CMAP suggests severe axonal loss" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 14.0, velocity: 52, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Musculocutaneous Motor (Biceps)", latency: 4.8, amp: 12.0, velocity: "N/A", abnormal: false, comment: "Spared" }
+                { name: "Axillary Motor (Deltoid)", latency: 5.8, amp: 0.5, velocity: 0, dist: 12, abnormal: true, comment: "Low amplitude CMAP suggests severe axonal loss" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 14.0, velocity: 0, dist: 8, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Musculocutaneous Motor (Biceps)", latency: 4.8, amp: 12.0, velocity: 0, dist: 14, abnormal: false, comment: "Spared" }
             ],
             comparison: []
         },
@@ -184,18 +184,16 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lat Antebrach Cutaneous", peak: 2.8, amp: 20, velocity: 62, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Lat Antebrach Cutaneous", peak: 2.8, onset: 2.3, amp: 20, velocity: 52, dist: 12, abnormal: false, comment: "Spared (rules out Upper Trunk)" }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 0, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 0, dist: 8, abnormal: false }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "Serratus Anterior", nerve: "Long Thoracic", root: "C5-C6-C7", abnormal: true, fibs: "3+", recruitment: "Reduced" },
@@ -258,18 +256,16 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 48, velocity: 58, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false, comment: "Distractor - Normal" },
-                { name: "Lat Antebrach Cutaneous", peak: "Absent", amp: "Absent", velocity: "N/A", abnormal: true, comment: "Localizes the lesion to the musculocutaneous nerve or upper trunk" }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 48, velocity: 56, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false, comment: "Distractor - Normal" },
+                { name: "Lat Antebrach Cutaneous", peak: "Absent", onset: "NR", amp: "Absent", velocity: "N/A", dist: 12, abnormal: true, comment: "Localizes the lesion to the musculocutaneous nerve or upper trunk" }
             ],
             motor: [
-                { name: "Musculocutaneous Motor (Biceps)", latency: 8.2, amp: 0.8, velocity: "N/A", abnormal: true, comment: "Low amplitude and prolonged latency" },
-                { name: "Median Motor (APB)", latency: 3.8, amp: 14.2, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 15.0, velocity: 62, abnormal: false }
+                { name: "Musculocutaneous Motor (Biceps)", latency: 6.0, amp: 0.8, velocity: 0, dist: 14, abnormal: true, comment: "Low amplitude and prolonged latency" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 14.2, velocity: 0, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 15.0, velocity: 0, dist: 8, abnormal: false }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
             { muscle: "Biceps Brachii", nerve: "Musculocutaneous", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
@@ -314,14 +310,14 @@ export const shoulderCases = {
         differentialDiagnosis: [
             { name: "Parsonage-Turner Syndrome (Neuralgic Amyotrophy)", ruleOut: "N/A (Correct Diagnosis)" },
             { name: "C5-C6 Radiculopathy", ruleOut: "Radiculopathy would involve the paraspinal muscles and usually cause neck pain. Patchy involvement of the axillary, suprascapular, and musculocutaneous nerves without paraspinal denervation points to a post-ganglionic lesion." },
-            { name: "Brachial Plexopathy (Upper Trunk)", ruleOut: "A trunk lesion would involve all muscles in that division; PTS is characterized by 'patchy' involvement of individual nerves often from different trunks/cords." },
+            { name: "Brachial Plexopathy (Upper Trunk)", ruleOut: "An upper trunk lesion would affect ALL C5-C6 muscles uniformly AND spare muscles outside the C5-C6 distribution. Here Brachioradialis (C5-C6, Radial) is SPARED while Pronator Quadratus (C7-C8, AIN) is INVOLVED -- a non-anatomical, patchy pattern that crosses trunk boundaries and is characteristic of PTS rather than a single trunk lesion." },
             { name: "Rotator Cuff Tear", ruleOut: "While causing pain and limited ROM, a tear would not explain the multi-focal weakness, muscle atrophy, or the neurogenic findings on EMG." },
             { name: "Mononeuritis Multiplex", ruleOut: "Usually associated with vasculitis and more systemic symptoms; PTS is more likely given the preceding viral illness and focal shoulder girdle predilection." }
         ],
         requiresEMG: true,
         emgIndication: "INDICATED (Look for patchy denervation)",
         correctDiagnosis: "Parsonage-Turner Syndrome",
-        explanation: "Neuralgic Amyotrophy (PTS) typically presents with a 'pain-weakness sequence': severe, deep-seated shoulder pain that lasts days to weeks, followed by patchy weakness and atrophy in the shoulder girdle. EMG confirms multifocal, patchy denervation (Fibs/PSWs) and normal paraspinals, localizing the lesion as post-ganglionic.",
+        explanation: "Neuralgic Amyotrophy (PTS) typically presents with a 'pain-weakness sequence': severe, deep-seated shoulder pain that lasts days to weeks, followed by patchy weakness and atrophy in the shoulder girdle. EMG confirms multifocal, patchy denervation (Fibs/PSWs) Paraspinals are typically normal in PTS (though can occasionally be abnormal), suggesting a post-ganglionic localization and helping distinguish from cervical radiculopathy.",
         reviewOfSystems: {
             constitutional: "Fever and malaise 3 weeks ago (viral prodrome). No weight loss.",
             musculoskeletal: "Deep, agonizing right shoulder pain, now mostly resolved. Weakness in lifting the arm.",
@@ -334,32 +330,41 @@ export const shoulderCases = {
         },
         ncsStudies: {
             sensory: [
-                { name: "Median Sensory (Index)", peak: 3.1, amp: 45, velocity: 58, abnormal: false },
-                { name: "Ulnar Sensory (Little)", peak: 2.8, amp: 35, velocity: 60, abnormal: false },
-                { name: "Radial Sensory (Snuffbox)", peak: 2.4, amp: 25, velocity: 56, abnormal: false },
-                { name: "Lat Antebrach Cutaneous", peak: 3.2, amp: 5.0, velocity: 52, abnormal: true }
+                { name: "Median Sensory (Index)", peak: 3.1, onset: 2.5, amp: 45, velocity: 56, dist: 14, abnormal: false },
+                { name: "Ulnar Sensory (Little)", peak: 2.8, onset: 2.2, amp: 35, velocity: 64, dist: 14, abnormal: false },
+                { name: "Radial Sensory (Snuffbox)", peak: 2.4, onset: 1.9, amp: 25, velocity: 53, dist: 10, abnormal: false },
+                { name: "Lat Antebrach Cutaneous", peak: 3.2, onset: 2.7, amp: 5.0, velocity: 44, dist: 12, abnormal: true }
             ],
             motor: [
-                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 55, abnormal: false },
-                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 62, abnormal: false }
+                { name: "Axillary Motor (Deltoid)", latency: 5.2, amp: 1.5, velocity: 0, dist: 12, abnormal: true, comment: "Low CMAP -- axonal loss in axillary nerve" },
+                { name: "Musculocutaneous Motor (Biceps)", latency: 5.8, amp: 2.8, velocity: 0, dist: 14, abnormal: true, comment: "Reduced amplitude" },
+                { name: "Median Motor (APB)", latency: 3.8, amp: 12.0, velocity: 0, dist: 8, abnormal: false },
+                { name: "Ulnar Motor (ADM)", latency: 2.8, amp: 14.0, velocity: 0, dist: 8, abnormal: false }
             ],
-            comparison: [
-                { name: "Median-Radial Thumb Comp", measureA: "2.4", measureB: "2.3", deltaP: "0.1", abnormal: false }
-            ]
+            comparison: []
         },
         emgStudies: [
-            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false, comment: "Distractor - Normal" },
-            { muscle: "Deltoid", abnormal: true, fibs: "3+", recruitment: "Reduced" },
-            { muscle: "Infraspinatus", abnormal: true, fibs: "3+", recruitment: "Reduced" },
+            { muscle: "APB", nerve: "Median", root: "C8-T1", abnormal: false },
+            { muscle: "FDI", nerve: "Ulnar", root: "C8-T1", abnormal: false },
+            { muscle: "EIP", nerve: "Radial", root: "C7-C8", abnormal: false },
+            { muscle: "Deltoid", nerve: "Axillary", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
+            { muscle: "Infraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
+            { muscle: "Supraspinatus", nerve: "Suprascapular", root: "C5-C6", abnormal: true, fibs: "3+", recruitment: "Reduced" },
             { muscle: "Biceps", nerve: "Musculocutaneous", root: "C5-C6", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Brachioradialis", nerve: "Radial", root: "C5-C6", abnormal: false },
+            { muscle: "Serratus Anterior", nerve: "Long Thoracic", root: "C5-C7", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Pronator Quadratus", nerve: "Anterior Interosseous", root: "C7-C8", abnormal: true, fibs: "2+", recruitment: "Reduced" },
+            { muscle: "Pronator Teres", nerve: "Median", root: "C6-C7", abnormal: false },
+            { muscle: "Triceps", nerve: "Radial", root: "C6-C8", abnormal: false },
             { muscle: "C5-C6 Paraspinals", abnormal: false, fibs: "0" }
         ],
         teachingPoints: [
             "Parsonage-Turner Syndrome (Neuralgic Amyotrophy) is an idiopathic inflammatory plexitis/neuropathy.",
-            "The hallmark is 'patchy' involvement of the brachial plexus, often affecting individual nerves (Long thoracic, Axillary, Suprascapular) rather than traditional trunks or cords.",
-            "Normal Cervical Paraspinal EMG identifies the lesion as post-ganglionic (at the plexus or nerve level), ruling out radiculopathy."
+            "The hallmark is 'patchy' involvement of the brachial plexus, often affecting individual nerves (Long Thoracic, Axillary, Suprascapular, Anterior Interosseous) rather than traditional trunks or cords.",
+            "Key differentiator from Upper Trunk Plexopathy: sparing of some C5-C6 muscles (e.g., Brachioradialis) AND involvement of muscles OUTSIDE the C5-C6 distribution (e.g., AIN-innervated Pronator Quadratus, C7-C8). A trunk lesion would not cross these boundaries.",
+            "Normal Cervical Paraspinal EMG identifies the lesion as post-ganglionic (at the plexus or nerve level), ruling out radiculopathy.",
+            "PTS can be bilateral in approximately 30% of cases.",
+            "Anterior interosseous nerve (AIN) variant is a well-recognized presentation with isolated thumb/index DIP flexion weakness."
         ]
     }
 };

@@ -24,11 +24,12 @@ export const inappropriateReferralData = {
             palpation: ['Tenderness over greater tuberosity', 'Supraspinatus tendon tender with palpation', 'NO cervical paraspinal tenderness'],
             rom: ['Active ROM limited by pain', 'Passive ROM full (unless adhesive capsulitis coexists)', 'Painful arc 60-120 degrees'],
             strength: [
-                { muscle: 'Supraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'Shoulder abduction initiation', expectedFinding: 'WEAK from pain (gives way) — not true neurologic weakness', mrcGrade: '4/5 (pain-limited)' },
-                { muscle: 'Infraspinatus', nerve: 'Suprascapular', root: 'C5-C6', action: 'External rotation', expectedFinding: 'May be weak from tear or pain', mrcGrade: '4/5 (pain-limited)' },
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'NORMAL (not a rotator cuff muscle)', mrcGrade: '5/5' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'All other muscles', nerve: 'Various', root: 'Various', action: 'Full exam', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal', note: 'Pain-limited give-way, not true neurologic weakness' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All dermatomes', modality: 'Light touch, pinprick', expectedFinding: 'NORMAL (rotator cuff tear is musculoskeletal, not neurologic)' }
@@ -80,10 +81,11 @@ export const inappropriateReferralData = {
             palpation: ['Point tenderness directly over lateral epicondyle', 'Tenderness at ECRB origin'],
             rom: ['Full elbow ROM', 'Wrist ROM normal but extension against resistance is painful'],
             strength: [
-                { muscle: 'Wrist extensors', nerve: 'Radial', root: 'C6-C7', action: 'Wrist extension', expectedFinding: 'Pain-limited but NORMAL neurologic strength', mrcGrade: '5/5 (painful)' },
-                { muscle: 'Finger extensors', nerve: 'PIN', root: 'C7-C8', action: 'Finger extension', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Supinator', nerve: 'Radial', root: 'C5-C6', action: 'Supination', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Grip', nerve: 'Median/Ulnar', root: 'C8-T1', action: 'Grip', expectedFinding: 'Pain-limited', mrcGrade: '4-5/5' }
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal', note: 'Pain with testing but full neurologic strength' },
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'Light touch', expectedFinding: 'NORMAL' }
@@ -129,9 +131,11 @@ export const inappropriateReferralData = {
             palpation: ['Point tenderness at medial epicondyle', 'NO Tinel sign at cubital tunnel (distinguishes from ulnar neuropathy)'],
             rom: ['Full elbow ROM', 'Wrist flexion against resistance is painful'],
             strength: [
-                { muscle: 'Wrist flexors', nerve: 'Median/Ulnar', root: 'C7-T1', action: 'Wrist flexion', expectedFinding: 'Pain-limited but neurologically NORMAL', mrcGrade: '5/5 (painful)' },
-                { muscle: 'Hand intrinsics', nerve: 'Ulnar', root: 'C8-T1', action: 'Finger abduction', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Pronator Teres', nerve: 'Median', root: 'C6-C7', action: 'Pronation', expectedFinding: 'NORMAL (may be painful)', mrcGrade: '5/5' }
+                { movement: 'Wrist Flexion', grade: '5/5', finding: 'Normal', note: 'Pain with testing but full neurologic strength' },
+                { movement: 'Finger Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions including ulnar digits', modality: 'Light touch', expectedFinding: 'NORMAL (normal ulnar sensation distinguishes from cubital tunnel)' }
@@ -178,7 +182,11 @@ export const inappropriateReferralData = {
             palpation: ['Tenderness over first dorsal compartment at radial styloid', 'Thickened/tender APL and EPB tendons'],
             rom: ['Thumb ROM painful but full passively', 'Wrist ulnar deviation reproduces symptoms'],
             strength: [
-                { muscle: 'All muscles', nerve: 'Various', root: 'Various', action: 'Full testing', expectedFinding: 'NORMAL (pain-limited only)', mrcGrade: '5/5' }
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Thumb Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Dorsal thumb (superficial radial nerve)', modality: 'Light touch', expectedFinding: 'NORMAL (distinguishes from Wartenberg syndrome)' },
@@ -224,7 +232,11 @@ export const inappropriateReferralData = {
             palpation: ['Tenderness and nodule at A1 pulley (palmar side at MCP crease)', 'Palpable clicking with finger flexion/extension'],
             rom: ['Active ROM: catching or locking', 'Passive extension may be full'],
             strength: [
-                { muscle: 'All hand muscles', nerve: 'Median/Ulnar', root: 'C8-T1', action: 'Grip and fine motor', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Finger Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All digits', modality: 'Light touch', expectedFinding: 'NORMAL' }
@@ -269,8 +281,11 @@ export const inappropriateReferralData = {
             palpation: ['Point tenderness at medial calcaneal tuberosity (plantar fascia origin)', 'NO Tinel sign behind medial malleolus (distinguishes from tarsal tunnel)'],
             rom: ['Ankle dorsiflexion may be limited (tight Achilles)', 'Windlass test may reproduce pain'],
             strength: [
-                { muscle: 'All foot/ankle muscles', nerve: 'Various', root: 'Various', action: 'Full testing', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'Abductor Digiti Quinti', nerve: 'Lateral plantar', root: 'S1-S2', action: 'Small toe abduction', expectedFinding: 'NORMAL (weak in Baxter neuropathy)', mrcGrade: '5/5' }
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Eversion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Inversion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Sole of foot', modality: 'Light touch', expectedFinding: 'NORMAL (decreased in tarsal tunnel or neuropathy)' },
@@ -318,9 +333,11 @@ export const inappropriateReferralData = {
             palpation: ['Diffuse shoulder tenderness', 'No focal nerve tenderness'],
             rom: ['PASSIVE ROM restricted in all planes (external rotation > abduction > flexion) — this is the hallmark finding', 'Active ROM similarly restricted'],
             strength: [
-                { muscle: 'Deltoid', nerve: 'Axillary', root: 'C5-C6', action: 'Shoulder abduction', expectedFinding: 'Cannot fully test due to ROM limitation, but NORMAL within available range', mrcGrade: '5/5 (in available range)' },
-                { muscle: 'Biceps', nerve: 'Musculocutaneous', root: 'C5-C6', action: 'Elbow flexion', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'All distal muscles', nerve: 'Various', root: 'Various', action: 'Full testing', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal', note: 'Limited by ROM restriction, not weakness -- normal within available range' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Wrist Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All', expectedFinding: 'NORMAL' }
@@ -366,8 +383,11 @@ export const inappropriateReferralData = {
             palpation: ['Point tenderness over greater trochanter', 'Tenderness over gluteus medius/minimus insertion'],
             rom: ['Full hip ROM (may be painful at end-range internal rotation)', 'Normal lumbar ROM'],
             strength: [
-                { muscle: 'Hip Abductors (Gluteus Medius)', nerve: 'Superior gluteal', root: 'L5', action: 'Hip abduction', expectedFinding: 'Pain-limited but NORMAL strength', mrcGrade: '5/5 (painful)' },
-                { muscle: 'All other muscles', nerve: 'Various', root: 'Various', action: 'Full exam', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Plantarflexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Great Toe Extension (EHL)', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'Lateral thigh', modality: 'Light touch', expectedFinding: 'NORMAL (decreased in meralgia paresthetica)' },
@@ -416,7 +436,11 @@ export const inappropriateReferralData = {
             palpation: ['Diffuse tender points (though tender point count no longer required for diagnosis)', 'Tenderness is WIDESPREAD, not focal'],
             rom: ['Full ROM in all joints'],
             strength: [
-                { muscle: 'All muscles', nerve: 'All', root: 'All', action: 'Complete motor exam', expectedFinding: 'NORMAL (may give way from pain but can generate full force with encouragement)', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Knee Extension', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All distributions', modality: 'All modalities', expectedFinding: 'NORMAL (patient may report subjective numbness/tingling but objective exam is normal)' }
@@ -464,8 +488,11 @@ export const inappropriateReferralData = {
             palpation: ['Cervical paraspinal tenderness and spasm', 'Trapezius trigger points', 'Levator scapulae tenderness', 'NO tenderness along peripheral nerve courses'],
             rom: ['Cervical ROM limited by pain/spasm', 'No radicular symptoms with ROM'],
             strength: [
-                { muscle: 'All upper extremity muscles', nerve: 'Various', root: 'C5-T1', action: 'Complete motor exam', expectedFinding: 'NORMAL', mrcGrade: '5/5' },
-                { muscle: 'All lower extremity muscles', nerve: 'Various', root: 'L2-S2', action: 'Complete motor exam', expectedFinding: 'NORMAL', mrcGrade: '5/5' }
+                { movement: 'Shoulder Abduction', grade: '5/5', finding: 'Normal' },
+                { movement: 'Elbow Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Grip Strength', grade: '5/5', finding: 'Normal' },
+                { movement: 'Hip Flexion', grade: '5/5', finding: 'Normal' },
+                { movement: 'Ankle Dorsiflexion', grade: '5/5', finding: 'Normal' }
             ],
             sensory: [
                 { area: 'All dermatomes', modality: 'All modalities', expectedFinding: 'NORMAL' }

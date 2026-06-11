@@ -8,12 +8,12 @@ import { NeedleLocalizationData } from './NeedleLocalizationData.js';
 function getMuscleImagePath(muscleKey) {
     const imageMap = {
         'APB': 'images/Abductor Pollicus Brevis.png',
-        'Bicep': 'images/Biceps.png',
+        'Biceps': 'images/Biceps.png',
         'EIP': 'images/Extensor Indicus.png',
         'FDI': 'images/First Dorsal Interosseous.png',
         'Middle Deltoid': 'images/Deltoid.png',
         'PT': 'images/Pronator teres.png',
-        'Tricep': 'images/Triceps.png',
+        'Triceps': 'images/Triceps.png',
         'Extensor Hallucis': 'images/Extensor Hallucis longus.png',
         'Medial Gastroc': 'images/Medial Gastroc.png',
         'Peroneus Longus': 'images/Fibularis longus.png',

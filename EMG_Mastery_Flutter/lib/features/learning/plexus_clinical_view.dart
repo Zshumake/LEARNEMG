@@ -3,9 +3,8 @@ import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/module_hero_header.dart';
+import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/theme/app_theme.dart';
-import '../../data/podcast_data.dart';
-import '../podcast/widgets/podcast_trigger_card.dart';
 import '../../core/widgets/diagram_card.dart';
 import '../../core/widgets/comparison_card.dart';
 import '../../data/board_comparisons.dart';
@@ -18,41 +17,30 @@ class PlexusClinicalView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          const ModuleHeroHeader(
+      child: ScrollableModuleScaffold(
+        headerSlivers: const [
+          ModuleHeroHeader(
             title: 'Brachial Plexus Masterclass',
             subtitle: 'Mastering Geographic Neuro-Localization',
             color: AppTheme.modulePlexus,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: PodcastTriggerCard(
-              episode: PodcastData.getEpisodesByModule('plexus-anatomy').first,
-            ),
-          ),
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: const TabBar(
-              indicatorColor: AppTheme.modulePlexus,
-              labelColor: AppTheme.modulePlexus,
-              unselectedLabelColor: Color(0xFF94A3B8),
-              labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
-              tabs: [
-                Tab(text: 'Clinical Guide'),
-                Tab(text: 'Practice Quiz'),
-              ],
-            ),
-          ),
-          const Expanded(
-            child: TabBarView(
-              children: [
-                KeepAliveTabWrapper(child: _ClinicalGuideTab()),
-                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
-              ],
-            ),
-          ),
         ],
+        tabBar: const TabBar(
+          indicatorColor: AppTheme.modulePlexus,
+          labelColor: AppTheme.modulePlexus,
+          unselectedLabelColor: Color(0xFF94A3B8),
+          labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
+          tabs: [
+            Tab(text: 'Clinical Guide'),
+            Tab(text: 'Practice Quiz'),
+          ],
+        ),
+        body: const TabBarView(
+          children: [
+            KeepAliveTabWrapper(child: _ClinicalGuideTab()),
+            KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
+          ],
+        ),
       ),
     );
   }
