@@ -48,6 +48,12 @@ After dead-code removal only **15** `onclick` handlers remained (the bus is clic
 
 **Deferred (still onclick):** 5 compound/deep PlexusManager handlers (build-case & compare features — multi-statement DOM manipulation, hard to verify without driving the plexus UI) and 1 low-value "Coming Soon" placeholder in ViewHelpers.
 
+### Round 4 (Flutter podcast playback fix)
+- [x] **Diagnosed:** 14 of 32 podcast files had spaces in their names. Flutter's web build writes those assets percent-encoded on disk (`ALS%20and%20mimics.m4a` literally), `just_audio` requests the single-encoded URL, the server decodes once → **404 for every spaced episode** (all the named/topical ones users tap first). EDX_1–15 were fine; desktop web app was fine (serves source files with real spaces).
+- [x] **Fixed (not hidden):** renamed the 14 files to underscores (`git mv`), updated `podcast_data.dart` + web `AudioData.js` (14 refs each, all 32 verified to resolve on disk), rebuilt Flutter web (`--base-href /mobile/`), redeployed to `mobile/`, removed the 14 stale `%20` files, bumped the web cache-bust chain.
+- [x] **Verified:** every episode URL returns 206 on both apps; previously-broken episode reaches `canplay` in-browser (duration matches listed runtime); Flutter app boots; desktop boots with no console errors.
+- ⚠️ **Production note:** the stale `build/web` had `--base-href /LEARNEMG/mobile/` (GitHub Pages?). If deploying there, rebuild with that base href — the fix itself carries over.
+
 ---
 
 ## DEFERRED ⏭️ (documented, NOT done — higher risk / "massive change", needs your eyes)
