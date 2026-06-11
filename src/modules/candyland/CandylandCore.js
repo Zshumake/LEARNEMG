@@ -1,5 +1,5 @@
 import { learningModulesConfig, MODULE_DESCRIPTIONS } from './BoardData.js?v=20260317';
-import { BoardRenderer } from './BoardRenderer.js?v=20260610-actionbus';
+import { BoardRenderer } from './BoardRenderer.js?v=20260611-podcasts';
 import logger from '../../utils/Logger.js';
 
 export class CandylandCore {

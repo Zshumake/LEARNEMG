@@ -1,4 +1,4 @@
-import { podcastEpisodes } from '../audio/AudioData.js';
+import { podcastEpisodes } from '../audio/AudioData.js?v=20260611-podcasts';
 import { ErnestIcon } from '../../utils/ErnestIcon.js';
 import logger from '../../utils/Logger.js';
 import { registerAction } from '../../utils/ActionBus.js';
