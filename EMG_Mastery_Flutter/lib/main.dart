@@ -5,7 +5,7 @@ import 'core/theme/app_theme.dart';
 import 'data/module_data.dart';
 import 'data/models/module_model.dart';
 import 'features/learning/module_content_screen.dart';
-import 'core/widgets/ernest_widget.dart';
+import 'core/widgets/ernest_slide_out.dart';
 
 import 'features/ernest/ernest_controller.dart';
 import 'features/podcast/podcast_controller.dart';
@@ -253,16 +253,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
 
-            // Ernest with animated SVG character
-            Positioned(
-              bottom: 100, // Move up to avoid mini player
-              right: 10,
-              child: const AnimatedErnestWidget(
-                size: 180,
-                showSpeechBubble: true,
-                allowPersonaToggle: false,
-              ),
-            ),
+            // Ernest tucked behind a right-edge tab (tap to slide in/out).
+            // Hidden by default so he doesn't cover the module grid, and his
+            // animations only run while he's out.
+            const ErnestSlideOut(size: 180, bottom: 100),
           ],
         ),
       ),
