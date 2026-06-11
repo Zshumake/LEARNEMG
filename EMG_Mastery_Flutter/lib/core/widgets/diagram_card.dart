@@ -50,6 +50,10 @@ class DiagramCard extends StatelessWidget {
                     width: double.infinity,
                     child: Image.asset(
                       imagePath,
+                      // Cap the decoded bitmap; source diagrams are far
+                      // larger than this card ever renders. The full-screen
+                      // viewer below decodes at full resolution for zoom.
+                      cacheWidth: 1000,
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(

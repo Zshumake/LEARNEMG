@@ -198,6 +198,8 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
 
   @override
   void dispose() {
+    _tapTimer?.cancel();
+    _singleTapTimer?.cancel();
     _bounceController.dispose();
     _blinkController.dispose();
     _ledController.dispose();
@@ -316,19 +318,23 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                   top: widget.showSpeechBubble ? 40 : 0,
                   left: 0,
                   right: 0,
-                  child: AnimatedBuilder(
-                    animation: Listenable.merge([
-                      _bounceController,
-                      _blinkController,
-                      _ledController,
-                      _prongLeftController,
-                      _prongRightController,
-                      _zapController,
-                      _eyebrowController,
-                    ]),
-                    builder: (context, child) {
-                      return isEarl ? _buildAnimatedEarl() : _buildAnimatedErnest();
-                    },
+                  // RepaintBoundary keeps the 60fps character repaint from
+                  // dirtying the surrounding route layer.
+                  child: RepaintBoundary(
+                    child: AnimatedBuilder(
+                      animation: Listenable.merge([
+                        _bounceController,
+                        _blinkController,
+                        _ledController,
+                        _prongLeftController,
+                        _prongRightController,
+                        _zapController,
+                        _eyebrowController,
+                      ]),
+                      builder: (context, child) {
+                        return isEarl ? _buildAnimatedEarl() : _buildAnimatedErnest();
+                      },
+                    ),
                   ),
                 ),
               ],

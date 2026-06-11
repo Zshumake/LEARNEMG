@@ -1,4 +1,5 @@
 import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260423-ncscv';
+import { showModal } from '../../utils/ViewHelpers.js';
 import { ClinicalTables } from './components/ClinicalTables.js?v=20260423-ncscv';
 import logger from '../../utils/Logger.js';
 
@@ -9,9 +10,6 @@ export class ClinicalUI {
 
         // Bind methods so they can be securely used in event listeners
         this.startSpecificCase = this.startSpecificCase.bind(this);
-        this.startBeginnerCases = this.startBeginnerCases.bind(this);
-        this.startIntermediateCases = this.startIntermediateCases.bind(this);
-        this.startExpertCases = this.startExpertCases.bind(this);
         this.startNewCase = this.startNewCase.bind(this);
 
         this.showPhysicalExam = this.showPhysicalExam.bind(this);
@@ -66,8 +64,8 @@ export class ClinicalUI {
                 `;
                 this.container = document.getElementById('clinical-root');
             }
-        } else if (window.showModal) {
-            window.showModal('Clinical Cases', `<div id="clinical-root">${content}</div>`);
+        } else if (showModal) {
+            showModal('Clinical Cases', `<div id="clinical-root">${content}</div>`);
             this.container = document.getElementById('clinical-root');
         }
 
@@ -188,7 +186,7 @@ export class ClinicalUI {
                             const matrix = new DOMMatrixReadOnly(computedStyle.transform);
                             tx = matrix.e || 0;
                             ty = matrix.f || 0;
-                        } catch (err) { }
+                        } catch { /* unparseable transform: fall back to tx/ty = 0 */ }
                     }
 
                     const centerX = (rect.left - tx) + (rect.width / 2);
@@ -351,11 +349,6 @@ export class ClinicalUI {
             this.renderDashboard('all');
         }
     }
-
-    // Stubbed category loaders
-    startBeginnerCases() { alert('Category filter not yet implemented. Please select a specific case.'); }
-    startIntermediateCases() { alert('Category filter not yet implemented. Please select a specific case.'); }
-    startExpertCases() { alert('Category filter not yet implemented. Please select a specific case.'); }
 
     // --- State & Stepping Handlers ---
 

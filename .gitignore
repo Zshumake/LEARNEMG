@@ -12,6 +12,10 @@ backup-module-extraction-20251118/
 ios/App/App/public/
 ios/App/Pods/
 ios/App/.bundle/
+# NOTE: mobile/ IS tracked on this deploy branch — GitHub Pages serves the
+# compiled Flutter web build from it. Rebuild with `flutter build web
+# --base-href /LEARNEMG/mobile/` from EMG_Mastery_Flutter/ and rsync
+# build/web/ into mobile/ before committing a deploy.
 
 # Exclude development and backup files
 emg_ncs_resident_tool.html
@@ -39,6 +43,11 @@ BACKUP_PRE_LEGACY_REMOVAL/
 tasks/
 trash/
 large_files/
+
+# Local agent / editor artifacts
+.claude/worktrees/
+EMG_Mastery_Flutter/.claude/
+**/.mcp.json
 
 # Tempoary Files
 temp_*.html

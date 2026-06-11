@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 
-/// A universal wrapper that forces the Flutter framework to keep its
-/// child alive in memory, even if it is scrolled off screen or swiped
-/// away in a TabBarView.
+/// Keeps a tab's subtree alive when swiped away in a TabBarView — but only
+/// when explicitly requested.
 ///
-/// This resolves the issue where complex text trees are destroyed and
-/// rebuilt from scratch when a user swipes between tabs, causing lag.
+/// Keep-alive is opt-in (default false): keeping every tab resident pinned
+/// each module's full set of tab trees (and their decoded images) in memory
+/// for the life of the screen, which is what pushed iPhone Safari tabs
+/// toward the memory kill threshold. Pass `keepAlive: true` only for tabs
+/// with user state worth preserving (quiz progress, search text).
 class KeepAliveTabWrapper extends StatefulWidget {
   final Widget child;
+  final bool keepAlive;
 
-  const KeepAliveTabWrapper({super.key, required this.child});
+  const KeepAliveTabWrapper({
+    super.key,
+    required this.child,
+    this.keepAlive = false,
+  });
 
   @override
   State<KeepAliveTabWrapper> createState() => _KeepAliveTabWrapperState();
@@ -18,7 +25,7 @@ class KeepAliveTabWrapper extends StatefulWidget {
 class _KeepAliveTabWrapperState extends State<KeepAliveTabWrapper>
     with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true; // Essential for memory preservation
+  bool get wantKeepAlive => widget.keepAlive;
 
   @override
   Widget build(BuildContext context) {

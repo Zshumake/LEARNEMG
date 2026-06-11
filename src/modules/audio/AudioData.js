@@ -17,7 +17,7 @@ export const podcastEpisodes = {
             id: 'emg-intro-main',
             title: 'EMG Introduction Fundamentals',
             duration: '52:27',
-            audioFile: 'Podcasts/EMG Intro.m4a',
+            audioFile: 'Podcasts/EMG_Intro.m4a',
             description: 'Comprehensive introduction to electrodiagnostic medicine fundamentals',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -37,7 +37,7 @@ export const podcastEpisodes = {
             id: 'emg-terminology',
             title: 'Essential EMG Terminology',
             duration: '64:49',
-            audioFile: 'Podcasts/Essential Terminology.m4a',
+            audioFile: 'Podcasts/Essential_Terminology.m4a',
             description: 'Master the essential vocabulary and definitions used in electrodiagnostic medicine',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -60,7 +60,7 @@ export const podcastEpisodes = {
             id: 'plexus-peripheral',
             title: 'Peripheral Nerve Anatomy',
             duration: '39:07',
-            audioFile: 'Podcasts/Peripheral Anatomy.m4a',
+            audioFile: 'Podcasts/Peripheral_Anatomy.m4a',
             description: 'Comprehensive exploration of peripheral nerve anatomy and organization',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -80,7 +80,7 @@ export const podcastEpisodes = {
             id: 'plexus-anomalous',
             title: 'Anomalous Anatomy',
             duration: '14:47',
-            audioFile: 'Podcasts/Anamolous Anatomy.m4a',
+            audioFile: 'Podcasts/Anamolous_Anatomy.m4a',
             description: 'Explore anatomical variations and anomalies that can affect EDX interpretation',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -169,7 +169,7 @@ export const podcastEpisodes = {
             id: 'neuropathy-mono',
             title: 'Mononeuropathy Pathophysiology',
             duration: '33:22',
-            audioFile: 'Podcasts/Mononeuropathy pathophysiology.m4a',
+            audioFile: 'Podcasts/Mononeuropathy_pathophysiology.m4a',
             description: 'Detailed examination of focal neuropathies and mononeuropathy multiplex',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><ul><li>Focal entrapment neuropathies</li><li>Mononeuropathy multiplex patterns</li><li>Electrodiagnostic localization</li></ul>`
@@ -178,7 +178,7 @@ export const podcastEpisodes = {
             id: 'neuropathy-main',
             title: 'Neuropathy Pathophysiology',
             duration: '33:22',
-            audioFile: 'Podcasts/Neuropathy Pathophysiology.m4a',
+            audioFile: 'Podcasts/Neuropathy_Pathophysiology.m4a',
             description: 'Foundational pathophysiology of peripheral nerve disorders',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><p>Foundational principles of nerve pathology.</p>`
@@ -190,7 +190,7 @@ export const podcastEpisodes = {
             id: 'patterns-ep1',
             title: 'Basic Pattern Recognition',
             duration: '14:59',
-            audioFile: 'Podcasts/Basic Patter Recognition.m4a',
+            audioFile: 'Podcasts/Basic_Patter_Recognition.m4a',
             description: 'Ernest teaches systematic EMG interpretation and pattern recognition',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><p>Systematic approach to EMG/NCS interpretation.</p>`
@@ -199,7 +199,7 @@ export const podcastEpisodes = {
             id: 'patterns-interpretation',
             title: 'EMG Interpretation',
             duration: '14:59',
-            audioFile: 'Podcasts/EMG interpretation.m4a',
+            audioFile: 'Podcasts/EMG_interpretation.m4a',
             description: 'Systematic approach to interpreting complex EMG signals',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><p>Deep dive into reading EMG signals.</p>`
@@ -211,7 +211,7 @@ export const podcastEpisodes = {
             id: 'neuro-myo-ep1',
             title: 'Neuropathy vs. Myopathy',
             duration: '17:09',
-            audioFile: 'Podcasts/Myopathy vs. Neuropathy.m4a',
+            audioFile: 'Podcasts/Myopathy_vs._Neuropathy.m4a',
             description: 'Ernest explains how to differentiate nerve and muscle disorders using clinical and EDX features',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -235,7 +235,7 @@ export const podcastEpisodes = {
             id: 'reports-ep1',
             title: 'Basic Report Writing',
             duration: '11:56',
-            audioFile: 'Podcasts/Basic Report Writing.m4a',
+            audioFile: 'Podcasts/Basic_Report_Writing.m4a',
             description: 'Ernest teaches the art of clear, effective electrodiagnostic report writing',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -258,7 +258,7 @@ export const podcastEpisodes = {
             id: 'extra-als',
             title: 'ALS and Mimics',
             duration: '13:54',
-            audioFile: 'Podcasts/ALS and mimics.m4a',
+            audioFile: 'Podcasts/ALS_and_mimics.m4a',
             description: 'Ernest explores motor neuron disease and conditions that can mimic ALS',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `
@@ -278,7 +278,7 @@ export const podcastEpisodes = {
             id: 'extra-blink',
             title: 'The Blink Reflex Explained',
             duration: '14:14',
-            audioFile: 'Podcasts/The Blink Reflex explained.m4a',
+            audioFile: 'Podcasts/The_Blink_Reflex_explained.m4a',
             description: 'Ernest explains the blink reflex study and its clinical applications',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><p>Anatomy and clinical use of the blink reflex.</p>`
@@ -287,7 +287,7 @@ export const podcastEpisodes = {
             id: 'extra-blink-alt',
             title: 'Blink Reflex Essentials',
             duration: '14:14',
-            audioFile: 'Podcasts/Blink Reflex.m4a',
+            audioFile: 'Podcasts/Blink_Reflex.m4a',
             description: 'Core principles of the electrodiagnostic blink reflex',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><p>Core essentials of the blink reflex study.</p>`
@@ -296,7 +296,7 @@ export const podcastEpisodes = {
             id: 'extra-nmj',
             title: 'Neuromuscular Junction Disorders',
             duration: '16:00',
-            audioFile: 'Podcasts/Neuromuscular junction disorders.m4a',
+            audioFile: 'Podcasts/Neuromuscular_junction_disorders.m4a',
             description: 'Ernest explores disorders affecting the neuromuscular junction',
             transcript: 'Episode transcript will appear here once available...',
             showNotes: `<h4>In This Episode:</h4><p>Exploring Myasthenia Gravis and LEMS.</p>`

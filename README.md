@@ -1,38 +1,32 @@
-# 📚 EMG Tabbed Interface Archive
+# Neuromuscular Mastery — EMG/NCS Learning System
 
-## Purpose
-This archive contains the complete **tabbed interface version** of the ERNEST EMG learning system that was functional as of September 2025.
+An interactive, browser-based learning system for EMG/NCS (electromyography / nerve
+conduction studies), aimed at neurology and PM&R residents. It presents a gamified
+"Candyland" learning board with lesson modules, interactive plexus anatomy, a clinical
+case engine, quizzes, and the Ernest/Earl mascots.
 
-## What's Archived
-- `index.html` - Complete tabbed interface with all content sections
-- `css/styles.css` - Full styling for tabbed layout (7,802 lines)
-- `js/main.js` - JavaScript functionality for tabs and interactions (10,000+ lines)
+## Stack
+- Vanilla JavaScript (ES modules) — no framework, no bundler, no build step
+- D3.js (loaded from a CDN) for the interactive plexus diagrams
+- Static site: serve the repo root and open it in a browser
 
-## Key Features Preserved
-- ✅ **Multi-tab navigation system** with 14+ different content sections
-- ✅ **Interactive case studies** with modal dialogs
-- ✅ **NCS landmarks and techniques** with image placeholders
-- ✅ **EMG waveform analysis tools**
-- ✅ **Plexus anatomy diagrams** with interactive elements
-- ✅ **Comprehensive muscle anatomy database**
-- ✅ **Study cards and quiz systems**
-- ✅ **PGY-level content filtering**
+## Run locally
+```bash
+./start-local-server.sh        # Python http.server on :8080
+# or, if you prefer Node:
+npx http-server -p 8080
+```
+Then open http://localhost:8080.
 
-## How to Use This Archive
-1. Copy these files to a new directory
-2. Start local HTTP server: `python3 -m http.server 8080`
-3. Open `http://localhost:8080`
-4. Full tabbed interface will be available
+Use a window wider than 800px for the desktop experience — narrower / mobile viewports
+are redirected to `/mobile/`, which is a separate compiled Flutter web build.
 
-## Why Archived
-The system was replaced with a **Candyland-style learning board** interface for better user engagement and progression tracking, but this tabbed version contains valuable content and functionality that may be useful for future reference or integration.
+## Layout
+- `index.html` — app shell (loads `src/` modules)
+- `src/` — all application code: `modules/` (subsystems), `content/` (lesson modules,
+  lazy-loaded), `data/` (cases & reference data), `utils/` (shared helpers)
+- `css/` — global stylesheets
+- `mobile/` + `EMG_Mastery_Flutter/` — parallel Flutter mobile build & its Dart source
+- `ios/` — Capacitor iOS wrapper
 
-## Date Archived
-September 12, 2025
-
-## Status at Archive
-- ✅ Local development working
-- ✅ JavaScript errors fixed
-- ✅ Tab navigation functional
-- ✅ Interactive elements working
-- ⚠️ Missing image files (have SVG fallbacks)
+See [`Claude.md`](Claude.md) for the architecture overview and working conventions.

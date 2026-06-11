@@ -160,13 +160,18 @@ class _WaveformCardState extends State<WaveformCard> {
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(15),
               ),
-              child: SizedBox(
-                height: 140,
-                width: double.infinity,
-                child: CustomPaint(
-                  painter: _WaveformPainter(
-                    type: widget.type,
-                    traceColor: m.traceColor,
+              // RepaintBoundary caches the blurred trace (MaskFilter.blur is
+              // one of CanvasKit's priciest ops) so the expand/collapse
+              // animation below doesn't re-rasterize it every frame.
+              child: RepaintBoundary(
+                child: SizedBox(
+                  height: 140,
+                  width: double.infinity,
+                  child: CustomPaint(
+                    painter: _WaveformPainter(
+                      type: widget.type,
+                      traceColor: m.traceColor,
+                    ),
                   ),
                 ),
               ),

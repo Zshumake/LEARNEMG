@@ -1,4 +1,5 @@
 import logger from '../../utils/Logger.js';
+import { showModal } from '../../utils/ViewHelpers.js';
 export class MuscleLabMenu {
     constructor() {
     }
@@ -190,8 +191,8 @@ export class MuscleLabMenu {
     }
 
     show() {
-        if (window.showModal) {
-            window.showModal('Module 9: Advanced Muscle Lab', this.getHTML());
+        if (showModal) {
+            showModal('Module 9: Advanced Muscle Lab', this.getHTML());
         } else {
             logger.error('showModal not found');
         }

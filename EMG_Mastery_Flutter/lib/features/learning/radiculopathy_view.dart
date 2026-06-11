@@ -30,7 +30,7 @@ class RadiculopathyView extends StatelessWidget {
         body: const TabBarView(
           children: [
             KeepAliveTabWrapper(child: _RadiculopathyLearningTab()),
-            KeepAliveTabWrapper(child: _QuizTab()),
+            KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
           ],
         ),
       ),

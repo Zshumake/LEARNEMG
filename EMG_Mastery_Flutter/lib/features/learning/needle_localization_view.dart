@@ -33,7 +33,7 @@ class NeedleLocalizationView extends StatelessWidget {
             child: TabBarView(
               children: [
                 KeepAliveTabWrapper(child: _AnatomyAtlasTab()),
-                KeepAliveTabWrapper(child: _QuizTab()),
+                KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
               ],
             ),
           ),
@@ -365,6 +365,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
       ),
       child: Image.asset(
         imagePath,
+        cacheWidth: 1000,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           return Container(

@@ -72,7 +72,7 @@ class NMBasicsView extends StatelessWidget {
             ),
             const KeepAliveTabWrapper(child: _ClassificationTab()),
             const KeepAliveTabWrapper(child: _ComparisonTab()),
-            KeepAliveTabWrapper(child: _QuizTab()),
+            KeepAliveTabWrapper(keepAlive: true, child: _QuizTab()),
           ],
         ),
       ),

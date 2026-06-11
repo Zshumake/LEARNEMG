@@ -1,29 +1,17 @@
-import { podcastEpisodes } from '../audio/AudioData.js';
+import { podcastEpisodes } from '../audio/AudioData.js?v=20260611-podcasts';
 import { ErnestIcon } from '../../utils/ErnestIcon.js';
 import logger from '../../utils/Logger.js';
+import { registerAction } from '../../utils/ActionBus.js';
 
 export class BoardRenderer {
     constructor(core) {
         this.core = core;
-        this.registerActions();
-    }
-
-    registerActions() {
-        if (window._registerAction) {
-            window._registerAction('handleModuleClick', (el) => {
-                const moduleId = el.dataset.moduleId;
-                const index = parseInt(el.dataset.index, 10);
-                if (window.appComponents?.candyland) {
-                    window.appComponents.candyland.handleModuleClick(moduleId, index);
-                }
-            });
-            window._registerAction('playExtraPodcast', (el) => {
-                const topicId = el.dataset.topicId;
-                if (window.playExtraPodcast) {
-                    window.playExtraPodcast(topicId);
-                }
-            });
-        }
+        // Board-tile clicks go through the ActionBus (was inline onclick).
+        registerAction('moduleClick', (el) =>
+            window.appComponents?.candyland?.handleModuleClick(el.dataset.moduleId, parseInt(el.dataset.moduleIndex, 10)));
+        registerAction('playExtraPodcast', (el) => {
+            if (window.playExtraPodcast) window.playExtraPodcast(el.dataset.topicId);
+        });
     }
 
 
@@ -520,7 +508,7 @@ export class BoardRenderer {
                     gap: 12px;
                     box-sizing: border-box;
                     clear: both;"
-                 data-action="handleModuleClick" data-module-id="${module.id}" data-index="-1"
+                 data-action="moduleClick" data-module-id="${module.id}" data-module-index="-1"
                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 22px rgba(124, 58, 237, 0.35)'"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 14px rgba(124, 58, 237, 0.25)'">
                 <div style="flex-shrink: 0; width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
@@ -544,7 +532,7 @@ export class BoardRenderer {
             <div class="hero-module"
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
-                 data-action="handleModuleClick" data-module-id="${module.id}" data-index="${index - 1}">
+                 data-action="moduleClick" data-module-id="${module.id}" data-module-index="${index - 1}">
                 <div class="hero-content">
                     <img src="${module.customIcon || ''}" alt="${module.title || ''}" class="hero-icon">
                     <div class="hero-text">
@@ -566,7 +554,7 @@ export class BoardRenderer {
             <div class="module-card"
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
-                 data-action="handleModuleClick" data-module-id="${module.id}" data-index="${index - 1}">
+                 data-action="moduleClick" data-module-id="${module.id}" data-module-index="${index - 1}">
                 <img src="${module.customIcon || ''}"
                      alt="${module.title || ''}"
                      class="module-icon"

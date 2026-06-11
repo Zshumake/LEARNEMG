@@ -7,7 +7,7 @@
 // ============================================================================
 
 import { AudioPlayer } from './AudioPlayer.js';
-import { getModuleEpisodes, generateErnestButton } from './AudioData.js';
+import { getModuleEpisodes, generateErnestButton } from './AudioData.js?v=20260611-podcasts';
 
 // Modular UI Components
 import { PlayerOverlay } from './ui/PlayerOverlay.js';

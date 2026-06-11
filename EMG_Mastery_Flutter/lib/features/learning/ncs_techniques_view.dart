@@ -483,6 +483,7 @@ class _ProtocolCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8),
                       child: Image.asset(
                         protocol.images[index],
+                        cacheWidth: 1000,
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) => Center(
                           child: Icon(

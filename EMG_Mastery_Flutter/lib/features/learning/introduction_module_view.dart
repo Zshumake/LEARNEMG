@@ -79,8 +79,8 @@ class IntroductionModuleView extends StatelessWidget {
             KeepAliveTabWrapper(child: _buildInstrumentationTab()),
             KeepAliveTabWrapper(child: _buildTechnicalTab(content)),
             KeepAliveTabWrapper(child: _buildLocalizationTab(content)),
-            KeepAliveTabWrapper(child: _buildTerminologyTab(content)),
-            KeepAliveTabWrapper(child: _buildQuizTab()),
+            KeepAliveTabWrapper(keepAlive: true, child: _buildTerminologyTab(content)),
+            KeepAliveTabWrapper(keepAlive: true, child: _buildQuizTab()),
           ],
         ),
       ),
@@ -1681,6 +1681,7 @@ class _InstrumentationSoftwareTab extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               'assets/images/hardware/analysis-software.webp',
+              cacheWidth: 1000,
               fit: BoxFit.contain,
             ),
           ),

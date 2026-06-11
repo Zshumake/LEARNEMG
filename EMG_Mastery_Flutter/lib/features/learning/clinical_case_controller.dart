@@ -20,7 +20,7 @@ class ClinicalCaseController extends ChangeNotifier {
   bool? _isEmgDecisionCorrect;
   String? _emgDecisionFeedback;
 
-  Map<String, List<String>> _synonyms = {
+  final Map<String, List<String>> _synonyms = {
     "cts": [
       "carpal tunnel",
       "carpal tunnel syndrome",

@@ -5,7 +5,7 @@ import 'core/theme/app_theme.dart';
 import 'data/module_data.dart';
 import 'data/models/module_model.dart';
 import 'features/learning/module_content_screen.dart';
-import 'core/widgets/ernest_widget.dart';
+import 'core/widgets/ernest_slide_out.dart';
 
 import 'features/ernest/ernest_controller.dart';
 import 'features/podcast/podcast_controller.dart';
@@ -120,104 +120,102 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
+                    // No BackdropFilter here: a 12px Gaussian blur over the
+                    // full-width welcome card re-ran on every scroll frame
+                    // (CanvasKit, iPhone). A more opaque fill reads the same.
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                        child: Container(
-                          padding: const EdgeInsets.all(24),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.7),
-                            borderRadius: BorderRadius.circular(24),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.5),
-                              width: 1.5,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.05),
-                                blurRadius: 20,
-                                offset: const Offset(0, 10),
-                              ),
-                            ],
+                      child: Container(
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.88),
+                          borderRadius: BorderRadius.circular(24),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.5),
+                            width: 1.5,
                           ),
-                          child: TweenAnimationBuilder<double>(
-                            duration: const Duration(milliseconds: 800),
-                            curve: Curves.easeOutBack,
-                            tween: Tween(begin: 0.0, end: 1.0),
-                            builder: (context, value, child) {
-                              return Opacity(
-                                opacity: value.clamp(0.0, 1.0),
-                                child: Transform.translate(
-                                  offset: Offset(0, 20 * (1 - value)),
-                                  child: child,
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                Wrap(
-                                  alignment: WrapAlignment.center,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 6,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppTheme.primary.withOpacity(
-                                          0.1,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.05),
+                              blurRadius: 20,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: TweenAnimationBuilder<double>(
+                          duration: const Duration(milliseconds: 800),
+                          curve: Curves.easeOutBack,
+                          tween: Tween(begin: 0.0, end: 1.0),
+                          builder: (context, value, child) {
+                            return Opacity(
+                              opacity: value.clamp(0.0, 1.0),
+                              child: Transform.translate(
+                                offset: Offset(0, 20 * (1 - value)),
+                                child: child,
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Wrap(
+                                alignment: WrapAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppTheme.primary.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          Icons.verified_user,
+                                          size: 14,
+                                          color: AppTheme.primary,
                                         ),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            Icons.verified_user,
-                                            size: 14,
+                                        const SizedBox(width: 6),
+                                        Text(
+                                          "PHYSICIAN ACCESS",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w900,
+                                            letterSpacing: 1.2,
                                             color: AppTheme.primary,
                                           ),
-                                          const SizedBox(width: 6),
-                                          Text(
-                                            "PHYSICIAN ACCESS",
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w900,
-                                              letterSpacing: 1.2,
-                                              color: AppTheme.primary,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                const SizedBox(height: 16),
-                                const Text(
-                                  'Ready to Master the Pulse?',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w900,
-                                    color: AppTheme.textHeading,
-                                    letterSpacing: -0.5,
                                   ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              const Text(
+                                'Ready to Master the Pulse?',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w900,
+                                  color: AppTheme.textHeading,
+                                  letterSpacing: -0.5,
                                 ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  'Decode complex signals. Perfect your diagnosis. Let\'s dive in.',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: AppTheme.textMuted.withValues(
-                                      alpha: 0.9,
-                                    ),
-                                    height: 1.4,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Decode complex signals. Perfect your diagnosis. Let\'s dive in.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: AppTheme.textMuted.withValues(
+                                    alpha: 0.9,
                                   ),
+                                  height: 1.4,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -253,16 +251,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
 
-            // Ernest with animated SVG character
-            Positioned(
-              bottom: 100, // Move up to avoid mini player
-              right: 10,
-              child: const AnimatedErnestWidget(
-                size: 180,
-                showSpeechBubble: true,
-                allowPersonaToggle: false,
-              ),
-            ),
+            // Ernest tucked behind a right-edge tab (tap to slide in/out).
+            // Hidden by default so he doesn't cover the module grid, and his
+            // animations only run while he's out.
+            const ErnestSlideOut(size: 180, bottom: 100),
           ],
         ),
       ),
