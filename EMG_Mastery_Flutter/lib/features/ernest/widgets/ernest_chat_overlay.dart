@@ -127,7 +127,7 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
                   ),
                 ),
                 Text(
-                  persona.id == 'ernest' ? "EMG Specialist" : "Chief Resident",
+                  persona.id == 'ernest' ? "EMG Specialist" : "Ernest's grumpy twin",
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.5),
                     fontSize: 11,
