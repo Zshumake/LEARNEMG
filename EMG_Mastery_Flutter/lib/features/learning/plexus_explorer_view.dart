@@ -64,8 +64,11 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
   }
 
   void _computeLayout(List<PlexusNode> nodes) {
-    const columnSpacing = 160.0;
-    const rowSpacing = 48.0;
+    // Wide enough that right-of-node labels clear the next column, and
+    // tall enough that half-row offsets (used heavily by the lumbosacral
+    // data) don't stack dots on top of each other.
+    const columnSpacing = 200.0;
+    const rowSpacing = 60.0;
 
     for (final node in nodes) {
       node.x = (node.level * columnSpacing) + 80;
@@ -748,11 +751,15 @@ class _PlexusGraphPainter extends CustomPainter {
       );
       textPainter.layout();
 
-      // Background pill
-      final labelRect = Rect.fromCenter(
-        center: Offset(node.x, node.y + 22),
-        width: textPainter.width + 8,
-        height: 14,
+      // Label sits to the RIGHT of the dot, vertically centered. Centered-
+      // below labels collided with the next row's dots wherever the data
+      // uses half-row offsets (most of the lumbosacral plexus).
+      final labelLeft = node.x + 18.0;
+      final labelRect = Rect.fromLTWH(
+        labelLeft - 4,
+        node.y - 8,
+        textPainter.width + 8,
+        16,
       );
       final pillPaint = Paint()
         ..color = Colors.white.withValues(alpha: opacity * 0.85);
@@ -763,7 +770,7 @@ class _PlexusGraphPainter extends CustomPainter {
 
       textPainter.paint(
         canvas,
-        Offset(node.x - textPainter.width / 2, node.y + 15),
+        Offset(labelLeft, node.y - textPainter.height / 2),
       );
     }
   }

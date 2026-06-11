@@ -441,7 +441,7 @@ class _VideoCard extends StatelessWidget {
   }
 }
 
-class _ProtocolCard extends StatelessWidget {
+class _ProtocolCard extends StatefulWidget {
   final _ProtocolData protocol;
   final int currentIndex;
   final Function(int) onPageChanged;
@@ -453,7 +453,34 @@ class _ProtocolCard extends StatelessWidget {
   });
 
   @override
+  State<_ProtocolCard> createState() => _ProtocolCardState();
+}
+
+class _ProtocolCardState extends State<_ProtocolCard> {
+  // The chevrons previously only updated the parent's counter — without a
+  // controller the PageView itself never moved. Now they drive the view.
+  late final PageController _pageController = PageController(
+    initialPage: widget.currentIndex,
+  );
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _goTo(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final protocol = widget.protocol;
+    final currentIndex = widget.currentIndex;
     return Container(
       margin: const EdgeInsets.only(bottom: 25),
       decoration: BoxDecoration(
@@ -477,8 +504,9 @@ class _ProtocolCard extends StatelessWidget {
               child: Stack(
                 children: [
                   PageView.builder(
+                    controller: _pageController,
                     itemCount: protocol.images.length,
-                    onPageChanged: onPageChanged,
+                    onPageChanged: widget.onPageChanged,
                     itemBuilder: (context, index) => Container(
                       padding: const EdgeInsets.all(8),
                       child: Image.asset(
@@ -501,7 +529,7 @@ class _ProtocolCard extends StatelessWidget {
                       top: 100,
                       child: _navBtn(
                         Icons.chevron_left,
-                        () => onPageChanged(
+                        () => _goTo(
                           (currentIndex - 1) % protocol.images.length,
                         ),
                       ),
@@ -511,7 +539,7 @@ class _ProtocolCard extends StatelessWidget {
                       top: 100,
                       child: _navBtn(
                         Icons.chevron_right,
-                        () => onPageChanged(
+                        () => _goTo(
                           (currentIndex + 1) % protocol.images.length,
                         ),
                       ),

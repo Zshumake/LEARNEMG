@@ -91,6 +91,10 @@ class ModuleContentScreen extends StatelessWidget {
             ),
           ),
           body: const TabBarView(
+            // No swipe-to-switch here: the Interactive Anatomy tab is a
+            // pan/zoom diagram, and horizontal drags kept flipping back to
+            // the Clinical tab. The TabBar buttons still switch tabs.
+            physics: NeverScrollableScrollPhysics(),
             children: [PlexusClinicalView(), PlexusExplorerView()],
           ),
         ),
