@@ -791,15 +791,31 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
 
     _currentMuscle = allMuscles[math.Random().nextInt(allMuscles.length)];
 
-    final activeTypes =
+    // Pick a question type valid for THIS muscle. "Cord" is a brachial-plexus
+    // concept, so leg muscles (which have no cord) never get a cord question
+    // -- it would only ever have "N/A" as an answer.
+    var activeTypes =
         _topics.entries.where((e) => e.value).map((e) => e.key).toList();
+    if (_currentMuscle.region == 'LE') {
+      activeTypes = activeTypes.where((t) => t != 'cord').toList();
+    }
+    if (activeTypes.isEmpty) activeTypes = ['actions']; // safe fallback
     _currentType = activeTypes[math.Random().nextInt(activeTypes.length)];
 
     final correctAns = _getAnswer(_currentMuscle, _currentType);
     final Set<String> options = {correctAns};
 
-    while (options.length < 4) {
-      final m = allMuscles[math.Random().nextInt(allMuscles.length)];
+    // Distractors come from the SAME extremity as the question muscle, so an
+    // upper-extremity question never offers leg answers (and vice versa) even
+    // when the quiz is set to "Both". Bounded so it can't spin forever if a
+    // type has fewer than four distinct answers within one extremity.
+    final distractorPool = MuscleData.muscleDatabase.values
+        .where((m) => m.region == _currentMuscle.region)
+        .toList();
+    var attempts = 0;
+    while (options.length < 4 && attempts < 200) {
+      attempts++;
+      final m = distractorPool[math.Random().nextInt(distractorPool.length)];
       final ans = _getAnswer(m, _currentType);
       if (ans.isNotEmpty) options.add(ans);
     }
