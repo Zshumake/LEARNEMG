@@ -105,20 +105,18 @@ export class ModalSystem {
             contentHTML = `<div class="error-msg">Error loading content: ${e.message}</div>`;
         }
 
-        // Render content
-        setTimeout(() => {
-            contentArea.innerHTML = contentHTML;
+        // Render content immediately — it's already in hand. (Was a flat 500ms
+        // setTimeout that added half a second of artificial latency to every
+        // module open.)
+        contentArea.innerHTML = contentHTML;
 
-
-
-            // Auto-Initialize if needed (legacy support)
-            if (window.moduleLoader) {
-                const loadedModule = window.moduleLoader.loadedModules.get(moduleId);
-                if (loadedModule && typeof loadedModule.initialize === 'function') {
-                    loadedModule.initialize();
-                }
+        // Auto-Initialize if needed (legacy support)
+        if (window.moduleLoader) {
+            const loadedModule = window.moduleLoader.loadedModules.get(moduleId);
+            if (loadedModule && typeof loadedModule.initialize === 'function') {
+                loadedModule.initialize();
             }
-        }, 500);
+        }
     }
 
     closeModal(index) {

@@ -167,45 +167,63 @@ export class ClinicalUI {
             }
         });
 
-        // Use a single document-level tracker for proximity effects
+        // Single document-level proximity tracker, rAF-throttled. (Was an
+        // unthrottled mousemove that re-queried the DOM and, per button,
+        // interleaved layout reads with style writes -> O(n) forced reflows
+        // on the hottest event in the app, for the life of the page.) Now it
+        // runs at most once per frame, batches all reads before any writes,
+        // and early-outs to a single cheap query when no cards are present.
         if (!this._magneticTrackerAttached) {
             this._magneticTrackerAttached = true;
+            const pullRadius = 180; // pixels of magnetic reach
+            let mouseX = 0, mouseY = 0, ticking = false;
 
-            document.addEventListener('mousemove', (e) => {
-                const magneticBtns = document.querySelectorAll('.magnetic-btn');
-                const pullRadius = 180; // pixels of magnetic reach
+            const applyPull = () => {
+                ticking = false;
+                const btns = document.querySelectorAll('.magnetic-btn');
+                if (!btns.length) return;
 
-                magneticBtns.forEach(btn => {
+                // Read phase — no style writes here, so layout flushes once.
+                const reads = [];
+                btns.forEach(btn => {
                     const rect = btn.getBoundingClientRect();
-
-                    // Compensate for existing transform to prevent jitter
-                    const computedStyle = window.getComputedStyle(btn);
                     let tx = 0, ty = 0;
-                    if (computedStyle.transform !== 'none') {
+                    const t = window.getComputedStyle(btn).transform;
+                    if (t && t !== 'none') {
                         try {
-                            const matrix = new DOMMatrixReadOnly(computedStyle.transform);
-                            tx = matrix.e || 0;
-                            ty = matrix.f || 0;
-                        } catch { /* unparseable transform: fall back to tx/ty = 0 */ }
+                            const m = new DOMMatrixReadOnly(t);
+                            tx = m.e || 0;
+                            ty = m.f || 0;
+                        } catch { /* unparseable transform: leave tx/ty = 0 */ }
                     }
+                    reads.push({
+                        btn,
+                        cx: (rect.left - tx) + (rect.width / 2),
+                        cy: (rect.top - ty) + (rect.height / 2),
+                    });
+                });
 
-                    const centerX = (rect.left - tx) + (rect.width / 2);
-                    const centerY = (rect.top - ty) + (rect.height / 2);
-
-                    const distanceX = e.clientX - centerX;
-                    const distanceY = e.clientY - centerY;
-                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-
+                // Write phase — only style writes.
+                reads.forEach(({ btn, cx, cy }) => {
+                    const dx = mouseX - cx, dy = mouseY - cy;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < pullRadius) {
-                        // Calculate an easing force (stronger when closer)
                         const force = (pullRadius - distance) / pullRadius;
-                        const pullX = distanceX * 0.15 * force;
-                        const pullY = distanceY * 0.15 * force;
-                        btn.style.transform = `translate(${pullX}px, ${pullY}px) scale(1.02)`;
+                        btn.style.transform =
+                            `translate(${dx * 0.15 * force}px, ${dy * 0.15 * force}px) scale(1.02)`;
                     } else if (btn.style.transform !== '') {
                         btn.style.transform = '';
                     }
                 });
+            };
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(applyPull);
+                }
             });
         }
     }
