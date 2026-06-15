@@ -67,7 +67,6 @@ export class ModalSystem {
 
         document.body.insertAdjacentHTML('beforeend', modalHTML);
         this.activeModal = document.getElementById(`enhanced-modal-${index}`);
-        window.isModalOpen = true; // Legacy flag
 
         // Load Content
         await this.loadModuleContent(module, index);
@@ -126,7 +125,6 @@ export class ModalSystem {
             setTimeout(() => modal.remove(), 400);
         }
         this.activeModal = null;
-        window.isModalOpen = false;
     }
 
 

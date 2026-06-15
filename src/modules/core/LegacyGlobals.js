@@ -75,11 +75,7 @@ async function generateMasteryPathway(pgy = 'pgy2') {
         logger.error('Candyland not loaded after 5 seconds');
     }
 }
-window.generateMasteryPathway = generateMasteryPathway;
 window.generateLearningBoard = generateMasteryPathway;
-
-// Legacy modal flag (set by ModalSystem.js)
-window.isModalOpen = false;
 
 // ---------- 2. UI Toggles — via ActionBus ----------
 // ActionBus (ES module) exposes window._registerAction after it loads.

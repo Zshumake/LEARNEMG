@@ -16,43 +16,9 @@ export class Bootstrapper {
         // 2. Initialize iOS tracking if needed
         this.setupIOSTracking();
 
-        // 3. Setup Global Storage Functions (Legacy compatibility)
-        this.setupStorage();
-
-        // 4. Expose Shell globally (optional, for debugging)
+        // 3. Expose Shell globally (optional, for debugging)
         if (!window.appComponents) window.appComponents = {};
         window.appComponents.shell = this.shell;
-    }
-
-    setupStorage() {
-        // Local Storage Functions
-        window.saveProgressToStorage = function () {
-            const progressData = {
-                currentPGYLevel: window.currentPGYLevel,
-                completedModules: Array.from(window.completedModules || []),
-                currentModuleIndex: window.currentModuleIndex,
-                lastUpdated: new Date().toISOString()
-            };
-            localStorage.setItem('ernestEMGProgress', JSON.stringify(progressData));
-        };
-
-        window.loadProgressFromStorage = function () {
-            const saved = localStorage.getItem('ernestEMGProgress');
-            if (saved) {
-                try {
-                    const progressData = JSON.parse(saved);
-                    window.currentPGYLevel = progressData.currentPGYLevel;
-                    window.completedModules = new Set(progressData.completedModules || []);
-                    window.currentModuleIndex = progressData.currentModuleIndex || 0;
-                    logger.log('✅ Progress loaded from storage');
-                    return true;
-                } catch (error) {
-                    logger.log('⚠️ Error loading progress:', error);
-                    return false;
-                }
-            }
-            return false;
-        };
     }
 
     setupIOSTracking() {

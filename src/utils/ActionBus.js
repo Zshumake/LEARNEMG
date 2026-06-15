@@ -30,8 +30,3 @@ export function registerAction(name, handler) {
     }
 }
 
-export function unregisterAction(name) {
-    if (window._unregisterAction) {
-        window._unregisterAction(name);
-    }
-}

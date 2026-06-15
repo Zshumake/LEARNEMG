@@ -17,13 +17,6 @@ export const CUSTOM_ICON_MAPPING = {
     'clinical-correlation': 'images/icons/Clinical Application.png'
 };
 
-// Featured module description (Clinical Exam Lab)
-export const FEATURED_MODULE_DESCRIPTION = {
-    title: "Clinical Exam Lab",
-    text: "Master the history and physical exam for every diagnosis sent to the EMG lab. Study exam findings for 90+ diagnoses or build a custom exam from your differential. Includes entrapments, radiculopathies (every level), plexopathies, polyneuropathies, motor neuron diseases, NMJ disorders, myopathies, and inappropriate referrals.",
-    highlights: "Modes: Study Mode (browse by diagnosis) | Exam Builder (build from differential)"
-};
-
 // Module Descriptions (1-based index to match module Number)
 export const MODULE_DESCRIPTIONS = {
     1: {

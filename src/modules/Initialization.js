@@ -1,8 +1,8 @@
 import { moduleLoader } from '../utils/ModuleLoader.js?v=20260422-edxart';
-import { Bootstrapper } from './core/Bootstrapper.js?v=20260317';
+import { Bootstrapper } from './core/Bootstrapper.js?v=20260615-clean';
 import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260611-deploy';
 import { PlexusManager } from './plexus/PlexusManager.js?v=20260317';
-import { ModalSystem } from './ui/ModalSystem.js?v=20260615-perf';
+import { ModalSystem } from './ui/ModalSystem.js?v=20260615-clean';
 import { CandylandCore } from './candyland/CandylandCore.js?v=20260611-deploy';
 import { QuizSystem } from './quiz/QuizSystem.js?v=20260422-quizoverhaul';
 import { NCSData } from './ncs/NCSData.js?v=20260317';
@@ -20,7 +20,6 @@ import logger from '../utils/Logger.js';
 // --- ActionBus: inline setup (avoids ES module cache issues) ---
 const _actionHandlers = new Map();
 window._registerAction = (name, handler) => _actionHandlers.set(name, handler);
-window._unregisterAction = (name) => _actionHandlers.delete(name);
 document.body.addEventListener('click', (e) => {
     const el = e.target.closest('[data-action]');
     if (!el) return;
@@ -111,25 +110,3 @@ app.init().then(() => {
     const bootstrapper = new Bootstrapper();
     bootstrapper.start();
 });
-
-// Global Interactive Plexus Anatomy Wrapper (Legacy Adapter)
-// Used by index.html buttons
-window.showInteractivePlexusAnatomy = () => {
-    if (window.appComponents && window.appComponents.plexus) {
-        window.appComponents.plexus.showInteractiveAnatomy();
-    } else {
-        logger.error("❌ Plexus module not initialized");
-    }
-};
-
-window.showErnestDialogue = () => {
-    if (window.appComponents && window.appComponents.ernestAI) {
-        window.appComponents.ernestAI.ui.toggleDialogue();
-    }
-};
-
-window.explainPage = () => {
-    if (window.appComponents && window.appComponents.ernestAI) {
-        window.appComponents.ernestAI.explainVisiblePage();
-    }
-};

@@ -640,8 +640,3 @@ export function generateErnestButton(moduleId, moduleTitle = null) {
 export function getModuleEpisodes(moduleId) {
     return podcastEpisodes[moduleId] || [];
 }
-
-// Get all available module IDs with podcasts
-export function getPodcastModules() {
-    return Object.keys(podcastEpisodes);
-}
