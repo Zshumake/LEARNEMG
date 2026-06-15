@@ -1,6 +1,12 @@
 # Project Excludes
 node_modules/
 dist/
+
+# Flutter app SOURCE tree — kept on the `main` branch and the
+# archive/deploy-full-20260615 tag, NOT on the deploy branch (GitHub Pages
+# would otherwise publish ~3.5GB of source + native scaffolding). Rebuild
+# mobile/ from this local tree; only the compiled mobile/ is committed to deploy.
+/EMG_Mastery_Flutter/
 .DS_Store
 _archive/
 _legacy_archive/
