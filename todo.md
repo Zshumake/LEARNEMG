@@ -107,3 +107,22 @@ A four-angle audit (architecture, code smells, HTML/CSS, repo hygiene) found the
 - Review commit-by-commit: `git log --oneline main..cleanup/max-effort-review`
 - Merge when satisfied. **One caveat:** if you deploy by serving this repo directly, the `mobile/` untrack means you must build `mobile/` as part of deploy (it's no longer in git). That commit (`5c8b72a`) is isolated and easy to drop if needed.
 - The DEFERRED list above is the roadmap for a future, more invasive pass (best done interactively so you can eyeball visual changes).
+
+### Round 7 (deep audit: web app + repo hygiene)
+Ran the performance-audit across 3 parallel agents (dead-code, runtime perf, repo hygiene). Reassuring headlines: **0 orphaned files, 0 debug cruft, 0 hardcoded API keys** in the web app.
+
+**DONE (committed `9adb8d7`, deployed):**
+- [x] Perf: removed the flat **500ms artificial delay** before injecting module content (ModalSystem) — every lesson open is ~½s snappier.
+- [x] Perf: **rAF-throttled** the clinical-dashboard magnetic mousemove (was unthrottled → O(n) forced reflows per event for the life of the page); reads now batched before writes.
+- [x] Hygiene: fixed the malformed `.gitignore` line, ignored the whole `/ios/` (874MB) + `/Podcasts` symlink, and **stripped the embedded PAT** from the origin remote URL.
+
+**TODO — safe, queued (web app, no behavior risk):** remove the verified-dead `window.*` legacy shims & dead exports the audit found — `unregisterAction` chain (ActionBus/Initialization), stale Ernest/Plexus shims (Initialization:117-135), dead `setupStorage()` (Bootstrapper:27-56), dead content-module `window.*` aliases (Fundamentals/NeuropathyMyopathy/Pathophysiology/Introduction/PathwayExplorer), `window.isModalOpen` (write-only), `getPodcastModules`/`FEATURED_MODULE_DESCRIPTION` dead exports, the `generateMasteryPathway` alias, and the ViewHelpers dead globals + `navigateWithTransition`/`handleImageError` (zero callers). Removing dead code needs **no cache-bust** (harmless if a stale copy lingers). Smoke-test after.
+
+**TODO — perf, medium effort:** defer the boot graph — `Initialization.js` eagerly constructs muscle-lab (incl. the 1030-line EMG challenge), the ~294KB clinical case DB, NCS/quiz/audio subsystems before the welcome screen paints. Move them behind the existing lazy `ModuleLoader`. Biggest TTI win short of bundling.
+
+**TODO — needs a decision:**
+- **Deploy-branch is publishing the entire 3.5GB Flutter SOURCE tree** (`EMG_Mastery_Flutter/` — 320 files incl. a duplicate 1.6GB podcast set + iOS/macOS/Android/Windows native scaffolding) at the public URL. Nothing serves it; `mobile/` is the self-contained artifact. `git rm -r --cached EMG_Mastery_Flutter/` **on the deploy branch only** ≈ halves the branch and stops exposing source. (Keep the source on a dev branch.)
+- **Local disk reclaim** (not tracked, safe to delete locally): `trash/` 359MB, `ios/` 874MB, `node_modules/` 66MB, `BACKUP_PRE_LEGACY_REMOVAL/` 3MB; `flutter clean` reclaims most of the 9.6GB `EMG_Mastery_Flutter/` build output.
+- **Revoke the PAT** in GitHub settings (removed from local config, but rotate it to be safe).
+
+**Deferred (bigger):** mascot SVG dedup (AppShell + ErnestUI carry the same ~135-line SVGs twice), a minimal bundler (esbuild/rollup — collapses ~80 unbundled module requests + auto-hashes cache-busting; highest ceiling, large effort), `.git` history rewrite to strip the 1.6GB of podcast blobs (rewrites the Pages branch — deliberate decision only).
