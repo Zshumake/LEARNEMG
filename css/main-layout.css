@@ -178,6 +178,26 @@ body {
     border-radius: 4px;
 }
 
+/* Skip-to-content link: off-screen until keyboard-focused (WCAG 2.4.1). */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100000;
+    padding: 10px 16px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 6px 0;
+}
+.skip-link:focus {
+    left: 0;
+}
+#app-root:focus {
+    outline: none; /* programmatic focus target for the skip link; no visible ring */
+}
+
 
 
 body::before {

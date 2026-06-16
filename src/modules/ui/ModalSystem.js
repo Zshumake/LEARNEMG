@@ -25,7 +25,7 @@ export class ModalSystem {
         const terrain = themeManager.getTerrainTheme(index, totalModules);
 
         const modalHTML = `
-            <div class="learning-modal-overlay active" id="enhanced-modal-${index}">
+            <div class="learning-modal-overlay active" id="enhanced-modal-${index}" role="dialog" aria-modal="true" aria-label="${(module.title || 'Learning module').replace(/"/g, '&quot;')}" tabindex="-1">
                 <div class="learning-modal" data-terrain="${terrain.theme}">
                     <!-- Journey Context Bar -->
                     <div class="journey-context-bar">
@@ -65,8 +65,10 @@ export class ModalSystem {
             this.activeModal.remove();
         }
 
+        this._lastFocus = document.activeElement; // remember the trigger for focus return
         document.body.insertAdjacentHTML('beforeend', modalHTML);
         this.activeModal = document.getElementById(`enhanced-modal-${index}`);
+        this._setupModalA11y(this.activeModal, index);
 
         // Load Content
         await this.loadModuleContent(module, index);
@@ -118,13 +120,39 @@ export class ModalSystem {
         }
     }
 
+    _setupModalA11y(modal, index) {
+        // Move focus into the dialog (close button = first sensible target).
+        const closeBtn = modal.querySelector('.modal-close-btn');
+        (closeBtn || modal).focus();
+        // Trap Tab within the dialog and close on Escape.
+        this._modalKeyHandler = (e) => {
+            if (e.key === 'Escape') { e.preventDefault(); this.closeModal(index); return; }
+            if (e.key !== 'Tab') return;
+            const f = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (!f.length) return;
+            const first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        modal.addEventListener('keydown', this._modalKeyHandler);
+    }
+
     closeModal(index) {
         const modal = document.getElementById(`enhanced-modal-${index}`);
         if (modal) {
+            if (this._modalKeyHandler) {
+                modal.removeEventListener('keydown', this._modalKeyHandler);
+                this._modalKeyHandler = null;
+            }
             modal.classList.remove('active');
             setTimeout(() => modal.remove(), 400);
         }
         this.activeModal = null;
+        // Return focus to whatever opened the modal (keyboard users land back on the tile).
+        if (this._lastFocus && typeof this._lastFocus.focus === 'function') {
+            this._lastFocus.focus();
+            this._lastFocus = null;
+        }
     }
 
 
