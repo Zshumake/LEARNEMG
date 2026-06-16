@@ -148,8 +148,14 @@ Ran 4 parallel read-only specialist audits across both apps, then fixed the safe
 - [x] **security: XSS hardening comment** locking in "escape-first, no attribute/URL transforms" in `ErnestChat.parseMarkdown` (the one LLM-output→innerHTML sink — audited as *not* currently vulnerable; comment guards against a future regression). Also `rel="noopener"` → `rel="noopener noreferrer"` on the AI-Studio link.
 - Verified: desktop boots clean (no console errors), 13 keyboard-focusable tiles, Enter-to-open works, all aria-labels present, focus-visible rule active.
 
-**DONE — FLUTTER (on-disk source only; gitignored on this deploy branch — needs commit to `main` + `flutter build web` redeploy to ship):**
-- [x] **Real bug: undisposed `TextEditingController`s** (memory leaks). Added `dispose()` to `_DifferentialStepState` (`clinical_cases_view.dart`) and `.then((_) => textController.dispose())` to the API-key dialog (`ernest_chat_overlay.dart`). `flutter analyze` on both files: **No issues found.**
+**DONE — FLUTTER (rebuilt `/mobile/` + deployed; commit `4bd271b`. NOTE: source `EMG_Mastery_Flutter/` is gitignored on the deploy branch — these source edits live on disk + a `/tmp` snapshot and still need committing to `main` to persist in git):**
+- [x] **Real bug: undisposed `TextEditingController`s** (memory leaks) — `dispose()` in `_DifferentialStepState` (`clinical_cases_view.dart`) + `.then((_) => textController.dispose())` on the API-key dialog (`ernest_chat_overlay.dart`).
+- [x] **Idiom: `dart fix --apply`** after enabling the const lints in `analysis_options.yaml` → **165 fixes in 14 files** (80 const added, 81 redundant const removed, 1 unused import, 1 deprecation).
+- [x] **Deprecation: all 29 `withOpacity(x)` → `withValues(alpha: x)`** across 5 files (value-preserving).
+- [x] **a11y: `tooltip:` on 11 icon-only IconButtons** (5 audio, close/back/clear across module_content_screen, plexus_explorer, clinical_cases, muscle_lab, topic_content, ernest_chat).
+- [x] **a11y: Ernest slide-out tab** → `Semantics(button, label)` + `HitTestBehavior.opaque` + transparent padding to a **≥48px tap target** (was an unlabeled 34px GestureDetector — the assistant was unreachable by screen readers).
+- [x] **Lint: `_SectionHeader` PascalCase methods** in `clinical_tables.dart` renamed to `_sectionHeader` (cleared `non_constant_identifier_names`).
+- Verified: `flutter analyze` → **No issues found** (was 32 infos); `dart format` applied; `flutter build web` clean; `main.dart.js` rebuilt (~36k-line delta) and synced into `mobile/`; mobile `?v=` cache-buster bumped to `20260616-deploy`.
 
 **Audit headlines / reassurances:**
 - **Security: no working XSS, no key leak, no open redirect, no eval/document.write/postMessage.** The Ernest LLM-output path escapes-first and emits only attribute-less tags — safe. The Gemini key only ever goes to `generativelanguage.googleapis.com`, never logged/DOM'd.
@@ -157,4 +163,5 @@ Ran 4 parallel read-only specialist audits across both apps, then fixed the safe
 
 **DEFERRED — prioritized menu (bigger churn or needs a Flutter rebuild+deploy):**
 - WEB refactors: extract the 555-line `EMGChallenge.js` `<style>` into `css/`; de-dupe the mascot SVG (AppShell + ErnestUI + ErnestIcon, ~330 lines); adopt the **already-defined** `:root` palette token-by-token (52% of 3,168 hex literals map to existing vars); migrate the last 5 inline `onclick` (all in `PlexusManager.js`) to `data-action`; full modal focus-trap (role=dialog/aria-modal/focus-return/Escape) on the learning modal; landmarks (`<main>`/`<nav>`) + skip link; remaining input `aria-label`s (clinical/plexus/report search boxes).
-- FLUTTER (batch into one rebuild): turn on `prefer_const_constructors` + `dart fix --apply` (182 const sites + 29 `withOpacity`→`withValues`); point ~290 `Color(0xFF…)` literals at the existing `AppTheme`; extract duplicated `_SectionCard`/`_SmallInfoCard`/`_buildHero` into `core/widgets/`; split the 2,032-line `muscle_lab_view.dart`; `tooltip:` on the 10 unlabeled IconButtons + `Semantics` on the Ernest slide-out tab (and widen it to ≥48px); `_SectionHeader` method→`const` widget.
+- FLUTTER remaining (maintainability, not user-facing — best done with visual diffing, then one rebuild): point ~290 `Color(0xFF…)` literals at the existing `AppTheme` (+ add the missing slate ramp); extract the duplicated `_SectionCard`/`_SmallInfoCard`/`_buildHero` into shared `core/widgets/`; split the 2,032-line `muscle_lab_view.dart` into study-cards/quiz/challenge files.
+- SOURCE PERSISTENCE: commit the current `EMG_Mastery_Flutter/` disk source (this pass + the earlier WebP work) to `main` so it's not lost — `main` is stale (pre-WebP).
