@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 /// Types of EMG waveforms that can be rendered.
 enum WaveformType {
@@ -56,7 +57,7 @@ const _meta = <WaveformType, _WaveformMeta>{
     sound: 'Dive bomber',
     description:
         'Waxing and waning amplitude and frequency (20-100 Hz). Due to abnormal muscle membrane ion channel function. Seen in myotonic dystrophy, myotonia congenita, paramyotonia, acid maltase deficiency.',
-    traceColor: Color(0xFFF59E0B),
+    traceColor: AppTheme.warning,
   ),
   WaveformType.fasciculation: _WaveformMeta(
     title: 'Fasciculation Potential',
@@ -69,14 +70,14 @@ const _meta = <WaveformType, _WaveformMeta>{
     sound: 'Crisp thud',
     description:
         'Triphasic morphology, 5-15 ms duration, 0.1-2 mV amplitude, 2-4 phases. Represents synchronized firing of all muscle fibers in one motor unit. Rise time <500 us indicates electrode is close to the discharging fibers.',
-    traceColor: Color(0xFF3B82F6),
+    traceColor: AppTheme.info,
   ),
   WaveformType.neuropathicMuap: _WaveformMeta(
     title: 'Neuropathic MUAP',
     sound: 'Thick thud',
     description:
         'Long duration (>15 ms), high amplitude (>2 mV), polyphasic (>4 phases). Represents collateral sprouting -- surviving motor neurons adopt orphaned muscle fibers, enlarging the motor unit territory.',
-    traceColor: Color(0xFFEF4444),
+    traceColor: AppTheme.danger,
   ),
   WaveformType.myopathicMuap: _WaveformMeta(
     title: 'Myopathic MUAP',
@@ -109,7 +110,7 @@ const _meta = <WaveformType, _WaveformMeta>{
     sound: 'N/A',
     description:
         '>100% increase in CMAP amplitude after brief exercise or high-rate stimulation. Hallmark of Lambert-Eaton myasthenic syndrome (presynaptic NMJ disorder).',
-    traceColor: Color(0xFF10B981),
+    traceColor: AppTheme.success,
   ),
 };
 
@@ -144,7 +145,7 @@ class _WaveformCardState extends State<WaveformCard> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A),
+        color: AppTheme.slate950,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: m.traceColor.withValues(alpha: 0.3)),
       ),

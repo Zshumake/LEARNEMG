@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 /// A node in a clinical decision tree.
 class TreeNode {
@@ -226,7 +227,7 @@ class _DecisionTreeState extends State<DecisionTree> {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF1E293B),
+            color: AppTheme.textHeading,
             height: 1.4,
           ),
         ),
@@ -238,7 +239,7 @@ class _DecisionTreeState extends State<DecisionTree> {
             Expanded(
               child: _BranchButton(
                 label: node.yesLabel ?? 'Yes',
-                color: const Color(0xFF10B981),
+                color: AppTheme.success,
                 onTap: () => _choose(true),
               ),
             ),
@@ -246,7 +247,7 @@ class _DecisionTreeState extends State<DecisionTree> {
             Expanded(
               child: _BranchButton(
                 label: node.noLabel ?? 'No',
-                color: const Color(0xFFEF4444),
+                color: AppTheme.danger,
                 onTap: () => _choose(false),
               ),
             ),

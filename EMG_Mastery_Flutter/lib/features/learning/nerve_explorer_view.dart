@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/nerve_pathway_data.dart';
 import '../../data/models/nerve_pathway_content.dart';
+import '../../core/theme/app_theme.dart';
 
 /// The main "Pathway Explorer" view for the Peripheral Nerve Anatomy module.
 /// Mobile-adapted: list of nerves → tappable → detail page with story + timeline.
@@ -39,10 +40,10 @@ class NerveExplorerView extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFFF8FAFC), Color(0xFFF1F5F9)],
+          colors: [AppTheme.light, AppTheme.slate100],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.04),
@@ -61,7 +62,7 @@ class NerveExplorerView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.6,
             ),
           ),
@@ -69,7 +70,7 @@ class NerveExplorerView extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: const Color(0xFFF1F5F9),
+              color: AppTheme.slate100,
               borderRadius: BorderRadius.circular(12),
               border: const Border(
                 left: BorderSide(color: Color(0xFF6366F1), width: 4),
@@ -79,7 +80,7 @@ class NerveExplorerView extends StatelessWidget {
               '💡 An isolated nerve injury happened because the nerve was squeezed against a specific bone or ligament. Master the pinch points, and the diagnosis makes itself.',
               style: TextStyle(
                 fontSize: 13,
-                color: Color(0xFF334155),
+                color: AppTheme.textMain,
                 height: 1.5,
                 fontWeight: FontWeight.w500,
               ),
@@ -98,7 +99,7 @@ class NerveExplorerView extends StatelessWidget {
         style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w800,
-          color: Color(0xFF64748B),
+          color: AppTheme.textMuted,
           letterSpacing: 1.2,
         ),
       ),
@@ -125,7 +126,7 @@ class NerveExplorerView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFFF1F5F9)),
+              border: Border.all(color: AppTheme.slate100),
             ),
             child: Row(
               children: [
@@ -146,7 +147,7 @@ class NerveExplorerView extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF475569),
+                      color: AppTheme.slate600,
                     ),
                   ),
                 ),
@@ -157,7 +158,7 @@ class NerveExplorerView extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF1F5F9),
+                    color: AppTheme.slate100,
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -165,7 +166,7 @@ class NerveExplorerView extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF64748B),
+                      color: AppTheme.textMuted,
                     ),
                   ),
                 ),
@@ -321,7 +322,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 16,
-                          color: Color(0xFF475569),
+                          color: AppTheme.slate600,
                         ),
                       ),
                     ],
@@ -332,7 +333,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                     style: const TextStyle(
                       fontSize: 15,
                       height: 1.7,
-                      color: Color(0xFF334155),
+                      color: AppTheme.textMain,
                     ),
                   ),
                 ],
@@ -348,7 +349,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: const Color(0xFFE2E8F0)),
+                  border: Border.all(color: AppTheme.border),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.04),
@@ -419,7 +420,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 12,
-                      color: Color(0xFF64748B),
+                      color: AppTheme.textMuted,
                       letterSpacing: 1.2,
                     ),
                   ),
@@ -429,7 +430,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                     style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 13,
-                      color: Color(0xFF0F172A),
+                      color: AppTheme.slate950,
                     ),
                   ),
                 ],
@@ -471,8 +472,8 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                           ? () => setState(() => _currentStep--)
                           : null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFF1F5F9),
-                        foregroundColor: const Color(0xFF475569),
+                        backgroundColor: AppTheme.slate100,
+                        foregroundColor: AppTheme.slate600,
                         elevation: 0,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
@@ -550,7 +551,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                       border: Border.all(
                         color: (isPast || isActive)
                             ? themeColor
-                            : const Color(0xFFCBD5E1),
+                            : AppTheme.slate300,
                         width: 3,
                       ),
                       boxShadow: isActive
@@ -568,7 +569,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                     Expanded(
                       child: Container(
                         width: 2,
-                        color: isPast ? themeColor : const Color(0xFFCBD5E1),
+                        color: isPast ? themeColor : AppTheme.slate300,
                       ),
                     ),
                 ],
@@ -585,7 +586,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: isActive ? themeColor : const Color(0xFFE2E8F0),
+                    color: isActive ? themeColor : AppTheme.border,
                     width: isActive ? 2 : 1,
                   ),
                   boxShadow: isActive
@@ -644,7 +645,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                       style: const TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 15,
-                        color: Color(0xFF0F172A),
+                        color: AppTheme.slate950,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -652,7 +653,7 @@ class _NerveDetailViewState extends State<NerveDetailView> {
                       step.description,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF475569),
+                        color: AppTheme.slate600,
                         height: 1.6,
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/models/topic_content_model.dart';
+import '../../core/theme/app_theme.dart';
 
 // Import any specific widgets needed for custom blocks, or define them here.
 // For now, I'll inline the generic block renderers.
@@ -27,10 +28,10 @@ class TopicContentView extends StatelessWidget {
           ],
           bottom: TabBar(
             isScrollable: true,
-            indicatorColor: const Color(0xFF3B82F6),
+            indicatorColor: AppTheme.info,
             indicatorWeight: 3,
-            labelColor: const Color(0xFF3B82F6),
-            unselectedLabelColor: const Color(0xFF94A3B8),
+            labelColor: AppTheme.info,
+            unselectedLabelColor: AppTheme.slate400,
             labelStyle: const TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 13,
@@ -90,7 +91,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
         style: const TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.w900,
-          color: Color(0xFF0F172A),
+          color: AppTheme.slate950,
           letterSpacing: -0.5,
         ),
       );
@@ -100,8 +101,8 @@ class _TopicTabContentState extends State<_TopicTabContent>
         style: TextStyle(
           fontSize: block.isIntro ? 15 : 14,
           color: block.isIntro
-              ? const Color(0xFF475569)
-              : const Color(0xFF334155),
+              ? AppTheme.slate600
+              : AppTheme.textMain,
           height: 1.6,
         ),
       );
@@ -117,7 +118,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
           border: Border.all(color: const Color(0xFFBFDBFE)),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF3B82F6).withValues(alpha: 0.1),
+              color: AppTheme.info.withValues(alpha: 0.1),
               blurRadius: 15,
               offset: const Offset(0, 4),
             ),
@@ -191,7 +192,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
                         pt,
                         style: const TextStyle(
                           fontSize: 13,
-                          color: Color(0xFF334155),
+                          color: AppTheme.textMain,
                           height: 1.5,
                         ),
                       ),
@@ -209,7 +210,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFFE2E8F0)),
+          border: Border.all(color: AppTheme.border),
           boxShadow: [
             BoxShadow(
               color: block.themeColor.withValues(alpha: 0.05),
@@ -264,7 +265,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
                           block.subtitle,
                           style: const TextStyle(
                             fontSize: 13,
-                            color: Color(0xFF64748B),
+                            color: AppTheme.textMuted,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -331,7 +332,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
                         entry.value,
                         style: const TextStyle(
                           fontSize: 14,
-                          color: Color(0xFF334155),
+                          color: AppTheme.textMain,
                           height: 1.5,
                         ),
                       ),
@@ -348,8 +349,8 @@ class _TopicTabContentState extends State<_TopicTabContent>
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: const Color(0xFFF1F5F9),
-          border: Border.all(color: const Color(0xFFCBD5E1)),
+          color: AppTheme.slate100,
+          border: Border.all(color: AppTheme.slate300),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
@@ -357,7 +358,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
             "[ Legacy Custom Widget: ${block.type.name} ]\nThis block will be replaced with its native Flutter Table/Grid equivalent.",
             textAlign: TextAlign.center,
             style: const TextStyle(
-              color: Color(0xFF64748B),
+              color: AppTheme.textMuted,
               fontStyle: FontStyle.italic,
             ),
           ),
@@ -389,7 +390,7 @@ class _TopicTabContentState extends State<_TopicTabContent>
             text,
             style: const TextStyle(
               fontSize: 13,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.5,
             ),
           ),

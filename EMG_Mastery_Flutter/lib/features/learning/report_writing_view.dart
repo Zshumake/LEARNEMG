@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/models/report_writing_model.dart';
 import '../../data/report_writing_data.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
+import '../../core/theme/app_theme.dart';
 
 class ReportWritingView extends StatefulWidget {
   const ReportWritingView({super.key});
@@ -26,9 +27,9 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                 Tab(text: "Interactive Tutorial"),
                 Tab(text: "Ideal Reports"),
               ],
-              labelColor: Color(0xFF3B82F6),
-              unselectedLabelColor: Color(0xFF64748B),
-              indicatorColor: Color(0xFF3B82F6),
+              labelColor: AppTheme.info,
+              unselectedLabelColor: AppTheme.textMuted,
+              indicatorColor: AppTheme.info,
               indicatorWeight: 3,
               labelStyle: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -72,7 +73,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFF1F5F9)),
+        border: Border.all(color: AppTheme.slate100),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.04),
@@ -89,7 +90,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF0F172A),
+              color: AppTheme.slate950,
               letterSpacing: -0.5,
             ),
           ),
@@ -98,7 +99,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
             ReportWritingData.description,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               fontSize: 15,
               height: 1.6,
             ),
@@ -134,7 +135,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                       ? color
                       : (isCompleted
                             ? color.withValues(alpha: 0.3)
-                            : const Color(0xFFE2E8F0)),
+                            : AppTheme.border),
                   width: 2,
                 ),
               ),
@@ -154,7 +155,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                         fontWeight: FontWeight.bold,
                         color: isActive
                             ? Colors.white
-                            : const Color(0xFF94A3B8),
+                            : AppTheme.slate400,
                       ),
                     ),
                   const SizedBox(height: 4),
@@ -163,7 +164,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
-                      color: isActive ? Colors.white : const Color(0xFF64748B),
+                      color: isActive ? Colors.white : AppTheme.textMuted,
                     ),
                   ),
                 ],
@@ -218,7 +219,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w900,
-                      color: Color(0xFF0F172A),
+                      color: AppTheme.slate950,
                     ),
                   ),
                 ],
@@ -234,7 +235,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF64748B),
+            color: AppTheme.textMuted,
             letterSpacing: 1,
           ),
         ),
@@ -252,7 +253,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
     return Container(
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: AppTheme.light,
         borderRadius: BorderRadius.circular(16),
         border: Border(left: BorderSide(color: color, width: 5)),
       ),
@@ -269,7 +270,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                   style: const TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 14,
-                    color: Color(0xFF1E293B),
+                    color: AppTheme.textHeading,
                   ),
                 ),
               ),
@@ -279,7 +280,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
           Text(
             step.keyRequirementDescription,
             style: const TextStyle(
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               fontSize: 15,
               height: 1.6,
             ),
@@ -318,7 +319,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                 Text(
                   tip.text,
                   style: const TextStyle(
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     fontSize: 14,
                     height: 1.5,
                   ),
@@ -335,9 +336,9 @@ class _ReportWritingViewState extends State<ReportWritingView> {
     return Container(
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-        color: const Color(0xFFF1F5F9),
+        color: AppTheme.slate100,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +352,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                 style: const TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 15,
-                  color: Color(0xFF1E293B),
+                  color: AppTheme.textHeading,
                 ),
               ),
             ],
@@ -360,7 +361,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
           Text(
             pearl.content,
             style: const TextStyle(
-              color: Color(0xFF0F172A),
+              color: AppTheme.slate950,
               fontSize: 14,
               height: 1.6,
               fontStyle: FontStyle.italic,
@@ -378,21 +379,21 @@ class _ReportWritingViewState extends State<ReportWritingView> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 2),
+        border: Border.all(color: AppTheme.border, width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Row(
             children: [
-              Icon(Icons.article_outlined, color: Color(0xFF64748B), size: 24),
+              Icon(Icons.article_outlined, color: AppTheme.textMuted, size: 24),
               SizedBox(width: 10),
               Text(
                 "PROPER DOCUMENTATION EXAMPLE",
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 14,
-                  color: Color(0xFF1E293B),
+                  color: AppTheme.textHeading,
                 ),
               ),
             ],
@@ -420,7 +421,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                             fontFamily: 'Courier',
                             fontWeight: FontWeight.w900,
                             fontSize: 13,
-                            color: Color(0xFF1E293B),
+                            color: AppTheme.textHeading,
                           ),
                         ),
                       );
@@ -432,7 +433,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                           style: const TextStyle(
                             fontFamily: 'Courier',
                             fontSize: 13,
-                            color: Color(0xFF475569),
+                            color: AppTheme.slate600,
                           ),
                         ),
                       );
@@ -442,7 +443,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                         style: const TextStyle(
                           fontFamily: 'Courier',
                           fontSize: 13,
-                          color: Color(0xFF334155),
+                          color: AppTheme.textMain,
                           height: 1.5,
                         ),
                       );
@@ -465,9 +466,9 @@ class _ReportWritingViewState extends State<ReportWritingView> {
             onPressed: () => setState(() => _currentStepIdx--),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
-              foregroundColor: const Color(0xFF475569),
+              foregroundColor: AppTheme.slate600,
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              side: const BorderSide(color: Color(0xFFCBD5E1)),
+              side: const BorderSide(color: AppTheme.slate300),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -488,7 +489,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF3B82F6),
+            backgroundColor: AppTheme.info,
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             shape: RoundedRectangleBorder(
@@ -524,7 +525,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                 Text(
                   "Review these correctly phrased final impressions based on specific electrophysiological findings to master your phrasing.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xFF64748B), fontSize: 15),
+                  style: TextStyle(color: AppTheme.textMuted, fontSize: 15),
                 ),
               ],
             ),
@@ -543,7 +544,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.03),
@@ -585,9 +586,9 @@ class _ReportWritingViewState extends State<ReportWritingView> {
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFF8FAFC),
+              color: AppTheme.light,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFFE2E8F0)),
+              border: Border.all(color: AppTheme.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -597,7 +598,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                     letterSpacing: 1,
                   ),
                 ),
@@ -606,7 +607,7 @@ class _ReportWritingViewState extends State<ReportWritingView> {
                   scenario.finding,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF334155),
+                    color: AppTheme.textMain,
                     height: 1.5,
                   ),
                 ),

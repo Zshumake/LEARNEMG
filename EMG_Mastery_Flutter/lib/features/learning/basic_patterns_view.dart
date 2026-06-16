@@ -7,6 +7,7 @@ import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/widgets/video_player_widget.dart';
 import '../../core/widgets/waveform_card.dart';
+import '../../core/theme/app_theme.dart';
 
 class BasicPatternsView extends StatelessWidget {
   const BasicPatternsView({super.key});
@@ -18,9 +19,9 @@ class BasicPatternsView extends StatelessWidget {
       child: ScrollableModuleScaffold(
         headerSlivers: [_buildHero()],
         tabBar: const TabBar(
-          indicatorColor: Color(0xFFF59E0B),
-          labelColor: Color(0xFFF59E0B),
-          unselectedLabelColor: Color(0xFF94A3B8),
+          indicatorColor: AppTheme.warning,
+          labelColor: AppTheme.warning,
+          unselectedLabelColor: AppTheme.slate400,
           labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
           tabs: [
             Tab(text: 'Pattern Library'),
@@ -43,7 +44,7 @@ class BasicPatternsView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+          colors: [AppTheme.warning, Color(0xFFD97706)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -101,7 +102,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
             "Pattern Recognition Library",
             "Master EMG patterns through real-time video demonstrations.",
             Icons.video_library_rounded,
-            const Color(0xFFF59E0B),
+            AppTheme.warning,
           ),
           const SizedBox(height: 20),
           _buildPatternCategory(
@@ -136,12 +137,12 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFF8FAFC), Color(0xFFF1F5F9)],
+          colors: [AppTheme.light, AppTheme.slate100],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 2),
+        border: Border.all(color: AppTheme.border, width: 2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -158,7 +159,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w800,
-              color: Color(0xFF0F172A),
+              color: AppTheme.slate950,
             ),
           ),
           SizedBox(height: 15),
@@ -166,7 +167,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
             PatternData.objectives,
             style: TextStyle(
               fontSize: 16,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.6,
               fontWeight: FontWeight.w500,
             ),
@@ -182,7 +183,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 2),
+        border: Border.all(color: AppTheme.border, width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +201,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF0F172A),
+                  color: AppTheme.slate950,
                 ),
               ),
             ],
@@ -236,14 +237,14 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                   text: "${item.label}: ",
                   style: const TextStyle(
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF334155),
+                    color: AppTheme.textMain,
                     fontSize: 15,
                   ),
                 ),
                 TextSpan(
                   text: item.desc,
                   style: const TextStyle(
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     fontSize: 15,
                     height: 1.5,
                   ),
@@ -274,7 +275,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
-                  color: Color(0xFF0F172A),
+                  color: AppTheme.slate950,
                 ),
               ),
             ),
@@ -285,7 +286,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
           "Tap any waveform to see its clinical significance. Learn the morphology that defines each discharge type.",
           style: TextStyle(
             fontSize: 14,
-            color: Color(0xFF64748B),
+            color: AppTheme.textMuted,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -386,7 +387,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF0F172A),
+                color: AppTheme.slate950,
               ),
             ),
           ],
@@ -396,7 +397,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
           subtitle,
           style: const TextStyle(
             fontSize: 16,
-            color: Color(0xFF64748B),
+            color: AppTheme.textMuted,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -457,7 +458,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 2),
+        border: Border.all(color: AppTheme.border, width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -475,7 +476,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF0F172A),
+                  color: AppTheme.slate950,
                 ),
               ),
             ],
@@ -484,7 +485,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
-              headingRowColor: WidgetStateProperty.all(const Color(0xFFF8FAFC)),
+              headingRowColor: WidgetStateProperty.all(AppTheme.light),
               columns: const [
                 DataColumn(
                   label: Text(
@@ -562,7 +563,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF0F172A),
+                color: AppTheme.slate950,
               ),
             ),
           ],
@@ -577,7 +578,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
 
   Widget _buildCaseCard(CaseScenario caseStudy) {
     final color = caseStudy.id == 'case1'
-        ? const Color(0xFFEF4444)
+        ? AppTheme.danger
         : const Color(0xFF8B5CF6);
     return Container(
       margin: const EdgeInsets.only(bottom: 25),
@@ -602,7 +603,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w800,
-              color: Color(0xFF1E293B),
+              color: AppTheme.textHeading,
             ),
           ),
           const SizedBox(height: 15),
@@ -613,14 +614,14 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                   text: "Clinical: ",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF334155),
+                    color: AppTheme.textMain,
                     fontSize: 15,
                   ),
                 ),
                 TextSpan(
                   text: caseStudy.clinical,
                   style: const TextStyle(
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     fontSize: 15,
                     height: 1.5,
                   ),
@@ -636,14 +637,14 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                   text: "EMG Findings: ",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF334155),
+                    color: AppTheme.textMain,
                     fontSize: 15,
                   ),
                 ),
                 TextSpan(
                   text: caseStudy.findings,
                   style: const TextStyle(
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     fontSize: 15,
                     height: 1.5,
                   ),
@@ -691,7 +692,7 @@ class _PatternLibraryTabState extends State<_PatternLibraryTab> {
                           child: Text(
                             f,
                             style: const TextStyle(
-                              color: Color(0xFF475569),
+                              color: AppTheme.slate600,
                               fontSize: 14,
                               height: 1.4,
                             ),
@@ -722,7 +723,7 @@ class _PatternVideoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 2),
+        border: Border.all(color: AppTheme.border, width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -732,7 +733,7 @@ class _PatternVideoCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             decoration: const BoxDecoration(
               color: Color(0xFFFAFAFA),
-              border: Border(bottom: BorderSide(color: Color(0xFFE2E8F0))),
+              border: Border(bottom: BorderSide(color: AppTheme.border)),
               borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
             ),
             child: Text(
@@ -740,7 +741,7 @@ class _PatternVideoCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF0F172A),
+                color: AppTheme.slate950,
               ),
             ),
           ),
@@ -753,7 +754,7 @@ class _PatternVideoCard extends StatelessWidget {
                 Text(
                   pattern.description,
                   style: const TextStyle(
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     fontSize: 15,
                     height: 1.6,
                   ),
@@ -772,7 +773,7 @@ class _PatternVideoCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: AppTheme.light,
         borderRadius: BorderRadius.circular(12),
         border: Border(left: BorderSide(color: accentColor, width: 4)),
       ),
@@ -799,14 +800,14 @@ class _PatternVideoCard extends StatelessWidget {
                       text: "${pearl.label}: ",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF334155),
+                        color: AppTheme.textMain,
                         fontSize: 14,
                       ),
                     ),
                     TextSpan(
                       text: pearl.value,
                       style: const TextStyle(
-                        color: Color(0xFF475569),
+                        color: AppTheme.slate600,
                         fontSize: 14,
                         height: 1.4,
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/models/plexus_graph_data.dart';
 import '../../logic/plexus_logic.dart';
+import '../../core/theme/app_theme.dart';
 
 /// Full interactive Plexus Anatomy explorer — ported from PlexusManager + PlexusRenderer.
 /// Features: switchable Brachial/Lumbosacral, Discovery/Lesion modes, interactive graph.
@@ -242,7 +243,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: const BoxDecoration(
         color: Colors.white,
-        border: Border(bottom: BorderSide(color: Color(0xFFF1F5F9))),
+        border: Border(bottom: BorderSide(color: AppTheme.slate100)),
       ),
       child: Column(
         children: [
@@ -254,7 +255,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF64748B),
+                  color: AppTheme.textMuted,
                   letterSpacing: 1.0,
                 ),
               ),
@@ -293,7 +294,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-          color: isActive ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9),
+          color: isActive ? AppTheme.textHeading : AppTheme.slate100,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
@@ -301,7 +302,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w700,
-            color: isActive ? Colors.white : const Color(0xFF64748B),
+            color: isActive ? Colors.white : AppTheme.textMuted,
           ),
         ),
       ),
@@ -321,12 +322,12 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          color: isActive ? const Color(0xFF3B82F6) : const Color(0xFFF1F5F9),
+          color: isActive ? AppTheme.info : AppTheme.slate100,
           borderRadius: BorderRadius.circular(10),
           boxShadow: isActive
               ? [
                   BoxShadow(
-                    color: const Color(0xFF3B82F6).withValues(alpha: 0.3),
+                    color: AppTheme.info.withValues(alpha: 0.3),
                     blurRadius: 8,
                   ),
                 ]
@@ -338,7 +339,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
             Icon(
               icon,
               size: 16,
-              color: isActive ? Colors.white : const Color(0xFF64748B),
+              color: isActive ? Colors.white : AppTheme.textMuted,
             ),
             const SizedBox(width: 6),
             Text(
@@ -346,7 +347,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
-                color: isActive ? Colors.white : const Color(0xFF64748B),
+                color: isActive ? Colors.white : AppTheme.textMuted,
               ),
             ),
           ],
@@ -368,7 +369,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.95),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -392,7 +393,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                   style: const TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF94A3B8),
+                    color: AppTheme.slate400,
                   ),
                 ),
               ],
@@ -423,7 +424,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
           height: 4,
           margin: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: const Color(0xFFE2E8F0),
+            color: AppTheme.border,
             borderRadius: BorderRadius.circular(2),
           ),
         ),
@@ -442,7 +443,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF1E293B),
+                          color: AppTheme.textHeading,
                         ),
                       ),
                     ),
@@ -458,7 +459,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                   style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -467,17 +468,17 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                   Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF8FAFC),
+                      color: AppTheme.light,
                       borderRadius: BorderRadius.circular(12),
                       border: const Border(
-                        left: BorderSide(color: Color(0xFF3B82F6), width: 4),
+                        left: BorderSide(color: AppTheme.info, width: 4),
                       ),
                     ),
                     child: Text(
                       node.description!,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF475569),
+                        color: AppTheme.slate600,
                         height: 1.6,
                       ),
                     ),
@@ -490,7 +491,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w800,
-                      color: Color(0xFF1E293B),
+                      color: AppTheme.textHeading,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -552,7 +553,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
           height: 4,
           margin: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: const Color(0xFFE2E8F0),
+            color: AppTheme.border,
             borderRadius: BorderRadius.circular(2),
           ),
         ),
@@ -571,7 +572,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF1E293B),
+                          color: AppTheme.textHeading,
                         ),
                       ),
                     ),
@@ -658,7 +659,7 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Row(
         children: [
@@ -667,13 +668,13 @@ class _PlexusExplorerViewState extends State<PlexusExplorerView> {
             style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF64748B),
+              color: AppTheme.textMuted,
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: const TextStyle(fontSize: 13, color: Color(0xFF1E293B)),
+              style: const TextStyle(fontSize: 13, color: AppTheme.textHeading),
             ),
           ),
         ],
@@ -746,7 +747,7 @@ class _PlexusGraphPainter extends CustomPainter {
           style: TextStyle(
             fontSize: 9,
             fontWeight: FontWeight.w600,
-            color: const Color(0xFF334155).withValues(alpha: opacity),
+            color: AppTheme.textMain.withValues(alpha: opacity),
           ),
         ),
         textDirection: TextDirection.ltr,

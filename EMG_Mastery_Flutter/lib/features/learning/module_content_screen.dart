@@ -82,10 +82,10 @@ class ModuleContentScreen extends StatelessWidget {
               ),
             ],
             bottom: const TabBar(
-              indicatorColor: Color(0xFF3B82F6),
+              indicatorColor: AppTheme.info,
               indicatorWeight: 3,
-              labelColor: Color(0xFF3B82F6),
-              unselectedLabelColor: Color(0xFF94A3B8),
+              labelColor: AppTheme.info,
+              unselectedLabelColor: AppTheme.slate400,
               labelStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
               tabs: [
                 Tab(text: 'Clinical Pathophysiology'),

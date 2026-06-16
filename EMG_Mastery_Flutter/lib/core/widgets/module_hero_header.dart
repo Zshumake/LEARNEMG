@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 /// Shared hero header used at the top of every learning module.
 /// Provides a consistent gradient banner with title and subtitle.
@@ -28,7 +29,7 @@ class ModuleHeroHeader extends StatelessWidget {
 
     final isLight =
         ThemeData.estimateBrightnessForColor(color) == Brightness.light;
-    final textColor = isLight ? const Color(0xFF1E293B) : Colors.white;
+    final textColor = isLight ? AppTheme.textHeading : Colors.white;
 
     return Container(
       width: double.infinity,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../features/ernest/widgets/ernest_chat_overlay.dart';
 import '../../features/ernest/ernest_controller.dart';
+import '../theme/app_theme.dart';
 
 /// Animated Ernest character widget that renders the SVG stimulator mascot
 /// with idle bounce, blinking eyes, LED pulse, prong wobble, and zap line
@@ -314,7 +315,7 @@ class _AnimatedErnestWidgetState extends State<AnimatedErnestWidget>
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 13,
-                              color: Color(0xFF334155),
+                              color: AppTheme.textMain,
                               fontWeight: FontWeight.w600,
                             ),
                           ),

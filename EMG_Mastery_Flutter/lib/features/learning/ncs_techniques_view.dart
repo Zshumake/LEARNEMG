@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/quiz_model.dart';
 import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/video_player_widget.dart';
+import '../../core/theme/app_theme.dart';
 
 /// NCS Techniques teaching module.
 /// Ported from NCSTechniquesData.js and Techniques.js.
@@ -160,7 +161,7 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
             title,
             style: TextStyle(
               fontWeight: FontWeight.w800,
-              color: isActive ? Colors.white : const Color(0xFF64748B),
+              color: isActive ? Colors.white : AppTheme.textMuted,
               fontSize: 14,
             ),
           ),
@@ -176,7 +177,7 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.02),
@@ -195,7 +196,7 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF0F172A),
+                  color: AppTheme.slate950,
                 ),
               ),
             ],
@@ -205,7 +206,7 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
             'Before diving into specific nerves, understand the universal rule of NCS: G1 represents the recording electrode, and G2 represents the reference electrode.',
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.6,
             ),
           ),
@@ -235,9 +236,9 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: AppTheme.light,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFCBD5E1)),
+        border: Border.all(color: AppTheme.slate300),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,7 +256,7 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
             desc,
             style: const TextStyle(
               fontSize: 12,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.5,
             ),
           ),
@@ -291,13 +292,13 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
         decoration: BoxDecoration(
           color: isActive ? color.withValues(alpha: 0.1) : Colors.transparent,
           borderRadius: BorderRadius.circular(30),
-          border: Border.all(color: isActive ? color : const Color(0xFFE2E8F0)),
+          border: Border.all(color: isActive ? color : AppTheme.border),
         ),
         child: Text(
           title,
           style: TextStyle(
             fontWeight: isActive ? FontWeight.w800 : FontWeight.w600,
-            color: isActive ? color : const Color(0xFF64748B),
+            color: isActive ? color : AppTheme.textMuted,
             fontSize: 13,
           ),
         ),
@@ -361,14 +362,14 @@ class _NCSTechniquesViewState extends State<NCSTechniquesView> {
       padding: const EdgeInsets.only(bottom: 15, top: 10),
       width: double.infinity,
       decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: Color(0xFFE2E8F0), width: 2)),
+        border: Border(bottom: BorderSide(color: AppTheme.border, width: 2)),
       ),
       child: Text(
         title,
         style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w900,
-          color: Color(0xFF0F172A),
+          color: AppTheme.slate950,
         ),
       ),
     );
@@ -395,7 +396,7 @@ class _VideoCard extends StatelessWidget {
             blurRadius: 10,
           ),
         ],
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -428,7 +429,7 @@ class _VideoCard extends StatelessWidget {
               video.title,
               style: const TextStyle(
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF0F172A),
+                color: AppTheme.slate950,
                 fontSize: 14,
               ),
               maxLines: 1,
@@ -492,7 +493,7 @@ class _ProtocolCardState extends State<_ProtocolCard> {
             blurRadius: 10,
           ),
         ],
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -579,7 +580,7 @@ class _ProtocolCardState extends State<_ProtocolCard> {
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF0F172A),
+                    color: AppTheme.slate950,
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -588,7 +589,7 @@ class _ProtocolCardState extends State<_ProtocolCard> {
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                     letterSpacing: 1,
                   ),
                 ),
@@ -598,7 +599,7 @@ class _ProtocolCardState extends State<_ProtocolCard> {
                   style: const TextStyle(
                     fontSize: 14,
                     height: 1.6,
-                    color: Color(0xFF334155),
+                    color: AppTheme.textMain,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -639,7 +640,7 @@ class _ProtocolCardState extends State<_ProtocolCard> {
                         protocol.pearl,
                         style: const TextStyle(
                           fontSize: 13,
-                          color: Color(0xFF475569),
+                          color: AppTheme.slate600,
                           height: 1.5,
                           fontWeight: FontWeight.w500,
                         ),

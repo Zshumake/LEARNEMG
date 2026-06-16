@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'models/nerve_pathway_content.dart';
+import '../core/theme/app_theme.dart';
 
 /// Complete nerve pathway data ported from PathwayData.js
 class NervePathwayData {
@@ -258,7 +259,7 @@ class NervePathwayData {
     id: 'sciatic',
     name: 'Sciatic Nerve',
     roots: 'L4-S3',
-    themeColor: Color(0xFF0F172A),
+    themeColor: AppTheme.slate950,
     themeColorDark: Color(0xFF020617),
     imagePath: 'assets/images/pathways/Sciatic Nerve.webp',
     story:

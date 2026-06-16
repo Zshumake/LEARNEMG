@@ -4,6 +4,7 @@ import '../../core/widgets/quiz_session_view.dart';
 import '../../core/widgets/keep_alive_tab_wrapper.dart';
 import '../../data/needle_localization_data.dart';
 import '../../data/models/needle_localization_model.dart';
+import '../../core/theme/app_theme.dart';
 
 /// EMG Needle Localization teaching module.
 class NeedleLocalizationView extends StatelessWidget {
@@ -21,7 +22,7 @@ class NeedleLocalizationView extends StatelessWidget {
             child: const TabBar(
               indicatorColor: Color(0xFF4F46E5),
               labelColor: Color(0xFF4F46E5),
-              unselectedLabelColor: Color(0xFF94A3B8),
+              unselectedLabelColor: AppTheme.slate400,
               labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
               tabs: [
                 Tab(text: 'Anatomy Atlas'),
@@ -159,7 +160,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
           border: Border.all(
             color: isSelected
                 ? const Color(0xFF4F46E5)
-                : const Color(0xFFE2E8F0),
+                : AppTheme.border,
           ),
         ),
         child: Row(
@@ -168,14 +169,14 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
             Icon(
               icon,
               size: 18,
-              color: isSelected ? Colors.white : const Color(0xFF64748B),
+              color: isSelected ? Colors.white : AppTheme.textMuted,
             ),
             const SizedBox(width: 8),
             Text(
               label,
               style: TextStyle(
                 fontWeight: FontWeight.w800,
-                color: isSelected ? Colors.white : const Color(0xFF64748B),
+                color: isSelected ? Colors.white : AppTheme.textMuted,
               ),
             ),
           ],
@@ -204,7 +205,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
               labelStyle: TextStyle(
                 color: isSelected
                     ? const Color(0xFF4F46E5)
-                    : const Color(0xFF64748B),
+                    : AppTheme.textMuted,
                 fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
               ),
             ),
@@ -225,7 +226,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
             style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF1E293B),
+              color: AppTheme.textHeading,
             ),
           ),
           const SizedBox(height: 4),
@@ -265,7 +266,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         origin,
         style: const TextStyle(
           fontSize: 14,
-          color: Color(0xFF475569),
+          color: AppTheme.slate600,
           height: 1.5,
         ),
       ),
@@ -275,7 +276,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         insertion,
         style: const TextStyle(
           fontSize: 14,
-          color: Color(0xFF475569),
+          color: AppTheme.slate600,
           height: 1.5,
         ),
       ),
@@ -289,7 +290,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         position,
         style: const TextStyle(
           fontSize: 14,
-          color: Color(0xFF475569),
+          color: AppTheme.slate600,
           height: 1.5,
         ),
       ),
@@ -299,7 +300,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         insertion,
         style: const TextStyle(
           fontSize: 14,
-          color: Color(0xFF475569),
+          color: AppTheme.slate600,
           height: 1.5,
         ),
       ),
@@ -312,7 +313,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         maneuver,
         style: const TextStyle(
           fontSize: 14,
-          color: Color(0xFF475569),
+          color: AppTheme.slate600,
           height: 1.5,
           fontWeight: FontWeight.w600,
         ),
@@ -334,7 +335,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
   }
 
   Widget _pearlCard(String title, String pearl) {
-    return _baseCard(title, const Color(0xFF10B981), [
+    return _baseCard(title, AppTheme.success, [
       Text(
         pearl,
         style: const TextStyle(
@@ -354,7 +355,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.03),
@@ -370,20 +371,20 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         errorBuilder: (context, error, stackTrace) {
           return Container(
             height: 200,
-            color: const Color(0xFFF1F5F9),
+            color: AppTheme.slate100,
             child: const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.image_not_supported_outlined,
-                    color: Color(0xFF94A3B8),
+                    color: AppTheme.slate400,
                     size: 40,
                   ),
                   SizedBox(height: 12),
                   Text(
                     'Image not found',
-                    style: TextStyle(color: Color(0xFF64748B), fontSize: 13),
+                    style: TextStyle(color: AppTheme.textMuted, fontSize: 13),
                   ),
                 ],
               ),
@@ -406,7 +407,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
       decoration: BoxDecoration(
         color: bgColor ?? Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,7 +436,7 @@ class _AnatomyAtlasTabState extends State<_AnatomyAtlasTab> {
         style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w800,
-          color: Color(0xFF94A3B8),
+          color: AppTheme.slate400,
         ),
       ),
     );

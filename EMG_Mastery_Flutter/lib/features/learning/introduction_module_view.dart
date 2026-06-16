@@ -224,7 +224,7 @@ class IntroductionModuleView extends StatelessWidget {
               DiagramLabel(text: 'Axon', color: Color(0xFF2563EB)),
               DiagramLabel(text: 'Myelin', color: Color(0xFF7C3AED)),
               DiagramLabel(text: 'Endoneurium', color: Color(0xFF059669)),
-              DiagramLabel(text: 'Perineurium', color: Color(0xFFF59E0B)),
+              DiagramLabel(text: 'Perineurium', color: AppTheme.warning),
               DiagramLabel(text: 'Epineurium', color: Color(0xFFDC2626)),
             ],
           ),
@@ -337,13 +337,13 @@ class IntroductionModuleView extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            color: const Color(0xFFF8FAFC),
+            color: AppTheme.light,
             child: const TabBar(
               isScrollable: true,
               tabAlignment: TabAlignment.start,
               indicatorColor: Color(0xFF0EA5E9),
               labelColor: Color(0xFF0EA5E9),
-              unselectedLabelColor: Color(0xFF64748B),
+              unselectedLabelColor: AppTheme.textMuted,
               labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
               tabs: [
                 Tab(text: 'SYSTEM'),
@@ -1484,7 +1484,7 @@ class _InlineKnowledgeCheckState extends State<_InlineKnowledgeCheck> {
         border: Border.all(
           color: _answered
               ? (_correct ? AppTheme.success : AppTheme.danger)
-              : const Color(0xFFF59E0B).withValues(alpha: 0.3),
+              : AppTheme.warning.withValues(alpha: 0.3),
           width: 1.5,
         ),
       ),
@@ -1495,7 +1495,7 @@ class _InlineKnowledgeCheckState extends State<_InlineKnowledgeCheck> {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
-              color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+              color: AppTheme.warning.withValues(alpha: 0.15),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
@@ -1651,7 +1651,7 @@ class _InstrumentationSystemTab extends StatelessWidget {
           const SizedBox(height: 10),
           const Text(
             "Instrumentation mastery is the first step toward diagnostic precision. This guide highlights the subtle hardware nuances and mental workflows you'll use every single day in the lab.",
-            style: TextStyle(color: Color(0xFF475569), height: 1.5),
+            style: TextStyle(color: AppTheme.slate600, height: 1.5),
           ),
           const SizedBox(height: 30),
           _buildHardwareCard(
@@ -1675,7 +1675,7 @@ class _InstrumentationSystemTab extends StatelessWidget {
           const SizedBox(height: 15),
           const Text(
             "A professional resident organizes their lab like a cockpit, with three primary interactive zones:",
-            style: TextStyle(color: Color(0xFF475569), fontSize: 14),
+            style: TextStyle(color: AppTheme.slate600, fontSize: 14),
           ),
           const SizedBox(height: 20),
           _buildWorkflowItem(
@@ -1745,7 +1745,7 @@ class _InstrumentationSystemTab extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
-                    color: Color(0xFF1E293B),
+                    color: AppTheme.textHeading,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -1753,7 +1753,7 @@ class _InstrumentationSystemTab extends StatelessWidget {
                   desc,
                   style: const TextStyle(
                     fontSize: 13,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                   ),
                 ),
               ],
@@ -1782,7 +1782,7 @@ class _InstrumentationSoftwareTab extends StatelessWidget {
           const SizedBox(height: 15),
           const Text(
             "Never trust the table if the waveform looks messy! Follow the Data Audit path: Nerve Tree → Waveform → Results Table.",
-            style: TextStyle(color: Color(0xFF475569), height: 1.5),
+            style: TextStyle(color: AppTheme.slate600, height: 1.5),
           ),
           const SizedBox(height: 25),
           ClipRRect(
@@ -1803,7 +1803,7 @@ class _InstrumentationSoftwareTab extends StatelessWidget {
           _buildSoftwareBox(
             "📊 Results Table",
             "Logic engine. Highlights values in Red/Blue if outside age-matched normative range.",
-            const Color(0xFF10B981),
+            AppTheme.success,
             const Color(0xFFF0FDF4),
           ),
           _buildSoftwareBox(
@@ -1872,7 +1872,7 @@ class _InstrumentationSoftwareTab extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             desc,
-            style: const TextStyle(fontSize: 14, color: Color(0xFF334155)),
+            style: const TextStyle(fontSize: 14, color: AppTheme.textMain),
           ),
         ],
       ),
@@ -1900,7 +1900,7 @@ class _InstrumentationStimTrollerTab extends StatelessWidget {
               height: 200,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFFF1F5F9),
+                color: AppTheme.slate100,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Image.asset(
@@ -1918,17 +1918,17 @@ class _InstrumentationStimTrollerTab extends StatelessWidget {
           _buildStimCard(
             "THE STORE BUTTON (RED)",
             "Thumb-triggered. Freezes the live waveform and adds it to the report. Use instantly if data is clean.",
-            const Color(0xFFEF4444),
+            AppTheme.danger,
           ),
           _buildStimCard(
             "Reverse Polarity (+/-)",
             "Swaps Cathode and Anode internally. Essential for cramped spaces like the ulnar at the elbow.",
-            const Color(0xFFF59E0B),
+            AppTheme.warning,
           ),
           _buildStimCard(
             "Single / Seq Stim",
             "Single Press for one pulse. Double/Long Press for repetitive stimulation (useful for Myasthenia testing).",
-            const Color(0xFF10B981),
+            AppTheme.success,
           ),
           const SizedBox(height: 20),
           Container(
@@ -1989,7 +1989,7 @@ class _InstrumentationStimTrollerTab extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             desc,
-            style: const TextStyle(fontSize: 14, color: Color(0xFF475569)),
+            style: const TextStyle(fontSize: 14, color: AppTheme.slate600),
           ),
         ],
       ),
@@ -2049,7 +2049,7 @@ class _InstrumentationPreampTab extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFFECFDF5),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFF10B981)),
+              border: Border.all(color: AppTheme.success),
             ),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -2089,7 +2089,7 @@ class _InstrumentationPreampTab extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 style: const TextStyle(
-                  color: Color(0xFF334155),
+                  color: AppTheme.textMain,
                   fontSize: 14,
                   fontFamily: 'Inter',
                 ),
@@ -2134,7 +2134,7 @@ class _InstrumentationSettingsTab extends StatelessWidget {
             "Sweep Speed",
             "The Horizontal Zoom. Time/space on screen.",
             "NCS: 2-5 ms | F-Waves: 10 ms",
-            const Color(0xFF10B981),
+            AppTheme.success,
           ),
           _buildSettingCard(
             "Filter Settings",
@@ -2146,9 +2146,9 @@ class _InstrumentationSettingsTab extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFF8FAFC),
+              color: AppTheme.light,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFCBD5E1)),
+              border: Border.all(color: AppTheme.slate300),
             ),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -2157,13 +2157,13 @@ class _InstrumentationSettingsTab extends StatelessWidget {
                   "The 'Filter Distortion' Warning",
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF1E293B),
+                    color: AppTheme.textHeading,
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
                   "Using a narrow Sensory filter (2kHz) for Motor waves will 'round' peaks, making waves look diseased. Always verify protocol before you hit Run!",
-                  style: TextStyle(color: Color(0xFF475569), fontSize: 13),
+                  style: TextStyle(color: AppTheme.slate600, fontSize: 13),
                 ),
               ],
             ),
@@ -2185,7 +2185,7 @@ class _InstrumentationSettingsTab extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2201,7 +2201,7 @@ class _InstrumentationSettingsTab extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             desc,
-            style: const TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+            style: const TextStyle(fontSize: 13, color: AppTheme.textMuted),
           ),
           const SizedBox(height: 10),
           Text(
@@ -2231,7 +2231,7 @@ Widget _buildHardwareCard({
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: const Color(0xFFE2E8F0)),
+      border: Border.all(color: AppTheme.border),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2255,7 +2255,7 @@ Widget _buildHardwareCard({
         const SizedBox(height: 25),
         Text(
           description,
-          style: const TextStyle(color: Color(0xFF475569), height: 1.5),
+          style: const TextStyle(color: AppTheme.slate600, height: 1.5),
         ),
         const SizedBox(height: 20),
         ...points.map(
@@ -2270,7 +2270,7 @@ Widget _buildHardwareCard({
                     p,
                     style: const TextStyle(
                       fontSize: 13,
-                      color: Color(0xFF475569),
+                      color: AppTheme.slate600,
                     ),
                   ),
                 ),

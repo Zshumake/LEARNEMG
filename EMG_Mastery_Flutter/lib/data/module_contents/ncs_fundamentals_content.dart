@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/topic_content_model.dart';
+import '../../core/theme/app_theme.dart';
 
 final TopicData ncsFundamentalsContent = TopicData(
   id: 'ncs-fundamentals',
@@ -85,8 +86,8 @@ final TopicData ncsFundamentalsContent = TopicData(
         ),
         BulletCardBlock(
           title: "C (Unmyelinated)",
-          themeColor: const Color(0xFF475569),
-          backgroundColor: const Color(0xFFF8FAFC),
+          themeColor: AppTheme.slate600,
+          backgroundColor: AppTheme.light,
           points: [
             "Diameter: 0.4-1.2 micrometers",
             "Velocity: 0.5-2 m/s",
@@ -234,7 +235,7 @@ final TopicData ncsFundamentalsContent = TopicData(
         MechanismCardBlock(
           type: "Axonal Loss Pattern",
           subtitle: "Severely Reduced Amplitudes",
-          themeColor: const Color(0xFFEF4444),
+          themeColor: AppTheme.danger,
           backgroundColor: const Color(0xFFFEF2F2),
           icon: Icons.trending_down,
           mechanism: "Functional 'wires' (axons) are physically dead.",
@@ -246,7 +247,7 @@ final TopicData ncsFundamentalsContent = TopicData(
         MechanismCardBlock(
           type: "Demyelinating Pattern",
           subtitle: "Marked Slowing & Prolonged Latencies",
-          themeColor: const Color(0xFF3B82F6),
+          themeColor: AppTheme.info,
           backgroundColor: const Color(0xFFEFF6FF),
           icon: Icons.speed,
           mechanism:

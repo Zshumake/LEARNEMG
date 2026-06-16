@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/muscle_data.dart';
 import '../../data/models/muscle_model.dart';
 import 'dart:math' as math;
+import '../../core/theme/app_theme.dart';
 
 class MuscleLabView extends StatefulWidget {
   const MuscleLabView({super.key});
@@ -77,9 +78,9 @@ class _MuscleLabViewState extends State<MuscleLabView>
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFF0F172A),
-                  Color(0xFF1E293B),
-                  Color(0xFF0F172A),
+                  AppTheme.slate950,
+                  AppTheme.textHeading,
+                  AppTheme.slate950,
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -167,7 +168,7 @@ class _MuscleLabViewState extends State<MuscleLabView>
                   title: 'Quiz Engine',
                   subtitle:
                       'Infinite question generator -- customize topics and regions',
-                  accentColor: const Color(0xFF10B981),
+                  accentColor: AppTheme.success,
                   icon: Icons.bolt_rounded,
                   onTap: () => setState(() => _activeView = 'quiz'),
                 ),
@@ -283,7 +284,7 @@ class _ModeCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF0F172A),
+                        color: AppTheme.slate950,
                       ),
                     ),
                     const SizedBox(height: 3),
@@ -291,7 +292,7 @@ class _ModeCard extends StatelessWidget {
                       subtitle,
                       style: const TextStyle(
                         fontSize: 13,
-                        color: Color(0xFF64748B),
+                        color: AppTheme.textMuted,
                         height: 1.3,
                       ),
                     ),
@@ -445,7 +446,7 @@ class _StudyCardsViewState extends State<_StudyCardsView> {
                 );
               }),
               const SizedBox(width: 6),
-              _chipBtn('Roots', const Color(0xFFF59E0B), () {
+              _chipBtn('Roots', AppTheme.warning, () {
                 setState(
                   () => _revealedRoots.addAll(MuscleData.muscleDatabase.keys),
                 );
@@ -457,7 +458,7 @@ class _StudyCardsViewState extends State<_StudyCardsView> {
                 );
               }),
               const SizedBox(width: 6),
-              _chipBtn('Action', const Color(0xFFEF4444), () {
+              _chipBtn('Action', AppTheme.danger, () {
                 setState(
                   () => _revealedActions.addAll(MuscleData.muscleDatabase.keys),
                 );
@@ -634,7 +635,7 @@ class _MuscleCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
-                      color: Color(0xFF0F172A),
+                      color: AppTheme.slate950,
                     ),
                   ),
                 ),
@@ -663,7 +664,7 @@ class _MuscleCard extends StatelessWidget {
                 _attrChip(
                   'Roots',
                   rootsRevealed,
-                  const Color(0xFFF59E0B),
+                  AppTheme.warning,
                   () => onReveal('roots'),
                 ),
                 if (muscle.cord != null)
@@ -676,7 +677,7 @@ class _MuscleCard extends StatelessWidget {
                 _attrChip(
                   'Actions',
                   actionsRevealed,
-                  const Color(0xFFEF4444),
+                  AppTheme.danger,
                   () => onReveal('actions'),
                 ),
               ],
@@ -698,7 +699,7 @@ class _MuscleCard extends StatelessWidget {
                     _detailLine(
                       'Roots',
                       muscle.roots.join(', '),
-                      const Color(0xFFF59E0B),
+                      AppTheme.warning,
                     ),
                   if (cordRevealed && muscle.cord != null)
                     _detailLine('Cord', muscle.cord!, const Color(0xFF8B5CF6)),
@@ -706,7 +707,7 @@ class _MuscleCard extends StatelessWidget {
                     _detailLine(
                       'Actions',
                       muscle.actions,
-                      const Color(0xFFEF4444),
+                      AppTheme.danger,
                     ),
                 ],
               ),
@@ -790,7 +791,7 @@ class _MuscleCard extends StatelessWidget {
               value,
               style: const TextStyle(
                 fontSize: 13,
-                color: Color(0xFF334155),
+                color: AppTheme.textMain,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -990,7 +991,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                   'Nerve Roots',
                   'roots',
                   Icons.account_tree_rounded,
-                  const Color(0xFFF59E0B),
+                  AppTheme.warning,
                 ),
                 _topicToggle(
                   'Cord / Trunk',
@@ -1002,7 +1003,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                   'Muscle Actions',
                   'actions',
                   Icons.fitness_center_rounded,
-                  const Color(0xFFEF4444),
+                  AppTheme.danger,
                 ),
                 const SizedBox(height: 36),
                 SizedBox(
@@ -1114,7 +1115,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                   'Identify the ${_getTypeLabel(_currentType)}',
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,
                   ),
@@ -1129,7 +1130,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                   ),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
+                      colors: [AppTheme.slate950, AppTheme.textHeading],
                     ),
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -1157,7 +1158,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                     child: const Text(
                       'SKIP',
                       style: TextStyle(
-                        color: Color(0xFF94A3B8),
+                        color: AppTheme.slate400,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 1,
                       ),
@@ -1178,22 +1179,22 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
 
     Color borderColor = const Color(0xFFE5E7EB);
     Color bgColor = Colors.white;
-    Color textColor = const Color(0xFF334155);
-    Color letterBg = const Color(0xFFF1F5F9);
-    Color letterColor = const Color(0xFF64748B);
+    Color textColor = AppTheme.textMain;
+    Color letterBg = AppTheme.slate100;
+    Color letterColor = AppTheme.textMuted;
 
     if (_selectedOption != null) {
       if (isCorrect) {
-        borderColor = const Color(0xFF10B981);
+        borderColor = AppTheme.success;
         bgColor = const Color(0xFFECFDF5);
         textColor = const Color(0xFF065F46);
-        letterBg = const Color(0xFF10B981);
+        letterBg = AppTheme.success;
         letterColor = Colors.white;
       } else if (isSelected) {
-        borderColor = const Color(0xFFEF4444);
+        borderColor = AppTheme.danger;
         bgColor = const Color(0xFFFEF2F2);
         textColor = const Color(0xFF991B1B);
-        letterBg = const Color(0xFFEF4444);
+        letterBg = AppTheme.danger;
         letterColor = Colors.white;
       }
     }
@@ -1265,13 +1266,13 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                 if (_selectedOption != null && isCorrect)
                   const Icon(
                     Icons.check_circle_rounded,
-                    color: Color(0xFF10B981),
+                    color: AppTheme.success,
                     size: 22,
                   ),
                 if (_selectedOption != null && isSelected && !isCorrect)
                   const Icon(
                     Icons.cancel_rounded,
-                    color: Color(0xFFEF4444),
+                    color: AppTheme.danger,
                     size: 22,
                   ),
               ],
@@ -1325,7 +1326,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
       style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w800,
-        color: Color(0xFF475569),
+        color: AppTheme.slate600,
         letterSpacing: 1.2,
       ),
     );
@@ -1339,7 +1340,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: active ? const Color(0xFF059669) : const Color(0xFFF1F5F9),
+            color: active ? const Color(0xFF059669) : AppTheme.slate100,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: active ? const Color(0xFF059669) : const Color(0xFFE5E7EB),
@@ -1349,7 +1350,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: active ? Colors.white : const Color(0xFF475569),
+              color: active ? Colors.white : AppTheme.slate600,
               fontWeight: FontWeight.w700,
               fontSize: 14,
             ),
@@ -1380,7 +1381,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
           children: [
             Icon(
               icon,
-              color: active ? color : const Color(0xFFCBD5E1),
+              color: active ? color : AppTheme.slate300,
               size: 22,
             ),
             const SizedBox(width: 14),
@@ -1390,7 +1391,7 @@ class _QuizEngineViewState extends State<_QuizEngineView> {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
-                  color: active ? color : const Color(0xFF94A3B8),
+                  color: active ? color : AppTheme.slate400,
                 ),
               ),
             ),
@@ -1628,7 +1629,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
                   'Plexus',
                   'Trunk and cord injuries',
                   Icons.hub_rounded,
-                  const Color(0xFFF59E0B),
+                  AppTheme.warning,
                   _activeTypes['plexus']!,
                   () => setState(
                     () => _activeTypes['plexus'] = !_activeTypes['plexus']!,
@@ -1749,7 +1750,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     letterSpacing: 1.2,
                   ),
                 ),
@@ -1786,7 +1787,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     letterSpacing: 1.2,
                   ),
                 ),
@@ -1869,7 +1870,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
                     child: const Text(
                       'BACK TO SETTINGS',
                       style: TextStyle(
-                        color: Color(0xFF94A3B8),
+                        color: AppTheme.slate400,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.5,
                       ),
@@ -1958,15 +1959,15 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
 
     Color borderColor = const Color(0xFFE5E7EB);
     Color bgColor = Colors.white;
-    Color textColor = const Color(0xFF334155);
+    Color textColor = AppTheme.textMain;
 
     if (_submitted) {
       if (isCorrect) {
-        borderColor = const Color(0xFF10B981);
+        borderColor = AppTheme.success;
         bgColor = const Color(0xFFECFDF5);
         textColor = const Color(0xFF065F46);
       } else if (isSelected) {
-        borderColor = const Color(0xFFEF4444);
+        borderColor = AppTheme.danger;
         bgColor = const Color(0xFFFEF2F2);
         textColor = const Color(0xFF991B1B);
       }
@@ -2008,13 +2009,13 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
                 if (_submitted && isCorrect)
                   const Icon(
                     Icons.check_circle_rounded,
-                    color: Color(0xFF10B981),
+                    color: AppTheme.success,
                     size: 20,
                   ),
                 if (_submitted && isSelected && !isCorrect)
                   const Icon(
                     Icons.cancel_rounded,
-                    color: Color(0xFFEF4444),
+                    color: AppTheme.danger,
                     size: 20,
                   ),
               ],
@@ -2034,8 +2035,8 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: win
-              ? const Color(0xFF10B981).withValues(alpha: 0.3)
-              : const Color(0xFFEF4444).withValues(alpha: 0.3),
+              ? AppTheme.success.withValues(alpha: 0.3)
+              : AppTheme.danger.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -2066,7 +2067,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
             'The pattern of ${_currentCase.abnormal.join(", ")} being abnormal while ${_currentCase.normal.join(", ")} remain normal localizes to the ${_currentCase.correct}.',
             style: const TextStyle(
               fontSize: 13,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.5,
             ),
           ),
@@ -2081,7 +2082,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
       style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w800,
-        color: Color(0xFF475569),
+        color: AppTheme.slate600,
         letterSpacing: 1.2,
       ),
     );
@@ -2095,7 +2096,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: active ? const Color(0xFF4F46E5) : const Color(0xFFF1F5F9),
+            color: active ? const Color(0xFF4F46E5) : AppTheme.slate100,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: active ? const Color(0xFF4F46E5) : const Color(0xFFE5E7EB),
@@ -2105,7 +2106,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: active ? Colors.white : const Color(0xFF475569),
+              color: active ? Colors.white : AppTheme.slate600,
               fontWeight: FontWeight.w700,
               fontSize: 14,
             ),
@@ -2142,7 +2143,7 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
           children: [
             Icon(
               icon,
-              color: active ? color : const Color(0xFFCBD5E1),
+              color: active ? color : AppTheme.slate300,
               size: 22,
             ),
             const SizedBox(width: 14),
@@ -2155,14 +2156,14 @@ class _EMGChallengeViewState extends State<_EMGChallengeView> {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: active ? color : const Color(0xFF94A3B8),
+                      color: active ? color : AppTheme.slate400,
                     ),
                   ),
                   Text(
                     sub,
                     style: const TextStyle(
                       fontSize: 12,
-                      color: Color(0xFF94A3B8),
+                      color: AppTheme.slate400,
                     ),
                   ),
                 ],

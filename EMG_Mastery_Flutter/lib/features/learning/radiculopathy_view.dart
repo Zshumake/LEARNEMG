@@ -6,6 +6,8 @@ import '../../core/widgets/scrollable_module_scaffold.dart';
 import '../../core/widgets/decision_tree.dart';
 import '../../data/clinical_decision_trees.dart';
 import '../../core/widgets/diagram_card.dart';
+import '../../core/theme/app_theme.dart';
+import '../../core/widgets/section_card.dart';
 
 /// Radiculopathy Pathophysiology teaching module.
 class RadiculopathyView extends StatelessWidget {
@@ -20,7 +22,7 @@ class RadiculopathyView extends StatelessWidget {
         tabBar: const TabBar(
           indicatorColor: Color(0xFFC2410C),
           labelColor: Color(0xFFC2410C),
-          unselectedLabelColor: Color(0xFF94A3B8),
+          unselectedLabelColor: AppTheme.slate400,
           labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
           tabs: [
             Tab(text: 'Learning'),
@@ -93,7 +95,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             labels: [
               DiagramLabel(text: 'Nerve Root', color: Color(0xFFDC2626)),
               DiagramLabel(text: 'DRG', color: Color(0xFF7C3AED)),
-              DiagramLabel(text: 'Disc Herniation', color: Color(0xFFF59E0B)),
+              DiagramLabel(text: 'Disc Herniation', color: AppTheme.warning),
             ],
           ),
           _buildBeginnerIntro(),
@@ -136,10 +138,10 @@ class _RadiculopathyLearningTab extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: const Border(
-          top: BorderSide(color: Color(0xFF3B82F6), width: 4),
-          left: BorderSide(color: Color(0xFFE2E8F0)),
-          right: BorderSide(color: Color(0xFFE2E8F0)),
-          bottom: BorderSide(color: Color(0xFFE2E8F0)),
+          top: BorderSide(color: AppTheme.info, width: 4),
+          left: BorderSide(color: AppTheme.border),
+          right: BorderSide(color: AppTheme.border),
+          bottom: BorderSide(color: AppTheme.border),
         ),
       ),
       child: const Column(
@@ -158,7 +160,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             'A radiculopathy is an injury to a spinal nerve root -- the thick bundle of motor and sensory fibers that exit the spinal cord through a bony opening called the neural foramen. The most common cause in younger patients is a herniated disc; in older patients, it\'s degenerative foraminal stenosis from bone spurs (osteophytes).',
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.6,
             ),
           ),
@@ -167,7 +169,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             'EMG/NCS is the gold standard for confirming radiculopathy because it provides objective evidence of nerve root dysfunction that imaging alone cannot. Up to 30% of asymptomatic adults have disc herniations on MRI that cause zero symptoms. The EMG tells you whether the nerve root is actually injured, how severely, and whether it is acute or chronic.',
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.6,
             ),
           ),
@@ -176,7 +178,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             'The most important electrodiagnostic principle: the SNAP is NORMAL in radiculopathy because the dorsal root ganglion (DRG) sits outside the spinal canal. A disc herniation compresses the root PROXIMAL to the DRG, so the peripheral sensory axon stays alive. If you find an absent SNAP, the lesion must be distal to the DRG (plexus or peripheral nerve).',
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.6,
             ),
           ),
@@ -194,9 +196,9 @@ class _RadiculopathyLearningTab extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: const Border(
           left: BorderSide(color: Color(0xFFDC2626), width: 4),
-          top: BorderSide(color: Color(0xFFE2E8F0)),
-          right: BorderSide(color: Color(0xFFE2E8F0)),
-          bottom: BorderSide(color: Color(0xFFE2E8F0)),
+          top: BorderSide(color: AppTheme.border),
+          right: BorderSide(color: AppTheme.border),
+          bottom: BorderSide(color: AppTheme.border),
         ),
       ),
       child: const Column(
@@ -221,7 +223,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             'Most radiculopathies are benign. However, these presentations should raise immediate concern:',
             style: TextStyle(
               fontSize: 14,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.5,
             ),
           ),
@@ -325,10 +327,10 @@ class _RadiculopathyLearningTab extends StatelessWidget {
   }
 
   Widget _buildPathophysiologySection() {
-    return _SectionCard(
+    return SectionCard(
       title: "1. THE PATHOPHYSIOLOGY: WHAT'S HAPPENING?",
       icon: Icons.biotech_rounded,
-      color: const Color(0xFFEF4444),
+      color: AppTheme.danger,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -336,7 +338,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             "At its core, Radiculopathy is a plumbing problem. A nerve root is being squeezed or irritated right as it tries to exit the spinal column. This happens at the neural foramen—the small holes between your vertebrae.",
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.6,
             ),
           ),
@@ -344,9 +346,9 @@ class _RadiculopathyLearningTab extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFF8FAFC),
+              color: AppTheme.light,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFE2E8F0)),
+              border: Border.all(color: AppTheme.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -364,7 +366,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
                   "Why are SNAPs normal in Radiculopathy?\n\nImagine a telephone wire. The \"Telephone Exchange\" (the Dorsal Root Ganglion/DRG) is located outside the spinal canal.\n\n• If you cut the wire distal to the exchange (in the arm), the distal end dies and the signal disappears (SNAP becomes abnormal).\n• In radiculopathy, the pinch is proximal to the exchange (inside the spine/foramen). The \"Telephone Exchange\" (DRG) is still happy and healthy, so the wire in the arm is still attached to its power source. The signal in the arm remains normal!",
                   style: TextStyle(
                     fontSize: 13,
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     height: 1.5,
                   ),
                 ),
@@ -396,7 +398,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
   }
 
   Widget _buildAgeTrendsSection() {
-    return const _SectionCard(
+    return const SectionCard(
       title: "2. WHO AND WHY? (AGE-RELATED TRENDS)",
       icon: Icons.groups_rounded,
       color: Color(0xFF8B5CF6),
@@ -427,7 +429,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
   }
 
   Widget _buildEmgClockSection() {
-    return const _SectionCard(
+    return const SectionCard(
       title: "3. THE EMG \"CLOCK\": TIMING IS EVERYTHING",
       icon: Icons.history_toggle_off_rounded,
       color: Color(0xFF059669),
@@ -437,7 +439,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             "Residents often ask: \"Should I do the EMG today?\" The answer depends on where we are on the biological clock of nerve death. Fibrillation potentials don't just appear immediately. They take time to travel down the wire.",
             style: TextStyle(
               fontSize: 14,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.5,
             ),
           ),
@@ -447,7 +449,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
             title: "Immediate: Recruitment Failure",
             desc:
                 "You won't see \"fibs\" yet. You'll just see decreased recruitment (the muscle isn't getting enough commands). F-waves might be slightly slow.",
-            color: Color(0xFF10B981),
+            color: AppTheme.success,
           ),
           _ClockPhaseRow(
             days: "Day 7-10",
@@ -469,14 +471,14 @@ class _RadiculopathyLearningTab extends StatelessWidget {
   }
 
   Widget _buildLocalizationTableSection() {
-    return _SectionCard(
+    return SectionCard(
       title: "4. MASTERING THE LEVELS: CLINICAL LOCALIZATION",
       icon: Icons.map_rounded,
-      color: const Color(0xFF3B82F6),
+      color: AppTheme.info,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: DataTable(
-          headingRowColor: WidgetStateProperty.all(const Color(0xFFF1F5F9)),
+          headingRowColor: WidgetStateProperty.all(AppTheme.slate100),
           columnSpacing: 25,
           horizontalMargin: 15,
           columns: const [
@@ -679,16 +681,16 @@ class _RadiculopathyLearningTab extends StatelessWidget {
   }
 
   Widget _buildHiMadamSection() {
-    return const _SectionCard(
+    return const SectionCard(
       title: "DON'T BE A \"DISC-SNOB\": THE HI MADAM DIFFERENTIAL",
       icon: Icons.warning_amber_rounded,
-      color: Color(0xFFF59E0B),
+      color: AppTheme.warning,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Even though 90% of radiculopathies are due to discs or stenosis, every resident should know the non-mechanical causes. If it involves multiple levels, think HI MADAM:",
-            style: TextStyle(fontSize: 14, color: Color(0xFF475569)),
+            style: TextStyle(fontSize: 14, color: AppTheme.slate600),
           ),
           SizedBox(height: 15),
           Wrap(
@@ -713,7 +715,7 @@ class _RadiculopathyLearningTab extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(35),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+        color: AppTheme.textHeading,
         borderRadius: BorderRadius.circular(24),
       ),
       child: const Column(
@@ -837,53 +839,6 @@ class _RadiculopathyLearningTab extends StatelessWidget {
 }
 
 // Support UI Widgets
-class _SectionCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color color;
-  final Widget child;
-  const _SectionCard({
-    required this.title,
-    required this.icon,
-    required this.color,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(25),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: color, size: 24),
-              const SizedBox(width: 10),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w900,
-                  color: color,
-                  letterSpacing: 1,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          child,
-        ],
-      ),
-    );
-  }
-}
 
 class _SmallInfoCard extends StatelessWidget {
   final String title, text;
@@ -1041,7 +996,7 @@ class _ClockPhaseRow extends StatelessWidget {
                   desc,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                     height: 1.4,
                   ),
                 ),
@@ -1147,7 +1102,7 @@ class _RedFlagTile extends StatelessWidget {
             content,
             style: const TextStyle(
               fontSize: 13,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.5,
             ),
           ),
@@ -1204,7 +1159,7 @@ class _ScenarioTile extends StatelessWidget {
             stem,
             style: const TextStyle(
               fontSize: 13,
-              color: Color(0xFFE2E8F0),
+              color: AppTheme.border,
               height: 1.5,
             ),
           ),
@@ -1232,7 +1187,7 @@ class _ScenarioTile extends StatelessWidget {
                   explanation,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: Color(0xFFCBD5E1),
+                    color: AppTheme.slate300,
                     height: 1.5,
                   ),
                 ),

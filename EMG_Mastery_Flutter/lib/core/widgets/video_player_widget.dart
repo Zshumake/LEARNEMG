@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import '../theme/app_theme.dart';
 
 /// YouTube embed with a lightweight thumbnail facade.
 ///
@@ -89,7 +90,7 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(color: const Color(0xFF0F172A)),
+          Container(color: AppTheme.slate950),
           // hqdefault is ~15-25 KB vs several MB for a live player iframe.
           Image.network(
             'https://i.ytimg.com/vi/${widget.videoId}/hqdefault.jpg',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 /// A visual side-by-side comparison card for board-critical differentials.
 /// Displays two or three columns with color-coded headers and row-by-row
@@ -40,7 +41,7 @@ class ComparisonCard extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: const BoxDecoration(
-              color: Color(0xFF1E293B),
+              color: AppTheme.textHeading,
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             ),
             child: Text(
@@ -57,7 +58,7 @@ class ComparisonCard extends StatelessWidget {
           // Column headers
           Container(
             decoration: const BoxDecoration(
-              border: Border(bottom: BorderSide(color: Color(0xFFE2E8F0))),
+              border: Border(bottom: BorderSide(color: AppTheme.border)),
             ),
             child: Row(
               children: [
@@ -71,7 +72,7 @@ class ComparisonCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF64748B),
+                        color: AppTheme.textMuted,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -88,7 +89,7 @@ class ComparisonCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: col.color.withValues(alpha: 0.08),
                         border: const Border(
-                          left: BorderSide(color: Color(0xFFE2E8F0)),
+                          left: BorderSide(color: AppTheme.border),
                         ),
                       ),
                       child: Text(
@@ -115,9 +116,9 @@ class ComparisonCard extends StatelessWidget {
 
             return Container(
               decoration: BoxDecoration(
-                color: isEven ? const Color(0xFFF8FAFC) : Colors.white,
+                color: isEven ? AppTheme.light : Colors.white,
                 border: const Border(
-                  bottom: BorderSide(color: Color(0xFFF1F5F9)),
+                  bottom: BorderSide(color: AppTheme.slate100),
                 ),
               ),
               child: Row(
@@ -133,7 +134,7 @@ class ComparisonCard extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF334155),
+                          color: AppTheme.textMain,
                         ),
                       ),
                     ),
@@ -144,7 +145,7 @@ class ComparisonCard extends StatelessWidget {
                     final value = valEntry.value;
                     final colColor = colIdx < columns.length
                         ? columns[colIdx].color
-                        : const Color(0xFF64748B);
+                        : AppTheme.textMuted;
 
                     return Expanded(
                       child: Container(
@@ -154,7 +155,7 @@ class ComparisonCard extends StatelessWidget {
                         ),
                         decoration: const BoxDecoration(
                           border: Border(
-                            left: BorderSide(color: Color(0xFFF1F5F9)),
+                            left: BorderSide(color: AppTheme.slate100),
                           ),
                         ),
                         child: Text(
@@ -181,7 +182,7 @@ class ComparisonCard extends StatelessWidget {
                 footnote!,
                 style: const TextStyle(
                   fontSize: 10,
-                  color: Color(0xFF94A3B8),
+                  color: AppTheme.slate400,
                   fontStyle: FontStyle.italic,
                   height: 1.4,
                 ),

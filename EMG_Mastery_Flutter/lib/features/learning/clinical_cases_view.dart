@@ -4,6 +4,7 @@ import 'clinical_case_controller.dart';
 import '../../data/models/clinical_case_model.dart';
 import '../../data/clinical_case_data.dart';
 import 'widgets/clinical_tables.dart';
+import '../../core/theme/app_theme.dart';
 
 class ClinicalCasesView extends StatefulWidget {
   const ClinicalCasesView({super.key});
@@ -38,13 +39,13 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
     }).toList();
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: AppTheme.slate950,
       body: Container(
         decoration: const BoxDecoration(
           gradient: RadialGradient(
             center: Alignment.topLeft,
             radius: 1.5,
-            colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+            colors: [AppTheme.textHeading, AppTheme.slate950],
           ),
         ),
         child: CustomScrollView(
@@ -154,7 +155,7 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
             title: "Beginner",
             subtitle: "FOUNDATIONAL",
             icon: Icons.school,
-            color: const Color(0xFF10B981),
+            color: AppTheme.success,
             isActive: _selectedDifficulty == 'beginner',
             onTap: () => setState(() => _selectedDifficulty = 'beginner'),
           ),
@@ -165,7 +166,7 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
             title: "Intermediate",
             subtitle: "REASONING",
             icon: Icons.psychology,
-            color: const Color(0xFFF59E0B),
+            color: AppTheme.warning,
             isActive: _selectedDifficulty == 'intermediate',
             onTap: () => setState(() => _selectedDifficulty = 'intermediate'),
           ),
@@ -176,7 +177,7 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
             title: "Expert",
             subtitle: "COMPLEX",
             icon: Icons.diamond,
-            color: const Color(0xFFEF4444),
+            color: AppTheme.danger,
             isActive: _selectedDifficulty == 'difficult',
             onTap: () => setState(() => _selectedDifficulty = 'difficult'),
           ),
@@ -209,9 +210,9 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
   Widget _buildCaseInterface(ClinicalCaseController controller) {
     final curCase = controller.currentCase!;
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: AppTheme.slate950,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1E293B).withValues(alpha: 0.5),
+        backgroundColor: AppTheme.textHeading.withValues(alpha: 0.5),
         elevation: 0,
         leading: IconButton(
           tooltip: 'Close case',
@@ -248,7 +249,7 @@ class _ClinicalCasesViewState extends State<ClinicalCasesView> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+            colors: [AppTheme.textHeading, AppTheme.slate950],
           ),
         ),
         child: ListView(
@@ -456,10 +457,10 @@ class _CaseSelectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = difficulty == 'beginner'
-        ? const Color(0xFF10B981)
+        ? AppTheme.success
         : (difficulty == 'intermediate'
-              ? const Color(0xFFF59E0B)
-              : const Color(0xFFEF4444));
+              ? AppTheme.warning
+              : AppTheme.danger);
 
     return GestureDetector(
       onTap: onTap,
@@ -559,7 +560,7 @@ class _ShrunkPill extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Icon(Icons.check_circle, size: 16, color: Color(0xFF10B981)),
+          const Icon(Icons.check_circle, size: 16, color: AppTheme.success),
         ],
       ),
     );
@@ -954,7 +955,7 @@ class _DifferentialStepState extends State<_DifferentialStep> {
             child: _ActionButton(
               label: "Strategy →",
               onPressed: () => widget.controller.nextSection(),
-              backgroundColor: const Color(0xFF3B82F6),
+              backgroundColor: AppTheme.info,
               foregroundColor: Colors.white,
             ),
           ),
@@ -984,7 +985,7 @@ class _EmgDecisionStep extends StatelessWidget {
               child: _DecisionCard(
                 title: "Indicated",
                 icon: Icons.check_circle,
-                color: const Color(0xFF10B981),
+                color: AppTheme.success,
                 onTap: () => controller.evaluateEmgDecision(true),
               ),
             ),
@@ -993,7 +994,7 @@ class _EmgDecisionStep extends StatelessWidget {
               child: _DecisionCard(
                 title: "Not Indicated",
                 icon: Icons.cancel,
-                color: const Color(0xFFEF4444),
+                color: AppTheme.danger,
                 onTap: () => controller.evaluateEmgDecision(false),
               ),
             ),
@@ -1160,7 +1161,7 @@ class _FinalDiagnosisStepState extends State<_FinalDiagnosisStep> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: const Color(0xFF10B981).withValues(alpha: 0.15),
+                color: AppTheme.success.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(Icons.star, color: Color(0xFF34D399), size: 20),
@@ -1216,7 +1217,7 @@ class _FinalDiagnosisStepState extends State<_FinalDiagnosisStep> {
               setState(() => _submitted = true);
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF10B981),
+              backgroundColor: AppTheme.success,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
             ),
@@ -1240,14 +1241,14 @@ class _FinalDiagnosisStepState extends State<_FinalDiagnosisStep> {
             color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFF10B981).withValues(alpha: 0.3),
+              color: AppTheme.success.withValues(alpha: 0.3),
             ),
           ),
           child: Column(
             children: [
               const Icon(
                 Icons.emoji_events,
-                color: Color(0xFF10B981),
+                color: AppTheme.success,
                 size: 48,
               ),
               const SizedBox(height: 16),
@@ -1279,7 +1280,7 @@ class _FinalDiagnosisStepState extends State<_FinalDiagnosisStep> {
                 child: Text(
                   "Diagnostic Synthesis",
                   style: TextStyle(
-                    color: Color(0xFF10B981),
+                    color: AppTheme.success,
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
                   ),
@@ -1432,7 +1433,7 @@ class _FinalDiagnosisStepState extends State<_FinalDiagnosisStep> {
                           if (isCorrect) ...[
                             const Icon(
                               Icons.check_circle,
-                              color: Color(0xFF10B981),
+                              color: AppTheme.success,
                               size: 16,
                             ),
                             const SizedBox(width: 8),
@@ -1441,7 +1442,7 @@ class _FinalDiagnosisStepState extends State<_FinalDiagnosisStep> {
                             item.name,
                             style: TextStyle(
                               color: isCorrect
-                                  ? const Color(0xFF10B981)
+                                  ? AppTheme.success
                                   : Colors.white,
                               fontWeight: isCorrect
                                   ? FontWeight.w700
@@ -1492,7 +1493,7 @@ class _ActionButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: backgroundColor ?? const Color(0xFF3B82F6),
+        backgroundColor: backgroundColor ?? AppTheme.info,
         foregroundColor: foregroundColor ?? Colors.white,
         side: borderColor != null
             ? BorderSide(color: borderColor!, width: 1.2)

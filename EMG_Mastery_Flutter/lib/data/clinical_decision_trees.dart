@@ -1,5 +1,6 @@
 import '../core/widgets/decision_tree.dart';
 import 'package:flutter/material.dart';
+import '../core/theme/app_theme.dart';
 
 /// Pre-built clinical decision trees for EDX localization.
 class ClinicalDecisionTrees {
@@ -38,7 +39,7 @@ class ClinicalDecisionTrees {
         yesBranch: TreeNode(
           question: '',
           diagnosis: 'Sciatic Neuropathy (peroneal division)',
-          diagnosisColor: Color(0xFFF59E0B),
+          diagnosisColor: AppTheme.warning,
           explanation:
               'Short head of biceps femoris is the ONLY peroneal-division muscle above the fibular head. If abnormal, the lesion must be proximal to the knee -- within the sciatic nerve or higher. Sural SNAP will be abnormal.',
         ),
@@ -122,14 +123,14 @@ class ClinicalDecisionTrees {
         yesBranch: TreeNode(
           question: '',
           diagnosis: 'Severe Carpal Tunnel Syndrome',
-          diagnosisColor: Color(0xFFF59E0B),
+          diagnosisColor: AppTheme.warning,
           explanation:
               'Abnormal median SNAP + weakness restricted to median-innervated thenar muscles (LOAF) = CTS with axonal loss. Check for prolonged median motor distal latency and fibrillations in APB. This represents severe CTS requiring surgical evaluation.',
         ),
         noBranch: TreeNode(
           question: '',
           diagnosis: 'Median Neuropathy (proximal to wrist)',
-          diagnosisColor: Color(0xFFF59E0B),
+          diagnosisColor: AppTheme.warning,
           explanation:
               'If weakness extends beyond LOAF to include FDS, FDP 1-2, PQ, or PT, the lesion is proximal to the carpal tunnel. Consider pronator syndrome, AIN syndrome (pure motor), or ligament of Struthers compression.',
         ),
@@ -185,7 +186,7 @@ class ClinicalDecisionTrees {
         noBranch: TreeNode(
           question: '',
           diagnosis: 'Isolated Mononeuropathy',
-          diagnosisColor: Color(0xFF10B981),
+          diagnosisColor: AppTheme.success,
           explanation:
               'Single peripheral nerve territory involvement with normal SNAPs. Could be a pure motor branch lesion (e.g., deep branch of ulnar in Guyon canal Type II, or AIN syndrome for median). Check the specific nerve distribution.',
         ),
@@ -214,7 +215,7 @@ class ClinicalDecisionTrees {
       noBranch: TreeNode(
         question: '',
         diagnosis: 'Central Lesion (brain/spinal cord)',
-        diagnosisColor: Color(0xFF64748B),
+        diagnosisColor: AppTheme.textMuted,
         explanation:
             'Pure UMN pattern points to a central process. EMG is NOT typically indicated -- order brain/spine MRI instead. Consider stroke, MS, myelopathy, PLS. EMG may be useful to exclude coexisting peripheral pathology.',
       ),
@@ -242,7 +243,7 @@ class ClinicalDecisionTrees {
           yesBranch: TreeNode(
             question: '',
             diagnosis: 'Neuromuscular Junction Disorder',
-            diagnosisColor: Color(0xFFF59E0B),
+            diagnosisColor: AppTheme.warning,
             explanation:
                 'Fatigable proximal weakness without sensory involvement suggests MG or LEMS. Order repetitive nerve stimulation (3 Hz, look for >10% decrement). Check AChR and MuSK antibodies. LEMS: check baseline CMAP amplitudes (low = presynaptic).',
           ),
@@ -330,7 +331,7 @@ class ClinicalDecisionTrees {
           yesBranch: TreeNode(
             question: '',
             diagnosis: 'Multifocal Motor Neuropathy with CB (MMNCB)',
-            diagnosisColor: Color(0xFFF59E0B),
+            diagnosisColor: AppTheme.warning,
             explanation:
                 'Motor conduction block with NORMAL sensory conduction across the same segment is the hallmark of MMNCB. This is a treatable mimic of ALS. Check anti-GM1 antibodies. Responds to IVIG. Does NOT respond to steroids or plasma exchange.',
           ),
@@ -378,7 +379,7 @@ class ClinicalDecisionTrees {
       noBranch: TreeNode(
         question: '',
         diagnosis: 'Normal or Subclinical -- Correlate Clinically',
-        diagnosisColor: Color(0xFF10B981),
+        diagnosisColor: AppTheme.success,
         explanation:
             'Near-normal velocities and amplitudes may still be abnormal if compared to the contralateral side or normative data. Consider: (1) very early neuropathy not yet detectable, (2) pure small fiber neuropathy (normal NCS by definition), (3) technical factors. Clinical correlation is essential.',
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 /// A card that displays an anatomy diagram with caption and attribution.
 /// Supports zoom via InteractiveViewer and optional labeled hotspots.
@@ -15,7 +16,7 @@ class DiagramCard extends StatelessWidget {
     required this.caption,
     this.attribution,
     this.labels,
-    this.borderColor = const Color(0xFFE2E8F0),
+    this.borderColor = AppTheme.border,
   });
 
   @override
@@ -56,21 +57,21 @@ class DiagramCard extends StatelessWidget {
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
                           height: 180,
-                          color: const Color(0xFFF1F5F9),
+                          color: AppTheme.slate100,
                           child: const Center(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(
                                   Icons.image_not_supported_outlined,
-                                  color: Color(0xFF94A3B8),
+                                  color: AppTheme.slate400,
                                   size: 32,
                                 ),
                                 SizedBox(height: 8),
                                 Text(
                                   'Image not available',
                                   style: TextStyle(
-                                    color: Color(0xFF94A3B8),
+                                    color: AppTheme.slate400,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -111,7 +112,7 @@ class DiagramCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF1E293B),
+                color: AppTheme.textHeading,
                 height: 1.4,
               ),
             ),
@@ -136,7 +137,7 @@ class DiagramCard extends StatelessWidget {
                 attribution!,
                 style: const TextStyle(
                   fontSize: 10,
-                  color: Color(0xFF94A3B8),
+                  color: AppTheme.slate400,
                   fontStyle: FontStyle.italic,
                 ),
               ),

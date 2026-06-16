@@ -8,6 +8,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/widgets/diagram_card.dart';
 import '../../core/widgets/comparison_card.dart';
 import '../../data/board_comparisons.dart';
+import '../../core/widgets/section_card.dart';
 
 /// Clinical Pathophysiology content for the Brachial Plexus module.
 class PlexusClinicalView extends StatelessWidget {
@@ -28,7 +29,7 @@ class PlexusClinicalView extends StatelessWidget {
         tabBar: TabBar(
           indicatorColor: AppTheme.modulePlexus,
           labelColor: AppTheme.modulePlexus,
-          unselectedLabelColor: Color(0xFF94A3B8),
+          unselectedLabelColor: AppTheme.slate400,
           labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
           tabs: [
             Tab(text: 'Clinical Guide'),
@@ -65,7 +66,7 @@ class _ClinicalGuideTab extends StatelessWidget {
               DiagramLabel(text: 'C5-T1 Roots', color: Color(0xFFDC2626)),
               DiagramLabel(text: 'Pronator Teres', color: Color(0xFF2563EB)),
               DiagramLabel(text: 'AIN Branch', color: Color(0xFF7C3AED)),
-              DiagramLabel(text: 'Carpal Tunnel', color: Color(0xFFF59E0B)),
+              DiagramLabel(text: 'Carpal Tunnel', color: AppTheme.warning),
             ],
           ),
           const DiagramCard(
@@ -74,7 +75,7 @@ class _ClinicalGuideTab extends StatelessWidget {
             labels: [
               DiagramLabel(text: 'C8-T1 Roots', color: Color(0xFFDC2626)),
               DiagramLabel(text: 'Cubital Tunnel', color: Color(0xFF2563EB)),
-              DiagramLabel(text: 'Guyon Canal', color: Color(0xFFF59E0B)),
+              DiagramLabel(text: 'Guyon Canal', color: AppTheme.warning),
               DiagramLabel(text: 'DUC Branch', color: Color(0xFF059669)),
             ],
           ),
@@ -173,10 +174,14 @@ class _ClinicalGuideTab extends StatelessWidget {
   }
 
   Widget _buildGoldenRuleSection() {
-    return const _SectionCard(
+    return const SectionCard(
       title: "THE GOLDEN RULE: LOCALIZATION",
       icon: Icons.auto_awesome_rounded,
       color: Color(0xFF0EA5E9),
+      borderWidth: 2,
+      iconGap: 12,
+      titleSize: 13,
+      letterSpacing: 1.2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -184,7 +189,7 @@ class _ClinicalGuideTab extends StatelessWidget {
             "This is the most critical distinction in all of EDX. When a patient presents with weakness and numbness in the arm, the Sensory Nerve Action Potential (SNAP) tells you exactly where the \"cut\" is.",
             style: TextStyle(
               fontSize: 15,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.6,
             ),
           ),
@@ -210,7 +215,7 @@ class _ClinicalGuideTab extends StatelessWidget {
                   desc:
                       "The lesion is distal to the DRG. The axon in the arm has been cut off from its cell body and dies.",
                   result: "Result: SNAP is ABSENT/LOW",
-                  resultColor: Color(0xFFEF4444),
+                  resultColor: AppTheme.danger,
                   isBlue: true,
                 ),
               ),
@@ -250,7 +255,7 @@ class _ClinicalGuideTab extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF1E293B),
+                color: AppTheme.textHeading,
               ),
             ),
           ],
@@ -272,7 +277,7 @@ class _ClinicalGuideTab extends StatelessWidget {
         const SizedBox(height: 15),
         const _DetailedPatternCard(
           title: "Lower Trunk (C8-T1) — \"Klumpke's Palsy\"",
-          color: Color(0xFFEF4444),
+          color: AppTheme.danger,
           bgColor: Color(0xFFFFF1F2),
           borderColor: Color(0xFFFECACA),
           cause:
@@ -329,7 +334,7 @@ class _ClinicalGuideTab extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF1E293B),
+                color: AppTheme.textHeading,
               ),
             ),
           ],
@@ -417,7 +422,7 @@ class _ClinicalGuideTab extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF1E293B),
+                color: AppTheme.textHeading,
               ),
             ),
           ],
@@ -510,7 +515,7 @@ class _ClinicalGuideTab extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+        color: AppTheme.textHeading,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -558,53 +563,6 @@ class _ClinicalGuideTab extends StatelessWidget {
 }
 
 // UI Support Widgets
-class _SectionCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color color;
-  final Widget child;
-  const _SectionCard({
-    required this.title,
-    required this.icon,
-    required this.color,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(25),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 2),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: color, size: 24),
-              const SizedBox(width: 12),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w900,
-                  color: color,
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          child,
-        ],
-      ),
-    );
-  }
-}
 
 class _SmallInfoCard extends StatelessWidget {
   final String title, text;
@@ -640,7 +598,7 @@ class _SmallInfoCard extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 12,
-              color: const Color(0xFF334155),
+              color: AppTheme.textMain,
               fontStyle: isItalic ? FontStyle.italic : null,
               height: 1.4,
             ),
@@ -669,10 +627,10 @@ class _ScenarioCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: isBlue ? const Color(0xFFF0F9FF) : const Color(0xFFF8FAFC),
+        color: isBlue ? const Color(0xFFF0F9FF) : AppTheme.light,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isBlue ? const Color(0xFFBAE6FD) : const Color(0xFFE2E8F0),
+          color: isBlue ? const Color(0xFFBAE6FD) : AppTheme.border,
         ),
       ),
       child: Column(
@@ -681,7 +639,7 @@ class _ScenarioCard extends StatelessWidget {
           Text(
             title.toUpperCase(),
             style: TextStyle(
-              color: isBlue ? const Color(0xFF0369A1) : const Color(0xFF64748B),
+              color: isBlue ? const Color(0xFF0369A1) : AppTheme.textMuted,
               fontWeight: FontWeight.w900,
               fontSize: 10,
               letterSpacing: 0.5,
@@ -701,7 +659,7 @@ class _ScenarioCard extends StatelessWidget {
             desc,
             style: const TextStyle(
               fontSize: 12,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.4,
             ),
           ),
@@ -852,14 +810,14 @@ class _DataRow extends StatelessWidget {
               text: "$label: ",
               style: const TextStyle(
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF1E293B),
+                color: AppTheme.textHeading,
                 fontSize: 14,
               ),
             ),
             TextSpan(
               text: value,
               style: const TextStyle(
-                color: Color(0xFF475569),
+                color: AppTheme.slate600,
                 fontSize: 14,
                 height: 1.4,
               ),
@@ -893,7 +851,7 @@ class _AthletePoint extends StatelessWidget {
               child: Text(
                 "!",
                 style: TextStyle(
-                  color: Color(0xFF1E293B),
+                  color: AppTheme.textHeading,
                   fontSize: 10,
                   fontWeight: FontWeight.w900,
                 ),
@@ -988,14 +946,14 @@ class _CordDataRow extends StatelessWidget {
               text: "$label ",
               style: const TextStyle(
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF1E293B),
+                color: AppTheme.textHeading,
                 fontSize: 13,
               ),
             ),
             TextSpan(
               text: value,
               style: const TextStyle(
-                color: Color(0xFF475569),
+                color: AppTheme.slate600,
                 fontSize: 13,
                 height: 1.4,
               ),
@@ -1048,7 +1006,7 @@ class _LocalizationScenarioCard extends StatelessWidget {
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF1E293B),
+            color: AppTheme.textHeading,
           ),
         ),
         children: [
@@ -1061,7 +1019,7 @@ class _LocalizationScenarioCard extends StatelessWidget {
                   stem,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF334155),
+                    color: AppTheme.textMain,
                     height: 1.5,
                   ),
                 ),
@@ -1082,7 +1040,7 @@ class _LocalizationScenarioCard extends StatelessWidget {
                       '${optionLetters[i]}. ${options[i]}',
                       style: TextStyle(
                         fontSize: 14,
-                        color: const Color(0xFF334155),
+                        color: AppTheme.textMain,
                         fontWeight: i == correctIndex
                             ? FontWeight.w700
                             : FontWeight.w400,
@@ -1114,7 +1072,7 @@ class _LocalizationScenarioCard extends StatelessWidget {
                         explanation,
                         style: const TextStyle(
                           fontSize: 13,
-                          color: Color(0xFF334155),
+                          color: AppTheme.textMain,
                           height: 1.5,
                         ),
                       ),

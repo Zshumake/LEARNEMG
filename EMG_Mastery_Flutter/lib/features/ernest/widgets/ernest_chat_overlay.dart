@@ -381,7 +381,7 @@ class _ErnestChatOverlayState extends State<ErnestChatOverlay> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1E293B),
+        backgroundColor: AppTheme.textHeading,
         title: const Text(
           "Gemini API Configuration",
           style: TextStyle(color: Colors.white),

@@ -32,7 +32,7 @@ class NMBasicsView extends StatelessWidget {
           isScrollable: true,
           tabAlignment: TabAlignment.start,
           labelColor: AppTheme.moduleNMBasics,
-          unselectedLabelColor: Color(0xFF64748B),
+          unselectedLabelColor: AppTheme.textMuted,
           indicatorColor: AppTheme.moduleNMBasics,
           indicatorWeight: 3,
           labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
@@ -102,7 +102,7 @@ class _DeepDiveTab extends StatelessWidget {
             data.text,
             style: const TextStyle(
               fontSize: 16,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.6,
             ),
           ),
@@ -210,7 +210,7 @@ class _DeepDiveTab extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: const Color(0xFFE2E8F0)),
+              border: Border.all(color: AppTheme.border),
             ),
             child: Column(
               children: data.emgTraits!.map((t) => _TraitRow(text: t)).toList(),
@@ -254,7 +254,7 @@ class _DeepDiveTab extends StatelessWidget {
                 data.ncsDetail,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF334155),
+                  color: AppTheme.textMain,
                   height: 1.5,
                 ),
               ),
@@ -316,7 +316,7 @@ class _DeepDiveTab extends StatelessWidget {
                 data.clinicalStrategy,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF334155),
+                  color: AppTheme.textMain,
                   height: 1.5,
                 ),
               ),
@@ -351,13 +351,13 @@ class _ComparisonTab extends StatelessWidget {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF1E293B),
+              color: AppTheme.textHeading,
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             NMBasicsData.comparisonText,
-            style: TextStyle(fontSize: 15, color: Color(0xFF64748B)),
+            style: TextStyle(fontSize: 15, color: AppTheme.textMuted),
           ),
           const SizedBox(height: 25),
           const _RuleCard(
@@ -377,13 +377,13 @@ class _ComparisonTab extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF1E293B),
+              color: AppTheme.textHeading,
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             'Tap each waveform to see the clinical explanation.',
-            style: TextStyle(fontSize: 13, color: Color(0xFF94A3B8)),
+            style: TextStyle(fontSize: 13, color: AppTheme.slate400),
           ),
           const SizedBox(height: 16),
           const WaveformCard(type: WaveformType.normalMuap),
@@ -428,7 +428,7 @@ class _ComparisonTab extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         children: NMBasicsData.comparisonRows.map((row) {
@@ -436,14 +436,14 @@ class _ComparisonTab extends StatelessWidget {
             return Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              color: const Color(0xFFF1F5F9),
+              color: AppTheme.slate100,
               child: Text(
                 row.category!,
                 style: const TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 11,
                   letterSpacing: 1,
-                  color: Color(0xFF475569),
+                  color: AppTheme.slate600,
                 ),
               ),
             );
@@ -458,7 +458,7 @@ class _ComparisonTab extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 14,
-                    color: Color(0xFF0F172A),
+                    color: AppTheme.slate950,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -536,7 +536,7 @@ class _ClassificationTab extends StatelessWidget {
             "Understanding how nerves fail across different anatomical structures is critical for determining prognosis.",
             style: TextStyle(
               fontSize: 14,
-              color: Color(0xFF64748B),
+              color: AppTheme.textMuted,
               height: 1.5,
             ),
           ),
@@ -557,7 +557,7 @@ class _ClassificationTab extends StatelessWidget {
             "Electrodiagnosis primarily tests large, myelinated fibers. Small fibers (pain/temp) are invisible to standard NCS.",
             style: TextStyle(
               fontSize: 14,
-              color: Color(0xFF64748B),
+              color: AppTheme.textMuted,
               height: 1.5,
             ),
           ),
@@ -604,12 +604,12 @@ class _ClassificationTab extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: DataTable(
-          headingRowColor: WidgetStateProperty.all(const Color(0xFFF8FAFC)),
+          headingRowColor: WidgetStateProperty.all(AppTheme.light),
           columns: const [
             DataColumn(
               label: Text(
@@ -684,7 +684,7 @@ class _ClassificationTab extends StatelessWidget {
         SizedBox(height: 15),
         Text(
           "Key factors influencing nerve injury recovery:",
-          style: TextStyle(fontSize: 14, color: Color(0xFF64748B), height: 1.5),
+          style: TextStyle(fontSize: 14, color: AppTheme.textMuted, height: 1.5),
         ),
         SizedBox(height: 15),
         _ClassificationCard(
@@ -698,7 +698,7 @@ class _ClassificationTab extends StatelessWidget {
         _ClassificationCard(
           grade: "Age of Patient",
           desc: "Younger patients generally have better regenerative capacity.",
-          color: Color(0xFFF59E0B),
+          color: AppTheme.warning,
           icon: Icons.person_rounded,
         ),
         SizedBox(height: 12),
@@ -737,13 +737,13 @@ class _ClassificationTab extends StatelessWidget {
           type: "Type III (Delta)",
           func: "Pain / Temp (Small)",
           speed: "5-30 m/s",
-          color: Color(0xFF64748B),
+          color: AppTheme.textMuted,
         ),
         _FiberRow(
           type: "Type IV (C)",
           func: "Pain (Small/Unmyelinated)",
           speed: "0.5-2 m/s",
-          color: Color(0xFF94A3B8),
+          color: AppTheme.slate400,
         ),
       ],
     );
@@ -769,7 +769,7 @@ class _ClassificationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.04),
@@ -808,7 +808,7 @@ class _ClassificationCard extends StatelessWidget {
                   desc,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF475569),
+                    color: AppTheme.slate600,
                     height: 1.5,
                   ),
                 ),
@@ -839,7 +839,7 @@ class _FiberRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Row(
         children: [
@@ -858,7 +858,7 @@ class _FiberRow extends StatelessWidget {
                   func,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                   ),
                 ),
               ],
@@ -950,7 +950,7 @@ class _ClinicalIconCard extends StatelessWidget {
               detail,
               style: const TextStyle(
                 fontSize: 11,
-                color: Color(0xFF475569),
+                color: AppTheme.slate600,
                 height: 1.3,
               ),
               overflow: TextOverflow.fade,
@@ -979,7 +979,7 @@ class _EMGCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -989,7 +989,7 @@ class _EMGCard extends StatelessWidget {
             style: const TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 14,
-              color: Color(0xFF1E293B),
+              color: AppTheme.textHeading,
             ),
           ),
           const SizedBox(height: 12),
@@ -1012,7 +1012,7 @@ class _TraitRow extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(top: 6),
-            child: Icon(Icons.circle, size: 6, color: Color(0xFF94A3B8)),
+            child: Icon(Icons.circle, size: 6, color: AppTheme.slate400),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -1020,7 +1020,7 @@ class _TraitRow extends StatelessWidget {
               text,
               style: const TextStyle(
                 fontSize: 13,
-                color: Color(0xFF475569),
+                color: AppTheme.slate600,
                 height: 1.4,
               ),
             ),
@@ -1065,7 +1065,7 @@ class _RuleCard extends StatelessWidget {
             text,
             style: const TextStyle(
               fontSize: 14,
-              color: Color(0xFF334155),
+              color: AppTheme.textMain,
               height: 1.5,
               fontStyle: FontStyle.italic,
             ),
@@ -1109,7 +1109,7 @@ class _TableCell extends StatelessWidget {
             sub,
             style: const TextStyle(
               fontSize: 11,
-              color: Color(0xFF64748B),
+              color: AppTheme.textMuted,
               height: 1.3,
             ),
           ),

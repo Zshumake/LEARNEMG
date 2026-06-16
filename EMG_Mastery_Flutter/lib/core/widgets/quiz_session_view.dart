@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/quiz_model.dart';
+import '../theme/app_theme.dart';
 
 class QuizSessionView extends StatefulWidget {
   final List<QuizQuestion> questions;
@@ -122,7 +123,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                   widget.subtitle,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF64748B),
+                    color: AppTheme.textMuted,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -151,7 +152,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
           child: LinearProgressIndicator(
             value: progress,
             minHeight: 8,
-            backgroundColor: const Color(0xFFE2E8F0),
+            backgroundColor: AppTheme.border,
             valueColor: AlwaysStoppedAnimation<Color>(widget.primaryColor),
           ),
         ),
@@ -169,7 +170,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
             fontSize: 18,
             fontWeight: FontWeight.w800,
             height: 1.4,
-            color: Color(0xFF0F172A),
+            color: AppTheme.slate950,
           ),
         ),
       ],
@@ -181,14 +182,14 @@ class _QuizSessionViewState extends State<QuizSessionView> {
     final isCorrect = index == question.correctIndex;
 
     Color bgColor = Colors.white;
-    Color borderColor = const Color(0xFFE2E8F0);
-    Color textColor = const Color(0xFF334155);
+    Color borderColor = AppTheme.border;
+    Color textColor = AppTheme.textMain;
     Widget? trailing;
 
     if (_isSubmitted) {
       if (isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
-        borderColor = const Color(0xFF10B981);
+        borderColor = AppTheme.success;
         textColor = const Color(0xFF065F46);
         trailing = const Icon(
           Icons.check_circle,
@@ -197,7 +198,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
         );
       } else if (isSelected) {
         bgColor = const Color(0xFFFEE2E2);
-        borderColor = const Color(0xFFEF4444);
+        borderColor = AppTheme.danger;
         textColor = const Color(0xFF991B1B);
         trailing = const Icon(Icons.cancel, color: Color(0xFFDC2626), size: 20);
       }
@@ -266,7 +267,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
       height: 56,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF0F172A),
+          backgroundColor: AppTheme.slate950,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -293,9 +294,9 @@ class _QuizSessionViewState extends State<QuizSessionView> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: AppTheme.light,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppTheme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +329,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
             question.explanation,
             style: const TextStyle(
               fontSize: 14,
-              color: Color(0xFF475569),
+              color: AppTheme.slate600,
               height: 1.6,
               fontWeight: FontWeight.w500,
             ),
@@ -357,11 +358,11 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                   child: CircularProgressIndicator(
                     value: percentage,
                     strokeWidth: 12,
-                    backgroundColor: const Color(0xFFF1F5F9),
+                    backgroundColor: AppTheme.slate100,
                     valueColor: AlwaysStoppedAnimation<Color>(
                       isPass
-                          ? const Color(0xFF10B981)
-                          : const Color(0xFFF59E0B),
+                          ? AppTheme.success
+                          : AppTheme.warning,
                     ),
                   ),
                 ),
@@ -373,7 +374,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                       style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF0F172A),
+                        color: AppTheme.slate950,
                       ),
                     ),
                     const Text(
@@ -381,7 +382,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF64748B),
+                        color: AppTheme.textMuted,
                         letterSpacing: 1.5,
                       ),
                     ),
@@ -404,7 +405,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 15,
-                color: Color(0xFF64748B),
+                color: AppTheme.textMuted,
                 fontWeight: FontWeight.w500,
                 height: 1.5,
               ),
@@ -419,7 +420,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                     },
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 18),
-                      side: const BorderSide(color: Color(0xFFE2E8F0)),
+                      side: const BorderSide(color: AppTheme.border),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -428,7 +429,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                       'FINISH',
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF64748B),
+                        color: AppTheme.textMuted,
                         letterSpacing: 1.2,
                       ),
                     ),
@@ -439,7 +440,7 @@ class _QuizSessionViewState extends State<QuizSessionView> {
                   child: ElevatedButton(
                     onPressed: _restartQuiz,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0F172A),
+                      backgroundColor: AppTheme.slate950,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 18),
                       elevation: 0,

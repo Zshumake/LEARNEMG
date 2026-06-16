@@ -22,6 +22,13 @@ class AppTheme {
   static const Color textMuted = Color(0xFF64748B);
   static const Color textHeading = Color(0xFF1E293B);
 
+  // Slate ramp (Tailwind) — the de-facto greys used across the learning views.
+  static const Color slate100 = Color(0xFFF1F5F9);
+  static const Color slate300 = Color(0xFFCBD5E1);
+  static const Color slate400 = Color(0xFF94A3B8);
+  static const Color slate600 = Color(0xFF475569);
+  static const Color slate950 = Color(0xFF0F172A);
+
   // Spacing Scale (4px base)
   static const double space4 = 4.0;
   static const double space8 = 8.0;
