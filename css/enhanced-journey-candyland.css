@@ -88,7 +88,7 @@
 
 /* Beautiful Learning Modal */
 .learning-modal {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
     border-radius: 20px;
     box-shadow:
         0 50px 100px rgba(15, 23, 42, 0.3),
@@ -112,7 +112,7 @@
 
 /* Journey Context Bar - shows current position */
 .journey-context-bar {
-    background: linear-gradient(90deg, #6b9f78 0%, #4a6d52 100%);
+    background: linear-gradient(90deg, var(--app-green) 0%, #4a6d52 100%);
     padding: 15px 30px;
     color: white;
     display: flex;
@@ -175,13 +175,13 @@
 
 .content-title {
     font-size: 2.5em;
-    color: #1e293b;
+    color: var(--text-heading);
     margin-bottom: 10px;
     font-weight: 700;
 }
 
 .content-competency {
-    background: linear-gradient(90deg, #6b9f78 0%, #4a6d52 100%);
+    background: linear-gradient(90deg, var(--app-green) 0%, #4a6d52 100%);
     color: white;
     padding: 8px 20px;
     border-radius: 20px;
@@ -191,7 +191,7 @@
 }
 
 .content-description {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 1.1em;
     line-height: 1.6;
 }
@@ -209,8 +209,8 @@
 .loading-spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid #e2e8f0;
-    border-top: 4px solid #6b9f78;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--app-green);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
@@ -231,7 +231,7 @@
     width: 40px;
     height: 40px;
     border: 3px solid rgba(107, 159, 120, 0.2);
-    border-top: 3px solid #6b9f78;
+    border-top: 3px solid var(--app-green);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
@@ -249,7 +249,7 @@
 
 /* Interactive Content Container */
 .interactive-content {
-    background: #ffffff;
+    background: var(--bg-white);
     border: 1px solid rgba(107, 159, 120, 0.15);
     border-radius: 15px;
     padding: 30px;
@@ -311,7 +311,7 @@
 
 /* Beautiful Journey Header */
 .journey-header {
-    background: linear-gradient(135deg, #fefcf3 0%, #f8fafc 100%);
+    background: linear-gradient(135deg, #fefcf3 0%, var(--bg-light) 100%);
     border: 2px solid rgba(107, 159, 120, 0.2);
     border-radius: 30px;
     padding: 40px;
@@ -341,7 +341,7 @@
 }
 
 .header-content h2 {
-    color: #1e293b;
+    color: var(--text-heading);
     font-size: 3em;
     margin-bottom: 10px;
     font-weight: 800;
@@ -354,7 +354,7 @@
 
 .journey-description {
     text-align: center;
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 1.3em;
     margin-bottom: 30px;
     font-weight: 500;
@@ -391,7 +391,7 @@
 }
 
 .stat-card.remaining {
-    border-color: #3b82f6;
+    border-color: var(--info-color);
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
 }
 
@@ -404,13 +404,13 @@
     display: block;
     font-size: 2.5em;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-heading);
     margin-bottom: 5px;
 }
 
 .stat-label {
     font-size: 0.9em;
-    color: #64748b;
+    color: var(--text-muted);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -440,7 +440,7 @@
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #22c55e, #a855f7, #eab308, #ef4444);
+    background: linear-gradient(90deg, #22c55e, #a855f7, #eab308, var(--danger-color));
     border-radius: 20px;
     position: relative;
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -615,7 +615,7 @@ body {
 }
 
 .journey-square.available .square-inner {
-    border-color: #3b82f6;
+    border-color: var(--info-color);
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(255, 255, 255, 0.95));
 }
 
@@ -662,7 +662,7 @@ body {
     left: -12px;
     width: 30px;
     height: 30px;
-    background: linear-gradient(135deg, #1e293b, #334155);
+    background: linear-gradient(135deg, var(--text-heading), #334155);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -683,7 +683,7 @@ body {
 .module-title-compact {
     font-size: 11px;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-heading);
     line-height: 1.2;
     margin-bottom: 5px;
     max-height: 30px;
@@ -718,7 +718,7 @@ body {
 }
 
 .journey-square.available .status-badge {
-    border-color: #3b82f6;
+    border-color: var(--info-color);
 }
 
 .journey-square.locked .status-badge {
@@ -754,7 +754,7 @@ body {
 }
 
 .module-info-panel h4 {
-    color: #1e293b;
+    color: var(--text-heading);
     font-size: 1.2em;
     font-weight: 700;
     margin-bottom: 8px;
@@ -771,7 +771,7 @@ body {
 }
 
 .description-info {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 0.9em;
     line-height: 1.4;
     margin-bottom: 12px;
@@ -779,7 +779,7 @@ body {
 
 .terrain-badge {
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(168, 85, 247, 0.1));
-    color: #1e293b;
+    color: var(--text-heading);
     padding: 6px 12px;
     border-radius: 15px;
     font-size: 0.8em;
@@ -849,7 +849,7 @@ body {
 }
 
 .dialogue-panel {
-    background: linear-gradient(135deg, #fefcf3, #f8fafc);
+    background: linear-gradient(135deg, #fefcf3, var(--bg-light));
     border: 3px solid rgba(34, 197, 94, 0.3);
     border-radius: 30px;
     max-width: 700px;
@@ -906,7 +906,7 @@ body {
 }
 
 .ernest-avatar-section h3 {
-    color: #1e293b;
+    color: var(--text-heading);
     font-size: 1.3em;
     font-weight: 700;
     margin: 0;
@@ -917,7 +917,7 @@ body {
 }
 
 .dialogue-text {
-    color: #1e293b;
+    color: var(--text-heading);
     font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 25px;
@@ -931,7 +931,7 @@ body {
 }
 
 .dialogue-text strong {
-    color: #1e293b;
+    color: var(--text-heading);
     font-weight: 700;
 }
 
@@ -1115,7 +1115,7 @@ body {
 
 /* Main Learning Modal */
 .learning-modal {
-    background: linear-gradient(135deg, #fefcf3, #f8fafc);
+    background: linear-gradient(135deg, #fefcf3, var(--bg-light));
     border: 3px solid rgba(34, 197, 94, 0.3);
     border-radius: 25px;
     max-width: 1800px;
@@ -1162,7 +1162,7 @@ body {
     gap: 10px;
     margin-bottom: 15px;
     font-size: 0.9em;
-    color: #64748b;
+    color: var(--text-muted);
     font-weight: 600;
 }
 
@@ -1174,7 +1174,7 @@ body {
 }
 
 .learning-title {
-    color: #1e293b;
+    color: var(--text-heading);
     font-size: 2em;
     font-weight: 700;
     margin-bottom: 8px;
@@ -1199,7 +1199,7 @@ body {
     background: rgba(239, 68, 68, 0.1);
     border: 2px solid rgba(239, 68, 68, 0.3);
     border-radius: 50%;
-    color: #ef4444;
+    color: var(--danger-color);
     font-size: 1.5em;
     font-weight: 700;
     cursor: pointer;
@@ -1228,7 +1228,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 200px;
-    color: #64748b;
+    color: var(--text-muted);
 }
 
 .loading-spinner {
@@ -1293,7 +1293,7 @@ body {
 }
 
 .learning-btn.secondary {
-    background: linear-gradient(135deg, #64748b, #475569);
+    background: linear-gradient(135deg, var(--text-muted), var(--text-secondary));
     color: white;
     box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
 }
@@ -1327,14 +1327,14 @@ body {
 }
 
 .enhanced-dialogue-btn.secondary {
-    background: linear-gradient(135deg, #64748b, #475569);
+    background: linear-gradient(135deg, var(--text-muted), var(--text-secondary));
 }
 
 /* LEARNING CONTENT STYLES */
 
 /* Lesson Content */
 .lesson-content {
-    color: #1e293b;
+    color: var(--text-heading);
     line-height: 1.6;
 }
 
@@ -1403,7 +1403,7 @@ body {
 .anatomy-btn,
 .setup-btn,
 .diagram-btn {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, var(--info-color), #2563eb);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -1429,7 +1429,7 @@ body {
 }
 
 .quiz-question h4 {
-    color: #1e293b;
+    color: var(--text-heading);
     margin-bottom: 15px;
 }
 
@@ -1451,7 +1451,7 @@ body {
 }
 
 .quiz-option:hover:not(:disabled) {
-    border-color: #3b82f6;
+    border-color: var(--info-color);
     transform: translateX(5px);
 }
 
@@ -1463,7 +1463,7 @@ body {
 
 .quiz-option.incorrect {
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
-    border-color: #ef4444;
+    border-color: var(--danger-color);
     color: #dc2626;
 }
 
@@ -1497,7 +1497,7 @@ body {
 }
 
 .patho-section h4 {
-    color: #1e293b;
+    color: var(--text-heading);
     margin-bottom: 20px;
     font-size: 1.3em;
 }
@@ -1542,7 +1542,7 @@ body {
 }
 
 .principle-card h4 {
-    color: #1e293b;
+    color: var(--text-heading);
     margin-bottom: 15px;
     font-size: 1.2em;
 }
@@ -1576,11 +1576,11 @@ body {
 /* Placeholder Content */
 .placeholder-content {
     text-align: center;
-    color: #64748b;
+    color: var(--text-muted);
 }
 
 .placeholder-header h3 {
-    color: #f59e0b;
+    color: var(--accent-color);
     margin-bottom: 10px;
 }
 
@@ -2059,7 +2059,7 @@ body {
     .interactive-content {
         padding: 8px !important;
         margin: 0 !important;
-        background: #f8fafc !important;
+        background: var(--bg-light) !important;
     }
 
     /* Vibrant section backgrounds - alternate colors */
@@ -2090,7 +2090,7 @@ body {
     /* Bold, vibrant headers */
     .modal-body h3,
     .interactive-content h3 {
-        background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+        background: linear-gradient(135deg, var(--info-color), #2563eb) !important;
         padding: 10px 12px !important;
         margin: 8px 0 !important;
         color: white !important;
@@ -2112,7 +2112,7 @@ body {
 
     .modal-body h5,
     .interactive-content h5 {
-        background: linear-gradient(135deg, #10b981, #059669) !important;
+        background: linear-gradient(135deg, var(--secondary-color), #059669) !important;
         padding: 6px 8px !important;
         margin: 4px 0 !important;
         color: white !important;
@@ -2154,8 +2154,8 @@ body {
     /* Code blocks and highlights */
     .modal-body code,
     .interactive-content code {
-        background: #1e293b !important;
-        color: #10b981 !important;
+        background: var(--text-heading) !important;
+        color: var(--secondary-color) !important;
         padding: 2px 6px !important;
         border-radius: 4px !important;
         font-size: 0.9em !important;

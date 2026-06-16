@@ -59,7 +59,7 @@
 }
 
 .progress-text {
-    color: #6b9f78;
+    color: var(--app-green);
     font-size: 1.1em;
     font-weight: 600;
 }
@@ -75,7 +75,7 @@
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #6b9f78, #f59e0b);
+    background: linear-gradient(90deg, var(--app-green), var(--accent-color));
     border-radius: 10px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     animation: progressGlow 2s ease-in-out infinite alternate;
@@ -135,7 +135,7 @@
     box-shadow: 
         0 15px 35px rgba(107, 159, 120, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    border-color: #6b9f78;
+    border-color: var(--app-green);
     z-index: 100;
 }
 
@@ -177,7 +177,7 @@
     right: -8px;
     width: 20px;
     height: 20px;
-    background: linear-gradient(135deg, #6b9f78, #4a6d52);
+    background: linear-gradient(135deg, var(--app-green), #4a6d52);
     color: white;
     border-radius: 50%;
     font-size: 10px;
@@ -241,35 +241,35 @@
 /* Status-based styling */
 .professional-board-square.completed {
     background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.05) 100%);
-    border-color: #10b981;
+    border-color: var(--secondary-color);
 }
 
 .professional-board-square.completed .status-indicator {
-    border-color: #10b981;
-    background: #10b981;
+    border-color: var(--secondary-color);
+    background: var(--secondary-color);
     color: white;
 }
 
 .professional-board-square.current {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.1) 100%);
-    border-color: #f59e0b;
+    border-color: var(--accent-color);
     animation: currentPulse 2s ease-in-out infinite;
 }
 
 .professional-board-square.current .status-indicator {
-    border-color: #f59e0b;
-    background: #f59e0b;
+    border-color: var(--accent-color);
+    background: var(--accent-color);
     color: white;
 }
 
 .professional-board-square.available {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
-    border-color: #3b82f6;
+    border-color: var(--info-color);
 }
 
 .professional-board-square.available .status-indicator {
-    border-color: #3b82f6;
-    background: #3b82f6;
+    border-color: var(--info-color);
+    background: var(--info-color);
     color: white;
 }
 
@@ -298,7 +298,7 @@
     right: -6px;
     width: 16px;
     height: 16px;
-    background: #ef4444;
+    background: var(--danger-color);
     border: 3px solid white;
     border-radius: 50%;
     box-shadow: 0 3px 12px rgba(239, 68, 68, 0.6);
@@ -354,7 +354,7 @@
 }
 
 .module-detail-panel .competency {
-    color: #6b9f78;
+    color: var(--app-green);
     font-size: 0.85em;
     font-weight: 600;
     text-transform: uppercase;
@@ -370,7 +370,7 @@
 }
 
 .status-badge-detail {
-    background: linear-gradient(135deg, #6b9f78, #4a6d52);
+    background: linear-gradient(135deg, var(--app-green), #4a6d52);
     color: white;
     padding: 4px 8px;
     border-radius: 12px;
@@ -439,7 +439,7 @@
 .ernest-professional-avatar {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #6b9f78, #4a6d52);
+    background: linear-gradient(135deg, var(--app-green), #4a6d52);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -495,7 +495,7 @@
 
 /* Professional Dialogue Button */
 .professional-dialogue-btn {
-    background: linear-gradient(135deg, #6b9f78, #4a6d52);
+    background: linear-gradient(135deg, var(--app-green), #4a6d52);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -516,7 +516,7 @@
     box-shadow: 
         0 8px 25px rgba(107, 159, 120, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, #4a6d52, #6b9f78);
+    background: linear-gradient(135deg, #4a6d52, var(--app-green));
 }
 
 /* Animations */

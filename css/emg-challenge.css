@@ -3,7 +3,7 @@
                 /* ============ EMG CHALLENGE — CLINICAL WORKSTATION UI ============ */
                 .emg-challenge-root {
                     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-                    color: #0f172a;
+                    color: var(--text-primary);
                     max-width: 1080px;
                     margin: 0 auto;
                     padding: 0 20px 40px;
@@ -11,7 +11,7 @@
 
                 /* ---- Shared header chrome (clinical workstation bar) ---- */
                 .emg-clinical-bar {
-                    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-heading) 100%);
                     border-radius: 18px;
                     padding: 22px 28px;
                     color: #f1f5f9;
@@ -66,7 +66,7 @@
                     font-variant-numeric: tabular-nums;
                 }
                 .emg-stat-chip .emg-stat-value {
-                    color: #f8fafc;
+                    color: var(--bg-light);
                     font-weight: 700;
                     font-size: 0.95rem;
                     margin-left: 6px;
@@ -74,7 +74,7 @@
                 .emg-back-btn {
                     background: rgba(148, 163, 184, 0.15);
                     border: 1px solid rgba(148, 163, 184, 0.3);
-                    color: #e2e8f0;
+                    color: var(--border-color);
                     padding: 8px 16px;
                     border-radius: 10px;
                     font-size: 0.85rem;
@@ -93,13 +93,13 @@
                 /* ---- Setup panel ---- */
                 .emg-setup-card {
                     background: white;
-                    border: 1px solid #e2e8f0;
+                    border: 1px solid var(--border-color);
                     border-radius: 18px;
                     padding: 36px;
                     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
                 }
                 .emg-setup-intro {
-                    border-left: 4px solid #0ea5e9;
+                    border-left: 4px solid var(--primary-color);
                     background: #f0f9ff;
                     padding: 18px 22px;
                     border-radius: 0 12px 12px 0;
@@ -113,7 +113,7 @@
                 }
                 .emg-setup-intro p {
                     margin: 0;
-                    color: #0369a1;
+                    color: var(--primary-dark);
                     font-size: 0.95rem;
                     line-height: 1.5;
                 }
@@ -126,15 +126,15 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 1.8px;
-                    color: #64748b;
+                    color: var(--text-muted);
                     margin: 0 0 16px;
                     padding-bottom: 10px;
-                    border-bottom: 1px solid #e2e8f0;
+                    border-bottom: 1px solid var(--border-color);
                 }
                 .emg-section-label .emg-section-count {
                     margin-left: auto;
                     background: #f1f5f9;
-                    color: #475569;
+                    color: var(--text-secondary);
                     padding: 2px 10px;
                     border-radius: 20px;
                     font-size: 0.72rem;
@@ -148,8 +148,8 @@
                     margin-bottom: 30px;
                 }
                 .emg-toggle-card {
-                    background: #f8fafc;
-                    border: 2px solid #e2e8f0;
+                    background: var(--bg-light);
+                    border: 2px solid var(--border-color);
                     border-radius: 14px;
                     padding: 18px 20px;
                     cursor: pointer;
@@ -168,7 +168,7 @@
                     box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
                 }
                 .emg-toggle-card.active[data-type="root"] { border-color: #14b8a6; }
-                .emg-toggle-card.active[data-type="plexus"] { border-color: #f59e0b; }
+                .emg-toggle-card.active[data-type="plexus"] { border-color: var(--accent-color); }
                 .emg-toggle-card.active[data-type="peripheral"] { border-color: #8b5cf6; }
 
                 .emg-toggle-icon {
@@ -181,12 +181,12 @@
                     transition: all 0.2s;
                 }
                 .emg-toggle-card.active[data-type="root"] .emg-toggle-icon { background: #14b8a6; }
-                .emg-toggle-card.active[data-type="plexus"] .emg-toggle-icon { background: #f59e0b; }
+                .emg-toggle-card.active[data-type="plexus"] .emg-toggle-icon { background: var(--accent-color); }
                 .emg-toggle-card.active[data-type="peripheral"] .emg-toggle-icon { background: #8b5cf6; }
 
                 .emg-toggle-body { flex: 1; }
-                .emg-toggle-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 2px; }
-                .emg-toggle-desc { font-size: 0.82rem; color: #64748b; margin: 0; line-height: 1.4; }
+                .emg-toggle-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 2px; }
+                .emg-toggle-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.4; }
                 .emg-toggle-check {
                     width: 22px; height: 22px;
                     border-radius: 50%;
@@ -198,8 +198,8 @@
                     transition: all 0.2s;
                 }
                 .emg-toggle-card.active .emg-toggle-check {
-                    background: #0f172a;
-                    border-color: #0f172a;
+                    background: var(--text-primary);
+                    border-color: var(--text-primary);
                 }
                 .emg-toggle-check svg { opacity: 0; transition: opacity 0.15s; }
                 .emg-toggle-card.active .emg-toggle-check svg { opacity: 1; }
@@ -209,14 +209,14 @@
                     align-items: center;
                     justify-content: space-between;
                     padding: 20px 24px;
-                    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-heading) 100%);
                     border-radius: 14px;
                     margin-top: 10px;
                 }
                 .emg-launch-label { color: #94a3b8; font-size: 0.88rem; font-weight: 500; }
-                .emg-launch-label strong { color: #f8fafc; font-weight: 700; }
+                .emg-launch-label strong { color: var(--bg-light); font-weight: 700; }
                 .emg-launch-btn {
-                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
                     color: white;
                     border: none;
                     padding: 14px 32px;
@@ -243,7 +243,7 @@
                 }
                 .emg-findings-card {
                     background: white;
-                    border: 1px solid #e2e8f0;
+                    border: 1px solid var(--border-color);
                     border-radius: 14px;
                     overflow: hidden;
                     box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
@@ -319,14 +319,14 @@
 
                 .emg-question-card {
                     background: white;
-                    border: 1px solid #e2e8f0;
+                    border: 1px solid var(--border-color);
                     border-radius: 14px;
                     overflow: hidden;
                     margin-bottom: 20px;
                     box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
                 }
                 .emg-question-head {
-                    background: #0f172a;
+                    background: var(--text-primary);
                     color: #f1f5f9;
                     padding: 16px 24px;
                     font-size: 0.75rem;
@@ -340,14 +340,14 @@
                 .emg-question-head::before {
                     content: '';
                     width: 6px; height: 22px;
-                    background: linear-gradient(180deg, #3b82f6, #06b6d4);
+                    background: linear-gradient(180deg, var(--info-color), #06b6d4);
                     border-radius: 3px;
                 }
                 .emg-question-prompt {
                     padding: 20px 24px 8px;
                     font-size: 1.08rem;
                     font-weight: 600;
-                    color: #0f172a;
+                    color: var(--text-primary);
                 }
                 .emg-answer-grid {
                     padding: 8px 24px 24px;
@@ -356,14 +356,14 @@
                     gap: 10px;
                 }
                 .emg-answer-btn {
-                    background: #f8fafc;
-                    border: 2px solid #e2e8f0;
+                    background: var(--bg-light);
+                    border: 2px solid var(--border-color);
                     border-radius: 10px;
                     padding: 14px 18px;
                     text-align: left;
                     cursor: pointer;
                     transition: all 0.15s ease;
-                    color: #1e293b;
+                    color: var(--text-heading);
                     font-weight: 600;
                     font-size: 0.95rem;
                     display: flex;
@@ -385,7 +385,7 @@
                     display: flex; align-items: center; justify-content: center;
                     font-weight: 700;
                     font-size: 0.82rem;
-                    color: #64748b;
+                    color: var(--text-muted);
                     flex-shrink: 0;
                     font-family: 'SF Mono', Menlo, monospace;
                 }
@@ -428,7 +428,7 @@
                 }
                 .emg-btn-ghost {
                     background: white;
-                    color: #475569;
+                    color: var(--text-secondary);
                     border: 1px solid #cbd5e1;
                     padding: 12px 20px;
                     border-radius: 10px;
@@ -440,7 +440,7 @@
                     align-items: center;
                     gap: 6px;
                 }
-                .emg-btn-ghost:hover { background: #f8fafc; border-color: #94a3b8; }
+                .emg-btn-ghost:hover { background: var(--bg-light); border-color: #94a3b8; }
                 .emg-btn-primary {
                     background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
                     color: white;
@@ -461,7 +461,7 @@
                 .emg-btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45); }
                 .emg-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
                 .emg-btn-next {
-                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
                     box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
                 }
                 .emg-btn-next:hover { box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); }
@@ -471,7 +471,7 @@
                     margin-top: 22px;
                     border-radius: 14px;
                     overflow: hidden;
-                    border: 1px solid #e2e8f0;
+                    border: 1px solid var(--border-color);
                     background: white;
                 }
                 .emg-feedback-head {
@@ -509,7 +509,7 @@
                     grid-template-columns: 140px 1fr;
                     gap: 12px;
                     padding: 8px 0;
-                    border-bottom: 1px dashed #e2e8f0;
+                    border-bottom: 1px dashed var(--border-color);
                     align-items: baseline;
                 }
                 .emg-feedback-row:last-of-type { border-bottom: none; }
@@ -518,13 +518,13 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 1.2px;
-                    color: #64748b;
+                    color: var(--text-muted);
                 }
-                .emg-feedback-value { color: #0f172a; font-weight: 600; }
+                .emg-feedback-value { color: var(--text-primary); font-weight: 600; }
                 .emg-feedback-explanation {
                     margin-top: 14px;
                     padding: 14px 16px;
-                    background: #f8fafc;
+                    background: var(--bg-light);
                     border-left: 3px solid #6366f1;
                     border-radius: 0 8px 8px 0;
                     font-size: 0.92rem;
