@@ -29,9 +29,23 @@ export class ClinicalUI {
 
     // --- Core API ---
 
-    showClinicalCases(pgyLevel) {
+    async showClinicalCases(pgyLevel) {
         this.currentPGY = pgyLevel || 'all';
+        await this._ensureCasesLoaded();
         this.renderDashboard(this.currentPGY);
+    }
+
+    // The ~300KB clinical case database is loaded on first open rather than at
+    // app boot, so the welcome screen paints without it. Cached after the
+    // first load (the engine keeps the reference for the session).
+    async _ensureCasesLoaded() {
+        if (this.engine.database && Object.keys(this.engine.database).length > 0) return;
+        try {
+            const mod = await import('../../data/cases/index.js?v=20260423-pts-plexdx');
+            this.engine.database = mod.clinicalCasesData;
+        } catch (e) {
+            logger.error('Failed to load clinical case database:', e);
+        }
     }
 
     setFilter(difficulty) {

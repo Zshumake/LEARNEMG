@@ -8,9 +8,8 @@ import { QuizSystem } from './quiz/QuizSystem.js?v=20260422-quizoverhaul';
 import { NCSData } from './ncs/NCSData.js?v=20260317';
 import { NCSEngine } from './ncs/NCSEngine.js?v=20260317';
 import { NCSUI } from './ncs/NCSUI.js?v=20260317';
-import { clinicalCasesData } from '../data/cases/index.js?v=20260423-pts-plexdx';
-import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260317';
-import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260615-perf';
+import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260616-lazyboot';
+import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260616-lazyboot';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260611-deploy';
 import { AudioController } from './audio/AudioController.js?v=20260611-podcasts';
 import { ErnestCore } from './ernest/ErnestCore.js?v=20260611-earlfix';
@@ -39,7 +38,8 @@ class AppInitializer {
         this.quiz = new QuizSystem();
 
         // --- Modular Dependency Injection ---
-        const clinicalEngine = new ClinicalEngine(clinicalCasesData);
+        // Case DB is loaded lazily on first clinical-tool open (not at boot).
+        const clinicalEngine = new ClinicalEngine(null);
         this.clinicalCases = new ClinicalUI(clinicalEngine);
 
         const ncsEngine = new NCSEngine(NCSData);

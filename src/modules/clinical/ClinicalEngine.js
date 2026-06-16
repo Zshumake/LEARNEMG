@@ -2,7 +2,9 @@ import { ClinicalDataStandardizer } from '../../utils/ClinicalDataStandardizer.j
 
 export class ClinicalEngine {
     constructor(caseDatabase) {
-        this.database = caseDatabase;
+        // Database may be null at boot and loaded lazily on first open (see
+        // ClinicalUI._ensureCasesLoaded) — keep an empty object until then.
+        this.database = caseDatabase || {};
         this.currentCase = null;
 
         // Synonyms for evaluation from old ClinicalEvaluator
