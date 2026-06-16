@@ -1,19 +1,19 @@
-import { moduleLoader } from '../utils/ModuleLoader.js?v=20260422-edxart';
-import { Bootstrapper } from './core/Bootstrapper.js?v=20260615-clean';
-import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=20260611-deploy';
-import { PlexusManager } from './plexus/PlexusManager.js?v=20260317';
-import { ModalSystem } from './ui/ModalSystem.js?v=20260615-clean';
-import { CandylandCore } from './candyland/CandylandCore.js?v=20260611-deploy';
-import { QuizSystem } from './quiz/QuizSystem.js?v=20260422-quizoverhaul';
-import { NCSData } from './ncs/NCSData.js?v=20260317';
-import { NCSEngine } from './ncs/NCSEngine.js?v=20260317';
-import { NCSUI } from './ncs/NCSUI.js?v=20260317';
-import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=20260616-lazyboot';
-import { ClinicalUI } from './clinical/ClinicalUI.js?v=20260616-lazyboot';
-import { MuscleLab } from './muscle-lab/MuscleLab.js?v=20260611-deploy';
-import { AudioController } from './audio/AudioController.js?v=20260611-podcasts';
-import { ErnestCore } from './ernest/ErnestCore.js?v=20260611-earlfix';
-import { learningModulesConfig } from './candyland/BoardData.js?v=20260317';
+import { moduleLoader } from '../utils/ModuleLoader.js?v=f4aa9b9a';
+import { Bootstrapper } from './core/Bootstrapper.js?v=6ccb4484';
+import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=bb25e474';
+import { PlexusManager } from './plexus/PlexusManager.js?v=9df5cd13';
+import { ModalSystem } from './ui/ModalSystem.js?v=5a01714c';
+import { CandylandCore } from './candyland/CandylandCore.js?v=3381fb00';
+import { QuizSystem } from './quiz/QuizSystem.js?v=f0359ba1';
+import { NCSData } from './ncs/NCSData.js?v=5781ca14';
+import { NCSEngine } from './ncs/NCSEngine.js?v=27bcae44';
+import { NCSUI } from './ncs/NCSUI.js?v=baa39b8a';
+import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=d37b34dc';
+import { ClinicalUI } from './clinical/ClinicalUI.js?v=6407755e';
+import { MuscleLab } from './muscle-lab/MuscleLab.js?v=be613fc8';
+import { AudioController } from './audio/AudioController.js?v=9c578c28';
+import { ErnestCore } from './ernest/ErnestCore.js?v=fa1faeee';
+import { learningModulesConfig } from './candyland/BoardData.js?v=f7918a27';
 import logger from '../utils/Logger.js';
 
 // --- ActionBus: inline setup (avoids ES module cache issues) ---

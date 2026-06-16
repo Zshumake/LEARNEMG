@@ -1,10 +1,10 @@
-import { ClinicalTables } from './components/ClinicalTables.js?v=20260423-ncscv';
+import { ClinicalTables } from './components/ClinicalTables.js?v=90a414ac';
 import { ClinicalEvaluator } from './ClinicalEvaluator.js';
 import { ClinicalIcons } from './components/ClinicalIcons.js';
-import { ClinicalDashboardRenderer } from './components/ClinicalDashboardRenderer.js?v=20260422-caseorder-v2';
+import { ClinicalDashboardRenderer } from './components/ClinicalDashboardRenderer.js?v=3a1a3a79';
 import { ClinicalShellRenderer } from './components/ClinicalShellRenderer.js';
-import { ClinicalExamRenderer } from './components/ClinicalExamRenderer.js?v=20260422-clinical-reset';
-import { ClinicalDiagnosisRenderer } from './components/ClinicalDiagnosisRenderer.js?v=20260422-clinical-reset';
+import { ClinicalExamRenderer } from './components/ClinicalExamRenderer.js?v=071ac916';
+import { ClinicalDiagnosisRenderer } from './components/ClinicalDiagnosisRenderer.js?v=f836c6b7';
 
 export const ClinicalRenderer = {
     getSvgIcon: function (name, color, size) {

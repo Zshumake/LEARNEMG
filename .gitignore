@@ -28,7 +28,9 @@ ios/App/.bundle/
 emg_ncs_resident_tool.html
 *.log
 *.txt
+# Ignore scratch .py files, but DO track the deploy tooling under tools/
 *.py
+!tools/*.py
 *.apkg
 *.webloc
 *.command

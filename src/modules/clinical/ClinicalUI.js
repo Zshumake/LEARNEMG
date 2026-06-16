@@ -1,6 +1,6 @@
-import { ClinicalRenderer } from './ClinicalRenderer.js?v=20260423-ncscv';
+import { ClinicalRenderer } from './ClinicalRenderer.js?v=61799618';
 import { showModal } from '../../utils/ViewHelpers.js';
-import { ClinicalTables } from './components/ClinicalTables.js?v=20260423-ncscv';
+import { ClinicalTables } from './components/ClinicalTables.js?v=90a414ac';
 import logger from '../../utils/Logger.js';
 
 export class ClinicalUI {
@@ -41,7 +41,7 @@ export class ClinicalUI {
     async _ensureCasesLoaded() {
         if (this.engine.database && Object.keys(this.engine.database).length > 0) return;
         try {
-            const mod = await import('../../data/cases/index.js?v=20260423-pts-plexdx');
+            const mod = await import('../../data/cases/index.js?v=5a5cceca');
             this.engine.database = mod.clinicalCasesData;
         } catch (e) {
             logger.error('Failed to load clinical case database:', e);

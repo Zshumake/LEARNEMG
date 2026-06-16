@@ -3,7 +3,7 @@
  * Module for teaching residents H&P before EMG/NCS.
  * Two modes: Study Mode (browse diagnoses) and Exam Builder (build from differential).
  */
-import { clinicalExamData, DIAGNOSIS_CATEGORIES } from '../../data/clinical-exam/index.js?v=rootfix1';
+import { clinicalExamData, DIAGNOSIS_CATEGORIES } from '../../data/clinical-exam/index.js?v=7be405a6';
 import { clinicalCasesData } from '../../data/cases/index.js';
 import { ClinicalTables } from '../../modules/clinical/components/ClinicalTables.js';
 

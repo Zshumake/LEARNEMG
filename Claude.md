@@ -19,8 +19,9 @@ Standard Workflow
 
 ## Versioning / cache-busting
 - There is **no** version badge in `index.html` (the old one was removed during the refactor — past instructions referencing "line ~1542" are obsolete).
-- Cache-busting is done with `?v=...` query strings: on the CSS `<link>`s in `index.html` and on ES-module import specifiers inside `src/`. When you change a file browsers may have cached, bump its `?v=` tag.
-- Known tech debt: these tags are hand-maintained. A future build/deploy step should generate them automatically (content hash) so they don't have to be edited by hand.
+- Cache-busting is done with `?v=...` query strings on the CSS `<link>`s in `index.html` and on ES-module import specifiers inside `src/`.
+- **Do NOT bump these by hand.** Run `python3 tools/version.py` before committing/deploying any web change — it content-hashes each `.js`/`.css` file and rewrites every `?v=` tag automatically (in dependency order, so a change cascades to everything that imports it). It's idempotent (no source change → no edits); `--check` exits non-zero if any tag is stale (CI-friendly). This keeps the "no build step / serve the repo root" model — it only edits the query strings, never the code or paths.
+- The one tag the script does NOT manage is the `mobile/?v=...` query on the mobile-redirect line in `index.html` — that's a separate manual deploy-cache-buster for the Flutter `/mobile/` HTML, bump it when you redeploy the Flutter app.
 
 ---
 

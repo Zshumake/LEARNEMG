@@ -1,14 +1,14 @@
-import { entrapmentUpperData } from './EntrapmentUpperData.js?v=20260317';
-import { entrapmentLowerData } from './EntrapmentLowerData.js?v=20260317';
-import { cervicalRadiculopathyData } from './CervicalRadiculopathyData.js?v=rootfix1';
-import { lumbosacralRadiculopathyData } from './LumbosacralRadiculopathyData.js?v=rootfix1';
-import { plexopathyData } from './PlexopathyData.js?v=20260317';
-import { polyneuropathyData } from './PolyneuropathyData.js?v=20260317';
-import { motorNeuronData } from './MotorNeuronData.js?v=20260317';
-import { nmjData } from './NMJData.js?v=20260317';
-import { myopathyData } from './MyopathyData.js?v=20260317';
-import { inappropriateReferralData } from './InappropriateReferralData.js?v=20260317';
-import { traumaticData } from './TraumaticData.js?v=20260317';
+import { entrapmentUpperData } from './EntrapmentUpperData.js?v=ae1516a2';
+import { entrapmentLowerData } from './EntrapmentLowerData.js?v=f3f2be58';
+import { cervicalRadiculopathyData } from './CervicalRadiculopathyData.js?v=061477b3';
+import { lumbosacralRadiculopathyData } from './LumbosacralRadiculopathyData.js?v=4e081407';
+import { plexopathyData } from './PlexopathyData.js?v=90449792';
+import { polyneuropathyData } from './PolyneuropathyData.js?v=982b659c';
+import { motorNeuronData } from './MotorNeuronData.js?v=101cc394';
+import { nmjData } from './NMJData.js?v=38a0df8d';
+import { myopathyData } from './MyopathyData.js?v=87c4e35a';
+import { inappropriateReferralData } from './InappropriateReferralData.js?v=0ebfee45';
+import { traumaticData } from './TraumaticData.js?v=fb90be8a';
 
 // All diagnoses merged into a single flat object
 export const clinicalExamData = {

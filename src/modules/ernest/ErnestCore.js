@@ -1,6 +1,6 @@
-import { ErnestAPI, modelFamily } from './ErnestAPI.js?v=20260422-quotaloopfix';
-import { ErnestUI } from './ErnestUI.js?v=20260422-apikeylink';
-import { ErnestChat } from './ErnestChat.js?v=20260304-v1';
+import { ErnestAPI, modelFamily } from './ErnestAPI.js?v=d21877e1';
+import { ErnestUI } from './ErnestUI.js?v=009ac2c7';
+import { ErnestChat } from './ErnestChat.js?v=ebb23936';
 import logger from '../../utils/Logger.js';
 
 export class ErnestCore {

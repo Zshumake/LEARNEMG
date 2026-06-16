@@ -1,4 +1,4 @@
-import { ERNEST_STYLES } from './ErnestStyles.js?v=20260422-apikeylink';
+import { ERNEST_STYLES } from './ErnestStyles.js?v=c8fbfb83';
 
 export class ErnestUI {
     constructor(core) {

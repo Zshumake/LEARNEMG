@@ -1,6 +1,6 @@
 import { PlexusLogic } from './PlexusLogic.js';
-import { PlexusRenderer } from './PlexusRenderer.js?v=20260304-v5';
-import { generatePlexopathyContent } from '../../content/pathology/BrachialPlexopathy.js?v=20260304-v5';
+import { PlexusRenderer } from './PlexusRenderer.js?v=59635fcf';
+import { generatePlexopathyContent } from '../../content/pathology/BrachialPlexopathy.js?v=20452d50';
 import logger from '../../utils/Logger.js';
 import { showModal } from '../../utils/ViewHelpers.js';
 

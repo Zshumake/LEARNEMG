@@ -1,5 +1,5 @@
-import { AppShell } from '../ui/AppShell.js?v=20260317';
-import { moduleLoader } from '../../utils/ModuleLoader.js?v=20260317';
+import { AppShell } from '../ui/AppShell.js?v=7759e458';
+import { moduleLoader } from '../../utils/ModuleLoader.js?v=f4aa9b9a';
 import logger from '../../utils/Logger.js';
 
 export class Bootstrapper {

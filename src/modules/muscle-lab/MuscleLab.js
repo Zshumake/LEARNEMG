@@ -1,9 +1,9 @@
 
-import { StudyCardsModule } from './StudyCards.js?v=20260507-stickysplit';
-import { EMGChallengeSystem } from './EMGChallenge.js?v=20260421-clinical';
+import { StudyCardsModule } from './StudyCards.js?v=309b6440';
+import { EMGChallengeSystem } from './EMGChallenge.js?v=24212e6d';
 import { MuscleLocalization } from './MuscleLocalization.js';
 import { MuscleLabMenu } from './MuscleLabMenu.js';
-import { MuscleAnatomyQuizModule } from './MuscleAnatomyQuiz.js?v=20260421-busfix';
+import { MuscleAnatomyQuizModule } from './MuscleAnatomyQuiz.js?v=3bad75db';
 import { ReferenceMaterials } from '../info/ReferenceMaterials.js';
 import { registerAction } from '../../utils/ActionBus.js';
 import logger from '../../utils/Logger.js';
