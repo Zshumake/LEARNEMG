@@ -190,3 +190,12 @@ Verified via `flutter analyze` (clean) + `flutter build web` (Flutter web/Canvas
   - `_buildHero` — 4–5 per-view methods with different title/subtitle/gradient/icon; unifying is a design change, not a clean dedup.
   - **`muscle_lab_view.dart` split** (2,206 lines, 10 self-contained classes) — pure file-reorg, lowest user value, audit ranked it last. Safe to do (behavior-preserving, analyze+build-verifiable) but deferred to avoid bolting a large mechanical move onto an already-large batch. Clean follow-up: keep `MuscleLabView`+`_ModeCard`, move `_StudyCardsView`/`_MuscleCard`, `_QuizEngineView`, `_EMGChallengeView`+`_Case` into `muscle_lab/*.dart` (make the 3 sub-views public + import).
 - Deployed: `flutter build web` → rsync `mobile/`, `main.dart.js` rebuilt, `mobile/?v=` → `20260616b-deploy`. **Live-verified** (~12s): bootstrap hash matches local build. Source preserved on `flutter-source-20260616` (`625f810`).
+
+### Round 13 (split muscle_lab_view.dart — rebuilt + deployed)
+- [x] **Split the 2,206-line god-file** (`a97142f`) into 4 focused files after mapping every cross-class reference (clean separation — `_MuscleCard` used only by study cards, `_Case` only by the challenge, `_ModeCard`/`_statChip` only by the menu):
+  - `muscle_lab_view.dart` (316 lines): `MuscleLabView` + `_MuscleLabViewState` menu router + `_ModeCard`
+  - `muscle_lab/study_cards_view.dart` (491): `StudyCardsView` + `_MuscleCard`
+  - `muscle_lab/quiz_engine_view.dart` (618): `QuizEngineView`
+  - `muscle_lab/emg_challenge_view.dart` (787): `EMGChallengeView` + `_Case`
+  - The 3 sub-views made public + imported; their state classes + private helpers moved with them. **Pure behavior-preserving relocation** (no logic change) — verified by `flutter analyze` (clean) + `flutter build web` (OK); `dart fix` pruned 2 now-unused imports. Deployed (`mobile/?v=20260616c`), **live-verified** (~48s, bootstrap matches). Source on `flutter-source-20260616` (`be7de80`).
+- ✅ **All deferred Flutter structural refactors now complete.** The only consciously-left items are `_SmallInfoCard`/`_buildHero` (theme-divergent — unifying is a net wash / over-abstraction).
