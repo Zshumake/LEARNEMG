@@ -1,7 +1,7 @@
 import { moduleLoader } from '../utils/ModuleLoader.js?v=f4aa9b9a';
-import { Bootstrapper } from './core/Bootstrapper.js?v=6ccb4484';
+import { Bootstrapper } from './core/Bootstrapper.js?v=e0a037e4';
 import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=bb25e474';
-import { PlexusManager } from './plexus/PlexusManager.js?v=9df5cd13';
+import { PlexusManager } from './plexus/PlexusManager.js?v=75f339e5';
 import { ModalSystem } from './ui/ModalSystem.js?v=5a01714c';
 import { CandylandCore } from './candyland/CandylandCore.js?v=7c0fdef9';
 import { QuizSystem } from './quiz/QuizSystem.js?v=f0359ba1';
@@ -12,7 +12,7 @@ import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=d37b34dc';
 import { ClinicalUI } from './clinical/ClinicalUI.js?v=6407755e';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=be613fc8';
 import { AudioController } from './audio/AudioController.js?v=9c578c28';
-import { ErnestCore } from './ernest/ErnestCore.js?v=9750772d';
+import { ErnestCore } from './ernest/ErnestCore.js?v=323f6f15';
 import { learningModulesConfig } from './candyland/BoardData.js?v=f7918a27';
 import logger from '../utils/Logger.js';
 

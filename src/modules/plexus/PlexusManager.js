@@ -88,6 +88,26 @@ export class PlexusManager {
             window._registerAction('plexusZoomReset', () => {
                 window.appComponents.plexus.zoomReset();
             });
+            window._registerAction('plexusCloseCompare', () => {
+                const p = document.getElementById('plexus-info-panel');
+                if (p) p.style.display = 'none';
+                window.appComponents.plexus.renderer?.resetHighlight();
+                window.appComponents.plexus._compareA = null;
+            });
+            window._registerAction('plexusSelectMuscle', (el) => {
+                window.appComponents.plexus.selectMuscleSearch(el.dataset.muscle);
+            });
+            window._registerAction('plexusCloseBuildCase', () => {
+                const p = document.getElementById('plexus-info-panel');
+                if (p) p.style.display = 'none';
+                window.appComponents.plexus.renderer?.resetHighlight();
+            });
+            window._registerAction('plexusToggleMuscle', (el) => {
+                window.appComponents.plexus.toggleBuildCaseMuscle(el, el.dataset.muscle);
+            });
+            window._registerAction('plexusAnalyzeBuildCase', () => {
+                window.appComponents.plexus.analyzeBuildCase();
+            });
         }
     }
 
@@ -267,7 +287,7 @@ export class PlexusManager {
 
         panel.innerHTML = `
             <div style="position:relative;">
-                <button onclick="this.parentElement.parentElement.style.display='none'; window.appComponents?.plexus?.renderer?.resetHighlight(); window.appComponents.plexus._compareA=null;"
+                <button data-action="plexusCloseCompare"
                     style="position:absolute;top:0;right:0;background:#ef4444;color:white;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-weight:bold;font-size:14px;">x</button>
                 <h3 style="color:#1e293b;margin:0 0 12px;">Comparison</h3>
                 <div style="display:flex;gap:8px;margin-bottom:14px;">
@@ -345,7 +365,7 @@ export class PlexusManager {
             const d = MUSCLE_DETAILS[m];
             return `<div style="padding:8px 12px;cursor:pointer;border-bottom:1px solid #f1f5f9;font-size:0.85rem;"
                          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'"
-                         onclick="window.appComponents?.plexus?.selectMuscleSearch('${m.replace(/'/g, "\\'")}')">
+                         data-action="plexusSelectMuscle" data-muscle="${m}">
                 <strong style="color:#1e293b;">${m}</strong>
                 <span style="color:#64748b;font-size:0.78rem;margin-left:6px;">${d.root}</span>
             </div>`;
@@ -560,20 +580,20 @@ export class PlexusManager {
 
         panel.innerHTML = `
             <div style="position: relative;">
-                <button onclick="this.parentElement.parentElement.style.display='none'; window.appComponents?.plexus?.renderer?.resetHighlight();"
+                <button data-action="plexusCloseBuildCase"
                     style="position:absolute;top:0;right:0;background:#ef4444;color:white;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-weight:bold;font-size:14px;">x</button>
                 <h3 style="color:#1e293b;margin:0 0 5px;">Build a Case</h3>
                 <p style="color:#64748b;font-size:0.82rem;margin:0 0 12px;border-bottom:1px solid #f1f5f9;padding-bottom:8px;">Select muscles that are WEAK, then click Analyze to find the lesion site.</p>
                 <div style="max-height:300px;overflow-y:auto;margin-bottom:12px;">
                     ${muscleList.map(m => `
-                        <div class="bc-muscle-item" data-muscle="${m}" onclick="window.appComponents?.plexus?.toggleBuildCaseMuscle(this, '${m.replace(/'/g, "\\'")}')"
+                        <div class="bc-muscle-item" data-muscle="${m}" data-action="plexusToggleMuscle"
                              style="padding:6px 10px;margin:3px 0;border-radius:8px;cursor:pointer;font-size:0.82rem;border:1px solid #e2e8f0;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;">
                             <span>${m}</span>
                             <span class="bc-status" style="font-size:0.72rem;font-weight:700;color:#94a3b8;">--</span>
                         </div>
                     `).join('')}
                 </div>
-                <button onclick="window.appComponents?.plexus?.analyzeBuildCase()"
+                <button data-action="plexusAnalyzeBuildCase"
                     style="width:100%;padding:10px;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.95rem;">
                     Analyze Lesion Site
                 </button>
