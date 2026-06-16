@@ -151,7 +151,7 @@ export default {
         return `
             <div class="ncs-technique-card">
                 <div class="ncs-image-gallery" data-images="${imagesJSON}" style="position: relative; margin-bottom: 20px; background: #f8fafc; border-radius: 12px; padding: 10px; border: 1px solid #e2e8f0;">
-                    <img class="ncs-gallery-image" src="${data.images[0]}" style="width: 100%; height: 200px; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto;">
+                    <img class="ncs-gallery-image" src="${data.images[0]}" alt="${data.title || 'Nerve conduction study technique'} illustration" style="width: 100%; height: 200px; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto;">
                     
                     ${hasMultipleImages ? `
                         <button data-action="navigateGallery" data-direction="-1" class="gallery-nav-btn left">

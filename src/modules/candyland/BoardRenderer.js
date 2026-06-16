@@ -529,7 +529,8 @@ export class BoardRenderer {
         const desc = (module.description) ? module.description : "Start your journey here.";
 
         return `
-            <div class="hero-module"
+            <div class="hero-module" role="button" tabindex="0"
+                 aria-label="Open module: ${module.title || 'module'}"
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
                  data-action="moduleClick" data-module-id="${module.id}" data-module-index="${index - 1}">
@@ -551,7 +552,8 @@ export class BoardRenderer {
         // handleModuleClick expects ID and Index. legacy used openMasteryModule(moduleNumber, id).
         // I will align handleModuleClick to take ID.
         return `
-            <div class="module-card"
+            <div class="module-card" role="button" tabindex="0"
+                 aria-label="Open module: ${module.title || 'module'}"
                  onmouseover="window.appComponents.candyland.showModuleDescription(${index})"
                  onmouseout="window.appComponents.candyland.hideModuleDescription()"
                  data-action="moduleClick" data-module-id="${module.id}" data-module-index="${index - 1}">

@@ -184,6 +184,12 @@ export class ErnestChat {
     parseMarkdown(text) {
         if (!text) return '';
 
+        // SECURITY: HTML-escape FIRST. This renders LLM (Gemini) output and user
+        // text as innerHTML, so the escape below is the app's only XSS defense.
+        // Every transform after this point must emit only fixed tags with NO
+        // attributes and NO URLs. Never add a `[label](url)` -> <a href> transform
+        // here (or any attribute/URL-producing rule) — that would turn model
+        // output into a javascript:-URL / attribute-injection sink.
         let html = text
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")

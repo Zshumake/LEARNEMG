@@ -135,3 +135,26 @@ Ran the performance-audit across 3 parallel agents (dead-code, runtime perf, rep
 - [x] **Auto-version script** (chose this over a full bundler — keeps the no-build architecture): `tools/version.py` content-hashes every `.js`/`.css` and rewrites all `?v=` tags in dependency order, so **no more hand-bumping**. Run it before deploying a web change; `--check` for CI. Verified: no import cycles, idempotent, app boots with hashed tags + 0 module load failures. CLAUDE.md updated.
 - [x] **Flutter case-data split** — decided to **skip** (large/error-prone restructure of an 8,646-line file for only a one-time ~10–40ms hitch; poor value-to-risk).
 - ✅ **All 4 cleanup streams resolved** (WebP, clinical-DB lazy-load, auto-versioning; case-data split intentionally skipped).
+
+### Round 9 (fresh-lens audit: accessibility · security · code-quality · Flutter idioms)
+Ran 4 parallel read-only specialist audits across both apps, then fixed the safe high-value findings.
+
+**DONE — WEB (tracked, versioned via `tools/version.py`, verified in preview, NOT yet committed/deployed):**
+- [x] **a11y: keyboard activation for the whole ActionBus.** Added an Enter/Space `keydown` handler beside the click delegation in `Initialization.js` (skips native button/a/input; preventDefault on Space). One central change makes every `data-action` element keyboard-operable.
+- [x] **a11y: board tiles are now real buttons.** `hero-module` + `module-card` got `role="button"` `tabindex="0"` `aria-label="Open module: …"`. Verified: 13 tiles focusable, **Enter opens the module** (learning-modal-overlay appears).
+- [x] **a11y: global `:focus-visible` ring** (`main-layout.css`) so keyboard users see focus (mouse clicks stay ring-free); also strengthened `.differential-input` focus.
+- [x] **a11y: input labels.** `aria-label` on the Ernest chat input ("Ask Ernest a question") and API-key input ("Gemini API key"). Verified present in DOM.
+- [x] **a11y: alt text** on the NCS technique gallery image.
+- [x] **security: XSS hardening comment** locking in "escape-first, no attribute/URL transforms" in `ErnestChat.parseMarkdown` (the one LLM-output→innerHTML sink — audited as *not* currently vulnerable; comment guards against a future regression). Also `rel="noopener"` → `rel="noopener noreferrer"` on the AI-Studio link.
+- Verified: desktop boots clean (no console errors), 13 keyboard-focusable tiles, Enter-to-open works, all aria-labels present, focus-visible rule active.
+
+**DONE — FLUTTER (on-disk source only; gitignored on this deploy branch — needs commit to `main` + `flutter build web` redeploy to ship):**
+- [x] **Real bug: undisposed `TextEditingController`s** (memory leaks). Added `dispose()` to `_DifferentialStepState` (`clinical_cases_view.dart`) and `.then((_) => textController.dispose())` to the API-key dialog (`ernest_chat_overlay.dart`). `flutter analyze` on both files: **No issues found.**
+
+**Audit headlines / reassurances:**
+- **Security: no working XSS, no key leak, no open redirect, no eval/document.write/postMessage.** The Ernest LLM-output path escapes-first and emits only attribute-less tags — safe. The Gemini key only ever goes to `generativelanguage.googleapis.com`, never logged/DOM'd.
+- **Flutter async/logging hygiene is clean** — 0 `use_build_context_synchronously`, `mounted` guards present, no `print()`.
+
+**DEFERRED — prioritized menu (bigger churn or needs a Flutter rebuild+deploy):**
+- WEB refactors: extract the 555-line `EMGChallenge.js` `<style>` into `css/`; de-dupe the mascot SVG (AppShell + ErnestUI + ErnestIcon, ~330 lines); adopt the **already-defined** `:root` palette token-by-token (52% of 3,168 hex literals map to existing vars); migrate the last 5 inline `onclick` (all in `PlexusManager.js`) to `data-action`; full modal focus-trap (role=dialog/aria-modal/focus-return/Escape) on the learning modal; landmarks (`<main>`/`<nav>`) + skip link; remaining input `aria-label`s (clinical/plexus/report search boxes).
+- FLUTTER (batch into one rebuild): turn on `prefer_const_constructors` + `dart fix --apply` (182 const sites + 29 `withOpacity`→`withValues`); point ~290 `Color(0xFF…)` literals at the existing `AppTheme`; extract duplicated `_SectionCard`/`_SmallInfoCard`/`_buildHero` into `core/widgets/`; split the 2,032-line `muscle_lab_view.dart`; `tooltip:` on the 10 unlabeled IconButtons + `Semantics` on the Ernest slide-out tab (and widen it to ≥48px); `_SectionHeader` method→`const` widget.

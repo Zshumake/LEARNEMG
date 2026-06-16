@@ -166,6 +166,16 @@ body {
 .differential-input:focus {
     outline: none;
     border-color: #6b9f78;
+    box-shadow: 0 0 0 3px rgba(107, 159, 120, 0.35);
+}
+
+/* Visible keyboard-focus indicator. Only shows for keyboard navigation
+   (:focus-visible), so mouse clicks stay ring-free. Covers the clickable
+   role="button" tiles (board modules, cards) that are now keyboard-reachable. */
+:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 

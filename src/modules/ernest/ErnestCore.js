@@ -1,6 +1,6 @@
 import { ErnestAPI, modelFamily } from './ErnestAPI.js?v=d21877e1';
-import { ErnestUI } from './ErnestUI.js?v=009ac2c7';
-import { ErnestChat } from './ErnestChat.js?v=ebb23936';
+import { ErnestUI } from './ErnestUI.js?v=9a6086e4';
+import { ErnestChat } from './ErnestChat.js?v=17648c14';
 import logger from '../../utils/Logger.js';
 
 export class ErnestCore {

@@ -3,7 +3,7 @@ import { Bootstrapper } from './core/Bootstrapper.js?v=6ccb4484';
 import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=bb25e474';
 import { PlexusManager } from './plexus/PlexusManager.js?v=9df5cd13';
 import { ModalSystem } from './ui/ModalSystem.js?v=5a01714c';
-import { CandylandCore } from './candyland/CandylandCore.js?v=3381fb00';
+import { CandylandCore } from './candyland/CandylandCore.js?v=7c0fdef9';
 import { QuizSystem } from './quiz/QuizSystem.js?v=f0359ba1';
 import { NCSData } from './ncs/NCSData.js?v=5781ca14';
 import { NCSEngine } from './ncs/NCSEngine.js?v=27bcae44';
@@ -12,7 +12,7 @@ import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=d37b34dc';
 import { ClinicalUI } from './clinical/ClinicalUI.js?v=6407755e';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=be613fc8';
 import { AudioController } from './audio/AudioController.js?v=9c578c28';
-import { ErnestCore } from './ernest/ErnestCore.js?v=fa1faeee';
+import { ErnestCore } from './ernest/ErnestCore.js?v=9750772d';
 import { learningModulesConfig } from './candyland/BoardData.js?v=f7918a27';
 import logger from '../utils/Logger.js';
 
@@ -25,6 +25,17 @@ document.body.addEventListener('click', (e) => {
     const handler = _actionHandlers.get(el.dataset.action);
     if (handler) handler(el, e);
     else logger.warn(`ActionBus: no handler for "${el.dataset.action}"`);
+});
+// Keyboard activation: lets Enter/Space fire data-action on non-native
+// elements (clickable <div>s with role="button" tabindex="0"). Native
+// controls (button/a/input) already activate via the click handler above.
+document.body.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    const el = e.target.closest('[data-action]');
+    if (!el || el.matches('button, a, input, textarea, select')) return;
+    e.preventDefault(); // stop Space from scrolling the page
+    const handler = _actionHandlers.get(el.dataset.action);
+    if (handler) handler(el, e);
 });
 
 
