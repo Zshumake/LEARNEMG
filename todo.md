@@ -127,3 +127,9 @@ Ran the performance-audit across 3 parallel agents (dead-code, runtime perf, rep
 **STILL TODO — user action:** **revoke/rotate the PAT** in GitHub settings (removed from local git config, but rotate to be safe).
 
 **Deferred (bigger):** mascot SVG dedup (AppShell + ErnestUI carry the same ~135-line SVGs twice), a minimal bundler (esbuild/rollup — collapses ~80 unbundled module requests + auto-hashes cache-busting; highest ceiling, large effort), `.git` history rewrite to strip the 1.6GB of podcast blobs (rewrites the Pages branch — deliberate decision only).
+
+### Round 8 (4 cleanup streams — doing one at a time, verified + deployed each)
+- [x] **Flutter images → WebP** (`545bd86`, live): converted all 76 `assets/images/` PNGs to WebP @ q=85, updated 74 Dart refs. **55MB → 3.1MB (94%)**; deployed `mobile/` 93MB → **40MB**. Verified the radiculopathy diagram renders crisply in CanvasKit; live WebP serves `image/webp`, old PNG 404. (Source delta reconstructable from the archive branch — see deploy memory.)
+- [ ] **Lazy-load web boot** — defer the 294KB clinical case DB + muscle-lab off `Initialization.js` startup. Verify by opening the clinical tool via its JS API + screenshot.
+- [ ] **Flutter case-data split** — `clinical_case_data.dart` (8,646-line eager static map) → lazy index + per-case factories. Verify via `flutter analyze` + build + opening a case.
+- [ ] **Add a bundler (esbuild)** — collapse the ~80 web modules into one hashed file, ending the manual `?v=` cache-bust tags. Biggest/riskiest; introduces a build step to the "no-build" web app — confirm scope before building it.
