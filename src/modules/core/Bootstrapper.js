@@ -1,4 +1,4 @@
-import { AppShell } from '../ui/AppShell.js?v=d2b43f15';
+import { AppShell } from '../ui/AppShell.js?v=4a916fb7';
 import { moduleLoader } from '../../utils/ModuleLoader.js?v=4ede3554';
 import logger from '../../utils/Logger.js';
 

@@ -1,5 +1,5 @@
 import { moduleLoader } from '../utils/ModuleLoader.js?v=4ede3554';
-import { Bootstrapper } from './core/Bootstrapper.js?v=72aac6dd';
+import { Bootstrapper } from './core/Bootstrapper.js?v=3ac022be';
 import { ErnestCharacter } from '../ui/ErnestCharacter.js?v=bb25e474';
 import { PlexusManager } from './plexus/PlexusManager.js?v=dce3cb15';
 import { ModalSystem } from './ui/ModalSystem.js?v=88925fa9';
@@ -12,7 +12,7 @@ import { ClinicalEngine } from './clinical/ClinicalEngine.js?v=d37b34dc';
 import { ClinicalUI } from './clinical/ClinicalUI.js?v=1a9778e3';
 import { MuscleLab } from './muscle-lab/MuscleLab.js?v=a8834353';
 import { AudioController } from './audio/AudioController.js?v=9c578c28';
-import { ErnestCore } from './ernest/ErnestCore.js?v=323f6f15';
+import { ErnestCore } from './ernest/ErnestCore.js?v=9d8b7423';
 import { learningModulesConfig } from './candyland/BoardData.js?v=f7918a27';
 import logger from '../utils/Logger.js';
 

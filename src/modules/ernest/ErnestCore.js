@@ -103,11 +103,9 @@ export class ErnestCore {
             startLabel.style.backgroundColor = p.color;
         }
 
-        // Update Start Page Description
-        const speechBubbleText = document.querySelector('.speech-bubble p, .lead-text');
-        if (speechBubbleText && p.description) {
-            speechBubbleText.textContent = p.description;
-        }
+        // (Start-page greeting is set by AppShell.bindEvents() from the persona's
+        // randomized line pool during render() above — don't overwrite it here with
+        // the single static description, so the funnier rotating lines surface.)
 
         // 🔄 GLOBAL DOM SWEEP: Instantly update all miniature icons across the app (Candyland, headers, etc)
         const miniIcons = document.querySelectorAll('.mini-ernest-wrapper');

@@ -89,53 +89,66 @@ export class AppShell {
         const speechBubbleText = document.querySelector('.speech-bubble .lead-text');
 
         if (ernestContainer) {
-            // Pick random animation
-            const isEarl = (window.appComponents && window.appComponents.ernestAI && window.appComponents.ernestAI.currentPersonaId === 'earl');
+            const ai = window.appComponents && window.appComponents.ernestAI;
+            const isEarl = !!(ai && ai.currentPersonaId === 'earl');
+            const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+            // --- Welcome-screen voices ---
+            const ernestEntry = [
+                "Fresh electrodes, big dreams, zero artifact. Let's make some gorgeous waveforms!",
+                "Good news, Doctor — your conduction velocity for showing up is excellent. Let's build on it!",
+                "I'm twelve milliamps of pure optimism. Plug in and let's learn!",
+                "Side effects of this app may include actually enjoying EMG. Worth it!",
+                "Needle's sharp, gain's set, vibes are immaculate. Let's localize something!"
+            ];
+            const ernestPokes = [
+                "Ack! That's my STIM button, not a doorbell. ...Okay, that was kinda fun.",
+                "Ooh, a free nerve stim! You're a natural, Doctor.",
+                "Careful, I'm calibrated. Roughly. We'll round up!",
+                "Poke logged, amplitude noted. Ten out of ten — would be poked again.",
+                "That tickled my F-waves! Let's channel that energy into studying, yeah?"
+            ];
+            const earlEntry = [
+                "Oh good, you're here. And I was so close to a relaxing day.",
+                "Let me guess — you call a CMAP a 'squiggle.' We have so much work to do.",
+                "I'm Earl. I'm contractually required to help you. Emphasis on 'contractually.'",
+                "Touch nothing, ground your patient, and stop breathing on my electrodes.",
+                "I reviewed your localization skills. I aged a decade. Let's get this over with."
+            ];
+            const earlPokes = [
+                "Did you just poke me? Bold, for someone who can't find the fibular head.",
+                "I'm a diagnostic instrument, not your stress toy. Hands off.",
+                "Every time you poke me, a SNAP somewhere goes axonal. Quit it.",
+                "Astonishing. You can press a button but not calculate a conduction velocity.",
+                "Poke me again and I'm documenting reduced recruitment — of my patience."
+            ];
 
             if (isEarl) {
                 const earlAnimations = [
-                    'earl-glitch-sigh',
-                    'earl-angry-scan',
-                    'earl-engine-stall',
-                    'earl-impatient-hop',
-                    'earl-power-surge',
-                    'earl-slow-burn'
+                    'earl-glitch-sigh', 'earl-angry-scan', 'earl-engine-stall',
+                    'earl-impatient-hop', 'earl-power-surge', 'earl-slow-burn'
                 ];
-                const randomEarlState = earlAnimations[Math.floor(Math.random() * earlAnimations.length)];
-                ernestContainer.classList.add(randomEarlState);
+                ernestContainer.classList.add(pick(earlAnimations));
+                if (speechBubbleText) speechBubbleText.innerHTML = pick(earlEntry);
             } else {
-                const entryStates = ['dancing', 'jumping', 'waving'];
-                const randomState = entryStates[Math.floor(Math.random() * entryStates.length)];
+                const randomState = pick(['dancing', 'jumping', 'waving']);
                 ernestContainer.classList.add(randomState);
-
-                // Set corresponding dialogue and gestures for Ernest
-                if (speechBubbleText) {
-                    if (randomState === 'dancing') {
-                        ernestContainer.setAttribute('data-gesture-l', 'palm');
-                        ernestContainer.setAttribute('data-gesture-r', 'palm');
-                        speechBubbleText.innerHTML = "Rhythm and recruitment! If you can't keep the beat, you can't read a MUAP. Click and let's get into the flow.";
-                    } else if (randomState === 'jumping') {
-                        ernestContainer.setAttribute('data-gesture-l', 'fist');
-                        ernestContainer.setAttribute('data-gesture-r', 'fist');
-                        speechBubbleText.innerHTML = "High amplitude, fast rise time! That's the energy I need to see. Ready to recruit some motor units? Click to start.";
-                    } else if (randomState === 'waving') {
-                        ernestContainer.setAttribute('data-gesture-r', 'palm');
-                        speechBubbleText.innerHTML = "Don't just stand there, Doctor. This is the EMG/NCS Mastery System—the gold standard. Click me and let's see if your conduction velocities are up to snuff.";
-                    }
+                // hand gestures stay tied to the pose
+                if (randomState === 'dancing') {
+                    ernestContainer.setAttribute('data-gesture-l', 'palm');
+                    ernestContainer.setAttribute('data-gesture-r', 'palm');
+                } else if (randomState === 'jumping') {
+                    ernestContainer.setAttribute('data-gesture-l', 'fist');
+                    ernestContainer.setAttribute('data-gesture-r', 'fist');
+                } else if (randomState === 'waving') {
+                    ernestContainer.setAttribute('data-gesture-r', 'palm');
                 }
+                if (speechBubbleText) speechBubbleText.innerHTML = pick(ernestEntry);
             }
 
-            // Playful poke response on click (preserves current dancing/jumping/waving state)
+            // Poke response on click — stays in character for whoever's on screen
             ernestContainer.addEventListener('click', () => {
-                if (speechBubbleText) {
-                    const responses = [
-                        "Check your ground, that's unstable.",
-                        "Latency is the key to life, Doctor. Don't forget it.",
-                        "Are you stimulating or just guessing? Match the signal.",
-                        "Knowledge is the best filter for noise. Keep studying."
-                    ];
-                    speechBubbleText.innerHTML = responses[Math.floor(Math.random() * responses.length)];
-                }
+                if (speechBubbleText) speechBubbleText.innerHTML = pick(isEarl ? earlPokes : ernestPokes);
             });
         }
 

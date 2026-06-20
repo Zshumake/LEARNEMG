@@ -1,0 +1,171 @@
+/* ============================================================
+   Welcome screen — polish layer (light · friendly · refined)
+   Pure CSS overrides of the existing .app-welcome-screen markup.
+   No markup/JS changes; loaded after main-layout.css so it wins.
+   ============================================================ */
+
+/* ---- atmosphere: fresher green, soft depth, faint texture ---- */
+.app-welcome-screen {
+    background:
+        radial-gradient(54% 46% at 15% 8%, rgba(150, 205, 165, 0.40), transparent 62%),
+        radial-gradient(46% 48% at 90% 92%, rgba(70, 140, 98, 0.34), transparent 60%),
+        radial-gradient(135% 125% at 50% -12%, #3d6e4e 0%, #275139 52%, #1b3327 100%) !important;
+    padding: 48px 24px !important;
+    overflow: hidden;
+}
+.app-welcome-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.4px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(125% 90% at 50% 28%, #000 38%, transparent 86%);
+    mask-image: radial-gradient(125% 90% at 50% 28%, #000 38%, transparent 86%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---- the card: layered depth, hairline edge, top accent ---- */
+.app-main-container {
+    position: relative;
+    z-index: 1;
+    border-radius: 36px !important;
+    padding: 42px 56px 38px !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f6faf7 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 6px rgba(13, 40, 25, 0.06),
+        0 34px 76px -22px rgba(12, 38, 24, 0.5) !important;
+    animation: wp-rise 0.7s 0.04s both;
+}
+.app-main-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 56%;
+    height: 4px;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(90deg, transparent, #34a06b 30%, #7cc79b 50%, #34a06b 70%, transparent);
+    opacity: 0.9;
+}
+
+/* ---- logo: soft halo + gentle float ---- */
+.app-logo-img {
+    filter: drop-shadow(0 8px 18px rgba(20, 70, 45, 0.16));
+    animation: wp-float 5.5s ease-in-out infinite;
+}
+
+/* ---- title: tighter rhythm, theme-tinted gradient ---- */
+.app-main-title {
+    font-size: 3.45em !important;
+    margin-bottom: 10px !important;
+    letter-spacing: -0.035em !important;
+    background: linear-gradient(165deg, #163a2c 0%, #2d5742 72%, #163a2c 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: wp-rise 0.7s 0.15s both;
+}
+.app-content-area {
+    animation: wp-rise 0.7s 0.25s both;
+    gap: 36px !important;
+    margin-bottom: 8px !important;
+    align-items: center !important;
+}
+/* tighter mascot stage — kills the large dead band above Ernest */
+.start-page-mascot-stage {
+    height: 300px !important;
+    width: 320px !important;
+    margin: 4px auto 0 !important;
+}
+
+/* (No podium ground-shadow. The Ernest/Earl welcome animations swing the
+   character across translateY -40px..+60px over 9 different states, so a fixed
+   ground shadow can't stay under him without per-state syncing — not worth the
+   fragility. The mascot sits un-grounded, as in the original.) */
+
+/* ---- persona pill: keep the bold-friendly look, add lift ---- */
+.ernest-label-pill {
+    border-width: 3px !important;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1), 0 12px 24px rgba(20, 70, 45, 0.16);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s !important;
+}
+.ernest-label-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.1), 0 16px 30px rgba(20, 70, 45, 0.22);
+}
+
+/* ---- speech bubble: cleaner frost, green accent + tail ---- */
+.speech-bubble {
+    background: linear-gradient(180deg, #ffffff 0%, #f3faf5 100%) !important;
+    border: 1px solid rgba(196, 226, 208, 0.9) !important;
+    border-left: 4px solid #34a06b !important;
+    border-radius: 10px 30px 30px 30px !important;
+    box-shadow: 0 18px 44px -18px rgba(12, 38, 24, 0.24) !important;
+    padding: 34px 40px !important;
+}
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border: 11px solid transparent;
+    border-right-color: #34a06b;
+    border-left: 0;
+}
+/* suppress the legacy second (white) tail so only one green tail points at Ernest */
+.speech-bubble::after {
+    content: none !important;
+    display: none !important;
+    border: 0 !important;
+}
+.speech-bubble .lead-text {
+    font-size: 1.05rem !important;
+    line-height: 1.65 !important;
+    color: #1e3b2c !important;
+}
+
+/* ---- CTA: refined gradient, satisfying hover, gentle idle pulse ---- */
+.cta-container {
+    animation: wp-rise 0.7s 0.35s both;
+    margin-top: 10px;
+}
+.app-cta-button {
+    padding: 21px 62px !important;
+    font-size: 1.42em !important;
+    letter-spacing: 0.01em !important;
+    background: linear-gradient(135deg, #10b981 0%, #059669 46%, #065f46 100%) !important;
+    box-shadow: 0 14px 30px -8px rgba(5, 150, 105, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.25) !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, filter 0.2s !important;
+    animation: wp-pulse 3.4s ease-in-out infinite;
+}
+.app-cta-button::after {
+    content: '\2192';
+    margin-left: 14px;
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+.app-cta-button:hover {
+    transform: translateY(-3px) !important;
+    filter: brightness(1.05);
+    box-shadow: 0 22px 46px -10px rgba(5, 150, 105, 0.62), inset 0 2px 0 rgba(255, 255, 255, 0.25) !important;
+}
+.app-cta-button:hover::after { transform: translateX(5px); }
+
+/* ---- gentle, friendly motion ---- */
+@keyframes wp-rise   { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes wp-float  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes wp-pulse  { 0%, 100% { box-shadow: 0 14px 30px -8px rgba(5,150,105,0.5), inset 0 2px 0 rgba(255,255,255,0.25); } 50% { box-shadow: 0 16px 38px -8px rgba(5,150,105,0.62), inset 0 2px 0 rgba(255,255,255,0.25); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .app-welcome-screen,
+    .app-welcome-screen *,
+    .app-welcome-screen *::before,
+    .app-welcome-screen *::after { animation: none !important; }
+}
