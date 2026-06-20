@@ -47,7 +47,7 @@ Static, vanilla-JS **ES-module** site. No framework, no bundler. D3 is loaded fr
 ## EMG/NCS Case Database
 Cases live in `src/data/cases/` (e.g. `RadiculopathyCases.js`, `LowerExtremityCases.js`, `SystemicCases.js`) and `src/data/clinical-exam/` (entrapment, plexopathy, polyneuropathy, ...), wired through `index.js` barrels. The clinical case engine/UI is `src/modules/clinical/`.
 
-Candidate cases not yet added (educational priority order): C6 radiculopathy, Guillain-Barré, radial neuropathy (Saturday-night palsy), brachial plexopathy, Lambert-Eaton.
+The case library is **comprehensive (~50 cases** in `src/data/cases/`) — radiculopathies (C5/C6/C7/L5/S1), entrapments (CTS mild+severe, cubital/Guyon's, AIN/PIN/pronator/Struthers, axillary, suprascapular, long-thoracic, fibular, sciatic, tarsal tunnel, meralgia, Baxter's…), plexopathies (traumatic avulsions, Erb's, Klumpke's, Parsonage-Turner, radiation, diabetic LS), NMJ (MG, LEMS), motor neuron (ALS), and acquired/hereditary polyneuropathies (GBS/AIDP, CIDP, MMN, CMT1, small-fiber, diabetic). **Obsolete note (was here):** the old "candidate cases not yet added" list — C6 radiculopathy, Guillain-Barré, Saturday-night palsy, brachial plexopathy, Lambert-Eaton — is wrong; **all five were added 2026-06-11** and are live. Remaining gaps are niche: standalone C8/T1 radiculopathy, critical-illness myopathy/neuropathy, inclusion-body myositis, botulism. To add one: match the schema in an existing case file, append to that file's exported `xxxCases` object (the `index.js` barrel spreads it into `clinicalCasesData`), then run `python3 tools/version.py`.
 
 ---
 
