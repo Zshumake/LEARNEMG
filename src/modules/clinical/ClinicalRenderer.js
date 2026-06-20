@@ -1,7 +1,7 @@
 import { ClinicalTables } from './components/ClinicalTables.js?v=90a414ac';
 import { ClinicalEvaluator } from './ClinicalEvaluator.js';
 import { ClinicalIcons } from './components/ClinicalIcons.js';
-import { ClinicalDashboardRenderer } from './components/ClinicalDashboardRenderer.js?v=3a1a3a79';
+import { ClinicalDashboardRenderer } from './components/ClinicalDashboardRenderer.js?v=edff89c4';
 import { ClinicalShellRenderer } from './components/ClinicalShellRenderer.js';
 import { ClinicalExamRenderer } from './components/ClinicalExamRenderer.js?v=071ac916';
 import { ClinicalDiagnosisRenderer } from './components/ClinicalDiagnosisRenderer.js?v=f836c6b7';

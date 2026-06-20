@@ -148,12 +148,12 @@ class ClinicalExamLabModule {
         return `
             <div class="cel-sidebar">
                 <div class="cel-search-box">
-                    <input type="text" id="cel-search" placeholder="Search diagnoses..." oninput="window._celModule.filterSidebar(this.value)">
+                    <input type="text" id="cel-search" aria-label="Search diagnoses" placeholder="Search diagnoses..." oninput="window._celModule.filterSidebar(this.value)">
                 </div>
                 <div id="cel-category-list" class="cel-category-list">
                     ${this.categories.map(cat => `
                         <div class="cel-category">
-                            <div class="cel-category-header" data-action="celToggleCategory" data-category="${cat.name}">
+                            <div class="cel-category-header" role="button" tabindex="0" data-action="celToggleCategory" data-category="${cat.name}">
                                 <span>${cat.name}</span>
                                 <span class="cel-cat-count">${cat.ids.length}</span>
                             </div>
@@ -313,7 +313,7 @@ class ClinicalExamLabModule {
 
         return `
             <div class="cel-edx-section">
-                <div class="cel-edx-header" data-action="celToggleSection" data-section-id="edx-${diagnosisId}">
+                <div class="cel-edx-header" role="button" tabindex="0" data-action="celToggleSection" data-section-id="edx-${diagnosisId}">
                     <span class="cel-edx-icon">${ICONS.exam}</span>
                     <span>View EDX Study Findings</span>
                     <span class="cel-edx-case-name">${caseData.correctDiagnosis || caseData.title || ''}</span>
@@ -353,7 +353,7 @@ class ClinicalExamLabModule {
                 ${Object.entries(groups).map(([cat, items]) => `
                     <div class="cel-coach-group-label">${cat}</div>
                     ${items.map(d => `
-                        <div class="cel-sidebar-item" data-action="celSelectCoachDx" data-diagnosis-id="${d.id}">${d.name}</div>
+                        <div class="cel-sidebar-item" role="button" tabindex="0" data-action="celSelectCoachDx" data-diagnosis-id="${d.id}">${d.name}</div>
                     `).join('')}
                 `).join('')}
             </div>
@@ -459,7 +459,7 @@ class ClinicalExamLabModule {
                 <div class="cel-coach-findings">
                     ${findings.map((f, i) => {
                         const m = f.match;
-                        if (!m) return `<div class="cel-coach-finding cel-coach-hidden" data-idx="${i}" data-action="celCoachReveal" data-idx="${i}"><div class="cel-cf-type">${f.type}</div><div class="cel-cf-key">${f.key}</div><div class="cel-cf-result">No data</div></div>`;
+                        if (!m) return `<div class="cel-coach-finding cel-coach-hidden" data-idx="${i}" role="button" tabindex="0" data-action="celCoachReveal" data-idx="${i}"><div class="cel-cf-type">${f.type}</div><div class="cel-cf-key">${f.key}</div><div class="cel-cf-result">No data</div></div>`;
 
                         let result = '', status = 'normal';
                         if (f.type === 'strength') {
@@ -477,7 +477,7 @@ class ClinicalExamLabModule {
                         }
 
                         return `
-                        <div class="cel-coach-finding cel-coach-hidden cel-finding-${status}" data-idx="${i}" data-action="celCoachReveal">
+                        <div class="cel-coach-finding cel-coach-hidden cel-finding-${status}" data-idx="${i}" role="button" tabindex="0" data-action="celCoachReveal">
                             <div class="cel-cf-type">${f.type}</div>
                             <div class="cel-cf-key">${f.key}</div>
                             <div class="cel-cf-result">${result}</div>
@@ -486,7 +486,7 @@ class ClinicalExamLabModule {
                     }).join('')}
                 </div>
 
-                <div class="cel-coach-reasoning" data-action="celToggleSection" data-section-id="coach-reasoning">
+                <div class="cel-coach-reasoning" role="button" tabindex="0" data-action="celToggleSection" data-section-id="coach-reasoning">
                     <strong>Clinical Reasoning <span class="cel-toggle" id="cel-arrow-coach-reasoning">+</span></strong>
                 </div>
                 <div id="cel-section-coach-reasoning" class="cel-section-body cel-collapsed">
@@ -592,7 +592,7 @@ class ClinicalExamLabModule {
                         const specVal = this.parseStatPercent(t.specificity);
                         const testId = `test-${dxId}-${i}`;
                         return `
-                        <div class="cel-test-card" data-action="celToggleSection" data-section-id="${testId}">
+                        <div class="cel-test-card" role="button" tabindex="0" data-action="celToggleSection" data-section-id="${testId}">
                             <div class="cel-tc-header">
                                 <span class="cel-tc-name">${t.name}</span>
                                 <span class="cel-toggle cel-tc-toggle" id="cel-arrow-${testId}">+</span>
@@ -771,7 +771,7 @@ class ClinicalExamLabModule {
                 <div class="cel-builder-body">
                     <div class="cel-builder-left">
                         <div class="cel-search-box">
-                            <input type="text" id="cel-builder-search" placeholder="Search diagnoses..." oninput="window._celModule.filterBuilder(this.value)">
+                            <input type="text" id="cel-builder-search" aria-label="Search diagnoses" placeholder="Search diagnoses..." oninput="window._celModule.filterBuilder(this.value)">
                         </div>
                         <div id="cel-builder-list" class="cel-builder-list">
                             ${this.categories.map(cat => `
@@ -902,7 +902,7 @@ class ClinicalExamLabModule {
                         const sensVal = this.parseStatPercent(t.sensitivity);
                         const specVal = this.parseStatPercent(t.specificity);
                         return `
-                        <div class="cel-test-card" data-action="celToggleSection" data-section-id="${id}">
+                        <div class="cel-test-card" role="button" tabindex="0" data-action="celToggleSection" data-section-id="${id}">
                             <div class="cel-tc-header">
                                 <span class="cel-tc-name">${t.name}</span>
                                 <span class="cel-toggle cel-tc-toggle" id="cel-arrow-${id}">+</span>

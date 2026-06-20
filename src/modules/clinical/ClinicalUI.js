@@ -1,4 +1,4 @@
-import { ClinicalRenderer } from './ClinicalRenderer.js?v=61799618';
+import { ClinicalRenderer } from './ClinicalRenderer.js?v=11d4ab20';
 import { showModal } from '../../utils/ViewHelpers.js';
 import { ClinicalTables } from './components/ClinicalTables.js?v=90a414ac';
 import logger from '../../utils/Logger.js';

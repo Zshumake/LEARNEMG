@@ -88,7 +88,7 @@ export class EMGChallengeSystem {
                         </h5>
 
                         <div class="emg-toggle-grid">
-                            <div class="emg-toggle-card active" data-type="root" data-action="emgChallenge:toggleQuestionType">
+                            <div class="emg-toggle-card active" data-type="root" role="button" tabindex="0" data-action="emgChallenge:toggleQuestionType">
                                 <div class="emg-toggle-icon">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                                 </div>
@@ -101,7 +101,7 @@ export class EMGChallengeSystem {
                                 </div>
                             </div>
 
-                            <div class="emg-toggle-card active" data-type="plexus" data-action="emgChallenge:toggleQuestionType">
+                            <div class="emg-toggle-card active" data-type="plexus" role="button" tabindex="0" data-action="emgChallenge:toggleQuestionType">
                                 <div class="emg-toggle-icon">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
                                 </div>
@@ -114,7 +114,7 @@ export class EMGChallengeSystem {
                                 </div>
                             </div>
 
-                            <div class="emg-toggle-card active" data-type="peripheral" data-action="emgChallenge:toggleQuestionType">
+                            <div class="emg-toggle-card active" data-type="peripheral" role="button" tabindex="0" data-action="emgChallenge:toggleQuestionType">
                                 <div class="emg-toggle-icon">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
                                 </div>

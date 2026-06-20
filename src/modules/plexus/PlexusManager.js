@@ -586,7 +586,7 @@ export class PlexusManager {
                 <p style="color:#64748b;font-size:0.82rem;margin:0 0 12px;border-bottom:1px solid #f1f5f9;padding-bottom:8px;">Select muscles that are WEAK, then click Analyze to find the lesion site.</p>
                 <div style="max-height:300px;overflow-y:auto;margin-bottom:12px;">
                     ${muscleList.map(m => `
-                        <div class="bc-muscle-item" data-muscle="${m}" data-action="plexusToggleMuscle"
+                        <div class="bc-muscle-item" data-muscle="${m}" role="button" tabindex="0" data-action="plexusToggleMuscle"
                              style="padding:6px 10px;margin:3px 0;border-radius:8px;cursor:pointer;font-size:0.82rem;border:1px solid #e2e8f0;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;">
                             <span>${m}</span>
                             <span class="bc-status" style="font-size:0.72rem;font-weight:700;color:#94a3b8;">--</span>
@@ -651,10 +651,10 @@ export class PlexusManager {
             <div class="plexus-tool-container" style="height: 85vh; min-height: 0; display: flex; flex-direction: column; background: #f1f5f9; font-family: 'Inter', sans-serif;">
                 <!-- Main Tab Navigation -->
                 <div class="plexus-main-tabs" style="background: white; padding: 10px 20px 0 20px; border-bottom: 1px solid #e2e8f0; display: flex; gap: 30px;">
-                    <div id="tab-anatomy" data-action="plexusSwitchView" data-view="anatomy" class="plexus-tab active">
+                    <div id="tab-anatomy" role="button" tabindex="0" data-action="plexusSwitchView" data-view="anatomy" class="plexus-tab active">
                         Interactive Anatomy
                     </div>
-                    <div id="tab-clinical" data-action="plexusSwitchView" data-view="clinical" class="plexus-tab">
+                    <div id="tab-clinical" role="button" tabindex="0" data-action="plexusSwitchView" data-view="clinical" class="plexus-tab">
                         Clinical Pathophysiology
                     </div>
                 </div>
@@ -680,7 +680,7 @@ export class PlexusManager {
                         
                         <!-- Muscle Search -->
                         <div style="position: relative; flex: 0 0 200px;">
-                            <input type="text" id="plexus-muscle-search" placeholder="Search muscles..."
+                            <input type="text" id="plexus-muscle-search" aria-label="Search muscles" placeholder="Search muscles..."
                                    oninput="window.appComponents?.plexus?.searchMuscle(this.value)"
                                    style="width:100%;padding:7px 10px 7px 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:0.82rem;outline:none;box-sizing:border-box;"
                                    onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#e2e8f0'">

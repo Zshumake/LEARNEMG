@@ -573,7 +573,7 @@ export class BoardRenderer {
         ];
 
         return topics.map(topic => `
-            <div data-action="playExtraPodcast" data-topic-id="${topic.id}" style="
+            <div role="button" tabindex="0" data-action="playExtraPodcast" data-topic-id="${topic.id}" style="
                 background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 6px; padding: 8px;
                 cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;"
                 onmouseover="this.style.background='#f3e8ff'; this.style.borderColor='#a855f7'"

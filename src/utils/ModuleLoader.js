@@ -54,8 +54,8 @@ const MODULE_MAP = {
     },
 
     // STANDARD CONTENT MODULES (Lazy Loaded)
-    'clinical-exam-lab': () => import('../content/clinical-exam/ClinicalExamLab.js?v=f7d4c3d1'),
-    'emg-introduction': () => import('../content/emg/Introduction.js?v=ffa2cd72'),
+    'clinical-exam-lab': () => import('../content/clinical-exam/ClinicalExamLab.js?v=c8f6cad6'),
+    'emg-introduction': () => import('../content/emg/Introduction.js?v=50f70da2'),
     'basic-patterns': () => import('../content/emg/BasicPatterns.js'),
     'neuropathy-myopathy-basics': () => import('../content/emg/NeuropathyMyopathy.js'),
     'clinical-correlation': () => import('../content/emg/ClinicalCorrelation.js'),
@@ -75,7 +75,7 @@ const MODULE_MAP = {
     'master-nerve-chart': () => import('../content/reference/MasterNerveChart.js'),
     'neuropathy': () => import('../content/pathology/NeuropathyPathophysiology.js'),
     'radiculopathy': () => import('../content/pathology/Radiculopathy.js'),
-    'emg-basics': () => import('../content/emg/Introduction.js?v=ffa2cd72'),
+    'emg-basics': () => import('../content/emg/Introduction.js?v=50f70da2'),
 };
 
 class ModuleLoader {

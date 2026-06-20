@@ -1,6 +1,6 @@
 
-import { StudyCardsModule } from './StudyCards.js?v=309b6440';
-import { EMGChallengeSystem } from './EMGChallenge.js?v=a1ed99aa';
+import { StudyCardsModule } from './StudyCards.js?v=a5cf7fe5';
+import { EMGChallengeSystem } from './EMGChallenge.js?v=be5ac679';
 import { MuscleLocalization } from './MuscleLocalization.js';
 import { MuscleLabMenu } from './MuscleLabMenu.js';
 import { MuscleAnatomyQuizModule } from './MuscleAnatomyQuiz.js?v=3bad75db';

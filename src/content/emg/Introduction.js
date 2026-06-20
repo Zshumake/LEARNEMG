@@ -145,7 +145,7 @@ class IntroductionModule extends BaseContent {
                             const firstSentence = rule.text.split('. ')[0] + '.';
                             const restOfText = rule.text.substring(firstSentence.length).trim();
                             return `
-                            <div class="emg-card" style="border-top: 4px solid ${rule.color}; cursor: pointer;" data-action="introToggleRule" data-rule-id="${rule.id}">
+                            <div class="emg-card" style="border-top: 4px solid ${rule.color}; cursor: pointer;" role="button" tabindex="0" data-action="introToggleRule" data-rule-id="${rule.id}">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <div style="background: ${rule.color}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 800;">${rule.id}</div>
@@ -367,10 +367,10 @@ class IntroductionModule extends BaseContent {
                 <div id="intro-terminology-section" class="emg-intro-section" style="display: none;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
                         <h4 style="color: #be185d; margin: 0;">EDX Mastery Glossary</h4>
-                        <input type="text" id="glossary-search" onkeyup="window.filterGlossary()" placeholder="Search mastery terms..." style="padding: 12px; border-radius: 12px; border: 1px solid #fce7f3; width: 300px; box-shadow: ${DesignTokens.shadows.sm};">
+                        <input type="text" id="glossary-search" onkeyup="window.filterGlossary()" aria-label="Search glossary terms" placeholder="Search mastery terms..." style="padding: 12px; border-radius: 12px; border: 1px solid #fce7f3; width: 300px; box-shadow: ${DesignTokens.shadows.sm};">
                     </div>
                     <!-- NEW: Essential Terminology Podcast Banner -->
-                    <div class="podcast-play-banner" data-action="openModulePodcast" data-module-id="emg-introduction" data-episode-id="emg-terminology" style="
+                    <div class="podcast-play-banner" role="button" tabindex="0" data-action="openModulePodcast" data-module-id="emg-introduction" data-episode-id="emg-terminology" style="
                         background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
                         border-radius: 16px;
                         padding: 25px;

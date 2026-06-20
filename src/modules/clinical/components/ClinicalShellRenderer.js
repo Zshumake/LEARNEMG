@@ -163,12 +163,12 @@ export const ClinicalShellRenderer = {
                         <p style="color: #94a3b8; margin-bottom: 30px;">Is an Electrodiagnostic (EMG/NCS) evaluation indicated for this presentation?</p>
 
                         <div class="emg-decision-grid">
-                            <div class="emg-choice emg-choice--yes" data-action="emgIndicated" data-value="true">
+                            <div class="emg-choice emg-choice--yes" role="button" tabindex="0" data-action="emgIndicated" data-value="true">
                                 <div class="emg-icon-wrap">${ClinicalIcons.getSvgIcon('check', 'currentColor', '44')}</div>
                                 <div class="emg-title">Indicated</div>
                                 <p class="emg-subtitle">Proceed with studies to localize lesion</p>
                             </div>
-                            <div class="emg-choice emg-choice--no" data-action="emgIndicated" data-value="false">
+                            <div class="emg-choice emg-choice--no" role="button" tabindex="0" data-action="emgIndicated" data-value="false">
                                 <div class="emg-icon-wrap">${ClinicalIcons.getSvgIcon('x', 'currentColor', '44')}</div>
                                 <div class="emg-title">Not Indicated</div>
                                 <p class="emg-subtitle">Rely on clinical diagnosis alone</p>
@@ -200,7 +200,7 @@ export const ClinicalShellRenderer = {
                         </h3>
                         <p style="color: #94a3b8; margin-bottom: 25px;">Synthesize all clinical and EDX data to provide the specific diagnosis.</p>
 
-                        <input type="text" id="final-diagnosis" class="clinical-textarea" style="width: 100%; padding: 15px; border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(0, 0, 0, 0.2); color: #f8fafc; border-radius: 8px; font-size: 1.1em; margin-bottom: 25px; font-family: inherit;" placeholder="Type specific diagnosis (e.g. Severe CTS)...">
+                        <input type="text" id="final-diagnosis" class="clinical-textarea" style="width: 100%; padding: 15px; border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(0, 0, 0, 0.2); color: #f8fafc; border-radius: 8px; font-size: 1.1em; margin-bottom: 25px; font-family: inherit;" aria-label="Final diagnosis" placeholder="Type specific diagnosis (e.g. Severe CTS)...">
                         
                         <div style="display: flex; justify-content: center;">
                             <button class="dashboard-card-btn glass-btn" style="background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 12px 30px; font-size: 1.1em; border: 1px solid rgba(16, 185, 129, 0.5); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);" data-action="submitConclusion">Submit Investigation</button>

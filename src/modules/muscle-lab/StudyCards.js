@@ -300,7 +300,7 @@ export class StudyCardsModule {
                         <button class="region-btn" data-region="upper" data-action="studyCards:switchAnatomy">Upper Extremity</button>
                         <div class="muscle-search-wrap">
                             <svg class="muscle-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                            <input type="text" class="muscle-search-input" placeholder="Search muscles, nerves, or roots..." oninput="window.MuscleAnatomy.filterBySearch(this.value)">
+                            <input type="text" class="muscle-search-input" aria-label="Search muscles, nerves, or roots" placeholder="Search muscles, nerves, or roots..." oninput="window.MuscleAnatomy.filterBySearch(this.value)">
                         </div>
                     </div>
                 </div>
@@ -375,7 +375,7 @@ export class StudyCardsModule {
             const isExpanded = this.showAll || this.expandedGroups.has(groupName) || this.searchQuery.length > 0;
             return `
                 <div class="muscle-group">
-                    <div class="muscle-group-header" data-action="studyCards:toggleGroup" data-group="${groupName}">
+                    <div class="muscle-group-header" role="button" tabindex="0" data-action="studyCards:toggleGroup" data-group="${groupName}">
                         <span class="group-name">${groupName}</span>
                         <span class="group-count">${groupMuscles.length} muscle${groupMuscles.length !== 1 ? 's' : ''}</span>
                         <span class="group-chevron" id="mg-chev-${slug}">${isExpanded ? '-' : '+'}</span>

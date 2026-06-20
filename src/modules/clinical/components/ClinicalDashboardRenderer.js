@@ -39,7 +39,7 @@ export const ClinicalDashboardRenderer = {
                 const starredBorder = starred ? 'box-shadow: 0 4px 6px -1px rgba(245,158,11,0.25), 0 0 0 2px #fbbf24; ' : 'box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); ';
 
                 caseListHtml += `
-                    <div class="difficulty-card${starred ? ' starred-case' : ''}" data-action="startCase" data-id="${id}"
+                    <div class="difficulty-card${starred ? ' starred-case' : ''}" role="button" tabindex="0" data-action="startCase" data-id="${id}"
                          style="position: relative; width: auto; padding: 20px; border-bottom: 4px solid ${difficultyColor}; text-align: left; background: white; border-radius: 12px; ${starredBorder}transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;">
                         ${starBadge}
                         <div style="font-size: 1.1em; font-weight: 700; color: #0f172a; margin-bottom: 8px; padding-right: ${starred ? '28px' : '0'};">${caseData.title}</div>

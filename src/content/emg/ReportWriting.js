@@ -330,7 +330,7 @@ export const ReportWritingModule = {
             }
 
             progressHTML += `
-                <div class="${btnClass}" style="${inlineStyle}" data-action="showTutorialStep" data-step="${i}">
+                <div class="${btnClass}" style="${inlineStyle}" role="button" tabindex="0" data-action="showTutorialStep" data-step="${i}">
                     <div style="position: relative; z-index: 2;">
                         ${content}
                         <div class="rw-step-title">${stepData.title}</div>
@@ -511,7 +511,7 @@ export const ReportWritingModule = {
                 const isDone = num < this.wizardStep;
                 const bg = isActive ? `background:${s.color}; color:white; border-color:transparent; box-shadow: 0 4px 12px ${s.color}40;` :
                            isDone ? 'background:#f0fdf4; color:#16a34a; border-color:#bbf7d0;' : '';
-                return `<div class="rw-step-btn${isActive ? ' active' : ''}${isDone ? ' completed' : ''}" style="flex:1; min-width: 100px; ${bg}" data-action="RW_goToWizardStep" data-step="${num}">
+                return `<div class="rw-step-btn${isActive ? ' active' : ''}${isDone ? ' completed' : ''}" style="flex:1; min-width: 100px; ${bg}" role="button" tabindex="0" data-action="RW_goToWizardStep" data-step="${num}">
                     <div>${isDone ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>' : num}</div>
                     <div class="rw-step-title">${s.title}</div>
                 </div>`;
@@ -526,12 +526,12 @@ export const ReportWritingModule = {
             if (type === 'textarea') {
                 return `<div style="margin-bottom: 20px;">
                     <label style="display:block; font-weight:700; color:#334155; margin-bottom:8px; font-size:0.95rem;">${label}</label>
-                    <textarea data-field="${key}" placeholder="${placeholder}" rows="${rows || 4}" style="width:100%; padding:14px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; font-family:inherit; resize:vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'">${val}</textarea>
+                    <textarea data-field="${key}" aria-label="${label}" placeholder="${placeholder}" rows="${rows || 4}" style="width:100%; padding:14px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; font-family:inherit; resize:vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'">${val}</textarea>
                 </div>`;
             }
             return `<div style="margin-bottom: 16px;">
                 <label style="display:block; font-weight:700; color:#334155; margin-bottom:8px; font-size:0.95rem;">${label}</label>
-                <input type="${type}" data-field="${key}" value="${val}" placeholder="${placeholder}" style="width:100%; padding:12px 14px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; font-family:inherit; transition: border-color 0.2s;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'">
+                <input type="${type}" data-field="${key}" value="${val}" aria-label="${label}" placeholder="${placeholder}" style="width:100%; padding:12px 14px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; font-family:inherit; transition: border-color 0.2s;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'">
             </div>`;
         };
 

@@ -403,41 +403,41 @@ const generateContent = () => `
             
             <div class="nerve-list-group">
                 <div class="nerve-group-title">Upper Extremity</div>
-                <div class="nerve-item" data-nerve="median" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="median" role="button" tabindex="0" data-action="selectNerve">
                     <span>Median Nerve</span><span class="root-badge">C6-T1</span>
                 </div>
-                <div class="nerve-item" data-nerve="ulnar" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="ulnar" role="button" tabindex="0" data-action="selectNerve">
                     <span>Ulnar Nerve</span><span class="root-badge">C8-T1</span>
                 </div>
-                <div class="nerve-item" data-nerve="radial" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="radial" role="button" tabindex="0" data-action="selectNerve">
                     <span>Radial Nerve</span><span class="root-badge">C5-T1</span>
                 </div>
-                <div class="nerve-item" data-nerve="musculocutaneous" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="musculocutaneous" role="button" tabindex="0" data-action="selectNerve">
                     <span>Musculocutaneous</span><span class="root-badge">C5-C7</span>
                 </div>
-                <div class="nerve-item" data-nerve="axillary" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="axillary" role="button" tabindex="0" data-action="selectNerve">
                     <span>Axillary Nerve</span><span class="root-badge">C5-C6</span>
                 </div>
             </div>
 
             <div class="nerve-list-group">
                 <div class="nerve-group-title">Lower Extremity</div>
-                <div class="nerve-item" data-nerve="sciatic" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="sciatic" role="button" tabindex="0" data-action="selectNerve">
                     <span>Sciatic Nerve</span><span class="root-badge">L4-S3</span>
                 </div>
-                <div class="nerve-item" data-nerve="tibial" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="tibial" role="button" tabindex="0" data-action="selectNerve">
                     <span>Tibial Nerve</span><span class="root-badge">L4-S3</span>
                 </div>
-                <div class="nerve-item" data-nerve="peroneal" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="peroneal" role="button" tabindex="0" data-action="selectNerve">
                     <span>Peroneal Nerve</span><span class="root-badge">L4-S2</span>
                 </div>
-                <div class="nerve-item" data-nerve="femoral" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="femoral" role="button" tabindex="0" data-action="selectNerve">
                     <span>Femoral Nerve</span><span class="root-badge">L2-L4</span>
                 </div>
-                <div class="nerve-item" data-nerve="obturator" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="obturator" role="button" tabindex="0" data-action="selectNerve">
                     <span>Obturator Nerve</span><span class="root-badge">L2-L4</span>
                 </div>
-                <div class="nerve-item" data-nerve="sural" data-action="selectNerve">
+                <div class="nerve-item" data-nerve="sural" role="button" tabindex="0" data-action="selectNerve">
                     <span>Sural Nerve</span><span class="root-badge">S1-S2</span>
                 </div>
             </div>
@@ -661,7 +661,7 @@ export const PathwayExplorer = {
                 }
 
                 return `
-                    <div class="step-timeline-item ${stateClass}" data-action="showStep" data-step="${i}">
+                    <div class="step-timeline-item ${stateClass}" role="button" tabindex="0" data-action="showStep" data-step="${i}">
                         <div class="timeline-dot"></div>
                         ${injuryHtml}
                         <div class="step-card">

@@ -101,7 +101,7 @@ if (!window.EMGLocalization) {
             const pillsHTML = Object.keys(muscles).map(abbrev => {
                 const muscle = muscles[abbrev];
                 return `
-                    <div class="muscle-pill" data-action="emgSelectMuscle" data-muscle="${abbrev}" data-region="${region}">
+                    <div class="muscle-pill" role="button" tabindex="0" data-action="emgSelectMuscle" data-muscle="${abbrev}" data-region="${region}">
                         <span class="muscle-pill-abbrev">${abbrev}</span>
                         <span class="muscle-pill-name">${muscle.fullName}</span>
                     </div>
